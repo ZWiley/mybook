@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Redis - PegasusWang的读书笔记</title>
+  <title>《Redis》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Redis";
+    var mkdocs_page_name = "\u300aRedis\u300b";
     var mkdocs_page_input_path = "\u9879\u76ee\u57fa\u7840\u77e5\u8bc6\\Redis.md";
     var mkdocs_page_url = null;
   </script>
@@ -36,7 +36,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> PegasusWang的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -50,7 +50,155 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../index.md">简介</a>
+    <a class="" href="../..">简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">C++</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../基础语言/C++编译底层/">《C++编译底层》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基础语言/C++基础知识/">《C++基础知识》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基础语言/C++智能指针_异常机制_强制转换_RTTI/">《C++智能指针》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基础语言/STL/">《C++ STL》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">计算机基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/操作系统/">《操作系统》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/计算机网络/">《计算机网络》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/数据结构/">《数据结构》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">《基本手写代码》</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/插入排序.cpp">《插入排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/单例模式.cpp">《单例模式》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/堆排序.cpp">《堆排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/二分查找法.cpp">《二分查找法》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/非递归二叉树遍历.cpp">《非递归二叉树遍历》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/归并排序.cpp">《归并排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/快速排序.cpp">《快速排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/智能指针的设计与实现.cpp">《智能指针的设计与实现》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">项目基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Linux系统编程及基本命令/">《Linux系统编程及基本命令》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../MySQL/">《MySQL》</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">《Redis》</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#redis">Redis</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#nosql">NoSQL</a></li>
+        
+            <li><a class="toctree-l4" href="#capbase">CAP和BASE</a></li>
+        
+            <li><a class="toctree-l4" href="#_1">分布式和集群</a></li>
+        
+            <li><a class="toctree-l4" href="#redis_1">Redis及优缺点</a></li>
+        
+            <li><a class="toctree-l4" href="#redis_2">Redis线程模型</a></li>
+        
+            <li><a class="toctree-l4" href="#_3">为什么单线程效率还这么高</a></li>
+        
+            <li><a class="toctree-l4" href="#redis_3">Redis数据类型和应用场景</a></li>
+        
+            <li><a class="toctree-l4" href="#redisrdbaof">Redis持久化机制RDB和AOF</a></li>
+        
+            <li><a class="toctree-l4" href="#redis_4">Redis事务</a></li>
+        
+            <li><a class="toctree-l4" href="#redis_6">Redis过期策略和缓存淘汰策略</a></li>
+        
+            <li><a class="toctree-l4" href="#redisredis">Redis主从复制+Redis哨兵</a></li>
+        
+            <li><a class="toctree-l4" href="#redis_7">Redis集群</a></li>
+        
+            <li><a class="toctree-l4" href="#_6">分布式算法一致性哈希</a></li>
+        
+            <li><a class="toctree-l4" href="#redis_8">Redis哈希槽</a></li>
+        
+            <li><a class="toctree-l4" href="#redismysql">Redis和MySQL缓存和数据库的双写一致性</a></li>
+        
+            <li><a class="toctree-l4" href="#_12">缓存血崩和缓存穿透及解决方案</a></li>
+        
+            <li><a class="toctree-l4" href="#redis_10">Redis常见问题及解决方案</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Socket编程/">《Socket编程》</a>
+                </li>
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -418,7 +566,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../开发工具/mastering_vim.md">《Mastering Vim》</a>
+    <a class="" href="../../开发工具/Mastering_vim/">《Mastering Vim》</a>
                 </li>
                 <li class="">
                     
@@ -535,10 +683,6 @@
                 <li class="">
                     
     <a class="" href="../../软件工程_项目管理/解析极限编程-拥抱变化/">《解析极限编程》</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../软件工程_项目管理/构建之法:现代软件工程.md">《构建之法:现代软件工程》</a>
                 </li>
                 <li class="">
                     
@@ -714,7 +858,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">PegasusWang的读书笔记</a>
+        <a href="../..">ZWiley的读书笔记</a>
       </nav>
 
       
@@ -725,8 +869,12 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
+        
+          <li>项目基础知识 &raquo;</li>
+        
+      
     
-    <li>Redis</li>
+    <li>《Redis》</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -1029,6 +1177,15 @@
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Socket编程/" class="btn btn-neutral float-right" title="《Socket编程》">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../MySQL/" class="btn btn-neutral" title="《MySQL》"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -1051,6 +1208,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../MySQL/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Socket编程/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>C++补充 - PegasusWang的读书笔记</title>
+  <title>《C++智能指针》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "C++\u8865\u5145";
+    var mkdocs_page_name = "\u300aC++\u667a\u80fd\u6307\u9488\u300b";
     var mkdocs_page_input_path = "\u57fa\u7840\u8bed\u8a00\\C++\u667a\u80fd\u6307\u9488_\u5f02\u5e38\u673a\u5236_\u5f3a\u5236\u8f6c\u6362_RTTI.md";
     var mkdocs_page_url = null;
   </script>
@@ -36,7 +36,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> PegasusWang的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -50,7 +50,145 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../index.md">简介</a>
+    <a class="" href="../..">简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">C++</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../C++编译底层/">《C++编译底层》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../C++基础知识/">《C++基础知识》</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">《C++智能指针》</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#c">C++补充</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#_1">构造函数可以抛出异常吗，有什么问题？</a></li>
+        
+            <li><a class="toctree-l4" href="#_2">初始化列表的异常怎么捕获？</a></li>
+        
+            <li><a class="toctree-l4" href="#_3">析构函数可以抛出异常吗，有什么问题？</a></li>
+        
+            <li><a class="toctree-l4" href="#_4">析构函数如何处理异常？</a></li>
+        
+            <li><a class="toctree-l4" href="#_5">智能指针</a></li>
+        
+            <li><a class="toctree-l4" href="#_6">内存泄漏</a></li>
+        
+            <li><a class="toctree-l4" href="#_7">野指针</a></li>
+        
+            <li><a class="toctree-l4" href="#_8">强制转换</a></li>
+        
+            <li><a class="toctree-l4" href="#rtti">RTTI</a></li>
+        
+            <li><a class="toctree-l4" href="#raii">RAII</a></li>
+        
+            <li><a class="toctree-l4" href="#cpp11">CPP11新特性</a></li>
+        
+            <li><a class="toctree-l4" href="#_9">仿函数</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../STL/">《C++ STL》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">计算机基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/操作系统/">《操作系统》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/计算机网络/">《计算机网络》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/数据结构/">《数据结构》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">《基本手写代码》</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/插入排序.cpp">《插入排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/单例模式.cpp">《单例模式》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/堆排序.cpp">《堆排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/二分查找法.cpp">《二分查找法》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/非递归二叉树遍历.cpp">《非递归二叉树遍历》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/归并排序.cpp">《归并排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/快速排序.cpp">《快速排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/智能指针的设计与实现.cpp">《智能指针的设计与实现》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">项目基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../项目基础知识/Linux系统编程及基本命令/">《Linux系统编程及基本命令》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../项目基础知识/MySQL/">《MySQL》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../项目基础知识/Redis/">《Redis》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../项目基础知识/Socket编程/">《Socket编程》</a>
+                </li>
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -418,7 +556,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../开发工具/mastering_vim.md">《Mastering Vim》</a>
+    <a class="" href="../../开发工具/Mastering_vim/">《Mastering Vim》</a>
                 </li>
                 <li class="">
                     
@@ -535,10 +673,6 @@
                 <li class="">
                     
     <a class="" href="../../软件工程_项目管理/解析极限编程-拥抱变化/">《解析极限编程》</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../软件工程_项目管理/构建之法:现代软件工程.md">《构建之法:现代软件工程》</a>
                 </li>
                 <li class="">
                     
@@ -714,7 +848,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">PegasusWang的读书笔记</a>
+        <a href="../..">ZWiley的读书笔记</a>
       </nav>
 
       
@@ -725,8 +859,12 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
+        
+          <li>C++ &raquo;</li>
+        
+      
     
-    <li>C++补充</li>
+    <li>《C++智能指针》</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -987,6 +1125,15 @@ sort(vec.begin(), vec.end(), [](int a, int b)-&gt;bool{return a &lt; b})
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../STL/" class="btn btn-neutral float-right" title="《C++ STL》">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../C++基础知识/" class="btn btn-neutral" title="《C++基础知识》"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -1009,6 +1156,10 @@ sort(vec.begin(), vec.end(), [](int a, int b)-&gt;bool{return a &lt; b})
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../C++基础知识/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../STL/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
