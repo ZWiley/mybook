@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>《C++基础知识》 - ZWiley的读书笔记</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u300aC++\u57fa\u7840\u77e5\u8bc6\u300b";
+    var mkdocs_page_input_path = "\u57fa\u7840\u8bed\u8a00\\C++\u57fa\u7840\u77e5\u8bc6.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">C++</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../C++编译底层/">《C++编译底层》</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">《C++基础知识》</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#cc">C/C++基础知识</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#_1">数组和指针的区别</a></li>
+        
+            <li><a class="toctree-l4" href="#_2">指针数组和数组指针</a></li>
+        
+            <li><a class="toctree-l4" href="#_3">字符数组和字符串常量</a></li>
+        
+            <li><a class="toctree-l4" href="#_4">引用和指针的区别</a></li>
+        
+            <li><a class="toctree-l4" href="#cclassstruct">C++中class和struct的区别</a></li>
+        
+            <li><a class="toctree-l4" href="#newdeletemallocfree">new/delete和malloc/free区别</a></li>
+        
+            <li><a class="toctree-l4" href="#new">new运算符的原理</a></li>
+        
+            <li><a class="toctree-l4" href="#malloc">malloc的内存分配机制</a></li>
+        
+            <li><a class="toctree-l4" href="#_5">栈和堆的区别</a></li>
+        
+            <li><a class="toctree-l4" href="#_6">面向对象和面向过程的区别</a></li>
+        
+            <li><a class="toctree-l4" href="#const">const关键字(不可修改)</a></li>
+        
+            <li><a class="toctree-l4" href="#static">static关键字(对外不可见)</a></li>
+        
+            <li><a class="toctree-l4" href="#extern">extern关键字</a></li>
+        
+            <li><a class="toctree-l4" href="#volatile">volatile关键字</a></li>
+        
+            <li><a class="toctree-l4" href="#explicit">explicit关键字</a></li>
+        
+            <li><a class="toctree-l4" href="#_7">类成员属性</a></li>
+        
+            <li><a class="toctree-l4" href="#_8">大小端序的定义和代码判断</a></li>
+        
+            <li><a class="toctree-l4" href="#3264">代码判断32位和64位系统</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../C++智能指针_异常机制_强制转换_RTTI/">《C++智能指针》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../STL/">《C++ STL》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">计算机基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/操作系统/">《操作系统》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/计算机网络/">《计算机网络》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../计算机基础知识/数据结构/">《数据结构》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">《基本手写代码》</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/插入排序.cpp">《插入排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/单例模式.cpp">《单例模式》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/堆排序.cpp">《堆排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/二分查找法.cpp">《二分查找法》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/非递归二叉树遍历.cpp">《非递归二叉树遍历》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/归并排序.cpp">《归并排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/快速排序.cpp">《快速排序》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../基本手写代码/智能指针的设计与实现.cpp">《智能指针的设计与实现》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">项目基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../项目基础知识/Linux系统编程及基本命令/">《Linux系统编程及基本命令》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../项目基础知识/MySQL/">《MySQL》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../项目基础知识/Redis/">《Redis》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../项目基础知识/Socket编程/">《Socket编程》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">代码</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../code/work_with_legacy_code/">《Work with legacy code》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../code/代码大全/">《代码大全》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../code/代码的未来/">《代码的未来》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../code/基本功/">《基本功》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../code/敏捷技能修炼/">《敏捷技能修炼》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../code/程序员应该知道的97件事/">《程序员应该知道的97件事》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../code/编写可读代码的艺术/">《编写可读代码的艺术》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../code/编程匠艺/">《编程匠艺》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../code/领域驱动设计/">《领域驱动设计》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">调试技术</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../debug/软件调试修炼之道/book/">《软件调试修炼之道》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../debug/Effective_Debugging/">《Effective Debugging》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">数据库</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../database/getting_started_with_impala/">《Getting started with impala》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/mysql必知必会/">《mysql必知必会》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/mysql性能调优与架构实践/">《mysql性能调优与架构实践》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/Mysql技术内幕InnoDB存储引擎/">《Mysql技术内幕InnoDB存储引擎》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/redis实战/">《Redis实战》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/redis深度历险核心原理和应用实践/book/">《Redis深度历险核心原理和应用实践》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/redis设计与实现/">《redis设计与实现》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/七周七数据库/">《七周七数据库》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/深入浅出mysql/">《深入浅出mysql》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/高性能mysql第三版/">《高性能mysql第三版》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">前端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../frontend/CSS_The_Missing_Manual/">《CSS_The_Missing_Manual》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../frontend/reactjs_小书/">《reactjs小书》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../frontend/es6标准入门/">《ES6标准入门》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">golang</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../golang/1_the_go_programming_lauguage/">《1 The Go Programming Language》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/2_the_go_programming_lauguage/">《2 The Go Programming Language》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/3_the_go_programming_lauguage/">《3 The Go Programming Language》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/build-web-application-with-golang/">《Build Web Application With Golang》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/go101/book/">《Go101》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/network-programming-with-go/book/">《Network Programming with go》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/building-microservices-with-go/book/">《Building Microservices With Go》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/building_restful_web_services_with_go/book/">《Building Restful Web Services with Go》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/concurrency-in-go/concurrency_in_go/">《Concurrency In Go》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/go_in_action(go语言实战)/">《Go In Action(Go 实战)》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/go语言学习笔记语言详解/">《Go学习笔记语言详解》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../golang/go语言学习笔记源码剖析/">《Go学习笔记源码剖析》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">java</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../java/java-basic-introduction/">《java basic introduction》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网络</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../network/tcp_ip详解卷一/tcp_ip详解卷一/">《TCP IP详解卷一》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">心理学</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../psychology/一切都是童年的错吗/">《一切都是童年的错吗》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/亲密关系/">《亲密关系》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/情商/">《情商》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/拖延心理学/">《拖延心理学》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/积极心理学/">《积极心理学》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/自控力/">《自控力》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/自控力-和压力做朋友/">《自控力:和压力做朋友》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/活出最乐观的自己/">《活出最乐观的自己》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/改变心理学的40项研究/">《改变心理学的40项研究》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/超越自卑/">《超越自卑》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../psychology/反脆弱/">《反脆弱》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">python</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../python/fluent_python/">《Fluent Python》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../python/Python_Microservices_Development/">《Python Microservices Development》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../python/high_performance_python/">《High Performance Python》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../python/python_网络编程/">《Python网络编程》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">创业</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../startup/hello_startup/">《Hello Startup》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../startup/斯坦福公开课-如何创业/">《斯坦福公开课如何创业》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../startup/运营其实很简单/">《运营其实很简单》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">unix/linux</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../unix_linux/Linux高性能服务器编程/Linux高性能服务器编程/">《Linux高性能服务器编程》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../unix_linux/unix编程艺术/">《unix编程艺术》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">分布式</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../分布式/Kafka权威指南/">《Kafka 权威指南》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../分布式/分布式框架原理与应用/">《分布式框架原理与应用》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../分布式/大规模分布式存储系统/">《大规模分布式存储系统》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../分布式/深入分布式缓存从原理到实践/">《深入分布式缓存从原理到实践》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">搜索引擎</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../搜索引擎/Elasticsearch实战/book/">《Elasticsearch实战》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">开发工具</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../开发工具/practical_vim/practical_vim/">《Practical Vim》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../开发工具/vim8文本处理实战/vim8文本处理实战/">《Vim8文本处理实战》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../开发工具/learn_vim_the_hard_way/">《Learn vim scrpt the hard way》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../开发工具/pro_git/">《Pro Git》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../开发工具/Mastering_vim/">《Mastering Vim》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../开发工具/mastering_vim_quickly/">《Mastering Vim Quickly》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">思维</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../思维认知/专注力_化繁为简的惊人力量/">《专注力》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/为什么精英这样用脑不会累/">《为什么精英这样用脑不会累》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/刻意练习/">《刻意练习》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/如何想到又做到/">《如何想到又做到》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/学习之道/">《学习之道》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/学习力/">《学习力》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/批判性思维工具/">《批判性思维工具》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/程序员的思维修炼(开发认知潜能的九堂课)/">《程序员的思维修炼》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/认知天性/">《认知天性》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/超效率手册/">《超效率手册》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../思维认知/高效程序员的45个习惯/">《高效程序员的45个习惯》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">源码</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../源码阅读_sourcecode/">《源码阅读》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">网站架构微服务</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../网站架构微服务/microservices_patterns_微服务架构设计模式/book/">《微服务架构设计模式》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../网站架构微服务/从0开始学架构/从0开始学架构/">《从0开始学架构》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../网站架构微服务/web_scalavility_for_startup_engineers/">《web scalavility for startup engineers》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../网站架构微服务/design_data_instensive_application/">《design_data_instensive_application》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../网站架构微服务/clean_architecture/">《clean_architecture》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../网站架构微服务/微服务设计/">《微服务设计》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">软件工程/项目管理</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../软件工程_项目管理/人月神话/">《人月神话》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../软件工程_项目管理/代码之殇/">《代码之殇》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../软件工程_项目管理/解析极限编程-拥抱变化/">《解析极限编程》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../软件工程_项目管理/项目管理修炼之道/">《项目管理修炼之道》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">运维</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../运维/linux集群和自动化运维/">《linux集群和自动化运维》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../运维/python自动化运维/">《python自动化运维》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">金融理财</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../金融理财/定投十年/">《定投十年》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../金融理财/穷查理宝典/">《穷查理宝典》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">写作</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../写作/刷屏文案写作技巧/">《刷屏文案写作技巧》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">互联网</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../互联网/我的互联网方法论-周鸿祎/">《我的互联网方法论-周鸿祎》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../互联网/用户思维/">《用户思维》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">区块链</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../区块链/区块链技术指南(blockchain_guide)/">《区块链技术指南》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">技术演讲</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../lecture/Gopher/哔哩哔哩的go微服务实战/note/">《哔哩哔哩的go微服务实战》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../lecture/Gopher/Go_Error/go业务基础库之Error&Context/">《go业务基础库之Error&Context》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../lecture/Gopher/Go同步和并发设计模式/note/">《Go同步和并发设计模式》</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">职场</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../career/give_and_take/">《give and take》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/the_effective_engineer/">《the_effective_engineer》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/光速成长/">《光速成长》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/向上管理/">《向上管理》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/成功动机与目标/">《成功动机与目标》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/番茄工作法/">《番茄工作法》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/聆听沟通学/">《聆听沟通学》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/知乎职人觉醒/">《知乎职人觉醒》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/知识变现/">《知识变现》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/聆听沟通学/">《聆听沟通学》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/职场动物进化手册/">《职场动物进化手册》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/职场解释系/">《职场解释系》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/请停止无效努力/">《请停止无效努力》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/软技能/">《软技能》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/高效15法则/">《高效15法则》</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../career/高效清单工作法/">《高效清单工作法》</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">ZWiley的读书笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>C++ &raquo;</li>
+        
+      
+    
+    <li>《C++基础知识》</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="cc">C/C++基础知识</h1>
+<blockquote>
+<ul>
+<li><a href="#数组和指针的区别">数组和指针的区别</a></li>
+<li><a href="#指针数组和数组指针">指针数组和数组指针</a></li>
+<li><a href="#字符数组和字符串常量">字符数组和字符串常量</a></li>
+<li><a href="#引用和指针的区别">引用和指针的区别</a></li>
+<li><a href="#C中class和struct的区别">C++中class和struct的区别</a></li>
+<li><a href="#new/delete和malloc/free区别">new/delete和malloc/free区别</a></li>
+<li><a href="#new运算符的原理">new运算符的原理</a></li>
+<li><a href="#malloc的内存分配机制">malloc的内存分配机制</a></li>
+<li><a href="#栈和堆的区别">栈和堆的区别</a></li>
+<li><a href="#面向对象和面向过程的区别">面向对象和面向过程的区别</a></li>
+<li><a href="#const关键字">const关键字</a></li>
+<li><a href="#static关键字">static关键字</a></li>
+<li><a href="#extern关键字">extern关键字</a></li>
+<li><a href="#volatile关键字">volatile关键字</a></li>
+<li><a href="#explicit关键字">explicit关键字</a></li>
+<li><a href="#类成员属性">类成员属性</a></li>
+<li><a href="#大小端序的定义和代码判断">大小端序的定义和代码判断</a></li>
+<li><a href="#代码判断32位和64位系统">代码判断32位和64位系统</a></li>
+</ul>
+</blockquote>
+<h2 id="_1">数组和指针的区别</h2>
+<blockquote>
+<ul>
+<li><strong>概念不同.</strong> 指针相当于一个变量，它存放的是数据在内存中的地址；数组是用于储存多个相同类型数据的集合</li>
+<li><strong>赋值不同.</strong> 同类型指针变量可以相互赋值，数组不行，只能一个一个元素的赋值或拷贝</li>
+<li><strong>访问数据不同.</strong> 指针是间接访问数据，获取指针，先解引用，再访问指针指向的地址中的内容；数组是直接访问</li>
+<li><strong>sizeof意义不同.</strong> 
+数组所占存储空间的内存：sizeof（数组名）
+数组的大小：sizeof（数组名）/sizeof（数据类型）
+在32位平台下，sizeof（指针名）是4，在64位平台下，sizeof（指针名）是8</li>
+<li><strong>指针和数组名异同.</strong> 指针和数组名都可以表示地址，但指针是变量，可以修改；数组名是常量，不可修改赋值</li>
+<li><strong>传参.</strong> 
+数组传参时会退化成指针
+1. 退化的意义：C语言只会以值拷贝的方式传递参数，参数传递时，如果只拷贝整个数组，效率会大大降低，并且在参数位于栈上，太大的数组拷贝将会导致栈溢出。
+2. 因此，C语言将数组的传参进行了退化。将整个数组拷贝一份传入函数时，将数组名看做常量指针，传数组首元素的地址。</li>
+</ul>
+</blockquote>
+<h2 id="_2">指针数组和数组指针</h2>
+<p>指针数组本质是数组，数组指针本质是指针，谁优先级高，本质是谁</p>
+<blockquote>
+<ul>
+<li>指针数组：它实际上是一个数组，数组的每个元素存放的是一个指针类型的元素。
+int* arr[8];
+1. 优先级问题：[]的优先级比*高
+2. 说明arr是一个数组，而int*是数组里面的内容
+3. 这句话的意思就是：arr是一个含有8和int*的数组</li>
+<li>数组指针：它实际上是一个指针，该指针指向一个数组。
+int (*arr)[8];
+1. 由于[]的优先级比*高，因此在写数组指针的时候必须将*arr用括号括起来
+2. arr先和*结合，说明p是一个指针变量
+3. 这句话的意思就是：指针arr指向一个大小为8个整型的数组。</li>
+</ul>
+</blockquote>
+<h2 id="_3">字符数组和字符串常量</h2>
+<p>char    arr[]="hello";  //字符数组
+char    *arr2="hello"; //字符串常量</p>
+<blockquote>
+<ul>
+<li>char arr[]="hello"，此处的赋值是将常量区的字符串"hello"拷贝到了堆栈区的数arr的空间了。数组arr是在堆栈区开辟了空间，此时是可以修改字符串的值，因为修改的是堆栈区的字符串的值。另外此时的数组名p是堆栈区中的"hello"的首地址。</li>
+<li>char *arr2="hello"，指针arr2是存储在堆栈区，但字符串是常量，存储在常量区，只是指针arr指向了存储在常量区的字符串首地址，此时不能改变常量区的字符串的值。</li>
+</ul>
+</blockquote>
+<p>const char arr[]="hello";  //这里hello本来是在栈上的，但是编译器可能会做某些优化，将其放到常量区
+const char *arr2="hello"; //字符串hello保存在常量区，const本来是修饰arr2指向的值不能通过arr2去修改，但是字符串hello在常量区，本来就不能改变，所以加不加const效果都一样 </p>
+<h2 id="_4">引用和指针的区别</h2>
+<blockquote>
+<ul>
+<li><strong>指针有内存分配，而引用只是一个别名.</strong> 引用声明时必须初始化，从而指向一个已经存在的对象</li>
+<li><strong>引用可以看做常量指针，指针是一个存储地址的变量.</strong> 指针在运行时可以改变其所指向的值，而引用一旦和某个对象绑定后就不再改变。这句话可以理解为：指针可以被重新赋值以指向另一个不同的对象，但是引用则总是指向在初始化时被指定的对象，以后不能改变，但是指定的对象其内容可以改变。</li>
+<li><strong>引用创建时必须初始化，且不为空，指针创建时可以为空.</strong> 不存在指向空值的引用这个事实，意味着使用引用的代码效率比使用指针的要高。因为在使用引用之前不需要测试它的合法性。相反，指针则应该总是被测试，防止其为空。</li>
+<li><strong>指针和引用的自增运算符意义不同.</strong> 指针是对内存地址的自增，引用是对值的自增</li>
+<li><strong>sizeof的意义不同.</strong> 使用sizeof看一个指针的大小是4，而引用则是被引用对象的大小</li>
+<li><strong>没有引用常量，有指针常量.</strong> 没有int&amp; const p,有int* const p.
+常量指针和常量引用是存在的，const int *p和cosnt int &amp;p，都表示指向的对象为常量常量引用形参的好处：（1）使用引用作为形参，不会产生新的变量，减少形参和实参传递的开销；（2）使用引用可能会导致实参随着形参的改变而改变。声明为const之后就会消除这种副作用。</li>
+<li><strong>参数传递.</strong> 作为参数传递时，指针需要被解引用才可以对对象进行操作，而直接对引 用的修改都会改变引用所指向的对象</li>
+<li><strong>多级指针，一级引用.</strong> 指针可以有多级指针（**p），而引用只有一级</li>
+</ul>
+</blockquote>
+<h2 id="cclassstruct">C++中class和struct的区别</h2>
+<p>C中的strcut不能有函数，但C++中可以。C++中的struct对C中的struct进行了扩充，它已经不再只是一个包含不同数据类型的数据结构了，它已经获取了太多的功能。struct能包含成员函数吗？ 能！struct能继承吗？ 能！！struct能实现多态吗？ 能！！！</p>
+<blockquote>
+<ul>
+<li><strong>默认的继承访问权限.</strong> struct是public的，class是private的
+    class B : public A就是为了指明是public继承，而不是用默认的private继承，若class B : A则是private继承</li>
+<li><strong>定义模板参数.</strong> class这个关键字还用于定义模板参数，就像typename。但关键字struct不用于定义模板参数。</li>
+</ul>
+</blockquote>
+<h2 id="newdeletemallocfree">new/delete和malloc/free区别</h2>
+<p>malloc和calloc间的主要区别在于后者在返回指向内存的指针之前把它初始化为0。另一个区别是calloc的参数包括所需的元素的数量和每个元素的字节数</p>
+<blockquote>
+<ul>
+<li><strong>属性不同.</strong> new/delete是C++关键字，需要编译器支持。malloc/free是库函数，需要头文件支持c</li>
+<li><strong>申请的内存所在位置.</strong> new操作符从自由存储区（free store）上为对象动态分配内存空间，而malloc函数从堆上动态分配内存.</li>
+<li><strong>返回类型安全性.</strong> new操作符内存分配成功时，返回的是对象类型的指针，类型严格与对象匹配，无须进行类型转换，故new是符合类型安全性的操作符。
+而malloc内存分配成功则是返回void*类型，需要通过强制类型转换将空类型指针转换成我们需要的类型。</li>
+<li><strong>内存分配失败时的返回值.</strong> new内存分配失败时，会抛出bac_alloc异常，它不会返回NULL；malloc分配内存失败时返回NULL。</li>
+<li><strong>是否需要指定内存大小.</strong> 使用new操作符申请内存分配时无须指定内存块的大小，编译器会根据类型信息自行计算。而malloc则需要显式地指出所需内存的大小
+    int <em>pi=new int;//在自由存储区中分配创建了一个整形对象，并返回一个指向该对象的地址来初始化指针pi。
+    int </em>pi=new int();//对指针pi指向的地址的值进行了初始化为0
+    int <em>pi=new int(1024);//初始化为1024。
+    int </em>p=(int <em>)malloc(100);//指向整型的指针p指向一个大小为100字节的内存的地址
+    int </em>p=(int <em>)malloc(25</em>sizeof(int));//指向整型的指针p指向一个25个int整型空间的地址</li>
+<li><strong>数组分配内存（与前一个特点类似）.</strong> new中分配内存对于变量和数组不同，malloc分配内存则相同
+int <em>pi=new int[];  //指针pi所指向的数组未初始化
+int </em>pi=new int[n]; //指针pi指向长度为n的数组，未初始化
+int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
+<li><strong>是否调用构造函数/析构函数.</strong>   new会先调用operator_ new函数，申请足够的内存（通常底层使用malloc实现）。然后调用类型的构造函数，初始化成员变量，最后返回自定义类型指针。delete先调用析构函数，然后调用operator_ delete函数释放内存（通常底层使用free实现）。malloc/free是库函数，只能动态的申请和释放内存，无法强制要求其做自定义类型对象构造和析构工作。 </li>
+<li><strong>能否重载.</strong> opeartor_new/operator_delete允许重载,malloc/free不允许重载</li>
+<li><strong>已分配内存的扩充.</strong> malloc/free可以通过realloc函数扩充，new/free无法直观地处理</li>
+<li><strong>能否相互调用.</strong> operator_new /operator _delete的实现可以基于malloc/free，而malloc的实现不可以去调用new。</li>
+</ul>
+</blockquote>
+<h2 id="new"><a href="https://blog.csdn.net/hihozoo/article/details/51441521">new运算符的原理</a></h2>
+<ul>
+<li>内存分配
+    *  调用相应的  operator new(size_t) 函数，动态分配内存。如果 operator new(size_t) 不能成功获得内存，则调用 new_handler()函数用于处理new失败问题。如果没有设置 new_handler() 函数或者 new_handler() 未能分配足够内存，则抛出 std::bad_alloc 异常</li>
+</ul>
+<ul>
+<li>构造函数
+    *  在分配到的动态内存块上 初始化相应类型的对象（构造函数）并返回其首地址。如果调用构造函数初始化对象时抛出异常，则自动调用 operator delete(void<em>, void</em>) 函数释放已经分配到的内存。</li>
+</ul>
+<h2 id="malloc">malloc的内存分配机制</h2>
+<p>malloc内存分配机制是怎么样的,在哪里分配内存，最大可以申请多大的内存？</p>
+<blockquote>
+<ul>
+<li>首先会扫描之前由free()所释放的空闲内存块列表，以求找到尺寸大于或等于要求的一块空闲内存。如果这一内存块的尺寸正好与要求相当，就将它返回给调用者，如果是一块较大的内存，那么将对其进行分割，在将一块大小相当的内存返回给调用者的同时，把较小的那块空闲内存块保留在空闲列表中</li>
+</ul>
+</blockquote>
+<h2 id="_5"><a href="https://blog.csdn.net/caogenwangbaoqiang/article/details/79788368">栈和堆的区别</a></h2>
+<ul>
+<li>管理方式不同
+    * 对于栈来讲，是由编译器自动管理，无需我们手工控制；对于堆来说，释放工作由程序员控制，容易产生memory leak。</li>
+<li>空间大小不同
+    * 一般来讲在32位系统下，堆内存可以达到4G的空间，从这个角度来看堆内存几乎是没有什么限制的。但是对于栈来讲，一般都是有一定的空间大小的，例如，在VC6下面，默认的栈空间大小是1M</li>
+<li>能否产生碎片不同
+    * 对于堆来讲，频繁的new/delete势必会造成内存空间的不连续，从而造成大量的碎片，使程序效率降低。对于栈来讲，则不会存在这个问题，因为栈是先进后出的队列，他们是如此的一一对应，以至于永远都不可能有一个内存块从栈中间弹出</li>
+<li>生长方向不同
+    * 对于堆来讲，生长方向是向上的，也就是向着内存地址增加的方向；对于栈来讲，它的生长方向是向下的，是向着内存地址减小的方向增长</li>
+</ul>
+<h2 id="_6"><a href="https://blog.csdn.net/jerry11112/article/details/79027834">面向对象和面向过程的区别</a></h2>
+<p>面向对象就是高度实物抽象化、面向过程就是自顶向下的编程</p>
+<blockquote>
+<ul>
+<li>面向过程就是分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现，使用的时候一个一个依次调用</li>
+<li>面向对象是把要解决的问题分解成各个对象，建立对象的目的不是为了完成一个步骤，而是为了描叙某个事物在整个解决问题的步骤中的行为</li>
+<li>面向过程的优缺点
+    1. 优点：性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、Linux/Unix等一般采用面向过程开发，性能是最重要的因素。
+    2. 缺点：没有面向对象易维护、易复用、易扩展</li>
+<li>面向对象的优缺点
+    1. 优点：易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 
+    2. 缺点：性能比面向过程低</li>
+</ul>
+</blockquote>
+<h2 id="const">const关键字(不可修改)</h2>
+<blockquote>
+<ul>
+<li>修饰变量，说明该变量不可以被改变；</li>
+<li>修饰指针，分为指向常量的指针和指针常量；int <em>const p和const int </em>p</li>
+<li>常量引用，经常用于形参类型，即避免了拷贝，又避免了函数对值的修改；</li>
+<li>修饰成员函数，说明该成员函数内不能修改成员变量，本质是const this指针。</li>
+</ul>
+</blockquote>
+<h2 id="static">static关键字(对外不可见)</h2>
+<blockquote>
+<ul>
+<li><strong>修饰普通变量，</strong> 修改变量的存储区域和生命周期，使变量存储在静态区，在 main 函数运行前就分配了空间，在整个程序运行期间一直存在，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它，自动初始化为0。
+全局变量作用域：全局静态变量在声明他的文件之外是不可见的，准确地说是从定义之处开始，到文件结尾。
+局部变量作用域：仍为局部作用域，当定义它的函数或者语句块结束的时候，作用域结束。但是当局部静态变量离开作用域后，并没有销毁，而是仍然驻留在内存当中，只不过我们不能再对它进行访问，直到该函数再次被调用，并且值不变； </li>
+<li><strong>修饰普通函数，</strong> 其只能在定义它的源文件中使用，不能在其他源文件中被引用</li>
+<li><strong>修饰类成员变量和成员函数，</strong> 它们是属于类的，而不是某个对象，所有对象共享一个静态成员。静态成员通过&lt;类名&gt;::&lt;静态成员&gt;来使用。在 static 函数内不能访问非静态成员</li>
+</ul>
+</blockquote>
+<h2 id="extern"><a href="https://www.cnblogs.com/qinguoyi/p/10100777.html">extern关键字</a></h2>
+<p>extern关键字主要修饰变量或函数，表示该函数可以跨文件访问，或者表明该变量在其他文件定义，在此处引用.</p>
+<blockquote>
+<ul>
+<li><strong>修饰变量或函数.</strong>被 extern 限定的函数或变量是 extern 类型的</li>
+<li><strong>extern "C".</strong> extern "C" 的作用是让 C++ 编译器将 extern "C" 声明的代码当作 C 语言代码处理，可以避免 C++ 因符号修饰导致代码不能和C语言库中的符号进行链接的问题。
+1. 在c头文件中通过#ifdef __cplusplus  extern "C"  { #endif来定义
+2. 在对应的c文件中实现
+3. 在cpp文件中通过“extern "C" 函数名”调用，或者包含c头文件
+<strong>注意：</strong> extern的引用方式比包含头文件要简洁得多！extern的使用方法是直接了当的，想引用哪个函数就用extern声明哪个函数。这样做的一个明显的好处是，会加速程序的编译（确切的说是预处理）的过程，节省时间，但若需要调用的函数太多，还是直接包含头文件吧.</li>
+</ul>
+</blockquote>
+<h2 id="volatile">volatile关键字</h2>
+<blockquote>
+<ul>
+<li><strong>不可优化性.</strong> volatile 关键字是一种类型修饰符，用它声明的类型变量表示不可以被某些编译器未知的因素（操作系统、硬件、其它线程等）更改。所以使用 volatile 告诉编译器不应对这样的对象进行优化。</li>
+<li><strong>易变性.</strong> volatile 关键字声明的变量，每次访问时都必须从内存中取出值（没有被 volatile 修饰的变量，可能由于编译器的优化，从 CPU 寄存器中取值）</li>
+</ul>
+</blockquote>
+<h2 id="explicit">explicit关键字</h2>
+<p>explicit关键字的作用就是防止对象间实现=赋值，防止类构造函数的隐式自动转换,类构造函数默认情况下即声明为implicit(隐式)，另外explicit只用于单参数的构造函数，或者除了第一个参数以外的其他参数都有默认值.</p>
+<blockquote>
+<ul>
+<li>explicit 修饰构造函数时，可以防止隐式转换和复制初始化</li>
+<li>explicit 修饰转换函数时，可以防止隐式转换</li>
+</ul>
+</blockquote>
+<p><details>
+    <summary>explicit用法</summary>
+    <pre><blockcode> 
+class Person{
+public:
+    Person(){
+    }
+    //有参构造初始化数据
+    explicit Person(const char<em>str_){
+        str = (char </em>)malloc(sizeof(char)<em>100);
+        strcpy(str,str_);
+    }
+    ~Person() {
+        if (str != NULL){
+            free(str);
+            str = NULL;
+        }
+    }
+    char </em>str;
+};
+void test05(){
+    //Person p = "abc"; 隐式调用
+    Person p ("abc"); //显式调用
+}
+    </blockcode></pre>
+</details></p>
+<h2 id="_7">类成员属性</h2>
+<p>类的成员有三个权限：公有权限（public），私有权限（private），保护权限（protected）。</p>
+<blockquote>
+<ul>
+<li><strong>私有权限.</strong> 私有成员在类内部可以访问，类外不可访问，一般推荐将成员变量设置为私有成员；</li>
+<li><strong>公有权限.</strong> 类内类外都可以进行访问；</li>
+<li><strong>保护权限.</strong> 类内和当前类的子类可以访问，类外不可访问。</li>
+</ul>
+</blockquote>
+<h2 id="_8">大小端序的定义和代码判断</h2>
+<h3 id="_9">定义</h3>
+<p>一个16进制的地址，存放在内存中从低地址开始存储，如16进制的地址为0x1234，对于地址而言，从右往左是从低到高</p>
+<ul>
+<li>大端
+    * 若16进制的高地址存放在内存的低地址，则为大端字节序，34存储在高位，12存储在低位</li>
+<li>小端
+    * 若16进制的低地址存放在内存的低地址，则为小端字节序，12存储在高位，34存储在高位</li>
+</ul>
+<h3 id="_10">代码判断</h3>
+<p>可以通过联合体来判断，联合体是同一块内存被联合体中的所有成员公用，如果后续成员对内存重新赋值，会覆盖内存中原有数据</p>
+<pre><code class="C++">union U{
+    int a;
+    char b;
+};
+
+int main(){
+    U u;
+    u.a = 0x01020304;
+
+    if (u.b == 0x04){
+        cout &lt;&lt; u.b &lt;&lt; endl; //输出char字符
+        cout &lt;&lt; &quot;little&quot; &lt;&lt; endl;
+    }
+
+    else if (u.b == 0x01){
+        cout &lt;&lt; u.b &lt;&lt; endl;
+        cout &lt;&lt; &quot;big&quot; &lt;&lt; endl;
+    }
+    system(&quot;pause&quot;);
+    return 0;
+}
+</code></pre>
+
+<h2 id="3264">代码判断32位和64位系统</h2>
+<p>写一个指针，输出指针所占的字节大小</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../C++智能指针_异常机制_强制转换_RTTI/" class="btn btn-neutral float-right" title="《C++智能指针》">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../C++编译底层/" class="btn btn-neutral" title="《C++编译底层》"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../C++编译底层/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../C++智能指针_异常机制_强制转换_RTTI/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
