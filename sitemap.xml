@@ -21,6 +21,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zwiley.github.io/mybook/基础语言/C++面向对象/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zwiley.github.io/mybook/基础语言/STL/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
@@ -37,6 +42,11 @@
     </url>
     <url>
      <loc>https://zwiley.github.io/mybook/计算机基础知识/数据结构/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/计算机基础知识/海量数据处理/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -146,6 +156,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zwiley.github.io/mybook/code/codelife_不止代码/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zwiley.github.io/mybook/debug/软件调试修炼之道/book/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
@@ -221,6 +236,16 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zwiley.github.io/mybook/frontend/jquery_pocket_reference/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/frontend/深入理解bootstrap/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zwiley.github.io/mybook/golang/1_the_go_programming_lauguage/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
@@ -281,67 +306,32 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zwiley.github.io/mybook/golang/go语言编程/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/golang/the_way_to_go/book/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/golang/advanced-go-programming-book/advanced-go-programming/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/golang/go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zwiley.github.io/mybook/java/java-basic-introduction/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://zwiley.github.io/mybook/network/tcp_ip详解卷一/tcp_ip详解卷一/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/一切都是童年的错吗/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/亲密关系/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/情商/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/拖延心理学/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/积极心理学/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/自控力/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/自控力-和压力做朋友/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/活出最乐观的自己/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/改变心理学的40项研究/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/超越自卑/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/psychology/反脆弱/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -366,27 +356,102 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://zwiley.github.io/mybook/startup/hello_startup/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/startup/斯坦福公开课-如何创业/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://zwiley.github.io/mybook/startup/运营其实很简单/</loc>
-     <lastmod>2020-05-28</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
      <loc>https://zwiley.github.io/mybook/unix_linux/Linux高性能服务器编程/Linux高性能服务器编程/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://zwiley.github.io/mybook/unix_linux/unix编程艺术/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/unix网络编程卷一/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/unix编程艺术/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/environ/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/fork/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/gcc/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/IO/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/IPC/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/makefile/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/wait/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/动态库和静态库/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/守护进程/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/文件权限/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/系统IO函数/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/信号/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/信号2/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/线程/线程函数/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/线程/线程基础/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/unix_linux/APUE/线程/线程同步/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -412,6 +477,16 @@
     </url>
     <url>
      <loc>https://zwiley.github.io/mybook/搜索引擎/Elasticsearch实战/book/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/devops/玩转Kubernets-CloudMan/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/devops/第一本docker书/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -496,6 +571,16 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zwiley.github.io/mybook/思维认知/如何高效记忆/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/思维认知/科学学习/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zwiley.github.io/mybook/思维认知/高效程序员的45个习惯/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
@@ -536,6 +621,16 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://zwiley.github.io/mybook/网站架构微服务/2_design_data_instensive_application/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/网站架构微服务/3_design_data_instensive_application/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://zwiley.github.io/mybook/软件工程_项目管理/人月神话/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
@@ -552,6 +647,11 @@
     </url>
     <url>
      <loc>https://zwiley.github.io/mybook/软件工程_项目管理/项目管理修炼之道/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/软件工程_项目管理/修改软件的艺术/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -607,6 +707,11 @@
     </url>
     <url>
      <loc>https://zwiley.github.io/mybook/lecture/Gopher/Go同步和并发设计模式/note/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/lecture/技术演讲/左耳朵耗子-我这技术二十年/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -687,6 +792,81 @@
     </url>
     <url>
      <loc>https://zwiley.github.io/mybook/career/高效清单工作法/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/career/程序员的自我修养/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/一切都是童年的错吗/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/亲密关系/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/情商/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/拖延心理学/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/积极心理学/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/自控力/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/自控力-和压力做朋友/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/活出最乐观的自己/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/改变心理学的40项研究/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/超越自卑/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/psychology/反脆弱/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/startup/hello_startup/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/startup/斯坦福公开课-如何创业/</loc>
+     <lastmod>2020-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://zwiley.github.io/mybook/startup/运营其实很简单/</loc>
      <lastmod>2020-05-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
