@@ -1,4 +1,4 @@
-# PegasusWang 的读书杂记
+# 读书杂记
 
 > Stay Hungry Stay Foolish.
 
@@ -25,9 +25,3 @@ mkdocs serve     # 修改自动更新，浏览器打开 http://localhost:8000 �
 # 数学公式参考 https://www.zybuluo.com/codeep/note/163962
 mkdocs gh-deploy    # 部署到自己的 github pages, 如果是 readthedocs 会自动触发构建
 ```
-
-### 访问:
-
-[https://pegasuswang.readthedocs.io/zh/latest/](https://pegasuswang.readthedocs.io/zh/latest/)
-
-[https://pegasuswang.github.io/booknotes/](https://pegasuswang.github.io/booknotes/)
