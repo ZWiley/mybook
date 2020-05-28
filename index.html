@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="None">
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="img/favicon.ico">
   <title>简介 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u7b80\u4ecb";
     var mkdocs_page_input_path = "index.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/";
   </script>
   
   <script src="js/jquery-2.1.1.min.js" defer></script>
@@ -848,29 +848,30 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">读书杂记</h1>
+                <h1 id="_1">读书杂记<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>Stay Hungry Stay Foolish.</p>
 </blockquote>
 <p>看了就忘，还是简单记一点吧。</p>
-<h3 id="_2">本电子书制作和写作方式</h3>
+<h3 id="_2">本电子书制作和写作方式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>使用 mkdocs 和 markdown 构建，vim 编写，使用  Python-Markdown-Math 完成数学公式。
 markdown 语法参考：http://xianbai.me/learn-md/article/about/readme.html</p>
 <p>安装依赖：</p>
-<pre><code class="sh"># 方式1：
-pip install mkdocs    # 制作电子书, http://markdown-docs-zh.readthedocs.io/zh_CN/latest/
-# https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax/31874157
+<div class="codehilite"><pre><span></span><span class="c1"># 方式1：</span>
+pip install mkdocs    <span class="c1"># 制作电子书, http://markdown-docs-zh.readthedocs.io/zh_CN/latest/</span>
+<span class="c1"># https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax/31874157</span>
 pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 
-# 推荐方式2：
+<span class="c1"># 推荐方式2：</span>
 pip install -r requirements.txt
-</code></pre>
+</pre></div>
+
 
 <p>编写并查看：</p>
-<pre><code class="sh">mkdocs serve     # 修改自动更新，浏览器打开 http://localhost:8000 访问
-# 数学公式参考 https://www.zybuluo.com/codeep/note/163962
-mkdocs gh-deploy    # 部署到自己的 github pages, 如果是 readthedocs 会自动触发构建
-</code></pre>
+<div class="codehilite"><pre><span></span>mkdocs serve     <span class="c1"># 修改自动更新，浏览器打开 http://localhost:8000 访问</span>
+<span class="c1"># 数学公式参考 https://www.zybuluo.com/codeep/note/163962</span>
+mkdocs gh-deploy    <span class="c1"># 部署到自己的 github pages, 如果是 readthedocs 会自动触发构建</span>
+</pre></div>
               
             </div>
           </div>
@@ -920,5 +921,5 @@ mkdocs gh-deploy    # 部署到自己的 github pages, 如果是 readthedocs 会
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-05-28 14:58:34
+Build Date UTC : 2020-05-28 15:17:07
 -->

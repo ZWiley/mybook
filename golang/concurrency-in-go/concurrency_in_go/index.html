@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../img/favicon.ico">
   <title>《Concurrency In Go》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aConcurrency In Go\u300b";
     var mkdocs_page_input_path = "golang\\concurrency-in-go\\concurrency_in_go.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/concurrency-in-go/concurrency_in_go/";
   </script>
   
   <script src="../../../js/jquery-2.1.1.min.js" defer></script>
@@ -959,9 +959,9 @@
             <div class="section">
               
                 <p>《Concurrency In Go》</p>
-<h1 id="1-an-introduction-to-concurrency">1 An Introduction to Concurrency</h1>
+<h1 id="1-an-introduction-to-concurrency">1 An Introduction to Concurrency<a class="headerlink" href="#1-an-introduction-to-concurrency" title="Permanent link">&para;</a></h1>
 <p>critical section（临界区）：for a section of your program needs exclusive access to a shared resource.</p>
-<h3 id="deadlocks-livelocks-and-starvation">Deadlocks, Livelocks, and Starvation</h3>
+<h3 id="deadlocks-livelocks-and-starvation">Deadlocks, Livelocks, and Starvation<a class="headerlink" href="#deadlocks-livelocks-and-starvation" title="Permanent link">&para;</a></h3>
 <p>Deadlocks conditions:</p>
 <ul>
 <li>Mutual Exclusion</li>
@@ -971,146 +971,152 @@
 </ul>
 <p>Livelocks: 活锁。想象两个人迎面走来，一个人向一边转，然后另一个人也同方向转，如此循环一直僵持谁都过不去。</p>
 <p>Starvation: 饥饿 ，一个并发的进程无法获取所有需要工作的资源。一个贪心的进程阻止其他进程获取执行资源。</p>
-<h3 id="determining-concurrency-safety">Determining Concurrency Safety</h3>
+<h3 id="determining-concurrency-safety">Determining Concurrency Safety<a class="headerlink" href="#determining-concurrency-safety" title="Permanent link">&para;</a></h3>
 <ul>
 <li>who is responsible for the Concurrency?</li>
 <li>how is the problem space mapped onto concurrency primitives?</li>
 <li>who is responsible for the synchronization?</li>
 </ul>
-<pre><code class="go">func CalculatePi(begin,end int64, pi *Pi)
-func CalculatePi(begin,end int64) []int64
-func CalculatePi(begin,end int64) &lt;-chan uint
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">CalculatePi</span><span class="p">(</span><span class="nx">begin</span><span class="p">,</span><span class="nx">end</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">pi</span> <span class="o">*</span><span class="nx">Pi</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nx">CalculatePi</span><span class="p">(</span><span class="nx">begin</span><span class="p">,</span><span class="nx">end</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int64</span>
+<span class="kd">func</span> <span class="nx">CalculatePi</span><span class="p">(</span><span class="nx">begin</span><span class="p">,</span><span class="nx">end</span> <span class="kt">int64</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint</span>
+</pre></div>
 
-<h3 id="simplicity-in-the-face-of-complexity">Simplicity in the Face of Complexity</h3>
-<h1 id="2-modeling-your-code-communicating-sequential-processes">2 Modeling Your Code: Communicating Sequential Processes</h1>
-<h3 id="concurrency-vs-parallelism">Concurrency vs Parallelism</h3>
+
+<h3 id="simplicity-in-the-face-of-complexity">Simplicity in the Face of Complexity<a class="headerlink" href="#simplicity-in-the-face-of-complexity" title="Permanent link">&para;</a></h3>
+<h1 id="2-modeling-your-code-communicating-sequential-processes">2 Modeling Your Code: Communicating Sequential Processes<a class="headerlink" href="#2-modeling-your-code-communicating-sequential-processes" title="Permanent link">&para;</a></h1>
+<h3 id="concurrency-vs-parallelism">Concurrency vs Parallelism<a class="headerlink" href="#concurrency-vs-parallelism" title="Permanent link">&para;</a></h3>
 <p>Concurrency is a property of the code; parallelism is a property of the runnning programm.</p>
-<h3 id="what-is-csp">What Is CSP?</h3>
-<h3 id="gos-philosophy-on-concurrency">Go's Philosophy on Concurrency</h3>
+<h3 id="what-is-csp">What Is CSP?<a class="headerlink" href="#what-is-csp" title="Permanent link">&para;</a></h3>
+<h3 id="gos-philosophy-on-concurrency">Go's Philosophy on Concurrency<a class="headerlink" href="#gos-philosophy-on-concurrency" title="Permanent link">&para;</a></h3>
 <p>CSP primitives or Memory access synchronizations.
 Use whichever is most expressive and/or most simple.</p>
 <p><img alt="" src="../decision_tree.png" /></p>
 <p>Aim for simplicity, use channels when possible, and treat goroutines like a free resource.</p>
-<h1 id="3-gos-concurrency-building-blocks">3 Go's Concurrency Building Blocks</h1>
+<h1 id="3-gos-concurrency-building-blocks">3 Go's Concurrency Building Blocks<a class="headerlink" href="#3-gos-concurrency-building-blocks" title="Permanent link">&para;</a></h1>
 <p>Coroutines are simply concurrent subroutines(functions, clousures or methods in Go) that are nonpreemptive.(非抢占式)</p>
 <p>Go follows a model of concurrency called the fork-join model.</p>
 <p><img alt="" src="../join_point.png" /></p>
-<pre><code class="go">var wg sync.WaitGroup
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
 
-sayHello := func() {
-    defer wg.Done()
-    fmt.Println(&quot;hello&quot;)
-}
-wg.Add(1)
-go sayHello()
-wg.Wait() # this is the join point，等 child 执行完毕
-</code></pre>
+<span class="nx">sayHello</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">go</span> <span class="nx">sayHello</span><span class="p">()</span>
+<span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span> <span class="err">#</span> <span class="nx">this</span> <span class="nx">is</span> <span class="nx">the</span> <span class="nx">join</span> <span class="nx">point</span><span class="err">，</span><span class="nx">等</span> <span class="nx">child</span> <span class="nx">执行完毕</span>
+</pre></div>
 
-<h3 id="the-sync-package">The sync Package</h3>
+
+<h3 id="the-sync-package">The sync Package<a class="headerlink" href="#the-sync-package" title="Permanent link">&para;</a></h3>
 <p>The sync package contains the concurrency primitives that are most useful for low-level memory access synchronization.</p>
-<h4 id="waitgroup">WaitGroup</h4>
+<h4 id="waitgroup">WaitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h4>
 <p>Wait for a set of concurrent operations to complete when you either don't care about the result of the concurrent
 operations , or you have other means of collecting their results.</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;sync&quot;
-    &quot;time&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    var wg sync.WaitGroup
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
 
-    wg.Add(1) // 注意 Add 必须在外边而不是在 go func() 函数体里边
-    go func() {
-        defer wg.Done()
-        fmt.Println(&quot;1st goroutine sleeping...&quot;)
-        time.Sleep(1)
-    }()
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// 注意 Add 必须在外边而不是在 go func() 函数体里边</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;1st goroutine sleeping...&quot;</span><span class="p">)</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}()</span>
 
-    wg.Add(1)
-    go func() {
-        defer wg.Done()
-        fmt.Println(&quot;2nd goroutine sleeping...&quot;)
-        time.Sleep(2)
-    }()
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;2nd goroutine sleeping...&quot;</span><span class="p">)</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="p">}()</span>
 
-    wg.Wait()
-    fmt.Println(&quot;All goroutines complete&quot;)
-}
-</code></pre>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;All goroutines complete&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h4 id="mutex-and-rwmutex">Mutex and RWMutex</h4>
-<pre><code class="go">// Mutex demo
-package main
 
-import (
-    &quot;fmt&quot;
-    &quot;sync&quot;
-)
+<h4 id="mutex-and-rwmutex">Mutex and RWMutex<a class="headerlink" href="#mutex-and-rwmutex" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="c1">// Mutex demo</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-func main() {
-    var count int
-    var lock sync.Mutex
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
 
-    incr := func() {
-        lock.Lock()
-        defer lock.Unlock()
-        count++
-        fmt.Printf(&quot;Incr: %d\n&quot;, count)
-    }
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">count</span> <span class="kt">int</span>
+    <span class="kd">var</span> <span class="nx">lock</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
 
-    decr := func() {
-        lock.Lock()
-        defer lock.Unlock()
-        count--
-        fmt.Printf(&quot;Decr: %d\n&quot;, count)
-    }
+    <span class="nx">incr</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">lock</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+        <span class="k">defer</span> <span class="nx">lock</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+        <span class="nx">count</span><span class="o">++</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Incr: %d\n&quot;</span><span class="p">,</span> <span class="nx">count</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    var arithmetic sync.WaitGroup
-    for i := 0; i &lt;= 5; i++ {
-        arithmetic.Add(1)
-        go func() {
-            defer arithmetic.Done()
-            incr()
-        }()
-    }
+    <span class="nx">decr</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">lock</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+        <span class="k">defer</span> <span class="nx">lock</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+        <span class="nx">count</span><span class="o">--</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Decr: %d\n&quot;</span><span class="p">,</span> <span class="nx">count</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    for i := 0; i &lt;= 5; i++ {
-        arithmetic.Add(1)
-        go func() {
-            defer arithmetic.Done()
-            decr()
-        }()
-    }
+    <span class="kd">var</span> <span class="nx">arithmetic</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">arithmetic</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">defer</span> <span class="nx">arithmetic</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+            <span class="nx">incr</span><span class="p">()</span>
+        <span class="p">}()</span>
+    <span class="p">}</span>
 
-    arithmetic.Wait()
-    fmt.Println(&quot;Done&quot;)
-}
-</code></pre>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">arithmetic</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">defer</span> <span class="nx">arithmetic</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+            <span class="nx">decr</span><span class="p">()</span>
+        <span class="p">}()</span>
+    <span class="p">}</span>
+
+    <span class="nx">arithmetic</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Done&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>RWMutex: 适合读多写少场景。可以获取多个读锁，除非锁用来持有写入。</p>
-<h4 id="cond">Cond</h4>
+<h4 id="cond">Cond<a class="headerlink" href="#cond" title="Permanent link">&para;</a></h4>
 <p>A rendezvous point for goroutine waiting for or announcing the occurrence of an event.</p>
-<pre><code>for conditoinTrue() == false{
+<div class="codehilite"><pre><span></span>for conditoinTrue() == false{
     time.Sleep(1*time.Millisecond) //sleep多久是个问题，太久效率低下，太快消耗 cpu
 }
-</code></pre>
+</pre></div>
+
 
 <p>use Cond, we cloud write like this:</p>
-<pre><code>c := sync.NewCond(&amp;sync.Mutex{})
+<div class="codehilite"><pre><span></span>c := sync.NewCond(&amp;sync.Mutex{})
 c.L.Lock()
 for conditoinTrue() == false {
     c.Wait() // blocking call, will suspend
 }
 c.L.UnLock()
-</code></pre>
+</pre></div>
+
 
 <p>考虑有一个固定长度为2的队列，10个 items 想要 push 进去。
 只要有空间我们就希望入队，被尽早通知。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1142,11 +1148,12 @@ func main() {
         c.L.Unlock() //exit critical section
     }
 }
-</code></pre>
+</pre></div>
 
-<h4 id="once">Once</h4>
+
+<h4 id="once">Once<a class="headerlink" href="#once" title="Permanent link">&para;</a></h4>
 <p>only one call to "Do", even on different goroutines.</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1172,11 +1179,12 @@ func main() {
     wg.Wait()
     fmt.Printf(&quot;count is %d\n&quot;, count) //1
 }
-</code></pre>
+</pre></div>
+
 
 <p>NOTES: sync.Once only counts the number of times Do is Called, not
 how many times unique functions passed into Do are called.</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1193,11 +1201,12 @@ func main() {
     once.Do(decremet)
     fmt.Printf(&quot;count is %d\n&quot;, count) //1
 }
-</code></pre>
+</pre></div>
 
-<h4 id="pool">Pool(并发安全对象池)</h4>
+
+<h4 id="pool">Pool(并发安全对象池)<a class="headerlink" href="#pool" title="Permanent link">&para;</a></h4>
 <p>Pool is a concurrent-safe implementation of the object pool pattern.</p>
-<pre><code>myPool := &amp;sync.Pool{
+<div class="codehilite"><pre><span></span>myPool := &amp;sync.Pool{
     New: func() interface{}{
         fmt.Println(&quot;Creating new instance.&quot;)
         return struct{}{}
@@ -1208,7 +1217,8 @@ myPool.Get()
 instance:=myPool.Get()
 myPool.Put(instance)
 myPool.Get()
-</code></pre>
+</pre></div>
+
 
 <p>Another common situation where a Pool is useful is for warming a cache of pre-allocated
 objects for operations that must run as quickly as possible.</p>
@@ -1219,19 +1229,21 @@ objects for operations that must run as quickly as possible.</p>
 <li>Make sure to call Put when you're finished with the object you pulled out of the pool.(with defer)</li>
 <li>Objects in the pool must be roughly uniform in makeup</li>
 </ul>
-<h3 id="channels">Channels</h3>
+<h3 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h3>
 <p>Go will implicitly convert bidirectional channels to unidirectional channels when needed.</p>
-<pre><code>var receiveChan &lt;- chan interface{}
+<div class="codehilite"><pre><span></span>var receiveChan &lt;- chan interface{}
 var sendChan chan &lt;- interface{}
 dataStream := make(chan interface{})
 //valid statements, 双向的可以赋值给单向的
 receiveChan = dataStream
 sendChan = dataStream
-</code></pre>
+</pre></div>
+
 
 <p>Unbufferd channel in Go are said to be blocking.</p>
-<pre><code>val, ok := &lt;-stringStream // ok 判断还有没有值，从一个已经 closed 的 channel 依然会获取默认值
-</code></pre>
+<div class="codehilite"><pre><span></span>val, ok := &lt;-stringStream // ok 判断还有没有值，从一个已经 closed 的 channel 依然会获取默认值
+</pre></div>
+
 
 <p>The second return value is a way for a read operation to indicate whether the read off the channel
 was a value generated by a write elsewhere in the process, or a default value generated from a closed channel.</p>
@@ -1252,7 +1264,7 @@ You can treat buffered channels are an inmemory FIFO queue for concurrent proces
 <li>Knowing when a channel is closed (use val, ok)</li>
 <li>Responsibly handling blocking for any reason</li>
 </ul>
-<pre><code>// keep the scope of channel ownership small
+<div class="codehilite"><pre><span></span>// keep the scope of channel ownership small
 func main() {
 
     chanOwner := func() &lt;-chan int {
@@ -1273,12 +1285,13 @@ func main() {
 
     fmt.Println(&quot;Done receiving!&quot;)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="the-select-statement">The select Statement</h3>
+
+<h3 id="the-select-statement">The select Statement<a class="headerlink" href="#the-select-statement" title="Permanent link">&para;</a></h3>
 <p>The select statement is the glue that binds channels together,
 it can help safely bring channels together with concepts like cancellations, timeouts, waiting, and default values.</p>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     // a bit like switch
     var c1, c2 &lt;-chan interface{}   // receive only chan
     var c3 chan&lt;- interface{}  // send only chan
@@ -1294,7 +1307,8 @@ it can help safely bring channels together with concepts like cancellations, tim
         // do something
     }
 }
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>
@@ -1304,7 +1318,7 @@ it can help safely bring channels together with concepts like cancellations, tim
 </ul>
 </li>
 </ul>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     c1 := make(chan interface{})
     close(c1)
     c2 := make(chan interface{})
@@ -1320,7 +1334,8 @@ it can help safely bring channels together with concepts like cancellations, tim
     }
     fmt.Printf(&quot;c1: %d\n, c2: %d\n&quot;, c1Count, c2Count)
 }
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>
@@ -1330,7 +1345,7 @@ it can help safely bring channels together with concepts like cancellations, tim
 </ul>
 </li>
 </ul>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     var c &lt;-chan int
     select {
     case &lt;-c:
@@ -1338,7 +1353,8 @@ it can help safely bring channels together with concepts like cancellations, tim
         fmt.Println(&quot;Time out&quot;)
     }
 }
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>
@@ -1349,7 +1365,7 @@ it can help safely bring channels together with concepts like cancellations, tim
 </ul>
 </li>
 </ul>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     start := time.Now()
     var c1, c2 &lt;-chan int
     select {
@@ -1359,9 +1375,10 @@ it can help safely bring channels together with concepts like cancellations, tim
         fmt.Printf(&quot;In default after %v\n\n&quot;, time.Since(start))
     }
 }
-</code></pre>
+</pre></div>
 
-<pre><code>func main() {
+
+<div class="codehilite"><pre><span></span>func main() {
     done := make(chan interface{})
     go func() {
         time.Sleep(5 * time.Second)
@@ -1381,14 +1398,15 @@ loop:
     }
     fmt.Printf(&quot;Achieved %v cycles of work before signalled to stop.\n&quot;, workCounter)
 }
-</code></pre>
+</pre></div>
 
-<h6 id="empty-select">empty select</h6>
+
+<h6 id="empty-select">empty select<a class="headerlink" href="#empty-select" title="Permanent link">&para;</a></h6>
 <p><code>seelct {}</code> will block forever.</p>
-<h3 id="the-gomaxprocs-lever">The GOMAXPROCS lever</h3>
+<h3 id="the-gomaxprocs-lever">The GOMAXPROCS lever<a class="headerlink" href="#the-gomaxprocs-lever" title="Permanent link">&para;</a></h3>
 <p>this function controls the number of OS threads that will host so-called "work queues"</p>
-<h1 id="4-concurrency-patterns-in-go">4. Concurrency Patterns in Go</h1>
-<h3 id="confinement">Confinement(限制)</h3>
+<h1 id="4-concurrency-patterns-in-go">4. Concurrency Patterns in Go<a class="headerlink" href="#4-concurrency-patterns-in-go" title="Permanent link">&para;</a></h1>
+<h3 id="confinement">Confinement(限制)<a class="headerlink" href="#confinement" title="Permanent link">&para;</a></h3>
 <p>When working with concurrent code</p>
 <ul>
 <li>Synchronization primitives for sharing memory (sync.Mutex)</li>
@@ -1396,7 +1414,7 @@ loop:
 <li>Immutable Data (copy of values)</li>
 <li>Data protected by confinement (ad hoc and lexical)</li>
 </ul>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     // confines the write aspect of this channel to prevent other goroutines from writing to it
     // 限制向 channel 写数据到一个 func 里
     chanOnwer := func() &lt;-chan int {
@@ -1420,25 +1438,27 @@ loop:
     results := chanOnwer()
     consumer(results)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="the-for-select-loop">The for-select Loop</h3>
+
+<h3 id="the-for-select-loop">The for-select Loop<a class="headerlink" href="#the-for-select-loop" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Sending iteration variables out on a channel</li>
 </ul>
-<pre><code>    for _, s := range []string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;} {
+<div class="codehilite"><pre><span></span>    for _, s := range []string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;} {
         select {
         case &lt;-done:
             return
         case stringStream &lt;- s:
         }
     }
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>Looping infinitely waiting to be stopped</li>
 </ul>
-<pre><code>    for {
+<div class="codehilite"><pre><span></span>    for {
         select {
         case &lt;-done:
             return
@@ -1446,9 +1466,10 @@ loop:
         }
         // do non-preemptable work
     }
-</code></pre>
+</pre></div>
 
-<pre><code>for {
+
+<div class="codehilite"><pre><span></span>for {
     select {
     case &lt;-done:
         return
@@ -1456,8 +1477,10 @@ loop:
     }
     // do non-preemptable work
 }
-</code></pre>
-<h3 id="preventing-goroutine-leaksgoroutine">Preventing Goroutine Leaks(goroutine 泄露)</h3>
+</pre></div>
+
+
+<h3 id="preventing-goroutine-leaksgoroutine">Preventing Goroutine Leaks(goroutine 泄露)<a class="headerlink" href="#preventing-goroutine-leaksgoroutine" title="Permanent link">&para;</a></h3>
 <p><strong>Goroutine are not garbage collected by the runtime.</strong>
 The goroutine has a few paths to terminiation:</p>
 <ul>
@@ -1466,7 +1489,7 @@ The goroutine has a few paths to terminiation:</p>
 <li>when it's told to stop working</li>
 </ul>
 <p>A simple example of a goroutine leak:</p>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     doWork := func(strings &lt;-chan string) &lt;-chan interface{} {
         completed := make(chan interface{})
         go func() {
@@ -1485,11 +1508,12 @@ The goroutine has a few paths to terminiation:</p>
     // perhaps more work is done here
     fmt.Println(&quot;Done.&quot;)
 }
-</code></pre>
+</pre></div>
+
 
 <p>Use signal done. The parent goroutine passed this channel to child goroutine,
 and then closes the channel when it wants to cancel the child goroutine.</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1531,10 +1555,11 @@ func main() {
         fmt.Println(&quot;Done&quot;)
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>What if a goroutine blocked on attempting wo write a value to a channel?</p>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     newRandStream := func() &lt;-chan int {
         randStream := make(chan int)
         go func() {
@@ -1554,10 +1579,11 @@ func main() {
     }
     // 依然退出，输出1到3
 }
-</code></pre>
+</pre></div>
+
 
 <p>We can also use a done channel:</p>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     newRandStream := func(done &lt;-chan interface{}) &lt;-chan int {
         randStream := make(chan int)
         go func() {
@@ -1582,15 +1608,16 @@ func main() {
     }
     close(done)
 }
-</code></pre>
+</pre></div>
+
 
 <p>NOTE: If a goroutine is responsible for creating a goroutine, it is also responsible for ensuring
 it can stop the gorutine.</p>
-<h3 id="the-or-channel-pattern">The or-channel pattern</h3>
+<h3 id="the-or-channel-pattern">The or-channel pattern<a class="headerlink" href="#the-or-channel-pattern" title="Permanent link">&para;</a></h3>
 <p>At times you may find yourself wanting to combine one or more done channels into a single done channel
 that closes if any of its component channels close.
 This pattern creates a composite done channel through recursion and goroutines.</p>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     var or func(channels ...&lt;-chan interface{}) &lt;-chan interface{}
     or = func(channels ...&lt;-chan interface{}) &lt;-chan interface{} {
         switch len(channels) {
@@ -1639,10 +1666,11 @@ func test() {
     )
     fmt.Printf(&quot;done after %v\n&quot;, time.Since(start))
 }
-</code></pre>
+</pre></div>
 
-<h3 id="error-handling">Error Handling</h3>
-<pre><code>package main
+
+<h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1685,25 +1713,27 @@ func main() {
         fmt.Printf(&quot;Response: %\n&quot;, result.Response.Status)
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>Errors should be considered first-class citizens when constructing values to return from goroutines.
 If your goroutine can produce errors, those errors should be tightly coupled with your result type,
 and passed along through the same lines of communication.</p>
-<h3 id="pipelines">Pipelines</h3>
+<h3 id="pipelines">Pipelines<a class="headerlink" href="#pipelines" title="Permanent link">&para;</a></h3>
 <p>It is a very powerful tool to use when your program needs to process streams, or batched of data.</p>
 <p>Stage: taskes data in , performs a transformation on it, and sends the data back out</p>
-<pre><code>    multiply := func(values []int, multiplier int) []int {
+<div class="codehilite"><pre><span></span>    multiply := func(values []int, multiplier int) []int {
         multipliedValues := make([]int, len(values))
         for i, v := range values {
             multipliedValues[i] = v * multiplier
         }
         return multipliedValues
     }
-</code></pre>
+</pre></div>
 
-<h4 id="best-practice-for-constructing-pipelines">Best practice for constructing Pipelines</h4>
-<pre><code>package main
+
+<h4 id="best-practice-for-constructing-pipelines">Best practice for constructing Pipelines<a class="headerlink" href="#best-practice-for-constructing-pipelines" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;fmt&quot;
 
@@ -1763,10 +1793,11 @@ func main() {
     }
 
 }
-</code></pre>
+</pre></div>
 
-<h4 id="some-handy-generators">Some Handy Generators</h4>
-<pre><code>package main
+
+<h4 id="some-handy-generators">Some Handy Generators<a class="headerlink" href="#some-handy-generators" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;fmt&quot;
 
@@ -1814,9 +1845,10 @@ func main() {
     // 1 1 1 1 1 1 1 1 1 1
 
 }
-</code></pre>
+</pre></div>
 
-<h3 id="fan-out-fan-in">Fan-Out, Fan-In (扇出，扇入)</h3>
+
+<h3 id="fan-out-fan-in">Fan-Out, Fan-In (扇出，扇入)<a class="headerlink" href="#fan-out-fan-in" title="Permanent link">&para;</a></h3>
 <p>Fan-out is a term to describe the process of starting multiple gortouine to handle input from the pipeline,
 and Fan-in is a term to describe the process of combining results into one channel.</p>
 <p>Fanout one of your stages if both of the following apply:</p>
@@ -1824,8 +1856,8 @@ and Fan-in is a term to describe the process of combining results into one chann
 <li>It doesn't rely on values that the stage had calulated before.</li>
 <li>It takes a long time to run</li>
 </ul>
-<h3 id="the-or-done-channel">The or-done-channel</h3>
-<pre><code>    orDone := func(done, c &lt;-chan interface{}) &lt;-chan interface{} {
+<h3 id="the-or-done-channel">The or-done-channel<a class="headerlink" href="#the-or-done-channel" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>    orDone := func(done, c &lt;-chan interface{}) &lt;-chan interface{} {
         valStream := make(chan interface{})
         go func() {
             defer close(valStream)
@@ -1850,13 +1882,14 @@ and Fan-in is a term to describe the process of combining results into one chann
     for val := range orDone(done, myChan) {
         // Do something with val
     }
-</code></pre>
+</pre></div>
 
-<h3 id="the-tee-channel">The tee-channel</h3>
+
+<h3 id="the-tee-channel">The tee-channel<a class="headerlink" href="#the-tee-channel" title="Permanent link">&para;</a></h3>
 <p>Sometimes you may want to split values coming in from a channel so that you can send them off
 into two separate areas of your codebase.</p>
 <p>You can pass it a channel to read from , and it will return two seperate channels that will get the same value:</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;fmt&quot;
 
@@ -1892,11 +1925,12 @@ func main() {
         fmt.Printf(&quot;out1: %v, out2:%v\n&quot;, val1, &lt;-out2)
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="the-bridge-channel">The bridge-channel</h3>
+
+<h3 id="the-bridge-channel">The bridge-channel<a class="headerlink" href="#the-bridge-channel" title="Permanent link">&para;</a></h3>
 <p>define a function that can destructure the channel of channels into s simple channel(bridging the channels)</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;fmt&quot;
 
@@ -1946,22 +1980,23 @@ func main() {
         fmt.Printf(&quot;%v &quot;, v) //0 1 2 3 4 5 6 7 8 9
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="queuing">Queuing</h3>
+
+<h3 id="queuing">Queuing<a class="headerlink" href="#queuing" title="Permanent link">&para;</a></h3>
 <p>queuing should be implemented either:</p>
 <ul>
 <li>At the entrance to your pipeline</li>
 <li>In stages where batching will lead to higher efficiency</li>
 </ul>
-<h3 id="the-context-package">The context Package</h3>
+<h3 id="the-context-package">The context Package<a class="headerlink" href="#the-context-package" title="Permanent link">&para;</a></h3>
 <p>context package serves two primary purposes:</p>
 <ul>
 <li>to provide an API for canceling branches of you call-graph</li>
 <li>to provide a data-bag for transporting request-scoped data through your call-graph</li>
 </ul>
-<h1 id="5-concurrency-at-scale">5. Concurrency at Scale</h1>
-<h3 id="error-progagation">Error Progagation</h3>
+<h1 id="5-concurrency-at-scale">5. Concurrency at Scale<a class="headerlink" href="#5-concurrency-at-scale" title="Permanent link">&para;</a></h1>
+<h3 id="error-progagation">Error Progagation<a class="headerlink" href="#error-progagation" title="Permanent link">&para;</a></h3>
 <p>critical information:</p>
 <ul>
 <li>What happend</li>
@@ -1969,7 +2004,7 @@ func main() {
 <li>A friendly usre-facing message</li>
 <li>How the user can get more information(track id)</li>
 </ul>
-<h3 id="timeouts-and-cancellation">Timeouts and Cancellation</h3>
+<h3 id="timeouts-and-cancellation">Timeouts and Cancellation<a class="headerlink" href="#timeouts-and-cancellation" title="Permanent link">&para;</a></h3>
 <p>what the reasons we might want our concurrent processes to support timeouts?</p>
 <ul>
 <li>System saturation(饱和)</li>
@@ -1983,13 +2018,13 @@ func main() {
 <li>Parent cancellation</li>
 <li>Replicated requests</li>
 </ul>
-<h3 id="heartbeats">Heartbeats</h3>
+<h3 id="heartbeats">Heartbeats<a class="headerlink" href="#heartbeats" title="Permanent link">&para;</a></h3>
 <p>Heartbeats are a way for concurrent processes to signal life to outside parties. Two diferent types:</p>
 <ul>
 <li>Heartbeats that occur on a time interval.</li>
 <li>Heartbeats that occur at the beginning of a unit of work.</li>
 </ul>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -2063,14 +2098,15 @@ func main() {
     }
 
 }
-</code></pre>
+</pre></div>
+
 
 <p>For any long-running goroutines, or goroutines that need to be tested, highly recommend this pattern.</p>
-<h3 id="replicated-request">Replicated Request</h3>
+<h3 id="replicated-request">Replicated Request<a class="headerlink" href="#replicated-request" title="Permanent link">&para;</a></h3>
 <p>You can replicate the request to mulitple handlers(whether those be gorutines, processes, or servers),
 and one of them will run faster than other ones, you can then immediately return the result.
 The downside is that you'll have to utilize resources to keep multiple copies of the handlers running.</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -2115,11 +2151,12 @@ func main() {
     wg.Wait()
     fmt.Printf(&quot;Received an answer from #%v\n&quot;, firstReturned)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="rate-limiting">Rate Limiting</h3>
+
+<h3 id="rate-limiting">Rate Limiting<a class="headerlink" href="#rate-limiting" title="Permanent link">&para;</a></h3>
 <p>Most rate limitings is done by utilizing an algorithm called the "token bucket".</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;context&quot;
@@ -2185,11 +2222,12 @@ func main() {
     wg.Wait()
 
 }
-</code></pre>
+</pre></div>
+
 
 <p>It's eaiser to keep the limiters separate and then combine them into one rate limiter that manages the interaction for
 you.</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;context&quot;
@@ -2255,11 +2293,12 @@ func (a *APIConnnection) ResolveAddress(ctx context.Context) errro {
     }
     return nil
 }
-</code></pre>
+</pre></div>
 
-<h3 id="healing-unhealthy-goroutines">Healing Unhealthy Goroutines</h3>
+
+<h3 id="healing-unhealthy-goroutines">Healing Unhealthy Goroutines<a class="headerlink" href="#healing-unhealthy-goroutines" title="Permanent link">&para;</a></h3>
 <p>Ensure your long-lived goroutines stay up and healthy.</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;log&quot;
@@ -2313,10 +2352,11 @@ func main() {
         }
     }
 }
-</code></pre>
+</pre></div>
 
-<h1 id="6-goroutines-and-the-go-runtime">6 Goroutines and the Go Runtime</h1>
-<h3 id="work-stealing">Work Stealing</h3>
+
+<h1 id="6-goroutines-and-the-go-runtime">6 Goroutines and the Go Runtime<a class="headerlink" href="#6-goroutines-and-the-go-runtime" title="Permanent link">&para;</a></h1>
+<h3 id="work-stealing">Work Stealing<a class="headerlink" href="#work-stealing" title="Permanent link">&para;</a></h3>
 <p>work stealing strategy. Go follows a fork-join model for concurrency.
 Forks are when goroutines are started, and join points are when two or more goroutines are
 synchronized through channels or types in the sync package.</p>
@@ -2332,8 +2372,8 @@ synchronized through channels or types in the sync package.</p>
 </ul>
 </li>
 </ol>
-<h3 id="stealing-tasks-or-continuations">Stealing Tasks or Continuations?</h3>
-<pre><code>func main() {
+<h3 id="stealing-tasks-or-continuations">Stealing Tasks or Continuations?<a class="headerlink" href="#stealing-tasks-or-continuations" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>func main() {
     var fib func(n int) &lt;-chan int
     fib = func(n int) &lt;-chan int {
         result := make(chan int)
@@ -2349,7 +2389,8 @@ synchronized through channels or types in the sync package.</p>
     }
     fmt.Printf(&quot;fib = %d&quot;, &lt;-fib(4))
 }
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>In go , goroutines are tasks</li>
@@ -2362,11 +2403,11 @@ synchronized through channels or types in the sync package.</p>
 <li>M: An OS thread(also referenced as a machine in the source code)</li>
 <li>P: A context(also referecned as a processor in the source code), GOMAXPROCS</li>
 </ul>
-<h1 id="appendix">Appendix</h1>
-<h3 id="anatomy-of-a-goroutine-error">Anatomy of a Goroutine Error</h3>
+<h1 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">&para;</a></h1>
+<h3 id="anatomy-of-a-goroutine-error">Anatomy of a Goroutine Error<a class="headerlink" href="#anatomy-of-a-goroutine-error" title="Permanent link">&para;</a></h3>
 <p>Prior to Go1.6, when a goroutine panicked, the runtime would print stack traces of all the currently executing
 goroutines.</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -2382,11 +2423,12 @@ func main() {
         fmt.Printf(&quot;value is %v\n&quot;, data)
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="race-detection">Race Detection</h3>
+
+<h3 id="race-detection">Race Detection<a class="headerlink" href="#race-detection" title="Permanent link">&para;</a></h3>
 <p>go run -race main.go</p>
-<h3 id="pprof">pprof</h3>
+<h3 id="pprof">pprof<a class="headerlink" href="#pprof" title="Permanent link">&para;</a></h3>
 <p><code>runtime/pporf</code> package has predefined profiles to hook into and display:</p>
 <ul>
 <li>goroutine</li>
@@ -2396,7 +2438,7 @@ func main() {
 <li>primitives</li>
 <li>mutex</li>
 </ul>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;log&quot;
@@ -2424,7 +2466,7 @@ func main() {
         time.Sleep(500 * time.Millisecond)
     }
 }
-</code></pre>
+</pre></div>
               
             </div>
           </div>

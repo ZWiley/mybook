@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../img/favicon.ico">
   <title>《Practical Vim》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aPractical Vim\u300b";
     var mkdocs_page_input_path = "\u5f00\u53d1\u5de5\u5177\\practical_vim\\practical_vim.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u5f00\u53d1\u5de5\u5177/practical_vim/practical_vim/";
   </script>
   
   <script src="../../../js/jquery-2.1.1.min.js" defer></script>
@@ -895,7 +895,7 @@
 <p>Do one thing, and do it well. - A principle of Unix philosopy</p>
 </blockquote>
 <p>学习和使用vim有几年了，我的编辑器学习之路也该告一段落了，目前使用vim和一些插件基本能满足日常代码和文档(博客，笔记，代码文档)的编辑需求了，也无力折腾其他编辑器了。现在大部分时间都是在终端和vim里工作，我觉得在vim上花的时间还是值得的。本博客所有的文章都是在vim里写的，配合markdown插件可以在浏览器里即时预览。本博客是《Practical Vim》读书笔记，不是一本入门书，以一个个tip的形式组织，凝聚了作者的使用智慧，结合自己的使用经验做个简单的记录。</p>
-<h2 id="chapter-1-the-vim-way">CHAPTER 1: The Vim Way</h2>
+<h2 id="chapter-1-the-vim-way">CHAPTER 1: The Vim Way<a class="headerlink" href="#chapter-1-the-vim-way" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip1: Meet the Dot Command: 使用.重复上一个操作，可以视作宏。</li>
 </ul>
@@ -906,7 +906,7 @@
 <li>Tip5: Find and Replace by Hand: 使用<code>*</code>和<code>#</code>查找下一个或者上一个匹配。</li>
 <li>Tip6: Meet the Dot formula: One Keystroke to Move, One Keystroke to Execute.</li>
 </ul>
-<h2 id="chapter2-normal-mode">CHAPTER2: Normal Mode</h2>
+<h2 id="chapter2-normal-mode">CHAPTER2: Normal Mode<a class="headerlink" href="#chapter2-normal-mode" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip7: Pause with Your Brush Off the Page: vim和其他编辑器一个显著不同就是默认不是编辑模式(insert mode)而是normal模式。实际上在编程中，大部分时间花在浏览，阅读，思考，组织和调整代码，而normal模式下众多命令能帮助我们大大提高效率。</li>
 </ul>
@@ -917,7 +917,7 @@
 <li>Tip11: Don't Count If You Can Repeat:  Keep your undo history clean.</li>
 <li>Tip12: Combine and Conquer:  Operator + Motion = Action，vim的强大在于组合命令的威力。比如d{motion}，"daw"是"delete a word"，比如"gU{motion}"的意思是Make {motion} text uppercase, "gUaw" 就是把一个单词转成大写，"gUap"就是把一个段落大写</li>
 </ul>
-<h2 id="chapter3-insert-mode">CHAPTER3: Insert Mode</h2>
+<h2 id="chapter3-insert-mode">CHAPTER3: Insert Mode<a class="headerlink" href="#chapter3-insert-mode" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip13: Make Corrections Instantly from Insert Mode: 快速修正错误，<code>&lt;C-h&gt;</code>删除一个字符，<code>&lt;C-w&gt;</code>删除一个单词,<code>&lt;C-u&gt;</code>删除一行。实际上这些快捷键在和终端里是一样的，刻意替代退格键。</li>
 </ul>
@@ -939,7 +939,7 @@
 <ul>
 <li>Tip19: Overwrite Existing Text with Replace Mode: <code>R</code>进入replace mode，平常我使用<code>r</code>进行单个字符修改，使用<code>R</code>可以从当前字符开始覆盖。</li>
 </ul>
-<h2 id="chapter4-visual-mode">CHAPTER4: Visual Mode</h2>
+<h2 id="chapter4-visual-mode">CHAPTER4: Visual Mode<a class="headerlink" href="#chapter4-visual-mode" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip20: Grok Visual Mode:  Visual Mode可以实现字符、行、块选择，结合其他命令实现多种操作。</li>
 </ul>
@@ -961,7 +961,7 @@
 <ul>
 <li>Tip26: Append After a Ragged Visual Block: 结合$等，我们可以在vim里方便地实现给多行最后加上分号等功能。</li>
 </ul>
-<h2 id="chapter5-command-line-mode">CHAPTER5: Command-Line Mode</h2>
+<h2 id="chapter5-command-line-mode">CHAPTER5: Command-Line Mode<a class="headerlink" href="#chapter5-command-line-mode" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip27: Meet Vim's Command Line: 命令模式允许我们执行一个ex命令，搜索模式或者表达式</li>
 </ul>
@@ -989,7 +989,7 @@
 <ul>
 <li>Tip35: Run Commands in the Shell: 命令行模式前边加上<code>!</code>就可以执行shell命令，比如<code>:!ls</code>，注意内置的<code>:ls</code>显示的是buffer列表。也可以用<code>:shell</code>启动交互式shell会话，exit退出。<code>:read !{cmd}</code>可以使shell的命令写到buffer,<code>:write {cmd}</code>把buffer里的内容作为shell命令的标准输入。</li>
 </ul>
-<h2 id="chapter6-manage-multiple-files">CHAPTER6: Manage Multiple Files</h2>
+<h2 id="chapter6-manage-multiple-files">CHAPTER6: Manage Multiple Files<a class="headerlink" href="#chapter6-manage-multiple-files" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip36: Track Open Files with the Buffer List: 在一次编辑会话中我们可以同时打开多个文件，vim使用buffer list管理他们。当我们在vim里编辑一个文件时，实际上是在编辑一个文件的内存表示，在vim术语里头叫做buffer。文件存储在硬盘，而buffers存在于内存中，大部分vim命令操作的是buffer，只有<code>:write</code>等少数命令会操作到硬盘中的文件。<code>:ls</code>列出所有buffer，<code>:bnext</code>或者<code>:bn</code>跳转到下一个buffer，<code>:bprev</code>或者<code>bp</code>跳到上一个，使用<code>C-^</code>来回切换，<code>:bd</code>移除当前buffer，同样还有<code>:bfirst</code>和<code>:blast</code>。如果觉得麻烦我可以可以映射命令<code>nnoremap &lt;silent&gt; [b :bprevious&lt;CR&gt;</code></li>
 </ul>
@@ -1005,7 +1005,7 @@
 <ul>
 <li>Tip40: Organize Your Window Layouts with Tab Pages: buffer+分屏+tab组合起来实现了vim强大的多文件编辑功能。vim的tab和其他常用的编辑器有很大不同，大多数编辑器每打开一个文件就会生成一个tab，但是当我们用<code>:edit {file}</code>打开一个文件时，vim并不会自动创建新标签，而是使用新的buffer加载文件。这样的好处就是我们可以使用vim的tab来组织工作区，举个例子，笔者有时用一个vim开了三个tab（工作区），每个tab下我又分屏打开了多个文件，最多的时候能打开十来个文件。一个工作区编写后端代码，一个工作区查看前端代码，一个工作区用来修改测试脚本。当然这种情况比较少，打开这么多文件大脑负担会比较重，其实有了ctrlP等插件后定位和打开文件已经相当迅速了，在一个工作区中也能快速切换，而且开多了可能还会有性能问题。使用<code>:tabedit {filename}</code>打开新标签页，没有文件名打开一个包含空buffer的标签页。如果打开了多个窗口，使用<code>&lt;C-w&gt;T</code>会把当前窗口移到一个新的标签页，如果只使用一个窗口，使用<code>:close</code>关闭当前标签和窗口，或者<code>:tabclose</code>关闭当前标签页（不管有几个窗口），<code>:tabonly</code>只保留当前标签页面。使用<code>gt</code>和<code>gT</code>来回在标签页跳转，或者用<code>:tabn</code>和<code>:tabp</code></li>
 </ul>
-<h2 id="chapter7-open-files-and-save-them-to-disk">CHAPTER7: Open Files and Save Them to Disk</h2>
+<h2 id="chapter7-open-files-and-save-them-to-disk">CHAPTER7: Open Files and Save Them to Disk<a class="headerlink" href="#chapter7-open-files-and-save-them-to-disk" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip41: Open a File by Its Filepath Using <code>:edit</code> : 可以使用<code>:e {filepath}</code>在vim里打开文件。</li>
 </ul>
@@ -1021,7 +1021,7 @@
 <ul>
 <li>Tip45: Save a File as the Super User: 我们经常忘记sudo去编辑一个文件，结果保存的时候会提示readonly无法保存。<code>:w !sudo tee % &gt; /dev/null</code></li>
 </ul>
-<h2 id="chapter8-navigate-inside-fileds-with-motions">CHAPTER8: Navigate inside Fileds with Motions</h2>
+<h2 id="chapter8-navigate-inside-fileds-with-motions">CHAPTER8: Navigate inside Fileds with Motions<a class="headerlink" href="#chapter8-navigate-inside-fileds-with-motions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip46: Keep your Fingers on the Home Row: vim的很多设计让我们集中在主键盘区，从而避免的手指的来回移动。最明显的就是不使用上下左右，而是使用"hjkl"，习惯了以后效率会很高。</li>
 </ul>
@@ -1066,7 +1066,7 @@
 <ul>
 <li>Tip54: Jump Between Matching Parentheses: 最常用的就是使用%在括号之间跳转，我们还可以用vim插件matchit增强功能</li>
 </ul>
-<h2 id="chapter-9-navigate-betwween-files-with-jumps">CHAPTER 9: Navigate Betwween Files With Jumps</h2>
+<h2 id="chapter-9-navigate-betwween-files-with-jumps">CHAPTER 9: Navigate Betwween Files With Jumps<a class="headerlink" href="#chapter-9-navigate-betwween-files-with-jumps" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip55: Traverse the Jump List: <code>:jumps</code>能列出跳转历史，<code>&lt;C-o&gt;</code>和<code>&lt;C-i&gt;</code>能切换跳转<p>- [count]G     跳转到行数
   - %     跳转到对应的括号
@@ -1087,7 +1087,7 @@
 <ul>
 <li>Tip58: Snap Betwween Files Global Marks: 全局标记可以在文件中来回跳转，<code>m{char}</code>char为大写就是全局标记。</li>
 </ul>
-<h2 id="chapter-10-copy-and-paste">CHAPTER 10: Copy and Paste</h2>
+<h2 id="chapter-10-copy-and-paste">CHAPTER 10: Copy and Paste<a class="headerlink" href="#chapter-10-copy-and-paste" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip59: Delete, Yank, and Put with Vim's Unnamed Register: 我们可以用<code>xp</code>来反转字母，用<code>ddp</code>反转两行，这些都是使用的无名寄存器。</li>
 </ul>
@@ -1103,7 +1103,7 @@
 <ul>
 <li>Tip63: Interact with the System Clipboard: 粘贴的时候使用<code>:paste</code>能避免自动缩进，映射一个命令<code>:set pastetoggle=&lt;F2&gt;</code>比较方便，最好放到你的vimrc里。</li>
 </ul>
-<h2 id="chapter-11-macros">CHAPTER 11: Macros</h2>
+<h2 id="chapter-11-macros">CHAPTER 11: Macros<a class="headerlink" href="#chapter-11-macros" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip64: Record and Execute a Macro: 宏经常用来对多行执行相同操作，我们可以录制宏并执行它。<code>q{register}</code>录制宏，之后q退出录制，用<code>:reg {register}</code>查看宏内容，用<code>@{register}</code>执行宏，使用<code>:[range]norm! @a</code>对多行执行宏。</li>
 </ul>
@@ -1128,7 +1128,7 @@
 <ul>
 <li>Tip71: Edit the Contents of a Macro: <code>put {register}</code>可以输出当前宏命令，编辑以后yank到寄存器里。</li>
 </ul>
-<h2 id="chapter-12-matching-patterns-and-literals">CHAPTER 12: Matching Patterns and Literals</h2>
+<h2 id="chapter-12-matching-patterns-and-literals">CHAPTER 12: Matching Patterns and Literals<a class="headerlink" href="#chapter-12-matching-patterns-and-literals" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip72: Tune the Case Sensitivity of Search Patterns: 全局设定忽略大小写<code>:set ignorecase</code>，对于单独的搜索在最后加上<code>\c</code>忽略大小写，</li>
 <li>Tip73: Use the \v Pattern Switch for Regex Searches: vim的正则语法接近POSIX而不是Perl的。使用<code>\v</code>后缀能切换vim的正则引擎更接近Perl,Python or Ruby.</li>
@@ -1148,7 +1148,7 @@
 <ul>
 <li>Tip78: Escape Problem Characters: vim提供了escape函数来实现重复的转义操作</li>
 </ul>
-<h2 id="chapter-13-search">CHAPTER 13: Search</h2>
+<h2 id="chapter-13-search">CHAPTER 13: Search<a class="headerlink" href="#chapter-13-search" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip79: Meet the Search Command: 命令模式输入<code>/</code>进入搜索模式并从当前光标位置往后搜索，<code>?</code>反向搜索。n和N分别是跳转到下一个和上一个搜索位置</li>
 </ul>
@@ -1173,7 +1173,7 @@
 <ul>
 <li>Tip86: Search for the Current Visual Selection: 在normal模式下可以用 * 找到下一个匹配，这个不支持块选的区域，可以通过脚本实现</li>
 </ul>
-<h2 id="chapter-14-substitution">CHAPTER 14: Substitution</h2>
+<h2 id="chapter-14-substitution">CHAPTER 14: Substitution<a class="headerlink" href="#chapter-14-substitution" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip87: Meet the Substitute Command: 语法形式<code>:[range]s[ubstitute]/{pattern}/{string}/[flags]</code>，flags包含g(全局)，c(确认提示)，n(次数提示)，&amp;(复用上一个flag)</li>
 </ul>
@@ -1204,7 +1204,7 @@
 <ul>
 <li>Tip96: Find and Replace Across Multiple Files: 需要结合argdo命令多文件操作，我觉得不如用sed命令方便点。</li>
 </ul>
-<h2 id="chapter-15-global-commands">CHAPTER 15: Global Commands</h2>
+<h2 id="chapter-15-global-commands">CHAPTER 15: Global Commands<a class="headerlink" href="#chapter-15-global-commands" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip97: Meet the Global Command: The :global command allows us to run an Ex command on each line that matches a particular pattern. <code>:[range] global[!] /{pattern}/ [cmd]</code></li>
 </ul>
@@ -1217,7 +1217,7 @@
 <ul>
 <li>Tip100:  Alphabetize the Properties of Each Rule in a CSS File: <code>:g/{/ .+1,/}/-1 sort</code></li>
 </ul>
-<h2 id="chapter-16-index-and-navigate-source-code-with-ctags">CHAPTER 16: Index and Navigate Source Code with ctags</h2>
+<h2 id="chapter-16-index-and-navigate-source-code-with-ctags">CHAPTER 16: Index and Navigate Source Code with ctags<a class="headerlink" href="#chapter-16-index-and-navigate-source-code-with-ctags" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Tip101: Meet ctags: ubuntu install ctags <code>sudo apt-get install exuberant-ctags</code>, mac <code>brew install ctags</code></li>
 </ul>

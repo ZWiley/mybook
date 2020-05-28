@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>1. Basics - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "1. Basics";
     var mkdocs_page_input_path = "frontend\\jquery_pocket_reference.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/frontend/jquery_pocket_reference/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,7 +836,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1-basics">1. Basics</h1>
+                <h1 id="1-basics">1. Basics<a class="headerlink" href="#1-basics" title="Permanent link">&para;</a></h1>
 <p>jQuery is a factory function rather than a constructor</p>
 <p>4种调用方式：</p>
 <ul>
@@ -847,7 +847,7 @@
       jQuery(function() { // Invoked when document has loaded // All jQuery code goes here
       });</li>
 </ul>
-<h1 id="2-element-getters-and-setters">2. Element Getters and Setters</h1>
+<h1 id="2-element-getters-and-setters">2. Element Getters and Setters<a class="headerlink" href="#2-element-getters-and-setters" title="Permanent link">&para;</a></h1>
 <ul>
 <li>getting and setting html attributes: attr()</li>
 <li>getting and setting css attributes: css()</li>
@@ -857,7 +857,7 @@
 <li>Getting and Setting Element Geometry: offset() position() innerWidth outerWidth()  scrollLeft()</li>
 <li>G&gt;etting and Setting Element Data: data() removeData()</li>
 </ul>
-<h1 id="3-altering-document-structure">3. Altering Document Structure</h1>
+<h1 id="3-altering-document-structure">3. Altering Document Structure<a class="headerlink" href="#3-altering-document-structure" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Inserting and Replacing Elements: append() prepend() after() before() replaceWith()</li>
 <li>Copying Elements: clone();clone() does not normally copy event handlers</li>
@@ -866,7 +866,7 @@
   altering the elements themselves. The remove() method, by contrast, removes the selected elements (and all of their
   con- tent) from the document. the unwrap() method performs element removal in a way that is opposite of the wrap() or wrapAll() method: it re- moves the parent of each selected element without affecting the selected elements or their siblings.</li>
 </ul>
-<h1 id="4-events">4. Events</h1>
+<h1 id="4-events">4. Events<a class="headerlink" href="#4-events" title="Permanent link">&para;</a></h1>
 <ul>
 <li>
 <p>Simple Event Handler Registration</p>
@@ -921,38 +921,42 @@ mouseup() resize() scroll() select() submit() unload()</code></p>
   $('a').die('mouseover', linkHandler);</code></p>
 </li>
 </ul>
-<h1 id="5-animated-effects">5 Animated Effects</h1>
+<h1 id="5-animated-effects">5 Animated Effects<a class="headerlink" href="#5-animated-effects" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Simple Effects: Query’s animations are queued by default
       - fadeIn(), fadeOut(), fadeTo()
       - show(), hide(), toggle()
       - slideDown(), slideUp(), slideToggle()</li>
 <li>Custom Animations: animate()</li>
-<li>The Animation Properties Object<pre><code>```
-$("p").animate({
-  "margin-left": "+=.5in", // Increase indent
-   opacity: "-=.1" // And decrease opacity
+<li>The Animation Properties Object<div class="codehilite"><pre><span></span>```
+$(&quot;p&quot;).animate({
+  &quot;margin-left&quot;: &quot;+=.5in&quot;, // Increase indent
+   opacity: &quot;-=.1&quot; // And decrease opacity
 });
 ```
-</code></pre>
+</pre></div>
+
+
 </li>
 </ul>
 <ul>
 <li>The Animation Options Object</li>
 <li>Canceling, Delaying, and Queuing Effects: stop(), delay()</li>
 </ul>
-<h1 id="6-ajax">6 Ajax</h1>
+<h1 id="6-ajax">6 Ajax<a class="headerlink" href="#6-ajax" title="Permanent link">&para;</a></h1>
 <ul>
 <li>The load() method: pass it a URL, which it will asynchronously load the content of, and then insert that content into each of the selected elements</li>
 <li>Ajax Utility Functions:
       - jQuery.getScript(): The jQuery.getScript() function takes the URL of a file of JavaScript code as its first argument. It asynchronously loads and then executes that code in the global scope. It can work for both same-origin and cross-origin scripts:
-      - jQuery.getJSON():  it fetches text and then processes it specially before invoking the specified call- back. Instead of executing the text as a script, jQuery.getJSON() parses it as JSON (using the jQuery.parseJSON() function;<pre><code>```
-// Suppose data.json contains the text: '{"x":1,"y":2}'
-jQuery.getJSON("data.json", function(data) {
+      - jQuery.getJSON():  it fetches text and then processes it specially before invoking the specified call- back. Instead of executing the text as a script, jQuery.getJSON() parses it as JSON (using the jQuery.parseJSON() function;<div class="codehilite"><pre><span></span>```
+// Suppose data.json contains the text: &#39;{&quot;x&quot;:1,&quot;y&quot;:2}&#39;
+jQuery.getJSON(&quot;data.json&quot;, function(data) {
 // Now data is the object {x:1, y:2} }
 );
 ```
-</code></pre>
+</pre></div>
+
+
 </li>
 </ul>
 <ul>
@@ -989,7 +993,7 @@ jQuery.getJSON("data.json", function(data) {
 <ul>
 <li>Ajax Events:  beforeSend, success, error, and complete.  remember that you can prevent jQuery from triggering any Ajax-related events by setting the global option to false.</li>
 </ul>
-<h1 id="7-utility-functions">7. Utility Functions</h1>
+<h1 id="7-utility-functions">7. Utility Functions<a class="headerlink" href="#7-utility-functions" title="Permanent link">&para;</a></h1>
 <ul>
 <li>jQuery.browser : object</li>
 <li>jQuery.contains(document_elements1, document_elements2)</li>
@@ -1012,7 +1016,7 @@ jQuery.getJSON("data.json", function(data) {
 </ul>
 <ul>
 <li>
-<h1 id="8-selectors-and-selection-methods">8. Selectors and Selection Methods</h1>
+<h1 id="8-selectors-and-selection-methods">8. Selectors and Selection Methods<a class="headerlink" href="#8-selectors-and-selection-methods" title="Permanent link">&para;</a></h1>
 </li>
 <li>Simple Selectors: css 选择符</li>
 <li>Selector Combinaitons: processed left-to-right.<ul>
@@ -1057,11 +1061,11 @@ jQuery.getJSON("data.json", function(data) {
 </ul>
 </li>
 </ul>
-<h1 id="9-extending-jquery-with-plugins">9 Extending jQuery with Plugins</h1>
+<h1 id="9-extending-jquery-with-plugins">9 Extending jQuery with Plugins<a class="headerlink" href="#9-extending-jquery-with-plugins" title="Permanent link">&para;</a></h1>
 <p>The trick is to know that jQuery.fn is the prototype object for all jQuery objects.</p>
-<h1 id="10-the-jquery-ui-library">10 The jQuery UI Library</h1>
+<h1 id="10-the-jquery-ui-library">10 The jQuery UI Library<a class="headerlink" href="#10-the-jquery-ui-library" title="Permanent link">&para;</a></h1>
 <p>http://jqueryui.com</p>
-<h1 id="11-jquery-quick-reference">11 jQuery Quick Reference</h1>
+<h1 id="11-jquery-quick-reference">11 jQuery Quick Reference<a class="headerlink" href="#11-jquery-quick-reference" title="Permanent link">&para;</a></h1>
               
             </div>
           </div>

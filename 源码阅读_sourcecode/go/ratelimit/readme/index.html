@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
   <title>限流器，令牌桶 go 实现 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u9650\u6d41\u5668\uff0c\u4ee4\u724c\u6876 go \u5b9e\u73b0";
     var mkdocs_page_input_path = "\u6e90\u7801\u9605\u8bfb_sourcecode\\go\\ratelimit\\readme.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u6e90\u7801\u9605\u8bfb_sourcecode/go/ratelimit/readme/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,38 +836,38 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="go">限流器，令牌桶 go 实现</h1>
+                <h1 id="go">限流器，令牌桶 go 实现<a class="headerlink" href="#go" title="Permanent link">&para;</a></h1>
 <p>https://github.com/uber-go/ratelimit</p>
-<pre><code class="go">import (
-    &quot;fmt&quot;
-    &quot;time&quot;
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;time&quot;</span>
 
-    &quot;go.uber.org/ratelimit&quot;
-)
+    <span class="s">&quot;go.uber.org/ratelimit&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    rl := ratelimit.New(100) // per second
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">rl</span> <span class="o">:=</span> <span class="nx">ratelimit</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="c1">// per second</span>
 
-    prev := time.Now()
-    for i := 0; i &lt; 10; i++ {
-        now := rl.Take()
-        fmt.Println(i, now.Sub(prev))
-        prev = now
-    }
+    <span class="nx">prev</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">now</span> <span class="o">:=</span> <span class="nx">rl</span><span class="p">.</span><span class="nx">Take</span><span class="p">()</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">now</span><span class="p">.</span><span class="nx">Sub</span><span class="p">(</span><span class="nx">prev</span><span class="p">))</span>
+        <span class="nx">prev</span> <span class="p">=</span> <span class="nx">now</span>
+    <span class="p">}</span>
 
-    // Output:
-    // 0 0
-    // 1 10ms
-    // 2 10ms
-    // 3 10ms
-    // 4 10ms
-    // 5 10ms
-    // 6 10ms
-    // 7 10ms
-    // 8 10ms
-    // 9 10ms
-}
-</code></pre>
+    <span class="c1">// Output:</span>
+    <span class="c1">// 0 0</span>
+    <span class="c1">// 1 10ms</span>
+    <span class="c1">// 2 10ms</span>
+    <span class="c1">// 3 10ms</span>
+    <span class="c1">// 4 10ms</span>
+    <span class="c1">// 5 10ms</span>
+    <span class="c1">// 6 10ms</span>
+    <span class="c1">// 7 10ms</span>
+    <span class="c1">// 8 10ms</span>
+    <span class="c1">// 9 10ms</span>
+<span class="p">}</span>
+</pre></div>
               
             </div>
           </div>

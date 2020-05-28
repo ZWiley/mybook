@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
   <title>《go业务基础库之Error&Context》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300ago\u4e1a\u52a1\u57fa\u7840\u5e93\u4e4bError&Context\u300b";
     var mkdocs_page_input_path = "lecture\\Gopher\\Go_Error\\go\u4e1a\u52a1\u57fa\u7840\u5e93\u4e4bError&Context.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/lecture/Gopher/Go_Error/go\u4e1a\u52a1\u57fa\u7840\u5e93\u4e4bError&Context/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
@@ -862,7 +862,7 @@
             <div class="section">
               
                 <p>go业务基础库之Error&amp;Context</p>
-<h1 id="error-background">Error-Background</h1>
+<h1 id="error-background">Error-Background<a class="headerlink" href="#error-background" title="Permanent link">&para;</a></h1>
 <ul>
 <li>错误检查和打印<ul>
 <li>分层开发导致处处打印</li>
@@ -879,7 +879,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="error-handle-error">Error-Handle Error</h1>
+<h1 id="error-handle-error">Error-Handle Error<a class="headerlink" href="#error-handle-error" title="Permanent link">&para;</a></h1>
 <ul>
 <li>追加上下文<ul>
 <li>WithStack/Warp 来保存堆栈</li>
@@ -887,12 +887,13 @@
 </ul>
 </li>
 </ul>
-<pre><code class="go">// github.com/pkg/errors
-_, err := ioutil.ReadAll(r)
-if err != nil {
-  return errors.Wrap(err, &quot;read failed&quot;)
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="c1">// github.com/pkg/errors</span>
+<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nx">ReadAll</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">Wrap</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&quot;read failed&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <ul>
 <li>根因追踪<ul>
@@ -900,7 +901,7 @@ if err != nil {
 </ul>
 </li>
 </ul>
-<h1 id="error-best-practice">Error-Best practice</h1>
+<h1 id="error-best-practice">Error-Best practice<a class="headerlink" href="#error-best-practice" title="Permanent link">&para;</a></h1>
 <p><img alt="" src="../error.png" /></p>
 <ul>
 <li>集中处理错误，errorgroup<ul>
@@ -910,9 +911,9 @@ if err != nil {
 </ul>
 </li>
 </ul>
-<h1 id="error-handle-error_1">Error-Handle Error</h1>
+<h1 id="error-handle-error_1">Error-Handle Error<a class="headerlink" href="#error-handle-error_1" title="Permanent link">&para;</a></h1>
 <p><img alt="" src="../codes.png" /></p>
-<h1 id="context-background">Context-Background</h1>
+<h1 id="context-background">Context-Background<a class="headerlink" href="#context-background" title="Permanent link">&para;</a></h1>
 <ul>
 <li>超时 &amp; 取消<ul>
 <li>业务库从无到有</li>
@@ -929,7 +930,7 @@ if err != nil {
 </ul>
 </li>
 </ul>
-<h1 id="context-context-with-api">Context-Context With API</h1>
+<h1 id="context-context-with-api">Context-Context With API<a class="headerlink" href="#context-context-with-api" title="Permanent link">&para;</a></h1>
 <p><img alt="" src="../contextapi.png" /></p>
 <p><img alt="" src="../contextbest.png" /></p>
               

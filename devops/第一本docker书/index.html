@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>3. 启动 docker - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "3. \u542f\u52a8 docker";
     var mkdocs_page_input_path = "devops\\\u7b2c\u4e00\u672cdocker\u4e66.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/devops/\u7b2c\u4e00\u672cdocker\u4e66/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,11 +836,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="3-docker">3. 启动 docker</h1>
+                <h1 id="3-docker">3. 启动 docker<a class="headerlink" href="#3-docker" title="Permanent link">&para;</a></h1>
 <p>docker run --name daemon_dave -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"</p>
-<h1 id="4-docker">4. 使用 docker 镜像和仓库</h1>
+<h1 id="4-docker">4. 使用 docker 镜像和仓库<a class="headerlink" href="#4-docker" title="Permanent link">&para;</a></h1>
 <p>构建 docker image。docker build 方式。</p>
-<pre><code># 当前的文件夹叫做 build context，docker 在构建镜像时将构建上下文和上下文中的文件和目录上传到 Docker 守护进程
+<div class="codehilite"><pre><span></span># 当前的文件夹叫做 build context，docker 在构建镜像时将构建上下文和上下文中的文件和目录上传到 Docker 守护进程
 mkdir static_web
 cd static_web
 touch Dockerfile
@@ -848,19 +848,23 @@ touch Dockerfile
 
 # Veersion: 0.0.1 
 FROM ubuntu:14.04
-MAINTAINER WNN 'pegasuswang@qq.com'
+MAINTAINER WNN &#39;pegasuswang@qq.com&#39;
 RUN apt-get update &amp;&amp; apt-get install -y nginx 
-RUN echo 'Hi, I am your container' \
+RUN echo &#39;Hi, I am your container&#39; \
 &gt; /usr/share/nginx/html/index.html
 EXPOSE 80
-</code></pre>
+</pre></div>
+
+
 <p>每条指令都会创建一个新的镜像层并对镜像进行提交，中间如果某条指令失败了，也能得到一个镜像，可以用来调试。</p>
-<pre><code># cd static_web
-docker build -t="wnn/static_web" .
-docker build --no-cache -t="wnn/static_web" .
-docker run -d -p 80 --name static_web wnn/static_web nginx -g "daemon off;"
-docker run -d -p 8000:80 --name static_web wnn/static_web nginx -g "daemon off;"
-</code></pre>
+<div class="codehilite"><pre><span></span># cd static_web
+docker build -t=&quot;wnn/static_web&quot; .
+docker build --no-cache -t=&quot;wnn/static_web&quot; .
+docker run -d -p 80 --name static_web wnn/static_web nginx -g &quot;daemon off;&quot;
+docker run -d -p 8000:80 --name static_web wnn/static_web nginx -g &quot;daemon off;&quot;
+</pre></div>
+
+
 <p>常用 dockerfile 命令：</p>
 <p>EXPOSE, ENTRYPOINT, ADD, COPY, VOLUME, WORKDIR, USER, ONBUILD, LABEL, STOPSIGNAL, ARG
 ENV</p>
@@ -890,9 +894,9 @@ ADD会是的构建缓存变得无效，  使得后续指令无法继续使用之
   - NO_PROXy</p>
 <p>ONBUILD: 为镜像添加触发器，当一个镜像被用作其他镜像的基础镜像，该镜像中的触发器将会被执行。</p>
 <p>从容器运行registry: docker run -p 5000:5000 registry:2</p>
-<h1 id="5-docker">5 在测试中使用 docker</h1>
+<h1 id="5-docker">5 在测试中使用 docker<a class="headerlink" href="#5-docker" title="Permanent link">&para;</a></h1>
 <p>重点是 docker 网络连接的几种方式: Docker Networking, Docker链接</p>
-<h1 id="6-docker">6 使用 docker 构建服务</h1>
+<h1 id="6-docker">6 使用 docker 构建服务<a class="headerlink" href="#6-docker" title="Permanent link">&para;</a></h1>
               
             </div>
           </div>

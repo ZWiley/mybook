@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《Go学习笔记源码剖析》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aGo\u5b66\u4e60\u7b14\u8bb0\u6e90\u7801\u5256\u6790\u300b";
     var mkdocs_page_input_path = "golang\\go\u8bed\u8a00\u5b66\u4e60\u7b14\u8bb0\u6e90\u7801\u5256\u6790.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/go\u8bed\u8a00\u5b66\u4e60\u7b14\u8bb0\u6e90\u7801\u5256\u6790/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -861,20 +861,20 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="13">13 准备</h1>
+                <h1 id="13">13 准备<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
 <p>基于Go 1.5.1，测试环境为Linux AMD64，且不包含32位内容。</p>
-<h1 id="14">14 引导</h1>
+<h1 id="14">14 引导<a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>
 <p>事实上，编译好的可执行文件真正的执行入口并非我们所写的main.main函数，因为编译器总是会插入一段引导代码，完成诸如命令行参数、运行时初始化等工作，然后才会进入用户逻辑。</p>
 <p>用使 gdb 调试器进入入口</p>
-<h1 id="15">15 初始化</h1>
+<h1 id="15">15 初始化<a class="headerlink" href="#15" title="Permanent link">&para;</a></h1>
 <ul>
 <li>所有init函数都在同一个goroutine内执行。</li>
 <li>所有init函数结束后才会执行main.main函数。</li>
 </ul>
-<h1 id="16">16 内存分配</h1>
+<h1 id="16">16 内存分配<a class="headerlink" href="#16" title="Permanent link">&para;</a></h1>
 <p>Go编译器支持逃逸分析（escape analysis），它会在编译期通过构建调用图来分析局部变量是否会被外部引用，从而决定是否可直接分配在栈上。
 编译参数-gcflags"-m"可输出编译优化信息，其中包括内联和逃逸分析。</p>
-<h1 id="17">17 垃圾回收</h1>
+<h1 id="17">17 垃圾回收<a class="headerlink" href="#17" title="Permanent link">&para;</a></h1>
 <p>大事记：</p>
 <ul>
 <li>2014/06，Go 1.3：并发清理。</li>
@@ -886,8 +886,8 @@
 <p>究竟什么时候启动垃圾回收？过早会严重浪费CPU资源，影响用户代码执行性能。而太晚，会导致堆内存恶性膨胀。如何正确平衡这些问题就是个巨大的挑战。</p>
 <p>所有问题的核心：抑制堆增长，充分利用CPU资源。为此，Go引入一系列举措。</p>
 <p>三色标记和写屏障、控制器、辅助回收</p>
-<h1 id="18">18 并发调度</h1>
-<pre><code>            +--------------------sysmon---------------//------+
+<h1 id="18">18 并发调度<a class="headerlink" href="#18" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span>            +--------------------sysmon---------------//------+
             |                                                   |
             |                                                   |
         +---+      +---+-------+                   +--------+          +---+---+
@@ -903,7 +903,9 @@ go func() ---&gt; |G| ---&gt; |P|local| &lt;===balance===&gt; |global| &lt;--//-
         |                      |              4. 进入调度循环schedule
         |                      |              5. 竭力获取待执行G任务并执行
         +--&gt;G.fn--&gt;goexit--+                6. 清理现场，重新进入调度循环
-</code></pre>
+</pre></div>
+
+
 <p>本节介绍与任务执行有关的几种暂停操作:</p>
 <p>Gosched: 可被用户调用的runtime.Gosched将当前G任务暂停，重新放回全局队列，让出当前M去执行其他任务。我们无须对G做唤醒操作，因为它总归会被某个M重新拿到，并从“断点”恢复。</p>
 <p>gopark:与Gosched最大的区别在于，gopark并没将G放回待运行队列。也就是说，必须主动恢复，否则该任务会遗失。</p>

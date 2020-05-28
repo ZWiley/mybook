@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《深入浅出mysql》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300a\u6df1\u5165\u6d45\u51famysql\u300b";
     var mkdocs_page_input_path = "database\\\u6df1\u5165\u6d45\u51famysql.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/database/\u6df1\u5165\u6d45\u51famysql/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -912,14 +912,14 @@
             <div class="section">
               
                 <p>最近看了一本小书，网易技术部的《深入浅出MySQL数据库开发、优化与管理维护》，算是回顾一下mysql基础知识。数据库一直是笔者比较薄弱的地方，结合自己的使用经验(python+sqlalchemy)等做个记录，笔者比较喜欢使用ORM，一直感觉拼sql是一件比较痛苦的事情(主要是不擅长sql)，以前维护项的目中也遇到过一些数据库的坑，比如编码问题，浮点数精度损失等，防止以后重复踩坑。</p>
-<h2 id="1">1章：使用帮助</h2>
+<h2 id="1">1章：使用帮助<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <p>使用mysql内置的帮助命令</p>
 <ul>
 <li><code>msyql&gt; ? data types</code> : 查看数据类型</li>
 <li><code>mysql&gt; ? int</code></li>
 <li><code>mysql&gt; ? create table</code></li>
 </ul>
-<h2 id="2">2章：表类型（存储引擎）的选择</h2>
+<h2 id="2">2章：表类型（存储引擎）的选择<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>最常用的两种引擎:</p>
 <ol>
 <li>
@@ -935,7 +935,7 @@
 使用的存储引擎之一</li>
 <li>InnoDB:用于事务处理应用程序,具有众多特性,包括 ACID 事务支持。</li>
 </ol>
-<h2 id="3">3章：选择合适的数据类型</h2>
+<h2 id="3">3章：选择合适的数据类型<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>首先选择合适的存储引擎，根据指定的存储引擎确定合适的数据类型。</p>
 <ul>
 <li>MyISAM: 最好使用固定长度的数据列代替可变长度的数据列。</li>
@@ -956,13 +956,13 @@ varchar变长字符串，检索时尾部空格会被保留。注意查询时候�
     - 3.编程如果遇到浮点数，注意误差问题，尽量避免浮点数比较（比较浮点数需要作差小于一个特定精度），python3.5中可以这么比较：<code>float_eq = partial(math.isclose, rel_tol=1e-09, abs_tol=0.0)</code>
     - 4.注意浮点数中一些特殊值的处理。</li>
 </ul>
-<h2 id="4">4章：字符集</h2>
+<h2 id="4">4章：字符集<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>一开始要选择合适的字符集，否则后期更换代价很高。python2中字符集就是个老大难问题，困然很多新手。之前维护过的项目使用了msyql默认的latin1字符集，导致每次写入的时候都要对字符串手动encode成utf8。最近用python3.5+flask做项目直接使用utf8，再也没碰到过编码问题：</p>
 <ul>
 <li>创建数据库使用utf8，CREATE DATABASE IF NOT EXISTS my_db default charset utf8 COLLATE utf8_general_ci;</li>
 <li>sqlalchemy连接url使用mysql://root:root@127.0.0.1:3306/my_db?charset=utf8。不用担心乱码问题了</li>
 </ul>
-<h2 id="5">5章：索引的设计和使用</h2>
+<h2 id="5">5章：索引的设计和使用<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
 <p>所有mysql列类型都可以被索引，对相关列使用索引是提高select操作性能的最佳途径。索引设计的原则:
 - 1.搜索的索引列，不一定是所要选择的列。最适合的索引的列是出现在where子句中的列，或连接子句中指定的列，而不是出现在select关键字之后的选择列表中的列。
 - 2.使用唯一索引。对于唯一值的列，索引效果较好，而有多个重复值的列，索引效果差。
@@ -970,31 +970,31 @@ varchar变长字符串，检索时尾部空格会被保留。注意查询时候�
 - 4.利用最左前缀。在创建一个n列索引时，实际上创建了mysql可利用的n个索引。多列索引可以起到几个索引的作用，因为可利用索引中的最左边的列集来匹配行，这样的列集成为最左前缀。
 - 5.不要过度索引。索引会浪费磁盘空间，降低写入性能。
 - 6.考虑在列上进行的比较类型。</p>
-<h2 id="6">6章：锁机制和事务控制</h2>
+<h2 id="6">6章：锁机制和事务控制<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
 <p>InnoDB引擎提提供行级锁，支持共享锁和排他锁两种锁定模式，以及四种不同的隔离级别。mysql通过AUTOCOMIT, START TRANSACTIONS, COMMIT和ROLLBACK等语句支持本地事务。</p>
-<h2 id="7sql">7章：SQL中的安全问题</h2>
+<h2 id="7sql">7章：SQL中的安全问题<a class="headerlink" href="#7sql" title="Permanent link">&para;</a></h2>
 <ul>
 <li>SQL注入：利用某些数据库的外部接口把用户数据插入到实际的数据库操作语音（sql）中，从而达到入侵数据库甚至操作系统的目的。产生原因主要是因为程序堆用户输入的数据没有进行严格的过滤，导致非法数据库查询语句的执行，防范措施：
     - prepareStatement = Bind-variable，不要使用拼接的sql
     - 使用应用程序提供的转换函数
     - 自定义函数校验（表单校验等）</li>
 </ul>
-<h2 id="8sql-mode">8章：SQL Mode及相关问题</h2>
+<h2 id="8sql-mode">8章：SQL Mode及相关问题<a class="headerlink" href="#8sql-mode" title="Permanent link">&para;</a></h2>
 <p>更改默认的mysql执行模式，比如严格模式下列的插入或者更新不正确时mysql会给出错误，并放弃操作。<code>set session sql_mode='STRICT_TRANS_TABLES'</code>。设置sql_mode需要应用人员权衡各种得失，做一个合适的选择。</p>
-<h2 id="9sql">9章：常用SQL技巧</h2>
+<h2 id="9sql">9章：常用SQL技巧<a class="headerlink" href="#9sql" title="Permanent link">&para;</a></h2>
 <ul>
 <li>检索包含最大/最小值的行：MAX([DISTINCE] expr), MIN([DISTINCE] expr)</li>
 <li>巧用rand()/rand(n)提取随机行</li>
 <li>利用group by和with rollup子句做统计</li>
 <li>用bit group functions做统计</li>
 </ul>
-<h2 id="10">10章：其他需要注意的问题</h2>
+<h2 id="10">10章：其他需要注意的问题<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
 <ul>
 <li>数据库名、表名大小写问题：不同平台和系统，是否区分大小写是不同的。建议就是始终统一使用小写名。</li>
 <li>使用外键需要注意的地方：mysql中InnoDB支持对外部关键字约束条件的检查。</li>
 </ul>
-<h2 id="11sql">11章：SQL优化</h2>
-<h4 id="sql">优化SQL的一般步骤：</h4>
+<h2 id="11sql">11章：SQL优化<a class="headerlink" href="#11sql" title="Permanent link">&para;</a></h2>
+<h4 id="sql">优化SQL的一般步骤：<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h4>
 <ul>
 <li>1.使用show status和应用特点了解各种SQL的执行频率，了解各种SQL大致的执行比例。比如InnoDB的的参数Innode_rows_read查询返回的行数，Innodb_rows_inserted执行insert插入的行数，Innodb_rows_updated更新的行数。还有一下几个参数：Connections试图连接mysql服务器嗯出书，Uptime服务器的工作时间，Slow_queries慢查询的次数。</li>
 <li>2.定位执行效率低的SQL语句。两种方式：一种是通过慢查询日志定位执行效率低的语句,使用--log-slow-queries[=file_name]选项启动时，mysqld写一个包含所有执行时间超过long_query_time秒的SQL语句的日志文件。另一种是show processlist查看当前mysql在进行的线程，包括线程的状态，所否锁表等，可以实时查看SQL执行情况，同时对一些锁表操作进行优化。</li>
@@ -1011,7 +1011,7 @@ varchar变长字符串，检索时尾部空格会被保留。注意查询时候�
 <ul>
 <li>4.确定问题，并采取相应优化措施。</li>
 </ul>
-<h4 id="_1">索引问题</h4>
+<h4 id="_1">索引问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li>索引的存储分类: myisam表的数据文件和索引文件自动分开，innodb的数据和索引放在同一个表空间里面。myisam和innodb的索引存储类型都是btree</li>
 </ul>
@@ -1021,12 +1021,12 @@ varchar变长字符串，检索时尾部空格会被保留。注意查询时候�
 <ul>
 <li>查看索引的使用情况：Handler_read_key的值代表一个行被索引次数，值低表示索引不被经常使用。Handler_read_rnd_next值高意味着查询运行低效，应该建立索引补救。<code>show status like 'Handler_read%';</code></li>
 </ul>
-<h4 id="_2">两个简单实用的优化方法</h4>
+<h4 id="_2">两个简单实用的优化方法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <ul>
 <li>定期分析表：ANALYZE TABLE, CHECK TABLE, CHECKSUM TABLE</li>
 <li>使用OPTIMIZE table;</li>
 </ul>
-<h4 id="_3">从客户端（代码端）角度优化</h4>
+<h4 id="_3">从客户端（代码端）角度优化<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>使用持久的连接数据库以避免连接开销。代码中我们一般使用连接池</li>
 <li>检查所有的插叙确实使用了必要的索引。</li>
@@ -1035,7 +1035,7 @@ varchar变长字符串，检索时尾部空格会被保留。注意查询时候�
 <li>读写分离提高性能</li>
 <li>表字段尽量不用自增长变量，防止高并发情况下该字段自增影响效率，推荐通过应用实现字段的自增。</li>
 </ul>
-<h2 id="12">12章: 优化数据库对象</h2>
+<h2 id="12">12章: 优化数据库对象<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
 <ul>
 <li>优化表的数据类型：PROCEDURE ANALYZE()对当前表类型的判断提出优化建议。实际可以通过统计信息结合应用实际优化。</li>
 <li>通过拆分，提高表的访问效率：这里拆分主要是针对Myisam类型的表。
@@ -1047,29 +1047,29 @@ varchar变长字符串，检索时尾部空格会被保留。注意查询时候�
 <li>使用冗余统计表：使用create temporary table做统计分析</li>
 <li>选择更合适的表类型：1.如果应用出现比较严重的锁冲突，请考虑是否刻意更改存储引擎到InnoDB,行锁机制可以有效减少锁冲突出现。2.如果应用查询操作很多，且对事务完整性要求不严格，可以考虑使用Myisam。</li>
 </ul>
-<h2 id="13">13章：锁问题</h2>
+<h2 id="13">13章：锁问题<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
 <ul>
 <li>获取锁的等待情况：table_locks_waited和table_locks_immediate状态变量来分析系统上的表锁定争夺。检查Innode_row_lock分析行锁的争夺情况。</li>
 </ul>
-<h2 id="14mysql-server">14章：优化Mysql Server</h2>
-<h4 id="mysql-server">查看Mysql Server当前参数</h4>
+<h2 id="14mysql-server">14章：优化Mysql Server<a class="headerlink" href="#14mysql-server" title="Permanent link">&para;</a></h2>
+<h4 id="mysql-server">查看Mysql Server当前参数<a class="headerlink" href="#mysql-server" title="Permanent link">&para;</a></h4>
 <ul>
 <li>查看服务器参数默认值：<code>mysqld --verbose --help</code></li>
 <li>查看服务器参数实际值：<code>shell&gt; mysqladmin variables</code> or <code>mysql&gt; SHOW VARIABLES</code></li>
 <li>查看服务器运行状态值：<code>mysqladmin extended-status</code> or <code>mysql&gt;SHOW STATUS</code></li>
 </ul>
-<h4 id="mysql">影响Mysql性能的重要参数</h4>
+<h4 id="mysql">影响Mysql性能的重要参数<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h4>
 <ul>
 <li>key_buffer_size: 键缓存</li>
 <li>table_cache: 数据库中打开的缓存数量</li>
 <li>innode_buffer_pool_size: 缓存InnoDB数据和索引的内存缓冲区的大小</li>
 <li>innodb_flush_log_at_trx_commit: 推荐设成1，在每个事务提交时，日志缓冲被写到日志文件，对日志文件做到磁盘操作的刷新。</li>
 </ul>
-<h2 id="15io">15章：I/O问题</h2>
+<h2 id="15io">15章：I/O问题<a class="headerlink" href="#15io" title="Permanent link">&para;</a></h2>
 <p>磁盘搜索是巨大的性能瓶颈。
 - 使用磁盘阵列或虚拟文件卷分布I/O
 - 使用Symbolic Links分布I/O</p>
-<h2 id="16">16章：应用优化</h2>
+<h2 id="16">16章：应用优化<a class="headerlink" href="#16" title="Permanent link">&para;</a></h2>
 <ul>
 <li>使用连接池：建立连接代价比较高，通过建立连接池提高访问性能。</li>
 <li>减少对Mysql的访问：1.避免对同意数据重复检索。2使用mysql query cache</li>

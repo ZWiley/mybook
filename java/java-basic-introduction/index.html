@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《java basic introduction》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300ajava basic introduction\u300b";
     var mkdocs_page_input_path = "java\\java-basic-introduction.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/java/java-basic-introduction/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -864,35 +864,40 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1">1. 入门</h1>
-<pre><code class="java">class HelloWorld {
-    public static void main(String [] args) {
-        System.out.println(&quot;hello&quot;);
-    }
-}
-</code></pre>
+                <h1 id="1">1. 入门<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;hello&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
 
 <p>classpath 环境变量:java虚拟机需要运行一个类，会在定义的路径中寻找所需要的class文件
 自动设置为当前目录。</p>
 <p>java sourcecode -&gt; class字节码文件(javac compile) -&gt; jvm 将字节码文件加载到内存(类加载器) -&gt; 执行</p>
-<h3 id="package">package</h3>
+<h3 id="package">package<a class="headerlink" href="#package" title="Permanent link">&para;</a></h3>
 <p>java 通过包组织类，声明用 package</p>
-<pre><code>import package.class
+<div class="codehilite"><pre><span></span>import package.class
 import package.*   // import all classs
 java.util java.net java.io java.awt java.sql
-</code></pre>
-<h3 id="jvm-java-virtual-machine">JVM java virtual Machine</h3>
+</pre></div>
+
+
+<h3 id="jvm-java-virtual-machine">JVM java virtual Machine<a class="headerlink" href="#jvm-java-virtual-machine" title="Permanent link">&para;</a></h3>
 <p>解释自己的指令集（字节码）到 cpu 的指令集或者 os 的系统调用，jvm 只关心 class file。
 类文件的组成包括 JVM 指令集，符号表以及一些补助信息。</p>
-<h3 id="jre-java-runtime-environment">JRE java runtime environment</h3>
+<h3 id="jre-java-runtime-environment">JRE java runtime environment<a class="headerlink" href="#jre-java-runtime-environment" title="Permanent link">&para;</a></h3>
 <p>jre 目录有 bin and lib, 可以认为 bin 里就是 jvm, lib 市 jvm 需要的一些类库</p>
-<h3 id="jkd-java-development-kit">JKD java development kit</h3>
+<h3 id="jkd-java-development-kit">JKD java development kit<a class="headerlink" href="#jkd-java-development-kit" title="Permanent link">&para;</a></h3>
 <p>java 开发工具包。 jkd 包含 jre, jre 包含 jvm</p>
-<h1 id="2-java">2. java 基础</h1>
+<h1 id="2-java">2. java 基础<a class="headerlink" href="#2-java" title="Permanent link">&para;</a></h1>
 <p>类或者接口用大骆驼命名法(Student, StudentName)，方法和变量小骆驼(dogName).</p>
 <p>常量全部大写。(STU_NAME)</p>
-<pre><code>单行注释 //   多行 /* */   文档注释(javadoc)
-</code></pre>
+<div class="codehilite"><pre><span></span>单行注释 //   多行 /* */   文档注释(javadoc)
+</pre></div>
+
+
 <p>原码：二进制定点表示法</p>
 <p>反码：正数反码和源码相同，负数的反码是对齐源码逐位取反，但符号位除外</p>
 <p>补码：正数补码与原码相同，负数补码是其反码末尾加1.</p>
@@ -903,7 +908,7 @@ java.util java.net java.io java.awt java.sql
 <p>方法重载：同一个类中允许多个同名方法，只要他们的参数个数或者参数类型不同即可。与返回值类型无关</p>
 <p>数组： int[] arr = new int[3]; int[] arr = new int[]{1,2,3} or int[] arr = {1,2,3}</p>
 <p>包装类：Byte,Short,Int,Long,Float,Double;  大数类：BigInteger, BigDecimal; 字符类：Character</p>
-<h1 id="3">3。 面向对象</h1>
+<h1 id="3">3。 面向对象<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>封装：属性和行为封装，对外隐藏细节。隔离变化、便于使用、复用性和安全性。</p>
 <p>继承：扩展类功能，复用性和开发效率。使用 extends继承。java 只允许单继承(继承单个类)
   - 子类可以直接访问父类中的非私有属性和行为

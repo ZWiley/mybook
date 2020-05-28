@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>海量数据处理 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u6d77\u91cf\u6570\u636e\u5904\u7406";
     var mkdocs_page_input_path = "\u8ba1\u7b97\u673a\u57fa\u7840\u77e5\u8bc6\\\u6d77\u91cf\u6570\u636e\u5904\u7406.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u8ba1\u7b97\u673a\u57fa\u7840\u77e5\u8bc6/\u6d77\u91cf\u6570\u636e\u5904\u7406/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,7 +836,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">海量数据处理</h1>
+                <h1 id="_1">海量数据处理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>海量数据，不能一次加载到内存中</p>
 <blockquote>
 <ul>
@@ -846,7 +846,7 @@
 <li>找出A,B两个海量url文件中共同的url</li>
 </ul>
 </blockquote>
-<h2 id="topk">海量数据topK</h2>
+<h2 id="topk">海量数据topK<a class="headerlink" href="#topk" title="Permanent link">&para;</a></h2>
 <p>最大K使用最小堆，最小K使用最大堆，这里以最大K为例</p>
 <blockquote>
 <ul>
@@ -876,7 +876,7 @@
 5. 生成m * K个数据，然后对这些数据再进行排序，或者再次通过维护最小堆</li>
 </ul>
 </blockquote>
-<h2 id="aburlurl">找出A,B两个海量url文件中共同的url</h2>
+<h2 id="aburlurl">找出A,B两个海量url文件中共同的url<a class="headerlink" href="#aburlurl" title="Permanent link">&para;</a></h2>
 <p>题目：两个文件各存50亿个url，每个url64个字节，内存限制4G，找出A,B共同的url</p>
 <blockquote>
 <ul>
@@ -884,16 +884,16 @@
 <li>对小文件求公共url的时候可以使用hash_set去重。A文件Set建立后另外一个文件的内容遍历跟Set中内容比对，如果相等则记录</li>
 </ul>
 </blockquote>
-<h2 id="bitmap"><a href="https://blog.csdn.net/qq_22080999/article/details/81975889">bitmap</a></h2>
+<h2 id="bitmap"><a href="https://blog.csdn.net/qq_22080999/article/details/81975889">bitmap</a><a class="headerlink" href="#bitmap" title="Permanent link">&para;</a></h2>
 <p>bitmap一般是total/32 + 1个数组，从a[0]开始，每组是32bit表示，对应位的0或1表示十进制的0-31是否存在，可以用于快速排序，快速去重，快速查询</p>
-<h2 id="_2">海量数据判断一个整数是否存在其中</h2>
+<h2 id="_2">海量数据判断一个整数是否存在其中<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li>分治思想，首先分成小文件，然后建立HashTable进行统计</li>
 <li>可以使用BitMap，每个数分配1Bit，0不存在，1存在建立完毕扫描数据把对应位置的比特位描成0/1，最后查找整数的位置是否为1（通过商判断在哪个数组中，余数判断哪一位）</li>
 </ul>
 </blockquote>
-<h2 id="_3">海量数据找出不重复的数字/仅出现一次的数据</h2>
+<h2 id="_3">海量数据找出不重复的数字/仅出现一次的数据<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li>可以使用BitMap，每个数分配两Bit，00不存在，01出现一次，10出现多次，11没意义。需要内存2^32 * 8 * 2bit，建立完毕扫描数据把对应位置的比特位描成00/01/10/11，最后查找01</li>

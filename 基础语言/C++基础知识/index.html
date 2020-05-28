@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《C++基础知识》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aC++\u57fa\u7840\u77e5\u8bc6\u300b";
     var mkdocs_page_input_path = "\u57fa\u7840\u8bed\u8a00\\C++\u57fa\u7840\u77e5\u8bc6.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u57fa\u7840\u8bed\u8a00/C++\u57fa\u7840\u77e5\u8bc6/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -886,7 +886,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="cc">C/C++基础知识</h1>
+                <h1 id="cc">C/C++基础知识<a class="headerlink" href="#cc" title="Permanent link">&para;</a></h1>
 <blockquote>
 <ul>
 <li><a href="#数组和指针的区别">数组和指针的区别</a></li>
@@ -909,7 +909,7 @@
 <li><a href="#代码判断32位和64位系统">代码判断32位和64位系统</a></li>
 </ul>
 </blockquote>
-<h2 id="_1">数组和指针的区别</h2>
+<h2 id="_1">数组和指针的区别<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li><strong>概念不同.</strong> 指针相当于一个变量，它存放的是数据在内存中的地址；数组是用于储存多个相同类型数据的集合</li>
@@ -926,7 +926,7 @@
 2. 因此，C语言将数组的传参进行了退化。将整个数组拷贝一份传入函数时，将数组名看做常量指针，传数组首元素的地址。</li>
 </ul>
 </blockquote>
-<h2 id="_2">指针数组和数组指针</h2>
+<h2 id="_2">指针数组和数组指针<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>指针数组本质是数组，数组指针本质是指针，谁优先级高，本质是谁</p>
 <blockquote>
 <ul>
@@ -942,7 +942,7 @@ int (*arr)[8];
 3. 这句话的意思就是：指针arr指向一个大小为8个整型的数组。</li>
 </ul>
 </blockquote>
-<h2 id="_3">字符数组和字符串常量</h2>
+<h2 id="_3">字符数组和字符串常量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>char    arr[]="hello";  //字符数组
 char    *arr2="hello"; //字符串常量</p>
 <blockquote>
@@ -953,7 +953,7 @@ char    *arr2="hello"; //字符串常量</p>
 </blockquote>
 <p>const char arr[]="hello";  //这里hello本来是在栈上的，但是编译器可能会做某些优化，将其放到常量区
 const char *arr2="hello"; //字符串hello保存在常量区，const本来是修饰arr2指向的值不能通过arr2去修改，但是字符串hello在常量区，本来就不能改变，所以加不加const效果都一样 </p>
-<h2 id="_4">引用和指针的区别</h2>
+<h2 id="_4">引用和指针的区别<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li><strong>指针有内存分配，而引用只是一个别名.</strong> 引用声明时必须初始化，从而指向一个已经存在的对象</li>
@@ -967,7 +967,7 @@ const char *arr2="hello"; //字符串hello保存在常量区，const本来是修
 <li><strong>多级指针，一级引用.</strong> 指针可以有多级指针（**p），而引用只有一级</li>
 </ul>
 </blockquote>
-<h2 id="cclassstruct">C++中class和struct的区别</h2>
+<h2 id="cclassstruct">C++中class和struct的区别<a class="headerlink" href="#cclassstruct" title="Permanent link">&para;</a></h2>
 <p>C中的strcut不能有函数，但C++中可以。C++中的struct对C中的struct进行了扩充，它已经不再只是一个包含不同数据类型的数据结构了，它已经获取了太多的功能。struct能包含成员函数吗？ 能！struct能继承吗？ 能！！struct能实现多态吗？ 能！！！</p>
 <blockquote>
 <ul>
@@ -976,7 +976,7 @@ const char *arr2="hello"; //字符串hello保存在常量区，const本来是修
 <li><strong>定义模板参数.</strong> class这个关键字还用于定义模板参数，就像typename。但关键字struct不用于定义模板参数。</li>
 </ul>
 </blockquote>
-<h2 id="newdeletemallocfree">new/delete和malloc/free区别</h2>
+<h2 id="newdeletemallocfree">new/delete和malloc/free区别<a class="headerlink" href="#newdeletemallocfree" title="Permanent link">&para;</a></h2>
 <p>malloc和calloc间的主要区别在于后者在返回指向内存的指针之前把它初始化为0。另一个区别是calloc的参数包括所需的元素的数量和每个元素的字节数</p>
 <blockquote>
 <ul>
@@ -1001,7 +1001,7 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 <li><strong>能否相互调用.</strong> operator_new /operator _delete的实现可以基于malloc/free，而malloc的实现不可以去调用new。</li>
 </ul>
 </blockquote>
-<h2 id="new"><a href="https://blog.csdn.net/hihozoo/article/details/51441521">new运算符的原理</a></h2>
+<h2 id="new"><a href="https://blog.csdn.net/hihozoo/article/details/51441521">new运算符的原理</a><a class="headerlink" href="#new" title="Permanent link">&para;</a></h2>
 <ul>
 <li>内存分配
     *  调用相应的  operator new(size_t) 函数，动态分配内存。如果 operator new(size_t) 不能成功获得内存，则调用 new_handler()函数用于处理new失败问题。如果没有设置 new_handler() 函数或者 new_handler() 未能分配足够内存，则抛出 std::bad_alloc 异常</li>
@@ -1010,14 +1010,14 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 <li>构造函数
     *  在分配到的动态内存块上 初始化相应类型的对象（构造函数）并返回其首地址。如果调用构造函数初始化对象时抛出异常，则自动调用 operator delete(void<em>, void</em>) 函数释放已经分配到的内存。</li>
 </ul>
-<h2 id="malloc">malloc的内存分配机制</h2>
+<h2 id="malloc">malloc的内存分配机制<a class="headerlink" href="#malloc" title="Permanent link">&para;</a></h2>
 <p>malloc内存分配机制是怎么样的,在哪里分配内存，最大可以申请多大的内存？</p>
 <blockquote>
 <ul>
 <li>首先会扫描之前由free()所释放的空闲内存块列表，以求找到尺寸大于或等于要求的一块空闲内存。如果这一内存块的尺寸正好与要求相当，就将它返回给调用者，如果是一块较大的内存，那么将对其进行分割，在将一块大小相当的内存返回给调用者的同时，把较小的那块空闲内存块保留在空闲列表中</li>
 </ul>
 </blockquote>
-<h2 id="_5"><a href="https://blog.csdn.net/caogenwangbaoqiang/article/details/79788368">栈和堆的区别</a></h2>
+<h2 id="_5"><a href="https://blog.csdn.net/caogenwangbaoqiang/article/details/79788368">栈和堆的区别</a><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
 <li>管理方式不同
     * 对于栈来讲，是由编译器自动管理，无需我们手工控制；对于堆来说，释放工作由程序员控制，容易产生memory leak。</li>
@@ -1028,7 +1028,7 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 <li>生长方向不同
     * 对于堆来讲，生长方向是向上的，也就是向着内存地址增加的方向；对于栈来讲，它的生长方向是向下的，是向着内存地址减小的方向增长</li>
 </ul>
-<h2 id="_6"><a href="https://blog.csdn.net/jerry11112/article/details/79027834">面向对象和面向过程的区别</a></h2>
+<h2 id="_6"><a href="https://blog.csdn.net/jerry11112/article/details/79027834">面向对象和面向过程的区别</a><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>面向对象就是高度实物抽象化、面向过程就是自顶向下的编程</p>
 <blockquote>
 <ul>
@@ -1042,7 +1042,7 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
     2. 缺点：性能比面向过程低</li>
 </ul>
 </blockquote>
-<h2 id="const">const关键字(不可修改)</h2>
+<h2 id="const">const关键字(不可修改)<a class="headerlink" href="#const" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li>修饰变量，说明该变量不可以被改变；</li>
@@ -1051,7 +1051,7 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 <li>修饰成员函数，说明该成员函数内不能修改成员变量，本质是const this指针。</li>
 </ul>
 </blockquote>
-<h2 id="static">static关键字(对外不可见)</h2>
+<h2 id="static">static关键字(对外不可见)<a class="headerlink" href="#static" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li><strong>修饰普通变量，</strong> 修改变量的存储区域和生命周期，使变量存储在静态区，在 main 函数运行前就分配了空间，在整个程序运行期间一直存在，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它，自动初始化为0。
@@ -1061,7 +1061,7 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 <li><strong>修饰类成员变量和成员函数，</strong> 它们是属于类的，而不是某个对象，所有对象共享一个静态成员。静态成员通过&lt;类名&gt;::&lt;静态成员&gt;来使用。在 static 函数内不能访问非静态成员</li>
 </ul>
 </blockquote>
-<h2 id="extern"><a href="https://www.cnblogs.com/qinguoyi/p/10100777.html">extern关键字</a></h2>
+<h2 id="extern"><a href="https://www.cnblogs.com/qinguoyi/p/10100777.html">extern关键字</a><a class="headerlink" href="#extern" title="Permanent link">&para;</a></h2>
 <p>extern关键字主要修饰变量或函数，表示该函数可以跨文件访问，或者表明该变量在其他文件定义，在此处引用.</p>
 <blockquote>
 <ul>
@@ -1073,14 +1073,14 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 <strong>注意：</strong> extern的引用方式比包含头文件要简洁得多！extern的使用方法是直接了当的，想引用哪个函数就用extern声明哪个函数。这样做的一个明显的好处是，会加速程序的编译（确切的说是预处理）的过程，节省时间，但若需要调用的函数太多，还是直接包含头文件吧.</li>
 </ul>
 </blockquote>
-<h2 id="volatile">volatile关键字</h2>
+<h2 id="volatile">volatile关键字<a class="headerlink" href="#volatile" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li><strong>不可优化性.</strong> volatile 关键字是一种类型修饰符，用它声明的类型变量表示不可以被某些编译器未知的因素（操作系统、硬件、其它线程等）更改。所以使用 volatile 告诉编译器不应对这样的对象进行优化。</li>
 <li><strong>易变性.</strong> volatile 关键字声明的变量，每次访问时都必须从内存中取出值（没有被 volatile 修饰的变量，可能由于编译器的优化，从 CPU 寄存器中取值）</li>
 </ul>
 </blockquote>
-<h2 id="explicit">explicit关键字</h2>
+<h2 id="explicit">explicit关键字<a class="headerlink" href="#explicit" title="Permanent link">&para;</a></h2>
 <p>explicit关键字的作用就是防止对象间实现=赋值，防止类构造函数的隐式自动转换,类构造函数默认情况下即声明为implicit(隐式)，另外explicit只用于单参数的构造函数，或者除了第一个参数以外的其他参数都有默认值.</p>
 <blockquote>
 <ul>
@@ -1114,7 +1114,7 @@ void test05(){
 }
     </blockcode></pre>
 </details></p>
-<h2 id="_7">类成员属性</h2>
+<h2 id="_7">类成员属性<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>类的成员有三个权限：公有权限（public），私有权限（private），保护权限（protected）。</p>
 <blockquote>
 <ul>
@@ -1123,8 +1123,8 @@ void test05(){
 <li><strong>保护权限.</strong> 类内和当前类的子类可以访问，类外不可访问。</li>
 </ul>
 </blockquote>
-<h2 id="_8">大小端序的定义和代码判断</h2>
-<h3 id="_9">定义</h3>
+<h2 id="_8">大小端序的定义和代码判断<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">定义<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>一个16进制的地址，存放在内存中从低地址开始存储，如16进制的地址为0x1234，对于地址而言，从右往左是从低到高</p>
 <ul>
 <li>大端
@@ -1132,32 +1132,33 @@ void test05(){
 <li>小端
     * 若16进制的低地址存放在内存的低地址，则为小端字节序，12存储在高位，34存储在高位</li>
 </ul>
-<h3 id="_10">代码判断</h3>
+<h3 id="_10">代码判断<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>可以通过联合体来判断，联合体是同一块内存被联合体中的所有成员公用，如果后续成员对内存重新赋值，会覆盖内存中原有数据</p>
-<pre><code class="C++">union U{
-    int a;
-    char b;
-};
+<div class="codehilite"><pre><span></span><span class="k">union</span> <span class="n">U</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">};</span>
 
-int main(){
-    U u;
-    u.a = 0x01020304;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">U</span> <span class="n">u</span><span class="p">;</span>
+    <span class="n">u</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="mh">0x01020304</span><span class="p">;</span>
 
-    if (u.b == 0x04){
-        cout &lt;&lt; u.b &lt;&lt; endl; //输出char字符
-        cout &lt;&lt; &quot;little&quot; &lt;&lt; endl;
-    }
+    <span class="k">if</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">b</span> <span class="o">==</span> <span class="mh">0x04</span><span class="p">){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">.</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//输出char字符</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;little&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    else if (u.b == 0x01){
-        cout &lt;&lt; u.b &lt;&lt; endl;
-        cout &lt;&lt; &quot;big&quot; &lt;&lt; endl;
-    }
-    system(&quot;pause&quot;);
-    return 0;
-}
-</code></pre>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">b</span> <span class="o">==</span> <span class="mh">0x01</span><span class="p">){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span><span class="p">.</span><span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;big&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="3264">代码判断32位和64位系统</h2>
+
+<h2 id="3264">代码判断32位和64位系统<a class="headerlink" href="#3264" title="Permanent link">&para;</a></h2>
 <p>写一个指针，输出指针所占的字节大小</p>
               
             </div>

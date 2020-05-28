@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../img/favicon.ico">
   <title>Advanced go programming - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "Advanced go programming";
     var mkdocs_page_input_path = "golang\\advanced-go-programming-book\\advanced-go-programming.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/advanced-go-programming-book/advanced-go-programming/";
   </script>
   
   <script src="../../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,440 +836,456 @@
           <div role="main">
             <div class="section">
               
-                <h3 id="153">1.5.3 顺序一致性内存模型</h3>
+                <h3 id="153">1.5.3 顺序一致性内存模型<a class="headerlink" href="#153" title="Permanent link">&para;</a></h3>
 <p>go 中同一个 goroutine 保证顺序一致性内存模型，但是不同 goroutine 之间不保证，需要定义明确的同步事件。</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;sync&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    go fmt.Println(&quot;hello&quot;)
-}
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="p">}</span>
 
-// 使用 done 同步
-func main() {
-    done := make(chan int, 1)
+<span class="c1">// 使用 done 同步</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-    go func() {
-        fmt.Println(&quot;hello&quot;)
-        done &lt;- 1 // 同一个 goroutine 满足顺序一致性，这个时候已经打印
-    }()
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+        <span class="nx">done</span> <span class="o">&lt;-</span> <span class="mi">1</span> <span class="c1">// 同一个 goroutine 满足顺序一致性，这个时候已经打印</span>
+    <span class="p">}()</span>
 
-    &lt;-done
-}
+    <span class="o">&lt;-</span><span class="nx">done</span>
+<span class="p">}</span>
 
-// 或者用mutex同步
-func main() {
-    var mu sync.Mutex
-    mu.Lock()
-    go func() {
-        fmt.Println(&quot;hello&quot;)
-        mu.Unlock() // UhLck一定在 print 之后发生
-    }()
-    mu.Lock() // Lock一定在unlock之后发生，通过sync.Mutex保证
-}
-</code></pre>
+<span class="c1">// 或者用mutex同步</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">mu</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+    <span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+        <span class="nx">mu</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span> <span class="c1">// UhLck一定在 print 之后发生</span>
+    <span class="p">}()</span>
+    <span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span> <span class="c1">// Lock一定在unlock之后发生，通过sync.Mutex保证</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="154">1.5.4 初始化顺序</h3>
+
+<h3 id="154">1.5.4 初始化顺序<a class="headerlink" href="#154" title="Permanent link">&para;</a></h3>
 <p><img alt="" src="../init_order.png" /></p>
-<h3 id="156-channel">1.5.6 基于Channel通信</h3>
-<pre><code class="go">// 利用channel缓存大小控制并发执行的goroutine最大数
-var limit = make(chan int, 3)
+<h3 id="156-channel">1.5.6 基于Channel通信<a class="headerlink" href="#156-channel" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="c1">// 利用channel缓存大小控制并发执行的goroutine最大数</span>
+<span class="kd">var</span> <span class="nx">limit</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-func main() {
-    for _, w := range work {
-        go func() {
-            limit &lt;- 1
-            w()
-            &lt;-limit
-        }()
-    }
-    select {} // 阻塞 main，避免过早退出
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">w</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">work</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">limit</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+            <span class="nx">w</span><span class="p">()</span>
+            <span class="o">&lt;-</span><span class="nx">limit</span>
+        <span class="p">}()</span>
+    <span class="p">}</span>
+    <span class="k">select</span> <span class="p">{}</span> <span class="c1">// 阻塞 main，避免过早退出</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="16">1.6 常见并发模式</h2>
+
+<h2 id="16">1.6 常见并发模式<a class="headerlink" href="#16" title="Permanent link">&para;</a></h2>
 <p>CSP: 同步通信</p>
 <blockquote>
 <p>Do not communicate by sharing memory; instead, share memory by communicating.
 不要通过共享内存来通信，而应通过通信共享内存。</p>
 </blockquote>
-<h3 id="161-hello-world">1.6.1 并发Hello World</h3>
+<h3 id="161-hello-world">1.6.1 并发Hello World<a class="headerlink" href="#161-hello-world" title="Permanent link">&para;</a></h3>
 <p>并发编程核心概念是同步通信。</p>
-<pre><code class="go">// 错误的示例
-package main
+<div class="codehilite"><pre><span></span><span class="c1">// 错误的示例</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;sync&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    var mu sync.Mutex
-    mu.Lock()
-    go func() {
-        fmt.Println(&quot;hello&quot;)
-        mu.Lock()
-    }()
-    mu.Unlock()  //这里的Lock/Unlock无法保证顺序，必须先Lock之后才能Unlock
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">mu</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+    <span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+        <span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="p">}()</span>
+    <span class="nx">mu</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>  <span class="c1">//这里的Lock/Unlock无法保证顺序，必须先Lock之后才能Unlock</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>修复方式用main 中使用两次 lock</p>
-<pre><code class="go">func main() {
-    var mu sync.Mutex
-    mu.Lock()
-    go func() {
-        fmt.Println(&quot;hello&quot;)
-        mu.Unlock() // UhLck一定在 print 之后发生
-    }()
-    mu.Lock() // Lock一定在unlock之后发生，通过sync.Mutex保证
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">mu</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+    <span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+        <span class="nx">mu</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span> <span class="c1">// UhLck一定在 print 之后发生</span>
+    <span class="p">}()</span>
+    <span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span> <span class="c1">// Lock一定在unlock之后发生，通过sync.Mutex保证</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>使用无缓冲管道实现同步:</p>
-<pre><code class="go">func main() {
-    done := make(chan int)
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
 
-    go func() {
-        fmt.Println(&quot;hello&quot;)
-        &lt;- done
-    }()
-    done &lt;- 1   // 发送操作完成才有可能接受，所以会等待先执行 &lt;-done
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+        <span class="o">&lt;-</span> <span class="nx">done</span>
+    <span class="p">}()</span>
+    <span class="nx">done</span> <span class="o">&lt;-</span> <span class="mi">1</span>   <span class="c1">// 发送操作完成才有可能接受，所以会等待先执行 &lt;-done</span>
 
-}
-</code></pre>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>对于无缓存Channel 进行的接收，发生在对该 channel 进行发送完成之前。</p>
 <p>更好的做法是将管道的发送和接受方调换，使用有缓存的管道。避免同步受到管道缓存大小影响。
 对于带缓冲的channel,对于channel 的第 k 个接手完成操作发生在第k+c 个发送操作完成之前，
 其中 c 是 channel 的缓存大小。</p>
-<pre><code class="go">func main() {
-    done := make(chan int, 1)
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-    go func() {
-        fmt.Println(&quot;hello&quot;)
-        done &lt;- 1
-    }()
-    &lt;-done
-}
-</code></pre>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+        <span class="nx">done</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+    <span class="p">}()</span>
+    <span class="o">&lt;-</span><span class="nx">done</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>扩展到 n 个：</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    done := make(chan int, 10)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-    for i := 0; i &lt; cap(done); i++ {
-        go func() {
-            fmt.Println(&quot;hello&quot;)
-            done &lt;- 1
-        }()
-    }
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">done</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+            <span class="nx">done</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+        <span class="p">}()</span>
+    <span class="p">}</span>
 
-    for i := 0; i &lt; cap(done); i++ {
-        &lt;-done
-    }
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">done</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="o">&lt;-</span><span class="nx">done</span>
+    <span class="p">}</span>
 
-}
-</code></pre>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>当然最简单的方式使用 sync.WaitGroup , wg.Add wg.Done wg.Wait</p>
-<h3 id="162">1.6.2 生产者消费者</h3>
-<pre><code class="go">package main
+<h3 id="162">1.6.2 生产者消费者<a class="headerlink" href="#162" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;os&quot;
-    &quot;os/signal&quot;
-    &quot;syscall&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+    <span class="s">&quot;os/signal&quot;</span>
+    <span class="s">&quot;syscall&quot;</span>
+<span class="p">)</span>
 
-func Producer(factor int, out chan&lt;- int) {
-    for i := 0; ; i++ {
-        out &lt;- i * factor
-    }
-}
+<span class="kd">func</span> <span class="nx">Producer</span><span class="p">(</span><span class="nx">factor</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">out</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">out</span> <span class="o">&lt;-</span> <span class="nx">i</span> <span class="o">*</span> <span class="nx">factor</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func Consumer(in &lt;-chan int) {
-    for v := range in {
-        fmt.Print(v)
-    }
-}
+<span class="kd">func</span> <span class="nx">Consumer</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">in</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func main() {
-    ch := make(chan int, 64)
-    go Producer(3, ch)
-    go Producer(5, ch)
-    go Consumer(ch)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">Producer</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nx">ch</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">Producer</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nx">ch</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">Consumer</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
 
-    sig := make(chan os.Signal, 1)
-    signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
-    fmt.Printf(&quot;quit %v\n&quot;, &lt;-sig)
-}
-</code></pre>
+    <span class="nx">sig</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Signal</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">signal</span><span class="p">.</span><span class="nx">Notify</span><span class="p">(</span><span class="nx">sig</span><span class="p">,</span> <span class="nx">syscall</span><span class="p">.</span><span class="nx">SIGINT</span><span class="p">,</span> <span class="nx">syscall</span><span class="p">.</span><span class="nx">SIGTERM</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;quit %v\n&quot;</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">sig</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="163">1.6.3 发布订阅</h3>
+
+<h3 id="163">1.6.3 发布订阅<a class="headerlink" href="#163" title="Permanent link">&para;</a></h3>
 <p>Pub/Sub m:n</p>
-<h3 id="164">1.6.4 控制并发数</h3>
+<h3 id="164">1.6.4 控制并发数<a class="headerlink" href="#164" title="Permanent link">&para;</a></h3>
 <p>通过带缓存管道的发送和接收规则实现最大并发阻塞。</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-var limit = make(chan int, 3)
+<span class="kd">var</span> <span class="nx">limit</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-func main() {
-    for _, w := range work {
-        go func() {
-            limit &lt;- 1
-            w()
-            &lt;-limit
-        }()
-    }
-    select {}
-}
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">w</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">work</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">limit</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+            <span class="nx">w</span><span class="p">()</span>
+            <span class="o">&lt;-</span><span class="nx">limit</span>
+        <span class="p">}()</span>
+    <span class="p">}</span>
+    <span class="k">select</span> <span class="p">{}</span>
+<span class="p">}</span>
 
-type gate chan bool 
-func (g gate) enter() { g&lt;-true }
-func (g gate) leave() { &lt;-g }
+<span class="kd">type</span> <span class="nx">gate</span> <span class="kd">chan</span> <span class="kt">bool</span> 
+<span class="kd">func</span> <span class="p">(</span><span class="nx">g</span> <span class="nx">gate</span><span class="p">)</span> <span class="nx">enter</span><span class="p">()</span> <span class="p">{</span> <span class="nx">g</span><span class="o">&lt;-</span><span class="kc">true</span> <span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">g</span> <span class="nx">gate</span><span class="p">)</span> <span class="nx">leave</span><span class="p">()</span> <span class="p">{</span> <span class="o">&lt;-</span><span class="nx">g</span> <span class="p">}</span>
 
-type gatefs struct {
-    fs vfs.FileSystem
-    gate
-}
+<span class="kd">type</span> <span class="nx">gatefs</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">fs</span> <span class="nx">vfs</span><span class="p">.</span><span class="nx">FileSystem</span>
+    <span class="nx">gate</span>
+<span class="p">}</span>
 
-func (fs gatefs) Lstat(p string) (os.FileInfo, error) {
-    fs.enter()
-    defer fs.leave()
-    return fs.fs.Lstat(p)
-}
-</code></pre>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">fs</span> <span class="nx">gatefs</span><span class="p">)</span> <span class="nx">Lstat</span><span class="p">(</span><span class="nx">p</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
+    <span class="k">defer</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">leave</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">fs</span><span class="p">.</span><span class="nx">Lstat</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="165">1.6.5 赢者为王</h3>
-<pre><code class="go">func main() {
-    ch := make(chan string, 32)
 
-    go func() {
-        ch &lt;- searchByBing(&quot;golang')&quot;
-    }()
+<h3 id="165">1.6.5 赢者为王<a class="headerlink" href="#165" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
 
-    go func() {
-        ch &lt;- searchByGoogle(&quot;golang')&quot;
-    }()
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">searchByBing</span><span class="p">(</span><span class="s">&quot;golang&#39;)&quot;</span>
+    <span class="p">}()</span>
 
-    go func() {
-        ch &lt;- searchByBaidu(&quot;golang')&quot;
-    }()
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">searchByGoogle</span><span class="p">(</span><span class="s">&quot;golang&#39;)&quot;</span>
+    <span class="p">}()</span>
 
-    fmt.Println(&lt;-ch)
-}
-</code></pre>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">searchByBaidu</span><span class="p">(</span><span class="s">&quot;golang&#39;)&quot;</span>
+    <span class="p">}()</span>
 
-<h3 id="167">1.6.7 并发安全退出</h3>
-<pre><code class="go">package main
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">ch</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-import (
-    &quot;fmt&quot;
-    &quot;sync&quot;
-    &quot;time&quot;
-)
 
-func worker(wg *sync.WaitGroup, cannel chan bool) {
-    defer wg.Done()
+<h3 id="167">1.6.7 并发安全退出<a class="headerlink" href="#167" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-    for {
-        select {
-        default:
-            fmt.Println(&quot;hello&quot;)
-        case &lt;-cannel:
-            return
-        }
-    }
-}
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    cancel := make(chan bool)
+<span class="kd">func</span> <span class="nx">worker</span><span class="p">(</span><span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span> <span class="nx">cannel</span> <span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
 
-    var wg sync.WaitGroup
-    for i := 0; i &lt; 10; i++ {
-        wg.Add(1)
-        go worker(&amp;wg, cancel)
-    }
-    time.Sleep(time.Second)
-    close(cancel)
-    wg.Wait()
-}
-</code></pre>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">cannel</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<h3 id="168-context">1.6.8 context 包</h3>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">cancel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">go</span> <span class="nx">worker</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">wg</span><span class="p">,</span> <span class="nx">cancel</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="nb">close</span><span class="p">(</span><span class="nx">cancel</span><span class="p">)</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="168-context">1.6.8 context 包<a class="headerlink" href="#168-context" title="Permanent link">&para;</a></h3>
 <p>go1.7 增加了 context, 简化对于处理单个请求的多个goroutine之间与请求域的数据、超时和退出等操作。</p>
-<h1 id="17">1.7 错误和异常</h1>
+<h1 id="17">1.7 错误和异常<a class="headerlink" href="#17" title="Permanent link">&para;</a></h1>
 <p>错误被认为可预期的，异常则是非预期的。</p>
-<h3 id="171">1.7.1 错误处理策略</h3>
+<h3 id="171">1.7.1 错误处理策略<a class="headerlink" href="#171" title="Permanent link">&para;</a></h3>
 <p>go 中的导出函数一般不抛出异常，一个未受控的异常可以看成程序 bug。
 web框架一般会防御性地捕获所有异常。</p>
-<pre><code class="go">// go库实现习惯是即使包内部使用了 panic，但是在函数 export 时候会被转换成明确的错误值
-func ParseJSON(input string) (s *Syntax, err error) {
-    defer func() {
-        if p:=recover(); p!=nil {
-            err = fmt.Errorf(&quot;JSON: internal error: %v&quot;, p)
-        }
-    }()
-    // ... parser ...
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="c1">// go库实现习惯是即使包内部使用了 panic，但是在函数 export 时候会被转换成明确的错误值</span>
+<span class="kd">func</span> <span class="nx">ParseJSON</span><span class="p">(</span><span class="nx">input</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Syntax</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">p</span><span class="o">:=</span><span class="nb">recover</span><span class="p">();</span> <span class="nx">p</span><span class="o">!=</span><span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">err</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;JSON: internal error: %v&quot;</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+    <span class="c1">// ... parser ...</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="172">1.7.2 获取错误上下文</h3>
+
+<h3 id="172">1.7.2 获取错误上下文<a class="headerlink" href="#172" title="Permanent link">&para;</a></h3>
 <p>一般为了防止丢失错误信息，一般使用包装函数。
 go 大部分代码逻辑类似，先一系列初始检查，用于防止错误发生，然后是实际逻辑。</p>
-<pre><code class="go">f, err := op.Open(&quot;filename&quot;)
-if err !=nil {
-    // 失败场景
-}
-// 正常流程
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">op</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;filename&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span><span class="kc">nil</span> <span class="p">{</span>
+    <span class="c1">// 失败场景</span>
+<span class="p">}</span>
+<span class="c1">// 正常流程</span>
+</pre></div>
+
 
 <p>`1.7.3 错误的错误返回</p>
 <p>go 中 error 是一种接口类型。接口信息包含了原始类型和原始的值。
 只有当接口的类型和原始值都为空，接口值才对应 nil。`</p>
-<pre><code class="go">// 错误示例
-func returnsError() error {
-    var p *MyError = nil
-    if bad() {
-         p = ErrBad
-    }
-    return p // weill always return a non-nil error
-    // 返回的是一个Myerror类型的空指针，而不是 nil
-}
+<div class="codehilite"><pre><span></span><span class="c1">// 错误示例</span>
+<span class="kd">func</span> <span class="nx">returnsError</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">p</span> <span class="o">*</span><span class="nx">MyError</span> <span class="p">=</span> <span class="kc">nil</span>
+    <span class="k">if</span> <span class="nx">bad</span><span class="p">()</span> <span class="p">{</span>
+         <span class="nx">p</span> <span class="p">=</span> <span class="nx">ErrBad</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">p</span> <span class="c1">// weill always return a non-nil error</span>
+    <span class="c1">// 返回的是一个Myerror类型的空指针，而不是 nil</span>
+<span class="p">}</span>
 
-// rightway
-func returnsError() error {
-    if bad() {
-        return (*MyError)(err)
-    }
-    return nil
-}
+<span class="c1">// rightway</span>
+<span class="kd">func</span> <span class="nx">returnsError</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">bad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="nx">MyError</span><span class="p">)(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</pre></div>
 
-</code></pre>
 
-<h3 id="174">1.7.4 剖析异常</h3>
+<h3 id="174">1.7.4 剖析异常<a class="headerlink" href="#174" title="Permanent link">&para;</a></h3>
 <p>必须在 defer 函数中直接调用 recover，并且不能包装 recover 函数，直接调用。
 必须和有异常的栈帧只隔一个栈帧才能正确捕获异常。</p>
 <p>--- 2章 CGO 编程</p>
 <p>--- 4章 RPC和Protobuf</p>
 <p>RPC (Remote Procedure Call)</p>
-<h2 id="41-rpc">4.1 RPC 入门</h2>
+<h2 id="41-rpc">4.1 RPC 入门<a class="headerlink" href="#41-rpc" title="Permanent link">&para;</a></h2>
 <p>示例使用了内置的rpc 模块演示</p>
-<h2 id="42-protobuf">4.2 Protobuf</h2>
+<h2 id="42-protobuf">4.2 Protobuf<a class="headerlink" href="#42-protobuf" title="Permanent link">&para;</a></h2>
 <p>Prtocol Buffers简称</p>
-<h2 id="43-rpc">4.3 玩转 RPC</h2>
-<h2 id="44-grpc">4.4 gRPC 入门</h2>
+<h2 id="43-rpc">4.3 玩转 RPC<a class="headerlink" href="#43-rpc" title="Permanent link">&para;</a></h2>
+<h2 id="44-grpc">4.4 gRPC 入门<a class="headerlink" href="#44-grpc" title="Permanent link">&para;</a></h2>
 <p>基于 HTTP/2 协议设计，可以基于一个HTTP/2链接提供多个服务。</p>
 <p><img alt="" src="../grpc.png" /></p>
-<h1 id="5-go-web">5 Go和 web</h1>
+<h1 id="5-go-web">5 Go和 web<a class="headerlink" href="#5-go-web" title="Permanent link">&para;</a></h1>
 <p>go web框架使用radix tree 实现 route</p>
-<h2 id="53-middleware">5.3 中间件middleware</h2>
+<h2 id="53-middleware">5.3 中间件middleware<a class="headerlink" href="#53-middleware" title="Permanent link">&para;</a></h2>
 <p>解耦业务和非业务代码逻辑</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;net/http&quot;
-    &quot;time&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-func hello(wr http.ResponseWriter, r *http.Request) {
-    wr.Write([]byte(&quot;hello&quot;))
-}
+<span class="kd">func</span> <span class="nx">hello</span><span class="p">(</span><span class="nx">wr</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">wr</span><span class="p">.</span><span class="nx">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">))</span>
+<span class="p">}</span>
 
-func timeMiddleware(next http.Handler) http.Handler {
-    return http.HandlerFunc(func(wr http.ResponseWriter, r *http.Request) {
-        timeStart := time.Now()
-        // next handler
-        next.ServeHTTP(wr, r)
+<span class="kd">func</span> <span class="nx">timeMiddleware</span><span class="p">(</span><span class="nx">next</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span><span class="p">)</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">http</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">wr</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">timeStart</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+        <span class="c1">// next handler</span>
+        <span class="nx">next</span><span class="p">.</span><span class="nx">ServeHTTP</span><span class="p">(</span><span class="nx">wr</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
 
-        timeElasped := time.Since(timeStart)
-        logger.Println(timeElasped)
-    })
-}
+        <span class="nx">timeElasped</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Since</span><span class="p">(</span><span class="nx">timeStart</span><span class="p">)</span>
+        <span class="nx">logger</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">timeElasped</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">}</span>
 
-func main() {
-    http.Handle(&quot;/&quot;, timeMiddleware(http.HandlerFunc(hello)))
-    err := http.ListenAndServe(&quot;:8000&quot;, nil)
-    //....
-}
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="nx">timeMiddleware</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">HandlerFunc</span><span class="p">(</span><span class="nx">hello</span><span class="p">)))</span>
+    <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="s">&quot;:8000&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="c1">//....</span>
+<span class="p">}</span>
 
 
-// 标准库的关系
-type Handler interface {
-    ServeHTTP(ResponseWriter, *Request)
-}
+<span class="c1">// 标准库的关系</span>
+<span class="kd">type</span> <span class="nx">Handler</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">ServeHTTP</span><span class="p">(</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span>
+<span class="p">}</span>
 
-type HandlerFunc func(ResponseWriter, *Request) 
+<span class="kd">type</span> <span class="nx">HandlerFunc</span> <span class="kd">func</span><span class="p">(</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span> 
 
-func (f handlerFunc) ServeHTTP(w ResponseWriter, r *Request) {
-    f(w, r)
-}
-</code></pre>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">handlerFunc</span><span class="p">)</span> <span class="nx">ServeHTTP</span><span class="p">(</span><span class="nx">w</span> <span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">f</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>请求调用链：</p>
 <p>h = getHandler() =&gt; h.ServeHTTP(w, r) =&gt; h(w, r)</p>
-<h3 id="533">5.3.3 更优雅的中间件写法</h3>
-<pre><code class="go">r = NewRouter()
-r.Use(logger)
-r.Use(timeout)
-r.Use(ratelimit)
-r.Add(&quot;/&quot;, helloHandler)
+<h3 id="533">5.3.3 更优雅的中间件写法<a class="headerlink" href="#533" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="nx">r</span> <span class="p">=</span> <span class="nx">NewRouter</span><span class="p">()</span>
+<span class="nx">r</span><span class="p">.</span><span class="nx">Use</span><span class="p">(</span><span class="nx">logger</span><span class="p">)</span>
+<span class="nx">r</span><span class="p">.</span><span class="nx">Use</span><span class="p">(</span><span class="nx">timeout</span><span class="p">)</span>
+<span class="nx">r</span><span class="p">.</span><span class="nx">Use</span><span class="p">(</span><span class="nx">ratelimit</span><span class="p">)</span>
+<span class="nx">r</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="nx">helloHandler</span><span class="p">)</span>
 
-type middleware func(http.Handler) http.Handler 
-type Router struct {
-    middlewareChain [] middleware
-    mux map[string] http.Handler
-}
+<span class="kd">type</span> <span class="nx">middleware</span> <span class="kd">func</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span><span class="p">)</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span> 
+<span class="kd">type</span> <span class="nx">Router</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">middlewareChain</span> <span class="p">[]</span> <span class="nx">middleware</span>
+    <span class="nx">mux</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span>
+<span class="p">}</span>
 
-func NewRouter() *Router{ 
-    return &amp;Router{}
-}
+<span class="kd">func</span> <span class="nx">NewRouter</span><span class="p">()</span> <span class="o">*</span><span class="nx">Router</span><span class="p">{</span> 
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">Router</span><span class="p">{}</span>
+<span class="p">}</span>
 
-func (r *Router) Use(m middleware) {
-    r.middlewareChain = append(r.middlewareChain, m)
-}
+<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">Router</span><span class="p">)</span> <span class="nx">Use</span><span class="p">(</span><span class="nx">m</span> <span class="nx">middleware</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">middlewareChain</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">middlewareChain</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span>
+<span class="p">}</span>
 
-func (r *Router) Add(route string, h http.Handler) {
-    var mergedHandler = h
-    // 反向遍历
-    for i:= len(r.middlewareChain)-1; i&gt;=0; i-- {
-        mergedHandler = r.middlewareChain[i](mergedHandler)
-    }
-    r.mux[route] = mergedHandler
-}
-</code></pre>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">Router</span><span class="p">)</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">route</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">h</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Handler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">mergedHandler</span> <span class="p">=</span> <span class="nx">h</span>
+    <span class="c1">// 反向遍历</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">middlewareChain</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+        <span class="nx">mergedHandler</span> <span class="p">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">middlewareChain</span><span class="p">[</span><span class="nx">i</span><span class="p">](</span><span class="nx">mergedHandler</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">r</span><span class="p">.</span><span class="nx">mux</span><span class="p">[</span><span class="nx">route</span><span class="p">]</span> <span class="p">=</span> <span class="nx">mergedHandler</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>哪些可以写成中间件呢？参考 gin-gonic/contrib</p>
-<h2 id="54-validator">5.4 Validator</h2>
+<h2 id="54-validator">5.4 Validator<a class="headerlink" href="#54-validator" title="Permanent link">&para;</a></h2>
 <p>https://github.com/go-playground/validator</p>
 <p>通过反射对结构体进行树形遍历</p>
-<h2 id="55-database">5.5 Database 和数据库打交道</h2>
-<pre><code class="go">package main
-import &quot;database/sql&quot;
-import _ &quot;github.com/go-sql-driver/mysql&quot; 
+<h2 id="55-database">5.5 Database 和数据库打交道<a class="headerlink" href="#55-database" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+<span class="kn">import</span> <span class="s">&quot;database/sql&quot;</span>
+<span class="kn">import</span> <span class="nx">_</span> <span class="s">&quot;github.com/go-sql-driver/mysql&quot;</span> 
 
-db, err := sql.Open(&quot;mysql&quot;, &quot;user:password@/dbname&quot;)
+<span class="nx">db</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sql</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;mysql&quot;</span><span class="p">,</span> <span class="s">&quot;user:password@/dbname&quot;</span><span class="p">)</span>
 
-// import _ &quot;github.com/go-sql-driver/mysql&quot;  实际上调用了 mysql init
-func init() {
-    sql.Register(&quot;mysql&quot;, &amp;MySQLDriver{})
-}
-</code></pre>
+<span class="c1">// import _ &quot;github.com/go-sql-driver/mysql&quot;  实际上调用了 mysql init</span>
+<span class="kd">func</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">sql</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span><span class="s">&quot;mysql&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">MySQLDriver</span><span class="p">{})</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>Sql Build 相比orm 在可维护性上取得了更好平衡，不会屏蔽太多细节。</p>
-<h3 id="56-ratelimit">5.6 Ratelimit 服务流量限制</h3>
+<h3 id="56-ratelimit">5.6 Ratelimit 服务流量限制<a class="headerlink" href="#56-ratelimit" title="Permanent link">&para;</a></h3>
 <p>磁盘 IO/CPU/带宽瓶颈</p>
 <p>常见的限流手段：</p>
 <ul>
@@ -1283,256 +1299,261 @@ func init() {
 <p>原理：令牌桶模型实际上是对全局计数的加减法操作过程，
 但使用计数器需要自己加上读写锁。</p>
 <p>可以使用 bufferd channel 完成简单的加令牌和取令牌操作。</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;time&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    var fillInterval = time.Millisecond * 10
-    var capacity = 100
-    var tokenBucket = make(chan struct{}, capacity)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">fillInterval</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span> <span class="o">*</span> <span class="mi">10</span>
+    <span class="kd">var</span> <span class="nx">capacity</span> <span class="p">=</span> <span class="mi">100</span>
+    <span class="kd">var</span> <span class="nx">tokenBucket</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">capacity</span><span class="p">)</span>
 
-    fillToken := func() {
-        ticker := time.NewTicker(fillInterval)
-        for {
-            select {
-            case &lt;-ticker.C:
-                select {
-                case tokenBucket &lt;- struct{}{}:
-                default:
+    <span class="nx">fillToken</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ticker</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="nx">fillInterval</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="k">select</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+                <span class="k">select</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="nx">tokenBucket</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}:</span>
+                <span class="k">default</span><span class="p">:</span>
 
-                }
-                fmt.Println(&quot;current token cnt:&quot;, len(tokenBucket), time.Now())
-            }
-        }
-    }
+                <span class="p">}</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;current token cnt:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">tokenBucket</span><span class="p">),</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">())</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    go fillToken()
-    time.Sleep(time.Hour)
-}
+    <span class="k">go</span> <span class="nx">fillToken</span><span class="p">()</span>
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span>
+<span class="p">}</span>
 
-func TakeAvailable(block bool) bool {
-    var takenResult bool
-    if block {
-        select {
-        case &lt;-tokenBucket:
-            takenResult = true
-        }
-    } else {
-        select {
-        case &lt;-tokenBucket:
-            takenResult = true
-        default:
-            takenResult = false
-        }
-    }
-    return takenResult
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">TakeAvailable</span><span class="p">(</span><span class="nx">block</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">takenResult</span> <span class="kt">bool</span>
+    <span class="k">if</span> <span class="nx">block</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">tokenBucket</span><span class="p">:</span>
+            <span class="nx">takenResult</span> <span class="p">=</span> <span class="kc">true</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">tokenBucket</span><span class="p">:</span>
+            <span class="nx">takenResult</span> <span class="p">=</span> <span class="kc">true</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="nx">takenResult</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">takenResult</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="563-qos">5.6.3服务瓶颈和 Qos</h3>
+
+<h3 id="563-qos">5.6.3服务瓶颈和 Qos<a class="headerlink" href="#563-qos" title="Permanent link">&para;</a></h3>
 <p>Qos: Quality of Service。包含可用性、吞吐量、时延、时延变化和丢失等</p>
-<h2 id="57">5.7 大型项目分层</h2>
+<h2 id="57">5.7 大型项目分层<a class="headerlink" href="#57" title="Permanent link">&para;</a></h2>
 <ul>
 <li>controller: 服务入口，负责处理路由，参数校验，请求转发</li>
 <li>logic/service: 逻辑(服务)层，一般是业务逻辑入口。可以认为从这里开始参数一定是合法的。业务逻辑和流程也在这一层。(Business Rules)</li>
 <li>DAO/Repository: 负责和数据、存储打交道。更简单的函数、接口暴露给Logic层使用。负责数据持久化。</li>
 </ul>
-<h2 id="58">5.8 接口和表驱动开发</h2>
-<h3 id="582">5.8.2 使用函数封装业务流程</h3>
+<h2 id="58">5.8 接口和表驱动开发<a class="headerlink" href="#58" title="Permanent link">&para;</a></h2>
+<h3 id="582">5.8.2 使用函数封装业务流程<a class="headerlink" href="#582" title="Permanent link">&para;</a></h3>
 <p>把相似的行为放在一起，然后打包成一个个函数。</p>
-<h3 id="583">5.8.3 使用接口来做抽象</h3>
+<h3 id="583">5.8.3 使用接口来做抽象<a class="headerlink" href="#583" title="Permanent link">&para;</a></h3>
 <p>业务早期不建议引入接口。主流程稳定可以引入接口做抽象</p>
-<h3 id="584">5.8.4 接口优缺点</h3>
+<h3 id="584">5.8.4 接口优缺点<a class="headerlink" href="#584" title="Permanent link">&para;</a></h3>
 <p>优点:正交性。依赖反转
 缺点：难以查找实现了接口的类型</p>
-<h3 id="585">5.8.5 表驱动开发</h3>
-<pre><code class="go">func entry() {
-    var bi BusinessInstance
-    switch businessType {
-    case TravelBusiness:
-        bi = travelorder.New()
-    case MarketBusiness:
-        bi = marketorder.New()
-    default:
-        return errors.New(&quot;not supported business&quot;)
-    }
-}
+<h3 id="585">5.8.5 表驱动开发<a class="headerlink" href="#585" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">bi</span> <span class="nx">BusinessInstance</span>
+    <span class="k">switch</span> <span class="nx">businessType</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">TravelBusiness</span><span class="p">:</span>
+        <span class="nx">bi</span> <span class="p">=</span> <span class="nx">travelorder</span><span class="p">.</span><span class="nx">New</span><span class="p">()</span>
+    <span class="k">case</span> <span class="nx">MarketBusiness</span><span class="p">:</span>
+        <span class="nx">bi</span> <span class="p">=</span> <span class="nx">marketorder</span><span class="p">.</span><span class="nx">New</span><span class="p">()</span>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;not supported business&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-var BusinessInstanceMap = map[int]BusinessInstance{
-    TravelBusiness: travelorder.New(),
-    MarketBusiness: marketorder.New(),
-}
+<span class="kd">var</span> <span class="nx">BusinessInstanceMap</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="nx">BusinessInstance</span><span class="p">{</span>
+    <span class="nx">TravelBusiness</span><span class="p">:</span> <span class="nx">travelorder</span><span class="p">.</span><span class="nx">New</span><span class="p">(),</span>
+    <span class="nx">MarketBusiness</span><span class="p">:</span> <span class="nx">marketorder</span><span class="p">.</span><span class="nx">New</span><span class="p">(),</span>
+<span class="p">}</span>
 
-func entry() {
-    bi := BusinessInstance[businessType]
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">bi</span> <span class="o">:=</span> <span class="nx">BusinessInstance</span><span class="p">[</span><span class="nx">businessType</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="59-ab-test">5.9 灰度发布和A/B test</h2>
+
+<h2 id="59-ab-test">5.9 灰度发布和A/B test<a class="headerlink" href="#59-ab-test" title="Permanent link">&para;</a></h2>
 <p>恢复一般两种方式实现：</p>
 <ul>
 <li>分批次部署实现灰度发布。1-2-4-8-32... 个机器。通过观察日志和监控系统发现错误</li>
 <li>通过业务规则进行灰度发布。比如针对用户 id 取模，落在一定范围内的执行相关逻辑</li>
 </ul>
 <p>如果使用哈希算法，需要注意性能和均匀度。</p>
-<h1 id="6">6 分布式系统</h1>
-<h2 id="61-id">6.1 分布式 id 生成器</h2>
+<h1 id="6">6 分布式系统<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
+<h2 id="61-id">6.1 分布式 id 生成器<a class="headerlink" href="#61-id" title="Permanent link">&para;</a></h2>
 <p>twitter snowflake 算法</p>
 <p><img alt="" src="../snowflake.png" /></p>
 <p>github.com/bwmarrin/snowflake 轻量级的snowflake实现。</p>
 <p>sonyflake sony一个开源项目，思路和snowflake类似，分配上有所不同</p>
 <p>github.com/sony/sonyflake</p>
-<h2 id="62">6.2 分布式锁</h2>
-<pre><code class="go">package main
+<h2 id="62">6.2 分布式锁<a class="headerlink" href="#62" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;os&quot;
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;os&quot;</span>
 
-    &quot;github.com/bwmarrin/snowflake&quot;
-)
+    <span class="s">&quot;github.com/bwmarrin/snowflake&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    n, err := snowflake.NewNode(1)
-    if err != nil {
-        fmt.Println(err)
-        os.Exit(1)
-    }
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">n</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">snowflake</span><span class="p">.</span><span class="nx">NewNode</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    for i := 0; i &lt; 3; i++ {
-        id := n.Generate()
-        fmt.Println(&quot;id&quot;, id)
-        fmt.Println(
-            &quot;node: &quot;, id.Node(),
-            &quot;step: &quot;, id.Step(),
-            &quot;time: &quot;, id.Time(),
-            &quot;\n&quot;,
-        )
-    }
-}
-</code></pre>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">id</span> <span class="o">:=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">Generate</span><span class="p">()</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span>
+            <span class="s">&quot;node: &quot;</span><span class="p">,</span> <span class="nx">id</span><span class="p">.</span><span class="nx">Node</span><span class="p">(),</span>
+            <span class="s">&quot;step: &quot;</span><span class="p">,</span> <span class="nx">id</span><span class="p">.</span><span class="nx">Step</span><span class="p">(),</span>
+            <span class="s">&quot;time: &quot;</span><span class="p">,</span> <span class="nx">id</span><span class="p">.</span><span class="nx">Time</span><span class="p">(),</span>
+            <span class="s">&quot;\n&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="621">6.2.1 进程内加锁</h3>
+
+<h3 id="621">6.2.1 进程内加锁<a class="headerlink" href="#621" title="Permanent link">&para;</a></h3>
 <p>trylock: 尝试加锁，加锁成功执行后续流程，如果加锁失败也不会阻塞，
 而会直接返回加锁结果。go 中可以用大小为1的 channel 模拟 trylock。</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;sync&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
 
-type Lock struct {
-    c chan struct{}
-}
+<span class="kd">type</span> <span class="nx">Lock</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">c</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{}</span>
+<span class="p">}</span>
 
-func NewLock() Lock {
-    var l Lock
-    l.c = make(chan struct{}, 1)
-    l.c &lt;- struct{}{}
-    return l
-}
+<span class="kd">func</span> <span class="nx">NewLock</span><span class="p">()</span> <span class="nx">Lock</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">l</span> <span class="nx">Lock</span>
+    <span class="nx">l</span><span class="p">.</span><span class="nx">c</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">l</span><span class="p">.</span><span class="nx">c</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+    <span class="k">return</span> <span class="nx">l</span>
+<span class="p">}</span>
 
-func (l Lock) Lock() bool {
-    lockResult := false
-    select {
-    case &lt;-l.c:
-        lockResult = true
-    default:
-    }
-    return lockResult
-}
+<span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="nx">Lock</span><span class="p">)</span> <span class="nx">Lock</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="nx">lockResult</span> <span class="o">:=</span> <span class="kc">false</span>
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">l</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span>
+        <span class="nx">lockResult</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="k">default</span><span class="p">:</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">lockResult</span>
+<span class="p">}</span>
 
-func (l Lock) UnLock() {
-    l.c &lt;- struct{}{}
-}
+<span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="nx">Lock</span><span class="p">)</span> <span class="nx">UnLock</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">l</span><span class="p">.</span><span class="nx">c</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+<span class="p">}</span>
 
-var counter int
+<span class="kd">var</span> <span class="nx">counter</span> <span class="kt">int</span>
 
-func main() {
-    var l = NewLock()
-    var wg sync.WaitGroup
-    for i := 0; i &lt; 10; i++ {
-        wg.Add(1) // add 1
-        go func() {
-            defer wg.Done()
-            if !l.Lock() {
-                fmt.Println(&quot;lock failed&quot;)
-                return
-            }
-            counter++
-            fmt.Println(&quot;current counter&quot;, counter)
-            l.UnLock()
-        }()
-    }
-    wg.Wait()
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">l</span> <span class="p">=</span> <span class="nx">NewLock</span><span class="p">()</span>
+    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// add 1</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+            <span class="k">if</span> <span class="p">!</span><span class="nx">l</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;lock failed&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="nx">counter</span><span class="o">++</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;current counter&quot;</span><span class="p">,</span> <span class="nx">counter</span><span class="p">)</span>
+            <span class="nx">l</span><span class="p">.</span><span class="nx">UnLock</span><span class="p">()</span>
+        <span class="p">}()</span>
+    <span class="p">}</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>单机系统 trylock 不好，大量 goroutine 抢锁可能导致 cpu 无意义浪费。(活锁)</p>
-<h3 id="623-redis-setnx">6.2.3 基于 redis setnx</h3>
+<h3 id="623-redis-setnx">6.2.3 基于 redis setnx<a class="headerlink" href="#623-redis-setnx" title="Permanent link">&para;</a></h3>
 <p>redis setnx 模拟分布式锁</p>
 <p>适合高并发场景下，用来争抢一些唯一的资源。
 不过依赖请求达到 redis 的顺序，网络慢的用户就自求多福了</p>
-<h3 id="624-zookeeper">6.2.4 基于 ZooKeeper</h3>
+<h3 id="624-zookeeper">6.2.4 基于 ZooKeeper<a class="headerlink" href="#624-zookeeper" title="Permanent link">&para;</a></h3>
 <p>github.com/samuel/go-zookeeper/zk</p>
 <p>基于 ZooKeeper 的锁与基于redis的锁不同之处在于 Lock 成功之前会一直阻塞，
 与单机中的 mutex.Lock 很相似。</p>
 <p>分布式阻塞锁 适合分布式任务调度场景，但是不适合高频次持有锁时间短的抢锁场景。</p>
 <p>Google(chubby论文)，基于强一致性的锁适用于粗粒度加锁操作，粗粒度指的是占用时间较长。</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;time&quot;
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;time&quot;</span>
 
-    &quot;github.com/samuel/go-zookeeper/zk&quot;
-)
+    <span class="s">&quot;github.com/samuel/go-zookeeper/zk&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    c, _, err := zk.Connect([]string{&quot;127.0.0.1&quot;}, time.Second)
-    if err != nil {
-        panic(err)
-    }
-    l := zk.NewLock(c, &quot;/lock&quot;, zk.WorldACL(zk.PermAll))
-    err = l.Lock()
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println(&quot;lock success, do your logic&quot;)
-    time.Sleep(time.Second * 10)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">zk</span><span class="p">.</span><span class="nx">Connect</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">},</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">l</span> <span class="o">:=</span> <span class="nx">zk</span><span class="p">.</span><span class="nx">NewLock</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="s">&quot;/lock&quot;</span><span class="p">,</span> <span class="nx">zk</span><span class="p">.</span><span class="nx">WorldACL</span><span class="p">(</span><span class="nx">zk</span><span class="p">.</span><span class="nx">PermAll</span><span class="p">))</span>
+    <span class="nx">err</span> <span class="p">=</span> <span class="nx">l</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;lock success, do your logic&quot;</span><span class="p">)</span>
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
 
-    l.UnLock()
-    fmt.Println(&quot;unlock success, finish your logic&quot;)
-}
-</code></pre>
+    <span class="nx">l</span><span class="p">.</span><span class="nx">UnLock</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;unlock success, finish your logic&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="625-etcd">6.2.5 基于 etcd</h3>
+
+<h3 id="625-etcd">6.2.5 基于 etcd<a class="headerlink" href="#625-etcd" title="Permanent link">&para;</a></h3>
 <p>类似 ZooKeeper 的组件</p>
 <p>github.com/zieckey/etcdsync</p>
 <p>根据性能和可靠性、运维成本等仔细权衡使用哪一种分布式锁方案。</p>
-<h2 id="63">6.3 延时任务系统</h2>
+<h2 id="63">6.3 延时任务系统<a class="headerlink" href="#63" title="Permanent link">&para;</a></h2>
 <ul>
 <li>实现一套类似 crontab 的分布式定时任务管理</li>
 <li>实现一个支持定时发送消息的消息队列</li>
 </ul>
-<h3 id="631">6.3.1 定时器实现</h3>
-<h4 id="6311">6.3.1.1 时间堆</h4>
+<h3 id="631">6.3.1 定时器实现<a class="headerlink" href="#631" title="Permanent link">&para;</a></h3>
+<h4 id="6311">6.3.1.1 时间堆<a class="headerlink" href="#6311" title="Permanent link">&para;</a></h4>
 <p>小顶堆, golang 内置定时器实现</p>
-<h4 id="6312">6.3.1.2 时间轮</h4>
+<h4 id="6312">6.3.1.2 时间轮<a class="headerlink" href="#6312" title="Permanent link">&para;</a></h4>
 <p>任务分发：</p>
 <ul>
 <li>监听消息。保证消息队列高可用</li>
 <li>调用回调函数。放置函数拖垮系统</li>
 </ul>
-<h3 id="633">6.3.3 数据再平衡和幂等</h3>
+<h3 id="633">6.3.3 数据再平衡和幂等<a class="headerlink" href="#633" title="Permanent link">&para;</a></h3>
 <p>参考 ElasticSearch 的数据分布设计，每份任务数据有多个副本。</p>
 <p>很多队列不支持 exactly once 语义，这种情况下需要用户自己负责消息去重或者消费的幂等处理。</p>
-<h2 id="64">6.4 分布式搜索引擎</h2>
+<h2 id="64">6.4 分布式搜索引擎<a class="headerlink" href="#64" title="Permanent link">&para;</a></h2>
 <p>关系型数据库通常用于OLTP(online transaction processing)</p>
 <p>ElasticSearch 是开源分布式搜索引擎霸主</p>
 <p>倒排索引</p>
@@ -1548,26 +1569,27 @@ func main() {
 <li>基于时间戳</li>
 <li>通过 binlog。阿里开源的 Canal</li>
 </ul>
-<h2 id="65">6.5 负载均衡</h2>
+<h2 id="65">6.5 负载均衡<a class="headerlink" href="#65" title="Permanent link">&para;</a></h2>
 <ul>
 <li>按顺序处理</li>
 <li>随机挑选</li>
 <li>根据某种权重</li>
 </ul>
 <p>洗牌算法，shuffle。注意 rand.Seec(time.Now().UnixNano()) 设置种子</p>
-<h3 id="653-zookeeper">6.5.3 ZooKeeper 集群的随机节点挑选问题</h3>
-<h2 id="66">6.6 分布式配置管理</h2>
-<h3 id="662-etcd">6.6.2 使用 etcd 实现配置更新</h3>
+<h3 id="653-zookeeper">6.5.3 ZooKeeper 集群的随机节点挑选问题<a class="headerlink" href="#653-zookeeper" title="Permanent link">&para;</a></h3>
+<h2 id="66">6.6 分布式配置管理<a class="headerlink" href="#66" title="Permanent link">&para;</a></h2>
+<h3 id="662-etcd">6.6.2 使用 etcd 实现配置更新<a class="headerlink" href="#662-etcd" title="Permanent link">&para;</a></h3>
 <p>简单的配置可以讲内容完全存储在 etcd 中。</p>
-<pre><code class="sh">etcdctl get /configs/remote_config.json
-</code></pre>
+<div class="codehilite"><pre><span></span>etcdctl get /configs/remote_config.json
+</pre></div>
 
-<h3 id="663">6.6.3 配置膨胀</h3>
+
+<h3 id="663">6.6.3 配置膨胀<a class="headerlink" href="#663" title="Permanent link">&para;</a></h3>
 <p>支持版本管理进行回滚</p>
 <p>客户端缓存容错</p>
-<h2 id="67">6.7 分布式爬虫</h2>
-<h2 id="671-colly">6.7.1 基于 colly 单机爬虫</h2>
-<h2 id="672">6.7.2 分布式爬虫</h2>
+<h2 id="67">6.7 分布式爬虫<a class="headerlink" href="#67" title="Permanent link">&para;</a></h2>
+<h2 id="671-colly">6.7.1 基于 colly 单机爬虫<a class="headerlink" href="#671-colly" title="Permanent link">&para;</a></h2>
+<h2 id="672">6.7.2 分布式爬虫<a class="headerlink" href="#672" title="Permanent link">&para;</a></h2>
 <p>nats go 高性能分布式消息队列</p>
               
             </div>

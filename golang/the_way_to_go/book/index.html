@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../img/favicon.ico">
   <title>11 Interfaces and reflection - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "11 Interfaces and reflection";
     var mkdocs_page_input_path = "golang\\the_way_to_go\\book.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/the_way_to_go/book/";
   </script>
   
   <script src="../../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,254 +836,263 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="11-interfaces-and-reflection">11 Interfaces and reflection</h1>
+                <h1 id="11-interfaces-and-reflection">11 Interfaces and reflection<a class="headerlink" href="#11-interfaces-and-reflection" title="Permanent link">&para;</a></h1>
 <p>An Interface define a set of methods. And cannot contain variables.</p>
-<pre><code class="go">type Namer interface {
-    Method1(param_list) return_type
-    Method2(param_list) return_type
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Namer</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Method1</span><span class="p">(</span><span class="nx">param_list</span><span class="p">)</span> <span class="nx">return_type</span>
+    <span class="nx">Method2</span><span class="p">(</span><span class="nx">param_list</span><span class="p">)</span> <span class="nx">return_type</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="113-type-assertion">11.3 type assertion</h2>
-<pre><code class="go">if v, ok := varI.(T); ok {
-//
-}
-</code></pre>
+
+<h2 id="113-type-assertion">11.3 type assertion<a class="headerlink" href="#113-type-assertion" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">varI</span><span class="p">.(</span><span class="nx">T</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
+<span class="c1">//</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>Value-received methods can be called with pointer values because they can be dereference first.</p>
-<pre><code class="go">package sort
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">sort</span>
 
-type Sorter interface {
-    Len() int
-    Less(i, jint) bool
-    Swap(i, j int)
-}
+<span class="kd">type</span> <span class="nx">Sorter</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Len</span><span class="p">()</span> <span class="kt">int</span>
+    <span class="nx">Less</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">jint</span><span class="p">)</span> <span class="kt">bool</span>
+    <span class="nx">Swap</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span>
+<span class="p">}</span>
 
-fucn Sort(data Sorter) {
-    for pass := 1; pass &lt;data.Len(); pass ++ {
-        for i :=0; i &lt; data.Len()-pass; i++ {
-            if data.Less(i+1,i) {
-                data.Swap(i,i+1)
-            }
-        }
-    }
-}
+<span class="nx">fucn</span> <span class="nx">Sort</span><span class="p">(</span><span class="nx">data</span> <span class="nx">Sorter</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">pass</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">pass</span> <span class="p">&lt;</span><span class="nx">data</span><span class="p">.</span><span class="nx">Len</span><span class="p">();</span> <span class="nx">pass</span> <span class="o">++</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Len</span><span class="p">()</span><span class="o">-</span><span class="nx">pass</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Less</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">data</span><span class="p">.</span><span class="nx">Swap</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func IsSorted(data Sorter) bool {
-    n := data.Len()
-    for i := n-1; i &gt;0; i-- {
-        if data.Less(i, i-1){
-            return false
-        }
-    }
-    return true
-}
+<span class="kd">func</span> <span class="nx">IsSorted</span><span class="p">(</span><span class="nx">data</span> <span class="nx">Sorter</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="nx">n</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Len</span><span class="p">()</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&gt;</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">data</span><span class="p">.</span><span class="nx">Less</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+            <span class="k">return</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
 
-// convenience types for common cases
+<span class="c1">// convenience types for common cases</span>
 
-type IntArray []int
-func (p IntArray) Len() int {return len(p)}
-func (p IntArray) Less(i,j int) bool {return p[i] &lt; p[j]}
-func (p IntArray) Swap(i,j int) {p[i],p[j] = p[j],p[i]}
-</code></pre>
+<span class="kd">type</span> <span class="nx">IntArray</span> <span class="p">[]</span><span class="kt">int</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">IntArray</span><span class="p">)</span> <span class="nx">Len</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span><span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">)}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">IntArray</span><span class="p">)</span> <span class="nx">Less</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="p">]}</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="nx">IntArray</span><span class="p">)</span> <span class="nx">Swap</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span><span class="nx">p</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span><span class="nx">p</span><span class="p">[</span><span class="nx">i</span><span class="p">]}</span>
+</pre></div>
 
-<h3 id="1192-contsucting-an-array-of-a-general-type-or-with-variables-of-different-types">11.9.2 contsucting an array of a general type or with variables of different types</h3>
-<pre><code class="go">type Element interface{}
 
-type Vector struct {
-    a []Element
-}
+<h3 id="1192-contsucting-an-array-of-a-general-type-or-with-variables-of-different-types">11.9.2 contsucting an array of a general type or with variables of different types<a class="headerlink" href="#1192-contsucting-an-array-of-a-general-type-or-with-variables-of-different-types" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Element</span> <span class="kd">interface</span><span class="p">{}</span>
 
-func (p *Vector) At(i int) Element {
-    return p.a[i]
-}
+<span class="kd">type</span> <span class="nx">Vector</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="p">[]</span><span class="nx">Element</span>
+<span class="p">}</span>
 
-func (p *Vector) Set(i int, Element e) {
-    p.a[i] = e
-}
-</code></pre>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">Vector</span><span class="p">)</span> <span class="nx">At</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="nx">Element</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">Vector</span><span class="p">)</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">Element</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">e</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>tree struct:</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
-type Node struct {
-    le   *Node
-    data interface{}
-    ri   *Node
-}
+<span class="kd">type</span> <span class="nx">Node</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">le</span>   <span class="o">*</span><span class="nx">Node</span>
+    <span class="nx">data</span> <span class="kd">interface</span><span class="p">{}</span>
+    <span class="nx">ri</span>   <span class="o">*</span><span class="nx">Node</span>
+<span class="p">}</span>
 
-func NewNode(left, right *Node) *Node {
-    return &amp;Node{left, nil, right}
-}
+<span class="kd">func</span> <span class="nx">NewNode</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="o">*</span><span class="nx">Node</span><span class="p">)</span> <span class="o">*</span><span class="nx">Node</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">Node</span><span class="p">{</span><span class="nx">left</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">right</span><span class="p">}</span>
+<span class="p">}</span>
 
-func (n *Node) SetData(data interface{}) {
-    n.data = data
-}
+<span class="kd">func</span> <span class="p">(</span><span class="nx">n</span> <span class="o">*</span><span class="nx">Node</span><span class="p">)</span> <span class="nx">SetData</span><span class="p">(</span><span class="nx">data</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+    <span class="nx">n</span><span class="p">.</span><span class="nx">data</span> <span class="p">=</span> <span class="nx">data</span>
+<span class="p">}</span>
 
-func main() {
-    root := NewNode(nil, nil)
-    root.SetData(&quot;root node&quot;)
-    a := NewNode(nil, nil)
-    a.SetData(&quot;left node&quot;)
-    b := NewNode(nil, nil)
-    b.SetData(&quot;right node&quot;)
-    root.le = a
-    root.ri = b
-    fmt.Printf(&quot;%v\n&quot;, root)
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">root</span> <span class="o">:=</span> <span class="nx">NewNode</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="nx">root</span><span class="p">.</span><span class="nx">SetData</span><span class="p">(</span><span class="s">&quot;root node&quot;</span><span class="p">)</span>
+    <span class="nx">a</span> <span class="o">:=</span> <span class="nx">NewNode</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">SetData</span><span class="p">(</span><span class="s">&quot;left node&quot;</span><span class="p">)</span>
+    <span class="nx">b</span> <span class="o">:=</span> <span class="nx">NewNode</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="nx">b</span><span class="p">.</span><span class="nx">SetData</span><span class="p">(</span><span class="s">&quot;right node&quot;</span><span class="p">)</span>
+    <span class="nx">root</span><span class="p">.</span><span class="nx">le</span> <span class="p">=</span> <span class="nx">a</span>
+    <span class="nx">root</span><span class="p">.</span><span class="nx">ri</span> <span class="p">=</span> <span class="nx">b</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v\n&quot;</span><span class="p">,</span> <span class="nx">root</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="1110-the-reflect-package">11.10 The reflect package</h2>
-<h2 id="1114-structs-coolections-and-higher-order-functions">11.14 Structs coolections and higher order functions</h2>
-<pre><code class="go">package main
 
-type Any interface{}
+<h2 id="1110-the-reflect-package">11.10 The reflect package<a class="headerlink" href="#1110-the-reflect-package" title="Permanent link">&para;</a></h2>
+<h2 id="1114-structs-coolections-and-higher-order-functions">11.14 Structs coolections and higher order functions<a class="headerlink" href="#1114-structs-coolections-and-higher-order-functions" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-type Car struct {
-    Model        string
-    Manufacturer string
-    BuildYear int
-}
+<span class="kd">type</span> <span class="nx">Any</span> <span class="kd">interface</span><span class="p">{}</span>
 
-type Cars []*Car
+<span class="kd">type</span> <span class="nx">Car</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Model</span>        <span class="kt">string</span>
+    <span class="nx">Manufacturer</span> <span class="kt">string</span>
+    <span class="nx">BuildYear</span> <span class="kt">int</span>
+<span class="p">}</span>
 
-func (cs Cars) Map(f func(car *Car) Any) []Any {
-    result := make([]Any, 0)
-    ix := 0
-    cs.Process(func(c *Car) {
-        result[ix] = f(c)
-        ix++
-    })
-    return result
-}
+<span class="kd">type</span> <span class="nx">Cars</span> <span class="p">[]</span><span class="o">*</span><span class="nx">Car</span>
 
-allNewBMWs := allCars.FindAll(func(car *Car) bool {
-    return (car.Manufacturer == &quot;BMW&quot;) &amp;&amp; (car.BuildYear &gt; 2010)
-})
-</code></pre>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">cs</span> <span class="nx">Cars</span><span class="p">)</span> <span class="nx">Map</span><span class="p">(</span><span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="nx">car</span> <span class="o">*</span><span class="nx">Car</span><span class="p">)</span> <span class="nx">Any</span><span class="p">)</span> <span class="p">[]</span><span class="nx">Any</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">Any</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nx">ix</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="nx">cs</span><span class="p">.</span><span class="nx">Process</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Car</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span><span class="p">[</span><span class="nx">ix</span><span class="p">]</span> <span class="p">=</span> <span class="nx">f</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+        <span class="nx">ix</span><span class="o">++</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
 
-<h1 id="12-reading-and-writing">12 Reading and writing</h1>
-<pre><code class="go">// read input from console:
-package main
+<span class="nx">allNewBMWs</span> <span class="o">:=</span> <span class="nx">allCars</span><span class="p">.</span><span class="nx">FindAll</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">car</span> <span class="o">*</span><span class="nx">Car</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">car</span><span class="p">.</span><span class="nx">Manufacturer</span> <span class="o">==</span> <span class="s">&quot;BMW&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">car</span><span class="p">.</span><span class="nx">BuildYear</span> <span class="p">&gt;</span> <span class="mi">2010</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
 
-import &quot;fmt&quot;
 
-var (
-    firstName, lastName string
-)
+<h1 id="12-reading-and-writing">12 Reading and writing<a class="headerlink" href="#12-reading-and-writing" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span><span class="c1">// read input from console:</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-func main() {
-    fmt.Scanln(*firstName, *lastName)
-    fmt.Println(&quot;Hi %s %s\n&quot;, &amp;firstName, &amp;lastName)
-}
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
-// or use bufio.Reader
-</code></pre>
+<span class="kd">var</span> <span class="p">(</span>
+    <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span> <span class="kt">string</span>
+<span class="p">)</span>
 
-<h1 id="13-error-handling-and-testing">13 Error-handling and Testing</h1>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Scanln</span><span class="p">(</span><span class="o">*</span><span class="nx">firstName</span><span class="p">,</span> <span class="o">*</span><span class="nx">lastName</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hi %s %s\n&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">firstName</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">lastName</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// or use bufio.Reader</span>
+</pre></div>
+
+
+<h1 id="13-error-handling-and-testing">13 Error-handling and Testing<a class="headerlink" href="#13-error-handling-and-testing" title="Permanent link">&para;</a></h1>
 <p>no try/catch, defer-panic-and-recover mechanism.</p>
-<pre><code class="go">type error interface {
-    Error() string
-}
-// to stop an error-state program, use os.Exit(1)
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="kt">error</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Error</span><span class="p">()</span> <span class="kt">string</span>
+<span class="p">}</span>
+<span class="c1">// to stop an error-state program, use os.Exit(1)</span>
 
 
-// define new errors
-err := errros.New(&quot;math-square root of negative number&quot;)
+<span class="c1">// define new errors</span>
+<span class="nx">err</span> <span class="o">:=</span> <span class="nx">errros</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;math-square root of negative number&quot;</span><span class="p">)</span>
 
-// custome error field
-type PathError struct {
-    Op   string
-    Path string
-    Err  error
-}
-func ( e *PathError) String() string {
-    return e.Op + &quot; &quot; + e.Path = &quot;: &quot; + e.Err.Error()
-}
-// making errror-object with fmt
-if f &lt; 0 {
-    return 0, fmt.Errorf(&quot;math: square root of negative number %g&quot;, f)
-}
-</code></pre>
+<span class="c1">// custome error field</span>
+<span class="kd">type</span> <span class="nx">PathError</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Op</span>   <span class="kt">string</span>
+    <span class="nx">Path</span> <span class="kt">string</span>
+    <span class="nx">Err</span>  <span class="kt">error</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="p">(</span> <span class="nx">e</span> <span class="o">*</span><span class="nx">PathError</span><span class="p">)</span> <span class="nx">String</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Op</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Path</span> <span class="p">=</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Err</span><span class="p">.</span><span class="nx">Error</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="c1">// making errror-object with fmt</span>
+<span class="k">if</span> <span class="nx">f</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;math: square root of negative number %g&quot;</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="132-run-time-exceptions-and-panic">13.2 Run-time exceptions and panic</h2>
+
+<h2 id="132-run-time-exceptions-and-panic">13.2 Run-time exceptions and panic<a class="headerlink" href="#132-run-time-exceptions-and-panic" title="Permanent link">&para;</a></h2>
 <p>if panic is called from a nested function, immediately stops the execution of the current function,
 all defer statement are guaranteed to execute and the control is given to the function caller, which receives this call
 to panic.</p>
-<h2 id="133-recover">13.3 Recover</h2>
+<h2 id="133-recover">13.3 Recover<a class="headerlink" href="#133-recover" title="Permanent link">&para;</a></h2>
 <p>recover is only useful when called inside a deferred function: it then retrieves the error value passed through the call
 of panic; when used in normal execution a call to recover will return nil and have no other effects.</p>
 <p>like catch in java.</p>
-<pre><code class="go">func protect(g func()) {
-    defer func() {
-        log.Println(&quot;done&quot;)
-        if err := recover(); err != nil {
-            log.Printf(&quot;run time panic : %v&quot;, err)
-        }
-    }()
-    log.Println(&quot;start&quot;)
-    g()
-}
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">protect</span><span class="p">(</span><span class="nx">g</span> <span class="kd">func</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;done&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nb">recover</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">log</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;run time panic : %v&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;start&quot;</span><span class="p">)</span>
+    <span class="nx">g</span><span class="p">()</span>
+<span class="p">}</span>
 
 
-package main
+<span class="kn">package</span> <span class="nx">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
-func badCall() {
-    panic(&quot;bad end&quot;)
-}
+<span class="kd">func</span> <span class="nx">badCall</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="s">&quot;bad end&quot;</span><span class="p">)</span>
+<span class="p">}</span>
 
-func test() {
-    defer func() {
-        if e := recover(); e != nil {
-            fmt.Printf(&quot;Panicking %s\r\n&quot;, e)
-        }
-    }()
-    badCall()
-    fmt.Printf(&quot;After bad call\r\n&quot;)
-}
+<span class="kd">func</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">e</span> <span class="o">:=</span> <span class="nb">recover</span><span class="p">();</span> <span class="nx">e</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Panicking %s\r\n&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+    <span class="nx">badCall</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;After bad call\r\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
 
-func main() {
-    fmt.Printf(&quot;calling test\r\n&quot;)
-    test()
-    fmt.Printf(&quot;calling test end\r\n&quot;)
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;calling test\r\n&quot;</span><span class="p">)</span>
+    <span class="nx">test</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;calling test end\r\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="134-error-handling-and-panicking-in-a-custom-package">13.4 Error-handling and panicking in a custom package</h2>
+
+<h2 id="134-error-handling-and-panicking-in-a-custom-package">13.4 Error-handling and panicking in a custom package<a class="headerlink" href="#134-error-handling-and-panicking-in-a-custom-package" title="Permanent link">&para;</a></h2>
 <p>best practice:</p>
 <ul>
 <li>always recover from panic in your package: no explicit panic() should be allowed to cross a package boundary</li>
 <li>return errors as error values to the callers of your package.</li>
 </ul>
-<h2 id="135-an-error-handling-scheme-with-closures">13.5 An Error-handling scheme with closures</h2>
-<pre><code class="go">func f(a type1, b type2)
+<h2 id="135-an-error-handling-scheme-with-closures">13.5 An Error-handling scheme with closures<a class="headerlink" href="#135-an-error-handling-scheme-with-closures" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">a</span> <span class="nx">type1</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">type2</span><span class="p">)</span>
 
-fType1 = func f(a type1, b type2)
+<span class="nx">fType1</span> <span class="p">=</span> <span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">a</span> <span class="nx">type1</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">type2</span><span class="p">)</span>
 
 
-func errorHandler(fn fType1) fType1 {
-    return func(a type1, b type2) {
-        defer func() {
-            if e, ok := recover().(error); ok {
-                log.Printf(&quot;run time panic:%v&quot;, err)
-            }
-        }()
-        fn(a,b)
-    }
-}
+<span class="kd">func</span> <span class="nx">errorHandler</span><span class="p">(</span><span class="nx">fn</span> <span class="nx">fType1</span><span class="p">)</span> <span class="nx">fType1</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">a</span> <span class="nx">type1</span><span class="p">,</span> <span class="nx">b</span> <span class="nx">type2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nb">recover</span><span class="p">().(</span><span class="kt">error</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
+                <span class="nx">log</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;run time panic:%v&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}()</span>
+        <span class="nx">fn</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
-</code></pre>
 
-<h2 id="136-starting-an-external-command-or-program">13.6 Starting an external command or program</h2>
+<h2 id="136-starting-an-external-command-or-program">13.6 Starting an external command or program<a class="headerlink" href="#136-starting-an-external-command-or-program" title="Permanent link">&para;</a></h2>
 <p>os.StartProcess
 exec.Command(name string, arg ...string)</p>
-<h2 id="137-testing-and-benckmarking-in-go">13.7 Testing and benckmarking in GO</h2>
-<h1 id="14-goroutines-and-channels">14 Goroutines and channels</h1>
-<h2 id="141-concurrency-parallelism-and-goroutines">14.1 Concurrency, parallelism and goroutines</h2>
+<h2 id="137-testing-and-benckmarking-in-go">13.7 Testing and benckmarking in GO<a class="headerlink" href="#137-testing-and-benckmarking-in-go" title="Permanent link">&para;</a></h2>
+<h1 id="14-goroutines-and-channels">14 Goroutines and channels<a class="headerlink" href="#14-goroutines-and-channels" title="Permanent link">&para;</a></h1>
+<h2 id="141-concurrency-parallelism-and-goroutines">14.1 Concurrency, parallelism and goroutines<a class="headerlink" href="#141-concurrency-parallelism-and-goroutines" title="Permanent link">&para;</a></h2>
 <p>CSP(Communicating Sequentiadl Processes)</p>
 <p>parallelism is the ability to make things run quickly by using multiple processors.</p>
 <p>An experiential rule of thumb seems to be that for n cores setting GOMAXPROCS to n-1 yields the best the performance,
@@ -1091,28 +1100,29 @@ and the following should also be followed: number of goroutines &gt; 1 + GOMAXPR
 <p>If we do not wai int main(), the program stop the goroutines die with it.
 When the func main() returns, the program exits, it does not wait for other (non-main) goroutines to complete.
 The logic of your code must be independent of the order in which goroutines are invoked.</p>
-<h3 id="1415">14.1.5</h3>
+<h3 id="1415">14.1.5<a class="headerlink" href="#1415" title="Permanent link">&para;</a></h3>
 <p>difference bewteen goroutines and coroutines(c# and python):</p>
 <ul>
 <li>goroutines imply parallelism, coroutines in general do not</li>
 <li>goroutines communicate via channels; coroutines communicate via yield and resume operations</li>
 </ul>
-<h2 id="142-channels-for-communication-between-goroutines">14.2 Channels for communication between goroutines</h2>
+<h2 id="142-channels-for-communication-between-goroutines">14.2 Channels for communication between goroutines<a class="headerlink" href="#142-channels-for-communication-between-goroutines" title="Permanent link">&para;</a></h2>
 <p>Using shared variables is not discouranged.
 Only one goroutine has access to a  data item at any given time: so data races cannot occur, by design. Channels a firstclass objects.</p>
-<pre><code>var identifier chan datatype // uniniitialized channel is nil
+<div class="codehilite"><pre><span></span>var identifier chan datatype // uniniitialized channel is nil
 var cha1 chan string // reference type
 ch1 = make(chan string)
-</code></pre>
+</pre></div>
+
 
 <p>Channel send and receive operations are aotmic, they always complete without interruption.</p>
-<h3 id="1423-blocking-of-channels">14.2.3 Blocking of channels</h3>
+<h3 id="1423-blocking-of-channels">14.2.3 Blocking of channels<a class="headerlink" href="#1423-blocking-of-channels" title="Permanent link">&para;</a></h3>
 <p>default communication is synchronous and unbuffered: sends do not complete until there is a receiver to accept the value. So channel send/receive block until the other side is ready.</p>
 <ul>
 <li>A send opeartion on a channel blocks until a receiver is available. for the same channel.</li>
 <li>A receive operation for a channel blocks until a sender is available for the same channel.</li>
 </ul>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1138,28 +1148,31 @@ func suck(ch chan int) {
         fmt.Println(&lt;-ch)
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="1425-asynchronous-channels-making-a-channel-with-a-buffer">14.2.5 Asynchronous channels-making a channel with a buffer</h3>
+
+<h3 id="1425-asynchronous-channels-making-a-channel-with-a-buffer">14.2.5 Asynchronous channels-making a channel with a buffer<a class="headerlink" href="#1425-asynchronous-channels-making-a-channel-with-a-buffer" title="Permanent link">&para;</a></h3>
 <p>An unbuffered channel can only contain 1 item and is for that reason somethimes too restrictive.</p>
-<pre><code>buf := 100
+<div class="codehilite"><pre><span></span>buf := 100
 ch1 := make(chan string, buf) //buf is the number of elements the channel can hold
-</code></pre>
+</pre></div>
+
 
 <p>sending to a bufferd channel will not blocked unless buffer is full, reading not blocked unless buffer is empty.
 If the capacity is greater than 0, channel is asychronous</p>
 <p>Semaphore pattern</p>
-<pre><code>    ch := make(chan int)
+<div class="codehilite"><pre><span></span>    ch := make(chan int)
     go func() {
         // do something
         ch &lt;- 1
     }()
     doSomethingElseForAWhile()
     &lt;-ch // wait for goroutine to finish. discard send value
-</code></pre>
+</pre></div>
 
-<h3 id="1429-implementing-a-semaphore-using-a-buffered-channel">14.2.9 Implementing a semaphore using a buffered channel</h3>
-<pre><code>type Empty interface{}
+
+<h3 id="1429-implementing-a-semaphore-using-a-buffered-channel">14.2.9 Implementing a semaphore using a buffered channel<a class="headerlink" href="#1429-implementing-a-semaphore-using-a-buffered-channel" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>type Empty interface{}
 type semaphore chan Empty
 
 
@@ -1194,23 +1207,26 @@ func (s semaphore) Wait(n int) {
 func (s semaphore) Signal() {
     s.V(1)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="14210-for-range-applied-to-channels">14.2.10 For-range applied to channels</h3>
+
+<h3 id="14210-for-range-applied-to-channels">14.2.10 For-range applied to channels<a class="headerlink" href="#14210-for-range-applied-to-channels" title="Permanent link">&para;</a></h3>
 <p>It reads from the given channel ch until the channel is closed and then the code following for continue to execute. Obviously another goroutine must be writing to ch(otherwise the executino blocks in the for-loop) and must close ch when it's done writing.</p>
 <p>producer consumer pattern:</p>
-<pre><code>for {
+<div class="codehilite"><pre><span></span>for {
     Consume(Product())
 }
-</code></pre>
+</pre></div>
 
-<h3 id="14211-channel-directionality">14.2.11 Channel directionality</h3>
-<pre><code>var send_only chan&lt;- int // channel can only receive data (&lt;-chan T)
+
+<h3 id="14211-channel-directionality">14.2.11 Channel directionality<a class="headerlink" href="#14211-channel-directionality" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>var send_only chan&lt;- int // channel can only receive data (&lt;-chan T)
 var recv_only &lt;-chan int // channel can only send data
-</code></pre>
+</pre></div>
+
 
 <p>IDIOM: Pipe and filter pattern</p>
-<pre><code>sendChan := make(chan int)
+<div class="codehilite"><pre><span></span>sendChan := make(chan int)
 receiveChan := make(chan string)
 go processChannel(sendChan, receiveChan)
 
@@ -1220,9 +1236,10 @@ func processChannel(in &lt;- chan int, out chan&lt;- string) {
         out&lt;-result
     }
 }
-</code></pre>
+</pre></div>
 
-<pre><code>// sieve primer number
+
+<div class="codehilite"><pre><span></span>// sieve primer number
 package main
 
 import &quot;fmt&quot;
@@ -1268,19 +1285,21 @@ func main() {
         fmt.Println(&lt;-primes)
     }
 }
-</code></pre>
+</pre></div>
 
-<h2 id="143-synchronization-of-goroutine-closing-a-channel-testing-for-blocked-channels">14.3 Synchronization of goroutine: closing a channel - testing for blocked channels</h2>
+
+<h2 id="143-synchronization-of-goroutine-closing-a-channel-testing-for-blocked-channels">14.3 Synchronization of goroutine: closing a channel - testing for blocked channels<a class="headerlink" href="#143-synchronization-of-goroutine-closing-a-channel-testing-for-blocked-channels" title="Permanent link">&para;</a></h2>
 <p>Only the sender should close a channel, never receiver.
 Sending or Closing a closed channel causes a run-time panic.</p>
-<pre><code>if v, ok := &lt;-ch; ok {
+<div class="codehilite"><pre><span></span>if v, ok := &lt;-ch; ok {
     process(v)
 }
-</code></pre>
+</pre></div>
+
 
 <p>To do a non-blocking channel you need to use a select.
 for range will automatically detect when the channel is closed.</p>
-<h2 id="144-switching-between-goroutines-with-select">14.4 Switching between goroutines with select</h2>
+<h2 id="144-switching-between-goroutines-with-select">14.4 Switching between goroutines with select<a class="headerlink" href="#144-switching-between-goroutines-with-select" title="Permanent link">&para;</a></h2>
 <p>Getting the values out of dirrerent concurrently executing goroutines can be accomplisehd with
 the select ekyworkd. A select is terminated when a break or return is executed in one of its cases.</p>
 <ul>
@@ -1288,7 +1307,7 @@ the select ekyworkd. A select is terminated when a break or return is executed i
 <li>if multiple can proceed, it choose one at random</li>
 <li>when none of the channel operations can proceed and default clause is present, default is always runnable</li>
 </ul>
-<pre><code>// sieve primer number
+<div class="codehilite"><pre><span></span>// sieve primer number
 package main
 
 import (
@@ -1329,11 +1348,12 @@ func suck(ch1 chan int, ch2 chan int) {
         }
     }
 }
-</code></pre>
+</pre></div>
 
-<h2 id="145-channels-timeouts-and-tickers">14.5 Channels, Timeouts and Tickers</h2>
+
+<h2 id="145-channels-timeouts-and-tickers">14.5 Channels, Timeouts and Tickers<a class="headerlink" href="#145-channels-timeouts-and-tickers" title="Permanent link">&para;</a></h2>
 <p>time.Ticker is an object that repeatedly sends a time value on a contained channel C at a specified time interval.</p>
-<pre><code>func main() {
+<div class="codehilite"><pre><span></span>func main() {
     ticker := time.NewTicker(interval)
     defer ticker.Stop()
     select {
@@ -1347,20 +1367,22 @@ func suck(ch1 chan int, ch2 chan int) {
         //...
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>rate limiter:</p>
-<pre><code>rate_per_sec := 10
+<div class="codehilite"><pre><span></span>rate_per_sec := 10
 var dur Dration = 1e9
 chRate := time.Tick(dur)
 for req := range requests {
     &lt;- chRate
     go client.Call(&quot;service.Method&quot;, req, ...)
 }
-</code></pre>
+</pre></div>
+
 
 <p>time.After(d) only send time once:</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1383,10 +1405,11 @@ func main() {
         }
     }
 }
-</code></pre>
+</pre></div>
 
-<h2 id="146-using-recover-with-goroutines">14.6 Using recover with goroutines</h2>
-<pre><code>func server(workChan &lt;-chan *Work) {
+
+<h2 id="146-using-recover-with-goroutines">14.6 Using recover with goroutines<a class="headerlink" href="#146-using-recover-with-goroutines" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>func server(workChan &lt;-chan *Work) {
     for work := range workChan {
         go safelyDo(work)
     }
@@ -1400,10 +1423,11 @@ func safelyDo(work *Work) {
     }()
     do(work)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="147-tasks-and-worker-processes">14.7 Tasks and Worker processes</h3>
-<pre><code>// Master-worker paradigm
+
+<h3 id="147-tasks-and-worker-processes">14.7 Tasks and Worker processes<a class="headerlink" href="#147-tasks-and-worker-processes" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>// Master-worker paradigm
 func Worker(in, out chan *Task){
     for {
         t := &lt;-in
@@ -1411,7 +1435,8 @@ func Worker(in, out chan *Task){
         out &lt;- t
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>when to use: a sync.Mutex or a channel?</p>
 <ul>
@@ -1425,9 +1450,9 @@ func Worker(in, out chan *Task){
     - distributing units of work
     - passing owership of data</li>
 </ul>
-<h2 id="148-implementing-a-lazy-generator">14.8 Implementing a lazy generator</h2>
+<h2 id="148-implementing-a-lazy-generator">14.8 Implementing a lazy generator<a class="headerlink" href="#148-implementing-a-lazy-generator" title="Permanent link">&para;</a></h2>
 <p>A generator is a function that returns the next value in a sequence each time the function is called.</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1455,13 +1480,14 @@ func main() {
     fmt.Println(generateInteger())
     fmt.Println(generateInteger())
 }
-</code></pre>
+</pre></div>
 
-<h2 id="149-implementing-futures">14.9 Implementing Futures</h2>
+
+<h2 id="149-implementing-futures">14.9 Implementing Futures<a class="headerlink" href="#149-implementing-futures" title="Permanent link">&para;</a></h2>
 <p>future: somtimes you know yopu need to compute a value before you need to actually use the value.
 in this case, you can potentially start computing the value on another processor and have it ready
 when you need it.</p>
-<pre><code>func InverseProduct(a Matrix, b Matrix) {
+<div class="codehilite"><pre><span></span>func InverseProduct(a Matrix, b Matrix) {
     a_inv := Inverse(a)
     b_inv := Inverse(b)
     return Product(a_inv, b_inv)
@@ -1483,13 +1509,14 @@ func InverseFuture(a Matrix) {
     go func() { future&lt;-Inverse(a) } () // launched a closure as a goroutine
     return future
 }
-</code></pre>
+</pre></div>
 
-<h2 id="1410-multiplexing">14.10 Multiplexing</h2>
-<h2 id="1411-limiting-the-number-of-requests-processed-concurrently">14.11 Limiting the number of requests processed concurrently</h2>
-<h2 id="1412-chaining-goroutines">14.12 Chaining goroutines</h2>
-<h2 id="1413-parallelzing-a-computation-over-a-number-of-cores">14.13 Parallelzing a computation over a number of cores</h2>
-<pre><code>func DoAll() {
+
+<h2 id="1410-multiplexing">14.10 Multiplexing<a class="headerlink" href="#1410-multiplexing" title="Permanent link">&para;</a></h2>
+<h2 id="1411-limiting-the-number-of-requests-processed-concurrently">14.11 Limiting the number of requests processed concurrently<a class="headerlink" href="#1411-limiting-the-number-of-requests-processed-concurrently" title="Permanent link">&para;</a></h2>
+<h2 id="1412-chaining-goroutines">14.12 Chaining goroutines<a class="headerlink" href="#1412-chaining-goroutines" title="Permanent link">&para;</a></h2>
+<h2 id="1413-parallelzing-a-computation-over-a-number-of-cores">14.13 Parallelzing a computation over a number of cores<a class="headerlink" href="#1413-parallelzing-a-computation-over-a-number-of-cores" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>func DoAll() {
     sem := make(chan int, NCPU)
     for i := 0; i &lt; NCPU; i ++ {
         go DoPart(sem)
@@ -1510,12 +1537,13 @@ func main() {
     runtime.GOMAXPROCS = NCPU
     DoAll()
 }
-</code></pre>
+</pre></div>
 
-<h2 id="1414-parallelizing-a-computation-over-a-large-amount-of-data">14.14 Parallelizing a computation over a large amount of data</h2>
+
+<h2 id="1414-parallelizing-a-computation-over-a-large-amount-of-data">14.14 Parallelizing a computation over a large amount of data<a class="headerlink" href="#1414-parallelizing-a-computation-over-a-large-amount-of-data" title="Permanent link">&para;</a></h2>
 <p>a number of steps: Preprocess / StepA / StepB / ... / PostProcess</p>
 <p>pipelining algorithm:</p>
-<pre><code>func SerialProcessData(in &lt;- chan *Data, out &lt;- chan *Data) {
+<div class="codehilite"><pre><span></span>func SerialProcessData(in &lt;- chan *Data, out &lt;- chan *Data) {
     for data := range in {
         tmpA := PreprocessData(data)
         tmpB := ProcessStepA(tmpA)
@@ -1537,10 +1565,11 @@ func ParallelProcessData(in &lt;- chan  *Data, out &lt;- chan *Data) {
     go ProcessStepC(stepBOut, stepCOut)
     go PostProcessData(stepOut, out)
 }
-</code></pre>
+</pre></div>
 
-<h2 id="1415-the-leaky-bucket-algorithm">14.15 The leaky bucket algorithm</h2>
-<pre><code>var freeList = make(chan *Buffer, 100)
+
+<h2 id="1415-the-leaky-bucket-algorithm">14.15 The leaky bucket algorithm<a class="headerlink" href="#1415-the-leaky-bucket-algorithm" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>var freeList = make(chan *Buffer, 100)
 var serverChan = make(chan *Buffer)
 
 func client() {
@@ -1561,26 +1590,27 @@ func server() {
     for  {
         b := &lt;-serverChan // wait for work
         process(b)
-        // reuse buffer is threre's room
+        // reuse buffer is threre&#39;s room
         select {
         case freeList &lt;- b:
             // Reuse buffer if free slot on freeList; nothing more to do
         default:
-            // freeList is full, just carry on : the buffer is 'dropped'
-            // doesn't work when freeList is full, leaky bucket
+            // freeList is full, just carry on : the buffer is &#39;dropped&#39;
+            // doesn&#39;t work when freeList is full, leaky bucket
         }
     }
 
 }
-</code></pre>
+</pre></div>
 
-<h2 id="1416-benchmarking-goroutines">14.16 Benchmarking goroutines</h2>
-<h2 id="1417-concurrent-access-to-object-using-a-chnnel">14.17 Concurrent access to object using a chnnel</h2>
+
+<h2 id="1416-benchmarking-goroutines">14.16 Benchmarking goroutines<a class="headerlink" href="#1416-benchmarking-goroutines" title="Permanent link">&para;</a></h2>
+<h2 id="1417-concurrent-access-to-object-using-a-chnnel">14.17 Concurrent access to object using a chnnel<a class="headerlink" href="#1417-concurrent-access-to-object-using-a-chnnel" title="Permanent link">&para;</a></h2>
 <p>To safeguard concurrent modifications of an object instead of using locking with a sync Mutex,
 we can also use a backend goroutine for the sequential execution of anonymous functions.</p>
-<h1 id="16-common-go-pitfalls-or-mistakes">16 Common Go Pitfalls or Mistakes</h1>
-<h2 id="161-hidingshadowing-a-variable-by-misusing-short-declaration">16.1 Hiding(shadowing) a variable by misusing short declaration</h2>
-<pre><code>var remeber bool = false
+<h1 id="16-common-go-pitfalls-or-mistakes">16 Common Go Pitfalls or Mistakes<a class="headerlink" href="#16-common-go-pitfalls-or-mistakes" title="Permanent link">&para;</a></h1>
+<h2 id="161-hidingshadowing-a-variable-by-misusing-short-declaration">16.1 Hiding(shadowing) a variable by misusing short declaration<a class="headerlink" href="#161-hidingshadowing-a-variable-by-misusing-short-declaration" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>var remeber bool = false
 if somehting {
     remeber := true // use = not :=
 }
@@ -1599,13 +1629,13 @@ func shadow() (err error) {
     }
     return
 }
+</pre></div>
 
-</code></pre>
 
-<h2 id="162-misusing-strings">16.2 Misusing strings</h2>
+<h2 id="162-misusing-strings">16.2 Misusing strings<a class="headerlink" href="#162-misusing-strings" title="Permanent link">&para;</a></h2>
 <p>mind that strings in go(like java and python) are immutable, Do not use a + b in a for loop,
 intead one should use a bytes.Buffer to accumulate string content.</p>
-<pre><code>func shadow() (err error) {
+<div class="codehilite"><pre><span></span>func shadow() (err error) {
     x, err := check1() // x is created, err is assigned to
     if err != nil {
         return   // err correctly returned
@@ -1617,23 +1647,24 @@ intead one should use a bytes.Buffer to accumulate string content.</p>
     }
     return
 }
-</code></pre>
+</pre></div>
 
-<h2 id="163-using-defer-for-closing-a-file-in-the-wrong-scope">16.3 Using defer for closing a file in the wrong scope</h2>
+
+<h2 id="163-using-defer-for-closing-a-file-in-the-wrong-scope">16.3 Using defer for closing a file in the wrong scope<a class="headerlink" href="#163-using-defer-for-closing-a-file-in-the-wrong-scope" title="Permanent link">&para;</a></h2>
 <p>Defer is only executed at the return of a function, not at the end of a loop or some other limited scope.</p>
-<h2 id="164-confusing-new-and-make">16.4 Confusing new() and make()</h2>
+<h2 id="164-confusing-new-and-make">16.4 Confusing new() and make()<a class="headerlink" href="#164-confusing-new-and-make" title="Permanent link">&para;</a></h2>
 <ul>
 <li>for slices, maps and channels, use make</li>
 <li>for arrays, structs and all value types: use new</li>
 </ul>
-<h2 id="165-no-need-to-pass-a-pointer-to-a-slice-to-a-function">16.5 No need to pass a pointer to a slice to a function</h2>
-<h2 id="166-using-pointers-to-interface-types">16.6 Using pointers to interface types</h2>
+<h2 id="165-no-need-to-pass-a-pointer-to-a-slice-to-a-function">16.5 No need to pass a pointer to a slice to a function<a class="headerlink" href="#165-no-need-to-pass-a-pointer-to-a-slice-to-a-function" title="Permanent link">&para;</a></h2>
+<h2 id="166-using-pointers-to-interface-types">16.6 Using pointers to interface types<a class="headerlink" href="#166-using-pointers-to-interface-types" title="Permanent link">&para;</a></h2>
 <p>Never use a pointer to an interface type, this is already a pointer!</p>
-<h2 id="167-misusing-pointers-wiht-value-types">16.7 Misusing pointers wiht value types</h2>
-<h2 id="168-misusing-goroutines-and-channels">16.8 Misusing goroutines and channels</h2>
+<h2 id="167-misusing-pointers-wiht-value-types">16.7 Misusing pointers wiht value types<a class="headerlink" href="#167-misusing-pointers-wiht-value-types" title="Permanent link">&para;</a></h2>
+<h2 id="168-misusing-goroutines-and-channels">16.8 Misusing goroutines and channels<a class="headerlink" href="#168-misusing-goroutines-and-channels" title="Permanent link">&para;</a></h2>
 <p>Only using goroutines and channels only where concurrency is important!</p>
-<h2 id="169-using-closures-with-goroutines">16.9 Using closures with goroutines</h2>
-<pre><code>package main
+<h2 id="169-using-closures-with-goroutines">16.9 Using closures with goroutines<a class="headerlink" href="#169-using-closures-with-goroutines" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1676,11 +1707,12 @@ func main() {
     }
     time.Sleep(1e9) //10,11,12,13,14
 }
-</code></pre>
+</pre></div>
 
-<h2 id="1610-bad-error-handling">16.10 Bad error handling</h2>
+
+<h2 id="1610-bad-error-handling">16.10 Bad error handling<a class="headerlink" href="#1610-bad-error-handling" title="Permanent link">&para;</a></h2>
 <p>wrap your error conditions in a closure wherever possible, like in the following example.</p>
-<pre><code>// seperate error checking, error reporting, and normal program logic
+<div class="codehilite"><pre><span></span>// seperate error checking, error reporting, and normal program logic
 
 func httpRequestHandler(w http.ResponseWriter, req *http.Request) {
     err := func() error {
@@ -1699,13 +1731,14 @@ func httpRequestHandler(w http.ResponseWriter, req *http.Request) {
     }
     doSomething() //
 }
-</code></pre>
+</pre></div>
 
-<h1 id="17-go-language-patterns">17 Go Language Patterns</h1>
-<h2 id="171-the-comma-ok-pattern">17.1 The comma, ok pattern</h2>
-<h2 id="172-the-defer-pattern">17.2 The defer pattern</h2>
-<h2 id="173-the-visibility-pattern">17.3 The visibility pattern</h2>
-<h2 id="174-the-operator-pattern-and-interface">17.4 The operator pattern and interface</h2>
+
+<h1 id="17-go-language-patterns">17 Go Language Patterns<a class="headerlink" href="#17-go-language-patterns" title="Permanent link">&para;</a></h1>
+<h2 id="171-the-comma-ok-pattern">17.1 The comma, ok pattern<a class="headerlink" href="#171-the-comma-ok-pattern" title="Permanent link">&para;</a></h2>
+<h2 id="172-the-defer-pattern">17.2 The defer pattern<a class="headerlink" href="#172-the-defer-pattern" title="Permanent link">&para;</a></h2>
+<h2 id="173-the-visibility-pattern">17.3 The visibility pattern<a class="headerlink" href="#173-the-visibility-pattern" title="Permanent link">&para;</a></h2>
+<h2 id="174-the-operator-pattern-and-interface">17.4 The operator pattern and interface<a class="headerlink" href="#174-the-operator-pattern-and-interface" title="Permanent link">&para;</a></h2>
 <p>go不支持操作符重载，可以使用函数/方法/接口 来模拟。</p>
               
             </div>

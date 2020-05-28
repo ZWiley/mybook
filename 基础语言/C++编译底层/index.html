@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《C++编译底层》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aC++\u7f16\u8bd1\u5e95\u5c42\u300b";
     var mkdocs_page_input_path = "\u57fa\u7840\u8bed\u8a00\\C++\u7f16\u8bd1\u5e95\u5c42.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u57fa\u7840\u8bed\u8a00/C++\u7f16\u8bd1\u5e95\u5c42/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -864,7 +864,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="cc">C/C++编译底层</h1>
+                <h1 id="cc">C/C++编译底层<a class="headerlink" href="#cc" title="Permanent link">&para;</a></h1>
 <blockquote>
 <ul>
 <li><a href="#C++内存管理">C++内存管理</a></li>
@@ -876,7 +876,7 @@
 <li><a href="#编译性语言和解释性语言的本质区别和优缺点">编译性语言和解释性语言的本质区别和优缺点</a></li>
 </ul>
 </blockquote>
-<h2 id="c">C++内存管理</h2>
+<h2 id="c">C++内存管理<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li><strong>栈</strong> 存储函数的返回地址、参数、局部变量、返回值，从高地址向低地址增长</li>
@@ -887,7 +887,7 @@
 <li><strong>代码区</strong> 存储程序的机器代码和程序指令</li>
 </ul>
 </blockquote>
-<h2 id="linux">LINUX进程区分段及存储数据</h2>
+<h2 id="linux">LINUX进程区分段及存储数据<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h2>
 <p>Linux的每个进程都有各自独立的4G逻辑地址，其中0~3G是用户态空间，3~4G是内核空间，不同进程相同的逻辑地址会映射到不同的物理地址中。
 逻辑地址分段如下，自下而上：</p>
 <blockquote>
@@ -900,14 +900,14 @@
 <li>栈。存储函数的返回地址、参数、局部变量、返回值，向下生长。</li>
 </ul>
 </blockquote>
-<h2 id="gcc">GCC编译流程</h2>
+<h2 id="gcc">GCC编译流程<a class="headerlink" href="#gcc" title="Permanent link">&para;</a></h2>
 <ul>
 <li>预处理阶段：hello.c -- "gcc -E预处理，头文件展开，宏替换" --&gt; hello.i</li>
 <li>编译阶段：hello.i -- "gcc -s生成汇编文件" --&gt; hello.s</li>
 <li>汇编阶段：hello.s -- "gcc -c生成二进制文件" --&gt; hello.o</li>
 <li>链接阶段：hello.o -- "调用ld进行链接" --&gt; a.out</li>
 </ul>
-<h2 id="gcc_1">动态库静态库区别及GCC加载库</h2>
+<h2 id="gcc_1">动态库静态库区别及GCC加载库<a class="headerlink" href="#gcc_1" title="Permanent link">&para;</a></h2>
 <p>静态库</p>
 <blockquote>
 <ul>
@@ -957,41 +957,44 @@
 运行ldconfig 目录名字，该命令会重建/etc/ld.so.cache文件即可 <p>* 上面三种选一个即可<code>gcc -o main main.c -lfoo</code></p>
 </li>
 </ul>
-<h2 id="extern-ccpp"><a href="https://www.cnblogs.com/qingergege/p/7478864.html">extern-C的结果和CPP编译的区别</a></h2>
+<h2 id="extern-ccpp"><a href="https://www.cnblogs.com/qingergege/p/7478864.html">extern-C的结果和CPP编译的区别</a><a class="headerlink" href="#extern-ccpp" title="Permanent link">&para;</a></h2>
 <ul>
 <li>一个C语言文件p.c</li>
 </ul>
-<pre><code class="C">#include &lt;stdio.h&gt;
-void print(int a,int b)
-{
-       printf(&quot;这里调用的是C语言的函数:%d,%d\n&quot;,a,b);
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+       <span class="n">printf</span><span class="p">(</span><span class="s">&quot;这里调用的是C语言的函数:%d,%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <ul>
 <li>一个头文件p.h</li>
 </ul>
-<pre><code class="C++">#ifndef _P_H
-#define _P_H
+<div class="codehilite"><pre><span></span><span class="cp">#ifndef _P_H</span>
+<span class="cp">#define _P_H</span>
 
-void print(int a,int b);
+<span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
 
-#endif
-</code></pre>
+<span class="cp">#endif</span>
+</pre></div>
+
 
 <ul>
 <li>C++文件调用C函数</li>
 </ul>
-<pre><code class="C++">#include &lt;iostream&gt;
-using namespace std;
-#include &quot;p.h&quot;
-int main()
-{
-       cout&lt;&lt;&quot;现在调用C语言函数\n&quot;;
-       print(3,4);
-       return 0;
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#include</span> <span class="cpf">&quot;p.h&quot;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+       <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;现在调用C语言函数</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+       <span class="n">print</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+       <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <ul>
 <li>编译后链接出错：main.cpp对print(int, int)未定义的引用。</li>
@@ -1004,15 +1007,16 @@ int main()
 <li>总结
     * 编译后底层解析的符号不同，C语言是_print，C++是_print_int_int</li>
 </ul>
-<h2 id="_1"><a href="https://blog.csdn.net/fantian_/article/details/80719144">重载的底层原理</a></h2>
+<h2 id="_1"><a href="https://blog.csdn.net/fantian_/article/details/80719144">重载的底层原理</a><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>根据上面的编译分析，可以知道C语言没有重载，只有C++才有函数重载，因为函数重载通过参数列表的不同来实现。</p>
 <ul>
 <li>C语言没有重载</li>
 </ul>
-<pre><code class="C++">&quot;int __cdecl Add(int,int)&quot; (?Add@@YAHHH@Z)
-&quot;double __cdecl Add(double,double)&quot; (?Add@@YANNN@Z）
-&quot;long __cdecl Add(long,long)&quot; (?Add@@YAJJJ@Z)
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="s">&quot;int __cdecl Add(int,int)&quot;</span> <span class="p">(</span><span class="o">?</span><span class="n">Add</span><span class="err">@@</span><span class="n">YAHHH</span><span class="err">@</span><span class="n">Z</span><span class="p">)</span>
+<span class="s">&quot;double __cdecl Add(double,double)&quot;</span> <span class="p">(</span><span class="o">?</span><span class="n">Add</span><span class="err">@@</span><span class="n">YANNN</span><span class="err">@</span><span class="n">Z</span><span class="err">）</span>
+<span class="s">&quot;long __cdecl Add(long,long)&quot;</span> <span class="p">(</span><span class="o">?</span><span class="n">Add</span><span class="err">@@</span><span class="n">YAJJJ</span><span class="err">@</span><span class="n">Z</span><span class="p">)</span>
+</pre></div>
+
 
 <p>在C语言中被解析为_Add，三个一样，所以不能进行区分，因此C语言不支持函数重载</p>
 <ul>
@@ -1022,7 +1026,7 @@ int main()
 <ul>
 <li>C++中可以通过在函数声明前加 extern "C" 将一个函数按照 C 语言的风格来进行编译。</li>
 </ul>
-<h2 id="_2"><a href="https://blog.csdn.net/u014647208/article/details/78329187">编译性语言和解释性语言的本质区别和优缺点</a></h2>
+<h2 id="_2"><a href="https://blog.csdn.net/u014647208/article/details/78329187">编译性语言和解释性语言的本质区别和优缺点</a><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>根本区别
     * 计算机不能直接的理解高级语言，只能直接理解机器语言，所以必须要把高级语言翻译成机器语言，计算机才能执行高级语言的编写的程序。翻译的方式有两种，一个是编译，一个是解释。<strong>两种方式只是翻译的时间不同</strong>。

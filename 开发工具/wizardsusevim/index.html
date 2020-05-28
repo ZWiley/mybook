@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>Wizardsusevim - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "Wizardsusevim";
     var mkdocs_page_input_path = "\u5f00\u53d1\u5de5\u5177\\wizardsusevim.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u5f00\u53d1\u5de5\u5177/wizardsusevim/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,25 +836,27 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="source">技巧：如何映射命令自动编辑完成配置之后 source</h2>
-<pre><code>" Make easy editing and sourcing vimrc
-command! RefreshConfig source $MYVIMRC &lt;bar&gt; echo "Refreshed vimrc!"
-" &lt;Leader&gt;ev for editing vimrc
+                <h2 id="source">技巧：如何映射命令自动编辑完成配置之后 source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>&quot; Make easy editing and sourcing vimrc
+command! RefreshConfig source $MYVIMRC &lt;bar&gt; echo &quot;Refreshed vimrc!&quot;
+&quot; &lt;Leader&gt;ev for editing vimrc
 :nnoremap &lt;leader&gt;ev :vsplit $MYVIMRC&lt;cr&gt;
-" &lt;Leader&gt;sv for sourcing vimrc
+&quot; &lt;Leader&gt;sv for sourcing vimrc
 :nnoremap &lt;leader&gt;ev :RefreshConfig&lt;cr&gt;
-</code></pre>
-<h2 id="copy-pasting-and-vim-registers">copy, pasting and vim Registers</h2>
+</pre></div>
+
+
+<h2 id="copy-pasting-and-vim-registers">copy, pasting and vim Registers<a class="headerlink" href="#copy-pasting-and-vim-registers" title="Permanent link">&para;</a></h2>
 <ul>
 <li>yank and put</li>
 <li>using resgisters<p>set clipboard+=unnamedplus  "neovim use system clipboard
   set clipboard=unnamed "use system clicpboard</p>
 </li>
 </ul>
-<h2 id="undo-and-redo">undo and redo</h2>
+<h2 id="undo-and-redo">undo and redo<a class="headerlink" href="#undo-and-redo" title="Permanent link">&para;</a></h2>
 <p>undo: u
 redo: ctrl + r</p>
-<h2 id="inserting-text">Inserting Text</h2>
+<h2 id="inserting-text">Inserting Text<a class="headerlink" href="#inserting-text" title="Permanent link">&para;</a></h2>
 <p>aio</p>
 <p>gi: puts you in the insert mode at the last place you left insert mode</p>
 <ul>
@@ -863,21 +865,21 @@ redo: ctrl + r</p>
 <li>c-u 删除上一行</li>
 <li><C-R>" paste from the unnamed register</li>
 </ul>
-<h2 id="visual-mode">Visual Mode</h2>
+<h2 id="visual-mode">Visual Mode<a class="headerlink" href="#visual-mode" title="Permanent link">&para;</a></h2>
 <ul>
 <li>v : character wise</li>
 <li>V : line wise</li>
 <li>ctrl+v: block wise</li>
 </ul>
-<h2 id="more-command-mode">More command Mode</h2>
+<h2 id="more-command-mode">More command Mode<a class="headerlink" href="#more-command-mode" title="Permanent link">&para;</a></h2>
 <p>:s (substitute)
 :{range}s/{pattern}/{replace}/{flags}</p>
-<h2 id="splitting-windows">Splitting Windows</h2>
+<h2 id="splitting-windows">Splitting Windows<a class="headerlink" href="#splitting-windows" title="Permanent link">&para;</a></h2>
 <p>如何映射快捷键</p>
 <p>nnoremap <c-h> <c-h><c-w>h</p>
-<h2 id="tabs">Tabs</h2>
+<h2 id="tabs">Tabs<a class="headerlink" href="#tabs" title="Permanent link">&para;</a></h2>
 <p>gt/gT/tabonly</p>
-<h2 id="moving-around-files">Moving Around Files</h2>
+<h2 id="moving-around-files">Moving Around Files<a class="headerlink" href="#moving-around-files" title="Permanent link">&para;</a></h2>
 <ul>
 <li><C-o> go back to the jumplist</li>
 <li><TAB>or<C-i> move forward within the jumplist</li>
@@ -886,36 +888,42 @@ redo: ctrl + r</p>
 <li>%: bewteen matching brackets</li>
 <li>gg/G</li>
 </ul>
-<h2 id="multifile-editing">Multifile Editing</h2>
+<h2 id="multifile-editing">Multifile Editing<a class="headerlink" href="#multifile-editing" title="Permanent link">&para;</a></h2>
 <p>args
 multiple cursors</p>
-<h2 id="configuring-vim">Configuring Vim</h2>
-<h4 id="how-do-you-configure-vim">how do you configure Vim</h4>
+<h2 id="configuring-vim">Configuring Vim<a class="headerlink" href="#configuring-vim" title="Permanent link">&para;</a></h2>
+<h4 id="how-do-you-configure-vim">how do you configure Vim<a class="headerlink" href="#how-do-you-configure-vim" title="Permanent link">&para;</a></h4>
 <ul>
 <li>use Ex commands in command line mode</li>
 <li>Using a vim congiguration file</li>
 <li>Through a set of limited command line options</li>
 </ul>
-<h2 id="_1">持久化配置</h2>
-<pre><code>".vimrc demo
+<h2 id="_1">持久化配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>&quot;.vimrc demo
 
 set nocompatible
 filetype plugin indent on
 syntax enable
-</code></pre>
+</pre></div>
+
+
 <p>map: recursive mapping.
 noremap: non-recursive mapping。几乎大部分场景都是使用非递归映射</p>
-<h2 id="_2">定义自己的命令</h2>
-<pre><code>command! RefreshConfig source $MYVIMRC
-" then use :RefreshConfig  ex command souce vimrcfile
-</code></pre>
-<h2 id="leader-key">Leader Key</h2>
+<h2 id="_2">定义自己的命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>command! RefreshConfig source $MYVIMRC
+&quot; then use :RefreshConfig  ex command souce vimrcfile
+</pre></div>
+
+
+<h2 id="leader-key">Leader Key<a class="headerlink" href="#leader-key" title="Permanent link">&para;</a></h2>
 <p>为什么需要 leder key？键盘上按键就那么多，要防止快捷键冲突，可以加上前缀 leader。</p>
-<pre><code>" default leader key is \, hard to type。通常用空格或者逗号替换
-let mapleader = ","
-let mapleader = "\&lt;Space&gt;"
-</code></pre>
-<h2 id="extending-vim-with-plugins">Extending Vim With Plugins</h2>
+<div class="codehilite"><pre><span></span>&quot; default leader key is \, hard to type。通常用空格或者逗号替换
+let mapleader = &quot;,&quot;
+let mapleader = &quot;\&lt;Space&gt;&quot;
+</pre></div>
+
+
+<h2 id="extending-vim-with-plugins">Extending Vim With Plugins<a class="headerlink" href="#extending-vim-with-plugins" title="Permanent link">&para;</a></h2>
 <ul>
 <li>安装插件管理器</li>
 <li>增加必要配置到vimrc</li>
@@ -925,7 +933,7 @@ let mapleader = "\&lt;Space&gt;"
 <ul>
 <li>常用插件推荐</li>
 </ul>
-<h2 id="colorscheme">自定义colorscheme</h2>
+<h2 id="colorscheme">自定义colorscheme<a class="headerlink" href="#colorscheme" title="Permanent link">&para;</a></h2>
 <p>colorschem 或者插件</p>
               
             </div>

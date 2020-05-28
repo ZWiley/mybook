@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
   <title>一个简洁的并发库 async，代码阅读 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u4e00\u4e2a\u7b80\u6d01\u7684\u5e76\u53d1\u5e93 async\uff0c\u4ee3\u7801\u9605\u8bfb";
     var mkdocs_page_input_path = "\u6e90\u7801\u9605\u8bfb_sourcecode\\go\\rafaeldias_async\\read.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u6e90\u7801\u9605\u8bfb_sourcecode/go/rafaeldias_async/read/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,18 +836,20 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="async">一个简洁的并发库 async，代码阅读</h1>
+                <h1 id="async">一个简洁的并发库 async，代码阅读<a class="headerlink" href="#async" title="Permanent link">&para;</a></h1>
 <p>使用的时候可以传递一系列函数进去，并发执行然后获取结果。</p>
 <p>https://github.com/rafaeldias/async</p>
-<h1 id="async_1">async</h1>
+<h1 id="async_1">async<a class="headerlink" href="#async_1" title="Permanent link">&para;</a></h1>
 <p>async is a utility library for manipulating synchronous and asynchronous flows.</p>
-<h3 id="install">Install</h3>
-<pre><code class="bash">$ go get github.com/rafaeldias/async
-</code></pre>
+<h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>$ go get github.com/rafaeldias/async
+</pre></div>
 
-<h3 id="concurrent">Concurrent</h3>
-<pre><code class="go">async.Concurrent(tasks taskier) (Results, error)
-</code></pre>
+
+<h3 id="concurrent">Concurrent<a class="headerlink" href="#concurrent" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="nx">async</span><span class="p">.</span><span class="nx">Concurrent</span><span class="p">(</span><span class="nx">tasks</span> <span class="nx">taskier</span><span class="p">)</span> <span class="p">(</span><span class="nx">Results</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Concurrent will execute all the functions concurrently using goroutines.</p>
 <ul>
@@ -857,9 +859,10 @@
 </ul>
 <p>The type of <code>Results</code> value depends on the type of tasks passed to the function. See <a href="#type-results">type Results</a></p>
 <p>All errors ocurred in the functions will be returned. See <a href="#returning-error">returning error</a> and <a href="#type-errors">type Errors</a>.</p>
-<h3 id="parallel">Parallel</h3>
-<pre><code class="go">async.Parallel(tasks taskier) (Results, error)
-</code></pre>
+<h3 id="parallel">Parallel<a class="headerlink" href="#parallel" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="nx">async</span><span class="p">.</span><span class="nx">Parallel</span><span class="p">(</span><span class="nx">tasks</span> <span class="nx">taskier</span><span class="p">)</span> <span class="p">(</span><span class="nx">Results</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Parallel will execute all the functions in parallel. It creates multiple goroutines and distributes the functions execution among them.
 The number of goroutines  defaults to <code>GOMAXPROCS</code>. If the number of active goroutines is equal to <code>GOMAXPROCS</code> and there're more functions to execute, these functions will wait until one of functions being executed finishes its job.</p>
@@ -870,9 +873,10 @@ The number of goroutines  defaults to <code>GOMAXPROCS</code>. If the number of 
 </ul>
 <p>The type of <code>Results</code> value depends on the type of tasks passed to the function. See <a href="#type-results">type Results</a>.</p>
 <p>All errors ocurred in the functions will be returned. See <a href="#returning-error">returning error</a> and <a href="#type-errors">type Errors</a>.</p>
-<h3 id="waterfall">Waterfall</h3>
-<pre><code class="go">async.Waterfall(tasks Tasks, args ...interface{}) ([]interface[}, error)
-</code></pre>
+<h3 id="waterfall">Waterfall<a class="headerlink" href="#waterfall" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="nx">async</span><span class="p">.</span><span class="nx">Waterfall</span><span class="p">(</span><span class="nx">tasks</span> <span class="nx">Tasks</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">([]</span><span class="kd">interface</span><span class="p">[},</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Waterfall will execute all the functions in sequence, each returning their results to the next. If the last returning value of the function is of type <code>error</code>, then this value will not be passed to the next function. </p>
 <ul>
@@ -881,15 +885,16 @@ The number of goroutines  defaults to <code>GOMAXPROCS</code>. If the number of 
 </ul>
 <p>Waterfall returns the results of the last task as <code>[]interface{}</code> and <code>error</code>. </p>
 <p>If an error occur in any of the functions to be executed, the next function will not be executed, and the error will be returned to the caller. See <a href="#returning-error">returning error</a>.</p>
-<h3 id="type-results"><a name="type-results"></a>Type Results</h3>
+<h3 id="type-results"><a name="type-results"></a>Type Results<a class="headerlink" href="#type-results" title="Permanent link">&para;</a></h3>
 <p>The <code>Results</code> is the type that is returned by <code>Parallel</code> and <code>Concurrent</code>:</p>
-<pre><code class="go">type Results interface {
-      Index(int) []interface{}  // Gets values by index
-      Key(string) []interface{} // Gets values by key
-      Len() int                 // Gets the length of the results
-      Keys() []string           // Gets the keys of the results
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Results</span> <span class="kd">interface</span> <span class="p">{</span>
+      <span class="nx">Index</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span>  <span class="c1">// Gets values by index</span>
+      <span class="nx">Key</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span> <span class="c1">// Gets values by key</span>
+      <span class="nx">Len</span><span class="p">()</span> <span class="kt">int</span>                 <span class="c1">// Gets the length of the results</span>
+      <span class="nx">Keys</span><span class="p">()</span> <span class="p">[]</span><span class="kt">string</span>           <span class="c1">// Gets the keys of the results</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>The underlying type of <code>Results</code> will be different depending on the type of tasks passed to either <code>Parallel</code> or <code>Concurrent</code>.
 There are two async public types that can be passed to both functions:</p>
@@ -898,192 +903,202 @@ There are two async public types that can be passed to both functions:</p>
 <li><code>MapTasks</code> is a map of string of functions to be executed.</li>
 </ul>
 <p>When using <code>Tasks</code>, the underlying <code>Results</code> will be <code>[][]interface{}</code>:</p>
-<pre><code class="go">res, err : = async.Parallel(async.Tasks{
-        func1,
-        func2,
-        ...funcN,
-})
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nx">res</span><span class="p">,</span> <span class="nx">err</span> <span class="p">:</span> <span class="p">=</span> <span class="nx">async</span><span class="p">.</span><span class="nx">Parallel</span><span class="p">(</span><span class="nx">async</span><span class="p">.</span><span class="nx">Tasks</span><span class="p">{</span>
+        <span class="nx">func1</span><span class="p">,</span>
+        <span class="nx">func2</span><span class="p">,</span>
+        <span class="o">...</span><span class="nx">funcN</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+
 
 <p>We can get the results of the the second function:</p>
-<pre><code class="go">res.Index(1)
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nx">res</span><span class="p">.</span><span class="nx">Index</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Or we can iterate over the results using the  <code>Len()</code> method:</p>
-<pre><code class="go">for i := 0; i &lt; res.Len(); i++ {
-    fmt.Println(res.Index(i))
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Len</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Index</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>When using <code>MapTasks</code>, the underlying <code>Results</code> will be <code>map[string][]interface{}</code>:</p>
-<pre><code class="go">res, err : = async.Concurrent(async.MapTasks{
-        &quot;one&quot;  : funcOne,
-        &quot;two&quot;  : funcTwo,
-        &quot;three&quot;: funcThree,
-})
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nx">res</span><span class="p">,</span> <span class="nx">err</span> <span class="p">:</span> <span class="p">=</span> <span class="nx">async</span><span class="p">.</span><span class="nx">Concurrent</span><span class="p">(</span><span class="nx">async</span><span class="p">.</span><span class="nx">MapTasks</span><span class="p">{</span>
+        <span class="s">&quot;one&quot;</span>  <span class="p">:</span> <span class="nx">funcOne</span><span class="p">,</span>
+        <span class="s">&quot;two&quot;</span>  <span class="p">:</span> <span class="nx">funcTwo</span><span class="p">,</span>
+        <span class="s">&quot;three&quot;</span><span class="p">:</span> <span class="nx">funcThree</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+
 
 <p>We can get the results of function "three":</p>
-<pre><code class="go">res.Key(&quot;three&quot;)
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nx">res</span><span class="p">.</span><span class="nx">Key</span><span class="p">(</span><span class="s">&quot;three&quot;</span><span class="p">)</span>
+</pre></div>
+
 
 <p>Or we can also iterate over the map of results by using the <code>Keys()</code> method:</p>
-<pre><code class="go">for k := range res.Keys() {
-    fmt.Println(res.Key(k))
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Keys</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Key</span><span class="p">(</span><span class="nx">k</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="type-errors"><a name="type-errors"></a>Type Errors</h3>
+
+<h3 id="type-errors"><a name="type-errors"></a>Type Errors<a class="headerlink" href="#type-errors" title="Permanent link">&para;</a></h3>
 <p>If errors occur in any function executed by <code>Concurrent</code> or <code>Parallel</code> an instance of <code>Errors</code> will be returned.
 <code>Errors</code> implements the <code>error</code> interface, so in order to test if an error occurred, check if the returned error is not nil,
 if it's not type cast it to <code>Errors</code>:</p>
-<pre><code class="go">_, err : = async.Parallel(async.Tasks{func1, func2, ...funcN})
+<div class="codehilite"><pre><span></span><span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">:</span> <span class="p">=</span> <span class="nx">async</span><span class="p">.</span><span class="nx">Parallel</span><span class="p">(</span><span class="nx">async</span><span class="p">.</span><span class="nx">Tasks</span><span class="p">{</span><span class="nx">func1</span><span class="p">,</span> <span class="nx">func2</span><span class="p">,</span> <span class="o">...</span><span class="nx">funcN</span><span class="p">})</span>
 
-if err != nil {
-        parallelErrors := err.(async.Errors)
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">parallelErrors</span> <span class="o">:=</span> <span class="nx">err</span><span class="p">.(</span><span class="nx">async</span><span class="p">.</span><span class="nx">Errors</span><span class="p">)</span>
 
-        for _, e := range parallelErrors {
-                fmt.Println(e.Error())
-        }
-}
-</code></pre>
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">parallelErrors</span> <span class="p">{</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="returning-error"><a name="returning-error"></a>Returning error</h3>
+
+<h3 id="returning-error"><a name="returning-error"></a>Returning error<a class="headerlink" href="#returning-error" title="Permanent link">&para;</a></h3>
 <p>In order for async to identify if an error occured, the error <strong>must</strong> be the last returning value of the function:</p>
-<pre><code class="go">_, err := async.Waterfall(async.Tasks{
-        func () (int, error) {
-                return 1, nil
-        },
-        // Function with error
-        func (i int) (string, error) {
-                if i &gt; 0 {
-                    // This line will interrupt the execution flow
-                    return &quot;&quot;, errors.New(&quot;Error occurred&quot;)
-                }
-                return &quot;Ok&quot;, nil
-        },
-        // This function will not be executed.
-        func (s string) {
-            return
-        }
-});
+<div class="codehilite"><pre><span></span><span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">async</span><span class="p">.</span><span class="nx">Waterfall</span><span class="p">(</span><span class="nx">async</span><span class="p">.</span><span class="nx">Tasks</span><span class="p">{</span>
+        <span class="kd">func</span> <span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">nil</span>
+        <span class="p">},</span>
+        <span class="c1">// Function with error</span>
+        <span class="kd">func</span> <span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="nx">i</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+                    <span class="c1">// This line will interrupt the execution flow</span>
+                    <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;Error occurred&quot;</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="s">&quot;Ok&quot;</span><span class="p">,</span> <span class="kc">nil</span>
+        <span class="p">},</span>
+        <span class="c1">// This function will not be executed.</span>
+        <span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+<span class="p">});</span>
 
-if err != nil {
-      fmt.Println(err.Error()); // &quot;Error occurred&quot;
-}
-</code></pre>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+      <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">());</span> <span class="c1">// &quot;Error occurred&quot;</span>
+<span class="p">}</span>
+</pre></div>
 
-<h1 id="examples">Examples</h1>
-<h3 id="waterfall_1">Waterfall</h3>
-<pre><code class="go">import (
-        &quot;fmt&quot;
 
-        &quot;github.com/rafaeldias/async&quot;
-)
+<h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
+<h3 id="waterfall_1">Waterfall<a class="headerlink" href="#waterfall_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
+        <span class="s">&quot;fmt&quot;</span>
 
-func fib(p, c int) (int, int) {
-  return c, p + c
-}
+        <span class="s">&quot;github.com/rafaeldias/async&quot;</span>
+<span class="p">)</span>
 
-func main() {
+<span class="kd">func</span> <span class="nx">fib</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">c</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">p</span> <span class="o">+</span> <span class="nx">c</span>
+<span class="p">}</span>
 
-        // execution in series.
-        res, e := async.Waterfall(async.Tasks{
-                fib,
-                fib,
-                fib,
-                func(p, c int) (int, error) {
-                        return c, nil
-                },
-        }, 0, 1)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-        if e != nil {
-              fmt.Printf(&quot;Error executing a Waterfall (%s)\n&quot;, e.Error())
-        }
+        <span class="c1">// execution in series.</span>
+        <span class="nx">res</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="nx">async</span><span class="p">.</span><span class="nx">Waterfall</span><span class="p">(</span><span class="nx">async</span><span class="p">.</span><span class="nx">Tasks</span><span class="p">{</span>
+                <span class="nx">fib</span><span class="p">,</span>
+                <span class="nx">fib</span><span class="p">,</span>
+                <span class="nx">fib</span><span class="p">,</span>
+                <span class="kd">func</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">c</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">c</span><span class="p">,</span> <span class="kc">nil</span>
+                <span class="p">},</span>
+        <span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-        fmt.Println(res[0].(int)) // Prints 3
-}
+        <span class="k">if</span> <span class="nx">e</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+              <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Error executing a Waterfall (%s)\n&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+        <span class="p">}</span>
 
-</code></pre>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">res</span><span class="p">[</span><span class="mi">0</span><span class="p">].(</span><span class="kt">int</span><span class="p">))</span> <span class="c1">// Prints 3</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="parallel_1">Parallel</h3>
-<pre><code class="go">import (
-        &quot;fmt&quot;
-        &quot;time&quot;
 
-        &quot;github.com/rafaeldias/async&quot;
-)
+<h3 id="parallel_1">Parallel<a class="headerlink" href="#parallel_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
+        <span class="s">&quot;fmt&quot;</span>
+        <span class="s">&quot;time&quot;</span>
 
-func main() {
+        <span class="s">&quot;github.com/rafaeldias/async&quot;</span>
+<span class="p">)</span>
 
-        res, e := async.Parallel(async.MapTasks{
-                &quot;one&quot;: func() int {
-                        for i := 'a'; i &lt; 'a'+26; i++ {
-                                fmt.Printf(&quot;%c &quot;, i)
-                        }
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-                        return 1
-                },
-                &quot;two&quot;: func() int {
-                        time.Sleep(2 * time.Microsecond)
-                        for i := 0; i &lt; 27; i++ {
-                                fmt.Printf(&quot;%d &quot;, i)
-                        }
+        <span class="nx">res</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="nx">async</span><span class="p">.</span><span class="nx">Parallel</span><span class="p">(</span><span class="nx">async</span><span class="p">.</span><span class="nx">MapTasks</span><span class="p">{</span>
+                <span class="s">&quot;one&quot;</span><span class="p">:</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+                        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="sc">&#39;a&#39;</span><span class="o">+</span><span class="mi">26</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+                                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%c &quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+                        <span class="p">}</span>
 
-                        return 2
-                },
-                &quot;three&quot;: func() int {
-                        for i := 'z'; i &gt;= 'a'; i-- {
-                                fmt.Printf(&quot;%c &quot;, i)
-                        }
+                        <span class="k">return</span> <span class="mi">1</span>
+                <span class="p">},</span>
+                <span class="s">&quot;two&quot;</span><span class="p">:</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+                        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Microsecond</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">27</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+                                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+                        <span class="p">}</span>
 
-                        return 3
-                },
-        })
+                        <span class="k">return</span> <span class="mi">2</span>
+                <span class="p">},</span>
+                <span class="s">&quot;three&quot;</span><span class="p">:</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+                        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="sc">&#39;z&#39;</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span> <span class="p">{</span>
+                                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%c &quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+                        <span class="p">}</span>
 
-        if e != nil {
-                fmt.Printf(&quot;Errors [%s]\n&quot;, e.Error())
-        }
+                        <span class="k">return</span> <span class="mi">3</span>
+                <span class="p">},</span>
+        <span class="p">})</span>
 
-        fmt.Println(&quot;Results from task 'two': %v&quot;, res.Key(&quot;two&quot;))
-}
-</code></pre>
+        <span class="k">if</span> <span class="nx">e</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Errors [%s]\n&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+        <span class="p">}</span>
 
-<h3 id="concurrent_1">Concurrent</h3>
-<pre><code class="go">import (
-        &quot;errors&quot;
-        &quot;fmt&quot;
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Results from task &#39;two&#39;: %v&quot;</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Key</span><span class="p">(</span><span class="s">&quot;two&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
 
-        &quot;github.com/rafaeldias/async&quot;
-)
 
-func main() {
+<h3 id="concurrent_1">Concurrent<a class="headerlink" href="#concurrent_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
+        <span class="s">&quot;errors&quot;</span>
+        <span class="s">&quot;fmt&quot;</span>
 
-        res, e := async.Concurrent(async.Tasks{
-                func() int {
-                        for i := 'a'; i &lt; 'a'+26; i++ {
-                                fmt.Printf(&quot;%c &quot;, i)
-                        }
-                        return 0
-                },
-                func() error {
-                        time.Sleep(3 * time.Microsecond)
-                        for i := 0; i &lt; 27; i++ {
-                                fmt.Printf(&quot;%d &quot;, i)
-                        }
-                        return errors.New(&quot;Error executing concurently&quot;)
-                },
-        })
+        <span class="s">&quot;github.com/rafaeldias/async&quot;</span>
+<span class="p">)</span>
 
-        if e != nil {
-                fmt.Printf(&quot;Errors [%s]\n&quot;, e.Error()) // output errors separated by space
-        }
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-        fmt.Println(&quot;Result from function 0: %v&quot;, res.Index(0))
-}
-</code></pre>
+        <span class="nx">res</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="nx">async</span><span class="p">.</span><span class="nx">Concurrent</span><span class="p">(</span><span class="nx">async</span><span class="p">.</span><span class="nx">Tasks</span><span class="p">{</span>
+                <span class="kd">func</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+                        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="sc">&#39;a&#39;</span><span class="o">+</span><span class="mi">26</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+                                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%c &quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+                        <span class="p">}</span>
+                        <span class="k">return</span> <span class="mi">0</span>
+                <span class="p">},</span>
+                <span class="kd">func</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+                        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Microsecond</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">27</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+                                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+                        <span class="p">}</span>
+                        <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;Error executing concurently&quot;</span><span class="p">)</span>
+                <span class="p">},</span>
+        <span class="p">})</span>
 
-<h1 id="license">License</h1>
+        <span class="k">if</span> <span class="nx">e</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Errors [%s]\n&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span> <span class="c1">// output errors separated by space</span>
+        <span class="p">}</span>
+
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result from function 0: %v&quot;</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">Index</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h1 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h1>
 <p>Distributed under MIT License. See LICENSE file for more details.</p>
               
             </div>

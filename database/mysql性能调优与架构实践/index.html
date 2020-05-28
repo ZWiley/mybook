@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《mysql性能调优与架构实践》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300amysql\u6027\u80fd\u8c03\u4f18\u4e0e\u67b6\u6784\u5b9e\u8df5\u300b";
     var mkdocs_page_input_path = "database\\mysql\u6027\u80fd\u8c03\u4f18\u4e0e\u67b6\u6784\u5b9e\u8df5.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/database/mysql\u6027\u80fd\u8c03\u4f18\u4e0e\u67b6\u6784\u5b9e\u8df5/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -894,7 +894,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="2-mysql">2. Mysql 基础</h1>
+                <h1 id="2-mysql">2. Mysql 基础<a class="headerlink" href="#2-mysql" title="Permanent link">&para;</a></h1>
 <p>物理文件组成：
 日志：
     - 错误日志
@@ -917,7 +917,7 @@
     - pid 存放进程id
     - socket文件：unix/linux 下可以不通过TCP/IP 直接用unix socket 链接mysql</p>
 <p>Mysql Server系统架构： sql layer -&gt; storage engine layer</p>
-<h1 id="mysql">Mysql 存储引擎简介</h1>
+<h1 id="mysql">Mysql 存储引擎简介<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h1>
 <ul>
 <li>MyISAM 存储引擎：.frm, .MYD(表数据), .MYI(索引数据)。 支持三种索引：B-Tree, R-Tree, Full-text</li>
 <li>InnoDB: 事务安全；数据多版本读取；锁定机制改进（实现了行锁）；实现了外键。物理结构：数据文件；日志文件</li>
@@ -926,10 +926,10 @@
     - SQL 层的 SQL 服务器节点（Mysql server）
     - Storage 层的NDB 数据节点，即 NDB Cluster</li>
 </ul>
-<h1 id="4-mysql">4 Mysql 安全管理</h1>
+<h1 id="4-mysql">4 Mysql 安全管理<a class="headerlink" href="#4-mysql" title="Permanent link">&para;</a></h1>
 <p>相关因素：外围网络，主机，数据库（用户管理、访问授权）
 权限等级：GlobalLevel, Database Level, Table Level, COlumn Level, Routine Level</p>
-<h1 id="5-mysql">5 Mysql 备份与恢复</h1>
+<h1 id="5-mysql">5 Mysql 备份与恢复<a class="headerlink" href="#5-mysql" title="Permanent link">&para;</a></h1>
 <p>逻辑备份：
     - 生成 INSERT 语句备份: mysqldump
     - 生成特定格式的纯文本备份数据文件</p>
@@ -937,7 +937,7 @@
 热物理备份：
     - MyISAM: mysqlhotcopy
     - InnoDB: ibbackupk</p>
-<h1 id="6">6 性能影响因素</h1>
+<h1 id="6">6 性能影响因素<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <ul>
 <li>商业需求对性能影响：
     - 不合理需求导致投入产出过低
@@ -953,7 +953,7 @@
     - OLTP
     - OLAP</li>
 </ul>
-<h1 id="7-mysql">7 MySQL 数据库锁定机制</h1>
+<h1 id="7-mysql">7 MySQL 数据库锁定机制<a class="headerlink" href="#7-mysql" title="Permanent link">&para;</a></h1>
 <p>锁定机制的优劣直接影响到数据库的并发处理能力和性能
 - 行级锁定(row-level)：颗粒度小，并发能力强；但是上锁和释放操作更多，消耗大，易死锁
     - 共享锁和排他锁。为了在锁定的过程中让行级锁定和表级锁定共存，InnoDB 同样使用了意向锁（表级锁定）的概念，意向共享锁和意向排他锁
@@ -992,7 +992,7 @@
   - 升级锁定颗粒度</p>
 </li>
 </ul>
-<h1 id="8-mysqlquery">8 Mysql数据库Query优化</h1>
+<h1 id="8-mysqlquery">8 Mysql数据库Query优化<a class="headerlink" href="#8-mysqlquery" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Query Optimizer:</li>
 <li>Query 语句优化的基本思路和原则：
@@ -1058,7 +1058,7 @@
     - 与groupby相似，只是在groupby 之后的每组中只取一条记录而已
     - 尽量利用索引，如果无法利用索引，确保尽量不要在大结果集上用distinct操作。</li>
 </ul>
-<h1 id="9-mysql-schema">9 Mysql数据库 schema 设计性能优化</h1>
+<h1 id="9-mysql-schema">9 Mysql数据库 schema 设计性能优化<a class="headerlink" href="#9-mysql-schema" title="Permanent link">&para;</a></h1>
 <ul>
 <li>高效的模型设计：
     - 1.适度冗余，让Query尽量减少 Join
@@ -1071,7 +1071,7 @@
     - 同一子模块采用子模块为前缀或者后缀
     - 索引名包含字段缩写</li>
 </ul>
-<h1 id="10-mysql-server">10 Mysql server 性能优化</h1>
+<h1 id="10-mysql-server">10 Mysql server 性能优化<a class="headerlink" href="#10-mysql-server" title="Permanent link">&para;</a></h1>
 <ul>
 <li>安装优化</li>
 <li>日志设置优化</li>
@@ -1080,7 +1080,7 @@
     - mysql 每个线程独立打开自己的文件描述符。mysql Table Cache
     -</li>
 </ul>
-<h1 id="11">11 常用存储引擎优化</h1>
+<h1 id="11">11 常用存储引擎优化<a class="headerlink" href="#11" title="Permanent link">&para;</a></h1>
 <ul>
 <li>MyISAM 引擎优化（读请求为主的非事务系统）
     - 索引缓存优化
@@ -1104,7 +1104,7 @@
       组成，每个segment都存放同一种数据。tablespace最大物理结构单位，多个 segment 组成。
     - 分散 IO 提升磁盘响应:数据文件和事务日志文件存放在不同的磁盘</li>
 </ul>
-<h1 id="12-mysql">12 Mysql 可扩展设计的基本原则</h1>
+<h1 id="12-mysql">12 Mysql 可扩展设计的基本原则<a class="headerlink" href="#12-mysql" title="Permanent link">&para;</a></h1>
 <ul>
 <li>可扩展性
     - scale out : 横向扩展，通过增加处理节点的方式
@@ -1118,7 +1118,7 @@
     - BASE模型：基本可用、柔性状态、基本一致、最终一致</li>
 <li>高可用及数据安全原则</li>
 </ul>
-<h1 id="13-mysql-replication">13 。可扩展性设计之 Mysql Replication</h1>
+<h1 id="13-mysql-replication">13 。可扩展性设计之 Mysql Replication<a class="headerlink" href="#13-mysql-replication" title="Permanent link">&para;</a></h1>
 <p>Replication 将一个server 的instance 中的数据完整复制到另一个 server 中。异步复制，延迟很小
 - Relplcation 实现原理：
     - Replaction 线程
@@ -1139,7 +1139,7 @@
         - 通过现有某一个slave端进行『热备份』
     - 3.slave 端恢复备份『快照』
     - 4.配置并启动slave</p>
-<h1 id="14">14.可扩展性设计之数据切分</h1>
+<h1 id="14">14.可扩展性设计之数据切分<a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>
 <p>sharding：通过某种特定的条件，将存放在同一个数据库中的数据分散到多个数据库上面，分散单台设备负载。
 两种切分模式：
     - 不同的表切分到不同主机上，成为垂直（纵向）切分.适合业务逻辑清晰的系统，耦合低。
@@ -1148,22 +1148,26 @@
 <p>垂直拆分:
     - 按照功能划分。防止跨数据库的 join 存在
     - 根据实际应用场景平衡成本和收益</p>
-<pre><code>缺点：
+<div class="codehilite"><pre><span></span>缺点：
 - 部分表关联无法在数据库级别完成，要在程序中完成
 - 事务处理相对复杂
 - 切分达到一定程度后，扩展性受限制
 - 过度切分造成系统过于复杂难以维护
-</code></pre>
+</pre></div>
+
+
 <p>水平切分:
     - 将某个访问极其频繁的表按照某个字段的某种规则分散到多个表中，每个表包含一部分数据</p>
-<pre><code>优点:
+<div class="codehilite"><pre><span></span>优点:
 - 事务处理相对简单
 - 切分规则定义好，基本上较难遇到扩展性限制
 缺点：
 - 切分规则复杂， 很难抽象出一个满足整个数据库的切分规则
 - 后期维护难度增加，人工定位数据更难
 - 应用系统耦合度较高
-</code></pre>
+</pre></div>
+
+
 <ul>
 <li>垂直和水平切分联合使用
     - 一开始会选择垂直切分，成本小。后期加上水平拆分</li>
@@ -1178,14 +1182,14 @@
     - 引入分布式事务: 各个数据库解决自身的事务，然后通过应用程序来控制多个数据库上的事务。
     - 跨节点 join：通过应用程序处理，先在驱动表所在的Mysql server中取出驱动结果集，然后再去被驱动的server中取
     - 跨节点合并排序分页:程序并行获取数据</p>
-<h1 id="15cache-search">15章：可扩展性设计之Cache 和 Search 的利用</h1>
+<h1 id="15cache-search">15章：可扩展性设计之Cache 和 Search 的利用<a class="headerlink" href="#15cache-search" title="Permanent link">&para;</a></h1>
 <ul>
 <li>分布式缓存 memcachedcache。Lucene</li>
 <li>利用 Search 实现高效全文检索</li>
 </ul>
-<h1 id="16mysql-cluster">16章：Mysql Cluster</h1>
+<h1 id="16mysql-cluster">16章：Mysql Cluster<a class="headerlink" href="#16mysql-cluster" title="Permanent link">&para;</a></h1>
 <p>基于 NDB Cluster 存储引擎的的完整的分布式数据库系统</p>
-<h1 id="17">17章：高可用设计思路和方案</h1>
+<h1 id="17">17章：高可用设计思路和方案<a class="headerlink" href="#17" title="Permanent link">&para;</a></h1>
 <ul>
 <li>利用Replication 实现高可用架构<ul>
 <li>常规 master-slave 架构实现基本的主备设计</li>
@@ -1196,7 +1200,7 @@
 <li>利用 mysql cluster 实现整体高可用</li>
 <li>利用 DRBD 保证数据的高安全可靠</li>
 </ul>
-<h1 id="18-mysql">18章：高可用设计之 Mysql 监控</h1>
+<h1 id="18-mysql">18章：高可用设计之 Mysql 监控<a class="headerlink" href="#18-mysql" title="Permanent link">&para;</a></h1>
 <ul>
 <li>系统设计<ul>
 <li>信息采集；分析；存储；处理</li>

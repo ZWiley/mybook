@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《Go In Action(Go 实战)》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aGo In Action(Go \u5b9e\u6218)\u300b";
     var mkdocs_page_input_path = "golang\\go_in_action(go\u8bed\u8a00\u5b9e\u6218).md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/go_in_action(go\u8bed\u8a00\u5b9e\u6218)/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -914,14 +914,14 @@
             <div class="section">
               
                 <p>《Go 实战》 , https://github.com/goinaction/code</p>
-<h1 id="4">4 数组，切片和映射</h1>
-<h3 id="_1">数组</h3>
+<h1 id="4">4 数组，切片和映射<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
+<h3 id="_1">数组<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>数组类型包括元素类型和长度，只有长度和类型一致才能互相赋值。
 注意在函数之间传递数组变量可能有性能问题(copy 数组值)，使用切片(slice)更好。</p>
-<h3 id="_2">切片</h3>
+<h3 id="_2">切片<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>实现：指向底层数组的指针，元素个数，容量</p>
 <p>区分 nil和空切片：</p>
-<pre><code>// nil 切片
+<div class="codehilite"><pre><span></span>// nil 切片
 var slice []int //nil切片，用于描述不存在的切片,比如函数返回切片但是发生异常了
 // nil(pointer), 0(len), 0(cap)
 
@@ -948,19 +948,20 @@ for idx, val := range slice {
     // NOTE: val 这里是元素的拷贝，而不是直接引用的切片元素。
     fmt.Println(val)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="_3">映射</h3>
+
+<h3 id="_3">映射<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>map使用两个数据结构实现。一个是数组，存储的是选择桶的散列键的高八位，区分每个键值对存储在哪个桶里。
 第二个是一个字节数组，用于存储键值对。
 传递映射同样不会拷贝副本，所以传递成本很小。</p>
-<h1 id="5-go">5 Go 语言的类型系统</h1>
+<h1 id="5-go">5 Go 语言的类型系统<a class="headerlink" href="#5-go" title="Permanent link">&para;</a></h1>
 <p>值的类型给编译器提供两个信息:</p>
 <ul>
 <li>需要分配多少内存（规模）</li>
 <li>这段内存表示什么</li>
 </ul>
-<pre><code>type Duration int64
+<div class="codehilite"><pre><span></span>type Duration int64
 
 
 func main() {
@@ -968,7 +969,8 @@ func main() {
     dur = int64(100)  // cannot not use64(1000) (type int64) as type Duration
   // 编译器不会做隐式类型转换
 }
-</code></pre>
+</pre></div>
+
 
 <p>go 语言有两种类型的接收者：值接收者和指针接收者。
 值接收者获取的是副本（如果是指针也是指针指向的值的副本）</p>
@@ -976,7 +978,7 @@ func main() {
 Value receivers are concurrency safe, while pointer receivers are not concurrency safe.</p>
 <p>value-receiver-vs-pointer-receiver-in-golang: https://stackoverflow.com/questions/27775376/value-receiver-vs-pointer-receiver-in-golang</p>
 <p>The rule about pointers vs. values for receivers is that value methods can be invoked on pointers and values, but pointer methods can only be invoked on pointers</p>
-<h3 id="53">5.3 类型的本质</h3>
+<h3 id="53">5.3 类型的本质<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
 <ul>
 <li>内置类型：数值类型、字符串、布尔类型。传递的副本</li>
 <li>引用类型: 切片、映射、通道、接口和函数类型。通过复制传递应用类型值的副本，本质上就是共享底层数据结构</li>
@@ -988,12 +990,12 @@ Value receivers are concurrency safe, while pointer receivers are not concurrenc
 如果用户定义的类型实现了某个接口声明的一组方法，那么这个用户定义的类型的值就可以赋值给这个接口类型的值。
 这个赋值会把用户定义的类型的值存入接口类型的值。接口值的方法调用是一种多态。</p>
 <p>嵌入类型：已有类型嵌入到新的类型里。内部类型和外部类型。如果没有重名的话，外部类型可以直接调用内部类型的方法。</p>
-<h1 id="6">6. 并发</h1>
+<h1 id="6">6. 并发<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <p>GO并发同步模型来自通信顺序进程(Communicating Sequential Processes, CSP)的泛型(paradigm)。
 CSP 是一种消息传递模型，通过在goroutine之间传递数据来传递消息，而不是通过对数据加锁来实现同步访问。
 用于在 goroutine 之间同步和传递数据的关键数据类型叫做通道(channel)。</p>
 <p>进程和线程：进程维护了应用程序运行时的内存地址空间、文件和设备的句柄以及线程。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1011,7 +1013,7 @@ func main() {
     go func() {
         defer wg.Done()
         for count := 0; count &lt; 3; count++ {
-            for char := 'a'; char &lt; 'a'+26; char++ {
+            for char := &#39;a&#39;; char &lt; &#39;a&#39;+26; char++ {
                 fmt.Printf(&quot;%c&quot;, char)
             }
         }
@@ -1020,7 +1022,7 @@ func main() {
     go func() {
         defer wg.Done()
         for count := 0; count &lt; 3; count++ {
-            for char := 'A'; char &lt; 'A'+26; char++ {
+            for char := &#39;A&#39;; char &lt; &#39;A&#39;+26; char++ {
                 fmt.Printf(&quot;%c&quot;, char)
             }
         }
@@ -1030,11 +1032,12 @@ func main() {
     fmt.Println(&quot;Waiting To Finish&quot;)
 
 }
-</code></pre>
+</pre></div>
+
 
 <p>竞争状态：两个或者多个 goroutine 在没有同步的情况的下，访问某个共享的资源，并试图同时读写这个资源，就会处于
 相互竞争状态。</p>
-<pre><code>// 竞争状态演示
+<div class="codehilite"><pre><span></span>// 竞争状态演示
 package main
 
 import (
@@ -1068,7 +1071,8 @@ func incCounter(id int) {
         counter = value
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>使用锁来锁住共享资源：</p>
 <ul>
@@ -1076,7 +1080,7 @@ func incCounter(id int) {
 <li>互斥锁(mutex)</li>
 <li>通道(channel)</li>
 </ul>
-<pre><code>// 愿子函数
+<div class="codehilite"><pre><span></span>// 愿子函数
 package main
 
 import (
@@ -1107,10 +1111,11 @@ func incCounter(id int) {
         runtime.Gosched()
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>使用互斥锁:</p>
-<pre><code>// 使用 互斥锁 mutex
+<div class="codehilite"><pre><span></span>// 使用 互斥锁 mutex
 package main
 
 import (
@@ -1147,13 +1152,14 @@ func incCounter(id int) {
         mutex.Unlock()
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>使用通道，通过发送和接收需要共享的资源，在 goroutine 之间做同步。
 可以通过 Channel 共享内置类型、命名类型、结构类型、和引用类型的值或者指针。</p>
 <p>unbuffered channel: 接收前没有能力保存任何值的通道。要求发送和接收的goroutine 同时准备好，才能完成发送和接收。
 如果两个 goroutine 没有同时准备好，通道会导致先执行发送或者接收的 goroutine 阻塞等待。行为本身就是同步的。</p>
-<pre><code>//使用unbufferd channel 模拟网球比赛
+<div class="codehilite"><pre><span></span>//使用unbufferd channel 模拟网球比赛
 
 package main
 
@@ -1210,12 +1216,13 @@ func player(name string, court chan int) {
 
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>buffered channel: 在接收前能够存储一个或者多个值的通道。只在通道中没有要接收的值时，接收动作才会阻塞。
 只有通道没有可用缓冲区容纳被发送的值，发送动作才会阻塞。
 无缓冲通道保证进行发送和接收的 goroutine 会在同一时间进行数据交换；有缓冲通道没有这个保证。</p>
-<pre><code>// This sample program demonstrates how to use a buffered
+<div class="codehilite"><pre><span></span>// This sample program demonstrates how to use a buffered
 // channel to work on multiple tasks with a predefined number
 // of goroutines.
 package main
@@ -1292,12 +1299,13 @@ func worker(tasks chan string, worker int) {
         fmt.Printf(&quot;Worker: %d : Completed %s\n&quot;, worker, task)
     }
 }
-</code></pre>
+</pre></div>
 
-<h1 id="7">7 并发模式</h1>
-<h3 id="runner">runner</h3>
+
+<h1 id="7">7 并发模式<a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
+<h3 id="runner">runner<a class="headerlink" href="#runner" title="Permanent link">&para;</a></h3>
 <p>使用通道监视程序运行时间，终止程序等。当开发需要后台处理任务程序的时候，比较有用。</p>
-<pre><code>// runner.go
+<div class="codehilite"><pre><span></span>// runner.go
 // Example is provided with help by Gabriel Aszalos.
 // Package runner manages the running and lifetime of a process.
 package runner
@@ -1398,7 +1406,8 @@ func (r *Runner) gotInterrupt() bool {
         return false
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>支持终止方式：</p>
 <ul>
@@ -1407,7 +1416,7 @@ func (r *Runner) gotInterrupt() bool {
 <li>接收到 os 发送的中断事件，程序试图立刻清理状态并停止工作</li>
 </ul>
 <p>测试代码如下：</p>
-<pre><code>// This sample program demonstrates how to use a channel to
+<div class="codehilite"><pre><span></span>// This sample program demonstrates how to use a channel to
 // monitor the amount of time the program is running and terminate
 // the program if it runs too long.
 package main
@@ -1456,12 +1465,13 @@ func createTask() func(int) {
         time.Sleep(time.Duration(id) * time.Second)
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="pool">pool</h3>
+
+<h3 id="pool">pool<a class="headerlink" href="#pool" title="Permanent link">&para;</a></h3>
 <p>使用有缓冲的通道实现资源池，来管理可以在任意数量的 goroutine 之间共享以及独立使用的资源。
 pool模式在共享一组静态资源（数据库连接，内存缓冲区）非常有用。</p>
-<pre><code>// pool.go
+<div class="codehilite"><pre><span></span>// pool.go
 // Example provided with help from Fatih Arslan and Gabriel Aszalos.
 // Package pool manages a user defined set of resources.
 package pool
@@ -1549,7 +1559,7 @@ func (p *Pool) Close() {
     p.m.Lock()
     defer p.m.Unlock()
 
-    // If the pool is already close, don't do anything.
+    // If the pool is already close, don&#39;t do anything.
     if p.closed {
         return
     }
@@ -1558,7 +1568,7 @@ func (p *Pool) Close() {
     p.closed = true
 
     // Close the channel before we drain the channel of its
-    // resources. If we don't do this, we will have a deadlock.
+    // resources. If we don&#39;t do this, we will have a deadlock.
     close(p.resources)
 
     // Close the resources
@@ -1566,10 +1576,11 @@ func (p *Pool) Close() {
         r.Close()
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>测试代码如下，注意实现 closer:</p>
-<pre><code>// This sample program demonstrates how to use the pool package
+<div class="codehilite"><pre><span></span>// This sample program demonstrates how to use the pool package
 // to share a simulated set of database connections.
 package main
 
@@ -1660,11 +1671,12 @@ func performQueries(query int, p *pool.Pool) {
     time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
     log.Printf(&quot;Query: QID[%d] CID[%d]\n&quot;, query, conn.(*dbConnection).ID)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="work">work</h3>
+
+<h3 id="work">work<a class="headerlink" href="#work" title="Permanent link">&para;</a></h3>
 <p>使用无缓冲的通道创建一个goroutine池，这些goroutine执行并控制一组工作，让其并发执行。</p>
-<pre><code>// Example provided with help from Jason Waldrip.
+<div class="codehilite"><pre><span></span>// Example provided with help from Jason Waldrip.
 // Package work manages a pool of goroutines to perform work.
 package work
 
@@ -1712,10 +1724,11 @@ func (p *Pool) Shutdown() {
     close(p.work)
     p.wg.Wait()
 }
-</code></pre>
+</pre></div>
+
 
 <p>测试代码：</p>
-<pre><code>// This sample program demonstrates how to use the work package
+<div class="codehilite"><pre><span></span>// This sample program demonstrates how to use the work package
 // to use a pool of goroutines to get work done.
 package main
 
@@ -1779,16 +1792,17 @@ func main() {
     // to be completed.
     p.Shutdown()
 }
-</code></pre>
+</pre></div>
 
-<h1 id="8">8 标准库</h1>
-<h3 id="_4">标注库</h3>
+
+<h1 id="8">8 标准库<a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
+<h3 id="_4">标注库<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>标准库的代码经过预编译的，这些预编译后的文件，称作归档文件(archive file, .a)，放在 pkg 下。</p>
-<h3 id="log">log</h3>
+<h3 id="log">log<a class="headerlink" href="#log" title="Permanent link">&para;</a></h3>
 <p>unix 架构创建了  stderr 设备作为日志的默认输出地，把程序输出和日志分离开。
 如果用户程序只有记录日志，更常用的方式是将一般的日志写到 stdout， 错误或者警告写到 stderr。</p>
 <p>NOTE: 标准 log 记录是 goroutine 安全的。</p>
-<pre><code>// This sample program demonstrates how to create customized loggers.
+<div class="codehilite"><pre><span></span>// This sample program demonstrates how to create customized loggers.
 package main
 
 import (
@@ -1835,15 +1849,16 @@ func main() {
     Warning.Println(&quot;There is something you need to know about&quot;)
     Error.Println(&quot;Something has failed&quot;)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="marshal">序列化和反序列化：marshal</h3>
+
+<h3 id="marshal">序列化和反序列化：marshal<a class="headerlink" href="#marshal" title="Permanent link">&para;</a></h3>
 <ul>
 <li>序列化(marshal): 数据-&gt; json</li>
 <li>反序列化(unmarshal): json -&gt; 数据</li>
 </ul>
-<h3 id="writerreader">输入和输出：Writer/Reader</h3>
-<pre><code>package main
+<h3 id="writerreader">输入和输出：Writer/Reader<a class="headerlink" href="#writerreader" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>package main
 
 import (
       &quot;bytes&quot;
@@ -1857,9 +1872,10 @@ func main() {
       fmt.Fprintf(b, &quot;world&quot;)
       b.WriteTo(os.Stdout)
 }
-</code></pre>
+</pre></div>
 
-<pre><code>package main
+
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;io&quot;
@@ -1885,9 +1901,10 @@ func main() {
         log.Println(err)
     }
 }
-</code></pre>
+</pre></div>
 
-<pre><code>// 实现一个简单的 curl 请求，同时把返回结果写到 stdout 和文件
+
+<div class="codehilite"><pre><span></span>// 实现一个简单的 curl 请求，同时把返回结果写到 stdout 和文件
 package main
 
 import (
@@ -1922,13 +1939,14 @@ func main() {
         log.Println(err)
     }
 }
-</code></pre>
+</pre></div>
 
-<h1 id="9">9 测试和性能</h1>
-<h3 id="_5">单元测试</h3>
+
+<h1 id="9">9 测试和性能<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
+<h3 id="_5">单元测试<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>单测：用来测试包或者程序的一部分代码或者一组代码的函数。目的是确认目标代码在给定场景下，是否按照预期工作。</p>
 <p>基础测试(basic test)和表组(table test)测试（多个测试用例）</p>
-<pre><code>package listing01
+<div class="codehilite"><pre><span></span>package listing01
 
 import (
     &quot;net/http&quot;
@@ -1968,11 +1986,12 @@ func TestDownload(t *testing.T) {
         }
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>注意测试文件用 test_file 开头，测试函数需要 Test 开头并且接收 testing.T 指针，不能有返回值。</p>
 <p>如果有多组测试用例，使用表组测试:</p>
-<pre><code>package listing08
+<div class="codehilite"><pre><span></span>package listing08
 
 import (
     &quot;net/http&quot;
@@ -2026,13 +2045,14 @@ func TestDownload(t *testing.T) {
         }
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="mocking-httptest-mock">mocking: 标准库包含一个 httptest 可以 mock 网络调用</h3>
+
+<h3 id="mocking-httptest-mock">mocking: 标准库包含一个 httptest 可以 mock 网络调用<a class="headerlink" href="#mocking-httptest-mock" title="Permanent link">&para;</a></h3>
 <p>一般单元测试不要依赖网络或者其他服务。mock 是一种常见的手段，用来模拟访问不可用的资源。
 使用 httptest 来 mock 一个网络调用。(这个例子麻烦在处理这个返回的 xml)
 http和httptest会帮你处理请求哪个端口之类的问题。</p>
-<pre><code>// Sample test to show how to mock an HTTP GET call internally.
+<div class="codehilite"><pre><span></span>// Sample test to show how to mock an HTTP GET call internally.
 // Differs slightly from the book to show more.
 package listing12
 
@@ -2149,12 +2169,13 @@ type Document struct {
     Channel Channel  `xml:&quot;channel&quot;`
     URI     string
 }
-</code></pre>
+</pre></div>
 
-<h3 id="endpoint">测试服务端点(endpoint)</h3>
+
+<h3 id="endpoint">测试服务端点(endpoint)<a class="headerlink" href="#endpoint" title="Permanent link">&para;</a></h3>
 <p>endpoint是指与服务宿主信息无关，用来分辨某个服务的地址，一般是不包含宿主的一个路径。
 （感觉这个测试相比动态语言还是麻烦太多了)</p>
-<pre><code>// Sample test to show how to test the execution of an
+<div class="codehilite"><pre><span></span>// Sample test to show how to test the execution of an
 // internal endpoint.
 package handlers_test
 
@@ -2217,11 +2238,12 @@ func TestSendJSON(t *testing.T) {
         }
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="example">Example 示例文档</h3>
+
+<h3 id="example">Example 示例文档<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>注意函数名需要时基于已经存在的公开的函数或者方法。</p>
-<pre><code>// Sample test to show how to write a basic example.
+<div class="codehilite"><pre><span></span>// Sample test to show how to write a basic example.
 package handlers_test
 
 import (
@@ -2251,14 +2273,15 @@ func ExampleSendJSON() {
     // Output:
     // {Bill bill@ardanstudios.com}
 }
-</code></pre>
+</pre></div>
+
 
 <p>使用 <code>godoc -http=":3000"</code> 启动能看到 godoc 多了示例代码。
 可以用 <code>go test -v -run="ExampleSendJSON"</code> 运行这个示例函数。支持正则和单元测试</p>
-<h3 id="benchmark-test">基准测试(benchmark test)</h3>
+<h3 id="benchmark-test">基准测试(benchmark test)<a class="headerlink" href="#benchmark-test" title="Permanent link">&para;</a></h3>
 <p>测试代码性能，不同代码方案的性能。可以识别某段代码的 cpu/mem 效率
 比如 go 里边有三种方式将一个整数转为字符串。来测试下哪种最快：</p>
-<pre><code>// Sample benchmarks to test which function is better for converting
+<div class="codehilite"><pre><span></span>// Sample benchmarks to test which function is better for converting
 // an integer into a string. First using the fmt.Sprintf function,
 // then the strconv.FormatInt function and then strconv.Itoa.
 package listing05_test
@@ -2306,16 +2329,18 @@ func BenchmarkItoa(b *testing.B) {
 }
 // go test -v -run=&quot;none&quot; -bench=&quot;BenchmarkSprintf&quot;
 // go test -v -run=&quot;none&quot; -bench=. -benchtime=&quot;3s&quot;
-</code></pre>
+</pre></div>
+
 
 <p>commands:</p>
-<pre><code class="sh"># run all package's test
-go test ./...
-# code coverage
-go test -coverprofile=c.out
-go tool cover -func=c.out
-go tool cover -html=c.out
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="c1"># run all package&#39;s test</span>
+go <span class="nb">test</span> ./...
+<span class="c1"># code coverage</span>
+go <span class="nb">test</span> -coverprofile<span class="o">=</span>c.out
+go tool cover -func<span class="o">=</span>c.out
+go tool cover -html<span class="o">=</span>c.out
+</pre></div>
+
 
 <p><a href="https://www.youtube.com/watch?v=BaMcmZRrG-c">How to write testable code</a></p>
               

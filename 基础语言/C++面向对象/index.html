@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>C++面向对象知识 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "C++\u9762\u5411\u5bf9\u8c61\u77e5\u8bc6";
     var mkdocs_page_input_path = "\u57fa\u7840\u8bed\u8a00\\C++\u9762\u5411\u5bf9\u8c61.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u57fa\u7840\u8bed\u8a00/C++\u9762\u5411\u5bf9\u8c61/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,7 +836,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="c">C++面向对象知识</h1>
+                <h1 id="c">C++面向对象知识<a class="headerlink" href="#c" title="Permanent link">&para;</a></h1>
 <blockquote>
 <ul>
 <li><a href="#内存字节对齐">内存字节对齐</a></li>
@@ -875,18 +875,19 @@
 <li><a href="#类模板和函数模板">类模板和函数模板</a></li>
 </ul>
 </blockquote>
-<h2 id="_1"><a href="https://www.cnblogs.com/jijiji/p/4854581.html">内存字节对齐</a></h2>
+<h2 id="_1"><a href="https://www.cnblogs.com/jijiji/p/4854581.html">内存字节对齐</a><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li><code>#pragma pack(n)</code> 表示的是设置n字节对齐,windows默认是8，linux是4</li>
 </ul>
 </blockquote>
-<pre><code class="C++">struct A{
-    char a;
-    int b;
-    short c;
-};
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="k">struct</span> <span class="n">A</span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+    <span class="kt">short</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+
 
 <blockquote>
 <ul>
@@ -904,7 +905,7 @@
     * 平台原因（移植原因）：不是所有的硬件平台都能访问任意地址上的任意数据，某些硬件平台只能在某些地址处取某些特定类型的数据，否则抛出硬件异常
     * 硬件原因：经过内存对齐之后，CPU的内存访问速度大大提升。访问未对齐的内存，处理器要访问两次（数据先读高位，再读低位），访问对齐的内存，处理器只要访问一次，为了提高处理器读取数据的效率，我们使用内存对齐</li>
 </ul>
-<h2 id="_2">面向对象三大特性</h2>
+<h2 id="_2">面向对象三大特性<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>通过类创建一个对象的过程叫实例化，实例化后使用对象可以调用类成员函数和成员变量，其中类成员函数称为行为，类成员变量称为属性。类和对象的关系：类是对象的抽象，对象是类的实例</p>
 <ul>
 <li>封装
@@ -914,7 +915,7 @@
     * 基类（父类）——&gt; 派生类（子类）</li>
 <li>多态</li>
 </ul>
-<h2 id="usingnamespace">双冒号、using和namespace</h2>
+<h2 id="usingnamespace">双冒号、using和namespace<a class="headerlink" href="#usingnamespace" title="Permanent link">&para;</a></h2>
 <ul>
 <li>namespace主要用来解决命名冲突的问题
     * 必须在全局作用域下声明
@@ -934,7 +935,7 @@
     * <code>using namespace std; //编译指令</code>
     * 尽量使用声明而不是编译指令，不同命名空间中可能会有相同的变量名，编译指令执行两个命名空间后，会产生二义性</li>
 </ul>
-<h2 id="_3">内联函数和函数重载</h2>
+<h2 id="_3">内联函数和函数重载<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>内联函数
     * 相当于把内联函数里面的内容写在调用内联函数处；
@@ -949,13 +950,13 @@
     * 可以根据函数参数的个数、类型（const也可以作为重载条件）、顺序不同进行函数重载，但<strong>不能用函数返回值进行重载</strong>
     * 当函数重载遇到函数默认参数时，要注意二义性。</li>
 </ul>
-<h2 id="_4">虚函数可以是内联函数吗</h2>
+<h2 id="_4">虚函数可以是内联函数吗<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
 <li>虚函数可以是内联函数，内联是可以修饰虚函数的，但是当虚函数表现多态性的时候不能内联。</li>
 <li>内联是在编译期内联，而虚函数的多态性在运行期，编译器无法知道运行期调用哪个代码，因此虚函数表现为多态性时（运行期）不可以内联。</li>
 <li>inline virtual 唯一可以内联的时候是：编译器知道所调用的对象是哪个类（如 Base::who()），这只有在编译器具有实际对象而不是对象的指针或引用时才会发生。</li>
 </ul>
-<h2 id="_5">构造函数/析构函数</h2>
+<h2 id="_5">构造函数/析构函数<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>构造函数和析构函数，分别对应变量的初始化和清理，变量没有初始化，使用后果未知；没有清理，则会内存管理出现安全问题。
 当对象结束其生命周期，如对象所在的函数已调用完毕时，系统会自动执行析构函数</p>
 <blockquote>
@@ -973,7 +974,7 @@
 <li>析构函数
     * 如果一个类中有指针，且在使用的过程中动态的申请了内存，那么最好自定义析构函数，在销毁类之前，释放掉申请的内存空间，避免内存泄漏 </li>
 </ul>
-<h2 id="_6">拷贝构造函数与深浅拷贝</h2>
+<h2 id="_6">拷贝构造函数与深浅拷贝<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>拷贝构造函数的参数必须加const，因为防止修改，本来就是用现有的对象初始化新的对象。</p>
 <ul>
 <li>拷贝构造函数的使用时机
@@ -989,7 +990,7 @@
     * <strong>深拷贝</strong>：自定义拷贝构造函数，在堆内存中另外申请空间来储存数据，从而解决指针悬挂的问题。<strong>需要注意自定义析构函数中应该释放掉申请的内存</strong> </li>
 </ul>
 <p>我们在定义类或者结构体，这些结构的时候，最后都重写拷贝函数，避免浅拷贝这类不易发现但后果严重的错误产生</p>
-<h2 id="_7">只在堆上/栈上创建对象</h2>
+<h2 id="_7">只在堆上/栈上创建对象<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li><strong>只能在堆上生成对象：将析构函数设置为私有。</strong>
@@ -999,7 +1000,7 @@
 将new操作设置为私有，那么第一阶段就无法完成，就不能够再堆上生成对象。</li>
 </ul>
 </blockquote>
-<h2 id="this">this指针</h2>
+<h2 id="this">this指针<a class="headerlink" href="#this" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>为什么会有this指针</strong>
 在类实例化对象时，只有非静态成员变量属于对象本身，剩余的静态成员变量，静态函数，非静态函数都不属于对象本身，因此非静态成员函数只会实例一份，多个同类型对象会共用一块代码，由于类中每个实例后的对象都有独一无二的地址，因此不同的实例对象调用成员函数时，函数需要知道是谁在调用它，因此引入了this指针。</li>
@@ -1011,14 +1012,14 @@ this指针是隐含在对象成员函数内的一种指针。当一个对象被�
     * 当形参与成员变量名相同时，用this指针来区分
     * 为实现对象的链式引用，在类的非静态成员函数中返回对象本身，可以用return <em>this，this指向对象，/</em>this表示对象本身。 </li>
 </ul>
-<h2 id="_8">常函数和常对象</h2>
+<h2 id="_8">常函数和常对象<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p><code>void func() const //常函数，此处func为类成员函数</code>
 <code>const Person p2; //常对象</code></p>
 <ul>
 <li>常函数修饰的是this指针，不允许修改this指针指向的值，如果执意要修改常函数，可以在成员属性前加<strong>mutable</strong>。</li>
 <li>常对象不允许修改属性，不可以调用普通成员函数，可以调用常函数。</li>
 </ul>
-<h2 id="delete-this">delete this合法吗</h2>
+<h2 id="delete-this">delete this合法吗<a class="headerlink" href="#delete-this" title="Permanent link">&para;</a></h2>
 <p>合法，但有前提：</p>
 <ul>
 <li>必须保证 this 对象是通过 new（不是 new[]、不是 placement new、不是栈上、不是全局、不是其他对象成员）分配的</li>
@@ -1026,9 +1027,9 @@ this指针是隐含在对象成员函数内的一种指针。当一个对象被�
 <li>必须保证成员函数的 delete this 后面没有调用 this 了</li>
 <li>必须保证 delete this 后没有人使用了</li>
 </ul>
-<h2 id="0">为什么空类大小不为0</h2>
+<h2 id="0">为什么空类大小不为0<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
 <p>sizeof(空class) = 1，为了确保两个不同对象的地址不同。</p>
-<h2 id="_9">静态成员变量与静态成员函数</h2>
+<h2 id="_9">静态成员变量与静态成员函数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>若将成员变量声明为static，则为静态成员变量，与一般的成员变量不同，无论建立多少对象，都只有一个静态成员变量的拷贝，静态成员变量属于一个类，所有对象共享。静态变量在编译阶段就分配了空间，对象还没创建时就已经分配了空间，放到全局静态区。</p>
 <ul>
 <li>静态成员变量
@@ -1041,7 +1042,7 @@ this指针是隐含在对象成员函数内的一种指针。当一个对象被�
     * 普通成员函数可以访问普通成员变量，也可以访问静态成员变量
     * 静态成员函数没有this指针。非静态数据成员为对象单独维护，但静态成员函数为共享函数，无法区分是哪个对象，因此不能直接访问普通变量成员，也没有this指针。</li>
 </ul>
-<h2 id="_10">初始化列表的好处和使用条件</h2>
+<h2 id="_10">初始化列表的好处和使用条件<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ul>
 <li>初始化列表的使用条件
     * const类型的数据
@@ -1050,9 +1051,9 @@ this指针是隐含在对象成员函数内的一种指针。当一个对象被�
     * 初始化是直接初始化成员
     * 赋值是初始化再赋值</li>
 </ul>
-<h2 id="_11">能否通过初始化列表初始化静态成员变量</h2>
+<h2 id="_11">能否通过初始化列表初始化静态成员变量<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>不能，静态成员变量最好类内声明，类外初始化.静态成员是单独存储的，并不是对象的组成部分。如果在类的内部进行定义，在建立多个对象时会多次声明和定义该变量的存储位置。在名字空间和作用域相同的情况下会导致重名的问题。</p>
-<h2 id="_12"><a href="https://www.cnblogs.com/qinguoyi/p/10254263.html">友元全局函数、友元类、友元成员函数</a></h2>
+<h2 id="_12"><a href="https://www.cnblogs.com/qinguoyi/p/10254263.html">友元全局函数、友元类、友元成员函数</a><a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p>友元主要是为了访问类中的私有成员（包括属性和方法），会破坏C++的封装性，尽量不使用</p>
 <ul>
 <li>友元全局函数
@@ -1068,93 +1069,95 @@ this指针是隐含在对象成员函数内的一种指针。当一个对象被�
 <li>友元成员函数
     * 使类B中的成员函数成为类A的友元函数，这样类B的该成员函数就可以访问类A的所有成员</li>
 </ul>
-<h2 id="_13">运算符重载及++重载实现</h2>
-<h3 id="_14">运算符重载基本属性</h3>
+<h2 id="_13">运算符重载及++重载实现<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="_14">运算符重载基本属性<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <ul>
 <li>运算符重载的目的是扩展C++中提供的运算符的适用范围，使之能作用于对象，或自定义的数据类型</li>
 <li>运算符重载的实质是函数重载，可以重载为普通成员函数，也可以重载为成员函数</li>
 <li>运算符重载也是多态的一种，和函数重载称为静态多态，表示函数地址早绑定，在编译阶段就确定好了地址</li>
 </ul>
-<h3 id="_15">运算符重载总结</h3>
+<h3 id="_15">运算符重载总结<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
 <ul>
 <li>重载运算符()，[] ，-&gt;， =的时候，运算符重载函数必须声明为类的成员函数</li>
 <li>重载运算符&lt;&lt;，&gt;&gt;的时候，运算符只能通过全局函数配合友元函数进行重载</li>
 <li>不要重载&amp;&amp;和||运算符，因为无法实现短路原则。</li>
 </ul>
-<h3 id="ii">i++和++i实现</h3>
+<h3 id="ii">i++和++i实现<a class="headerlink" href="#ii" title="Permanent link">&para;</a></h3>
 <p>C++内置类型的后置++返回的是变量的拷贝，也就是不可修改的值；前置++返回的是变量的引用，因此可以作为修改的左值。即++（++a）或（++a）++都可以，但++（a++）不可以，（C++默认必须修改a的值，如果不修改则报错）。</p>
-<pre><code class="C++">//++i
-int&amp;  int::operator++()
-{
-    *this +=1；
-    return *this；
-}
+<div class="codehilite"><pre><span></span><span class="c1">//++i</span>
+<span class="kt">int</span><span class="o">&amp;</span>  <span class="kt">int</span><span class="o">::</span><span class="k">operator</span><span class="o">++</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">*</span><span class="k">this</span> <span class="o">+=</span><span class="mi">1</span><span class="err">；</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="err">；</span>
+<span class="p">}</span>
 
-//i++，注意后置++有占位参数以区分跟前置++不同
-const int  int::operator++(int)
-{
-    int oldValue = *this；
-    ++（*this）；
-    return oldValue；
-}
-</code></pre>
+<span class="c1">//i++，注意后置++有占位参数以区分跟前置++不同</span>
+<span class="k">const</span> <span class="kt">int</span>  <span class="kt">int</span><span class="o">::</span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="o">*</span><span class="k">this</span><span class="err">；</span>
+    <span class="o">++</span><span class="err">（</span><span class="o">*</span><span class="k">this</span><span class="err">）；</span>
+    <span class="k">return</span> <span class="n">oldValue</span><span class="err">；</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="_16"><a href="https://www.cnblogs.com/qinguoyi/p/10277350.html">继承方式、对象模型、同名处理</a></h2>
+
+<h2 id="_16"><a href="https://www.cnblogs.com/qinguoyi/p/10277350.html">继承方式、对象模型、同名处理</a><a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <p>继承主要是为了减少代码的重复内容，解决代码复用问题。通过抽象出一个基类（父类），将重复代码写到基类中，在派生类（子类）中实现不同的方法。</p>
-<h3 id="_17">继承方式</h3>
+<h3 id="_17">继承方式<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
 <ul>
 <li>公有继承：保持父类中的访问属性</li>
 <li>私有继承：将父类中的所有访问属性改为private</li>
 <li>保护继承：除父类中的私有属性，其他改为保护属性</li>
 </ul>
-<h3 id="_18">继承的对象模型</h3>
+<h3 id="_18">继承的对象模型<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
 <ul>
 <li>子类中会继承父类的私有成员，只是被编译器隐藏起来了，无法访问到，通过sizeof(子类class)可以检查出。</li>
 <li>子类创建对象时，先调用父类的构造函数，然后再调用自身的构造，析构顺序与构造顺序相反
     * 由于继承中父类和子类的构造、析构顺序原因，当父类中只提供了有参构造（默认构造等函数会被隐藏），而子类仅仅调用默认构造时，会因为子类创建对象时无法调用父类构造函数而报错，这里可以让子类利用初始化列表来显式调用父类有参构造函数来进行父类构造，然后进行子类构造。 </li>
 <li>子类会继承父类的成员属性和成员函数，但子类不会继承父类构造函数和析构函数</li>
 </ul>
-<h3 id="_19">继承中的同名处理</h3>
+<h3 id="_19">继承中的同名处理<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
 <ul>
 <li>父类和子类<strong>成员属性</strong>同名，用子类声明对象调用子类属性，若想调用父类成员，则加上父类的作用域</li>
 <li>父类和子类<strong>成员函数</strong>同名，子类函数不会覆盖父类的成员，只是隐藏起来，用子类声明对象调用子类成员函数，若想调用父类函数（包括重载），则加上父类的作用域</li>
 <li>若子类中没有与父类同名的成员函数，子类声明对象后，可以直接调用父类成员函数。</li>
 </ul>
-<h2 id="_20"><a href="https://www.cnblogs.com/qinguoyi/p/10277350.html">多继承和菱形继承</a></h2>
-<h3 id="_21">多继承</h3>
+<h2 id="_20"><a href="https://www.cnblogs.com/qinguoyi/p/10277350.html">多继承和菱形继承</a><a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<h3 id="_21">多继承<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
 <p>多继承会产生二义性的问题。如果继承的多个父类中有同名的成员属性和成员函数，在子类调用时，需要指定作用域从而确定父类。</p>
-<h3 id="_22">菱形继承</h3>
+<h3 id="_22">菱形继承<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
 <p>两个子类继承于同一个父类，同时又有另外一个类多继承于两个子类，这种继承称为菱形继承。比如羊和驼继承于动物类，同时羊驼继承于羊和驼。</p>
-<h4 id="_23">菱形继承会产生问题</h4>
+<h4 id="_23">菱形继承会产生问题<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>浪费空间。</strong>羊驼继承了两份动物类中的某些数据和函数，但只需要一份即可</li>
 <li><strong>二义性。从不同途径继承来的同名的数据成员在内存中有不同的拷贝造成数据不一致问题。</strong> 羊驼调用数据和函数时，会出现二义性，通过sheep类得到一个age，通过carmel类得到一个age，两个数据不会相互影响，相互修改，导致同一份数据不一致。</li>
 </ul>
-<h4 id="_24">解决菱形继承的问题</h4>
+<h4 id="_24">解决菱形继承的问题<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
 <p>使用虚继承，在<strong>继承方式前加virtual</strong>，这样的话羊驼可以直接访问m_Age，不用添加作用域，且这样操作的是共享的一份数据</p>
-<pre><code class="C++">class Animal{
-public:
-    int m_Age;
-};
-class Sheep:virtual public Animal{
-    int m_sheep;
-};
-class Camel :virtual public Animal{
-    int m_camel;
-};
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">m_Age</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">Sheep</span><span class="o">:</span><span class="k">virtual</span> <span class="k">public</span> <span class="n">Animal</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m_sheep</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">Camel</span> <span class="o">:</span><span class="k">virtual</span> <span class="k">public</span> <span class="n">Animal</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m_camel</span><span class="p">;</span>
+<span class="p">};</span>
 
-class Son :public Sheep, public Camel{
-    int m_son
-};
-void test01(){
-    Son son;
-    son.m_Age = 10;
-    cout &lt;&lt; sizeof(Animal) &lt;&lt; endl; //m_Age
-    cout &lt;&lt; sizeof(Sheep) &lt;&lt; endl;  //sheep-Vbptr,m_sheep,m_Age
-    cout &lt;&lt; sizeof(Camel) &lt;&lt; endl;  //camel-Vbptr,m_camel,m_Age
-    cout &lt;&lt; sizeof(Son) &lt;&lt; endl;    //sheep-Vbptr,m_sheep,camel-Vbptr,m_camel,m_son,m_Age
-}
-</code></pre>
+<span class="k">class</span> <span class="nc">Son</span> <span class="o">:</span><span class="k">public</span> <span class="n">Sheep</span><span class="p">,</span> <span class="k">public</span> <span class="n">Camel</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m_son</span>
+<span class="p">};</span>
+<span class="kt">void</span> <span class="nf">test01</span><span class="p">(){</span>
+    <span class="n">Son</span> <span class="n">son</span><span class="p">;</span>
+    <span class="n">son</span><span class="p">.</span><span class="n">m_Age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Animal</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//m_Age</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Sheep</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">//sheep-Vbptr,m_sheep,m_Age</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Camel</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">//camel-Vbptr,m_camel,m_Age</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Son</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>    <span class="c1">//sheep-Vbptr,m_sheep,camel-Vbptr,m_camel,m_son,m_Age</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <div align=center><img width="640" height="450" src="https://github.com/twomonkeyclub/BackEnd/blob/master/%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/utils/%E5%A4%9A%E8%99%9A%E7%BB%A7%E6%89%BF.png"/></div>
 
@@ -1166,29 +1169,30 @@ void test01(){
 <li>Son中包含了两个指针和四个int类型，所以大小为24。</li>
 </ul>
 </blockquote>
-<pre><code class="C++">class Animal{
-public:
-    int m_Age;
-};
-class Sheep:virtual public Animal{
-    int m_sheep;
-};
-class Camel :virtual public Animal{
-    int m_camel;
-};
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">m_Age</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">Sheep</span><span class="o">:</span><span class="k">virtual</span> <span class="k">public</span> <span class="n">Animal</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m_sheep</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">Camel</span> <span class="o">:</span><span class="k">virtual</span> <span class="k">public</span> <span class="n">Animal</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m_camel</span><span class="p">;</span>
+<span class="p">};</span>
 
-class Son :virtual public Sheep, virtual public Camel{
-    int m_son
-};
-void test01(){
-    Son son;
-    son.m_Age = 10;
-    cout &lt;&lt; sizeof(Animal) &lt;&lt; endl; //m_Age
-    cout &lt;&lt; sizeof(Sheep) &lt;&lt; endl;  //sheep-Vbptr,m_sheep,m_Age
-    cout &lt;&lt; sizeof(Camel) &lt;&lt; endl;  //camel-Vbptr,m_camel,m_Age
-    cout &lt;&lt; sizeof(Son) &lt;&lt; endl;    //son-vbptr,m_son,m_Age,sheep-Vbptr,m_sheep,camel-Vbptr,m_camel,
-}
-</code></pre>
+<span class="k">class</span> <span class="nc">Son</span> <span class="o">:</span><span class="k">virtual</span> <span class="k">public</span> <span class="n">Sheep</span><span class="p">,</span> <span class="k">virtual</span> <span class="k">public</span> <span class="n">Camel</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m_son</span>
+<span class="p">};</span>
+<span class="kt">void</span> <span class="nf">test01</span><span class="p">(){</span>
+    <span class="n">Son</span> <span class="n">son</span><span class="p">;</span>
+    <span class="n">son</span><span class="p">.</span><span class="n">m_Age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Animal</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//m_Age</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Sheep</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">//sheep-Vbptr,m_sheep,m_Age</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Camel</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">//camel-Vbptr,m_camel,m_Age</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Son</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>    <span class="c1">//son-vbptr,m_son,m_Age,sheep-Vbptr,m_sheep,camel-Vbptr,m_camel,</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <div align=center><img width="640" height="600" src="https://github.com/twomonkeyclub/BackEnd/blob/master/%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/utils/%E8%8F%B1%E5%BD%A2%E7%BB%A7%E6%89%BF.png"/></div>
 
@@ -1206,39 +1210,40 @@ void test01(){
     * 虚继承不用像普通多继承那样维持着公共基类（虚基类）的两份同样的拷贝，节省了存储空间。
     * 虚基类表本质是一个<strong>整型数组</strong></li>
 </ul>
-<h2 id="_25">静态函数可以是虚函数吗</h2>
+<h2 id="_25">静态函数可以是虚函数吗<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
 <p>不可以，因为虚函数属于对象，不属于类，静态函数属于类</p>
-<h2 id="_26">类型兼容性原则 为什么会有多态</h2>
+<h2 id="_26">类型兼容性原则 为什么会有多态<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h2>
 <p>类型兼容规则是指在需要基类对象的任何地方，都可以使用公有派生类的对象来替代,如使用子类对象可以直接赋值给父类对象或子类对象可以直接初始化父类对象时，<strong>对于同样的一条语句，不管传入子类还是父类对象，都是调用的父类函数，但我们想实现的是同样的一条语句，传入不同的对象，调用不同的函数</strong>.</p>
-<pre><code class="C++">class Animal{
-public:
-    void speak(){
-        cout &lt;&lt; &quot;Animal speak&quot; &lt;&lt; endl;
-    }
-};
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">speak</span><span class="p">(){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Animal speak&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 
-class Sheep :public Animal{
-public:
-    void speak(){ //重定义，子类重新定义父类中有相同名称的非虚函数 
-        cout &lt;&lt; &quot;Sheep speak&quot; &lt;&lt; endl;
-    }
-};
+<span class="k">class</span> <span class="nc">Sheep</span> <span class="o">:</span><span class="k">public</span> <span class="n">Animal</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">speak</span><span class="p">(){</span> <span class="c1">//重定义，子类重新定义父类中有相同名称的非虚函数 </span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Sheep speak&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 
-void doSpeak(Animal &amp;animal){
-    animal.speak();
-}
+<span class="kt">void</span> <span class="nf">doSpeak</span><span class="p">(</span><span class="n">Animal</span> <span class="o">&amp;</span><span class="n">animal</span><span class="p">){</span>
+    <span class="n">animal</span><span class="p">.</span><span class="n">speak</span><span class="p">();</span>
+<span class="p">}</span>
 
-//想通过父类引用指向子类对象
-void test01(){
-    Sheep sheep;
-    doSpeak(sheep); //Animal speak;
-    sheep.speak();  //sheep speak
-    sheep.Animal::speak();  //Animal speak; //继承中的重定义可以通过作用域
-}
-</code></pre>
+<span class="c1">//想通过父类引用指向子类对象</span>
+<span class="kt">void</span> <span class="nf">test01</span><span class="p">(){</span>
+    <span class="n">Sheep</span> <span class="n">sheep</span><span class="p">;</span>
+    <span class="n">doSpeak</span><span class="p">(</span><span class="n">sheep</span><span class="p">);</span> <span class="c1">//Animal speak;</span>
+    <span class="n">sheep</span><span class="p">.</span><span class="n">speak</span><span class="p">();</span>  <span class="c1">//sheep speak</span>
+    <span class="n">sheep</span><span class="p">.</span><span class="n">Animal</span><span class="o">::</span><span class="n">speak</span><span class="p">();</span>  <span class="c1">//Animal speak; //继承中的重定义可以通过作用域</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>但我们想<strong>传入子类对象调用子类函数，传入父类对象调用父类函数</strong>，即同样的调用语句有多种不同的表现形态，这样就出现了<strong>多态</strong></p>
-<h2 id="_27">重载、覆盖、重写</h2>
+<h2 id="_27">重载、覆盖、重写<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h2>
 <ul>
 <li>重载(overload)：是函数名相同，参数列表不同。重载只是在同一个类的内部存在，但是不能靠返回类型来判断</li>
 <li>覆盖(override)：子类重新定义父类中有相同名称和参数的虚函数。两者的函数特征相同。
@@ -1247,7 +1252,7 @@ void test01(){
     * 重写函数的访问权限可以不同。尽管virtual是private的，子类中重写改写为public,protected也是可以的。 </li>
 <li>重写(overwrite)：也叫做隐藏。子类重新定义父类中有相同名称的非虚函数 ( 参数列表可以不同 ) 。如果一个类，存在和父类相同的函数，那么，这个类将会隐藏其父类的方法，除非你在调用的时候，强制转换为父类类型或加上父类作用域</li>
 </ul>
-<h2 id="_28">多态实现的基础</h2>
+<h2 id="_28">多态实现的基础<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li>继承</li>
@@ -1255,64 +1260,65 @@ void test01(){
 <li>父类指针或引用指向子类对象访问虚函数</li>
 </ul>
 </blockquote>
-<pre><code class="C++">class Animal{
-public:
-    virtual  void speak(){ //在父类中声明虚函数，可以实现多态，动态联编
-        cout &lt;&lt; &quot;Animal speak&quot; &lt;&lt; endl;
-    }
-    int m_age = 0;
-};
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span>  <span class="kt">void</span> <span class="n">speak</span><span class="p">(){</span> <span class="c1">//在父类中声明虚函数，可以实现多态，动态联编</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Animal speak&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">m_age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
 
-class Sheep :public Animal{
-public:
-    void speak(){ //发生多态时，子类对父类中的成员函数进行重写，virtual可写可不写
-        cout &lt;&lt; &quot;Sheep speak&quot; &lt;&lt; endl;
-    }
-    int m_age = 1;
-};
+<span class="k">class</span> <span class="nc">Sheep</span> <span class="o">:</span><span class="k">public</span> <span class="n">Animal</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">speak</span><span class="p">(){</span> <span class="c1">//发生多态时，子类对父类中的成员函数进行重写，virtual可写可不写</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Sheep speak&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">m_age</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">};</span>
 
-void doSpeak(Animal &amp;animal){
-    animal.speak();
-}
+<span class="kt">void</span> <span class="nf">doSpeak</span><span class="p">(</span><span class="n">Animal</span> <span class="o">&amp;</span><span class="n">animal</span><span class="p">){</span>
+    <span class="n">animal</span><span class="p">.</span><span class="n">speak</span><span class="p">();</span>
+<span class="p">}</span>
 
-void test01(){
-    //传入子类对象调用子类成员函数
-    Sheep sheep;
-    doSpeak(sheep); //sheep speak;
+<span class="kt">void</span> <span class="nf">test01</span><span class="p">(){</span>
+    <span class="c1">//传入子类对象调用子类成员函数</span>
+    <span class="n">Sheep</span> <span class="n">sheep</span><span class="p">;</span>
+    <span class="n">doSpeak</span><span class="p">(</span><span class="n">sheep</span><span class="p">);</span> <span class="c1">//sheep speak;</span>
 
-    //子类对象直接调用子类成员函数
-    sheep.speak();  //sheep speak;
+    <span class="c1">//子类对象直接调用子类成员函数</span>
+    <span class="n">sheep</span><span class="p">.</span><span class="n">speak</span><span class="p">();</span>  <span class="c1">//sheep speak;</span>
 
-    //子类对象通过作用域调用父类成员函数
-    sheep.Animal::speak();  //animal speak;
+    <span class="c1">//子类对象通过作用域调用父类成员函数</span>
+    <span class="n">sheep</span><span class="p">.</span><span class="n">Animal</span><span class="o">::</span><span class="n">speak</span><span class="p">();</span>  <span class="c1">//animal speak;</span>
 
-    //基类成员不能转换为子类成员，即不能向下转换
-    //Animal *animal0 = new Animal();
-    //Sheep * sheep0 = animal0;
-    //sheep0-&gt;speak();
+    <span class="c1">//基类成员不能转换为子类成员，即不能向下转换</span>
+    <span class="c1">//Animal *animal0 = new Animal();</span>
+    <span class="c1">//Sheep * sheep0 = animal0;</span>
+    <span class="c1">//sheep0-&gt;speak();</span>
 
-    //同样不能向下转换
-    //Animal animal0;
-    //Sheep sheep0 = animal0;
+    <span class="c1">//同样不能向下转换</span>
+    <span class="c1">//Animal animal0;</span>
+    <span class="c1">//Sheep sheep0 = animal0;</span>
 
-    //父类指针指向子类对象
-    Sheep *sheep1 = new Sheep();
-    Animal *animal1 = sheep1;
-    animal1-&gt;speak(); //sheep speak;
+    <span class="c1">//父类指针指向子类对象</span>
+    <span class="n">Sheep</span> <span class="o">*</span><span class="n">sheep1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Sheep</span><span class="p">();</span>
+    <span class="n">Animal</span> <span class="o">*</span><span class="n">animal1</span> <span class="o">=</span> <span class="n">sheep1</span><span class="p">;</span>
+    <span class="n">animal1</span><span class="o">-&gt;</span><span class="n">speak</span><span class="p">();</span> <span class="c1">//sheep speak;</span>
 
-    //父类引用指向子类对象
-    Sheep sheep2;
-    Animal &amp;animal2 = sheep2;
-    animal2.speak();    //sheep speak;
+    <span class="c1">//父类引用指向子类对象</span>
+    <span class="n">Sheep</span> <span class="n">sheep2</span><span class="p">;</span>
+    <span class="n">Animal</span> <span class="o">&amp;</span><span class="n">animal2</span> <span class="o">=</span> <span class="n">sheep2</span><span class="p">;</span>
+    <span class="n">animal2</span><span class="p">.</span><span class="n">speak</span><span class="p">();</span>    <span class="c1">//sheep speak;</span>
 
-    //子类对象直接赋值给父类对象，不符合多态条件，符合类型兼容性原则
-    Sheep sheep0;
-    Animal animal0 = sheep0;
-    animal0.speak();    //animal speak;
-}
-</code></pre>
+    <span class="c1">//子类对象直接赋值给父类对象，不符合多态条件，符合类型兼容性原则</span>
+    <span class="n">Sheep</span> <span class="n">sheep0</span><span class="p">;</span>
+    <span class="n">Animal</span> <span class="n">animal0</span> <span class="o">=</span> <span class="n">sheep0</span><span class="p">;</span>
+    <span class="n">animal0</span><span class="p">.</span><span class="n">speak</span><span class="p">();</span>    <span class="c1">//animal speak;</span>
+<span class="p">}</span>
+</pre></div>
 
-<h2 id="_29">静态多态和动态多态</h2>
+
+<h2 id="_29">静态多态和动态多态<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li>静态多态（运算符重载、函数重载）</li>
@@ -1320,7 +1326,7 @@ void test01(){
 </ul>
 </blockquote>
 <p>两者主要的区别：函数地址是早绑定（静态联编）还是晚绑定（动态联编）。即，在编译阶段确定好地址还是在运行时才确定地址。</p>
-<h2 id="_30">虚函数指针和虚函数表</h2>
+<h2 id="_30">虚函数指针和虚函数表<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li>前提发生了多态，每个类中都有虚函数表，最开始的父类创建虚函数表，后面的子类继承父类的虚函数表，然后对虚函数重写</li>
@@ -1331,7 +1337,7 @@ void test01(){
 <li>编译器根本不会去区分，传进来的是子类对象还是父类对象，而是关心调用的函数是否为虚函数。如果是虚函数，就根据不同对象的vptr指针找属于自己的函数。父类对象和子类对象都有vfptr指针，传入对象不同，编译器会根据vfptr指针，到属于自己虚函数表中找自己的函数。即：vptr---&gt;虚函数表------&gt;函数的入口地址，从而实现了迟绑定(在运行的时候，才会去判断)。</li>
 </ul>
 </blockquote>
-<h2 id="_31"><a href="https://www.cnblogs.com/qinguoyi/p/10198019.html">函数指针与指针函数</a></h2>
+<h2 id="_31"><a href="https://www.cnblogs.com/qinguoyi/p/10198019.html">函数指针与指针函数</a><a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
 <ul>
 <li>指针函数<code>int* f(int x, int y)</code>本质是函数，返回值为指针，函数指针<code>int (*f)(int x)</code>本质是指针，指向函数的指针</li>
 </ul>
@@ -1341,21 +1347,22 @@ void test01(){
 <ul>
 <li>函数名代表函数的入口地址，同样的，我们可以通过根据该地址进行函数调用，而非直接调用函数名。</li>
 </ul>
-<pre><code class="C++">void test001(){
-    printf(&quot;hello, world&quot;);
-}
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">test001</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello, world&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 
-int main(){
-    void(*myfunc)() = test001;//将函数写成函数指针
-    myfunc(); //调用函数指针 hello world
-}
-</code></pre>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="n">myfunc</span><span class="p">)()</span> <span class="o">=</span> <span class="n">test001</span><span class="p">;</span><span class="c1">//将函数写成函数指针</span>
+    <span class="n">myfunc</span><span class="p">();</span> <span class="c1">//调用函数指针 hello world</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>test001的函数名与myfunc函数指针都是一样的，即都是函数指针。test001函数名是一个函数指针常量，而myfunc是一个函数指针变量，这是它们的关系。</p>
 <ul>
 <li>函数指针多用于回调函数，回调函数最大的优势在于灵活操作，可以实现用户定制的函数，降低耦合性，实现多样性，如STL中</li>
 </ul>
-<h2 id="_32">怎么理解多态和虚函数</h2>
+<h2 id="_32">怎么理解多态和虚函数<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h2>
 <ul>
 <li>多态的实现主要分为静态多态和动态多态，静态多态主要是重载，在编译的时候就已经确定；动态多态是用虚函数机制实现的，在运行期间动态绑定。</li>
 </ul>
@@ -1363,7 +1370,7 @@ int main(){
 <li>举个例子：一个父类类型的指针指向一个子类对象时候，使用父类的指针去调用子类中重写了的父类中的虚函数的时候，会调用子类重写过后的函数</li>
 </ul>
 <p>虚函数的实现：在有虚函数的类中，类的最开始部分是一个虚函数表的指针，这个指针指向一个虚函数表，表中放了虚函数的地址，实际的虚函数在代码段(.text)中。当子类继承了父类的时候也会继承其虚函数表，当子类重写父类中虚函数时候，会将其继承到的虚函数表中的地址替换为重新写的函数地址。使用了虚函数，会增加访问内存开销，降低效率。</p>
-<h2 id="_33">构造函数能否实现多态/虚函数指针什么时候初始化</h2>
+<h2 id="_33">构造函数能否实现多态/虚函数指针什么时候初始化<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h2>
 <p>两个问题本质是一样的，构造函数不能实现多态</p>
 <ul>
 <li>对象在创建时,由编译器对VPTR指针进行初始化，只有当对象的构造完全结束后VPTR的指向才最终确定。</li>
@@ -1372,9 +1379,9 @@ int main(){
 <li>子类中虚函数指针的初始化过程
 当定义一个子类对象的时候比较麻烦，因为构造子类对象的时候会首先调用父类的构造函数然后再调用子类的构造函数。当调用父类的构造函数的时候，此时会创建Vptr指针，该指针会指向父类的虚函数表；然后再调用子类的构造函数，子类继承父类的虚函数指针，此时Vptr又被赋值指向子类的虚函数表。 </li>
 </ul>
-<h2 id="_34">构造函数能否是虚函数</h2>
+<h2 id="_34">构造函数能否是虚函数<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h2>
 <p>不能，因为在调用构造函数时，虚表指针并没有在对象的内存空间中，必须要构造函数调用完成后才会形成虚表指针</p>
-<h2 id="_35">抽象类和纯虚函数</h2>
+<h2 id="_35">抽象类和纯虚函数<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h2>
 <p>在程序设计中，如果仅仅为了设计一些虚函数接口，打算在子类中对其进行重写，那么不需要在父类中对虚函数的函数体提供无意义的代码，可以通过纯虚函数满足需求。</p>
 <ul>
 <li>纯虚函数的语法格式：<code>virtual 返回值类型 函数名 () = 0;</code>只需要将函数体完全替换为 =0即可，<strong>纯虚函数必须在子类中进行实现</strong>，在子类外实现是无效的。</li>
@@ -1384,7 +1391,7 @@ int main(){
     * 如果父类中出现了一个纯虚函数，则这个类变为了抽象类，抽象类不可实例对象
     * 如果父类为抽象类，子类继承父类后，必须实现父类所有的纯虚函数，否则子类也为抽象类，也无法实例对象<strong>但纯虚析构函数例外，因为子类不会继承父类的析构函数</strong></li>
 </ul>
-<h2 id="_36">虚析构和纯虚析构</h2>
+<h2 id="_36">虚析构和纯虚析构<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li>仅仅发生继承时，创建子类对象后销毁，函数调用流程为：父类构造函数-&gt;子类构造函数-&gt;子类析构函数-&gt;父类析构函数；</li>
@@ -1398,11 +1405,11 @@ int main(){
     * 纯虚析构也是虚函数，该类也为抽象类
     * 子类不会继承父类的析构函数，当父类纯虚析构没有实现时，子类不是抽象类，可以创建创建对象。</li>
 </ul>
-<h2 id="_37">为什么析构函数必须是虚函数</h2>
+<h2 id="_37">为什么析构函数必须是虚函数<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h2>
 <p>因为当发生多态时，父类指针在堆上创建子类对象，销毁时会内存泄漏</p>
-<h2 id="c_1">为什么C++默认的析构函数不是虚函数</h2>
+<h2 id="c_1">为什么C++默认的析构函数不是虚函数<a class="headerlink" href="#c_1" title="Permanent link">&para;</a></h2>
 <p>因为虚函数需要额外的虚函数表和虚表指针，占用额外的内存。而对于不会被继承的类来说，其析构函数如果是虚函数，就会浪费内存 </p>
-<h2 id="_38">类模板和函数模板</h2>
+<h2 id="_38">类模板和函数模板<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h2>
 <p>通过template<class T>或template<typename T>实现，主要用于数据的类型参数化，简化代码，有类模板和函数模板，函数模板是用于生成函数的，类模板则是用于生成类的</p>
 <ul>
 <li>类模板和函数模板定义<blockquote>

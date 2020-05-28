@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《C++ STL》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aC++ STL\u300b";
     var mkdocs_page_input_path = "\u57fa\u7840\u8bed\u8a00\\STL.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u57fa\u7840\u8bed\u8a00/STL/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -864,7 +864,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="stl">STL</h1>
+                <h1 id="stl">STL<a class="headerlink" href="#stl" title="Permanent link">&para;</a></h1>
 <blockquote>
 <ul>
 <li><a href="#vector如何扩展内存和释放内存">vector如何扩展内存和释放内存</a></li>
@@ -876,7 +876,7 @@
 <li><a href="#vector的iterator和const_iterator和constiterator">vector的iterator和const_iterator和const iterator</a></li>
 </ul>
 </blockquote>
-<h2 id="vector"><a href="https://www.cnblogs.com/biyeymyhjob/archive/2012/09/12/2674004.html">vector如何扩展内存和释放内存</a></h2>
+<h2 id="vector"><a href="https://www.cnblogs.com/biyeymyhjob/archive/2012/09/12/2674004.html">vector如何扩展内存和释放内存</a><a class="headerlink" href="#vector" title="Permanent link">&para;</a></h2>
 <blockquote>
 <ul>
 <li>内存增长</li>
@@ -884,7 +884,7 @@
 <li>内存释放</li>
 </ul>
 </blockquote>
-<h2 id="_1">各种容器对比</h2>
+<h2 id="_1">各种容器对比<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -987,21 +987,21 @@
 </tr>
 </tbody>
 </table>
-<h2 id="stlswap"><a href="https://blog.csdn.net/ryfdizuo/article/details/6435847">STL中的swap函数</a></h2>
+<h2 id="stlswap"><a href="https://blog.csdn.net/ryfdizuo/article/details/6435847">STL中的swap函数</a><a class="headerlink" href="#stlswap" title="Permanent link">&para;</a></h2>
 <ul>
 <li>除了数组，其他容器在交换后本质上是将内存地址进行了交换，而元素本身在内存中的位置是没有变化</li>
 <li>swap在交换的时候并不是完全将2个容器的元素互换，而是交换了2个容器内的内存地址。</li>
 </ul>
-<h2 id="stl_1">STL中的哈希表扩容</h2>
+<h2 id="stl_1">STL中的哈希表扩容<a class="headerlink" href="#stl_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>这里需要知道STL中的swap底层，其实扩容也是vector扩容
     * 创建一个新桶，该桶是原来桶两倍大最接近的质数(判断n是不是质数的方法：用n除2到sqrt(n)范围内的数) ；
     * 将原来桶里的数通过指针的转换，插入到新桶中(注意STL这里做的很精细，没有直接将数据从旧桶遍历拷贝数据插入到新桶，而是通过指针转换两个桶的地址)
     * 通过swap函数将新桶和旧桶交换，销毁新桶</li>
 </ul>
-<h2 id="vector_1">vector删除元素后如何避免当前迭代器会失效</h2>
+<h2 id="vector_1">vector删除元素后如何避免当前迭代器会失效<a class="headerlink" href="#vector_1" title="Permanent link">&para;</a></h2>
 <p>删除时，将当前的迭代器存起来</p>
-<h2 id="stl_2">STL迭代器失效的情况和原因</h2>
+<h2 id="stl_2">STL迭代器失效的情况和原因<a class="headerlink" href="#stl_2" title="Permanent link">&para;</a></h2>
 <p>迭代器失效分三种情况考虑，也是分三种数据结构考虑，分别为数组型，链表型，树型数据结构。</p>
 <ul>
 <li>数组型数据结构
@@ -1009,16 +1009,17 @@
     * insert和erase操作，都会使得删除点和插入点之后的元素挪位置，所以，插入点和删除掉之后的迭代器全部失效，也就是说insert(<em>iter)(或erase(</em>iter))，然后在iter++，是没有意义的。
     * 解决方法：erase(*iter)的返回值是下一个有效迭代器的值。 <code>iter = cont.erase(iter);</code></li>
 </ul>
-<pre><code class="C++">//不要直接在循环条件中写++iter
-for (iter = cont.begin(); iter != cont.end();)
-{
-   (*it)-&gt;doSomething();
-   if (shouldDelete(*iter))
-      iter = cont.erase(iter);  //erase删除元素，返回下一个迭代器
-   else
-      ++iter;
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="c1">//不要直接在循环条件中写++iter</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">iter</span> <span class="o">=</span> <span class="n">cont</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">iter</span> <span class="o">!=</span> <span class="n">cont</span><span class="p">.</span><span class="n">end</span><span class="p">();)</span>
+<span class="p">{</span>
+   <span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">doSomething</span><span class="p">();</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">shouldDelete</span><span class="p">(</span><span class="o">*</span><span class="n">iter</span><span class="p">))</span>
+      <span class="n">iter</span> <span class="o">=</span> <span class="n">cont</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">iter</span><span class="p">);</span>  <span class="c1">//erase删除元素，返回下一个迭代器</span>
+   <span class="k">else</span>
+      <span class="o">++</span><span class="n">iter</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <ul>
 <li>链表型数据结构
@@ -1035,7 +1036,7 @@ for (iter = cont.begin(); iter != cont.end();)
     * <strong>erase迭代器只是被删元素的迭代器失效，但是返回值为void</strong>，所以要采用erase(iter++)的方式删除迭代器。</li>
 </ul>
 <p><strong>注意</strong> ：经过erase(iter)之后的迭代器完全失效，该迭代器iter不能参与任何运算，包括iter++,*ite</p>
-<h2 id="vectoriteratorconst_iteratorconst-iterator">vector的iterator和const_iterator和const iterator</h2>
+<h2 id="vectoriteratorconst_iteratorconst-iterator">vector的iterator和const_iterator和const iterator<a class="headerlink" href="#vectoriteratorconst_iteratorconst-iterator" title="Permanent link">&para;</a></h2>
 <ul>
 <li>三种的区别
     * iterator，可遍历，可改变所指元素 
@@ -1048,14 +1049,14 @@ for (iter = cont.begin(); iter != cont.end();)
         * 强制转换的函数会报错，只能通过 <code>advance(a, distance(a, b));</code> 其中，distance用于取得两个迭代器之间的距离，advance用于将一个迭代器移动指定的距离
         * 如果a是iterator，b是const_iterator，distance会报错，可以显式的指明distance调用的模板参数类型，从而避免编译器自己得出它们的类型</li>
 </ul>
-<pre><code class="C++">typedef deque&lt;int&gt; IntDeque;
-typedef IntDeque::iterator iter;
-typedef IntDeque::const_iterator ConstIter;
-IntDeque d;
-ConstIter ci;
-Iter i(d.begin());
-advance(i,distance&lt;ConstIter&gt;(i,ci)); 
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="k">typedef</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">IntDeque</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">IntDeque</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iter</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">IntDeque</span><span class="o">::</span><span class="n">const_iterator</span> <span class="n">ConstIter</span><span class="p">;</span>
+<span class="n">IntDeque</span> <span class="n">d</span><span class="p">;</span>
+<span class="n">ConstIter</span> <span class="n">ci</span><span class="p">;</span>
+<span class="n">Iter</span> <span class="nf">i</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">distance</span><span class="o">&lt;</span><span class="n">ConstIter</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">ci</span><span class="p">));</span> 
+</pre></div>
               
             </div>
           </div>

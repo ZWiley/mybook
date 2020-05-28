@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
   <title>代码阅读 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u4ee3\u7801\u9605\u8bfb";
     var mkdocs_page_input_path = "\u6e90\u7801\u9605\u8bfb_sourcecode\\go\\patrickmn_gocache\\read.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u6e90\u7801\u9605\u8bfb_sourcecode/go/patrickmn_gocache/read/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,78 +836,79 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">代码阅读</h1>
+                <h1 id="_1">代码阅读<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>https://github.com/patrickmn/go-cache</p>
-<pre><code class="sh">go get github.com/patrickmn/go-cache
-</code></pre>
+<div class="codehilite"><pre><span></span>go get github.com/patrickmn/go-cache
+</pre></div>
 
-<h1 id="_2">进程缓存使用场景</h1>
+
+<h1 id="_2">进程缓存使用场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p>除了使用 redis 等内存缓存之外，有时候还需要单机 cache 场景(不用和 redis server 进行网络请求了)。
 举一个例子就是像是微博这种服务，对于一些超高热点数据(比如某明星又出轨），缓存的 key 会集中在某台 redis
 上，很多个服务集中请求某台 redis 导致其压力过高。这个时候可以使用单机 cache，直接换存到服务进程内存中，连 redis
 不用请求了，同时将压力分散到多个服务上，缓解缓存服务器压力。这个是一个很典型的使用场景(需要保证一致性，一般是先从 redis
 拉过来再缓存到进程内存）。</p>
 <p>注意：该场景下不同机器的缓存不一致的问题。</p>
-<h1 id="go-cache">go-cache</h1>
+<h1 id="go-cache">go-cache<a class="headerlink" href="#go-cache" title="Permanent link">&para;</a></h1>
 <p>star 数量较高，也比较稳定了。实现了 goroutine 安全的 map[string]interface{}，包含超时。支持序列化到文件并且重新加载</p>
 <p>示例代码:</p>
-<pre><code class="go">import (
-    &quot;fmt&quot;
-    &quot;github.com/patrickmn/go-cache&quot;
-    &quot;time&quot;
-)
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;github.com/patrickmn/go-cache&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    // Create a cache with a default expiration time of 5 minutes, and which
-    // purges expired items every 10 minutes
-    c := cache.New(5*time.Minute, 10*time.Minute)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Create a cache with a default expiration time of 5 minutes, and which</span>
+    <span class="c1">// purges expired items every 10 minutes</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Minute</span><span class="p">)</span>
 
-    // Set the value of the key &quot;foo&quot; to &quot;bar&quot;, with the default expiration time
-    c.Set(&quot;foo&quot;, &quot;bar&quot;, cache.DefaultExpiration)
+    <span class="c1">// Set the value of the key &quot;foo&quot; to &quot;bar&quot;, with the default expiration time</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Set</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">DefaultExpiration</span><span class="p">)</span>
 
-    // Set the value of the key &quot;baz&quot; to 42, with no expiration time
-    // (the item won't be removed until it is re-set, or removed using
-    // c.Delete(&quot;baz&quot;)
-    c.Set(&quot;baz&quot;, 42, cache.NoExpiration)
+    <span class="c1">// Set the value of the key &quot;baz&quot; to 42, with no expiration time</span>
+    <span class="c1">// (the item won&#39;t be removed until it is re-set, or removed using</span>
+    <span class="c1">// c.Delete(&quot;baz&quot;)</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Set</span><span class="p">(</span><span class="s">&quot;baz&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">NoExpiration</span><span class="p">)</span>
 
-    // Get the string associated with the key &quot;foo&quot; from the cache
-    foo, found := c.Get(&quot;foo&quot;)
-    if found {
-        fmt.Println(foo)
-    }
+    <span class="c1">// Get the string associated with the key &quot;foo&quot; from the cache</span>
+    <span class="nx">foo</span><span class="p">,</span> <span class="nx">found</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">found</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    // Since Go is statically typed, and cache values can be anything, type
-    // assertion is needed when values are being passed to functions that don't
-    // take arbitrary types, (i.e. interface{}). The simplest way to do this for
-    // values which will only be used once--e.g. for passing to another
-    // function--is:
-    foo, found := c.Get(&quot;foo&quot;)
-    if found {
-        MyFunction(foo.(string))
-    }
+    <span class="c1">// Since Go is statically typed, and cache values can be anything, type</span>
+    <span class="c1">// assertion is needed when values are being passed to functions that don&#39;t</span>
+    <span class="c1">// take arbitrary types, (i.e. interface{}). The simplest way to do this for</span>
+    <span class="c1">// values which will only be used once--e.g. for passing to another</span>
+    <span class="c1">// function--is:</span>
+    <span class="nx">foo</span><span class="p">,</span> <span class="nx">found</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">found</span> <span class="p">{</span>
+        <span class="nx">MyFunction</span><span class="p">(</span><span class="nx">foo</span><span class="p">.(</span><span class="kt">string</span><span class="p">))</span>
+    <span class="p">}</span>
 
-    // This gets tedious if the value is used several times in the same function.
-    // You might do either of the following instead:
-    if x, found := c.Get(&quot;foo&quot;); found {
-        foo := x.(string)
-        // ...
-    }
-    // or
-    var foo string
-    if x, found := c.Get(&quot;foo&quot;); found {
-        foo = x.(string)
-    }
-    // ...
-    // foo can then be passed around freely as a string
+    <span class="c1">// This gets tedious if the value is used several times in the same function.</span>
+    <span class="c1">// You might do either of the following instead:</span>
+    <span class="k">if</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">found</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span> <span class="nx">found</span> <span class="p">{</span>
+        <span class="nx">foo</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">.(</span><span class="kt">string</span><span class="p">)</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    <span class="c1">// or</span>
+    <span class="kd">var</span> <span class="nx">foo</span> <span class="kt">string</span>
+    <span class="k">if</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">found</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span> <span class="nx">found</span> <span class="p">{</span>
+        <span class="nx">foo</span> <span class="p">=</span> <span class="nx">x</span><span class="p">.(</span><span class="kt">string</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// foo can then be passed around freely as a string</span>
 
-    // Want performance? Store pointers!
-    c.Set(&quot;foo&quot;, &amp;MyStruct, cache.DefaultExpiration)
-    if x, found := c.Get(&quot;foo&quot;); found {
-        foo := x.(*MyStruct)
-            // ...
-    }
-}
-</code></pre>
+    <span class="c1">// Want performance? Store pointers!</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Set</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">MyStruct</span><span class="p">,</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">DefaultExpiration</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">found</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span> <span class="nx">found</span> <span class="p">{</span>
+        <span class="nx">foo</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">.(</span><span class="o">*</span><span class="nx">MyStruct</span><span class="p">)</span>
+            <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
               
             </div>
           </div>

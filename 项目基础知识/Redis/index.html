@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《Redis》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aRedis\u300b";
     var mkdocs_page_input_path = "\u9879\u76ee\u57fa\u7840\u77e5\u8bc6\\Redis.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u9879\u76ee\u57fa\u7840\u77e5\u8bc6/Redis/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -884,7 +884,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="redis">Redis</h1>
+                <h1 id="redis">Redis<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h1>
 <blockquote>
 <ul>
 <li><a href="#NoSQL">NoSQL</a></li>
@@ -906,7 +906,7 @@
 <li><a href="#Redis常见问题及解决方案">Redis常见问题及解决方案</a></li>
 </ul>
 </blockquote>
-<h2 id="nosql">NoSQL</h2>
+<h2 id="nosql">NoSQL<a class="headerlink" href="#nosql" title="Permanent link">&para;</a></h2>
 <p>Not only SQL，非关系型数据库</p>
 <ul>
 <li>K-V键值对
@@ -914,9 +914,9 @@
 <li>文档型数据库
     * mongoDB</li>
 </ul>
-<h2 id="capbase">CAP和BASE</h2>
+<h2 id="capbase">CAP和BASE<a class="headerlink" href="#capbase" title="Permanent link">&para;</a></h2>
 <p>SQL数据库中是ACID，NoSQL中是CAP原理</p>
-<h3 id="cap">CAP原理</h3>
+<h3 id="cap">CAP原理<a class="headerlink" href="#cap" title="Permanent link">&para;</a></h3>
 <ul>
 <li>C
     * consistency 强一致性</li>
@@ -925,7 +925,7 @@
 <li>P
     * Partition tolerance 分区容错性</li>
 </ul>
-<h3 id="cap32">CAP的3进2</h3>
+<h3 id="cap32">CAP的3进2<a class="headerlink" href="#cap32" title="Permanent link">&para;</a></h3>
 <p>一个分布式系统<strong>必须实现分区容错性</strong>，CAP只能同时满足其中两个</p>
 <ul>
 <li>CA
@@ -935,7 +935,7 @@
 <li>CP
     * Redis和MongoDB</li>
 </ul>
-<h3 id="base">BASE</h3>
+<h3 id="base">BASE<a class="headerlink" href="#base" title="Permanent link">&para;</a></h3>
 <p>为了解决关系数据库强一致性导致可用性降低的问题提出的解决方案，通过让系统放松对某一时刻数据的一致性要求来换取系统整体的伸缩性和性能上的改观</p>
 <ul>
 <li>BA
@@ -945,38 +945,38 @@
 <li>E 
     * 最终一致，Eventually consistent</li>
 </ul>
-<h2 id="_1">分布式和集群</h2>
+<h2 id="_1">分布式和集群<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>分布式
     * 不同的多台服务器上部署不同的服务器模块，他们之间通过RPC（远程过程调用）来通信和调用 </li>
 <li>集群
     * 不同的多台服务器上部署着相同的服务器模块，通过分布式调度软件统一调度</li>
 </ul>
-<h2 id="redis_1">Redis及优缺点</h2>
+<h2 id="redis_1">Redis及优缺点<a class="headerlink" href="#redis_1" title="Permanent link">&para;</a></h2>
 <p>Redis是Remote Dictionary Server（远程字典服务器），是<strong>高性能的K/V分布式内存数据库</strong></p>
-<h3 id="memcached">相对于memcached的不同</h3>
+<h3 id="memcached">相对于memcached的不同<a class="headerlink" href="#memcached" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Redis支持数据持久化，可以将内存中的数据保存到磁盘中，重启时再次加载到内存中</li>
 <li>Redis支持丰富的数据结构，list，set，hash，zset</li>
 <li>Redis是单进程单线程，Memcached是单进程多线程</li>
 </ul>
-<h3 id="_2">缺点</h3>
+<h3 id="_2">缺点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Redis主要消耗内存资源，数据库容量受到<strong>物理内存的限制</strong>，不能用作海量数据的高性能读写</li>
 <li>因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上</li>
 </ul>
-<h2 id="redis_2">Redis线程模型</h2>
+<h2 id="redis_2">Redis线程模型<a class="headerlink" href="#redis_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>单线程模型处理客户端请求</li>
 <li>封装epoll函数实现读写事件的响应</li>
 </ul>
-<h2 id="_3">为什么单线程效率还这么高</h2>
+<h2 id="_3">为什么单线程效率还这么高<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>纯内存操作</li>
 <li>核心是基于非阻塞的 IO 多路复用机制</li>
 <li>单线程反而避免了多线程的频繁上下文切换问题，预防了多线程可能产生的竞争问题</li>
 </ul>
-<h2 id="redis_3">Redis数据类型和应用场景</h2>
+<h2 id="redis_3">Redis数据类型和应用场景<a class="headerlink" href="#redis_3" title="Permanent link">&para;</a></h2>
 <p>Redis五大数据类型，string，hash，list，set，zset</p>
 <ul>
 <li>string（字符串）
@@ -1002,13 +1002,13 @@
 <li>zset（有序集合）
     * Redis在内存中对数字进行递增或递减的操作实现的非常好。集合（Set）和有序集合（Sorted Set）也使得我们在执行这些操作的时候变的非常简单，Redis只是正好提供了这两种数据结构</li>
 </ul>
-<h2 id="redisrdbaof"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-persistence.md">Redis持久化机制RDB和AOF</a></h2>
+<h2 id="redisrdbaof"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-persistence.md">Redis持久化机制RDB和AOF</a><a class="headerlink" href="#redisrdbaof" title="Permanent link">&para;</a></h2>
 <ul>
 <li>默认是RDB持久</li>
 <li>redis 的持久化机制，将数据写入内存的同时，异步的慢慢的将数据写入磁盘文件里，进行持久化，RDB是数据，AOF是写命令。</li>
 <li>同时使用 RDB 和 AOF 两种持久化机制，那么在 redis 重启的时候，会使用 AOF 来重新构建数据，因为 AOF 中的数据更加完整。</li>
 </ul>
-<h3 id="rdb">RDB</h3>
+<h3 id="rdb">RDB<a class="headerlink" href="#rdb" title="Permanent link">&para;</a></h3>
 <p>RDB（Redis Database）持久化机制，是对redis中的<strong>数据</strong>执行<strong>周期性</strong>的持久化，生成dump.rdb文件。</p>
 <ul>
 <li>snapshot快照
@@ -1034,7 +1034,7 @@
     * 一定时间间隔做一次持久化，若redis意外宕机，则会丢失最后一次快照的修改
     * 每次在 fork 子进程来执行 RDB 快照数据文件生成的时候，如果数据文件特别大，可能会导致对客户端提供的服务暂停数毫秒，或者甚至数秒。</li>
 </ul>
-<h3 id="aof">AOF</h3>
+<h3 id="aof">AOF<a class="headerlink" href="#aof" title="Permanent link">&para;</a></h3>
 <p>AOF（Append Only File） 机制对<strong>每条写命令</strong>作为日志，以 append-only（追加） 的模式写入一个日志文件中，在 redis 重启的时候，可以通过回放 AOF 日志中的写入指令来重新构建整个数据集，生成appendonly.aof文件</p>
 <ul>
 <li>追加方式
@@ -1065,10 +1065,10 @@
     * 类似 AOF 这种较为复杂的基于命令日志 / merge / 回放的方式，比基于 RDB 每次持久化一份完整的数据快照文件的方式，更加脆弱一些，容易有 bug。 
     * 对于同一份数据来说，AOF 日志文件通常比 RDB 数据快照文件更大 </li>
 </ul>
-<h2 id="redis_4"><a href="https://juejin.im/post/5cb1c9adf265da03893284e9">Redis事务</a></h2>
-<h3 id="redis_5">Redis事务操作</h3>
-<h2 id="redis_6"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-expiration-policies-and-lru.md">Redis过期策略和缓存淘汰策略</a></h2>
-<h3 id="_4">过期策略</h3>
+<h2 id="redis_4"><a href="https://juejin.im/post/5cb1c9adf265da03893284e9">Redis事务</a><a class="headerlink" href="#redis_4" title="Permanent link">&para;</a></h2>
+<h3 id="redis_5">Redis事务操作<a class="headerlink" href="#redis_5" title="Permanent link">&para;</a></h3>
+<h2 id="redis_6"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-expiration-policies-and-lru.md">Redis过期策略和缓存淘汰策略</a><a class="headerlink" href="#redis_6" title="Permanent link">&para;</a></h2>
+<h3 id="_4">过期策略<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>redis 过期策略是：定期删除+惰性删除</p>
 <ul>
 <li>定期删除
@@ -1076,7 +1076,7 @@
 <li>惰性删除
     * 在你获取某个 key 的时候，redis 会检查一下 ，这个 key 如果设置了过期时间那么是否过期了？如果过期了此时就会删除，不会给你返回任何东西。 </li>
 </ul>
-<h3 id="_5">淘汰策略</h3>
+<h3 id="_5">淘汰策略<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>noeviction: 当内存不足以容纳新写入数据时，新写入操作会报错，这个一般没人用吧，实在是太恶心了。</li>
 <li>allkeys-lru：当内存不足以容纳新写入数据时，<strong>在键空间中</strong>，移除最近最少使用的 key<strong>（这个是最常用的）</strong>。</li>
@@ -1085,22 +1085,22 @@
 <li>volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个 key。</li>
 <li>volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的 key 优先移除。</li>
 </ul>
-<h3 id="mysql2000wredis20wredis">MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？</h3>
+<h3 id="mysql2000wredis20wredis">MySQL里有2000w数据，redis中只存20w的数据，如何保证redis中的数据都是热点数据？<a class="headerlink" href="#mysql2000wredis20wredis" title="Permanent link">&para;</a></h3>
 <ul>
 <li>首先缓存预热，将我们认为是热点的数据放在redis中，然后根据请求更新数据，redis内存数据集大小上升到一定大小的时候，就会施行数据淘汰策略。</li>
 </ul>
-<h2 id="redisredis"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-high-concurrency-and-high-availability-of-redis.md">Redis主从复制+Redis哨兵</a></h2>
+<h2 id="redisredis"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-high-concurrency-and-high-availability-of-redis.md">Redis主从复制+Redis哨兵</a><a class="headerlink" href="#redisredis" title="Permanent link">&para;</a></h2>
 <p>Redis实现高并发和高可用，可以使用Redis主从架构+哨兵或Redis集群两种方式</p>
-<h2 id="redis_7"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-cluster.md">Redis集群</a></h2>
-<h2 id="_6">分布式算法一致性哈希</h2>
-<h3 id="_7">普通哈希</h3>
+<h2 id="redis_7"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-cluster.md">Redis集群</a><a class="headerlink" href="#redis_7" title="Permanent link">&para;</a></h2>
+<h2 id="_6">分布式算法一致性哈希<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">普通哈希<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <ul>
 <li>原始的做法是对缓存项的键进行哈希，将hash后的结果对<strong>缓存服务器的数量</strong>进行取模操作，通过取模后的结果，决定缓存项将会缓存在哪一台服务器上。</li>
 <li>缺点
     * 当服务器数量发生变化的时候，所有缓存在一定时间内是失效的，重新哈希，跟服务器结点的数量有关
     * 当应用无法从缓存中获取数据时，则会向后端服务器请求数据，造成了缓存的雪崩，整个系统很有可能被压垮</li>
 </ul>
-<h3 id="_8">一致性哈希</h3>
+<h3 id="_8">一致性哈希<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <ul>
 <li>环形hash空间的概念
     * 通常hash算法都是将value映射在一个32位的key值当中，那么把数据首尾相接就会形成一个圆形，取值范围为0 ~ 2^32-1，这个圆环就是环形hash空间。</li>
@@ -1116,7 +1116,7 @@
     * 一般的，在一致性哈希算法中，如果一台服务器不可用，则受影响的数据仅仅是此服务器到其环空间中前一台服务器（即沿着逆时针方向行走遇到的第一台服务器）之间数据，其它不会受到影响。
     * 一致性哈希算法对于节点的增减都只需重定位环空间中的一小部分数据，具有较好的容错性和可扩展性</li>
 </ul>
-<h3 id="_9">虚拟结点</h3>
+<h3 id="_9">虚拟结点<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>一致性哈希算法在服务节点太少时，容易因为节点分部不均匀而造成数据倾斜问题。</p>
 <ul>
 <li>rehash实现虚拟结点进行平衡
@@ -1124,16 +1124,16 @@
     * 数据定位算法不变，只是多了一步虚拟节点到实际节点的映射，例如定位到“Node A#1”、“Node A#2”、“Node A#3”三个虚拟节点的数据均定位到Node A上，这样就解决了服务节点少时数据倾斜的问题。
     * 在实际应用中，通常将虚拟节点数设置为32甚至更大，因此即使很少的服务节点也能做到相对均匀的数据分布。</li>
 </ul>
-<h2 id="redis_8">Redis哈希槽</h2>
-<h3 id="_10">哈希槽</h3>
+<h2 id="redis_8">Redis哈希槽<a class="headerlink" href="#redis_8" title="Permanent link">&para;</a></h2>
+<h3 id="_10">哈希槽<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p><strong>Redis集群没有使用一致性hash,而是引入了哈希槽的概念</strong>，Redis集群有16384个哈希槽，每个key通过CRC16校验后对16384取模来决定放置哪个槽，集群的每个节点负责一部分hash槽。</p>
-<h3 id="redis_9">Redis集群最多结点数量</h3>
+<h3 id="redis_9">Redis集群最多结点数量<a class="headerlink" href="#redis_9" title="Permanent link">&para;</a></h3>
 <p>16384</p>
-<h3 id="_11">新增结点，哈希槽如何重新分配</h3>
+<h3 id="_11">新增结点，哈希槽如何重新分配<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <p>每个结点从自己的哈希槽中分出若干，分配给新结点，最终使所有节点负责的哈希槽数量基本一致</p>
-<h2 id="redismysql"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-consistence.md">Redis和MySQL缓存和数据库的双写一致性</a></h2>
-<h2 id="_12"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-caching-avalanche-and-caching-penetration.md">缓存血崩和缓存穿透及解决方案</a></h2>
-<h3 id="_13">缓存血崩</h3>
+<h2 id="redismysql"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-consistence.md">Redis和MySQL缓存和数据库的双写一致性</a><a class="headerlink" href="#redismysql" title="Permanent link">&para;</a></h2>
+<h2 id="_12"><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/redis-caching-avalanche-and-caching-penetration.md">缓存血崩和缓存穿透及解决方案</a><a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="_13">缓存血崩<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
 <p>缓存宕机，此时所有请求落到数据库上，由于高并发的请求，导致数据库宕机，发生缓存血崩。</p>
 <ul>
 <li>解决方案
@@ -1151,20 +1151,20 @@
     * 数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。
     * 只要数据库不死，就是说，对用户来说，部分请求都是可以被处理的。</li>
 </ul>
-<h3 id="_14">缓存穿透</h3>
+<h3 id="_14">缓存穿透<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <p>发来的请求或恶意攻击，此时的数据在缓存和数据库中都没有，因此全部在数据库中查询，导致缓存穿透；若每次都有大量穿透，直接查数据库，则数据库宕机。</p>
 <ul>
 <li>解决方案
     * 每次系统 A 从数据库中只要没查到，就写一个空值到缓存里去，比如 set key UNKNOWN。
     * 然后设置一个过期时间，这样的话，下次有相同的 key 来访问的时候，在缓存失效之前，都可以直接从缓存中取数据 </li>
 </ul>
-<h3 id="_15">缓存击穿</h3>
+<h3 id="_15">缓存击穿<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
 <p>缓存击穿，就是说某个 key 非常热点，访问非常频繁，处于集中式高并发访问的情况，当这个 key 在失效的瞬间，大量的请求就击穿了缓存，直接请求数据库。</p>
 <ul>
 <li>解决方案
     * 将热点key设置为永不过期 </li>
 </ul>
-<h2 id="redis_10">Redis常见问题及解决方案</h2>
+<h2 id="redis_10">Redis常见问题及解决方案<a class="headerlink" href="#redis_10" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Master最好不要做任何持久化工作，如RDB内存快照和AOF日志文件</li>
 <li>如果数据比较重要，某个Slave开启AOF备份数据，策略设置为每秒同步一次</li>

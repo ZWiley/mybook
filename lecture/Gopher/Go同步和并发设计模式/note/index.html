@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
   <title>《Go同步和并发设计模式》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aGo\u540c\u6b65\u548c\u5e76\u53d1\u8bbe\u8ba1\u6a21\u5f0f\u300b";
     var mkdocs_page_input_path = "lecture\\Gopher\\Go\u540c\u6b65\u548c\u5e76\u53d1\u8bbe\u8ba1\u6a21\u5f0f\\note.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/lecture/Gopher/Go\u540c\u6b65\u548c\u5e76\u53d1\u8bbe\u8ba1\u6a21\u5f0f/note/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
@@ -910,8 +910,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">基本同步原语</h1>
-<h3 id="mutex">Mutex</h3>
+                <h1 id="_1">基本同步原语<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h3 id="mutex">Mutex<a class="headerlink" href="#mutex" title="Permanent link">&para;</a></h3>
 <ul>
 <li>互斥锁 Mutual exclusion</li>
 <li>任何时间只允许一个 goroutine 在临界区运行</li>
@@ -924,7 +924,7 @@
 <li>加锁的 Mutex 不和这个特定的 goroutine 关联</li>
 <li>非重入锁</li>
 </ul>
-<h3 id="rwmutex">RWMutex</h3>
+<h3 id="rwmutex">RWMutex<a class="headerlink" href="#rwmutex" title="Permanent link">&para;</a></h3>
 <ul>
 <li>可以被一堆的reader持有，或者被一个 writer 持有</li>
 <li>适合大并发 read 的场景</li>
@@ -932,7 +932,7 @@
 <li>writer 的 Lock相对后续 reader 的 RLock 优先级高</li>
 <li>禁止递归读锁(防止死锁)</li>
 </ul>
-<h3 id="cond">Cond (不常用)</h3>
+<h3 id="cond">Cond (不常用)<a class="headerlink" href="#cond" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Mutex有些不适用</li>
 <li>Monitor vs Mutex. Monitor = Mutex + Condition Variables</li>
@@ -942,7 +942,7 @@
 <li>每个 cond 和一个Locker 相关联</li>
 <li>改变条件或者调用 Wait 需要获取锁</li>
 </ul>
-<h3 id="waitgroup">WaitGroup</h3>
+<h3 id="waitgroup">WaitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h3>
 <ul>
 <li>等待一组goroutine完成(java CountdownLatch/CyclicBarrier)</li>
 <li>Add 参数可以是负数，如果计数器小于0，panic</li>
@@ -950,7 +950,7 @@
 <li>可重用, but...</li>
 <li>注意不要把Add方法放到 goroutine 里和wait 一起执行</li>
 </ul>
-<h3 id="once">Once</h3>
+<h3 id="once">Once<a class="headerlink" href="#once" title="Permanent link">&para;</a></h3>
 <ul>
 <li>只执行一次初始化 func (o *Once) Do(f func())</li>
 <li>避免死锁</li>
@@ -962,14 +962,14 @@
 - init 函数 (eager)
 - GetInstance()(lazy)
 - 通过 sync.Once 或者类似实现</p>
-<h3 id="pool">Pool</h3>
+<h3 id="pool">Pool<a class="headerlink" href="#pool" title="Permanent link">&para;</a></h3>
 <ul>
 <li>临时对象池</li>
 <li>可能在任何时候任意对象都可能被移除</li>
 <li>可以安全并发访问</li>
 <li>装箱/拆箱</li>
 </ul>
-<h3 id="syncmap">Sync.Map</h3>
+<h3 id="syncmap">Sync.Map<a class="headerlink" href="#syncmap" title="Permanent link">&para;</a></h3>
 <ul>
 <li>适用于两个 case(空间换时间)：<ul>
 <li>设置一次，多次读(cache)</li>
@@ -980,16 +980,17 @@
 <li>Range 进行遍历，可能会加锁</li>
 <li>没有 Len 方法，并且也不会添加</li>
 </ul>
-<h1 id="_2">扩展同步原语</h1>
-<h3 id="reentrantlock">ReentrantLock</h3>
-<pre><code class="go">type RecursiveMutext struct {
-    sync.Mutex
-    owner     int64
-    recursion int32
-}
-</code></pre>
+<h1 id="_2">扩展同步原语<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<h3 id="reentrantlock">ReentrantLock<a class="headerlink" href="#reentrantlock" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">RecursiveMutext</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+    <span class="nx">owner</span>     <span class="kt">int64</span>
+    <span class="nx">recursion</span> <span class="kt">int32</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="semaphore">Semaphore</h3>
+
+<h3 id="semaphore">Semaphore<a class="headerlink" href="#semaphore" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Dijkstra 提出并发访问通用资源的并发原语 (sync/semaphore)</li>
 <li>初始化一个非负的值 S</li>
@@ -1001,27 +1002,27 @@
 <li>计数信号量</li>
 </ul>
 <p>实现： sync/semaphore  sync/singleflight</p>
-<h3 id="errgroup">ErrGroup</h3>
+<h3 id="errgroup">ErrGroup<a class="headerlink" href="#errgroup" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Wait会等待所有 goroutine 执行完才释放</li>
 <li>如果想遇到第一个 err 就返回，用 Context</li>
 </ul>
-<h3 id="spinlock">SpinLock (自旋锁)</h3>
+<h3 id="spinlock">SpinLock (自旋锁)<a class="headerlink" href="#spinlock" title="Permanent link">&para;</a></h3>
 <ul>
 <li>有时候很高效</li>
 <li>公平性</li>
 <li>处理器忙等待</li>
 </ul>
-<h3 id="fslock">fslock 文件锁</h3>
+<h3 id="fslock">fslock 文件锁<a class="headerlink" href="#fslock" title="Permanent link">&para;</a></h3>
 <ul>
 <li>github.com/juju/fslock</li>
 </ul>
-<h3 id="concurrent-map">concurrent-map</h3>
+<h3 id="concurrent-map">concurrent-map<a class="headerlink" href="#concurrent-map" title="Permanent link">&para;</a></h3>
 <ul>
 <li>github.com/orcaman/concurrent-map</li>
 </ul>
-<h1 id="_3">原子操作</h1>
-<h3 id="atomic">atomic 数据类型</h3>
+<h1 id="_3">原子操作<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<h3 id="atomic">atomic 数据类型<a class="headerlink" href="#atomic" title="Permanent link">&para;</a></h3>
 <ul>
 <li>int32, int64, uint32, uint64, uintptr, unsafe.Pointer</li>
 </ul>
@@ -1032,26 +1033,26 @@
 <li>StoreXXX: 存储</li>
 <li>SwapXXX: 交换</li>
 </ul>
-<h3 id="add-subtract">有Add没有 Subtract？</h3>
+<h3 id="add-subtract">有Add没有 Subtract？<a class="headerlink" href="#add-subtract" title="Permanent link">&para;</a></h3>
 <ul>
 <li>有符号类型，可以用 Add 负数</li>
 <li>无符号类型，可以用 AddUint32(&amp;x, ^uint32(c-1)),   AddUint64(&amp;x, ^uint64(c-1))</li>
 <li>无符号类型减一，AddUint32(&amp;x, ^uint32(0)), AddUint64(&amp;x, ^uint64(0))</li>
 </ul>
-<h3 id="atomicvalue">atomic.value</h3>
+<h3 id="atomicvalue">atomic.value<a class="headerlink" href="#atomicvalue" title="Permanent link">&para;</a></h3>
 <p>复杂类型进行原子存储和加载</p>
 <ul>
 <li>Load</li>
 <li>Store</li>
 </ul>
-<h1 id="channel">Channel</h1>
+<h1 id="channel">Channel<a class="headerlink" href="#channel" title="Permanent link">&para;</a></h1>
 <ul>
 <li>信号(shutdown/close/finish)</li>
 <li>数据交流(queue/stream)</li>
 <li>锁(mutex)</li>
 </ul>
 <p><img alt="" src="../channel.png" /></p>
-<h3 id="channel-vs-mutex">Channel vs Mutex</h3>
+<h3 id="channel-vs-mutex">Channel vs Mutex<a class="headerlink" href="#channel-vs-mutex" title="Permanent link">&para;</a></h3>
 <p>过度使用channel 和goroutine</p>
 <ul>
 <li>Channel<ul>
@@ -1071,8 +1072,8 @@
 </li>
 </ul>
 <p><img alt="" src="../bug.png" /></p>
-<h3 id="ordone">OrDone</h3>
-<h1 id="_4">内存模型</h1>
+<h3 id="ordone">OrDone<a class="headerlink" href="#ordone" title="Permanent link">&para;</a></h3>
+<h1 id="_4">内存模型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
 <p>描述线程(goroutine)通过内存交互，以及对数据的共享使用。</p>
 <p>Go内存模型：</p>
 <p>happend before</p>

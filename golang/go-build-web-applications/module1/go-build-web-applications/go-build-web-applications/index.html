@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../../../img/favicon.ico">
   <title>构建 web - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u6784\u5efa web";
     var mkdocs_page_input_path = "golang\\go-build-web-applications\\module1\\go-build-web-applications\\go-build-web-applications.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/";
   </script>
   
   <script src="../../../../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,31 +836,31 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="web">构建 web</h1>
-<pre><code>package main
+                <h1 id="web">构建 web<a class="headerlink" href="#web" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "database/sql"
+    &quot;database/sql&quot;
 
-    _ "github.com/go-sql-driver/mysql"
+    _ &quot;github.com/go-sql-driver/mysql&quot;
 
-    "fmt"
-    "log"
-    "net/http"
-    "os"
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
 
-    "github.com/gorilla/mux"
+    &quot;github.com/gorilla/mux&quot;
 )
 
 var database *sql.DB
 
 const (
-    PORT    = ":9000"
-    DBHost  = "localhost"
-    DBPort  = ":3306"
-    DBUser  = "wnn"
-    DBPass  = "wnnwnn"
-    DBDbase = "test"
+    PORT    = &quot;:9000&quot;
+    DBHost  = &quot;localhost&quot;
+    DBPort  = &quot;:3306&quot;
+    DBUser  = &quot;wnn&quot;
+    DBPass  = &quot;wnnwnn&quot;
+    DBDbase = &quot;test&quot;
 )
 
 type Page struct {
@@ -871,24 +871,24 @@ type Page struct {
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r) //解析查询参数为 map
-    fmt.Println("%v", vars)
-    pageID := vars["id"]
-    fileName := "files/" + pageID + ".html"
+    fmt.Println(&quot;%v&quot;, vars)
+    pageID := vars[&quot;id&quot;]
+    fileName := &quot;files/&quot; + pageID + &quot;.html&quot;
     _, err := os.Stat(fileName)
     if err != nil {
-        fileName = "files/404.html"
+        fileName = &quot;files/404.html&quot;
     }
     http.ServeFile(w, r, fileName)
 }
 
 func ServePage(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
-    pageID := vars["id"]
+    pageID := vars[&quot;id&quot;]
     thisPage := Page{}
     fmt.Println(pageID)
-    err := database.QueryRow("select page_title,page_content,page_date from pages where id=?", pageID).Scan(&amp;thisPage.Title, &amp;thisPage.Content, &amp;thisPage.Date)
+    err := database.QueryRow(&quot;select page_title,page_content,page_date from pages where id=?&quot;, pageID).Scan(&amp;thisPage.Title, &amp;thisPage.Content, &amp;thisPage.Date)
     if err != nil {
-        log.Println("Couldn't get page:" + pageID)
+        log.Println(&quot;Couldn&#39;t get page:&quot; + pageID)
         log.Println(err.Error)
     }
     html := `&lt;html&gt;&lt;head&gt;&lt;title&gt;` + thisPage.Title +
@@ -899,12 +899,12 @@ func ServePage(w http.ResponseWriter, r *http.Request) {
 
 func ServePageByGUID(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
-    pageGUID := vars["guid"]
+    pageGUID := vars[&quot;guid&quot;]
     thisPage := Page{}
     fmt.Println(pageGUID)
-    err := database.QueryRow("select page_title,page_content,page_date from pages where page_guid=?", pageGUID).Scan(&amp;thisPage.Title, &amp;thisPage.Content, &amp;thisPage.Date)
+    err := database.QueryRow(&quot;select page_title,page_content,page_date from pages where page_guid=?&quot;, pageGUID).Scan(&amp;thisPage.Title, &amp;thisPage.Content, &amp;thisPage.Date)
     if err != nil {
-        log.Println("Couldn't get page:" + pageGUID)
+        log.Println(&quot;Couldn&#39;t get page:&quot; + pageGUID)
         http.Error(w, http.StatusText(404), http.StatusNotFound)
         log.Println(err.Error)
         return // 这里应该需要 return，书里没有
@@ -916,173 +916,179 @@ func ServePageByGUID(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    dbConn := fmt.Sprintf("%s:%s@/%s", DBUser, DBPass, DBDbase)
+    dbConn := fmt.Sprintf(&quot;%s:%s@/%s&quot;, DBUser, DBPass, DBDbase)
     fmt.Println(dbConn)
-    db, err := sql.Open("mysql", dbConn)
+    db, err := sql.Open(&quot;mysql&quot;, dbConn)
     if err != nil {
-        log.Println("Couldn't connect to: " + DBDbase)
+        log.Println(&quot;Couldn&#39;t connect to: &quot; + DBDbase)
         log.Println(err.Error)
     }
     database = db
 
     rtr := mux.NewRouter()
-    // rtr.HandleFunc("/pages/{id:[0-9]+}", ServePage)
-    rtr.HandleFunc("/pages/{guid:[a-z0-9A\\-]+}", ServePageByGUID)
-    http.Handle("/", rtr)
+    // rtr.HandleFunc(&quot;/pages/{id:[0-9]+}&quot;, ServePage)
+    rtr.HandleFunc(&quot;/pages/{guid:[a-z0-9A\\-]+}&quot;, ServePageByGUID)
+    http.Handle(&quot;/&quot;, rtr)
     http.ListenAndServe(PORT, nil)
 }
-</code></pre>
-<h1 id="1-an-introduction-to-concurrency-in-go">1 An Introduction to Concurrency in Go</h1>
+</pre></div>
+
+
+<h1 id="1-an-introduction-to-concurrency-in-go">1 An Introduction to Concurrency in Go<a class="headerlink" href="#1-an-introduction-to-concurrency-in-go" title="Permanent link">&para;</a></h1>
 <p>注意引用传递在 defer 中的坑。下边的例子输出0而不是100</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
-func main() {
-    a := new(int)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">a</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
 
-    defer fmt.Println(*a)
+    <span class="k">defer</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="o">*</span><span class="nx">a</span><span class="p">)</span>
 
-    for i := 0; i &lt; 100; i++ {
-        *a++
-    }
-}
-</code></pre>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="o">*</span><span class="nx">a</span><span class="o">++</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="channel-cspcommunicating-sequential-processes">channel 的使用。 CSP(Communicating Sequential Processes)</h3>
-<pre><code class="go">package main
 
-import (
-    &quot;fmt&quot;
-    &quot;strings&quot;
-    &quot;sync&quot;
-)
+<h3 id="channel-cspcommunicating-sequential-processes">channel 的使用。 CSP(Communicating Sequential Processes)<a class="headerlink" href="#channel-cspcommunicating-sequential-processes" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-var finalString string
-var initString string
-var stringLen int
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
 
-func addToFinalString(letterChan chan string, wg *sync.WaitGroup) {
-    defer wg.Done()
-    letter := &lt;-letterChan
-    finalString += letter
-}
+<span class="kd">var</span> <span class="nx">finalString</span> <span class="kt">string</span>
+<span class="kd">var</span> <span class="nx">initString</span> <span class="kt">string</span>
+<span class="kd">var</span> <span class="nx">stringLen</span> <span class="kt">int</span>
 
-func upper(letterChan chan string, letter string, wg *sync.WaitGroup) {
-    defer wg.Done()
-    upperLetter := strings.ToUpper(letter)
-    letterChan &lt;- upperLetter
-}
+<span class="kd">func</span> <span class="nx">addToFinalString</span><span class="p">(</span><span class="nx">letterChan</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+    <span class="nx">letter</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">letterChan</span>
+    <span class="nx">finalString</span> <span class="o">+=</span> <span class="nx">letter</span>
+<span class="p">}</span>
 
-func main() {
-    var wg sync.WaitGroup
-    initString = &quot;gebilaowang&quot;
-    initBytes := []byte(initString)
-    stringLen = len(initBytes)
-    var letterChan chan string = make(chan string)
-    for i := 0; i &lt; stringLen; i++ {
-        wg.Add(2)
+<span class="kd">func</span> <span class="nx">upper</span><span class="p">(</span><span class="nx">letterChan</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">letter</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+    <span class="nx">upperLetter</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">ToUpper</span><span class="p">(</span><span class="nx">letter</span><span class="p">)</span>
+    <span class="nx">letterChan</span> <span class="o">&lt;-</span> <span class="nx">upperLetter</span>
+<span class="p">}</span>
 
-        go upper(letterChan, string(initBytes[i]), &amp;wg)
-        go addToFinalString(letterChan, &amp;wg)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+    <span class="nx">initString</span> <span class="p">=</span> <span class="s">&quot;gebilaowang&quot;</span>
+    <span class="nx">initBytes</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">initString</span><span class="p">)</span>
+    <span class="nx">stringLen</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">initBytes</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">letterChan</span> <span class="kd">chan</span> <span class="kt">string</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">stringLen</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
-        wg.Wait()
-    }
-    fmt.Println(finalString)
-}
-</code></pre>
+        <span class="k">go</span> <span class="nx">upper</span><span class="p">(</span><span class="nx">letterChan</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">initBytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]),</span> <span class="o">&amp;</span><span class="nx">wg</span><span class="p">)</span>
+        <span class="k">go</span> <span class="nx">addToFinalString</span><span class="p">(</span><span class="nx">letterChan</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">wg</span><span class="p">)</span>
 
-<h3 id="select">select 的使用</h3>
+        <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">finalString</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="select">select 的使用<a class="headerlink" href="#select" title="Permanent link">&para;</a></h3>
 <p>语法类似 switch 。
 select reacts to actions and communication across a channel.</p>
-<pre><code class="go">switch {
-    case 'x':
-    case 'y':
-}
-select {
-    case &lt;- channelA:
-    case &lt;- channelB:
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="k">switch</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="sc">&#39;x&#39;</span><span class="p">:</span>
+    <span class="k">case</span> <span class="sc">&#39;y&#39;</span><span class="p">:</span>
+<span class="p">}</span>
+<span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">channelA</span><span class="p">:</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">channelB</span><span class="p">:</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>select 会 block直到有数据发送给channel。否则会 deadlocks
 如果同时 receive，go 会无法预期地执行其中一个</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;strings&quot;
-    &quot;sync&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;strings&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
 
-var initialString string
-var initialBytes []byte
-var stringLength int
-var finalString string
-var lettersProcessed int
-var wg sync.WaitGroup
-var applicationStatus bool
+<span class="kd">var</span> <span class="nx">initialString</span> <span class="kt">string</span>
+<span class="kd">var</span> <span class="nx">initialBytes</span> <span class="p">[]</span><span class="kt">byte</span>
+<span class="kd">var</span> <span class="nx">stringLength</span> <span class="kt">int</span>
+<span class="kd">var</span> <span class="nx">finalString</span> <span class="kt">string</span>
+<span class="kd">var</span> <span class="nx">lettersProcessed</span> <span class="kt">int</span>
+<span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+<span class="kd">var</span> <span class="nx">applicationStatus</span> <span class="kt">bool</span>
 
-func getLetters(gQ chan string) {
+<span class="kd">func</span> <span class="nx">getLetters</span><span class="p">(</span><span class="nx">gQ</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 
-    for i := range initialBytes {
-        gQ &lt;- string(initialBytes[i])
-    }
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">initialBytes</span> <span class="p">{</span>
+        <span class="nx">gQ</span> <span class="o">&lt;-</span> <span class="nb">string</span><span class="p">(</span><span class="nx">initialBytes</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+    <span class="p">}</span>
 
-}
+<span class="p">}</span>
 
-func capitalizeLetters(gQ chan string, sQ chan string) {
+<span class="kd">func</span> <span class="nx">capitalizeLetters</span><span class="p">(</span><span class="nx">gQ</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">sQ</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 
-    for {
-        if lettersProcessed &gt;= stringLength {
-            applicationStatus = false
-            break
-        }
-        select {
-        case letter := &lt;-gQ:
-            capitalLetter := strings.ToUpper(letter)
-            finalString += capitalLetter
-            lettersProcessed++
-        }
-    }
-}
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">lettersProcessed</span> <span class="o">&gt;=</span> <span class="nx">stringLength</span> <span class="p">{</span>
+            <span class="nx">applicationStatus</span> <span class="p">=</span> <span class="kc">false</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">letter</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">gQ</span><span class="p">:</span>
+            <span class="nx">capitalLetter</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">ToUpper</span><span class="p">(</span><span class="nx">letter</span><span class="p">)</span>
+            <span class="nx">finalString</span> <span class="o">+=</span> <span class="nx">capitalLetter</span>
+            <span class="nx">lettersProcessed</span><span class="o">++</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func main() {
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-    applicationStatus = true
+    <span class="nx">applicationStatus</span> <span class="p">=</span> <span class="kc">true</span>
 
-    getQueue := make(chan string)
-    stackQueue := make(chan string)
+    <span class="nx">getQueue</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="nx">stackQueue</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
 
-    initialString = &quot;Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.&quot;
-    initialBytes = []byte(initialString)
-    stringLength = len(initialString)
-    lettersProcessed = 0
+    <span class="nx">initialString</span> <span class="p">=</span> <span class="s">&quot;Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.&quot;</span>
+    <span class="nx">initialBytes</span> <span class="p">=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">initialString</span><span class="p">)</span>
+    <span class="nx">stringLength</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">initialString</span><span class="p">)</span>
+    <span class="nx">lettersProcessed</span> <span class="p">=</span> <span class="mi">0</span>
 
-    fmt.Println(&quot;Let's start capitalizing&quot;)
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Let&#39;s start capitalizing&quot;</span><span class="p">)</span>
 
-    go getLetters(getQueue)
-    capitalizeLetters(getQueue, stackQueue)
+    <span class="k">go</span> <span class="nx">getLetters</span><span class="p">(</span><span class="nx">getQueue</span><span class="p">)</span>
+    <span class="nx">capitalizeLetters</span><span class="p">(</span><span class="nx">getQueue</span><span class="p">,</span> <span class="nx">stackQueue</span><span class="p">)</span>
 
-    close(getQueue)
-    close(stackQueue)
+    <span class="nb">close</span><span class="p">(</span><span class="nx">getQueue</span><span class="p">)</span>
+    <span class="nb">close</span><span class="p">(</span><span class="nx">stackQueue</span><span class="p">)</span>
 
-    for {
+    <span class="k">for</span> <span class="p">{</span>
 
-        if applicationStatus == false {
-            fmt.Println(&quot;Done&quot;)
-            fmt.Println(finalString)
-            break
-        }
+        <span class="k">if</span> <span class="nx">applicationStatus</span> <span class="o">==</span> <span class="kc">false</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Done&quot;</span><span class="p">)</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">finalString</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
 
-    }
-}
-</code></pre>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
-<h1 id="2-understanding-the-concurrency-model">2 Understanding the Concurrency Model</h1>
+
+<h1 id="2-understanding-the-concurrency-model">2 Understanding the Concurrency Model<a class="headerlink" href="#2-understanding-the-concurrency-model" title="Permanent link">&para;</a></h1>
 <p>go get github.com/ajstarks/svgo</p>
 <p>Go/Csp vs Actor model:</p>
-<pre><code>// actor model
+<div class="codehilite"><pre><span></span>// actor model
 a = new Actor
 b = new Actor
 a -&gt; b(&quot;message&quot;)
@@ -1093,10 +1099,11 @@ b = new Actor
 c = new Channel
 a -&gt; c(&quot;sending something&quot;)
 b &lt;- c(&quot;receiving something&quot;)
-</code></pre>
+</pre></div>
+
 
 <p>go里简单的多态实现(polymorphism):</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;fmt&quot;
 
@@ -1118,10 +1125,11 @@ func main() {
     fmt.Println(text.Add(&quot;hello&quot;, &quot; world&quot;))
 
 }
-</code></pre>
+</pre></div>
+
 
 <p>use sync and mutexes to lock data:</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1149,179 +1157,185 @@ func main() {
     }
     wg.Wait()
 }
-</code></pre>
+</pre></div>
 
-<h1 id="3-developing-a-concurrent-strategy">3 Developing a Concurrent Strategy</h1>
-<h3 id="use-race-flag-when-testing-building-or-running">Use -race flag when testing, building or running.</h3>
+
+<h1 id="3-developing-a-concurrent-strategy">3 Developing a Concurrent Strategy<a class="headerlink" href="#3-developing-a-concurrent-strategy" title="Permanent link">&para;</a></h1>
+<h3 id="use-race-flag-when-testing-building-or-running">Use -race flag when testing, building or running.<a class="headerlink" href="#use-race-flag-when-testing-building-or-running" title="Permanent link">&para;</a></h3>
 <p><code>go run -race race-test.go</code></p>
-<h3 id="using-mutual-exclusions">using mutual exclusions:</h3>
-<pre><code class="go">package main
+<h3 id="using-mutual-exclusions">using mutual exclusions:<a class="headerlink" href="#using-mutual-exclusions" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;runtime&quot;
-    &quot;sync&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;runtime&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    runtime.gomaxprocs(4)
-    current := 0
-    iters := 100
-    wg := new(sync.waitgroup)
-    wg.add(iters)
-    mutex := new(sync.mutex)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">runtime</span><span class="p">.</span><span class="nx">gomaxprocs</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="nx">current</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="nx">iters</span> <span class="o">:=</span> <span class="mi">100</span>
+    <span class="nx">wg</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">sync</span><span class="p">.</span><span class="nx">waitgroup</span><span class="p">)</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">iters</span><span class="p">)</span>
+    <span class="nx">mutex</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">sync</span><span class="p">.</span><span class="nx">mutex</span><span class="p">)</span>
 
-    for i := 0; i &lt; iters; i++ {
-        go func() {
-            mutex.lock()
-            fmt.println(current)
-            current++
-            mutex.unlock()
-            fmt.println(current)
-            wg.done()
-        }()
-    }
-    wg.wait()
-}
-</code></pre>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">iters</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">mutex</span><span class="p">.</span><span class="nx">lock</span><span class="p">()</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nb">println</span><span class="p">(</span><span class="nx">current</span><span class="p">)</span>
+            <span class="nx">current</span><span class="o">++</span>
+            <span class="nx">mutex</span><span class="p">.</span><span class="nx">unlock</span><span class="p">()</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nb">println</span><span class="p">(</span><span class="nx">current</span><span class="p">)</span>
+            <span class="nx">wg</span><span class="p">.</span><span class="nx">done</span><span class="p">()</span>
+        <span class="p">}()</span>
+    <span class="p">}</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">wait</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="exploring-timeouts">Exploring timeouts:</h3>
-<pre><code class="go">package main
 
-import (
-    &quot;fmt&quot;
-    &quot;time&quot;
-)
+<h3 id="exploring-timeouts">Exploring timeouts:<a class="headerlink" href="#exploring-timeouts" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-func main() {
-    ourCh := make(chan string, 1)
-    go func() {
-    }()
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-    select {
-    case &lt;-time.After(10 * time.Second):
-        fmt.Println(&quot;Enough's enough&quot;)
-        close(ourCh)
-    }
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ourCh</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}()</span>
 
-<h3 id="synchronizing-our-concurrent-operations">Synchronizing our concurrent operations</h3>
-<h1 id="4-data-integrity-in-an-application">4 Data Integrity in an Application</h1>
-<h3 id="getting-depper-with-mutexes-and-sync">Getting depper with mutexes and sync</h3>
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Enough&#39;s enough&quot;</span><span class="p">)</span>
+        <span class="nb">close</span><span class="p">(</span><span class="nx">ourCh</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="synchronizing-our-concurrent-operations">Synchronizing our concurrent operations<a class="headerlink" href="#synchronizing-our-concurrent-operations" title="Permanent link">&para;</a></h3>
+<h1 id="4-data-integrity-in-an-application">4 Data Integrity in an Application<a class="headerlink" href="#4-data-integrity-in-an-application" title="Permanent link">&para;</a></h1>
+<h3 id="getting-depper-with-mutexes-and-sync">Getting depper with mutexes and sync<a class="headerlink" href="#getting-depper-with-mutexes-and-sync" title="Permanent link">&para;</a></h3>
 <ul>
 <li>RWMutex: miltireader, single-writer lock(feaquent read , infrequent write, cannot dirty read)</li>
 </ul>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;sync&quot;
-    &quot;time&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-var currentTime time.Time
-var rwLock sync.RWMutex
+<span class="kd">var</span> <span class="nx">currentTime</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+<span class="kd">var</span> <span class="nx">rwLock</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
 
-func updateTime() {
-    rwLock.RLock()
-    currentTime = time.Now()
-    time.Sleep(5 * time.Second)
-    rwLock.RUnlock()
-}
+<span class="kd">func</span> <span class="nx">updateTime</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">rwLock</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
+    <span class="nx">currentTime</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="nx">rwLock</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
+<span class="p">}</span>
 
-func main() {
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-    var wg sync.WaitGroup
+    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
 
-    currentTime = time.Now()
-    timer := time.NewTicker(2 * time.Second)
-    writeTimer := time.NewTicker(10 * time.Second)
-    endTimer := make(chan bool)
+    <span class="nx">currentTime</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+    <span class="nx">timer</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="nx">writeTimer</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+    <span class="nx">endTimer</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
 
-    wg.Add(1)
-    go func() {
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
 
-        for {
-            select {
-            case &lt;-timer.C:
-                fmt.Println(currentTime.String())
-            case &lt;-writeTimer.C:
-                updateTime()
-            case &lt;-endTimer:
-                timer.Stop()
-                return
-            }
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="k">select</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">timer</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">currentTime</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+            <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">writeTimer</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span>
+                <span class="nx">updateTime</span><span class="p">()</span>
+            <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">endTimer</span><span class="p">:</span>
+                <span class="nx">timer</span><span class="p">.</span><span class="nx">Stop</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
 
-        }
+        <span class="p">}</span>
 
-    }()
+    <span class="p">}()</span>
 
-    wg.Wait()
-    fmt.Println(currentTime.String())
-}
-</code></pre>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">currentTime</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="working-with-files">Working with files</h3>
-<pre><code class="go">package main
 
-import (
-    &quot;fmt&quot;
-    &quot;io/ioutil&quot;
-    &quot;strconv&quot;
-    &quot;sync&quot;
-)
+<h3 id="working-with-files">Working with files<a class="headerlink" href="#working-with-files" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-//
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;io/ioutil&quot;</span>
+    <span class="s">&quot;strconv&quot;</span>
+    <span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
 
-func writeFile() {
-    fmt.Println(&quot;um&quot;)
-    for i := 0; i &lt; 10; i++ {
-        rwLock.RLock()
-        ioutil.WriteFile(&quot;test.txt&quot;, []byte(strconv.FormatInt(int64(i), 10)), 0x777)
-        rwLock.RUnlock()
-    }
+<span class="c1">//</span>
 
-    writer &lt;- true
+<span class="kd">func</span> <span class="nx">writeFile</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;um&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">rwLock</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
+        <span class="nx">ioutil</span><span class="p">.</span><span class="nx">WriteFile</span><span class="p">(</span><span class="s">&quot;test.txt&quot;</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">strconv</span><span class="p">.</span><span class="nx">FormatInt</span><span class="p">(</span><span class="nb">int64</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span> <span class="mi">10</span><span class="p">)),</span> <span class="mh">0x777</span><span class="p">)</span>
+        <span class="nx">rwLock</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
+    <span class="p">}</span>
 
-}
+    <span class="nx">writer</span> <span class="o">&lt;-</span> <span class="kc">true</span>
 
-var writer chan bool
-var rwLock sync.RWMutex
+<span class="p">}</span>
 
-func main() {
+<span class="kd">var</span> <span class="nx">writer</span> <span class="kd">chan</span> <span class="kt">bool</span>
+<span class="kd">var</span> <span class="nx">rwLock</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
 
-    writer = make(chan bool)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-    go writeFile()
+    <span class="nx">writer</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
 
-    &lt;-writer
-    fmt.Println(&quot;Done!&quot;)
-}
-</code></pre>
+    <span class="k">go</span> <span class="nx">writeFile</span><span class="p">()</span>
 
-<h3 id="getting-low-implementing-c">Getting low-implementing C</h3>
-<pre><code class="go">package main
+    <span class="o">&lt;-</span><span class="nx">writer</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Done!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-/*
-    #include &lt;stdio.h&gt;
-    #include &lt;stdlib.h&gt;
 
-    void Coutput (char* str) {
-        printf(&quot;%s&quot;,str);
-    }
-*/
-import &quot;C&quot;
-import &quot;unsafe&quot;
+<h3 id="getting-low-implementing-c">Getting low-implementing C<a class="headerlink" href="#getting-low-implementing-c" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-func main() {
-    v := C.CString(&quot;Don't Forget My Memory Is Not Visible To Go!&quot;)
-    C.Coutput(v)
-    C.free(unsafe.Pointer(v))
-}
-</code></pre>
+<span class="cm">/*</span>
+<span class="cm">    #include &lt;stdio.h&gt;</span>
+<span class="cm">    #include &lt;stdlib.h&gt;</span>
 
-<h3 id="distributed-go">Distributed Go</h3>
+<span class="cm">    void Coutput (char* str) {</span>
+<span class="cm">        printf(&quot;%s&quot;,str);</span>
+<span class="cm">    }</span>
+<span class="cm">*/</span>
+<span class="kn">import</span> <span class="s">&quot;C&quot;</span>
+<span class="kn">import</span> <span class="s">&quot;unsafe&quot;</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">v</span> <span class="o">:=</span> <span class="nx">C</span><span class="p">.</span><span class="nx">CString</span><span class="p">(</span><span class="s">&quot;Don&#39;t Forget My Memory Is Not Visible To Go!&quot;</span><span class="p">)</span>
+    <span class="nx">C</span><span class="p">.</span><span class="nx">Coutput</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+    <span class="nx">C</span><span class="p">.</span><span class="nx">free</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="distributed-go">Distributed Go<a class="headerlink" href="#distributed-go" title="Permanent link">&para;</a></h3>
 <ul>
 <li>distributed lock</li>
 <li>consistent hash</li>
@@ -1333,131 +1347,132 @@ func main() {
 <li>master-slave model</li>
 </ul>
 <p>producer-consumer problem</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
-var comm = make(chan bool)
-var done = make(chan bool)
+<span class="kd">var</span> <span class="nx">comm</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">done</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
 
-func producer() {
-    for i := 0; i &lt; 10; i++ {
-        comm &lt;- true
-    }
-    done &lt;- true
-}
+<span class="kd">func</span> <span class="nx">producer</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">comm</span> <span class="o">&lt;-</span> <span class="kc">true</span>
+    <span class="p">}</span>
+    <span class="nx">done</span> <span class="o">&lt;-</span> <span class="kc">true</span>
+<span class="p">}</span>
 
-func consumer() {
-    for {
-        communication := &lt;-comm
-        fmt.Println(&quot;Communiction from producer received!&quot;, communication)
-    }
-}
-func main() {
-    go producer()
-    go consumer()
-    &lt;-done
-    fmt.Println(&quot;All Done!&quot;)
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">consumer</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nx">communication</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">comm</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Communiction from producer received!&quot;</span><span class="p">,</span> <span class="nx">communication</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nx">producer</span><span class="p">()</span>
+    <span class="k">go</span> <span class="nx">consumer</span><span class="p">()</span>
+    <span class="o">&lt;-</span><span class="nx">done</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;All Done!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="go-circuit">Go Circuit</h3>
+
+<h3 id="go-circuit">Go Circuit<a class="headerlink" href="#go-circuit" title="Permanent link">&para;</a></h3>
 <p>https://github.com/gocircuit/circuit
 need Zookpeer</p>
 <p>跨进程 channel</p>
-<h1 id="5-locks-blocks-and-better-channels">5. Locks, Blocks, and Better Channels</h1>
-<h3 id="understanding-blocking-methods-in-go">Understanding Blocking Methods in GO</h3>
+<h1 id="5-locks-blocks-and-better-channels">5. Locks, Blocks, and Better Channels<a class="headerlink" href="#5-locks-blocks-and-better-channels" title="Permanent link">&para;</a></h1>
+<h3 id="understanding-blocking-methods-in-go">Understanding Blocking Methods in GO<a class="headerlink" href="#understanding-blocking-methods-in-go" title="Permanent link">&para;</a></h3>
 <ul>
 <li>1.a listening, waiting channel</li>
 <li>2.the select statement in a loop</li>
 <li>3.network connections and reads</li>
 </ul>
-<pre><code class="go">&lt;- myChannel  // same way as the following code snippet
+<div class="codehilite"><pre><span></span><span class="o">&lt;-</span> <span class="nx">myChannel</span>  <span class="c1">// same way as the following code snippet</span>
 
-select {
-case mc := &lt;- myChannel:
-    // do something
-}
-</code></pre>
+<span class="k">select</span> <span class="p">{</span>
+<span class="k">case</span> <span class="nx">mc</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">myChannel</span><span class="p">:</span>
+    <span class="c1">// do something</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>Cleaning up goroutines:Any channel that is left waiting and/or left receiving will result in a deadlock.</p>
-<h3 id="pprof">Pprof</h3>
+<h3 id="pprof">Pprof<a class="headerlink" href="#pprof" title="Permanent link">&para;</a></h3>
 <p>runtime.ppof package</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;flag&quot;
-    &quot;fmt&quot;
-    &quot;math/rand&quot;
-    &quot;os&quot;
-    &quot;runtime&quot;
-    &quot;runtime/pprof&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;flag&quot;</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;math/rand&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+    <span class="s">&quot;runtime&quot;</span>
+    <span class="s">&quot;runtime/pprof&quot;</span>
+<span class="p">)</span>
 
-var profile = flag.String(&quot;cpuprofile&quot;, &quot;&quot;, &quot;output pprof data to file&quot;)
+<span class="kd">var</span> <span class="nx">profile</span> <span class="p">=</span> <span class="nx">flag</span><span class="p">.</span><span class="nx">String</span><span class="p">(</span><span class="s">&quot;cpuprofile&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;output pprof data to file&quot;</span><span class="p">)</span>
 
-func generateString(length int, seed *rand.Rand, chHater chan string) string {
-    bytes := make([]byte, length)
-    for i := 0; i &lt; length; i++ {
-        bytes[i] = byte(rand.Int())
-    }
-    chHater &lt;- string(bytes[:length])
-    return string(bytes[:length])
-}
+<span class="kd">func</span> <span class="nx">generateString</span><span class="p">(</span><span class="nx">length</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">seed</span> <span class="o">*</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Rand</span><span class="p">,</span> <span class="nx">chHater</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">length</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nb">byte</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Int</span><span class="p">())</span>
+    <span class="p">}</span>
+    <span class="nx">chHater</span> <span class="o">&lt;-</span> <span class="nb">string</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[:</span><span class="nx">length</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[:</span><span class="nx">length</span><span class="p">])</span>
+<span class="p">}</span>
 
-func generateChannel() &lt;-chan int {
-    ch := make(chan int)
-    return ch
-}
+<span class="kd">func</span> <span class="nx">generateChannel</span><span class="p">()</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">ch</span>
+<span class="p">}</span>
 
-func main() {
-    iterations := 99999
-    goodbye := make(chan bool, iterations)
-    channelThatHatesLetters := make(chan string)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">iterations</span> <span class="o">:=</span> <span class="mi">99999</span>
+    <span class="nx">goodbye</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">iterations</span><span class="p">)</span>
+    <span class="nx">channelThatHatesLetters</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
 
-    runtime.GOMAXPROCS(2)
-    flag.Parse()
-    if *profile != &quot;&quot; {
-        flag, err := os.Create(*profile)
-        if err != nil {
-            fmt.Println(&quot;Could not create profile&quot;, err)
-        }
-        pprof.StartCPUProfile(flag)
-        defer pprof.StopCPUProfile()
+    <span class="nx">runtime</span><span class="p">.</span><span class="nx">GOMAXPROCS</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nx">flag</span><span class="p">.</span><span class="nx">Parse</span><span class="p">()</span>
+    <span class="k">if</span> <span class="o">*</span><span class="nx">profile</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+        <span class="nx">flag</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Create</span><span class="p">(</span><span class="o">*</span><span class="nx">profile</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Could not create profile&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="nx">pprof</span><span class="p">.</span><span class="nx">StartCPUProfile</span><span class="p">(</span><span class="nx">flag</span><span class="p">)</span>
+        <span class="k">defer</span> <span class="nx">pprof</span><span class="p">.</span><span class="nx">StopCPUProfile</span><span class="p">()</span>
 
-    }
+    <span class="p">}</span>
 
-    seed := rand.New(rand.NewSource(19))
+    <span class="nx">seed</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nx">NewSource</span><span class="p">(</span><span class="mi">19</span><span class="p">))</span>
 
-    initString := &quot;&quot;
+    <span class="nx">initString</span> <span class="o">:=</span> <span class="s">&quot;&quot;</span>
 
-    for i := 0; i &lt; iterations; i++ {
-        go func() {
-            initString = generateString(300, seed, channelThatHatesLetters)
-            goodbye &lt;- true
-        }()
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">iterations</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">initString</span> <span class="p">=</span> <span class="nx">generateString</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="nx">seed</span><span class="p">,</span> <span class="nx">channelThatHatesLetters</span><span class="p">)</span>
+            <span class="nx">goodbye</span> <span class="o">&lt;-</span> <span class="kc">true</span>
+        <span class="p">}()</span>
 
-    }
-    select {
-    case &lt;-channelThatHatesLetters:
+    <span class="p">}</span>
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">channelThatHatesLetters</span><span class="p">:</span>
 
-    }
-    &lt;-goodbye
+    <span class="p">}</span>
+    <span class="o">&lt;-</span><span class="nx">goodbye</span>
 
-    fmt.Println(initString)
-}
-</code></pre>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">initString</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="handling-deadlocks-and-errors">Handling deadlocks and errors</h3>
+
+<h3 id="handling-deadlocks-and-errors">Handling deadlocks and errors<a class="headerlink" href="#handling-deadlocks-and-errors" title="Permanent link">&para;</a></h3>
 <p>```package maingo</p>
 <p>import "os"</p>
 <p>func main() {
     panic("Oh no, forgot to write a program")
     os.Exit(1)
 }</p>
-<pre><code>
-
-# 6. C10K - A non-blocking web server in GO
+<div class="codehilite"><pre><span></span># 6. C10K - A non-blocking web server in GO
 
 
 
@@ -1492,7 +1507,7 @@ func main() {
         }
     }
 }
-</code></pre>
+</pre></div>
               
             </div>
           </div>

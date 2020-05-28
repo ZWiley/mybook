@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>1. 跑起来 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "1. \u8dd1\u8d77\u6765";
     var mkdocs_page_input_path = "devops\\\u73a9\u8f6cKubernets-CloudMan.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/devops/\u73a9\u8f6cKubernets-CloudMan/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,12 +836,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1">1. 跑起来</h1>
+                <h1 id="1">1. 跑起来<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
 <p>pod是容器集合， 共享 ip 地址和Port空间，在一个network和namespace中。
 是 k8s 调度最小单位。</p>
-<pre><code>kubectl get pos
-</code></pre>
-<h1 id="2">2. 概念</h1>
+<div class="codehilite"><pre><span></span>kubectl get pos
+</pre></div>
+
+
+<h1 id="2">2. 概念<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <ol>
 <li>
 <p>Cluster
@@ -875,41 +877,41 @@ Kubernetes运行容器（Pod）与访问容器（Pod）这两项任务分别由C
 答案就是Namespace。</p>
 </li>
 </ol>
-<h1 id="3">3. 部署</h1>
+<h1 id="3">3. 部署<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>kubelet运行在Cluster所有节点上，负责启动Pod和容器。
 kubeadm用于初始化Cluster。
 kubectl是Kubernetes命令行工具。通过kubectl可以部署和管理应用，查看各种资源，创建、删除和更新各种组件。</p>
-<h1 id="4-k8s">4. k8s架构</h1>
+<h1 id="4-k8s">4. k8s架构<a class="headerlink" href="#4-k8s" title="Permanent link">&para;</a></h1>
 <p>Master是Kubernetes Cluster的大脑，运行着的Daemon服务包括kube-apiserver、kube-scheduler、kube-controller-manager、etcd和Pod网络（例如flannel），如图4-1所示。</p>
 <p>Node是Pod运行的地方，Kubernetes支持Docker、rkt等容器Runtime。Node上运行的Kubernetes组件有kubelet、kube-proxy和Pod网络（例如flannel）</p>
-<h1 id="5">5. 运行应用</h1>
-<h1 id="6-service-pod">6. 通过 service 创建 pod</h1>
+<h1 id="5">5. 运行应用<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<h1 id="6-service-pod">6. 通过 service 创建 pod<a class="headerlink" href="#6-service-pod" title="Permanent link">&para;</a></h1>
 <p>service ip 不变
 Cluster IP是一个虚拟IP，是由Kubernetes节点上的iptables规则管理的。</p>
 <p>iptables 将访问到 service 的流量转发到后端 Pod,采用了类似负载轮询的策略</p>
-<h1 id="7-rolling-update">7. Rolling Update</h1>
+<h1 id="7-rolling-update">7. Rolling Update<a class="headerlink" href="#7-rolling-update" title="Permanent link">&para;</a></h1>
 <p>滚动更新。采用渐进的方式逐步替换旧的 pod，也可以回滚操作恢复到更新前状态。
 一般配合健康检查完成。</p>
 <p>maxSurge/maxUnavailable 参数配置</p>
-<h1 id="8-health-check">8. Health Check</h1>
+<h1 id="8-health-check">8. Health Check<a class="headerlink" href="#8-health-check" title="Permanent link">&para;</a></h1>
 <p>默认通过容器启动进程是否返回0判断是否探测成功。</p>
 <p>Liveness探测：用户可以自定义判断容器是否健康的条件，探测失败 k8s会重启容器。</p>
 <p>Readiness探测：什么时候可以将容器加入到Service负载均衡池中，对外提供服务。相当于将容器设置为不可用
 扩容的时候，可以通过Readiness探测判断容器是否就绪（比如加载缓存、连接数据库），
 避免将请求发送到还没有准备好的backend。</p>
-<h1 id="9">9. 数据管理</h1>
+<h1 id="9">9. 数据管理<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
 <p>Volume: 容器销毁时，内部文件系统中的数据会清除，为了持久化可以使用Volumns。</p>
 <p>emptyDir: 对于容器来说持久，于  pod 不是，生命周期和pod一致。</p>
 <p>hostPath: 将docker host 文件系统中已经存在的目录 mount 给Pod的容器。pod 被销毁也会保留。
 不过一旦 Host 崩溃，hostPath 无法访问。</p>
 <p>外部storage provider: ESB volumne, Ceph, GlusterFS等主流分布式存储系统</p>
-<h1 id="10-secret-configmap">10. Secret &amp; Configmap</h1>
+<h1 id="10-secret-configmap">10. Secret &amp; Configmap<a class="headerlink" href="#10-secret-configmap" title="Permanent link">&para;</a></h1>
 <p>启动过程中的敏感数据如果直接保存在镜像中不妥，k8s 提供了Secret来解决。
 Secret会以密文的方式存储数据，避免了直接在配置文件中保存敏感信息。Secret会以Volume的形式被mount到Pod，容器可通过文件的方式使用Secret中的敏感数据；此外，容器也可以环境变量的方式使用这些数据。</p>
 <p>4种方式可以创建secret，常见的使用yaml文件。</p>
 <p>Pod可以通过 Volume 或者环境变量的方式使用Secret。</p>
 <p>Secret可以提供密码、私钥、token 等敏感信息。非敏感配置可以使用 ConfigMap(明文存放)</p>
-<h1 id="11-helm-kubernetes">11. Helm-Kubernetes 的包管理器</h1>
+<h1 id="11-helm-kubernetes">11. Helm-Kubernetes 的包管理器<a class="headerlink" href="#11-helm-kubernetes" title="Permanent link">&para;</a></h1>
 <p>k8s 能够很好地组织和编排容器，但是缺少一个更高层次的应用打包工具(类似apt)。</p>
 <p>Helm有俩重要概念：
   - chart: 创建一个应用的信息集合，包括各种k8s对象的配置模板、参数定义、依赖关系、文档说明等。
@@ -918,16 +920,16 @@ Secret会以密文的方式存储数据，避免了直接在配置文件中保�
 <p>Helm 包含两个组件：Helm 客户端和 Tiller服务器。</p>
 <p>Helm Client -----&gt;(grpc)  ---------&gt; Tiller ---------&gt; Kube API</p>
 <p>Helm 客户端负责管理 chart，Tiller 服务器负责管理 release。</p>
-<h1 id="12">12 网络</h1>
+<h1 id="12">12 网络<a class="headerlink" href="#12" title="Permanent link">&para;</a></h1>
 <p>k8s采用基于扁平地址空间的网络模型，集群中每个 pod 有自己的 ip 地址，不要配置 NAT 就能直接通信。
 k8s 采用  Container Networking INterface(CNI)规范</p>
-<h1 id="13-dashboard">13 Dashboard</h1>
+<h1 id="13-dashboard">13 Dashboard<a class="headerlink" href="#13-dashboard" title="Permanent link">&para;</a></h1>
 <p>k8s 同时提供了 dashboard web 界面工具操作</p>
-<h1 id="14-k8s">14 k8s 集群监控</h1>
+<h1 id="14-k8s">14 k8s 集群监控<a class="headerlink" href="#14-k8s" title="Permanent link">&para;</a></h1>
 <p>weave scope  是 docker 和k8s 可视化监控工具。</p>
 <p>Heapster: k8s 原生的集群监控方案。</p>
 <p>Prometheus Operator: 监控集群本身的运行状态</p>
-<h1 id="15-k8s">15 k8s 集群日志管理</h1>
+<h1 id="15-k8s">15 k8s 集群日志管理<a class="headerlink" href="#15-k8s" title="Permanent link">&para;</a></h1>
 <p>k8s开发了一个 Elasticsearch  附加组件实现集群日志管理。</p>
 <p>k8s -&gt; Fluentd(搜集日志并发送给Elasticsearch) -&gt;Elasticsearch(搜索引擎，存储日志并提供查询接口) -&gt; Kibana(Web
 GUI浏览和搜索 es 的日志)</p>

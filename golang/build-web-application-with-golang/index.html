@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《Build Web Application With Golang》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aBuild Web Application With Golang\u300b";
     var mkdocs_page_input_path = "golang\\build-web-application-with-golang.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/build-web-application-with-golang/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -881,24 +881,26 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="2-go">2 Go 基础</h1>
+                <h1 id="2-go">2 Go 基础<a class="headerlink" href="#2-go" title="Permanent link">&para;</a></h1>
 <p>定义变量:</p>
-<pre><code class="go">var varname type
-var name1, name2, name3 type
-var name type = value
-var a,b,c = v1, v2, v3
-a,b,c := v1, v2 ,v3
-_, b = 1, 2
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">varname</span> <span class="kd">type</span>
+<span class="kd">var</span> <span class="nx">name1</span><span class="p">,</span> <span class="nx">name2</span><span class="p">,</span> <span class="nx">name3</span> <span class="kd">type</span>
+<span class="kd">var</span> <span class="nx">name</span> <span class="kd">type</span> <span class="p">=</span> <span class="nx">value</span>
+<span class="kd">var</span> <span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span> <span class="p">=</span> <span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span><span class="p">,</span> <span class="nx">v3</span>
+<span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span> <span class="o">:=</span> <span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span> <span class="p">,</span><span class="nx">v3</span>
+<span class="nx">_</span><span class="p">,</span> <span class="nx">b</span> <span class="p">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+</pre></div>
+
 
 <p>常量：</p>
-<pre><code>const name = value
+<div class="codehilite"><pre><span></span>const name = value
 const Pi float32 = 3.14
 const i = 100
-</code></pre>
+</pre></div>
+
 
 <p>内置基础类型：</p>
-<pre><code>// Boolean
+<div class="codehilite"><pre><span></span>// Boolean
 var isActive = bool  // default false
 var enabled, disabled = true, false
 valid := false
@@ -913,23 +915,25 @@ var hello string
 var emptyString = &quot;&quot;
 s := &quot;hello&quot;  // 字符串不可变
 c := []byte(s)  // 把字符串转换为 []byte 类型
-c[0] = 'c'
+c[0] = &#39;c&#39;
 s2 := string(c)  // 转为 string
 fmt.Printf(&quot;%s\n&quot;, s2)
 m := `hello
     world`   // ` 括号来的是Raw string
-</code></pre>
+</pre></div>
+
 
 <p>错误类型：</p>
-<pre><code>// go有一个error 类型，package.errors
+<div class="codehilite"><pre><span></span>// go有一个error 类型，package.errors
 err:=errors.New(&quot;emit macho swarf: elf header corrupted&quot;)
 if err != nil {
    fmt.Print(err)
 }
-</code></pre>
+</pre></div>
+
 
 <p>分组声明：</p>
-<pre><code>import (
+<div class="codehilite"><pre><span></span>import (
    &quot;fmt&quot;
    &quot;os&quot;
 )
@@ -942,14 +946,16 @@ var(
     i int
     pi float32
 )
-</code></pre>
+</pre></div>
+
 
 <p>iota 枚举：</p>
-<pre><code>const (
+<div class="codehilite"><pre><span></span>const (
     x = iota  //x==0
     y = iota  //y==1
 )
-</code></pre>
+</pre></div>
+
 
 <p>设计规则：</p>
 <ul>
@@ -957,7 +963,7 @@ var(
 <li>大写字母开头的函数是共有函数</li>
 </ul>
 <p>array, slice, map</p>
-<pre><code>// array 数组，数组长度也是类型的一部分，[3]int, [4]int 是不同类型
+<div class="codehilite"><pre><span></span>// array 数组，数组长度也是类型的一部分，[3]int, [4]int 是不同类型
 var arr [n]type
 var arr [10]int
 arr[0] = 42
@@ -972,7 +978,7 @@ doubleArray := [2][4]int{[4]int{1,2,3,4}, [4]int{5,6,7,8}}
 
 // slice 动态『数组』，引用类型，指向一个底层 array。实际场景中使用 slice 要比 array 多
 var fslice []int  //声明同数组，只是没有长度
-slice := []byte {'a','b'}
+slice := []byte {&#39;a&#39;,&#39;b&#39;}
 a := [10]int{1,2,3,4,5,6,7,8,9,10}
 var slice []int
 slice = a[:]
@@ -1001,23 +1007,25 @@ fmt.Println(&quot;go rating is &quot;, goRaking)
 fmt.Println(&quot;no  go rating&quot;)
 }
 delete(rating, &quot;C&quot;)
-</code></pre>
+</pre></div>
+
 
 <p>make, new 操作：</p>
 <p>make 只能用于 内建类型(map/slice/chanell)的内存分配, new 用于各种类型，new 返回指针。
 make 返回初始化后的（非零）值。</p>
 <p>零值(zero value): 变量未填充之前的默认值，通常是 0</p>
-<pre><code>int,int8,int32,int64 0
+<div class="codehilite"><pre><span></span>int,int8,int32,int64 0
 uint 0x0
 rune 0
 byte 0x0
 float32, float64 0
 bool false
 string &quot;&quot;
-</code></pre>
+</pre></div>
+
 
 <p>流程控制:</p>
-<pre><code>// if(不用括号)
+<div class="codehilite"><pre><span></span>// if(不用括号)
 
 if x &gt; 10 {
    //...
@@ -1075,10 +1083,11 @@ case 4:
     //
     fallthrough // 强制执行后边的代码
 }
-</code></pre>
+</pre></div>
+
 
 <p>函数: func 声明</p>
-<pre><code>func funcName(input1 type1, input2 type2) (output1 type1, output2 type2) {
+<div class="codehilite"><pre><span></span>func funcName(input1 type1, input2 type2) (output1 type1, output2 type2) {
   //
   return value1, value2
 }
@@ -1095,19 +1104,20 @@ func SumAndProduct(A, B int) (add int, Multiplied int) {
     Multiplied = A * B
     return
 }
+</pre></div>
 
-</code></pre>
 
 <p>变参：</p>
-<pre><code>func myfunc(arg ...int) {
+<div class="codehilite"><pre><span></span>func myfunc(arg ...int) {
     for _, n := range arg {
         fmt.Printf(&quot;Add the number is :%d\n&quot;, n)
     }
 } // arg 是一个 int 的 slice
-</code></pre>
+</pre></div>
+
 
 <p>传值和传指针：默认传值，无法修改传入的值。除非使用指针</p>
-<pre><code>func add(a int) int {
+<div class="codehilite"><pre><span></span>func add(a int) int {
     a = a+1
     return a
 }
@@ -1122,10 +1132,11 @@ func add_p(a *int) int {
 传指针比较轻量级（8bytes），只是传内存地址，可以用指针传递大结构体。
 GO中 channel, slice，map 实现机制类似指针，可以直接传递，而不用取地址。（如果需要修改 slice 长度让需要取地址）
 */
-</code></pre>
+</pre></div>
+
 
 <p>defer: 延迟语句，函数执行到最后时，这些 defer 语句会逆序执行，最后函数返回。用来处理错误，关闭资源</p>
-<pre><code>func ReadWrite() bool {
+<div class="codehilite"><pre><span></span>func ReadWrite() bool {
     file.Open(&quot;file&quot;)
     defer file.Close()
     if failureX {
@@ -1136,10 +1147,11 @@ GO中 channel, slice，map 实现机制类似指针，可以直接传递，而�
     }
     return true
 }
-</code></pre>
+</pre></div>
+
 
 <p>函数作为值、类型：go 中函数也是一种变量，可以用 type 定义，类型就是所有拥有相同的参数，相同返回值的一种类型</p>
-<pre><code>// type typeName func(input1 inputType1, intpu2 inputType2 [, ...]) (result1 resultType1 [, ...])
+<div class="codehilite"><pre><span></span>// type typeName func(input1 inputType1, intpu2 inputType2 [, ...]) (result1 resultType1 [, ...])
 // 可以把这个类型的函数当做值来传递
 
 package main
@@ -1169,22 +1181,24 @@ func main() {
     fmt.Println(&quot;Odd:&quot;, odd)
 
 }
-</code></pre>
+</pre></div>
+
 
 <p>Panic/Recover:</p>
-<pre><code>Panic 是一个内建函数，可以中断原有的控制流程，进入一个令人恐慌的流程中。
+<div class="codehilite"><pre><span></span>Panic 是一个内建函数，可以中断原有的控制流程，进入一个令人恐慌的流程中。
 当 F 函数调用 panic，F 的执行逻辑被中断，但是 F 中的延迟函数会正常执行，然后 F 返回调用它的地方。
 在调用的地方，F 的行为就像调用了 panic，继续向上直到发生 panic 的 goroutine 中所有调用的函数返回，此时程序退出。
 panic 可以手动或者运行时错误产生（越界数组）
 
  recover：内建函数，可以让进入恐慌的流程中的 goroutine 回复过来。recover 仅在延迟函数中有效。
  正常逻辑调用 recover 返回 nil。当前的 goroutine 先入恐慌可以用 recover 捕获 panic 的输入值，并且回复正常的执行。
-</code></pre>
+</pre></div>
+
 
 <p>main init 函数：</p>
 <p><img alt="" src="../main_init.png" /></p>
 <p>import: 导入包文件</p>
-<pre><code>// 点操作，表示你调用的时候可以省略前缀，比如 fmt.Println(&quot;hello&quot;) 可以写 Println(&quot;Hello&quot;)
+<div class="codehilite"><pre><span></span>// 点操作，表示你调用的时候可以省略前缀，比如 fmt.Println(&quot;hello&quot;) 可以写 Println(&quot;Hello&quot;)
 import (
  . &quot;fmt&quot;
 )
@@ -1199,10 +1213,11 @@ import (
 import (
     _ &quot;github.com/ziutek/mymysql/godrv&quot; //_引入该包，而不直接使用包里的函数，而是调用包里的 init 函数
 )
-</code></pre>
+</pre></div>
+
 
 <p>Struct 类型：属性或者字段容器</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1230,14 +1245,15 @@ func main() {
     p := new(Person) // p 是个指针
     fmt.Printf(&quot;name is &quot;, P.name)
 }
-</code></pre>
+</pre></div>
 
-<h3 id="25">2.5 面向对象</h3>
+
+<h3 id="25">2.5 面向对象<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
 <p>method: 带有接受者的函数。method 附属在一个给定的类型上，语法和函数的声明语法几乎一样，只是在函数后加上一个 receiver</p>
 <blockquote>
 <p>A method is a funciton with am inplicit first argument, called a reciver - Rob Pike</p>
 </blockquote>
-<pre><code>/*
+<div class="codehilite"><pre><span></span>/*
 定义： func (r ReceiverType) funcName(parameters) (results)
 虽然 method 名字一样，但是接受者不一样，method 就不一样
 method 里可以访问接受者的字段
@@ -1271,20 +1287,22 @@ func main() {
     fmt.Println(&quot;r1 area&quot;, r1.area())
     fmt.Println(&quot;r1 area&quot;, c2.area())
 }
-</code></pre>
+</pre></div>
+
 
 <p>指针作为 receiver:</p>
-<pre><code>func (r *Rectangle) setHeight(height float64) {
+<div class="codehilite"><pre><span></span>func (r *Rectangle) setHeight(height float64) {
     r.height = height //NOTE：注意这里不必非要用 *r.hight = hight，Go 发现参数指针以后帮你自动处理
 }
-</code></pre>
+</pre></div>
+
 
 <p>method 继承：如果匿名字段实现了一个 method，那么包含这个匿名字段的 struct 也能调用该 method</p>
 <p>method 重写：和匿名字段冲突一样的道理，重写就实现了隐藏匿名字段的 method</p>
-<h3 id="26-interface">2.6 接口 interface</h3>
+<h3 id="26-interface">2.6 接口 interface<a class="headerlink" href="#26-interface" title="Permanent link">&para;</a></h3>
 <p>interface 是一组 method 签名的组合，通过 interface 来定义对象的一组行为，通过 interface 定义对象的一组行为。
 interface 类型定义了一组方法，如果某个对象实现了某个接口的<strong>所有</strong>方法，则此对象实现了这个接口(隐式)。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1348,7 +1366,8 @@ type ElderyGent interface {
     Sing(song string)
     SpendSalary(amount float32)
 }
-</code></pre>
+</pre></div>
+
 
 <p>interface 可以被任意对象实现，一个对象也可以实现任意多个 interface。
 任意类型都是现了空 interface (interface{})，也就是包含了0个 method 的interface。</p>
@@ -1358,12 +1377,13 @@ type ElderyGent interface {
 通过这种方式实现了鸭子类型。</p>
 <p>空 interface: 可以存储任意类型数值，类似于 c void*。一个函数把 interface{}
 作为参数，可以接受任意类型。同理也可以返回任意类型。</p>
-<pre><code>    var a interface{}
+<div class="codehilite"><pre><span></span>    var a interface{}
     var i int = 5
     s := &quot;hello&quot;
     a = i
     a = s
-</code></pre>
+</pre></div>
+
 
 <p>interface 的函数参数：interface的变量可以持有任意实现该interface 类型的对象。只要实现接口，我们就可以传入</p>
 <p>interface变量存储的类型：如何知道变量里实际存储的类型呢？</p>
@@ -1371,7 +1391,7 @@ type ElderyGent interface {
 <li>comma-ok</li>
 <li>switch 测试</li>
 </ul>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1409,18 +1429,20 @@ func main() {
         }
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>嵌入 interface：如果一个 interface1 作为另一个interface2 的嵌入字段，那么interface2 隐式包含了interface1 里的 method</p>
-<h3 id="reflect">反射: 检查程序运行时状态。reflect</h3>
-<pre><code>t := reflect.TypeOf(i)
+<h3 id="reflect">反射: 检查程序运行时状态。reflect<a class="headerlink" href="#reflect" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>t := reflect.TypeOf(i)
 v := reflect.ValueOf(i)
-</code></pre>
+</pre></div>
 
-<h3 id="_1">并发</h3>
+
+<h3 id="_1">并发<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>goroutine: 通过 go 的 runtime 管理的一个线程管理器，通过 go 关键字实现。其实就是一个普通的函数</p>
 <p><code>go hello(a,b,c)</code> 通过 go 关键字启动了一个 goroutine</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1439,22 +1461,24 @@ func main() {
     go say(&quot;world&quot;)
     say(&quot;hello&quot;)
 }
-</code></pre>
+</pre></div>
+
 
 <p>多个 goroutine 运行在同一个进程里边，共享内存数据。
 不过设计上需要遵循：不要通过共享来通信，通过通信来共享。</p>
 <p>channels：goroutine 共享相同的地址空间，访问共享内存需要做好同步。必须用 make 创建</p>
-<pre><code>    ci := make(chan int)
+<div class="codehilite"><pre><span></span>    ci := make(chan int)
     cs := make(chan string)
     cf := make(chan interface{})
     ch &lt;- v  //发送数据 v 到 channel ch
     v:= &lt;-ch  //从 ch 中接受数据，并赋值给v
-</code></pre>
+</pre></div>
+
 
 <p>默认channel接收和发送数据都是阻塞的，除非另一端准备好，这样使得 goroutine 同步变得简单，无需显示 lock。</p>
 <p>buffered channels: 允许指定 channel 缓冲区大小。<code>ch := make(chan type, value)</code>
 当 value =0，channel 是无缓冲区阻塞读写的，当 value&gt;0，channel 是有缓冲、非阻塞的，知道写满 value 个才阻塞写入。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;fmt&quot;
 
@@ -1474,10 +1498,11 @@ func main() {
     x, y := &lt;-c, &lt;-c // 从 c 接收
     fmt.Println(x, y, x+y)
 }
-</code></pre>
+</pre></div>
+
 
 <p>Range 和 Close: 通过 range，像操作slice 或者 map 一样操作缓存类型的 channel</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;fmt&quot;
 
@@ -1496,12 +1521,13 @@ func main() {
         fmt.Println(i)
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>Select: 多个 channel 操作。Go提供了select监听 channel 数据流动
 Select: 多个 channel。select 可以监听 channel 上的数据流动。select 默认阻塞，只有当监听的 channel 中有发送或接收可以
 进行时才会运行，当多个 channel 都准备好的时候随机选择一个执行。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;fmt&quot;
 
@@ -1532,12 +1558,13 @@ func main() {
     }()
     fibonacci(c, quit)
 }
-</code></pre>
+</pre></div>
+
 
 <p>有时候会出现 goroutine 阻塞的情况。还可以设置 select 设置超时。</p>
-<h1 id="3-web">3 Web基础</h1>
+<h1 id="3-web">3 Web基础<a class="headerlink" href="#3-web" title="Permanent link">&para;</a></h1>
 <p>用 go 实现一个 http server 真滴很简单，支持高并发，内部实现是一个单独的 goroutine 处理请求。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1565,12 +1592,13 @@ func main() {
         log.Fatal(&quot;ListenAndServe: &quot;, err)
     }
 }
-</code></pre>
+</pre></div>
 
-<h1 id="4">4 表单</h1>
-<h1 id="5">5 访问数据库</h1>
-<h3 id="51-databasesql">5.1 database/sql 接口</h3>
-<pre><code>sql.Register
+
+<h1 id="4">4 表单<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
+<h1 id="5">5 访问数据库<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<h3 id="51-databasesql">5.1 database/sql 接口<a class="headerlink" href="#51-databasesql" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>sql.Register
 driver.Driver   // 返回的数据库conn 只能用在一个 goroutine
 driver.Conn
 driver.Stmt  // Stmt 是一种准备好的状态，只能用在一个goroutine中
@@ -1583,11 +1611,12 @@ driver.Value //空接口，容纳任何数据
 driver.ValueConverter // 把一个普通值转换成 driver.Value
 driver.Valuer // 定义了返回一个 driver.Value 的方式
 database/sql
-</code></pre>
+</pre></div>
 
-<h3 id="52-mysql">5.2 使用 Mysql</h3>
+
+<h3 id="52-mysql">5.2 使用 Mysql<a class="headerlink" href="#52-mysql" title="Permanent link">&para;</a></h3>
 <p>使用 "github.com/go-sql-driver/mysql" 演示数据库增删改查</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;database/sql&quot;
@@ -1653,10 +1682,11 @@ func checkErr(err error) {
         panic(err)
     }
 }
-</code></pre>
+</pre></div>
 
-<h1 id="55-beego-orm">5.5 使用 Beego orm</h1>
-<pre><code>package main
+
+<h1 id="55-beego-orm">5.5 使用 Beego orm<a class="headerlink" href="#55-beego-orm" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1698,9 +1728,10 @@ func main() {
     fmt.Printf(&quot;num %d, err:%v\n&quot;, num, err)
 
 }
-</code></pre>
+</pre></div>
 
-<h1 id="56-nosql">5.6 Nosql 数据库使用</h1>
+
+<h1 id="56-nosql">5.6 Nosql 数据库使用<a class="headerlink" href="#56-nosql" title="Permanent link">&para;</a></h1>
               
             </div>
           </div>

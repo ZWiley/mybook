@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../img/favicon.ico">
   <title>《Network Programming with go》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aNetwork Programming with go\u300b";
     var mkdocs_page_input_path = "golang\\network-programming-with-go\\book.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/network-programming-with-go/book/";
   </script>
   
   <script src="../../../js/jquery-2.1.1.min.js" defer></script>
@@ -898,9 +898,9 @@
             <div class="section">
               
                 <p>《Network Programming With Go》不是很深入。</p>
-<h1 id="3-socket-level-programming">3. Socket level Programming</h1>
-<h3 id="socket">socket</h3>
-<pre><code>// resolve IP
+<h1 id="3-socket-level-programming">3. Socket level Programming<a class="headerlink" href="#3-socket-level-programming" title="Permanent link">&para;</a></h1>
+<h3 id="socket">socket<a class="headerlink" href="#socket" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>// resolve IP
 package main
 
 import (
@@ -918,10 +918,11 @@ func main() {
     }
     fmt.Println(&quot;addr ip is &quot;, addr.String())
 }
-</code></pre>
+</pre></div>
+
 
 <p>编写一个时间回显tcp服务器：</p>
-<pre><code>// DaytimeServer
+<div class="codehilite"><pre><span></span>// DaytimeServer
 // telnet localhost 1200
 package main
 
@@ -959,9 +960,10 @@ func checkErr(err error) {
 }
 
 编写一个简单的tcp回显服务器：
-</code></pre>
+</pre></div>
 
-<pre><code>// SimpleEchoServer
+
+<div class="codehilite"><pre><span></span>// SimpleEchoServer
 package main
 
 import (
@@ -1008,10 +1010,11 @@ func checkError(err error) {
         os.Exit(1)
     }
 }
-</code></pre>
+</pre></div>
+
 
 <p>可以很容易修改成并发的，使用 goroutine</p>
-<pre><code>// SimpleEchoServer
+<div class="codehilite"><pre><span></span>// SimpleEchoServer
 package main
 
 import (
@@ -1058,180 +1061,184 @@ func checkError(err error) {
         os.Exit(1)
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="controlling-tcp-connections">Controlling TCP connections</h3>
-<pre><code class="go">// Timeout
-func (c *TCPConn) SetTimeout(nsec int64) os.Error
 
-// Staying alive, a client wish to stay connected to a server even if it has nothing to send
-func (c *TCPConn) SetKeepAlive(keepalive bool) os.Error
-</code></pre>
+<h3 id="controlling-tcp-connections">Controlling TCP connections<a class="headerlink" href="#controlling-tcp-connections" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="c1">// Timeout</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">TCPConn</span><span class="p">)</span> <span class="nx">SetTimeout</span><span class="p">(</span><span class="nx">nsec</span> <span class="kt">int64</span><span class="p">)</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Error</span>
+
+<span class="c1">// Staying alive, a client wish to stay connected to a server even if it has nothing to send</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">TCPConn</span><span class="p">)</span> <span class="nx">SetKeepAlive</span><span class="p">(</span><span class="nx">keepalive</span> <span class="kt">bool</span><span class="p">)</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Error</span>
+</pre></div>
+
 
 <p>UDP client server demo:</p>
-<pre><code class="go">// UDPDaytimeClient
-package main
+<div class="codehilite"><pre><span></span><span class="c1">// UDPDaytimeClient</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;net&quot;
-    &quot;os&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;net&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    service := &quot;localhost:1200&quot;
-    udpAddr, err := net.ResolveUDPAddr(&quot;udp4&quot;, service)
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">service</span> <span class="o">:=</span> <span class="s">&quot;localhost:1200&quot;</span>
+    <span class="nx">udpAddr</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ResolveUDPAddr</span><span class="p">(</span><span class="s">&quot;udp4&quot;</span><span class="p">,</span> <span class="nx">service</span><span class="p">)</span>
 
-    conn, err := net.DialUDP(&quot;udp&quot;, nil, udpAddr)
-    checkError(err)
+    <span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">DialUDP</span><span class="p">(</span><span class="s">&quot;udp&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">udpAddr</span><span class="p">)</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-    _, err = conn.Write([]byte(&quot;anything&quot;))
-    checkError(err)
-    var buf [512]byte
-    n, err := conn.Read(buf[0:])
-    checkError(err)
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&quot;anything&quot;</span><span class="p">))</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">buf</span> <span class="p">[</span><span class="mi">512</span><span class="p">]</span><span class="kt">byte</span>
+    <span class="nx">n</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-    fmt.Println(string(buf[0:n]))
-}
-func checkError(err error) {
-    if err != nil {
-        fmt.Fprintf(os.Stderr, &quot;Fatal error: %s&quot;, err.Error())
-        os.Exit(1)
-    }
-}
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nx">n</span><span class="p">]))</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="s">&quot;Fatal error: %s&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-// udpserver.go
-package main
+<span class="c1">// udpserver.go</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;net&quot;
-    &quot;os&quot;
-    &quot;time&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;net&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    service := &quot;:1200&quot;
-    updAddr, err := net.ResolveUDPAddr(&quot;udp4&quot;, service)
-    checkError(err)
-    conn, err := net.ListenUDP(&quot;udp&quot;, updAddr)
-    checkError(err)
-    for {
-        handleClient(conn)
-    }
-}
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">service</span> <span class="o">:=</span> <span class="s">&quot;:1200&quot;</span>
+    <span class="nx">updAddr</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ResolveUDPAddr</span><span class="p">(</span><span class="s">&quot;udp4&quot;</span><span class="p">,</span> <span class="nx">service</span><span class="p">)</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ListenUDP</span><span class="p">(</span><span class="s">&quot;udp&quot;</span><span class="p">,</span> <span class="nx">updAddr</span><span class="p">)</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="nx">handleClient</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func handleClient(conn *net.UDPConn) {
-    var buf [512]byte
-    _, addr, err := conn.ReadFromUDP(buf[0:])
-    if err != nil {
-        return
-    }
-    daytime := time.Now().String()
-    conn.WriteToUDP([]byte(daytime), addr)
-}
+<span class="kd">func</span> <span class="nx">handleClient</span><span class="p">(</span><span class="nx">conn</span> <span class="o">*</span><span class="nx">net</span><span class="p">.</span><span class="nx">UDPConn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">buf</span> <span class="p">[</span><span class="mi">512</span><span class="p">]</span><span class="kt">byte</span>
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">addr</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">ReadFromUDP</span><span class="p">(</span><span class="nx">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">daytime</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">().</span><span class="nx">String</span><span class="p">()</span>
+    <span class="nx">conn</span><span class="p">.</span><span class="nx">WriteToUDP</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">daytime</span><span class="p">),</span> <span class="nx">addr</span><span class="p">)</span>
+<span class="p">}</span>
 
-func checkError(err error) {
-    if err != nil {
-        fmt.Fprintf(os.Stderr, &quot;Fatal error: %s&quot;, err.Error())
-        os.Exit(1)
-    }
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="s">&quot;Fatal error: %s&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
-<h3 id="raw-sockets-and-the-type-ipconn">Raw sockets and the type IPConn</h3>
-<pre><code class="go">// Ping
-package main
 
-import (
-    &quot;fmt&quot;
-    &quot;net&quot;
-    &quot;os&quot;
-)
+<h3 id="raw-sockets-and-the-type-ipconn">Raw sockets and the type IPConn<a class="headerlink" href="#raw-sockets-and-the-type-ipconn" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="c1">// Ping</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-func checkError(err error) {
-    if err != nil {
-        fmt.Fprintf(os.Stderr, &quot;Fatal error: %s&quot;, err.Error())
-        os.Exit(1)
-    }
-}
-func main() {
-    if len(os.Args) != 2 {
-        fmt.Println(&quot;Usage: &quot;, os.Args[0], &quot;host&quot;)
-        os.Exit(1)
-    }
-    addr, err := net.ResolveIPAddr(&quot;ip&quot;, os.Args[1])
-    if err != nil {
-        fmt.Println(&quot;Resolution error&quot;, err.Error())
-        os.Exit(1)
-    }
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;net&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+<span class="p">)</span>
 
-    fmt.Println(addr)
-    conn, err := net.DialIP(&quot;ip4:icmp&quot;, addr, addr)
-    checkError(err)
+<span class="kd">func</span> <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="s">&quot;Fatal error: %s&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Usage: &quot;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&quot;host&quot;</span><span class="p">)</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">addr</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ResolveIPAddr</span><span class="p">(</span><span class="s">&quot;ip&quot;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Resolution error&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    var msg [512]byte
-    msg[0] = 8  //echo
-    msg[1] = 0  //code 0
-    msg[2] = 0  //checksum, fix later
-    msg[3] = 0  //checksum, fix later
-    msg[4] = 0  //identifier[0]
-    msg[5] = 13 //identifier[1]
-    msg[6] = 0  // sequence[0]
-    msg[7] = 37 //sequence[1]
-    len := 8
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">addr</span><span class="p">)</span>
+    <span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">DialIP</span><span class="p">(</span><span class="s">&quot;ip4:icmp&quot;</span><span class="p">,</span> <span class="nx">addr</span><span class="p">,</span> <span class="nx">addr</span><span class="p">)</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-    check := checkSum(msg[0:len])
-    msg[2] = byte(check &gt;&gt; 8)
-    msg[3] = byte(check &amp; 255)
+    <span class="kd">var</span> <span class="nx">msg</span> <span class="p">[</span><span class="mi">512</span><span class="p">]</span><span class="kt">byte</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="mi">8</span>  <span class="c1">//echo</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>  <span class="c1">//code 0</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>  <span class="c1">//checksum, fix later</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>  <span class="c1">//checksum, fix later</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>  <span class="c1">//identifier[0]</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">=</span> <span class="mi">13</span> <span class="c1">//identifier[1]</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>  <span class="c1">// sequence[0]</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="p">=</span> <span class="mi">37</span> <span class="c1">//sequence[1]</span>
+    <span class="nx">len</span> <span class="o">:=</span> <span class="mi">8</span>
 
-    _, err = conn.Write(msg[0:len])
-    checkError(err)
+    <span class="nx">check</span> <span class="o">:=</span> <span class="nx">checkSum</span><span class="p">(</span><span class="nx">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nx">len</span><span class="p">])</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="nb">byte</span><span class="p">(</span><span class="nx">check</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="nx">msg</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">=</span> <span class="nb">byte</span><span class="p">(</span><span class="nx">check</span> <span class="o">&amp;</span> <span class="mi">255</span><span class="p">)</span>
 
-    _, err = conn.Read(msg[0:])
-    checkError(err)
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nx">len</span><span class="p">])</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-    fmt.Println(&quot;Got response&quot;)
-    if msg[5] == 13 {
-        fmt.Println(&quot;identifier matches&quot;)
-    }
-    if msg[7] == 37 {
-        fmt.Println(&quot;Sequence matches&quot;)
-    }
-}
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-func checkSum(msg []byte) uint16 {
-    sum := 0
-    for n := 1; n &lt; len(msg)-1; n += 2 {
-        sum += int(msg[n])*256 + int(msg[n+1])
-    }
-    sum = (sum &gt;&gt; 16) + (sum &amp; 0xffff)
-    sum += (sum &gt;&gt; 16)
-    answer := uint16(^sum)
-    return answer
-}
-</code></pre>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Got response&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">msg</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="mi">13</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;identifier matches&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">msg</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">37</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Sequence matches&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<h1 id="4-data-serialisation">4. Data serialisation</h1>
+<span class="kd">func</span> <span class="nx">checkSum</span><span class="p">(</span><span class="nx">msg</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">uint16</span> <span class="p">{</span>
+    <span class="nx">sum</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">n</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">n</span> <span class="o">+=</span> <span class="mi">2</span> <span class="p">{</span>
+        <span class="nx">sum</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">msg</span><span class="p">[</span><span class="nx">n</span><span class="p">])</span><span class="o">*</span><span class="mi">256</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="nx">msg</span><span class="p">[</span><span class="nx">n</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="p">}</span>
+    <span class="nx">sum</span> <span class="p">=</span> <span class="p">(</span><span class="nx">sum</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nx">sum</span> <span class="o">&amp;</span> <span class="mh">0xffff</span><span class="p">)</span>
+    <span class="nx">sum</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">sum</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="nx">answer</span> <span class="o">:=</span> <span class="nb">uint16</span><span class="p">(^</span><span class="nx">sum</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">answer</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h1 id="4-data-serialisation">4. Data serialisation<a class="headerlink" href="#4-data-serialisation" title="Permanent link">&para;</a></h1>
 <ul>
 <li>ASN.1</li>
 <li>JSON</li>
 <li>gob</li>
 <li>base64</li>
 </ul>
-<h1 id="5-application-level-protocols">5. Application Level Protocols</h1>
+<h1 id="5-application-level-protocols">5. Application Level Protocols<a class="headerlink" href="#5-application-level-protocols" title="Permanent link">&para;</a></h1>
 <ul>
 <li>version control</li>
 <li>message format</li>
 <li>data format: byte encoded or character encoded</li>
 <li>state</li>
 </ul>
-<h1 id="6-managing-character-sets-and-encodings">6. Managing character sets and encodings</h1>
+<h1 id="6-managing-character-sets-and-encodings">6. Managing character sets and encodings<a class="headerlink" href="#6-managing-character-sets-and-encodings" title="Permanent link">&para;</a></h1>
 <p>Go use utf8 encoded characters in its strings. Each character is of type rune(alias for int32)
 as a Unicode character can be 1,2 or 4 bytes in UTF8 encoding. A string is an array of rune.</p>
-<h1 id="7-security">7. Security</h1>
-<h3 id="data-integrity">Data integrity (数据完整性)</h3>
-<pre><code>// MD5 Has
+<h1 id="7-security">7. Security<a class="headerlink" href="#7-security" title="Permanent link">&para;</a></h1>
+<h3 id="data-integrity">Data integrity (数据完整性)<a class="headerlink" href="#data-integrity" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>// MD5 Has
 package main
 
 import (
@@ -1255,27 +1262,28 @@ func main() {
         fmt.Printf(&quot;%x &quot;, val)
     }
 }
-</code></pre>
+</pre></div>
 
-<h3 id="symmetric-key-encryption">Symmetric key encryption</h3>
+
+<h3 id="symmetric-key-encryption">Symmetric key encryption<a class="headerlink" href="#symmetric-key-encryption" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Blowfish</li>
 <li>DES</li>
 </ul>
-<h3 id="public-key-encryption">Public key encryption</h3>
+<h3 id="public-key-encryption">Public key encryption<a class="headerlink" href="#public-key-encryption" title="Permanent link">&para;</a></h3>
 <ul>
 <li>crypto/rsa</li>
 </ul>
-<h3 id="x509-certificates">X.509 certificates</h3>
+<h3 id="x509-certificates">X.509 certificates<a class="headerlink" href="#x509-certificates" title="Permanent link">&para;</a></h3>
 <p>A public key infrastructure(PKI) is a framework for a collections of public keys,
 along with additional information such as owner name and location.</p>
-<h3 id="tls">TLS</h3>
+<h3 id="tls">TLS<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h3>
 <ul>
 <li>crypto/tls</li>
 </ul>
-<h1 id="8-http">8. HTTP</h1>
-<h1 id="http-client">HTTP client</h1>
-<pre><code>package main
+<h1 id="8-http">8. HTTP<a class="headerlink" href="#8-http" title="Permanent link">&para;</a></h1>
+<h1 id="http-client">HTTP client<a class="headerlink" href="#http-client" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span>package main
 
 import (
     &quot;fmt&quot;
@@ -1309,20 +1317,22 @@ func main() {
     }
 
 }
-</code></pre>
+</pre></div>
+
 
 <p>Proxy handling:</p>
-<pre><code>proxyURL, err := url.Parse(proxyString) // http://proxy-host:port
+<div class="codehilite"><pre><span></span>proxyURL, err := url.Parse(proxyString) // http://proxy-host:port
 transport := &amp;http.Transport{Proxy: http.ProxyURL(proxyURL)}
 client := &amp;http.Client{Transport: transport}
 // func ProxyFromEnvironment(req *Request) (*url.URL, error)
-</code></pre>
+</pre></div>
 
-<h3 id="servers">Servers</h3>
+
+<h3 id="servers">Servers<a class="headerlink" href="#servers" title="Permanent link">&para;</a></h3>
 <ul>
 <li>File server</li>
 </ul>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import &quot;net/http&quot;
 
@@ -1331,16 +1341,18 @@ func main() {
     err := http.ListenAndServe(&quot;:8000&quot;, fileServer)
     checkError(err)
 }
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>Handler function</li>
 </ul>
-<pre><code>func Handle(pattern string, handler Handler)
+<div class="codehilite"><pre><span></span>func Handle(pattern string, handler Handler)
 func HandleFunc(pattern string, handler func(*Conn, *Request))
-</code></pre>
+</pre></div>
 
-<h1 id="9-templates">9. Templates</h1>
+
+<h1 id="9-templates">9. Templates<a class="headerlink" href="#9-templates" title="Permanent link">&para;</a></h1>
 <ul>
 <li>html/template, text/template</li>
 <li>pipelines: <code>{{. | html}}</code></li>

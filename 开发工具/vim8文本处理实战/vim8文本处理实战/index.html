@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../img/favicon.ico">
   <title>《Vim8文本处理实战》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aVim8\u6587\u672c\u5904\u7406\u5b9e\u6218\u300b";
     var mkdocs_page_input_path = "\u5f00\u53d1\u5de5\u5177\\vim8\u6587\u672c\u5904\u7406\u5b9e\u6218\\vim8\u6587\u672c\u5904\u7406\u5b9e\u6218.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u5f00\u53d1\u5de5\u5177/vim8\u6587\u672c\u5904\u7406\u5b9e\u6218/vim8\u6587\u672c\u5904\u7406\u5b9e\u6218/";
   </script>
   
   <script src="../../../js/jquery-2.1.1.min.js" defer></script>
@@ -896,58 +896,61 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="3">3. 插件管理</h1>
+                <h1 id="3">3. 插件管理<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>分析 vim 性能： 使用 <code>-startuptime</code> 和 :profile 来分析性能</p>
 <p><code>:map g</code> 将显示所有 g 开头映射</p>
 <p><code>noremap &lt;c-u&gt; :w&lt;cr&gt;</code> 使用 ctrl-s 保存文件</p>
-<pre><code class="vim">let mapleader = &quot;\&lt;space&gt;&quot;
-noremap &lt;leader&gt;w :w&lt;cr&gt;
-noremap &lt;leader&gt;n :NERDTreeToggle&lt;cr&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="k">let</span> mapleader <span class="p">=</span> <span class="s2">&quot;\&lt;space&gt;&quot;</span>
+<span class="nb">noremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">w</span> :<span class="k">w</span><span class="p">&lt;</span><span class="k">cr</span><span class="p">&gt;</span>
+<span class="nb">noremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">n</span> :NERDTreeToggle<span class="p">&lt;</span><span class="k">cr</span><span class="p">&gt;</span>
+</pre></div>
 
-<h1 id="4">4. 理解文本</h1>
+
+<h1 id="4">4. 理解文本<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
 <p>本章介绍了几个插件</p>
 <ul>
 <li>YouCompelteMe</li>
 <li>Exuberant Ctags</li>
 <li>Gundo 撤销树浏览</li>
 </ul>
-<h1 id="5">5. 构建、测试和运行</h1>
+<h1 id="5">5. 构建、测试和运行<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
 <ul>
 <li>tpope/vim-fugitive</li>
 </ul>
 <p>使用 vimdiff 进行代码冲突合并。</p>
-<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; [LOCAL commit/branch]
+<div class="codehilite"><pre><span></span>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; [LOCAL commit/branch]
 [LOCAL change]
 ||||||| merged commong ancestors
 [BASE - closest common ancestor]
 ========
 [REMOTE change]
 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; [REMOTE commit/branch]
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>vim-tmux-navigator</li>
 <li>vim-test 执行单测。 :TestNearest :TestFile :TestSuite :TestLast</li>
 </ul>
-<h1 id="6">6. 用正则表达式和宏重构代码</h1>
+<h1 id="6">6. 用正则表达式和宏重构代码<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <p>介绍了使用正则和 宏录制来进行重构</p>
-<h1 id="7-vim">7. 定制自己的 vim</h1>
+<h1 id="7-vim">7. 定制自己的 vim<a class="headerlink" href="#7-vim" title="Permanent link">&para;</a></h1>
 <ul>
 <li>airline 状态栏</li>
 </ul>
 <p>vimrc 中手动折叠记号 <code>{{{</code> 。使用 zM 关闭所有折叠。</p>
-<h1 id="8-vimscript">8. Vimscript</h1>
+<h1 id="8-vimscript">8. Vimscript<a class="headerlink" href="#8-vimscript" title="Permanent link">&para;</a></h1>
 <p>vimscript 使用一个双引号作为注释，有些命令后边不能用注释(和字符串定义冲突)</p>
-<h3 id="_1">定义</h3>
-<pre><code>&quot; 使用 set 为内部选项赋值
+<h3 id="_1">定义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>&quot; 使用 set 为内部选项赋值
 set background=dark
 &quot; 非内部变量使用 let
-let animal_name = 'Miss'
+let animal_name = &#39;Miss&#39;
 let is_cat = 1 &quot; bool 使用1/0
 &quot;vim 中变量和作用域是通过前缀实现的
-let g:animal_name = 'miss'
-</code></pre>
+let g:animal_name = &#39;miss&#39;
+</pre></div>
+
 
 <p>作用域规则：</p>
 <ul>
@@ -960,41 +963,44 @@ let g:animal_name = 'miss'
 <li>s表示使用:source'd执行的Vim脚本文件中的局部文件作用域。</li>
 <li>a表示函数的参数。</li>
 </ul>
-<pre><code>&quot; 寄存器设置同样使用 let
-let @a = 'cats'
+<div class="codehilite"><pre><span></span>&quot; 寄存器设置同样使用 let
+let @a = &#39;cats&#39;
 &quot; vim选项(使用 set 修改的那些变量) 另一种访问方式是加上&amp;
 let &amp;ignorecase = 0
 &quot; 整数可以进行 (+, - , *, /)，字符串拼接使用点 .
-let g:cat = g:animal . ' is a cat'
-</code></pre>
+let g:cat = g:animal . &#39; is a cat&#39;
+</pre></div>
 
-<h3 id="_2">打印</h3>
-<pre><code>&quot; 使用 echo 输出变量到状态栏
+
+<h3 id="_2">打印<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>&quot; 使用 echo 输出变量到状态栏
 echo g:animal_name
 &quot; 使用 echomsg 可以记录输出结果，使用 :messages 就可以查看
-echom 'here is another message'
-</code></pre>
+echom &#39;here is another message&#39;
+</pre></div>
 
-<h3 id="_3">条件表达式</h3>
-<pre><code>let g:animal_kind = 'cat'
-if g:animal_kind == 'cat'
-  echo g:animal_name . ' is a cat'
-elseif g:animal_kind == 'dog'
-  echo g:animal_name . ' is a dog'
+
+<h3 id="_3">条件表达式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>let g:animal_kind = &#39;cat&#39;
+if g:animal_kind == &#39;cat&#39;
+  echo g:animal_name . &#39; is a cat&#39;
+elseif g:animal_kind == &#39;dog&#39;
+  echo g:animal_name . &#39; is a dog&#39;
 else
-  echo g:animal_name . ' is something else'
+  echo g:animal_name . &#39; is something else&#39;
 endif
 
 &quot; vim 还支持三元运算符
 let g:is_cat  = 0
-echo g:animal_name . (g:is_cat ? ' is a cat' : ' is something else' )
+echo g:animal_name . (g:is_cat ? &#39; is a cat&#39; : &#39; is something else&#39; )
 
 &quot; 逻辑运算符 与&amp;&amp; 或|| 非!
 let g:is_dog  = 0
 if !g:is_cat &amp;&amp; !g:is_dog
-  echo g:animal_name . 'is something else'
+  echo g:animal_name . &#39;is something else&#39;
 endif
-</code></pre>
+</pre></div>
+
 
 <p>字符串比较:</p>
 <ul>
@@ -1004,20 +1010,20 @@ endif
 <li>=~ 使左操作数和右操作数(正则)匹配</li>
 <li>!~ 和 =~ 相反</li>
 </ul>
-<h3 id="_4">列表</h3>
-<pre><code>&quot; vimscript 列表，操作类似 python
-let animals = ['cat', 'dog', 'parrot']
+<h3 id="_4">列表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>&quot; vimscript 列表，操作类似 python
+let animals = [&#39;cat&#39;, &#39;dog&#39;, &#39;parrot&#39;]
 let cat = animals[0]
 let dog = animals[1]
 let parrot = animals[-1] &quot; 获取最后一个元素
 let slice = animals[1:]
 let slice2 = animals[0:1] &quot;NOTE:注意 vim 索引包含右区间元素
 
-call add(animals, 'octopus') &quot; add element
-let animals = add(animals, 'octopus')
+call add(animals, &#39;octopus&#39;) &quot; add element
+let animals = add(animals, &#39;octopus&#39;)
 
-call insert(animals, 'bobcat') &quot; 插入元素，支持索引
-call insert(animals, 'raven', 2)
+call insert(animals, &#39;bobcat&#39;) &quot; 插入元素，支持索引
+call insert(animals, &#39;raven&#39;, 2)
 
 unlet animals[2] &quot; 删除索引 2 的元素
 call remove(animals, -1) &quot; 删除最后一个元素
@@ -1025,47 +1031,49 @@ let bobcat = remove(animals, 0)
 unlet animals[1:]
 call remove(animals, 0, 1)
 
-let mammals = ['dog', 'cat']
-let birds = ['raven', 'parrot']
+let mammals = [&#39;dog&#39;, &#39;cat&#39;]
+let birds = [&#39;raven&#39;, &#39;parrot&#39;]
 let animals = mammals + birds &quot; add two list
 call extend(mammals, birds) &quot;追加 mammals
 call sort(animals) &quot; 字典序
-let i = index(animals, 'parrot') &quot; 查找索引
+let i = index(animals, &#39;parrot&#39;) &quot; 查找索引
 if empty(animals)
-  echo 'no animals'
+  echo &#39;no animals&#39;
 endif
 
-count(animals, 'cat') &quot; 统计个数
-</code></pre>
+count(animals, &#39;cat&#39;) &quot; 统计个数
+</pre></div>
 
-<h3 id="_5">字典</h3>
-<pre><code>&quot; :help dict
+
+<h3 id="_5">字典<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>&quot; :help dict
 let animal_names = {
-  \ 'cat': 'cat',
-  \ 'dog': 'Dogson',
-  \ 'parrot': 'Polly'
+  \ &#39;cat&#39;: &#39;cat&#39;,
+  \ &#39;dog&#39;: &#39;Dogson&#39;,
+  \ &#39;parrot&#39;: &#39;Polly&#39;
   \}
 
-let cat_name = animal_names['cat']
+let cat_name = animal_names[&#39;cat&#39;]
 let cat_name = animal_names.cat
-let animal_names['raven'] = 'Raven'
-let animal_names['raven2'] = 'Raven2'
-unlet animal_names['raven2']
-let raven = remove(animal_names, 'raven')
-call extend(animal_names, {'bobcat': 'Sir'})
+let animal_names[&#39;raven&#39;] = &#39;Raven&#39;
+let animal_names[&#39;raven2&#39;] = &#39;Raven2&#39;
+unlet animal_names[&#39;raven2&#39;]
+let raven = remove(animal_names, &#39;raven&#39;)
+call extend(animal_names, {&#39;bobcat&#39;: &#39;Sir&#39;})
 
 if !empty(animal_names)
   echo len(animal_names)
 endif
 
-if has_key(animal_names, 'cat')
-  echo 'Cat is:' . animal_names['cat']
+if has_key(animal_names, &#39;cat&#39;)
+  echo &#39;Cat is:&#39; . animal_names[&#39;cat&#39;]
 endif
-</code></pre>
+</pre></div>
 
-<h3 id="_6">循环</h3>
+
+<h3 id="_6">循环<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>列表和字典都可以用 for 遍历</p>
-<pre><code>&quot; iter list
+<div class="codehilite"><pre><span></span>&quot; iter list
 for animal in animals
   echo animal
 endfor
@@ -1081,14 +1089,14 @@ for [animal, name] in items(animal_names)
 endfor
 
 &quot; break 和 continue
-let animals = ['dot', 'cat', 'parrot']
+let animals = [&#39;dot&#39;, &#39;cat&#39;, &#39;parrot&#39;]
 for animal in animals
-  if animal == 'cat'
+  if animal == &#39;cat&#39;
     &quot; 如果一个字符串内部使用单引号，需要用两个单引号
-    echo 'It ''s a cat ! breaking!'
+    echo &#39;It &#39;&#39;s a cat ! breaking!&#39;
     break &quot; continue
   endif
-  echo 'Looking at a ' . animal . ', it'' s not a cat yet...'
+  echo &#39;Looking at a &#39; . animal . &#39;, it&#39;&#39; s not a cat yet...&#39;
 endfor
 
 &quot; while
@@ -1099,148 +1107,158 @@ endwhile
 &quot; wihle 中同样可以使用 break 和 continue
 while len(animals) &gt; 0
   let animal = remove(animals, 0)
-  if animal == 'dog'
-    echo 'a dog, breaking'!
+  if animal == &#39;dog&#39;
+    echo &#39;a dog, breaking&#39;!
     break
   endif
 endwhile
-</code></pre>
+</pre></div>
 
-<h3 id="_7">函数</h3>
-<pre><code>&quot; vim中自己定义的函数需要大写开头，除非函数在脚本作用域或者命名空间中
+
+<h3 id="_7">函数<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>&quot; vim中自己定义的函数需要大写开头，除非函数在脚本作用域或者命名空间中
 function Hello(animal)
   &quot; 函数内部访问参数需要 a 作用域
-  echo a:animal . ' hello!'
+  echo a:animal . &#39; hello!&#39;
 endfunction
 call Hello(&quot;cat&quot;)
 
 &quot; 注意加上了!, 防止重复 source 报错重定义
 function! Hello2(animal)
-  return a:animal . ' says hello!'
+  return a:animal . &#39; says hello!&#39;
 endfunction
 echo Hello2(&quot;dog&quot;)
 
 &quot; 可变参数
 function! Hello3(...)
-  echo a:1 . ' syas hi to ' . a:2
+  echo a:1 . &#39; syas hi to &#39; . a:2
   &quot; 获取所有参数
   echo a:000
 endfunction
-call Hello3('cat', 'dog')
+call Hello3(&#39;cat&#39;, &#39;dog&#39;)
 
 &quot; 结合固定参数和可变参数
 function! Hello4(animal, ...)
-  echo a:animal . 'says hi to ' . a:1
+  echo a:animal . &#39;says hi to &#39; . a:1
 endfunction
-call Hello4('cat', 'dog')
+call Hello4(&#39;cat&#39;, &#39;dog&#39;)
 
 &quot; 最好在函数中只使用局部作用域
 function! s:AnimalGreeting(animal)
-  echo a:animal . 'says hi!'
+  echo a:animal . &#39;says hi!&#39;
 endfunction
 &quot; function! s:AnimalGreeting(animal)
-&quot;   echo a:animal . 'says hello!'
+&quot;   echo a:animal . &#39;says hello!&#39;
 &quot; endfunction
-</code></pre>
+</pre></div>
 
-<h3 id="_8">类</h3>
+
+<h3 id="_8">类<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>通过在字典上定义方法来实现</p>
-<pre><code>let animal_names = {
-  \ 'cat': 'cat',
-  \ 'dog': 'Dogson',
-  \ 'parrot': 'Polly'
+<div class="codehilite"><pre><span></span>let animal_names = {
+  \ &#39;cat&#39;: &#39;cat&#39;,
+  \ &#39;dog&#39;: &#39;Dogson&#39;,
+  \ &#39;parrot&#39;: &#39;Polly&#39;
   \}
 
 function animal_names.GetGreeting(animal)
-  return self[a:animal] . ' says hello'
+  return self[a:animal] . &#39; says hello&#39;
 endfunction
 
-echo animal_names.GetGreeting('cat')
-</code></pre>
+echo animal_names.GetGreeting(&#39;cat&#39;)
+</pre></div>
 
-<h3 id="lambda">lambda 表达式</h3>
-<pre><code>let Hi = {animal -&gt; animal . 'says hello'}
-echo Hi('cat')
-</code></pre>
 
-<h3 id="mapfilter">高阶函数：映射(map)和过滤(filter)</h3>
+<h3 id="lambda">lambda 表达式<a class="headerlink" href="#lambda" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>let Hi = {animal -&gt; animal . &#39;says hello&#39;}
+echo Hi(&#39;cat&#39;)
+</pre></div>
+
+
+<h3 id="mapfilter">高阶函数：映射(map)和过滤(filter)<a class="headerlink" href="#mapfilter" title="Permanent link">&para;</a></h3>
 <p>map/filter 第一个参数是 list/dict，第二个是 function</p>
-<pre><code>let animal_names = {
-  \ 'cat': 'cat',
-  \ 'dog': 'Dogson',
-  \ 'parrot': 'Polly'
+<div class="codehilite"><pre><span></span>let animal_names = {
+  \ &#39;cat&#39;: &#39;cat&#39;,
+  \ &#39;dog&#39;: &#39;Dogson&#39;,
+  \ &#39;parrot&#39;: &#39;Polly&#39;
   \}
 
 func IsProperName(name)
-  if a:name == 'cat'
+  if a:name == &#39;cat&#39;
     return 1
   endif
   return 0
 endfunction
 
-call filter(animal_names, 'IsProperName(v:val)')
+call filter(animal_names, &#39;IsProperName(v:val)&#39;)
 echo animal_names
 
 &quot;filter 第二个参数也可以是函数引用，vim 支持引用一个函数o
-let IsProperName2 = function('IsProperName')
-echo IsProperName2('catt')
+let IsProperName2 = function(&#39;IsProperName&#39;)
+echo IsProperName2(&#39;catt&#39;)
 &quot; 通过函数应用可以把函数作为参数传递给其他函数
 function FunctionCaller(func, arg)
   return a:func(a:arg)
 endfunction
 
-echo FunctionCaller(IsProperName2, 'cat')
+echo FunctionCaller(IsProperName2, &#39;cat&#39;)
 
 &quot;filter 第二个参数也可以是函数引用，不过需要修改一下参数为两个，字典的key/val
 function IsProperNameKeyValue(key, value)
-  if a:value == 'cat'
+  if a:value == &#39;cat&#39;
     return 1
   endif
   return 0
 endfunction
 
-call filter(animal_names, function('IsProperNameKeyValue'))
+call filter(animal_names, function(&#39;IsProperNameKeyValue&#39;))
 echo animal_names
 
 &quot;filter 作用在列表时， v:key 表示索引，v:val 表示元素值
 
 call map(animal_names,
-  \ {key, val -&gt; IsProperName(val) ? val : 'Miss ' .val})
-</code></pre>
+  \ {key, val -&gt; IsProperName(val) ? val : &#39;Miss &#39; .val})
+</pre></div>
 
-<h3 id="vim">与 vim 交互</h3>
+
+<h3 id="vim">与 vim 交互<a class="headerlink" href="#vim" title="Permanent link">&para;</a></h3>
 <p>execute 会把它的参数解析为一条vim命令执行，比如</p>
-<pre><code>let animal = 'cat'
-execute 'echo ' . animal
-</code></pre>
+<div class="codehilite"><pre><span></span>let animal = &#39;cat&#39;
+execute &#39;echo &#39; . animal
+</pre></div>
+
 
 <p>normal 用于执行按键序列，与正常模式操作相似</p>
-<pre><code>&quot; search cat and delete。
+<div class="codehilite"><pre><span></span>&quot; search cat and delete。
 normal /cat&lt;cr&gt;dw
 &quot; normal 会遵守用户按键映射，忽略可以用 nomal!
 nomal! /cat&lt;cr&gt;dw
-</code></pre>
+</pre></div>
+
 
 <p>silent 可以隐藏(比如execute)的输出。还可以隐藏外部命令输出，并禁止弹出对话框</p>
-<pre><code>silent echo animal . ' hello'
-silent ececute 'echo ' . animal
-silent !echo 'this is running in a shell'
-</code></pre>
+<div class="codehilite"><pre><span></span>silent echo animal . &#39; hello&#39;
+silent ececute &#39;echo &#39; . animal
+silent !echo &#39;this is running in a shell&#39;
+</pre></div>
+
 
 <p>has 检查 vim 是否支持某个功能</p>
-<pre><code>if has('python3')
-  echom 'support python3'
+<div class="codehilite"><pre><span></span>if has(&#39;python3&#39;)
+  echom &#39;support python3&#39;
 endif
-</code></pre>
+</pre></div>
 
-<h3 id="_9">文件相关命令</h3>
-<pre><code>&quot; expand 用于操作文件路径信息
-echom 'current file' . expand('%:e')
 
-if filereadable(expand('%'))
-  echom 'Current file (' . expand('%:t') . ') is readable!'
+<h3 id="_9">文件相关命令<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>&quot; expand 用于操作文件路径信息
+echom &#39;current file&#39; . expand(&#39;%:e&#39;)
+
+if filereadable(expand(&#39;%&#39;))
+  echom &#39;Current file (&#39; . expand(&#39;%:t&#39;) . &#39;) is readable!&#39;
 endif
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>:p 展开为完整路径</li>
@@ -1249,32 +1267,33 @@ endif
 <li>:r 根路径</li>
 <li>:e 文件扩展名</li>
 </ul>
-<h3 id="_10">输入提示</h3>
+<h3 id="_10">输入提示<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>两种方式：</p>
 <ul>
 <li>confirm 弹出一个对话框，读者从中选择多个答案</li>
 <li>input 支持自由形式的文本输入</li>
 </ul>
-<pre><code>let answer = confirm('is cat your favorite animal?', &quot;&amp;yes\n&amp;no&quot;)
+<div class="codehilite"><pre><span></span>let answer = confirm(&#39;is cat your favorite animal?&#39;, &quot;&amp;yes\n&amp;no&quot;)
 &quot; yes 1, no 2，表示序号
 echo answer
 
 let animal = input(&quot;what is you favorite animal? &quot;)
 echo &quot;\n&quot;
-echo 'Your favorite is a ' . animal
+echo &#39;Your favorite is a &#39; . animal
 
 &quot; 注意为了防止键盘映射中, 剩余字符被 input 获取，使用 inputsave/inputrestore
 function AskAnimalName()
   call inputsave()
-  let name = input('what is your favorite?')
+  let name = input(&#39;what is your favorite?&#39;)
   call inputrestore()
   return name
 endfunction
 nnoremap &lt;leader&gt;a = :let name= AskAnimalName()&lt;cr&gt;:echo name&lt;cr&gt;
-</code></pre>
+</pre></div>
+
 
 <p>编程风格参考：《google vimscript style guide》</p>
-<h3 id="_11">编写一个插件</h3>
+<h3 id="_11">编写一个插件<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <p>一般的 vim 插件目录结构</p>
 <ul>
 <li>autoload/ 保存插件延迟加载内容</li>
@@ -1290,7 +1309,7 @@ nnoremap &lt;leader&gt;a = :let name= AskAnimalName()&lt;cr&gt;:echo name&lt;cr&
 <p>用一个 vim-commenter 示例如何编写 vim plugin。
 使用 helptags 可以生成帮助文档索引。
 发布插件到 github 上之后就可以使用插件管理器安装了。</p>
-<h1 id="9-neovim">9. Neovim</h1>
+<h1 id="9-neovim">9. Neovim<a class="headerlink" href="#9-neovim" title="Permanent link">&para;</a></h1>
               
             </div>
           </div>

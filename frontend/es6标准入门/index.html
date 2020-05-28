@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《ES6标准入门》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aES6\u6807\u51c6\u5165\u95e8\u300b";
     var mkdocs_page_input_path = "frontend\\es6\u6807\u51c6\u5165\u95e8.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/frontend/es6\u6807\u51c6\u5165\u95e8/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -946,29 +946,30 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="let-const">let 和 const 命令</h1>
-<h3 id="let">let</h3>
+                <h1 id="let-const">let 和 const 命令<a class="headerlink" href="#let-const" title="Permanent link">&para;</a></h1>
+<h3 id="let">let<a class="headerlink" href="#let" title="Permanent link">&para;</a></h3>
 <p>let 声明的变量只在所在的代码块中有效。 let 不存在变量提升，，一定要先声明后使用（暂时性死区）。
 let 实际上为 js 新增了块级作用域，外层作用域无法读取内层作用域的变量。块级作用域的出现使得立即执行表达式不再必要了。
 es5 规定函数不能在块级作用域定义，但是 es6 允许在其中声明函数，但应该尽量避免，而是使用函数表达式。</p>
-<pre><code class="js">for (let i = 0; i &lt; 10; i++) {
-    // ...
-}
-console.log(i)  // ReferenceError: i is not defined
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>  <span class="c1">// ReferenceError: i is not defined</span>
+</pre></div>
 
-<h3 id="const">const</h3>
+
+<h3 id="const">const<a class="headerlink" href="#const" title="Permanent link">&para;</a></h3>
 <p>const 声明一个只读变量，一旦声明不可变。作用域和 let 相同</p>
-<h1 id="_1">变量的解构赋值</h1>
-<h3 id="_2">数组解构赋值</h3>
+<h1 id="_1">变量的解构赋值<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h3 id="_2">数组解构赋值<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>按照『模式匹配』从数组和对象中抽取值。</p>
-<pre><code>let [a, b, c] = [1,2,3];
+<div class="codehilite"><pre><span></span>let [a, b, c] = [1,2,3];
 
 let [head, ...tail] = [1,2,3,4]
 head // 1
 tail // [2,3,4]
 
-let [x,y, ...z] = ['a']
+let [x,y, ...z] = [&#39;a&#39;]
 x // &quot;a&quot;
 y // undefined, 解构不成功变量的值就是 undefined
 z // []
@@ -977,9 +978,10 @@ z // []
 let [x,y]=[1,2,3]
 x //1
 y //2
-</code></pre>
+</pre></div>
 
-<pre><code>function* fibs() {
+
+<div class="codehilite"><pre><span></span>function* fibs() {
   let a=0;
   let b=1;
   while (true) {
@@ -987,36 +989,40 @@ y //2
     [a,b] = [b, a+b];
   }
 }
-</code></pre>
+</pre></div>
 
-<pre><code>// es6 内部使用严格相等运算符 ===
+
+<div class="codehilite"><pre><span></span>// es6 内部使用严格相等运算符 ===
 let [x=1] = [undefined];
 x //1
 let [x=1] = [null]
 x //null，以为 null 不是严格等于 undefined，所以可以被赋值
-</code></pre>
+</pre></div>
+
 
 <p>注意如果默认值是一个表达式，他是惰性求值的。</p>
-<h3 id="_3">对象解构赋值</h3>
+<h3 id="_3">对象解构赋值<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>先找到同名属性，然后赋值给对应的变量</p>
-<pre><code>let {foo, bar} = {foo:&quot;aa&quot;, bar:&quot;bb&quot;};
+<div class="codehilite"><pre><span></span>let {foo, bar} = {foo:&quot;aa&quot;, bar:&quot;bb&quot;};
 foo // &quot;aa&quot;
 bar // &quot;bb&quot;
-</code></pre>
+</pre></div>
+
 
 <p>用途：</p>
 <ul>
 <li>1.交换变量值</li>
 </ul>
-<pre><code>let x=1;
+<div class="codehilite"><pre><span></span>let x=1;
 let y=2;
 [x, y] = [y, x]
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>2.从函数返回多个值</li>
 </ul>
-<pre><code>function example() {
+<div class="codehilite"><pre><span></span>function example() {
   return [1,2,3]
 }
 let [a,b,c] = example()
@@ -1027,21 +1033,23 @@ function example() {
   }
 }
 let {foo,bar} = example()
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>3.函数参数定义</li>
 </ul>
-<pre><code>function f([x,y,z]) {...}
+<div class="codehilite"><pre><span></span>function f([x,y,z]) {...}
 f([1,2,3])
 function f({x,y,z}) {...}
 f({x:1, y:2, z:3})
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>4.提取 json 数据</li>
 </ul>
-<pre><code>let jsonData = {
+<div class="codehilite"><pre><span></span>let jsonData = {
   id: 42,
   status: &quot;OK&quot;,
   data: [867, 5309]
@@ -1051,12 +1059,13 @@ let { id, status, data: number } = jsonData;
 
 console.log(id, status, number);
 // 42, &quot;OK&quot;, [867, 5309]
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>5.参数默认值</li>
 </ul>
-<pre><code>jQuery.ajax = function (url, {
+<div class="codehilite"><pre><span></span>jQuery.ajax = function (url, {
   async = true,
   beforeSend = function () {},
   cache = true,
@@ -1067,32 +1076,35 @@ console.log(id, status, number);
 }) {
   // ... do stuff
 };
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>6.遍历 Map</li>
 </ul>
-<pre><code>var map = new Map();
-map.set('first', 'hello');
-map.set('second', 'world');
+<div class="codehilite"><pre><span></span>var map = new Map();
+map.set(&#39;first&#39;, &#39;hello&#39;);
+map.set(&#39;second&#39;, &#39;world&#39;);
 
 for (let [key, value] of map) {
   console.log(key + &quot; is &quot; + value);
 }
 // first is hello
 // second is world”
-</code></pre>
+</pre></div>
+
 
 <ul>
 <li>7.输入模块的指定方法</li>
 </ul>
-<pre><code>const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);”
-</code></pre>
+<div class="codehilite"><pre><span></span>const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);”
+</pre></div>
 
-<h1 id="_4">默认参数</h1>
-<h3 id="rest">rest 参数(...变量名)</h3>
+
+<h1 id="_4">默认参数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<h3 id="rest">rest 参数(...变量名)<a class="headerlink" href="#rest" title="Permanent link">&para;</a></h3>
 <p>用于获取函数的多余参数</p>
-<pre><code>function add(...values) {
+<div class="codehilite"><pre><span></span>function add(...values) {
   let sum = 0;
   for (var val of values) {
     sum += val
@@ -1102,11 +1114,12 @@ for (let [key, value] of map) {
 add(2, 5, 3)  // 10
 
 const sortNumbers = (...numbers) =&gt; numbers.sort();
-</code></pre>
+</pre></div>
 
-<h3 id="_5">箭头函数</h3>
+
+<h3 id="_5">箭头函数<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>es6 允许使用 (=&gt;) 定义函数</p>
-<pre><code>var f = v =&gt; v;
+<div class="codehilite"><pre><span></span>var f = v =&gt; v;
 // equal to
 var f = function(v) {
   return v
@@ -1138,18 +1151,20 @@ var result = values.sort(function(a,b) {
 })
 
 va result = values.sort((a,b) =&gt; a-b)
-</code></pre>
+</pre></div>
 
-<h1 id="symbol">Symbol</h1>
+
+<h1 id="symbol">Symbol<a class="headerlink" href="#symbol" title="Permanent link">&para;</a></h1>
 <p>es6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。</p>
-<h1 id="set-map">Set 和 Map 结构</h1>
+<h1 id="set-map">Set 和 Map 结构<a class="headerlink" href="#set-map" title="Permanent link">&para;</a></h1>
 <p>set : add, delete, has, clear; keys() values() entries() forEach()</p>
-<pre><code>const s=  new Set();
+<div class="codehilite"><pre><span></span>const s=  new Set();
 [1,2,3,4].forEach(x =&gt; s.add(x));
 for (let i of s) {
   console.log(i);
 }
-</code></pre>
+</pre></div>
+
 
 <p>WeakSet: 成员只能是对象；其中的对象都是弱引用。适合临时存放一组对象，以及存放跟对象绑定的信息。</p>
 <p>Map: js 对象本质上是键值对的集合(Hash 结构)，但是传统上只能用字符串当做键，使用受限。</p>
@@ -1158,26 +1173,27 @@ for (let i of s) {
 <li>keys(), values(), entries(), forEach()</li>
 </ul>
 <p>WeakMap: 只接受对象作为键名（null除外），WeakMap 键名指向的对象不计入垃圾回收机制。</p>
-<h1 id="proxy">Proxy</h1>
+<h1 id="proxy">Proxy<a class="headerlink" href="#proxy" title="Permanent link">&para;</a></h1>
 <p>用于修改某些操作的默认行为，等同于在语言层面修改。属于一种元编程。</p>
-<h1 id="promise">Promise 对象</h1>
+<h1 id="promise">Promise 对象<a class="headerlink" href="#promise" title="Permanent link">&para;</a></h1>
 <p>一个容器，保存着某个未来才会结束的事件（通常是一个异步操作的结果）</p>
-<h1 id="iterator-forof">Iterator 和 forof 循环</h1>
+<h1 id="iterator-forof">Iterator 和 forof 循环<a class="headerlink" href="#iterator-forof" title="Permanent link">&para;</a></h1>
 <p>Symbol.iterator 属性。具备原生 iterator 接口的数据结构如下：</p>
 <p>Array, Map, Set, String, TypedArray, 函数的arguments 对象，NodeList 对象</p>
-<pre><code>let arr = ['a', 'b', 'c'];
+<div class="codehilite"><pre><span></span>let arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
 let iter = arr[Symbol.iterator]();
 
-iter.next() // { value: 'a', done: false }
-iter.next() // { value: 'b', done: false }
-iter.next() // { value: 'c', done: false }
+iter.next() // { value: &#39;a&#39;, done: false }
+iter.next() // { value: &#39;b&#39;, done: false }
+iter.next() // { value: &#39;c&#39;, done: false }
 iter.next() // { value: undefined, done: true }”
-</code></pre>
+</pre></div>
 
-<h3 id="forof">for...of 循环</h3>
+
+<h3 id="forof">for...of 循环<a class="headerlink" href="#forof" title="Permanent link">&para;</a></h3>
 <p>一个数据结构只要部署了 Symbol.iterator 属性，就被视为有 iterator接口，就能用
 for...of 遍历它的成员。</p>
-<pre><code>var arr = ['a', 'b', 'c', 'd'];
+<div class="codehilite"><pre><span></span>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];
 
 for (let a in arr) {
   console.log(a); // 0 1 2 3
@@ -1186,11 +1202,12 @@ for (let a in arr) {
 for (let a of arr) {
   console.log(a); // a b c d
 }
-</code></pre>
+</pre></div>
+
 
 <p>for...in 循环读取键名，for...of 循环读取键值。</p>
 <p>Set, Map 原生具有 iterator 接口，可以直接用 for...of</p>
-<pre><code>var engines = new Set([&quot;Gecko&quot;, &quot;Trident&quot;, &quot;Webkit&quot;, &quot;Webkit&quot;]);
+<div class="codehilite"><pre><span></span>var engines = new Set([&quot;Gecko&quot;, &quot;Trident&quot;, &quot;Webkit&quot;, &quot;Webkit&quot;]);
 for (var e of engines) {
   console.log(e);
 }
@@ -1208,43 +1225,45 @@ for (var [name, value] of es6) {
 // edition: 6
 // committee: TC39
 // standard: ECMA-262”
+</pre></div>
 
-</code></pre>
 
-<h1 id="generator">Generator 函数语法</h1>
-<pre><code>function* helloWorldGenerator() {
-  yield 'hello';
-  yield 'world';
-  return 'ending';
+<h1 id="generator">Generator 函数语法<a class="headerlink" href="#generator" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span>function* helloWorldGenerator() {
+  yield &#39;hello&#39;;
+  yield &#39;world&#39;;
+  return &#39;ending&#39;;
 }
 
 var hw = helloWorldGenerator(); //返回遍历器对象
-</code></pre>
+</pre></div>
+
 
 <p>不得不说和 python generator 很像。</p>
 <p>async 函数返回一个 promise 对象。</p>
-<h1 id="class">Class</h1>
+<h1 id="class">Class<a class="headerlink" href="#class" title="Permanent link">&para;</a></h1>
 <p>之前 js 通过构造函数编写类，es6 提供了 class 语法糖。</p>
-<pre><code>function Point(x, y) {
+<div class="codehilite"><pre><span></span>function Point(x, y) {
   this.x = x;
   this.y = y;
 }
 
 Point.prototype.toString = function () {
-  return '(' + this.x + ', ' + this.y + ')';
+  return &#39;(&#39; + this.x + &#39;, &#39; + this.y + &#39;)&#39;;
 };
 
 var p = new Point(1, 2);
-</code></pre>
+</pre></div>
 
-<pre><code>class Point {
+
+<div class="codehilite"><pre><span></span>class Point {
   constructor(x, y) {
     this.x = x;
     this.y = y;
   }
 
   toString() {   // 调用实例方法
-    return '(' + this.x + ', ' + this.y + ')';
+    return &#39;(&#39; + this.x + &#39;, &#39; + this.y + &#39;)&#39;;
   }
 }
 
@@ -1254,22 +1273,24 @@ class Point {
 
 typeof Point // &quot;function&quot; ，类的数据类型就是函数，类本身就指向构造函数，可以用 new 创建
 Point === Point.prototype.constructor // true”
-</code></pre>
+</pre></div>
+
 
 <p>类和模块的内部默认是严格模式，无需手动指定。es6 实际上把整个语言升级到了严格模式。</p>
-<h3 id="class_1">class 的继承</h3>
+<h3 id="class_1">class 的继承<a class="headerlink" href="#class_1" title="Permanent link">&para;</a></h3>
 <p>class 可以通过 extends 实现继承。子类必须在 constructor 中调用 super 方法。任何子类都有 constructor 方法（默认添加）。
 调用 super 之后才能使用 this 关键字，否则会报错。</p>
-<pre><code>class Point {
+<div class="codehilite"><pre><span></span>class Point {
 }
 
 class ColorPoint extends Point {
 }
-</code></pre>
+</pre></div>
 
-<h3 id="mixin">Mixin 模式的实现</h3>
+
+<h3 id="mixin">Mixin 模式的实现<a class="headerlink" href="#mixin" title="Permanent link">&para;</a></h3>
 <p>mixin 模式指的是，将多个类的接口『混入』『mix in』另一个类。</p>
-<pre><code>function mix(...mixins) {
+<div class="codehilite"><pre><span></span>function mix(...mixins) {
   class Mix {}
 
   for (let mixin of mixins) {
@@ -1291,10 +1312,11 @@ function copyProperties(target, source) {
     }
   }
 }
-</code></pre>
+</pre></div>
 
-<h1 id="decorator">修饰器 Decorator</h1>
-<pre><code>@testable
+
+<h1 id="decorator">修饰器 Decorator<a class="headerlink" href="#decorator" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span>@testable
 class MyTestClass {
   //...
 }
@@ -1311,11 +1333,12 @@ class A {}
 // 等同于
 class A {}
 A  = decorator(A) || A
-</code></pre>
+</pre></div>
+
 
 <p>修饰器只能用于类和类的方法， 无法用于函数，因为存在函数提升。类是不会提升的。
 可以用高阶函数的形式修饰。</p>
-<pre><code>function doSomething(name) {
+<div class="codehilite"><pre><span></span>function doSomething(name) {
   console.log(&quot;Hello&quot; + name);
 }
 
@@ -1328,11 +1351,12 @@ function loggingDecorator(wrapped) {
   };
 }
 const wrapped = loggingDecorator(doSomething);
-</code></pre>
+</pre></div>
+
 
 <p>core-decorator.js 一个第三方模块，提供了几个常见的修饰器。 @autobind， @readonly @override @deprecate, @suppressWarnings</p>
-<h3 id="mixin_1">修饰器实现 Mixin 模式</h3>
-<pre><code>// mixins.js
+<h3 id="mixin_1">修饰器实现 Mixin 模式<a class="headerlink" href="#mixin_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>// mixins.js
 export function mixins(...list) {
   return function(target) {
     Object.assign(target.prototype, ...list);
@@ -1350,12 +1374,13 @@ class MyClass {}
 
 let obj = new MyClass();
 obj.foo();
-</code></pre>
+</pre></div>
 
-<h3 id="trait">Trait</h3>
+
+<h3 id="trait">Trait<a class="headerlink" href="#trait" title="Permanent link">&para;</a></h3>
 <p>也是一种修饰器，与Mixin类似，提供更多功能，比如防止同名方法冲突，排除混入某些方法，为混入方法起别名等。
 traits-decorator 第三方模块</p>
-<pre><code>import { traits } from &quot;traits-decorator&quot;;
+<div class="codehilite"><pre><span></span>import { traits } from &quot;traits-decorator&quot;;
 
 class TFoo {
   foo() {
@@ -1375,11 +1400,12 @@ class MyClass {}
 let obj = new MyClass();
 obj.foo();
 obj.bar();
-</code></pre>
+</pre></div>
 
-<h3 id="babel">Babel 转码器的支持</h3>
+
+<h3 id="babel">Babel 转码器的支持<a class="headerlink" href="#babel" title="Permanent link">&para;</a></h3>
 <p>Babel 已经支持 Decorator。babel-core, babel-plugin-transform-decorators</p>
-<h1 id="module">Module 的语法</h1>
+<h1 id="module">Module 的语法<a class="headerlink" href="#module" title="Permanent link">&para;</a></h1>
 <p>es6 实现了模块，取代CommonJS 和 AMD 规范(这些是运行时确定)，成为浏览器和服务器通用方案。
 es6 模块不是对象，而是通过export 命令显示指定输出的代码，再通过 import 导入。（编译时加载，静态加载）
 es6 模块自动采用严格模式。</p>
@@ -1400,11 +1426,11 @@ es6 模块自动采用严格模式。</p>
 <li>不能使用 fn.caller 和 fn.arguments 获取函数调用的堆栈</li>
 <li>增加了保留字（比如 protected 、 static 和 interface ）</li>
 </ul>
-<h3 id="export">export</h3>
+<h3 id="export">export<a class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
 <p>export 规定模块的对外接口，import用于输入其他模块提供的功能。
 一个模块是一个独立的文件，内部所有变量外部无法获取。可以使用 as 作为别名。
 export 语句需要放在模块顶层。</p>
-<pre><code>// export 规定的对外接口，必须和模块内部变量建立一一对应关系
+<div class="codehilite"><pre><span></span>// export 规定的对外接口，必须和模块内部变量建立一一对应关系
 // 三种写法都可以
 
 // 1
@@ -1415,34 +1441,37 @@ export {m}
 // 3
 var n = 1;
 export {n as m}
-</code></pre>
+</pre></div>
 
-<h3 id="import">import</h3>
+
+<h3 id="import">import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h3>
 <p>import  .. from '' 后边指定需要导入的位置，可以是相对或者绝对路径，js 后缀可以省略掉。
 import 编译器期间执行的，静态执行所以无法使用表达式和变量。这些是只有运行时才能获得的语法结构。并且是单例的。</p>
-<pre><code>//整体加载。
-import * as circle from './circle';
+<div class="codehilite"><pre><span></span>//整体加载。
+import * as circle from &#39;./circle&#39;;
 
-import { area, circumference } from './circle';
+import { area, circumference } from &#39;./circle&#39;;
 
-console.log('圆面积：' + area(4));
-console.log('圆周长：' + circumference(14));
+console.log(&#39;圆面积：&#39; + area(4));
+console.log(&#39;圆周长：&#39; + circumference(14));
 
 // wrong , 不允许运行时改变
-circle.foo = 'hello'
-</code></pre>
+circle.foo = &#39;hello&#39;
+</pre></div>
 
-<h3 id="export-default">export default</h3>
+
+<h3 id="export-default">export default<a class="headerlink" href="#export-default" title="Permanent link">&para;</a></h3>
 <p>给模块指定默认输出。export default 本质上就是输出一个叫做 default 的变量或者方法，然后系统运行你给它取任意名字。</p>
-<h3 id="_6">模块可以继承</h3>
-<h3 id="_7">跨常量</h3>
-<pre><code>export const A = 1;
+<h3 id="_6">模块可以继承<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h3 id="_7">跨常量<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>export const A = 1;
 export const B = 1;
-</code></pre>
+</pre></div>
 
-<h3 id="import_1">import() 函数</h3>
+
+<h3 id="import_1">import() 函数<a class="headerlink" href="#import_1" title="Permanent link">&para;</a></h3>
 <p>实现动态加载</p>
-<h1 id="module_1">Module 的加载实现</h1>
+<h1 id="module_1">Module 的加载实现<a class="headerlink" href="#module_1" title="Permanent link">&para;</a></h1>
               
             </div>
           </div>

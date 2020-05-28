@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《Go学习笔记语言详解》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aGo\u5b66\u4e60\u7b14\u8bb0\u8bed\u8a00\u8be6\u89e3\u300b";
     var mkdocs_page_input_path = "golang\\go\u8bed\u8a00\u5b66\u4e60\u7b14\u8bb0\u8bed\u8a00\u8be6\u89e3.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/golang/go\u8bed\u8a00\u5b66\u4e60\u7b14\u8bb0\u8bed\u8a00\u8be6\u89e3/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -926,96 +926,102 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="4">4 函数</h1>
+                <h1 id="4">4 函数<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
 <p>函数参数过多可以重构为一个符合类型结构，也算是变相实现可选参数和命名实参功能。</p>
-<pre><code class="go">// Package main  provides ...
-package main
+<div class="codehilite"><pre><span></span><span class="c1">// Package main  provides ...</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;log&quot;
-    &quot;time&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;log&quot;</span>
+    <span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
 
-type serverOption struct {
-    address string
-    port    int
-    path    string
-    timeout time.Duration
-    log     *log.Logger
-}
+<span class="kd">type</span> <span class="nx">serverOption</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">address</span> <span class="kt">string</span>
+    <span class="nx">port</span>    <span class="kt">int</span>
+    <span class="nx">path</span>    <span class="kt">string</span>
+    <span class="nx">timeout</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span>
+    <span class="nx">log</span>     <span class="o">*</span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span>
+<span class="p">}</span>
 
-func newOption() *serverOption {
-    return &amp;serverOption{
-        address: &quot;0.0.0.0&quot;,
-        port:    8080,
-        path:    &quot;/var/test&quot;,
-        timeout: time.Second * 5,
-        log:     nil,
-    }
-}
+<span class="kd">func</span> <span class="nx">newOption</span><span class="p">()</span> <span class="o">*</span><span class="nx">serverOption</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">serverOption</span><span class="p">{</span>
+        <span class="nx">address</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="nx">port</span><span class="p">:</span>    <span class="mi">8080</span><span class="p">,</span>
+        <span class="nx">path</span><span class="p">:</span>    <span class="s">&quot;/var/test&quot;</span><span class="p">,</span>
+        <span class="nx">timeout</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="nx">log</span><span class="p">:</span>     <span class="kc">nil</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func server(option *serverOption) {}
-func main() {
-    opt := newOption()
-    opt.port = 8085
-    server(opt)
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">server</span><span class="p">(</span><span class="nx">option</span> <span class="o">*</span><span class="nx">serverOption</span><span class="p">)</span> <span class="p">{}</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">opt</span> <span class="o">:=</span> <span class="nx">newOption</span><span class="p">()</span>
+    <span class="nx">opt</span><span class="p">.</span><span class="nx">port</span> <span class="p">=</span> <span class="mi">8085</span>
+    <span class="nx">server</span><span class="p">(</span><span class="nx">opt</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>闭包(closure)：是在其此法上下文中引用了自由变量的函数。或者说是函数和其引用的环境的组合体。
 本质上返回的是一个funcval 结构，可在 runtime/runtime2.go 找到定义。</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-func test(x int) func() {
-    return func() {
-        println(x) //匿名函数引用了x
-    }
-}
+<span class="kd">func</span> <span class="nx">test</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="c1">//匿名函数引用了x</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func main() {
-    f := test(123)
-    f()
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">f</span> <span class="o">:=</span> <span class="nx">test</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+    <span class="nx">f</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>闭包通过指针引用环境变量，可能导致其生命周期延长，甚至被分配到堆内存。
 延迟求值特性。</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-func test() []func() {
-    var s []func()
-    for i := 0; i &lt; 2; i++ {
-        s = append(s, func() {
-            println(&amp;i, i)
-        })
-    }
-    return s
-}
+<span class="kd">func</span> <span class="nx">test</span><span class="p">()</span> <span class="p">[]</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">s</span> <span class="p">[]</span><span class="kd">func</span><span class="p">()</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">s</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nb">println</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">s</span>
+<span class="p">}</span>
 
-func main() {
-    for _, f := range test() {
-        f()
-    }
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">f</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>输出格式:for循环复用局部变量i，每次添加的匿名函数引用的自然是同一变量。添加操作仅仅是把匿名函数放入列表，并未执行。
 当 main 执行这些函数时，读取的是环境变量 i 最后一次循环的值。</p>
-<pre><code>0xc00001a088 2
+<div class="codehilite"><pre><span></span>0xc00001a088 2
 0xc00001a088 2
-</code></pre>
+</pre></div>
+
+
 <p>解决方式是每次用不同的环境变量或者传参复制，让各自的闭包环境各部相同。</p>
-<pre><code class="go">func test() []func() {
-    var s []func()
-    for i := 0; i &lt; 2; i++ {
-        x := i
-        s = append(s, func() {
-            println(&amp;x, x)
-        })
-    }
-    return s
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">test</span><span class="p">()</span> <span class="p">[]</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">s</span> <span class="p">[]</span><span class="kd">func</span><span class="p">()</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">x</span> <span class="o">:=</span> <span class="nx">i</span>
+        <span class="nx">s</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nb">println</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">x</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">s</span>
+<span class="p">}</span>
+</pre></div>
+
 
 <p>go 复古地使用了返回错误值（通常是最后一个值），大量函数和方法返回 error，会使得调用方比较难看，
 处理方式有：</p>
@@ -1031,86 +1037,89 @@ func main() {
 recover必须在延迟调用函数中执行才能正常工作。</p>
 <p>建议：除非是不可恢复性、导致系统无法正常工作的错误，否则不建议使用
 panic。比如文件系统无权限、端口被占用、数据库未启动等。</p>
-<pre><code class="go">// func panic(v interface{})
-// func recover() interface{}
-package main
+<div class="codehilite"><pre><span></span><span class="c1">// func panic(v interface{})</span>
+<span class="c1">// func recover() interface{}</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-import &quot;log&quot;
+<span class="kn">import</span> <span class="s">&quot;log&quot;</span>
 
-func main() {
-    defer func() {
-        if err := recover(); err != nil { //捕获错误
-            log.Fatalln(err)
-        }
-    }()
-    panic(&quot;I am dead&quot;)
-    println(&quot;exit.&quot;) // 永不会执行
-}
-
-
-
-// Package main  provides ...
-package main
-
-func test(x, y int) {
-    z := 0
-    func() { //如果要保护代码片段，只能将其重构为函数调用。利用匿名函数保护&quot;z=x/y&quot;
-        defer func() {
-            if recover() != nil {
-                z = 0
-            }
-        }()
-        z = x / y
-    }()
-    println(&quot;x/y=&quot;, z)
-}
-func main() {
-    test(5, 0)
-}
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nb">recover</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span> <span class="c1">//捕获错误</span>
+            <span class="nx">log</span><span class="p">.</span><span class="nx">Fatalln</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="s">&quot;I am dead&quot;</span><span class="p">)</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">&quot;exit.&quot;</span><span class="p">)</span> <span class="c1">// 永不会执行</span>
+<span class="p">}</span>
 
 
 
-//调试阶段可以用 runtime.debug.PrintStack 输出堆栈信息
-package main
+<span class="c1">// Package main  provides ...</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-import &quot;runtime/debug&quot;
+<span class="kd">func</span> <span class="nx">test</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">z</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="kd">func</span><span class="p">()</span> <span class="p">{</span> <span class="c1">//如果要保护代码片段，只能将其重构为函数调用。利用匿名函数保护&quot;z=x/y&quot;</span>
+        <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nb">recover</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nx">z</span> <span class="p">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">}()</span>
+        <span class="nx">z</span> <span class="p">=</span> <span class="nx">x</span> <span class="o">/</span> <span class="nx">y</span>
+    <span class="p">}()</span>
+    <span class="nb">println</span><span class="p">(</span><span class="s">&quot;x/y=&quot;</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">test</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span>
 
-func test() {
-    panic(&quot;i am dead&quot;)
-}
 
-func main() {
-    defer func() {
-        if err := recover(); err != nil {
-            debug.PrintStack()
-        }
-    }()
-    test()
-}
-</code></pre>
 
-<h1 id="5">5 数据</h1>
-<h3 id="_1">字符串</h3>
+<span class="c1">//调试阶段可以用 runtime.debug.PrintStack 输出堆栈信息</span>
+<span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&quot;runtime/debug&quot;</span>
+
+<span class="kd">func</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="s">&quot;i am dead&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nb">recover</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">debug</span><span class="p">.</span><span class="nx">PrintStack</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+    <span class="nx">test</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h1 id="5">5 数据<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<h3 id="_1">字符串<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>字符串操作通常在堆上分配内存，会对 web 等高并发场景造成交大影响，会有大量字符串对象要做垃圾回收。
 建议使用[]byte 缓存池活在栈上自行拼装实现 zero-garbage.</p>
 <p>rune 用来存储unicode 码点(code point)，int32别名。单引号字面量默认类型就是rune.</p>
-<h3 id="_2">数组</h3>
+<h3 id="_2">数组<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>数组类型包含长度，元素类型相同但是长度不同也不是同一类型，无法比较。
 如果元素类型支持比较，数组也支持。
 数组是值类型，赋值或者传参都会复制整个数组数据。可以用指针或者切片。</p>
-<h3 id="slice">切片 slice</h3>
-<pre><code>type slice struct {
+<h3 id="slice">切片 slice<a class="headerlink" href="#slice" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>type slice struct {
     array unsafe.Pointer
     len   int
     cap   int
 }
-</code></pre>
+</pre></div>
+
+
 <p>slice 无法比较，只能判断是否为nil。可以用 slice 很容易实现栈</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "errors"
-    "fmt"
+    &quot;errors&quot;
+    &quot;fmt&quot;
 )
 
 func main() {
@@ -1121,7 +1130,7 @@ func main() {
     push := func(x int) error {
         n := len(stack)
         if n == cap(stack) {
-            return errors.New("stack full")
+            return errors.New(&quot;stack full&quot;)
         }
         stack = stack[:n+1]
         stack[n] = x
@@ -1132,7 +1141,7 @@ func main() {
     pop := func() (int, error) {
         n := len(stack)
         if n == 0 {
-            return 0, errors.New("stack is empty")
+            return 0, errors.New(&quot;stack is empty&quot;)
         }
         x := stack[n-1]
         stack = stack[:n-1]
@@ -1140,20 +1149,22 @@ func main() {
     }
 
     for i := 0; i &lt; 7; i++ {
-        fmt.Printf("push %d: %v, %v\n", i, push(i), stack)
+        fmt.Printf(&quot;push %d: %v, %v\n&quot;, i, push(i), stack)
     }
     for i := 0; i &lt; 7; i++ {
         x, err := pop()
-        fmt.Printf("pop :%d, %v, %v\n", x, err, stack)
+        fmt.Printf(&quot;pop :%d, %v, %v\n&quot;, x, err, stack)
     }
 
 }
-</code></pre>
+</pre></div>
+
+
 <p>append: append操作向切片尾部追加元素，返回新的切片对象。如果超出 cap限制， 为新切片对象重新分配数组。
 向 nil 切片追加数据时，会为其分配底层数组。某些场合建议预留空间，防止重新分配。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
-import "fmt"
+import &quot;fmt&quot;
 
 func main() {
     s := make([]int, 0, 5)
@@ -1164,15 +1175,17 @@ func main() {
     fmt.Println(s2, len(s2), cap(s2))
 
 }
-</code></pre>
+</pre></div>
+
+
 <p>copy: 在两个切片对象之间复制数据，允许指向同一个底层数组，允许目标区间重叠。最终复制长度一较短的 slice 长度为准。</p>
-<h3 id="_3">字典</h3>
+<h3 id="_3">字典<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>key必须是支持相等运算符(==/!=) 的数据类型，比如数字、字符串、指针、数组、结构体以及对应的接口类型。
 字典是引用类型，使用 make函数或者初始化表达语句创建。
 对字典进行迭代，每次返回的键值对次序都不同。
 字典被设计成 "not addressable"，不能直接修改 value 成员（结构或数组）。
 正确的方式是返回 整个 value，待修改后再设置字典键值或直接用指针类型。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 func main() {
     type user struct {
@@ -1180,7 +1193,7 @@ func main() {
         age  byte
     }
     m := map[int]user{
-        1: {"Tom", 19},
+        1: {&quot;Tom&quot;, 19},
     }
     //m[1].age++ // wrong!!!
 
@@ -1189,40 +1202,44 @@ func main() {
     m[1] = u
 
     m2 := map[int]*user{
-        1: &amp;user{"jack", 20},
+        1: &amp;user{&quot;jack&quot;, 20},
     }
 
     m2[1].age++
 }
-</code></pre>
+</pre></div>
+
+
 <p>在迭代期间删除或者新增键值是安全的。
 运行时会对字典并发操作做出检测，如果某个任务在对字典进行写操作，其他任务不能对其执行并发操作(读/写/删除)，
 否则会导致进程崩溃。可以用 sync.RWMutex 实现同步，避免读写同时进行。</p>
-<h2 id="struct">结构 struct</h2>
+<h2 id="struct">结构 struct<a class="headerlink" href="#struct" title="Permanent link">&para;</a></h2>
 <p>struct 将多个不同类型的命名字段(field)序列打包成一个符合类型。
 字段名必须唯一，可以用 _ 补齐，支持使用自身指针类型的成员。</p>
 <p>空结构可作为通道元素类型，用于事件通知。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 func main() {
 
     exit := make(chan struct{})
 
     go func() {
-        println("hello")
+        println(&quot;hello&quot;)
         exit &lt;- struct{}{}
     }()
 
     &lt;-exit
-    println("end.")
+    println(&quot;end.&quot;)
 }
-</code></pre>
+</pre></div>
+
+
 <p>字段标签：对字段进行描述的元数据。不属于数据成员，但却是类型的组成部分。运行期间可以用反射获取类型信息。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "fmt"
-    "reflect"
+    &quot;fmt&quot;
+    &quot;reflect&quot;
 )
 
 type user struct {
@@ -1231,35 +1248,39 @@ type user struct {
 }
 
 func main() {
-    u := user{"Tom", 1}
+    u := user{&quot;Tom&quot;, 1}
     v := reflect.ValueOf(u)
     t := v.Type()
 
     for i, n := 0, t.NumField(); i &lt; n; i++ {
-        fmt.Printf("%s:%v\n", t.Field(i).Tag, v.Field(i))
+        fmt.Printf(&quot;%s:%v\n&quot;, t.Field(i).Tag, v.Field(i))
     }
 }
-</code></pre>
+</pre></div>
+
+
 <p>结构体分配内存时字段须做对齐处理。通常以所有字段中最长的基础类型宽度为准。</p>
-<h1 id="_4">方法</h1>
+<h1 id="_4">方法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
 <p>方法是与对象实例绑定的特殊函数。可以为当前包，以及除了接口以外的任何类型定义方法。
 方法不支持重载。receiver 参数名没有限制，按惯例会选用简短有意义的名称，但不推荐用this/self。
 如果方法内部并不引用实例，可省略只保留类型。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
-import "fmt"
+import &quot;fmt&quot;
 
 type N int
 
 func (n N) toString() string {
-    return fmt.Sprintf("%#x", n)
+    return fmt.Sprintf(&quot;%#x&quot;, n)
 }
 
 func main() {
     var a N = 25
     println(a.toString())
 }
-</code></pre>
+</pre></div>
+
+
 <p>类型有一个与之相关的方法集(method set)，决定了它是否实现某个接口。</p>
 <p>方法和函数一样出了直接调用还可以赋值给变量、或者作为参数传递。按照具体引用方式不同，
 分为 expression/value 两种状态。</p>
@@ -1271,30 +1292,32 @@ func main() {
 但当method value被赋值给变量或者作为参数传递，会立即计算并复制该方法执行所需的receiver对象，与其绑定，
 以便稍后执行时，能隐式传入 receiver 参数。</li>
 </ul>
-<h1 id="7">7 接口</h1>
+<h1 id="7">7 接口<a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
 <p>接口代表一种调用契约，是多个方法声明的集合。
 在某些动态语言里，接口（interface）也被称作协议（protocol）。准备交互的双方，共同遵守事先约定的规则，使得在无须知道对方身份的情况下进行协作。接口要实现的是做什么，而不关心怎么做，谁来做。
 接口最常见的使用场景，是对包外提供访问，或预留扩展空间。
 Go接口实现机制很简洁，只要目标类型方法集内包含接口声明的全部方法，就被视为实现了该接口，无须做显示声明。当然，目标类型可实现多个接口。
 从内部实现来看，接口自身也是一种结构类型，只是编译器会对其做出很多限制。
 不能有字段;不能定义自己的方法;只能声明方法不能实现；可嵌入其他接口类型。</p>
-<pre><code>type iface struct {
+<div class="codehilite"><pre><span></span>type iface struct {
     tab  *itab // 类型信息
     data unsafe.Pointer //实际对象指针
 }
-</code></pre>
+</pre></div>
+
+
 <p>空接口类似于面向对象里的根类型Object，可被赋值为任何类型的对象。接口变量默认值是 nil。如果实现接口的类型支持，可做相等运算。
 超集接口变量可以隐式转换为子集，反过来不行。
 将对象赋值给接口变量时，会复制该对象
 注意只有当接口变量内部两个指针（itab，data） 都为 nil时，接口才等于 nil。这个地方容易出 bug。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
-import "log"
+import &quot;log&quot;
 
 type TestError struct{}
 
 func (*TestError) Error() string {
-    return "error"
+    return &quot;error&quot;
 }
 
 func test(x int) (int, error) {
@@ -1311,22 +1334,24 @@ func test(x int) (int, error) {
 func main() {
     x, err := test(100)
     if err != nil {
-        log.Fatalln("err!=nil")
+        log.Fatalln(&quot;err!=nil&quot;)
     }
     println(x)
 }
-</code></pre>
+</pre></div>
+
+
 <p>类型转换：类型推断（type assertiong） 可以把接口变量转换为 原始类型，或者用来判断是否实现了某个更具体的接口类型。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "fmt"
+    &quot;fmt&quot;
 )
 
 type data int
 
 func (d data) String() string {
-    return fmt.Sprintf("data:%d", d)
+    return fmt.Sprintf(&quot;data:%d&quot;, d)
 }
 
 func main() {
@@ -1344,8 +1369,10 @@ func main() {
     e := x.(error) // 错误:main.data is not error
     fmt.Println(e)
 }
-</code></pre>
-<h1 id="8">8 并发</h1>
+</pre></div>
+
+
+<h1 id="8">8 并发<a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
 <ul>
 <li>并发：逻辑上具备同时处理多个任务的能力</li>
 <li>并行：物理上在同一时刻执行多个 并发任务</li>
@@ -1354,9 +1381,9 @@ func main() {
 新建任务被放置在系统队列中，等待调度器安排合适系统线程去获取执行权。
 goroutine自定义栈仅需要2KB，自定义栈采用按需分配策略，需要时进行扩容。</p>
 <p>和 defer 一样，goroutine也会因『延迟执行』而立即计算并复制执行参数。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
-import "time"
+import &quot;time&quot;
 
 var c int
 
@@ -1370,42 +1397,46 @@ func main() {
 
     go func(x, y int) {
         time.Sleep(time.Second) //让gortouine在 main 逻辑之后执行
-        println("go:", x, y)
+        println(&quot;go:&quot;, x, y)
     }(a, counter()) //立即计算并且复制参数
     a += 100
-    println("main:", a, counter())
+    println(&quot;main:&quot;, a, counter())
 
     time.Sleep(time.Second * 3) //等待goroutine 结束
 }
 // 注意输出：func()参数里的couter()会先计算
 // main: 200 2
 // go: 100 1
-</code></pre>
-<p>Wait:进程退出时不会等待并发任务结束，可用通道(channel)阻塞，然后发出退出信号。</p>
-<pre><code>package main
+</pre></div>
 
-import "time"
+
+<p>Wait:进程退出时不会等待并发任务结束，可用通道(channel)阻塞，然后发出退出信号。</p>
+<div class="codehilite"><pre><span></span>package main
+
+import &quot;time&quot;
 
 func main() {
     exit := make(chan struct{})
 
     go func() {
         time.Sleep(time.Second)
-        println("goroutine done.")
+        println(&quot;goroutine done.&quot;)
         close(exit) //关闭通道，发出信号
     }()
 
-    println("main...")
+    println(&quot;main...&quot;)
     &lt;-exit //如果通道关闭，立即解除阻塞
-    println("main exit")
+    println(&quot;main exit&quot;)
 }
-</code></pre>
+</pre></div>
+
+
 <p>如果等待多个任务结束，推荐使用 sync.WaitGroup。通过设定计数器让每个goroutine 在退出之前递减，直到归零解除阻塞。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "sync"
-    "time"
+    &quot;sync&quot;
+    &quot;time&quot;
 )
 
 func main() {
@@ -1418,25 +1449,27 @@ func main() {
             //wg.Add(1)这里设置可能会来不及执行
             defer wg.Done()
             time.Sleep(time.Second)
-            println("goroutine", id, "done.")
+            println(&quot;goroutine&quot;, id, &quot;done.&quot;)
         }(i)
     }
 
-    println("main...")
+    println(&quot;main...&quot;)
     wg.Wait()
-    println("main exit.")
+    println(&quot;main exit.&quot;)
 }
-</code></pre>
+</pre></div>
+
+
 <p>GOMAXPROCS: 运行时可能会创建很多线程，但是任何时候仅有限的几个线程参与并发任务执行。
 该数量默认和处理器核数相等，可用 runtime.GOMAXPROCS 函数或者环境变量修改。
 参数小于1仅返回当前设置值，不做任何调整。</p>
 <p>LocalStorage: 与线程不同，goroutine任务无法设置优先级，无法获取编号，没有局部存储（TLS），
 甚至连返回值都会被抛弃。但除优先级外，其他功能都很容易实现。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "fmt"
-    "sync"
+    &quot;fmt&quot;
+    &quot;sync&quot;
 )
 
 func main() {
@@ -1454,14 +1487,16 @@ func main() {
         }(i)
     }
     wg.Wait()
-    fmt.Printf("%+v\n", gs)
+    fmt.Printf(&quot;%+v\n&quot;, gs)
 }
-</code></pre>
+</pre></div>
+
+
 <p>Goshed: 暂停，释放线程去执行其他任务，当前任务被放回队列，等待下次调度时恢复执行。
 该函数很少被使用，因为运行时会主动向长时间运行（10 ms）的任务发出抢占调度。只是当前版本实现的算法稍显粗糙，不能保证调度总能成功，所以主动切换还有适用场合。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
-import "runtime"
+import &quot;runtime&quot;
 
 func main() {
     runtime.GOMAXPROCS(1)
@@ -1471,11 +1506,11 @@ func main() {
         defer close(exit)
 
         go func() { //任务 b，放在此处为了确保 a 优先制行
-            println("b")
+            println(&quot;b&quot;)
         }()
 
         for i := 0; i &lt; 4; i++ {
-            println("a:", i)
+            println(&quot;a:&quot;, i)
             if i == 1 { //让出当前线程，调度执行b
                 runtime.Gosched()
             }
@@ -1484,37 +1519,39 @@ func main() {
 
     &lt;-exit
 }
-</code></pre>
+</pre></div>
+
+
 <p>Goexit: Goexit立即终止当前任务，运行时确保所有已注册延迟调用被执行。该函数不会影响其他并发任务，不会引发panic，自然也就无法捕获。
 如果在main.main里调用Goexit，它会等待其他任务结束，然后让进程直接崩溃
 标准库函数os.Exit可终止进程，但不会执行延迟调用。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
-import "runtime"
+import &quot;runtime&quot;
 
 func main() {
     exit := make(chan struct{})
 
     go func() {
         defer close(exit)
-        defer println("a")
+        defer println(&quot;a&quot;)
         func() {
             defer func() {
-                println("b", recover() == nil)
+                println(&quot;b&quot;, recover() == nil)
             }()
 
             func() {
-                println("c")
+                println(&quot;c&quot;)
                 runtime.Goexit() //立即终止整个调用堆栈
-                println("c done")
+                println(&quot;c done&quot;)
             }()
-            println("b done")
+            println(&quot;b done&quot;)
 
         }()
-        println("a done")
+        println(&quot;a done&quot;)
     }()
     &lt;-exit
-    println("main exit")
+    println(&quot;main exit&quot;)
 }
 /*
 c
@@ -1522,7 +1559,9 @@ b true
 a
 main exit
 */
-</code></pre>
+</pre></div>
+
+
 <p>通道：Go鼓励使用CSP通道，以通信来代替内存共享，实现并发安全。</p>
 <p>Don't communicate by sharing memory，share memory by communicating.
 CSP：Communicating Sequential Process.</p>
@@ -1530,7 +1569,7 @@ CSP：Communicating Sequential Process.</p>
 <p>作为CSP核心，通道（channel）是显式的，要求操作双方必须知道数据类型和具体通道，并不关心另一端操作者身份和数量。可如果另一端未准备妥当，或消息未能及时处理时，会阻塞当前端。</p>
 <p>除传递消息（数据）外，通道还常被用作事件通知。</p>
 <p>相比起来，Actor是透明的，它不在乎数据类型及通道，只要知道接收者信箱即可。默认就是异步方式，发送方对消息是否被接收和处理并不关心。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 func main() {
     done := make(chan struct{}) //结束事件
@@ -1542,14 +1581,16 @@ func main() {
         close(done) //关闭通道作为结束通知
     }()
 
-    c &lt;- "hi" //发送消息
+    c &lt;- &quot;hi&quot; //发送消息
     &lt;-done    //阻塞直到有数据或者管道关闭
 }
-</code></pre>
-<p>同步模式必须有配对操作的goroutine出现，否则会一直阻塞。而异步模式在缓冲区未满或数据未读完前，不会阻塞。</p>
-<pre><code>package main
+</pre></div>
 
-import "fmt"
+
+<p>同步模式必须有配对操作的goroutine出现，否则会一直阻塞。而异步模式在缓冲区未满或数据未读完前，不会阻塞。</p>
+<div class="codehilite"><pre><span></span>package main
+
+import &quot;fmt&quot;
 
 func main() {
     c := make(chan int, 3) //带有3个缓冲槽的异步通道
@@ -1559,23 +1600,27 @@ func main() {
     fmt.Println(&lt;-c)
     fmt.Println(&lt;-c)
 }
-</code></pre>
+</pre></div>
+
+
 <p>内置函数cap和len返回缓冲区大小和当前已缓冲数量；而对于同步通道则都返回0，据此可判断通道是同步还是异步。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 func main() {
     a, b := make(chan int), make(chan int, 3)
     b &lt;- 1
     b &lt;- 2
-    println("a:", len(a), cap(a))
-    println("b:", len(b), cap(b))
+    println(&quot;a:&quot;, len(a), cap(a))
+    println(&quot;b:&quot;, len(b), cap(b))
 }
 
 // a: 0 0
 // b: 2 3
-</code></pre>
+</pre></div>
+
+
 <p>首发消息：除使用简单的发送和接收操作符外，还可用ok-idom或range模式处理数据。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 func main() {
     done := make(chan struct{})
@@ -1606,7 +1651,9 @@ func main() {
 
 // a: 0 0
 // b: 2 3
-</code></pre>
+</pre></div>
+
+
 <p>对于closed或nil通道，发送和接收操作都有相应规则：</p>
 <ul>
 <li>向已关闭通道发送数据，引发panic。</li>
@@ -1617,11 +1664,13 @@ func main() {
       c &lt;- 10
       c &lt;- 20
       close(c)</p>
-<pre><code>  for i := 0; i &lt; cap(c)+1; i++ {
+<div class="codehilite"><pre><span></span>  for i := 0; i &lt; cap(c)+1; i++ {
       x, ok := &lt;-c
-      println(i, ":", ok, x)
+      println(i, &quot;:&quot;, ok, x)
   }
-</code></pre>
+</pre></div>
+
+
 <p>}
   // 0 : true 10
   // 1 : true 20
@@ -1631,9 +1680,9 @@ func main() {
 </ul>
 <p>单向通道：通道默认是双向的，并不区分发送和接收端。但某些时候，我们可限制收发操作的方向来获得更严谨的操作逻辑。
 尽管可用make创建单向通道，但那没有任何意义。通常使用类型转换来获取单向通道，并分别赋予操作双方。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
-import "sync"
+import &quot;sync&quot;
 
 func main() {
     var wg sync.WaitGroup
@@ -1660,11 +1709,13 @@ func main() {
     }()
     wg.Wait()
 }
-</code></pre>
-<p>选择：如要同时处理多个通道，可选用select语句。它会随机选择一个可用通道做收发操作。</p>
-<pre><code>package main
+</pre></div>
 
-import "sync"
+
+<p>选择：如要同时处理多个通道，可选用select语句。它会随机选择一个可用通道做收发操作。</p>
+<div class="codehilite"><pre><span></span>package main
+
+import &quot;sync&quot;
 
 func main() {
     var wg sync.WaitGroup
@@ -1682,9 +1733,9 @@ func main() {
             )
             select { //随机选择可用 channel 接收数据
             case x, ok = &lt;-a:
-                name = "a"
+                name = &quot;a&quot;
             case x, ok = &lt;-b:
-                name = "b"
+                name = &quot;b&quot;
             }
             if !ok { //如果任意一个通道关闭，终止接收
                 return
@@ -1706,11 +1757,13 @@ func main() {
     }()
     wg.Wait()
 }
-</code></pre>
-<p>如要等全部通道消息处理结束（closed），可将已完成通道设置为nil。这样它就会被阻塞，不再被select选中。</p>
-<pre><code>package main
+</pre></div>
 
-import "sync"
+
+<p>如要等全部通道消息处理结束（closed），可将已完成通道设置为nil。这样它就会被阻塞，不再被select选中。</p>
+<div class="codehilite"><pre><span></span>package main
+
+import &quot;sync&quot;
 
 func main() {
     var wg sync.WaitGroup
@@ -1727,13 +1780,13 @@ func main() {
                     a = nil //如果通道关闭设置为 nil，阻塞
                     break
                 }
-                println("a", x)
+                println(&quot;a&quot;, x)
             case x, ok := &lt;-b:
                 if !ok {
                     b = nil
                     break
                 }
-                println("b", x)
+                println(&quot;b&quot;, x)
             }
             if a == nil &amp;&amp; b == nil { //全部结束退出循环
                 return
@@ -1759,13 +1812,15 @@ func main() {
 
     wg.Wait()
 }
-</code></pre>
+</pre></div>
+
+
 <p>当所有通道都不可用时，select会执行default语句。如此可避开select阻塞，但须注意处理外层循环，以免陷入空耗。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "fmt"
-    "time"
+    &quot;fmt&quot;
+    &quot;time&quot;
 )
 
 func main() {
@@ -1781,7 +1836,7 @@ func main() {
                 if !ok {
                     return
                 }
-                fmt.Println("data:", x)
+                fmt.Println(&quot;data:&quot;, x)
             default: // 避免 select 阻塞
             }
             fmt.Println(time.Now())
@@ -1793,9 +1848,11 @@ func main() {
     close(c)
     &lt;-done
 }
-</code></pre>
+</pre></div>
+
+
 <p>也可用default处理一些默认逻辑。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 func main() {
     done := make(chan struct{})
@@ -1823,11 +1880,13 @@ func main() {
         }
     }
 }
-</code></pre>
-<p>模式: 通常使用工厂方法将goroutine和通道绑定。</p>
-<pre><code>package main
+</pre></div>
 
-import "sync"
+
+<p>模式: 通常使用工厂方法将goroutine和通道绑定。</p>
+<div class="codehilite"><pre><span></span>package main
+
+import &quot;sync&quot;
 
 type receiver struct {
     sync.WaitGroup
@@ -1843,7 +1902,7 @@ func newReceiver() *receiver {
     go func() {
         defer r.Done()
         for x := range r.data { // 接收消息，直到通道被关闭
-            println("recv:", x)
+            println(&quot;recv:&quot;, x)
         }
     }()
 
@@ -1858,15 +1917,17 @@ func main() {
     close(r.data) // 关闭通道，发出结束通知
     r.Wait()      // 等待接收者处理结束
 }
-</code></pre>
+</pre></div>
+
+
 <p>用通道实现信号量（semaphore）。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "fmt"
-    "runtime"
-    "sync"
-    "time"
+    &quot;fmt&quot;
+    &quot;runtime&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
 )
 
 func main() {
@@ -1891,14 +1952,16 @@ func main() {
 
     wg.Wait()
 }
-</code></pre>
+</pre></div>
+
+
 <p>性能:将发往通道的数据打包，减少传输次数，可有效提升性能。从实现上来说，通道队列依旧使用锁同步机制，单次获取更多数据（批处理），可改善因频繁加锁造成的性能问题。</p>
 <p>资源泄漏:通道可能会引发goroutine leak，确切地说，是指goroutine处于发送或接收阻塞状态，但一直未被唤醒。垃圾回收器并不收集此类资源，导致它们会在等待队列里长久休眠，形成资源泄漏。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "runtime"
-    "time"
+    &quot;runtime&quot;
+    &quot;time&quot;
 )
 
 func test() {
@@ -1921,17 +1984,19 @@ func main() {
 }
 
 // $go build-o test
-// $GODEBUG="gctrace=1,schedtrace=1000,scheddetail=1" ./test
-</code></pre>
-<h3 id="_5">同步</h3>
+// $GODEBUG=&quot;gctrace=1,schedtrace=1000,scheddetail=1&quot; ./test
+</pre></div>
+
+
+<h3 id="_5">同步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>通道并非用来取代锁的，它们有各自不同的使用场景。通道倾向于解决逻辑层次的并发处理架构，而锁则用来保护局部范围内的数据安全。
 标准库sync提供了互斥和读写锁，另有原子操作等，可基本满足日常开发需要。Mutex、RWMutex的使用并不复杂，只有几个地方需要注意。
 将Mutex作为匿名字段时，相关方法必须实现为pointer-receiver，否则会因复制导致锁机制失效。</p>
 <p>应将Mutex锁粒度控制在最小范围内，及早释放。</p>
-<pre><code>// 错误用法
+<div class="codehilite"><pre><span></span>// 错误用法
 func doSomething() {
     m.Lock()
-    url := cache["key"]
+    url := cache[&quot;key&quot;]
     http.Get(url) // 该操作并不需要锁保护
     m.Unlock()
 }
@@ -1939,15 +2004,17 @@ func doSomething() {
 // 正确用法
 func doSomething() {
     m.Lock()
-    url := cache["key"]
+    url := cache[&quot;key&quot;]
     m.Unlock() // 如使用defer，则依旧将Get保护在内
     http.Get(url)
 }
-</code></pre>
-<p>Mutex不支持递归锁，即便在同一goroutine下也会导致死锁。</p>
-<pre><code>package main
+</pre></div>
 
-import "sync"
+
+<p>Mutex不支持递归锁，即便在同一goroutine下也会导致死锁。</p>
+<div class="codehilite"><pre><span></span>package main
+
+import &quot;sync&quot;
 
 func main() {
     var m sync.Mutex
@@ -1959,14 +2026,16 @@ func main() {
     }
     m.Unlock()
 }
-</code></pre>
+</pre></div>
+
+
 <ul>
 <li>对性能要求较高时，应避免使用defer Unlock。</li>
 <li>读写并发时，用RWMutex性能会更好一些。</li>
 <li>对单个数据读写保护，可尝试用原子操作。</li>
 <li>执行严格测试，尽可能打开数据竞争检查。</li>
 </ul>
-<h1 id="9">9 包结构</h1>
+<h1 id="9">9 包结构<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
 <p>依照规范，工作空间（workspace）由src、bin、pkg三个目录组成。通常需要将空间路径添加到GOPATH环境变量列表中，以便相关工具能正常工作。</p>
 <ul>
 <li>GOPATH:编译器等相关工具按GOPATH设置的路径搜索目标。也就是说在导入目标库时，排在列表前面的路径比当前工作空间优先级更高。另外，go get默认将下载的第三方包保存到列表中第一个工作空间内。</li>
@@ -1974,11 +2043,13 @@ func main() {
 <li>GOBIN: 至于GOBIN，则是强制替代工作空间的bin目录，作为go install目标保存路径。这可避免将所有工作空间的bin路径添加到PATH环境变量中。</li>
 </ul>
 <p>编译器从标准库开始搜索，然后依次搜索GOPATH列表中的各个工作空间。</p>
-<pre><code>import    "github.com/qyuhen/test"     默认方式:test.A
-import X "github.com/qyuhen/test"     别名方式:X.A
-import .  "github.com/qyuhen/test"     简便方式:A，不推荐使用在正式代码，一般测试中用
-import _  "github.com/qyuhen/test"     初始化方式: 无法引用，仅用来初始化目标包
-</code></pre>
+<div class="codehilite"><pre><span></span>import    &quot;github.com/qyuhen/test&quot;     默认方式:test.A
+import X &quot;github.com/qyuhen/test&quot;     别名方式:X.A
+import .  &quot;github.com/qyuhen/test&quot;     简便方式:A，不推荐使用在正式代码，一般测试中用
+import _  &quot;github.com/qyuhen/test&quot;     初始化方式: 无法引用，仅用来初始化目标包
+</pre></div>
+
+
 <p>除工作空间和绝对路径外，部分工具还支持相对路径。可在非工作空间目录下，直接运行、编译一些测试代码。 相对路径：当前目录，或以“./”和“../”开头的路径。
 不管是否在test目录下，只要命令行路径正确，就可用go build/run/test进行编译、运行或测试。但因缺少工作空间相关目录，go install会无法工作。
 在设置了GOPATH的工作空间中，相对路径会导致编译失败。go run不受此影响，可正常执行。</p>
@@ -1992,17 +2063,17 @@ import _  "github.com/qyuhen/test"     初始化方式: 无法引用，仅用来
 <li>std，cmd：标准库及工具链。</li>
 <li>documentation：存储文档信息，无法导入（和目录名无关）。</li>
 </ul>
-<h3 id="_6">权限</h3>
+<h3 id="_6">权限<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>所有成员在包内均可访问，无论是否在同一源码文件中。但只有名称首字母大写的为可导出成员，在包外可视。
 该规则适用于全局变量、全局常量、类型、结构字段、函数、方法等。 可通过指针转换等方式绕开该限制。</p>
-<h3 id="_7">初始化</h3>
+<h3 id="_7">初始化<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>包内每个源码文件都可定义一到多个初始化函数，但编译器不保证执行次序。
 实际上，所有这些初始化函数（包括标准库和导入的第三方包）都由编译器自动生成的一个包装函数进行调用，因此可保证在单一线程上执行，且仅执行一次。o
 编译器首先确保完成所有全局变量初始化，然后才开始执行初始化函数。直到这些全部结束后，运行时才正式进入main.main入口函数。</p>
-<h3 id="_8">内部包</h3>
+<h3 id="_8">内部包<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>在进行代码重构时，我们会将一些内部模块陆续分离出来，以独立包形式维护。此时，基于首字母大小写的访问权限控制就显得过于粗旷。因为我们希望这些包导出成员仅在特定范围内访问，而不是向所有用户公开。
 内部包机制相当于增加了新的访问权限控制：所有保存在internal目录下的包（包括自身）仅能被其父目录下的包（含所有层次的子目录）访问。</p>
-<pre><code>src/
+<div class="codehilite"><pre><span></span>src/
 |
 +--main.go
 |
@@ -2017,10 +2088,12 @@ import _  "github.com/qyuhen/test"     初始化方式: 无法引用，仅用来
 +--x/
     |
     +--y/
-</code></pre>
-<h3 id="_9">依赖管理</h3>
+</pre></div>
+
+
+<h3 id="_9">依赖管理<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>引入名为vendor的机制，专门存放第三方包，实现将源码和依赖完整打包分发。</p>
-<pre><code>src/
+<div class="codehilite"><pre><span></span>src/
 |
 +--server/
 |
@@ -2037,38 +2110,42 @@ import _  "github.com/qyuhen/test"     初始化方式: 无法引用，仅用来
 // main.go
 package main
 
-import"github.com/qyuhen/test"
+import&quot;github.com/qyuhen/test&quot;
 
 func main() {
 test.Hello()
 }
-</code></pre>
+</pre></div>
+
+
 <p>注意：vendor比标准库优先级更高。</p>
 <p>当多个vendor目录嵌套时，如何查找正确目标？要知道引入的第三方包也可能有自己的vendor依赖目录。
 规则算不上复杂：从当前源文件所在目录开始，逐级向上构造vendor全路径，直到发现路径匹配的目标为止。匹配失败，则依旧搜索GOPATH。</p>
 <p>要使用vendor机制，须开启“GO15VENDOREXPERIMENT=1”环境变量开关（Go 1.6默认开启），且必须是设置了GOPATH的工作空间。
 使用go get下载第三方包时，依旧使用GOPATH第一个工作空间，而非vendor目录。
 当前工具链中并没有真正意义上的包依赖管理，好在有不少第三方工具可选。</p>
-<h1 id="10">10 反射</h1>
+<h1 id="10">10 反射<a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
 <p>反射（reflect）让我们能在运行期探知对象的类型信息和内存结构，这从一定程度上弥补了静态语言在动态行为上的不足。同时，反射还是实现元编程的重要手段。</p>
 <p>和C数据结构一样，Go对象头部并没有类型指针，通过其自身是无法在运行期获知任何类型相关信息的。反射操作所需的全部信息都源自接口变量。接口变量除存储自身类型外，还会保存实际对象的类型数据。</p>
-<pre><code>func TypeOf(i interface{})Type
+<div class="codehilite"><pre><span></span>func TypeOf(i interface{})Type
 func ValueOf(i interface{})Value
-</code></pre>
+</pre></div>
+
+
 <p>这两个反射入口函数，会将任何传入的对象转换为接口类型。
 在面对类型时，需要区分Type和Kind。前者表示真实类型（静态类型），后者表示其基础结构（底层类型）类别。
 有一点和想象的不同，反射能探知当前包或外包的非导出结构成员。</p>
 <p>可用反射提取struct tag，还能自动分解。其常用于ORM映射，或数据格式验证。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span>package main
 
 import (
-    "fmt"
-    "reflect"
+    &quot;fmt&quot;
+    &quot;reflect&quot;
 )
 
 type user struct {
-    name string `field:"name"type:"varchar(50)"`
-    age  int    `filed:"age"type:"int"`
+    name string `field:&quot;name&quot;type:&quot;varchar(50)&quot;`
+    age  int    `filed:&quot;age&quot;type:&quot;int&quot;`
 }
 
 func main() {
@@ -2077,18 +2154,20 @@ func main() {
 
     for i := 0; i &lt; t.NumField(); i++ {
         f := t.Field(i)
-        fmt.Printf("%s: %s%s\n", f.Name, f.Tag.Get("field"), f.Tag.Get("type"))
+        fmt.Printf(&quot;%s: %s%s\n&quot;, f.Name, f.Tag.Get(&quot;field&quot;), f.Tag.Get(&quot;type&quot;))
     }
 }
 // name: namevarchar(50)
 // age: int
-</code></pre>
-<h3 id="_10">值</h3>
+</pre></div>
+
+
+<h3 id="_10">值<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>和Type获取类型信息不同，Value专注于对象实例数据读写。</p>
 <p>反射在带来“方便”的同时，也造成了很大的困扰。很多人对反射避之不及，因为它会造成很大的性能损失。</p>
-<h1 id="11">11 测试</h1>
+<h1 id="11">11 测试<a class="headerlink" href="#11" title="Permanent link">&para;</a></h1>
 <p>单元测试（unit test）除用来测试逻辑算法是否符合预期外，还承担着监控代码质量的责任。任何时候都可用简单的命令来验证全部功能，找出未完成任务（验收）和任何因修改而造成的错误。它与性能测试、代码覆盖率等一起保障了代码总是在可控范围内，这远比形式化的人工检查要有用得多。</p>
-<h3 id="testing">testing</h3>
+<h3 id="testing">testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
 <p>工具链和标准库自带单元测试框架，这让测试工作变得相对容易。</p>
 <ul>
 <li>测试代码须放在当前包以“_test.go”结尾的文件中。</li>
@@ -2110,11 +2189,11 @@ func main() {
 </ul>
 <p>对于测试是否应该和目标放在同一目录，一直有不同看法。某些人认为应该另建一个专门的包用来存放单元测试，且只测试目标公开接口。好处是，当目标内部发生变化时，无须同步维护测试代码。每个人对于测试都有不同理解，就像覆盖率是否要做到90%以上，也是见仁见智。</p>
 <p>table driven: 我们可用一种类似数据表的模式来批量输入条件并依次比对结果。</p>
-<pre><code>// main_test.go
+<div class="codehilite"><pre><span></span>// main_test.go
 // go test -v
 package main
 
-import "testing"
+import &quot;testing&quot;
 
 func add(x, y int) int {
     return x + y
@@ -2134,29 +2213,33 @@ func TestAdd(t *testing.T) {
     for _, tt := range tests {
         actual := add(tt.x, tt.y)
         if actual != tt.expect {
-            t.Errorf("add(%d, %d):expect%d,actual%d", tt.x, tt.y, tt.expect, actual)
+            t.Errorf(&quot;add(%d, %d):expect%d,actual%d&quot;, tt.x, tt.y, tt.expect, actual)
         }
     }
 }
-</code></pre>
+</pre></div>
+
+
 <p>test main:某些时候，须为测试用例提供初始化和清理操作，但testing并没有setup/teardown机制。解决方法是自定义一个名为TestMain的函数，go test会改为执行该函数，而不再是具体的测试用例。</p>
-<pre><code>func TestMain(m *testing.M) {
+<div class="codehilite"><pre><span></span>func TestMain(m *testing.M) {
     //setup
     code := m.Run() // 调用测试用例函数
     //teardown
     os.Exit(code) // 注意：os.Exit不会执行defer
 }
-</code></pre>
+</pre></div>
+
+
 <p>M.Run会调用具体的测试用例，但麻烦的是不能为每个测试文件写一个TestMain。
 要实现用例组合套件（suite），须借助MainStart自行构建M对象。通过与命令行参数相配合，即可实现不同测试组合。</p>
-<pre><code>func TestMain(m *testing.M) {
+<div class="codehilite"><pre><span></span>func TestMain(m *testing.M) {
     match := func(pat, str string) (bool, error) { //pat: 命令行参数 -run提供的过滤条件 }}
         return true, nil //str:InternalTest.Name
     }
 
     tests := []testing.InternalTest{ // 用例列表，可排序
-        {"b", TestB},
-        {"a", TestA},
+        {&quot;b&quot;, TestB},
+        {&quot;a&quot;, TestA},
     }
 
     benchmarks := []testing.InternalBenchmark{}
@@ -2165,9 +2248,11 @@ func TestAdd(t *testing.T) {
     m = testing.MainStart(match, tests, benchmarks, examples)
     os.Exit(m.Run())
 }
-</code></pre>
+</pre></div>
+
+
 <p>example: 例代码最大的用途不是测试，而是导入到GoDoc等工具生成的帮助文档中。它通过比对输出（stdout）结果和内部output注释是否一致来判断是否成功。</p>
-<pre><code>func ExampleAdd() {
+<div class="codehilite"><pre><span></span>func ExampleAdd() {
     fmt.Println(add(1, 2))
     fmt.Println(add(2, 2))
 
@@ -2175,15 +2260,17 @@ func TestAdd(t *testing.T) {
     //3
     //4
 }
-</code></pre>
+</pre></div>
+
+
 <p>如果没有output注释，该示例函数就不会被执行。另外，不能使用内置函数，print/println，因为它们输出到stderr。</p>
-<h3 id="_11">性能测试</h3>
+<h3 id="_11">性能测试<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <p>性能测试函数以Benchmark为名称前缀，同样保存在“*_test.go”文件里。</p>
-<pre><code>// main_test.go
+<div class="codehilite"><pre><span></span>// main_test.go
 // go test -bench .
 package main
 
-import "testing"
+import &quot;testing&quot;
 
 func add(x, y int) int {
     return x + y
@@ -2194,12 +2281,14 @@ func BenchmarkAdd(b *testing.B) {
         _ = add(1, 2)
     }
 }
-</code></pre>
+</pre></div>
+
+
 <p>测试工具默认不会执行性能测试，须使用bench参数。它通过逐步调整B.N值，反复执行测试函数，直到能获得准确的测量结果。
 如果希望仅执行性能测试，那么可以用run=NONE忽略所有单元测试用例。
 默认就以并发方式执行测试，但可用cpu参数设定多个并发限制来观察结果。</p>
 <p>timer: 如果在测试函数中要执行一些额外操作，那么应该临时阻止计时器工作。</p>
-<pre><code>func BenchmarkAdd(b *testing.B) {
+<div class="codehilite"><pre><span></span>func BenchmarkAdd(b *testing.B) {
     time.Sleep(time.Second)
     b.ResetTimer() // 重置
 
@@ -2213,13 +2302,15 @@ func BenchmarkAdd(b *testing.B) {
         }
     }
 }
-</code></pre>
+</pre></div>
+
+
 <p>memory:性能测试关心的不仅仅是执行时间，还包括在堆上的内存分配，因为内存分配和垃圾回收的相关操作也应计入消耗成本。</p>
-<pre><code>// go test -bench . -benchmem -gcflags "-N -l"  # 禁用内联和优化
+<div class="codehilite"><pre><span></span>// go test -bench . -benchmem -gcflags &quot;-N -l&quot;  # 禁用内联和优化
 
 package main
 
-import "testing"
+import &quot;testing&quot;
 
 func heap() []byte {
     return make([]byte, 1024*10)
@@ -2230,9 +2321,11 @@ func BenchmarkHeap(b *testing.B) {
         _ = heap()
     }
 }
-</code></pre>
+</pre></div>
+
+
 <p>输出结果包括单次执行堆内存分配总量和次数。 也可将测试函数设置为总是输出内存分配信息，无论使用benchmem参数与否。</p>
-<pre><code>func BenchmarkHeap(b *testing.B) {
+<div class="codehilite"><pre><span></span>func BenchmarkHeap(b *testing.B) {
     b.ReportAllocs()
     b.ResetTimer()
 
@@ -2240,16 +2333,18 @@ func BenchmarkHeap(b *testing.B) {
         _ = heap()
     }
 }
-</code></pre>
-<h3 id="_12">代码覆盖率</h3>
+</pre></div>
+
+
+<h3 id="_12">代码覆盖率<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <p>如果说单元测试和性能测试关注代码质量，那么代码覆盖率（code coverage）就是度量测试自身完整和有效性的一种手段。
 关键还是为改进测试提供一个可发现缺陷的机会，毕竟只有测试本身的质量得到保障，才能让它免于成为形式主义摆设。</p>
-<h1 id="12">12 工具链</h1>
+<h1 id="12">12 工具链<a class="headerlink" href="#12" title="Permanent link">&para;</a></h1>
 <p>自Go 1.5实现自举（bootstrapping）以后，我们就不得不保留两个版本的Go环境。对于初学者而言，建议先下载C版本的1.4，用GCC完成编译。
 自举是指用编译的目标语言编写其编译器，简单点说就是用Go语言编写Go编译器。请提前安装gcc、gdb、binutils等工具。</p>
-<h3 id="_13">工具</h3>
+<h3 id="_13">工具<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
 <p>go build: 此命令默认每次都会重新编译除标准库以外的所有依赖包。</p>
-<pre><code>参数          说明                 示例
+<div class="codehilite"><pre><span></span>参数          说明                 示例
 ------------------+-------------------------------------------+--------------
 -o          可执行文件名（默认与目录同名）
 -a          强制重新编译所有包（含标准库）
@@ -2261,7 +2356,9 @@ func BenchmarkHeap(b *testing.B) {
 -race       启动数据竞争检查（仅支持amd64）
 -gcflags    编译器参数
 -ldflags    链接器参数
-</code></pre>
+</pre></div>
+
+
 <p>gcflags：</p>
 <p>参数          说明                 示例
 ------------------+-------------------------------------------+----------
@@ -2285,7 +2382,7 @@ func BenchmarkHeap(b *testing.B) {
 <p>go get: 将第三方包下载（check out）到GOPATH列表的第一个工作空间。默认不会检查更新，须使用“-u”参数。</p>
 <p>go env: 显示全部或指定环境参数。</p>
 <p>go clean: 清理工作目录，删除编译和安装遗留的目标文件。</p>
-<h3 id="_14">编译</h3>
+<h3 id="_14">编译<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <p>编译并不仅仅是执行“go build”命令，还有一些须额外注意的内容。
 如习惯使用GDB这类调试器，建议编译时添加-gcflags"-N-l"参数阻止优化和内联，否则调试时会有各种“找不到”的情况。</p>
 <p>交叉编译: 所谓交叉编译（cross compile），是指在一个平台下编译出其他平台所需的可执行文件。

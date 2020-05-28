@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《Pro Git》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300aPro Git\u300b";
     var mkdocs_page_input_path = "\u5f00\u53d1\u5de5\u5177\\pro_git.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u5f00\u53d1\u5de5\u5177/pro_git/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -867,7 +867,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="3">3: 分之</h1>
+                <h1 id="3">3: 分之<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>提交的时候会保存一个 commit 对象：它包含一个指向暂存内容快照的指针，作者和相关信息，以及一定数量（也可能没有）指向该提交对象直接祖先的指针。
 分之：本质上是一个指向 commit 对象的指针，新建一个分之就是创建一个新的分之指针。git 鼓励多用分之，创建和销毁非常廉价。
 git 保存一个名为 HEAD 的特殊指针，它是一个指向你正在工作中的本地分之的指针（用来区分在哪个分之工作）
@@ -881,19 +881,19 @@ rebase: 一个分之里提交的改变在另一个分之里重放一遍。
 git rebase [主分支] [特性分之] 会先检出特性分之，然后在主分支上重演。</p>
 <p>rebase 黄金定律：永远不要rebase 那些已经推送到公共仓库的更新。(rebase实际上抛弃了一现存的commit 而创造了一些类似的不同的新的 commit)
 如果把rebase 当成一种在推送之前清理提交历史的手段，而且仅仅rebase 那些永远不会公开的commit，就不会有任何问题。</p>
-<h1 id="4-git">4: 服务器上的 Git</h1>
+<h1 id="4-git">4: 服务器上的 Git<a class="headerlink" href="#4-git" title="Permanent link">&para;</a></h1>
 <p>四种协议：本地协议；ssh协议；git协议；http协议</p>
-<h1 id="5-git">5：分布式 Git</h1>
+<h1 id="5-git">5：分布式 Git<a class="headerlink" href="#5-git" title="Permanent link">&para;</a></h1>
 <p>本章讲了不同大小团队使用 git 的工作流</p>
 <p>为项目做贡献：
 如何撰写提交说明，保持一行。
 不要多余空白字符
 每次提交限定与完成一次逻辑功能，适当分解为多次小更新。
 rewind （回退）</p>
-<h1 id="6">6: 项目的管理</h1>
+<h1 id="6">6: 项目的管理<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <p>rebase  和 cherry-pick:
 cherry-pick 类似于针对某次特定提交的 rebase</p>
-<h1 id="7-git">7: git 工具</h1>
+<h1 id="7-git">7: git 工具<a class="headerlink" href="#7-git" title="Permanent link">&para;</a></h1>
 <p>交互式暂存： git add -i</p>
 <p>stash(储藏)：git stash apply stash@{2}</p>
 <p>改变最近一次提交说明：git commit --amend  修改提交信息，但是不要在最近一次提交被推送后还去修改
@@ -904,13 +904,13 @@ git blame
 git bisect 二分查找</p>
 <p>子模块：
 git submodule add git://github.com/XXXX XXXX</p>
-<h1 id="8-git">8: 自定义 Git</h1>
+<h1 id="8-git">8: 自定义 Git<a class="headerlink" href="#8-git" title="Permanent link">&para;</a></h1>
 <p>配置代码merge 和diff 工具</p>
 <p>Git 挂钩：客户端和服务器端
 在 .git/hooks 下的可执行文件，刻意激活该挂钩脚本</p>
-<h1 id="9-git">9: Git 与其他系统</h1>
+<h1 id="9-git">9: Git 与其他系统<a class="headerlink" href="#9-git" title="Permanent link">&para;</a></h1>
 <p>git svn ： 桥接工具</p>
-<h1 id="10-git">10: Git 内部原理</h1>
+<h1 id="10-git">10: Git 内部原理<a class="headerlink" href="#10-git" title="Permanent link">&para;</a></h1>
 <p>本质上 git 是一套内容须知(content-addressable)文件系统
 如何清理误假如的大文件</p>
               

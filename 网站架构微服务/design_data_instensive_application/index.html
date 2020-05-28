@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《design_data_instensive_application》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300adesign_data_instensive_application\u300b";
     var mkdocs_page_input_path = "\u7f51\u7ad9\u67b6\u6784\u5fae\u670d\u52a1\\design_data_instensive_application.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u7f51\u7ad9\u67b6\u6784\u5fae\u670d\u52a1/design_data_instensive_application/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -904,9 +904,9 @@
                 <blockquote>
 <p>The Internet was done so well that most people think of it as a natural resource like the Pacific Ocean, rather than something that was man-made. When was the last time a tech‐ nology with a scale like that was so error-free?  —Alan Kay, in interview with Dr Dobb’s Journal (2012)</p>
 </blockquote>
-<h1 id="1-reliable-scalable-and-maintainable-application">1. Reliable, Scalable, and Maintainable Application</h1>
+<h1 id="1-reliable-scalable-and-maintainable-application">1. Reliable, Scalable, and Maintainable Application<a class="headerlink" href="#1-reliable-scalable-and-maintainable-application" title="Permanent link">&para;</a></h1>
 <p>大部分 web 系统我们关心三个重要概念：</p>
-<h3 id="reliability">Reliability(可用性)：系统需要持续正确工作（甚至是在遇到硬件故障、软件错误、人为错误等）</h3>
+<h3 id="reliability">Reliability(可用性)：系统需要持续正确工作（甚至是在遇到硬件故障、软件错误、人为错误等）<a class="headerlink" href="#reliability" title="Permanent link">&para;</a></h3>
 <ul>
 <li>硬件故障：磁盘 crash、内存坏掉、电源被拔掉。通常通过硬件冗余（备份）来解决</li>
 <li>软件错误：比如软件 bug、资源用尽、无响应、级联错误。没有特快快速解决软件系统性错误的方法，有些方式还是有帮助的：比如做好系统之间交互的假定、全面的测试、进程隔离、崩溃自动重启、生产环境监控和分析等。</li>
@@ -918,7 +918,7 @@
     -   简历监控系统。比如性能和错误指标
     -   管理和培训</li>
 </ul>
-<h3 id="scalability">Scalability(可扩展性)：能应付系统增长（数据集、负载、复杂度的增长等）</h3>
+<h3 id="scalability">Scalability(可扩展性)：能应付系统增长（数据集、负载、复杂度的增长等）<a class="headerlink" href="#scalability" title="Permanent link">&para;</a></h3>
 <ul>
 <li>负载: 可以用一些负载参数衡量，比如 qps、缓存命中率、同时支撑用户在线数等。书中用 tweet 举例，感兴趣可以看下，feed 刘系统常见的推拉模型。</li>
 <li>性能：1.负载参数增加的时候，保持系统资源（cpu、内存、带宽）不变，性能如何变化？2.负载参数增加的时候，为了保持同样性能需要增加多少资源？</li>
@@ -931,7 +931,7 @@
 <li>https://en.wikipedia.org/wiki/Percentile</li>
 <li>https://blogs.dnvgl.com/software/2016/12/p10-p50-and-p90/</li>
 </ul>
-<h3 id="maintainability">Maintainability(可维护性)：能够有效率地扩充功能</h3>
+<h3 id="maintainability">Maintainability(可维护性)：能够有效率地扩充功能<a class="headerlink" href="#maintainability" title="Permanent link">&para;</a></h3>
 <p>众所周知，软件开发的主要成本不在起初的开发阶段，而在持续维护：修复 bug、保持系统运转、调查失败、适应新平台、修改使其适用于新用例、修复技术债、添加新特性。
 软件系统的三个设计原则：</p>
 <ul>
@@ -957,40 +957,40 @@ hack、到处都是特殊用例。
 <li>可进化性（Evolvability）：容易修改适应新需求<p>需求等总是在变，敏捷工作流提供了一个适应变化的框架（测试驱动开发TDD、重构）</p>
 </li>
 </ul>
-<h1 id="2-data-models-and-query-languages">2. Data Models and Query Languages</h1>
+<h1 id="2-data-models-and-query-languages">2. Data Models and Query Languages<a class="headerlink" href="#2-data-models-and-query-languages" title="Permanent link">&para;</a></h1>
 <p>复杂应用通常有很多层，一个 api 构建在其他 api 上，但是基本思想很简单：每一层通过干净的数据模型来隐藏其下层的复杂性</p>
-<h3 id="relational-model-versus-document-model">Relational Model Versus Document Model</h3>
+<h3 id="relational-model-versus-document-model">Relational Model Versus Document Model<a class="headerlink" href="#relational-model-versus-document-model" title="Permanent link">&para;</a></h3>
 <p>数据库多年来一直被传统的关系型数据库占领，直到最近随着互联网各种业务的爆发，有时候传统的关系型数据库满足不了需求，Nosql(Not Only Sql)出现。
 在数据交互中，JSON 格式慢慢占据主流，由于 某些格式可以用 JSON 自包含，我们可以用 MongoDB、RethinkDB、CouchDB、Espresso 等支持文档型数据的数据库来存储。
 在某些数据查询中，使用 JSON 格式表示数据可以让我们避免关系型数据库中多次 join，更具效率</p>
 <p>文档模型的优点在于存储模式灵活(schema-on-read)、性能更好，对于某些应用来说更符合应用使用的数据结构(比如自包含结构，一对多树形结构）。</p>
 <p>关系型数据库则更好地支持 joins，多对一和多对多关系。</p>
-<h3 id="query-languages-for-data">Query Languages for Data</h3>
+<h3 id="query-languages-for-data">Query Languages for Data<a class="headerlink" href="#query-languages-for-data" title="Permanent link">&para;</a></h3>
 <p>讲了声明式查询 (Declarative query lagunage) 和 命令式查询(Imperative query)</p>
 <p>Mapreduce query: Mongodb 支持 mapreduce 查询，但是限制 map 和 reduce 是纯函数 (pure function: 无副作用且无法执行额外数据库查询)</p>
-<h3 id="graph-like-data-models">Graph-Like Data Models</h3>
+<h3 id="graph-like-data-models">Graph-Like Data Models<a class="headerlink" href="#graph-like-data-models" title="Permanent link">&para;</a></h3>
 <p>图由交点（节点）和边（关系）组成。很多关系可用图来建模：比如社交网络、web 网页、路线图。
 很多知名算法用来操作图关系，比如最短路径算法、page rank</p>
 <p>Property graph model: Neo4j(Use Cypher Query Language), Titan, InfiniteGraph.</p>
-<h1 id="3-storage-and-retrieval">3. Storage and Retrieval</h1>
-<h3 id="data-structures-that-power-your-database">Data Structures That Power Your Database</h3>
+<h1 id="3-storage-and-retrieval">3. Storage and Retrieval<a class="headerlink" href="#3-storage-and-retrieval" title="Permanent link">&para;</a></h1>
+<h3 id="data-structures-that-power-your-database">Data Structures That Power Your Database<a class="headerlink" href="#data-structures-that-power-your-database" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Hash Indexex: 类似于大多数编程语言中实现的dict，采用 hash map 实现，k,v 结构</li>
 <li>SSTables(Sorted String Table) and LSM-Trees(Log-Structured Merge-Tree): basic idea of LSM-trees: Keeping a cascade of SSTables that merged in the background.</li>
 <li>Btrees:几乎是所有关系型数据库实现索引的方式。</li>
 </ul>
-<h3 id="transaction-processing-or-analytics">Transaction Processing or Analytics?</h3>
+<h3 id="transaction-processing-or-analytics">Transaction Processing or Analytics?<a class="headerlink" href="#transaction-processing-or-analytics" title="Permanent link">&para;</a></h3>
 <ul>
 <li>OLTP (online transcation processing): 交互式应用中访问数据的模式，要求低延迟，通常只访问小部分数据</li>
 <li>OLAP (online analytics processing): 用来数据分析，通常需要扫描很大的数据集，每个记录通常只访问很少的列，通常用来聚集分析而不是直接返回给用户，结果用来作为商业分析和决策。</li>
 </ul>
-<h5 id="data-warehousing">Data Warehousing(数据仓库)</h5>
+<h5 id="data-warehousing">Data Warehousing(数据仓库)<a class="headerlink" href="#data-warehousing" title="Permanent link">&para;</a></h5>
 <p>ETL (Extract-Transform-Load): 数据仓库是一个独立的用来分析的数据库，防止影响 OLTP 操作。大部分是从 OLTP 数据库同步过来的只读数据，转换成比较容易分析的格式，然后导入数据仓库。
 常用的开源的有 Apaceh Hive, Spark SQL, Cloudera Impala Facebook Presto, Apache Tajo, Apache Drill.</p>
-<h5 id="stars-and-snowflakes-schemas-for-analytics">Stars and Snowflakes: Schemas for Analytics</h5>
+<h5 id="stars-and-snowflakes-schemas-for-analytics">Stars and Snowflakes: Schemas for Analytics<a class="headerlink" href="#stars-and-snowflakes-schemas-for-analytics" title="Permanent link">&para;</a></h5>
 <p>star scehma(dimensional modeling): the fact table in the middle, surrounded by its dimension
 snowflake schema: dimensions are further brokern down into subdimensions.</p>
-<h3 id="column-oriented-storage">Column-Oriented Storage</h3>
+<h3 id="column-oriented-storage">Column-Oriented Storage<a class="headerlink" href="#column-oriented-storage" title="Permanent link">&para;</a></h3>
 <p>OLAP
 应用中大部分时间我们只需要一行中的某几列。传统的行式关系型数据库会把每行所有数据载入，效率比较低(即使过滤了行也是先加载所有数据之后过滤)。
 于是，列式存储出现了。列式存储的思想很简单：不要把所有值存储在一行，而是把所有值存储在每列。这样存储就变成了从</p>
@@ -1021,20 +1021,20 @@ snowflake schema: dimensions are further brokern down into subdimensions.</p>
 product_sk file contens: 69, 69, 70</p>
 <p>列压缩：一列中有很多元素是重复的，我们可以把一列分成不同的 n 个值，然后转化成 n 个不同的 bitmap，每个 bitmap
 代表一个值，每行用一个 bit 表示。bit 如果是 1 代表改行有相应值，0 代表没有。</p>
-<h1 id="4-encoding-and-evolution">4. Encoding and Evolution</h1>
+<h1 id="4-encoding-and-evolution">4. Encoding and Evolution<a class="headerlink" href="#4-encoding-and-evolution" title="Permanent link">&para;</a></h1>
 <p>需求总是在变，这时候需要对原有的数据库模式和代码做出变更，同时保证兼容：</p>
 <ul>
 <li>Backward compatibility: 新代码可以读取旧代码写入的数据</li>
 <li>Forwared compatibility: 旧代码可以读取新代码写入的数据</li>
 </ul>
-<h3 id="formats-for-encoding-data">Formats for Encoding Data</h3>
+<h3 id="formats-for-encoding-data">Formats for Encoding Data<a class="headerlink" href="#formats-for-encoding-data" title="Permanent link">&para;</a></h3>
 <p>程序经常操作两种类型的数据表现方式：</p>
 <ul>
 <li>内存中：数据被保存成对象、结构、列表、数组、哈希表、树等。这些数据结构可以被高效率读取和被 cpu 操作</li>
 <li>需要写入文件或者网络的自包含的 bytes 序列：比如 JSON</li>
 </ul>
 <p>把内存里的数据 编码成比特序列的过程叫做 Encoding（serialization or marshalling），反过来叫做 Decoding(parsing, deserialization, unmarshalling)</p>
-<h5 id="json-xml-and-binary-variants">JSON, XML and Binary Variants</h5>
+<h5 id="json-xml-and-binary-variants">JSON, XML and Binary Variants<a class="headerlink" href="#json-xml-and-binary-variants" title="Permanent link">&para;</a></h5>
 <p>JSON，XML，csv 经常用作数据交换，它们都是基于 文本的，可读的。但是有以下问题：</p>
 <ul>
 <li>在数字编码上有歧义。 XML 和 csv 无法区分包含数字的字符串和数字。 JSON 虽然区分但是无法精确处理大数字（js）</li>
@@ -1042,40 +1042,44 @@ product_sk file contens: 69, 69, 70</p>
 <li>There is optional schema support for both XML and JSON</li>
 <li>csv 不支持任何模式</li>
 </ul>
-<h5 id="binary-encoding">Binary encoding</h5>
+<h5 id="binary-encoding">Binary encoding<a class="headerlink" href="#binary-encoding" title="Permanent link">&para;</a></h5>
 <p>内部使用的一些交换格式可以使用一些更高效率的编解码方式。比如 二进制 encoding for JSON(MessagePack, BSON, BJSON, UBJSON,
 BISON, and Simle)。这些方式各有使用场景，但是依然没有 json 和 xml 广泛。而且，它们没有预定义一个
 schema，所以需要把所有对象的字段名称包含到 encoded 的数据里。</p>
-<h3 id="thrift-and-protocol-buffers">Thrift and Protocol Buffers</h3>
+<h3 id="thrift-and-protocol-buffers">Thrift and Protocol Buffers<a class="headerlink" href="#thrift-and-protocol-buffers" title="Permanent link">&para;</a></h3>
 <p>Apache Thrift and Protocol Buffers(protobuf) 都是二进制编码库。Protocol Buffers 最开始 google 开发，Thrift facebook
 开发。</p>
 <p>Thrift interface definition Language(IDL):</p>
-<pre><code>struct Person {
+<div class="codehilite"><pre><span></span>struct Person {
    1: required string username,
    2: optional ii64 favoriteNumber,
    3: optional list&lt;string&gt; interests
 }
-</code></pre>
+</pre></div>
+
+
 <p>在 Protocol Buffers 等价定义：</p>
-<pre><code>message Person {
+<div class="codehilite"><pre><span></span>message Person {
    required string user_name = 1;
    optional int64 favorite_number = 2;
    repeated string interests = 3;
 }
-</code></pre>
+</pre></div>
+
+
 <p>两者都是实现了代码生成工具来生成对应语言的代码。</p>
 <p>Thrift 有两种不同的二进制编码格式：BinaryProtocol and CompactProtocol</p>
-<h5 id="field-tags-and-schema-evolution">Field tags and schema evolution</h5>
+<h5 id="field-tags-and-schema-evolution">Field tags and schema evolution<a class="headerlink" href="#field-tags-and-schema-evolution" title="Permanent link">&para;</a></h5>
 <p>schema 变了以后 Thrift and Protocol Buffers 是如何处理 schema 变化的来保持前向和后向兼容的？
 你可以改变字段名，但是不能修改它的 tag 名称。可以通过增加 tag 数字号来增加新的字段，client 端可以简单忽略新增的字段。
 由于每个 字段都被一个 tag 数字标识，所以新代码可以直接读旧代码的数据，因为每个 tag
 代表的字段含义不变。唯一的要求就是如果想添加一个新字段，不能是
 required，因为老代码无法写入新增的这个字段。所以新加的字段必须是 optional 或者有一个默认值。</p>
-<h5 id="datatypes-and-schema-evolution">Datatypes and schema evolution</h5>
+<h5 id="datatypes-and-schema-evolution">Datatypes and schema evolution<a class="headerlink" href="#datatypes-and-schema-evolution" title="Permanent link">&para;</a></h5>
 <p>如果改变一个字段的类型呢，可以但是会有损失精度或者被截断的风险。</p>
-<h3 id="avro">Avro</h3>
+<h3 id="avro">Avro<a class="headerlink" href="#avro" title="Permanent link">&para;</a></h3>
 <p>Apache Avro 是另一种二进制编码格式，Hadoop 子项目。包含两种格式定义语言(Avro IDL)，用于人类编辑，还有一种机器易读的基于 JSON 的定义。</p>
-<h3 id="modes-of-dataflow">Modes of Dataflow</h3>
+<h3 id="modes-of-dataflow">Modes of Dataflow<a class="headerlink" href="#modes-of-dataflow" title="Permanent link">&para;</a></h3>
 <p>How data flows between processes:</p>
 <ul>
 <li>via database</li>
@@ -1085,16 +1089,16 @@ required，因为老代码无法写入新增的这个字段。所以新加的字
 <li>via service call</li>
 <li>via asynchronous message passing</li>
 </ul>
-<h3 id="dataflow-through-services-rest-and-rpc">Dataflow Through Services: Rest and RPC</h3>
+<h3 id="dataflow-through-services-rest-and-rpc">Dataflow Through Services: Rest and RPC<a class="headerlink" href="#dataflow-through-services-rest-and-rpc" title="Permanent link">&para;</a></h3>
 <p>不同进程之间通过网络交换数据，通常采用 client-server 模型。
 SOA(service oriented architecture): 最近慢慢演变成 microservices architecture。既能自己提供服务，也能调用其他服务获取数据。
 这种架构使得修改和维护服务更容易。每个服务都可以由一个单独的团队来维护。</p>
-<h5 id="web-service">web service</h5>
+<h5 id="web-service">web service<a class="headerlink" href="#web-service" title="Permanent link">&para;</a></h5>
 <ul>
 <li>REST: rest 不是协议，更像是一种基于 http 原则的设计哲学，经常用在微服务架构。遵守REST原则设计的 api 成为restful</li>
 <li>SOAP: xml-based protocol, 大多构建在 http 上，但是目标更倾向于独立于 http 并且避免使用 大部分 http 特性。jo</li>
 </ul>
-<h5 id="the-problems-with-remote-procedure-callsrpcs">The problems with remote procedure calls(RPCs)</h5>
+<h5 id="the-problems-with-remote-procedure-callsrpcs">The problems with remote procedure calls(RPCs)<a class="headerlink" href="#the-problems-with-remote-procedure-callsrpcs" title="Permanent link">&para;</a></h5>
 <p>RPC：远程过程调用，目标是使得远程服务调用就像是在本地进程里。这个目标有些瑕疵，网络调用和本地函数调用是有很大区别的：</p>
 <ul>
 <li>本地调用是可预测的，成功或者失败，取决于传参控制。但是远程网络调用是不可预测的，比如网络环境、远程服务不可用</li>
@@ -1104,7 +1108,7 @@ SOA(service oriented architecture): 最近慢慢演变成 microservices architec
 <li>本地调用可以传递指针，远程调用必须都传递过去</li>
 <li>rpc 跨语言，可能在转换的时候出问题，比如某些语言不支持大数</li>
 </ul>
-<h3 id="asynchronous-message-passing-dataflow">Asynchronous Message-Passing Dataflow</h3>
+<h3 id="asynchronous-message-passing-dataflow">Asynchronous Message-Passing Dataflow<a class="headerlink" href="#asynchronous-message-passing-dataflow" title="Permanent link">&para;</a></h3>
 <p>和 rpc 类似的是通常一个客户端请求(usually called a message)
 被发送到另一个进程，消息不是直接通过网络请求发送，而是通过一个叫做 message broker(also called a message queue or message-oriented middleware)，用来临时存储消息。
 相比 rpc，有几个好处：</p>
@@ -1116,11 +1120,11 @@ SOA(service oriented architecture): 最近慢慢演变成 microservices architec
 <li>逻辑上解耦了发送者和接收者</li>
 </ul>
 <p>发送发一般不用关心消息的返回结果，从而实现异步</p>
-<h5 id="message-brokers">Message brokers</h5>
+<h5 id="message-brokers">Message brokers<a class="headerlink" href="#message-brokers" title="Permanent link">&para;</a></h5>
 <p>历史上消息 broker 曾被商业公司垄断，最近开源的 RabbitMQ, ActiveMQ, HornetQ, NATS, Apache Kafka 慢慢流行。
 message broker 通常如下使用：一个进程发送消息到命名队列或者topic，broker保证消息被分发到一个或者多个消费者(订阅了queue或者 topic的)
 同一个topic上可以有多个生产者和消费者</p>
-<h5 id="distributed-actor-frameworks">Distributed actor frameworks</h5>
+<h5 id="distributed-actor-frameworks">Distributed actor frameworks<a class="headerlink" href="#distributed-actor-frameworks" title="Permanent link">&para;</a></h5>
 <p>actor 模型是一种在单个进程上实现并发的编程模型。与使用线程实现不同，逻辑被封装成 actors。每个 actor 代表一个实体或者
 client（可以有自己的状态），通过异步消息和其他 actor 通信，但是消息分发不能被保证。一个actor
 每次只处理一个消息。不用担心i安城，每个 actor 可以被框架来调度。在分布式 actor

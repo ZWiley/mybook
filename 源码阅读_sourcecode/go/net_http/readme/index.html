@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
   <title>go 内置 net/http 代码阅读 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "go \u5185\u7f6e net/http \u4ee3\u7801\u9605\u8bfb";
     var mkdocs_page_input_path = "\u6e90\u7801\u9605\u8bfb_sourcecode\\go\\net_http\\readme.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u6e90\u7801\u9605\u8bfb_sourcecode/go/net_http/readme/";
   </script>
   
   <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
@@ -836,24 +836,24 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="go-nethttp">go 内置 net/http 代码阅读</h1>
+                <h1 id="go-nethttp">go 内置 net/http 代码阅读<a class="headerlink" href="#go-nethttp" title="Permanent link">&para;</a></h1>
 <p>看一下内置的 http server 如何实现的</p>
-<pre><code class="go">package main
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
 
-import (
-    &quot;net/http&quot;
-    &quot;log&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;net/http&quot;</span>
+    <span class="s">&quot;log&quot;</span>
+<span class="p">)</span>
 
-func myHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, &quot;Hello there!\n&quot;)
-}
+<span class="kd">func</span> <span class="nx">myHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&quot;Hello there!\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
 
-func main(){
-    http.HandleFunc(&quot;/&quot;, myHandler)     //  设置访问路由
-    log.Fatal(http.ListenAndServe(&quot;:8080&quot;, nil))
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="nx">myHandler</span><span class="p">)</span>     <span class="c1">//  设置访问路由</span>
+    <span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="s">&quot;:8080&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
               
             </div>
           </div>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《微服务设计》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300a\u5fae\u670d\u52a1\u8bbe\u8ba1\u300b";
     var mkdocs_page_input_path = "\u7f51\u7ad9\u67b6\u6784\u5fae\u670d\u52a1\\\u5fae\u670d\u52a1\u8bbe\u8ba1.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/\u7f51\u7ad9\u67b6\u6784\u5fae\u670d\u52a1/\u5fae\u670d\u52a1\u8bbe\u8ba1/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -923,15 +923,15 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1">1. 微服务</h1>
+                <h1 id="1">1. 微服务<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
 <p>一些系统工作的小而自治的服务。</p>
 <p>专注于做好一件事
 自治性，解耦，正确地剑魔服务和API</p>
 <p>好处：技术异构性，弹性（不可用和功能降级问题）,扩展，简化部属，与组织结构相匹配，可组合性，对可替代性的优化，</p>
 <p>1.3 面相服务的架构SOA</p>
-<h1 id="2">2. 演化式架构师</h1>
+<h1 id="2">2. 演化式架构师<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <p>职责：愿景，同理心，合作，适应性，自治性，治理</p>
-<h1 id="3">3. 如何建模服务</h1>
+<h1 id="3">3. 如何建模服务<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>什么样的服务是好服务：
 低耦合：修改一个服务无需修改另一个服务。限制两个服务之间的不同调用形式的数量
 高内聚:相关的行为聚集一起</p>
@@ -945,7 +945,7 @@
 <p>3.6 关于业务概念的沟通
 修改系统的目的是为了满足业务需求
 技术边界：</p>
-<h1 id="4">4.集成</h1>
+<h1 id="4">4.集成<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
 <p>4.1寻找理想的集成技术
 避免破坏性修改
 保证API的技术无关性
@@ -969,7 +969,7 @@
 <p>4.11微服务世界中的DRY 和代码重用的危险：
 跨服务可以适度违反DRY</p>
 <p>语义化版本控制 MAJOR.MINOR.PATCH。通过语义化版本控制可以直接看出来是否有不兼容修改，调用方是否需要修改调用点代码。</p>
-<h1 id="5">5.分解单块系统</h1>
+<h1 id="5">5.分解单块系统<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
 <p>通过限界上下文来确定业务拆分边界。</p>
 <p>SchemaSpy 工具生成数据库之间的关系图</p>
 <p>拆除外键：通过API 来提供访问。（这样做会增加请求减慢访问速度，需要做个权衡）
@@ -983,7 +983,7 @@
 </ul>
 <p>把设计画在白板上，在你认为的服务边界上运行用例，看看会发生什么。</p>
 <p>CRC(class-responsibility-collaboration): 类、职责、交互卡片</p>
-<h1 id="6">6 部署</h1>
+<h1 id="6">6 部署<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <p>CI (continuous intergration) 持续集成</p>
 <ul>
 <li>是否每天签入代码到主线</li>
@@ -991,31 +991,31 @@
 <li>构建失败后，是否把修复 CI 当做第一优先级事情来做</li>
 </ul>
 <p>CD(continuous delivery) 持续交付</p>
-<h1 id="7">7 测试</h1>
+<h1 id="7">7 测试<a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
 <p>stub vs mock</p>
 <p>stub: 打桩是指为被测服务的请求创建一些有预设相应的打桩服务。
 mock 还会进一步验证请求本身是否被正确调用。</p>
 <p>《测试驱动的面向对象软件开发》</p>
-<h1 id="8">8 监控</h1>
+<h1 id="8">8 监控<a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
 <p>监控小的服务，然后聚合起来看整体。</p>
 <p>日志: ELK elastic-search + logstash + kibana</p>
 <p>多个服务的指标跟踪：graphite</p>
 <p>zipkin 跨多个系统边界跟踪调用</p>
-<h1 id="9">9 安全</h1>
+<h1 id="9">9 安全<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
 <p>身份验证和授权。分布式系统下，我们希望有一个单一的标识且只需要一次验证。</p>
 <p>单点登录SSO(single signon)；使用网关实现单点登录。</p>
 <p>服务间身份验证和授权：在边界内允许一切；https 基本身份验证</p>
-<h2 id="93">9.3 静态数据的安全</h2>
+<h2 id="93">9.3 静态数据的安全<a class="headerlink" href="#93" title="Permanent link">&para;</a></h2>
 <p>使用众所周知的加密算法</p>
-<h2 id="94">9.4 深度防御</h2>
+<h2 id="94">9.4 深度防御<a class="headerlink" href="#94" title="Permanent link">&para;</a></h2>
 <p>防火墙(iptables)；日志(踢出敏感信息)；入侵检测和防御系统；网络隔离</p>
-<h2 id="97">9.7 个人因素</h2>
+<h2 id="97">9.7 个人因素<a class="headerlink" href="#97" title="Permanent link">&para;</a></h2>
 <p>心怀不满的雇员损害你的系统</p>
-<h1 id="10">10 康威定律和系统设计</h1>
+<h1 id="10">10 康威定律和系统设计<a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
 <p>任何组织在设计一套系统(广义概念的系统)时，所交付的设计方案在结构上都与该组织的沟通结构保持一致。</p>
 <p>组织的耦合度越低，创建的系统模块化就越好，否则越差。</p>
-<h1 id="11">11 规模化微服务</h1>
-<h2 id="111">11.1 故障无处不在</h2>
+<h1 id="11">11 规模化微服务<a class="headerlink" href="#11" title="Permanent link">&para;</a></h1>
+<h2 id="111">11.1 故障无处不在<a class="headerlink" href="#111" title="Permanent link">&para;</a></h2>
 <p>从统计学看，规模化后故障成为必然事件。
 假设一切都会失败，会让你从不同的角度去思考如何解决问题。</p>
 <p>考虑是否扩展系统，首先尝试理解一下需求：</p>
@@ -1024,11 +1024,11 @@ mock 还会进一步验证请求本身是否被正确调用。</p>
 <li>可用性</li>
 <li>数据持久性</li>
 </ul>
-<h2 id="113">11.3 功能降级</h2>
+<h2 id="113">11.3 功能降级<a class="headerlink" href="#113" title="Permanent link">&para;</a></h2>
 <p>如果这个微服务宕了会发生什么？</p>
-<h2 id="114">11.4 架构性安全措施</h2>
+<h2 id="114">11.4 架构性安全措施<a class="headerlink" href="#114" title="Permanent link">&para;</a></h2>
 <p>一个无法控制的下游服务，可以让整个系统宕掉。</p>
-<h2 id="115">11.5 反脆弱的组织</h2>
+<h2 id="115">11.5 反脆弱的组织<a class="headerlink" href="#115" title="Permanent link">&para;</a></h2>
 <p>混乱猴子，故意在系统中做破坏</p>
 <p>做什么来应对系统故障呢？</p>
 <ul>
@@ -1040,7 +1040,7 @@ mock 还会进一步验证请求本身是否被正确调用。</p>
 <li>隔离，允许下游服务离线</li>
 <li>幂等, 多次执行产生的影响和一次执行的影响相同</li>
 </ul>
-<h2 id="117">11.7 扩展</h2>
+<h2 id="117">11.7 扩展<a class="headerlink" href="#117" title="Permanent link">&para;</a></h2>
 <ul>
 <li>更强大的主机（垂直扩展）；</li>
 <li>拆分负载；</li>
@@ -1049,33 +1049,33 @@ mock 还会进一步验证请求本身是否被正确调用。</p>
 <li>基于 worker 的系统。</li>
 <li>重新设计服务</li>
 </ul>
-<h2 id="118">11.8 扩展数据库</h2>
-<h3 id="1181">11.8.1 服务的可用性和数据的持久性</h3>
+<h2 id="118">11.8 扩展数据库<a class="headerlink" href="#118" title="Permanent link">&para;</a></h2>
+<h3 id="1181">11.8.1 服务的可用性和数据的持久性<a class="headerlink" href="#1181" title="Permanent link">&para;</a></h3>
 <p>数据库副本</p>
-<h3 id="1182">11.8.2 扩展读取</h3>
+<h3 id="1182">11.8.2 扩展读取<a class="headerlink" href="#1182" title="Permanent link">&para;</a></h3>
 <p>使用只读副本。最终一致性</p>
-<h3 id="1183">11.8.3 扩展写操作</h3>
+<h3 id="1183">11.8.3 扩展写操作<a class="headerlink" href="#1183" title="Permanent link">&para;</a></h3>
 <p>通过哈希写分片。</p>
-<h3 id="1184">11.8.4 共享数据库基础设施</h3>
-<h2 id="119">11.9 缓存</h2>
-<h3 id="1191">11.9.1 客户端、代理和服务器缓存</h3>
+<h3 id="1184">11.8.4 共享数据库基础设施<a class="headerlink" href="#1184" title="Permanent link">&para;</a></h3>
+<h2 id="119">11.9 缓存<a class="headerlink" href="#119" title="Permanent link">&para;</a></h2>
+<h3 id="1191">11.9.1 客户端、代理和服务器缓存<a class="headerlink" href="#1191" title="Permanent link">&para;</a></h3>
 <p>客户端：减少网络调用，减少下游负载。但是改变缓存方式和失效数据比较棘手</p>
 <p>代理服务器：squid 或varnish。增加网络跳数(network hops)，但是相比性能优化来说可忽略</p>
 <p>服务器：适合多客户端。追踪和统计命中率</p>
-<h3 id="1192-http">11.9.2 HTTP 缓存</h3>
+<h3 id="1192-http">11.9.2 HTTP 缓存<a class="headerlink" href="#1192-http" title="Permanent link">&para;</a></h3>
 <p>cache-control: 告诉客户端是否缓存资源，缓存几秒。</p>
 <p>Expires: 指定改日知和时间后被认为失效</p>
 <p>ETag： 标识资源是否已改变</p>
 <p>《Rest 实战》</p>
-<h3 id="1193">11.9.3 为写使用缓存</h3>
+<h3 id="1193">11.9.3 为写使用缓存<a class="headerlink" href="#1193" title="Permanent link">&para;</a></h3>
 <p>使用 writebehind 方式使用缓存</p>
-<h3 id="1194">11.9.4 为弹性使用缓存</h3>
+<h3 id="1194">11.9.4 为弹性使用缓存<a class="headerlink" href="#1194" title="Permanent link">&para;</a></h3>
 <p>可以使用缓存中的数据保证某些场景服务不会宕机（但是数据可能过时，总比挂了好）</p>
-<h3 id="1195">11.9.5 隐藏源服务</h3>
+<h3 id="1195">11.9.5 隐藏源服务<a class="headerlink" href="#1195" title="Permanent link">&para;</a></h3>
 <p>让请求快速失败，确保不占用资源或增加延迟，给下游服务恢复机会</p>
-<h3 id="1196">11.9.6 保持简单</h3>
+<h3 id="1196">11.9.6 保持简单<a class="headerlink" href="#1196" title="Permanent link">&para;</a></h3>
 <p>先保持简单，使用缓存之前慎重考虑</p>
-<h2 id="1111-cap">11.11 CAP 定理</h2>
+<h2 id="1111-cap">11.11 CAP 定理<a class="headerlink" href="#1111-cap" title="Permanent link">&para;</a></h2>
 <ul>
 <li>一致性（consistency）:访问多个节点能得到同样的值</li>
 <li>可用性(availability): 每个请求都能获得响应</li>
@@ -1088,24 +1088,24 @@ mock 还会进一步验证请求本身是否被正确调用。</p>
 <li>牺牲分区容忍性。不存在，除非单独的进程不跨越网络</li>
 </ul>
 <p>需要权衡使用 AP 还是 CP。构建 AP 比 CP 很容易一些。</p>
-<h2 id="1112">11.12 服务发现</h2>
+<h2 id="1112">11.12 服务发现<a class="headerlink" href="#1112" title="Permanent link">&para;</a></h2>
 <p>常见的服务发现解决方案：</p>
 <ul>
 <li>DNS</li>
 </ul>
-<h2 id="1113">11.13 动态服务注册</h2>
+<h2 id="1113">11.13 动态服务注册<a class="headerlink" href="#1113" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Zookeeper</li>
 <li>Consul：支持配置管理和服务发现</li>
 <li>Eureka(netflix):</li>
 </ul>
-<h2 id="1114">11.14 文档服务</h2>
+<h2 id="1114">11.14 文档服务<a class="headerlink" href="#1114" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Swagger</li>
 <li>HAL和 HAL 浏览器。hypertext application language</li>
 </ul>
-<h1 id="12">12 总结</h1>
-<h2 id="121">12.1 微服务原则</h2>
+<h1 id="12">12 总结<a class="headerlink" href="#12" title="Permanent link">&para;</a></h1>
+<h2 id="121">12.1 微服务原则<a class="headerlink" href="#121" title="Permanent link">&para;</a></h2>
 <p>微服务(自治的小服务）的原则：</p>
 <ul>
 <li>围绕业务概念建模: 使用限界界上下文</li>
@@ -1116,7 +1116,7 @@ mock 还会进一步验证请求本身是否被正确调用。</p>
 <li>隔离失败: 超时；断路；舱壁。CAP</li>
 <li>高度可观察: 聚合日志和数据</li>
 </ul>
-<h2 id="122">12.2 什么时候不该使用微服务？</h2>
+<h2 id="122">12.2 什么时候不该使用微服务？<a class="headerlink" href="#122" title="Permanent link">&para;</a></h2>
 <p>先花时间了解系统做什么的，尝试识别清晰的模块边界。</p>
 <p>首先构建单块系统，稳定之后再考虑拆分</p>
 <p>花时间构建工具和实践，管理微服务。</p>

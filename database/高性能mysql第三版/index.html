@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="ZWiley">
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>《高性能mysql第三版》 - ZWiley的读书笔记</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "\u300a\u9ad8\u6027\u80fdmysql\u7b2c\u4e09\u7248\u300b";
     var mkdocs_page_input_path = "database\\\u9ad8\u6027\u80fdmysql\u7b2c\u4e09\u7248.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/mybook/database/\u9ad8\u6027\u80fdmysql\u7b2c\u4e09\u7248/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -915,7 +915,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1mysql">1章：MySQL 架构与历史</h1>
+                <h1 id="1mysql">1章：MySQL 架构与历史<a class="headerlink" href="#1mysql" title="Permanent link">&para;</a></h1>
 <p>读锁（共享锁）
 写锁(排他锁)</p>
 <p>原子性：一个事务必须被视为一个不可分割的最小工作单元
@@ -933,38 +933,38 @@
 - 事务：InnoDB 是目前最稳定并且经过检验的选择
 - 备份：如果需要在线热备份，InnoDB 就是最基本的选择
 - 崩溃恢复</p>
-<h1 id="2-mysql">2 Mysql 基准测试</h1>
+<h1 id="2-mysql">2 Mysql 基准测试<a class="headerlink" href="#2-mysql" title="Permanent link">&para;</a></h1>
 <p>绘图：gnuplot，或者 R 绘图</p>
 <p>集成式测试工具：ab, http_load, JMeter
 单组件式测试工具：mysqlslap, sql-bench, super Smack, Database Test Suite, sysbench, mysql 内置benchmark 函数</p>
-<h1 id="3">3 服务器性能剖析</h1>
+<h1 id="3">3 服务器性能剖析<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>专注于测量服务器的时间花费在哪里，性能即响应时间。</p>
 <p>性能剖析(profiling): 测量任务花费的时间，然后对结果进行统计排序</p>
-<h1 id="4-schema">4 Schema与数据类型优化</h1>
-<h3 id="41">4.1 选择优化的数据类型</h3>
+<h1 id="4-schema">4 Schema与数据类型优化<a class="headerlink" href="#4-schema" title="Permanent link">&para;</a></h1>
+<h3 id="41">4.1 选择优化的数据类型<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
 <ul>
 <li>更小的通常更好</li>
 <li>简单就好：应该使用mysql内置类型而不是字符串来存储日期和时间；应该用整型存储IP地址。</li>
 <li>尽量避免 NULL</li>
 </ul>
 <p>两种整型数字：整数和实数</p>
-<h3 id="42-mysql-schema">4.2 Mysql Schema 设计中的陷阱</h3>
+<h3 id="42-mysql-schema">4.2 Mysql Schema 设计中的陷阱<a class="headerlink" href="#42-mysql-schema" title="Permanent link">&para;</a></h3>
 <ul>
 <li>太多的列</li>
 <li>太多的关联</li>
 <li>全能的枚举</li>
 <li>变相的枚举</li>
 </ul>
-<h3 id="43">4.3 范式和反范式</h3>
+<h3 id="43">4.3 范式和反范式<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
 <p>完全的范式化和反范式化都是只有实验室才有的东西。通常使用部分范式化，缓存表和其他技巧。</p>
-<h3 id="44">4.4 缓存表和汇总表</h3>
+<h3 id="44">4.4 缓存表和汇总表<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
 <p>缓存表、汇总表、影子表</p>
-<h3 id="45-alter-table">4.5 加快 ALTER TABLE操作 的速度</h3>
+<h3 id="45-alter-table">4.5 加快 ALTER TABLE操作 的速度<a class="headerlink" href="#45-alter-table" title="Permanent link">&para;</a></h3>
 <p>两种技巧：
 - 先在一台不提供服务的机器上执行 ALTER TABLE 操作，然后和提供服务的主库切换
 - 影子拷贝：用要求的表结构创建一个和源表无关的新表，然后通过重命名和删表操作交换两张表</p>
-<h1 id="5-key">5. 创建高性能的索引(key)</h1>
-<h3 id="51">5.1 索引基础</h3>
+<h1 id="5-key">5. 创建高性能的索引(key)<a class="headerlink" href="#5-key" title="Permanent link">&para;</a></h1>
+<h3 id="51">5.1 索引基础<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
 <p>mysql 支持的索引类型：</p>
 <p>B-Tree索引：
 - 适用于全键值，键值范围或键前缀查找（最左前缀）
@@ -975,7 +975,7 @@
 <p>哈希索引：基于哈希表实现，只有精确匹配索引所有列的查询才有效</p>
 <p>空间数据索引(R-Tree): 地理数据存储</p>
 <p>全文索引</p>
-<h3 id="52">5.2 索引的优点</h3>
+<h3 id="52">5.2 索引的优点<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
 <ul>
 <li>减少服务器需要扫描的数据量</li>
 <li>避免排序和临时表</li>
@@ -985,7 +985,7 @@
 - 索引将相关的记录放到一起获得一星
 - 索引中的数据顺序和查找中的排序顺序一致则获得两星
 - 如果索引中的列包含了查询中需要的全部数据列则获得三星</p>
-<h3 id="53">5.3 高性能的索引策略</h3>
+<h3 id="53">5.3 高性能的索引策略<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
 <ul>
 <li>独立的列：如果查询中的列不是独立的，就无法使用索引。独立的列是指索引列不能是表达式的一部分，也不能是函数参数。</li>
 <li>前缀索引和索引选择性：选择性越高查询效率越高。mysql无法使用前缀索引 order by 和 group by</li>
@@ -999,35 +999,35 @@
 <p>InnoDB 在二级索引上使用共享(读)锁，但访问主键索引需要排他(写)锁。
 mysql 使用某个索引进行范围查询，也就无法再使用另一个索引（或者该索引的后续字段）进行排序了。
 尽量将需要做范围查询的列放到索引的后边，以便优化器能使用尽可能多的索引列。</p>
-<h1 id="6">6 查询性能优化</h1>
-<h3 id="62">6.2 慢查询基础：优化数据访问</h3>
+<h1 id="6">6 查询性能优化<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
+<h3 id="62">6.2 慢查询基础：优化数据访问<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
 <ul>
 <li>查询不需要的记录。不需要的行（应该使用limit）或者多余的列(不要 select *)</li>
 <li>mysql是否扫描额外的记录，最简单衡量查询开销的三个指标：响应时间、扫描的行数、返回的行数</li>
 </ul>
-<h3 id="63">6.3 重构查询方式</h3>
+<h3 id="63">6.3 重构查询方式<a class="headerlink" href="#63" title="Permanent link">&para;</a></h3>
 <ul>
 <li>衡量是使用一个复杂查询还是多个简单查询</li>
 <li>切分查询</li>
 <li>分解关联查询，对每个表进行一次单表查询，然后将结果在程序中进行关联</li>
 </ul>
-<h3 id="67">6.7 优化特定类型的查询</h3>
+<h3 id="67">6.7 优化特定类型的查询<a class="headerlink" href="#67" title="Permanent link">&para;</a></h3>
 <p>快速、精确和实现简单，三者只能满足两者</p>
 <ul>
 <li>确保 ON 或者 USING 子句中的列上有索引;</li>
 <li>确保任何的GROUP BY 和ORDER BY 中的表达式只涉及到一个表中的列</li>
 </ul>
-<h1 id="7-mysql">7 Mysql 高级特性</h1>
-<h3 id="_1">分区表</h3>
-<h3 id="_2">视图</h3>
+<h1 id="7-mysql">7 Mysql 高级特性<a class="headerlink" href="#7-mysql" title="Permanent link">&para;</a></h1>
+<h3 id="_1">分区表<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h3 id="_2">视图<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>视图本身是一个虚拟表，不存放任何数据</p>
-<h3 id="_3">外键</h3>
-<h3 id="mysql">在Mysql 内部执行代码</h3>
+<h3 id="_3">外键<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="mysql">在Mysql 内部执行代码<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h3>
 <p>存储过程，触发器，事件，游标</p>
-<h3 id="_4">查询缓存</h3>
+<h3 id="_4">查询缓存<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>缓存完整的 select 查询结果，命中缓存直接返回结果，跳过了解析、优化和执行阶段。对应用程序透明
 什么情况下使用和服务器压力模型有关，高并发压力环境中查询缓存会导致系统性能下降，甚至僵死。</p>
-<h1 id="8">8 优化服务器配置</h1>
+<h1 id="8">8 优化服务器配置<a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
               
             </div>
           </div>
