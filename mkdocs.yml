@@ -1,9 +1,20 @@
 site_name: ZWiley的读书笔记
 theme: readthedocs
+site_url: https://zwiley.github.io/mybook
+site_author: ZWiley
 extra_javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - toc:
+      permalink: true
+  - footnotes
+  - meta
+  - def_list
   - mdx_truly_sane_lists
   - mdx_math:
       enable_dollar_delimiter: True  #for use of inline $..$
