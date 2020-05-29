@@ -1,4 +1,4 @@
-site_name: ZWiley的读书笔记
+site_name: ZWiley的笔记
 
 theme:
     name: readthedocs
@@ -13,7 +13,7 @@ markdown_extensions:
   - admonition
   - footnotes
   - codehilite
-  - mdx_truly_sane_lists
+  - sane_lists
   - mdx_math:
       enable_dollar_delimiter: True
   - smarty
