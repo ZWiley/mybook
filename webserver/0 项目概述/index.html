@@ -26,6 +26,8 @@
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
   <script src="../../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -619,9 +621,8 @@
 <p>测试前确认已安装MySQL数据库</p>
 </li>
 </ul>
-<p>```sql
-  // 建立yourdb库
-  create database yourdb;</p>
+<p>```sqlite
+  create database yourdb;// 建立yourdb库</p>
 <p>// 创建user表
   USE yourdb;
   CREATE TABLE user(
@@ -635,7 +636,6 @@
 <li>修改main.cpp中的数据库初始化信息</li>
 </ul>
 <p><code>c
-  //数据库登录名,密码,库名
   string user = "root";
   string passwd = "root";
   string databasename = "yourdb";</code></p>
@@ -754,7 +754,7 @@
       <script src="../../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
+            SphinxRtdTheme.Navigation.enable(false);
         };
     </script>
 
