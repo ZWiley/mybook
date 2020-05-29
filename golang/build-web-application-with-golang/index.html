@@ -1,876 +1,575 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-<meta charset="utf-8">
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>《Build Web Application With Golang》 - ZWiley的读书笔记</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Build Web Application With Golang - ZWiley的读书笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-<meta name="generator" content="mkdocs-1.1.2, mkdocs-gitbook-1.0.7">
-
-<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
-<meta name="HandheldFriendly" content="true"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta rel="next" href="" />
-<link href="../../css/style.min.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Build Web Application With Golang";
+    var mkdocs_page_input_path = "golang\\build-web-application-with-golang.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
-<body>
-<div class="book">
-<div class="book-summary">
-<div id="book-search-input" role="search">
-<input type="text" placeholder="Type to search" />
-</div> <!-- end of book-search-input -->
-
-<nav role="navigation">
-<ul class="summary">
-<li>
-<a href="../.." target="_blank" class="custom-link">ZWiley的读书笔记</a>
-</li>
-<li class="divider"></li>
-<li class="chapter" data-path="">
-<a href="../..">简介</a>
-<li class="header">C++</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/" class="">《C++编译底层》</a>
-</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="">《C++基础知识》</a>
-</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/" class="">《C++智能指针》</a>
-</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="">《C++面向对象》</a>
-</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/" class="">《C++ STL》</a>
-</li>
-
-<li class="header">计算机基础知识</li>
-
-<li>
-<a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="">《操作系统》</a>
-</li>
-
-<li>
-<a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="">《计算机网络》</a>
-</li>
-
-<li>
-<a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="">《数据结构》</a>
-</li>
-
-<li>
-<a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="">《海量数据处理》</a>
-</li>
-
-<li class="header">项目基础知识</li>
-
-<li>
-<a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="">《Linux系统编程及基本命令》</a>
-</li>
-
-<li>
-<a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/" class="">《MySQL》</a>
-</li>
-
-<li>
-<a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/" class="">《Redis》</a>
-</li>
-
-<li>
-<a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/" class="">《Socket编程》</a>
-</li>
-
-<li class="header">代码</li>
-
-<li>
-<a href="../../code/work_with_legacy_code/" class="">《Work with legacy code》</a>
-</li>
-
-<li>
-<a href="../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/" class="">《代码大全》</a>
-</li>
-
-<li>
-<a href="../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/" class="">《代码的未来》</a>
-</li>
-
-<li>
-<a href="../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/" class="">《基本功》</a>
-</li>
-
-<li>
-<a href="../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/" class="">《敏捷技能修炼》</a>
-</li>
-
-<li>
-<a href="../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/" class="">《程序员应该知道的97件事》</a>
-</li>
-
-<li>
-<a href="../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/" class="">《编写可读代码的艺术》</a>
-</li>
-
-<li>
-<a href="../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/" class="">《编程匠艺》</a>
-</li>
-
-<li>
-<a href="../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="">《领域驱动设计》</a>
-</li>
-
-<li>
-<a href="../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/" class="">《codelife_不止代码》</a>
-</li>
-
-<li class="header">调试技术</li>
-
-<li>
-<a href="../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/" class="">《软件调试修炼之道》</a>
-</li>
-
-<li>
-<a href="../../debug/Effective_Debugging/" class="">《Effective Debugging》</a>
-</li>
-
-<li class="header">数据库</li>
-
-<li>
-<a href="../../database/getting_started_with_impala/" class="">《Getting started with impala》</a>
-</li>
-
-<li>
-<a href="../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/" class="">《mysql必知必会》</a>
-</li>
-
-<li>
-<a href="../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/" class="">《mysql性能调优与架构实践》</a>
-</li>
-
-<li>
-<a href="../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" class="">《Mysql技术内幕InnoDB存储引擎》</a>
-</li>
-
-<li>
-<a href="../../database/redis%E5%AE%9E%E6%88%98/" class="">《Redis实战》</a>
-</li>
-
-<li>
-<a href="../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/" class="">《Redis深度历险核心原理和应用实践》</a>
-</li>
-
-<li>
-<a href="../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="">《redis设计与实现》</a>
-</li>
-
-<li>
-<a href="../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/" class="">《七周七数据库》</a>
-</li>
-
-<li>
-<a href="../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/" class="">《深入浅出mysql》</a>
-</li>
-
-<li>
-<a href="../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/" class="">《高性能mysql第三版》</a>
-</li>
-
-<li class="header">前端</li>
-
-<li>
-<a href="../../frontend/CSS_The_Missing_Manual/" class="">《CSS_The_Missing_Manual》</a>
-</li>
-
-<li>
-<a href="../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/" class="">《reactjs小书》</a>
-</li>
-
-<li>
-<a href="../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/" class="">《ES6标准入门》</a>
-</li>
-
-<li>
-<a href="../../frontend/jquery_pocket_reference/" class="">《jquery_pocket_reference》</a>
-</li>
-
-<li>
-<a href="../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/" class="">《深入理解bootstrap》</a>
-</li>
-
-<li class="header">golang</li>
-
-<li>
-<a href="../1_the_go_programming_lauguage/" class="">《1 The Go Programming Language》</a>
-</li>
-
-<li>
-<a href="../2_the_go_programming_lauguage/" class="">《2 The Go Programming Language》</a>
-</li>
-
-<li>
-<a href="../3_the_go_programming_lauguage/" class="">《3 The Go Programming Language》</a>
-</li>
-
-<li>
-<a href="./" class="active">《Build Web Application With Golang》</a>
-</li>
-
-<li>
-<a href="../go101/book/" class="">《Go101》</a>
-</li>
-
-<li>
-<a href="../network-programming-with-go/book/" class="">《Network Programming with go》</a>
-</li>
-
-<li>
-<a href="../building-microservices-with-go/book/" class="">《Building Microservices With Go》</a>
-</li>
-
-<li>
-<a href="../building_restful_web_services_with_go/book/" class="">《Building Restful Web Services with Go》</a>
-</li>
-
-<li>
-<a href="../concurrency-in-go/concurrency_in_go/" class="">《Concurrency In Go》</a>
-</li>
-
-<li>
-<a href="../go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/" class="">《Go In Action(Go 实战)》</a>
-</li>
-
-<li>
-<a href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/" class="">《Go学习笔记语言详解》</a>
-</li>
-
-<li>
-<a href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" class="">《Go学习笔记源码剖析》</a>
-</li>
-
-<li>
-<a href="../go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/" class="">《go语言编程》</a>
-</li>
-
-<li>
-<a href="../the_way_to_go/book/" class="">《go book》</a>
-</li>
-
-<li>
-<a href="../advanced-go-programming-book/advanced-go-programming/" class="">《advanced-go-programming》</a>
-</li>
-
-<li>
-<a href="../go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/" class="">《go-build-web-applications》</a>
-</li>
-
-<li class="header">java</li>
-
-<li>
-<a href="../../java/java-basic-introduction/" class="">《java basic introduction》</a>
-</li>
-
-<li class="header">网络</li>
-
-<li>
-<a href="../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/" class="">《TCP IP详解卷一》</a>
-</li>
-
-<li class="header">python</li>
-
-<li>
-<a href="../../python/fluent_python/" class="">《Fluent Python》</a>
-</li>
-
-<li>
-<a href="../../python/Python_Microservices_Development/" class="">《Python Microservices Development》</a>
-</li>
-
-<li>
-<a href="../../python/high_performance_python/" class="">《High Performance Python》</a>
-</li>
-
-<li>
-<a href="../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="">《Python网络编程》</a>
-</li>
-
-<li class="header">unix/linux</li>
-
-<li>
-<a href="../../unix_linux/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/" class="">《Linux高性能服务器编程》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" class="">《unix编程艺术》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/" class="">《unix网络编程卷一》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" class="">《unix编程艺术》</a>
-</li>
-
-<li>
-<a href="#">《APUE》</a>
-<ul>
-
-<li>
-<a href="../../unix_linux/APUE/environ/" class="">《APUE environ》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/fork/" class="">《APUE fork》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/gcc/" class="">《APUE gcc》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/IO/" class="">《APUE IO》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/IPC/" class="">《APUE IPC》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/makefile/" class="">《APUE makefile》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/wait/" class="">《APUE wait》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E5%8A%A8%E6%80%81%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93/" class="">《APUE 动态库和静态库》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/" class="">《APUE 守护进程》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" class="">《APUE 文件权限》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E7%B3%BB%E7%BB%9FIO%E5%87%BD%E6%95%B0/" class="">《APUE 系统IO函数》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E4%BF%A1%E5%8F%B7/" class="">《APUE 信号》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E4%BF%A1%E5%8F%B72/" class="">《APUE 信号2》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0/" class="">《线程函数》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="">《线程基础》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" class="">《线程同步》</a>
-</li>
-</ul>
-</li>
-
-<li class="header">分布式</li>
-
-<li>
-<a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" class="">《Kafka 权威指南》</a>
-</li>
-
-<li>
-<a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" class="">《分布式框架原理与应用》</a>
-</li>
-
-<li>
-<a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/" class="">《大规模分布式存储系统》</a>
-</li>
-
-<li>
-<a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/" class="">《深入分布式缓存从原理到实践》</a>
-</li>
-
-<li class="header">搜索引擎</li>
-
-<li>
-<a href="../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/" class="">《Elasticsearch实战》</a>
-</li>
-
-<li class="header">容器</li>
-
-<li>
-<a href="../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/" class="">《玩转Kubernets》</a>
-</li>
-
-<li>
-<a href="../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/" class="">《第一本docker书》</a>
-</li>
-
-<li class="header">开发工具</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/" class="">《Practical Vim》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/" class="">《Vim8文本处理实战》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/" class="">《Learn vim scrpt the hard way》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/" class="">《Pro Git》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/" class="">《Mastering Vim》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/" class="">《Mastering Vim Quickly》</a>
-</li>
-
-<li class="header">思维</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/" class="">《专注力》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/" class="">《为什么精英这样用脑不会累》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/" class="">《刻意练习》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/" class="">《如何想到又做到》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/" class="">《学习之道》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/" class="">《学习力》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/" class="">《批判性思维工具》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/" class="">《程序员的思维修炼》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/" class="">《认知天性》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/" class="">《超效率手册》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/" class="">《如何高效记忆》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="">《科学学习》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/" class="">《高效程序员的45个习惯》</a>
-</li>
-
-<li class="header">源码</li>
-
-<li>
-<a href="../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/" class="">《源码阅读》</a>
-</li>
-
-<li class="header">网站架构微服务</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/" class="">《微服务架构设计模式》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/" class="">《从0开始学架构》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/" class="">《web scalavility for startup engineers》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/" class="">《design_data_instensive_application》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/" class="">《clean_architecture》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/" class="">《微服务设计》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/" class="">《2_design_data_instensive_application》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/" class="">《3_design_data_instensive_application》</a>
-</li>
-
-<li class="header">软件工程/项目管理</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/" class="">《人月神话》</a>
-</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/" class="">《代码之殇》</a>
-</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/" class="">《解析极限编程》</a>
-</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/" class="">《项目管理修炼之道》</a>
-</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/" class="">《修改软件的艺术》</a>
-</li>
-
-<li class="header">运维</li>
-
-<li>
-<a href="../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" class="">《linux集群和自动化运维》</a>
-</li>
-
-<li>
-<a href="../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" class="">《python自动化运维》</a>
-</li>
-
-<li class="header">金融理财</li>
-
-<li>
-<a href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/" class="">《定投十年》</a>
-</li>
-
-<li>
-<a href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/" class="">《穷查理宝典》</a>
-</li>
-
-<li class="header">写作</li>
-
-<li>
-<a href="../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/" class="">《刷屏文案写作技巧》</a>
-</li>
-
-<li class="header">互联网</li>
-
-<li>
-<a href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/" class="">《我的互联网方法论-周鸿祎》</a>
-</li>
-
-<li>
-<a href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/" class="">《用户思维》</a>
-</li>
-
-<li class="header">区块链</li>
-
-<li>
-<a href="../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/" class="">《区块链技术指南》</a>
-</li>
-
-<li class="header">技术演讲</li>
-
-<li>
-<a href="../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/" class="">《哔哩哔哩的go微服务实战》</a>
-</li>
-
-<li>
-<a href="../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/" class="">《go业务基础库之Error&Context》</a>
-</li>
-
-<li>
-<a href="../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/" class="">《Go同步和并发设计模式》</a>
-</li>
-
-<li>
-<a href="../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/" class="">《左耳朵耗子-我这技术二十年》</a>
-</li>
-
-<li class="header">职场</li>
-
-<li>
-<a href="../../career/give_and_take/" class="">《give and take》</a>
-</li>
-
-<li>
-<a href="../../career/the_effective_engineer/" class="">《the_effective_engineer》</a>
-</li>
-
-<li>
-<a href="../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/" class="">《光速成长》</a>
-</li>
-
-<li>
-<a href="../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/" class="">《向上管理》</a>
-</li>
-
-<li>
-<a href="../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/" class="">《成功动机与目标》</a>
-</li>
-
-<li>
-<a href="../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/" class="">《番茄工作法》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/" class="">《聆听沟通学》</a>
-</li>
-
-<li>
-<a href="../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/" class="">《知乎职人觉醒》</a>
-</li>
-
-<li>
-<a href="../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/" class="">《知识变现》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/" class="">《聆听沟通学》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/" class="">《职场动物进化手册》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/" class="">《职场解释系》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/" class="">《请停止无效努力》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/" class="">《软技能》</a>
-</li>
-
-<li>
-<a href="../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/" class="">《高效15法则》</a>
-</li>
-
-<li>
-<a href="../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/" class="">《高效清单工作法》</a>
-</li>
-
-<li>
-<a href="../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/" class="">《程序员的自我修养》</a>
-</li>
-
-<li class="header">心理学</li>
-
-<li>
-<a href="../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/" class="">《一切都是童年的错吗》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="">《亲密关系》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E6%83%85%E5%95%86/" class="">《情商》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E9%80%86%E5%95%86/" class="">《逆商》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/" class="">《拖延心理学》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/" class="">《积极心理学》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/" class="">《自控力》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/" class="">《自控力-实操篇》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/" class="">《自控力:和压力做朋友》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/" class="">《活出最乐观的自己》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/" class="">《改变心理学的40项研究》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/" class="">《超越自卑》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/" class="">《反脆弱》</a>
-</li>
-
-<li class="header">创业</li>
-
-<li>
-<a href="../../startup/hello_startup/" class="">《Hello Startup》</a>
-</li>
-
-<li>
-<a href="../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/" class="">《斯坦福公开课如何创业》</a>
-</li>
-
-<li>
-<a href="../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/" class="">《运营其实很简单》</a>
-</li>
-
-<li class="divider"></li>
-
-
-
-<li><a href="http://www.mkdocs.org">
-Published with MkDocs
-</a></li>
-
-<li><a href="https://github.com/GitbookIO/theme-default">
-Theme by GitBook
-</a></li>
-</ul>
-
-</nav>
-
-</div> <!-- end of book-summary -->
-
-<div class="book-body">
-<div class="body-inner">
-<div class="book-header" role="navigation">
-
-<!-- Title -->
-<h1>
-<i class="fa fa-circle-o-notch fa-spin"></i>
-<a href="." ></a>
-</h1>
-
-</div> <!-- end of book-header -->
-
-<div class="page-wrapper" tabindex="-1" role="main">
-<div class="page-inner">
-<div id="book-search-results">
-<div class="search-noresults">
-
-<section class="normal markdown-section">
-
-
-
-<h1 id="2-go">2 Go 基础</h1>
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">简介</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">C++</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/">C++编译底层</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">C++基础知识</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/">C++智能指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/">C++ STL</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">计算机基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">海量数据处理</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">基本手写代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%A2%98%E7%9B%AE/">基本手写代码题目</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">项目基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">Linux系统编程及基本命令</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/">MySQL</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/">Redis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/">Socket编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/work_with_legacy_code/">Work with legacy code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/">代码大全</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/">代码的未来</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/">基本功</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/">敏捷技能修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/">程序员应该知道的97件事</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/">编写可读代码的艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/">编程匠艺</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/">codelife_不止代码</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">调试技术</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/">软件调试修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/Effective_Debugging/">Effective Debugging</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">数据库</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/getting_started_with_impala/">Getting started with impala</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/">mysql必知必会</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/">mysql性能调优与架构实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">Mysql技术内幕InnoDB存储引擎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E5%AE%9E%E6%88%98/">Redis实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/">Redis深度历险核心原理和应用实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">redis设计与实现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/">七周七数据库</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/">深入浅出mysql</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/">高性能mysql第三版</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">前端</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/CSS_The_Missing_Manual/">CSS_The_Missing_Manual</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/">reactjs小书</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/">ES6标准入门</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/jquery_pocket_reference/">jquery_pocket_reference</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/">深入理解bootstrap</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">golang</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../1_the_go_programming_lauguage/">1 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../2_the_go_programming_lauguage/">2 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../3_the_go_programming_lauguage/">3 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Build Web Application With Golang</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#25">2.5 面向对象</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#26-interface">2.6 接口 interface</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reflect">反射: 检查程序运行时状态。reflect</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">并发</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go101/book/">Go101</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../network-programming-with-go/book/">Network Programming with go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../building-microservices-with-go/book/">Building Microservices With Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../building_restful_web_services_with_go/book/">Building Restful Web Services with Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../concurrency-in-go/concurrency_in_go/">Concurrency In Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/">Go In Action(Go 实战)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/">Go学习笔记语言详解</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/">Go学习笔记源码剖析</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">go语言编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../the_way_to_go/book/">go book</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../advanced-go-programming-book/advanced-go-programming/">advanced-go-programming</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/">go-build-web-applications</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">java</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../java/java-basic-introduction/">java basic introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网络</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/">TCP IP详解卷一</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">python</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/fluent_python/">Fluent Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/Python_Microservices_Development/">Python Microservices Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/high_performance_python/">High Performance Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Python网络编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">unix/linux</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/">Linux高性能服务器编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/">unix网络编程卷一</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分布式</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">Kafka 权威指南</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">分布式框架原理与应用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">大规模分布式存储系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/">深入分布式缓存从原理到实践</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">搜索引擎</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/">Elasticsearch实战</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">容器</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/">玩转Kubernets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/">第一本docker书</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">开发工具</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/">Practical Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/">Vim8文本处理实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/">Learn vim scrpt the hard way</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/">Pro Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/">Mastering Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/">Mastering Vim Quickly</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">思维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/">专注力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/">为什么精英这样用脑不会累</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/">刻意练习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/">如何想到又做到</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/">学习之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/">学习力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/">批判性思维工具</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/">程序员的思维修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/">认知天性</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/">超效率手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/">如何高效记忆</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/">科学学习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/">高效程序员的45个习惯</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">源码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/">源码阅读</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网站架构微服务</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/">微服务架构设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/">web scalavility for startup engineers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/">design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/">clean_architecture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/">微服务设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/">2_design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/">3_design_data_instensive_application</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">软件工程/项目管理</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/">人月神话</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/">代码之殇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/">解析极限编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/">项目管理修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/">修改软件的艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">运维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">linux集群和自动化运维</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">python自动化运维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">金融理财</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/">定投十年</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/">穷查理宝典</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">写作</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/">刷屏文案写作技巧</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">互联网</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/">我的互联网方法论-周鸿祎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/">用户思维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">区块链</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/">区块链技术指南</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">技术演讲</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/">哔哩哔哩的go微服务实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/">go业务基础库之Error&Context</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/">Go同步和并发设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/">左耳朵耗子-我这技术二十年</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">职场</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/give_and_take/">give and take</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/the_effective_engineer/">the_effective_engineer</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/">光速成长</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/">成功动机与目标</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/">番茄工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/">知乎职人觉醒</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/">知识变现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/">职场动物进化手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/">职场解释系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/">请停止无效努力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/">软技能</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/">高效15法则</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/">高效清单工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/">程序员的自我修养</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">心理学</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/">一切都是童年的错吗</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/">亲密关系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%83%85%E5%95%86/">情商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E9%80%86%E5%95%86/">逆商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/">拖延心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/">积极心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/">自控力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/">自控力-实操篇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/">自控力:和压力做朋友</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/">活出最乐观的自己</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/">改变心理学的40项研究</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/">超越自卑</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/">反脆弱</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">创业</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/hello_startup/">Hello Startup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/">斯坦福公开课如何创业</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/">运营其实很简单</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">ZWiley的读书笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>golang &raquo;</li>
+        
+      
+    
+    <li>Build Web Application With Golang</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/build-web-application-with-golang.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="2-go">2 Go 基础<a class="headerlink" href="#2-go" title="Permanent link">&para;</a></h1>
 <p>定义变量:</p>
-<pre><code class="go">var varname type
-var name1, name2, name3 type
-var name type = value
-var a,b,c = v1, v2, v3
-a,b,c := v1, v2 ,v3
-_, b = 1, 2
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">varname</span> <span class="kd">type</span>
+<span class="kd">var</span> <span class="nx">name1</span><span class="p">,</span> <span class="nx">name2</span><span class="p">,</span> <span class="nx">name3</span> <span class="kd">type</span>
+<span class="kd">var</span> <span class="nx">name</span> <span class="kd">type</span> <span class="p">=</span> <span class="nx">value</span>
+<span class="kd">var</span> <span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span> <span class="p">=</span> <span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span><span class="p">,</span> <span class="nx">v3</span>
+<span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span> <span class="o">:=</span> <span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span> <span class="p">,</span><span class="nx">v3</span>
+<span class="nx">_</span><span class="p">,</span> <span class="nx">b</span> <span class="p">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+</code></pre></div>
+
 
 <p>常量：</p>
-<pre><code>const name = value
-const Pi float32 = 3.14
-const i = 100
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">const name = value</span>
+<span class="err">const Pi float32 = 3.14</span>
+<span class="err">const i = 100</span>
+</code></pre></div>
+
 
 <p>内置基础类型：</p>
-<pre><code>// Boolean
-var isActive = bool  // default false
-var enabled, disabled = true, false
-valid := false
+<div class="codehilite"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="k">Boolean</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">isActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bool</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">false</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">enabled</span><span class="p">,</span><span class="w"> </span><span class="n">disabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="w"></span>
+<span class="n">valid</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="w"></span>
 
-// 数值类型, rune(int32), int8, int16, int32, int64, byte(uint8), uint8, uint16, uint32, uint64
-// float32, float64(默认)
-// complex64
+<span class="o">//</span><span class="w"> </span><span class="n">数值类型</span><span class="p">,</span><span class="w"> </span><span class="n">rune</span><span class="p">(</span><span class="n">int32</span><span class="p">),</span><span class="w"> </span><span class="n">int8</span><span class="p">,</span><span class="w"> </span><span class="n">int16</span><span class="p">,</span><span class="w"> </span><span class="n">int32</span><span class="p">,</span><span class="w"> </span><span class="n">int64</span><span class="p">,</span><span class="w"> </span><span class="n">byte</span><span class="p">(</span><span class="n">uint8</span><span class="p">),</span><span class="w"> </span><span class="n">uint8</span><span class="p">,</span><span class="w"> </span><span class="n">uint16</span><span class="p">,</span><span class="w"> </span><span class="n">uint32</span><span class="p">,</span><span class="w"> </span><span class="n">uint64</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="n">float32</span><span class="p">,</span><span class="w"> </span><span class="n">float64</span><span class="p">(</span><span class="n">默认</span><span class="p">)</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="n">complex64</span><span class="w"></span>
 
 
-//字符串, go 字符串都是采用UTF8，用 双引号或者反引号括起来定义，类型是 string
-var hello string
-var emptyString = &quot;&quot;
-s := &quot;hello&quot;  // 字符串不可变
-c := []byte(s)  // 把字符串转换为 []byte 类型
-c[0] = 'c'
-s2 := string(c)  // 转为 string
-fmt.Printf(&quot;%s\n&quot;, s2)
-m := `hello
-    world`   // ` 括号来的是Raw string
-</code></pre>
+<span class="o">//</span><span class="n">字符串</span><span class="p">,</span><span class="w"> </span><span class="k">go</span><span class="w"> </span><span class="n">字符串都是采用UTF8</span><span class="err">，</span><span class="n">用</span><span class="w"> </span><span class="n">双引号或者反引号括起来定义</span><span class="err">，</span><span class="n">类型是</span><span class="w"> </span><span class="n">string</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">hello</span><span class="w"> </span><span class="n">string</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">emptyString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+<span class="n">s</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;hello&quot;</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="n">字符串不可变</span><span class="w"></span>
+<span class="n">c</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="n">byte</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="n">把字符串转换为</span><span class="w"> </span><span class="err">[]</span><span class="n">byte</span><span class="w"> </span><span class="n">类型</span><span class="w"></span>
+<span class="n">c</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="w"></span>
+<span class="n">s2</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="n">转为</span><span class="w"> </span><span class="n">string</span><span class="w"></span>
+<span class="n">fmt</span><span class="p">.</span><span class="n">Printf</span><span class="p">(</span><span class="ss">&quot;%s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"></span>
+<span class="n">m</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="err">`</span><span class="n">hello</span><span class="w"></span>
+<span class="w">    </span><span class="n">world</span><span class="err">`</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="err">`</span><span class="w"> </span><span class="n">括号来的是Raw</span><span class="w"> </span><span class="n">string</span><span class="w"></span>
+</code></pre></div>
+
 
 <p>错误类型：</p>
-<pre><code>// go有一个error 类型，package.errors
-err:=errors.New(&quot;emit macho swarf: elf header corrupted&quot;)
-if err != nil {
-   fmt.Print(err)
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">// go有一个error 类型，package.errors</span>
+<span class="c">err:=errors.New(&quot;emit macho swarf: elf header corrupted&quot;)</span>
+<span class="err">if err != nil {</span>
+<span class="err">   fmt.Print(err)</span>
+<span class="err">}</span>
+</code></pre></div>
+
 
 <p>分组声明：</p>
-<pre><code>import (
-   &quot;fmt&quot;
-   &quot;os&quot;
-)
-const (
-    i = 100
-    pi = 3.14
-)
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="p">(</span>
+   <span class="s2">&quot;fmt&quot;</span>
+   <span class="s2">&quot;os&quot;</span>
+<span class="p">)</span>
+<span class="n">const</span> <span class="p">(</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="p">)</span>
 
-var(
-    i int
-    pi float32
-)
-</code></pre>
+<span class="n">var</span><span class="p">(</span>
+    <span class="n">i</span> <span class="nb">int</span>
+    <span class="n">pi</span> <span class="n">float32</span>
+<span class="p">)</span>
+</code></pre></div>
+
 
 <p>iota 枚举：</p>
-<pre><code>const (
-    x = iota  //x==0
-    y = iota  //y==1
-)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">const (</span>
+<span class="err">    x = iota  //x==0</span>
+<span class="err">    y = iota  //y==1</span>
+<span class="err">)</span>
+</code></pre></div>
+
 
 <p>设计规则：</p>
 <ul>
@@ -878,398 +577,411 @@ var(
 <li>大写字母开头的函数是共有函数</li>
 </ul>
 <p>array, slice, map</p>
-<pre><code>// array 数组，数组长度也是类型的一部分，[3]int, [4]int 是不同类型
-var arr [n]type
-var arr [10]int
-arr[0] = 42
-arr[1] = 13
-fmt.Printf(&quot;first %d\n&quot;, arr[0])
+<div class="codehilite"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="n">数组</span><span class="err">，</span><span class="n">数组长度也是类型的一部分</span><span class="err">，</span><span class="o">[</span><span class="n">3</span><span class="o">]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">4</span><span class="o">]</span><span class="nc">int</span><span class="w"> </span><span class="n">是不同类型</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="n">type</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">[</span><span class="n">10</span><span class="o">]</span><span class="nc">int</span><span class="w"></span>
+<span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="w"></span>
+<span class="n">arr</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="w"></span>
+<span class="n">fmt</span><span class="p">.</span><span class="n">Printf</span><span class="p">(</span><span class="ss">&quot;first %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
 
-a := [3]int{1, 2, 3}
-b := [10]int{1, 2, 3}  //其余元素0
-c := [...]int{1,2,3}  //自动计算个数
-doubleArray := [2][4]int{[4]int{1,2,3,4}, [4]int{5,6,7,8}}
-
-
-// slice 动态『数组』，引用类型，指向一个底层 array。实际场景中使用 slice 要比 array 多
-var fslice []int  //声明同数组，只是没有长度
-slice := []byte {'a','b'}
-a := [10]int{1,2,3,4,5,6,7,8,9,10}
-var slice []int
-slice = a[:]
-/*  slice 内置函数
-len 获取长度
-cap 获取最大容量
-append 追加一个或多个元素，返回一个 和 slice 类型一样的slice
-copy 从 源 slice src 中复制元素到目标 dst，返回复制的元素个数
-*/
+<span class="n">a</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">3</span><span class="o">]</span><span class="nc">int</span><span class="err">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="err">}</span><span class="w"></span>
+<span class="n">b</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">10</span><span class="o">]</span><span class="nc">int</span><span class="err">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="err">}</span><span class="w">  </span><span class="o">//</span><span class="n">其余元素0</span><span class="w"></span>
+<span class="n">c</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="nc">int</span><span class="err">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="err">}</span><span class="w">  </span><span class="o">//</span><span class="n">自动计算个数</span><span class="w"></span>
+<span class="n">doubleArray</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">2</span><span class="o">][</span><span class="n">4</span><span class="o">]</span><span class="nc">int</span><span class="err">{</span><span class="o">[</span><span class="n">4</span><span class="o">]</span><span class="nc">int</span><span class="err">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">4</span><span class="o">]</span><span class="nc">int</span><span class="err">{</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="err">}}</span><span class="w"></span>
 
 
-// map，字典的概念。 map[keyType]valueType
-// map 无序，长度不固定，**引用类型**，len(map)返回 key 数量，map 值可以修改。
-// map和其他基本类型不同，不是 thread-safe，多个 go-routine 存取用 mutex lock
-var numers map[string]int
-numbers := make(map[string]int)
-numbers[&quot;one&quot;] = 1
-numbers[&quot;ten&quot;] = 10
-fmt.Println(&quot;one is &quot;, numbers[&quot;three&quot;])
+<span class="o">//</span><span class="w"> </span><span class="n">slice</span><span class="w"> </span><span class="n">动态</span><span class="err">『</span><span class="n">数组</span><span class="err">』，</span><span class="n">引用类型</span><span class="err">，</span><span class="n">指向一个底层</span><span class="w"> </span><span class="k">array</span><span class="err">。</span><span class="n">实际场景中使用</span><span class="w"> </span><span class="n">slice</span><span class="w"> </span><span class="n">要比</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="n">多</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">fslice</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="w">  </span><span class="o">//</span><span class="n">声明同数组</span><span class="err">，</span><span class="n">只是没有长度</span><span class="w"></span>
+<span class="n">slice</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="n">byte</span><span class="w"> </span><span class="err">{</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="err">}</span><span class="w"></span>
+<span class="n">a</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">10</span><span class="o">]</span><span class="nc">int</span><span class="err">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="err">}</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">slice</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="w"></span>
+<span class="n">slice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">[</span><span class="n">:</span><span class="o">]</span><span class="w"></span>
+<span class="cm">/*  slice 内置函数</span>
+<span class="cm">len 获取长度</span>
+<span class="cm">cap 获取最大容量</span>
+<span class="cm">append 追加一个或多个元素，返回一个 和 slice 类型一样的slice</span>
+<span class="cm">copy 从 源 slice src 中复制元素到目标 dst，返回复制的元素个数</span>
+<span class="cm">*/</span><span class="w"></span>
 
-rating := map[string]float32{&quot;c&quot;: 5, &quot;Go&quot;: 4.5}
-goRaking, ok := rating[&quot;Go&quot;]
-if ok {
-fmt.Println(&quot;go rating is &quot;, goRaking)
-} else {
-fmt.Println(&quot;no  go rating&quot;)
-}
-delete(rating, &quot;C&quot;)
-</code></pre>
+
+<span class="o">//</span><span class="w"> </span><span class="k">map</span><span class="err">，</span><span class="n">字典的概念</span><span class="err">。</span><span class="w"> </span><span class="k">map</span><span class="o">[</span><span class="n">keyType</span><span class="o">]</span><span class="n">valueType</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">map</span><span class="w"> </span><span class="n">无序</span><span class="err">，</span><span class="n">长度不固定</span><span class="err">，</span><span class="o">**</span><span class="n">引用类型</span><span class="o">**</span><span class="err">，</span><span class="nf">len</span><span class="p">(</span><span class="k">map</span><span class="p">)</span><span class="n">返回</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">数量</span><span class="err">，</span><span class="k">map</span><span class="w"> </span><span class="n">值可以修改</span><span class="err">。</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="n">map和其他基本类型不同</span><span class="err">，</span><span class="n">不是</span><span class="w"> </span><span class="n">thread</span><span class="o">-</span><span class="n">safe</span><span class="err">，</span><span class="n">多个</span><span class="w"> </span><span class="k">go</span><span class="o">-</span><span class="k">routine</span><span class="w"> </span><span class="n">存取用</span><span class="w"> </span><span class="n">mutex</span><span class="w"> </span><span class="n">lock</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">numers</span><span class="w"> </span><span class="k">map</span><span class="o">[</span><span class="n">string</span><span class="o">]</span><span class="nc">int</span><span class="w"></span>
+<span class="n">numbers</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="k">map</span><span class="o">[</span><span class="n">string</span><span class="o">]</span><span class="nc">int</span><span class="p">)</span><span class="w"></span>
+<span class="n">numbers</span><span class="o">[</span><span class="n">&quot;one&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">numbers</span><span class="o">[</span><span class="n">&quot;ten&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="n">fmt</span><span class="p">.</span><span class="n">Println</span><span class="p">(</span><span class="ss">&quot;one is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">numbers</span><span class="o">[</span><span class="n">&quot;three&quot;</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">rating</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="k">map</span><span class="o">[</span><span class="n">string</span><span class="o">]</span><span class="n">float32</span><span class="err">{</span><span class="ss">&quot;c&quot;</span><span class="err">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Go&quot;</span><span class="err">:</span><span class="w"> </span><span class="mf">4.5</span><span class="err">}</span><span class="w"></span>
+<span class="n">goRaking</span><span class="p">,</span><span class="w"> </span><span class="n">ok</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">rating</span><span class="o">[</span><span class="n">&quot;Go&quot;</span><span class="o">]</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="n">ok</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="n">fmt</span><span class="p">.</span><span class="n">Println</span><span class="p">(</span><span class="ss">&quot;go rating is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">goRaking</span><span class="p">)</span><span class="w"></span>
+<span class="err">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="n">fmt</span><span class="p">.</span><span class="n">Println</span><span class="p">(</span><span class="ss">&quot;no  go rating&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+<span class="k">delete</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;C&quot;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
 
 <p>make, new 操作：</p>
 <p>make 只能用于 内建类型(map/slice/chanell)的内存分配, new 用于各种类型，new 返回指针。
 make 返回初始化后的（非零）值。</p>
 <p>零值(zero value): 变量未填充之前的默认值，通常是 0</p>
-<pre><code>int,int8,int32,int64 0
-uint 0x0
-rune 0
-byte 0x0
-float32, float64 0
-bool false
-string &quot;&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">int,int8,int32,int64 0</span>
+<span class="err">uint 0x0</span>
+<span class="err">rune 0</span>
+<span class="err">byte 0x0</span>
+<span class="err">float32, float64 0</span>
+<span class="err">bool false</span>
+<span class="err">string &quot;&quot;</span>
+</code></pre></div>
+
 
 <p>流程控制:</p>
-<pre><code>// if(不用括号)
+<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="k">if</span><span class="p">(</span><span class="err">不用括号</span><span class="p">)</span>
 
-if x &gt; 10 {
-   //...
-} else  {
-   //...
-}
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="err">{</span>
+   <span class="o">//</span><span class="p">...</span>
+<span class="err">}</span> <span class="k">else</span>  <span class="err">{</span>
+   <span class="o">//</span><span class="p">...</span>
+<span class="err">}</span>
 
-if x  := computeValue(); x &gt; 10 {  //允许声明一个变量，但是只在该条件内作用域
-//...
-} else {
-//...
-}
+<span class="k">if</span> <span class="n">x</span>  <span class="p">:</span><span class="o">=</span> <span class="n">computeValue</span><span class="p">();</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="err">{</span>  <span class="o">//</span><span class="err">允许声明一个变量，但是只在该条件内作用域</span>
+<span class="o">//</span><span class="p">...</span>
+<span class="err">}</span> <span class="k">else</span> <span class="err">{</span>
+<span class="o">//</span><span class="p">...</span>
+<span class="err">}</span>
 
-if x == 3 {
-//...
-} else if x &lt; 3 {
-//
-} else {
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span> <span class="err">{</span>
+<span class="o">//</span><span class="p">...</span>
+<span class="err">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="err">{</span>
+<span class="o">//</span>
+<span class="err">}</span> <span class="k">else</span> <span class="err">{</span>
 
-}
-
-
-
-// goto，还是少用不用吧
+<span class="err">}</span>
 
 
-// for
-sum := 0
-for idx := 0; index &lt; 10; index++ {
-    sum += idx
-}
-sum := 1
-for ; sum &lt; 1000; {
-    sum += sum
-}
-// 实现 while 功能
-sum := 1
-for sum &lt; 1000 {
-    sum += sum
-}
 
-// break/continue
+<span class="o">//</span> <span class="k">goto</span><span class="err">，还是少用不用吧</span>
 
 
-// for 配合 range 读取 slice 和 map 数据
-for k,v := range map {
-  fmt.Println(&quot;key, value&quot;, k, v)
-}
+<span class="o">//</span> <span class="k">for</span>
+<span class="k">sum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">index</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="k">index</span><span class="o">++</span> <span class="err">{</span>
+    <span class="k">sum</span> <span class="o">+=</span> <span class="n">idx</span>
+<span class="err">}</span>
+<span class="k">sum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="p">;</span> <span class="k">sum</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="err">{</span>
+    <span class="k">sum</span> <span class="o">+=</span> <span class="k">sum</span>
+<span class="err">}</span>
+<span class="o">//</span> <span class="err">实现</span> <span class="n">while</span> <span class="err">功能</span>
+<span class="k">sum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="k">sum</span> <span class="o">&lt;</span> <span class="mi">1000</span> <span class="err">{</span>
+    <span class="k">sum</span> <span class="o">+=</span> <span class="k">sum</span>
+<span class="err">}</span>
+
+<span class="o">//</span> <span class="n">break</span><span class="o">/</span><span class="k">continue</span>
 
 
-// switch
-i := 6
-switch i {
-case 4:
-    //
-    fallthrough // 强制执行后边的代码
-}
-</code></pre>
+<span class="o">//</span> <span class="k">for</span> <span class="err">配合</span> <span class="n">range</span> <span class="err">读取</span> <span class="n">slice</span> <span class="err">和</span> <span class="k">map</span> <span class="err">数据</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="p">:</span><span class="o">=</span> <span class="n">range</span> <span class="k">map</span> <span class="err">{</span>
+  <span class="n">fmt</span><span class="p">.</span><span class="n">Println</span><span class="p">(</span><span class="ss">&quot;key, value&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="err">}</span>
+
+
+<span class="o">//</span> <span class="n">switch</span>
+<span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">6</span>
+<span class="n">switch</span> <span class="n">i</span> <span class="err">{</span>
+<span class="k">case</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="o">//</span>
+    <span class="n">fallthrough</span> <span class="o">//</span> <span class="err">强制执行后边的代码</span>
+<span class="err">}</span>
+</code></pre></div>
+
 
 <p>函数: func 声明</p>
-<pre><code>func funcName(input1 type1, input2 type2) (output1 type1, output2 type2) {
-  //
-  return value1, value2
-}
-func max(a, b int) int {
-    if a &gt; b {
-        return a
-    }
-    return b
-}
+<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="n">funcName</span><span class="p">(</span><span class="n">input1</span> <span class="n">type1</span><span class="p">,</span> <span class="n">input2</span> <span class="n">type2</span><span class="p">)</span> <span class="p">(</span><span class="n">output1</span> <span class="n">type1</span><span class="p">,</span> <span class="n">output2</span> <span class="n">type2</span><span class="p">)</span> <span class="err">{</span>
+  <span class="o">//</span>
+  <span class="k">return</span> <span class="n">value1</span><span class="p">,</span> <span class="n">value2</span>
+<span class="err">}</span>
+<span class="n">func</span> <span class="k">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="nb">int</span><span class="p">)</span> <span class="nb">int</span> <span class="err">{</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="err">{</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="err">}</span>
+    <span class="k">return</span> <span class="n">b</span>
+<span class="err">}</span>
 
 
-func SumAndProduct(A, B int) (add int, Multiplied int) {
-    add = A + B
-    Multiplied = A * B
-    return
-}
+<span class="n">func</span> <span class="n">SumAndProduct</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="nb">int</span><span class="p">)</span> <span class="p">(</span><span class="k">add</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Multiplied</span> <span class="nb">int</span><span class="p">)</span> <span class="err">{</span>
+    <span class="k">add</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+    <span class="n">Multiplied</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">B</span>
+    <span class="k">return</span>
+<span class="err">}</span>
+</code></pre></div>
 
-</code></pre>
 
 <p>变参：</p>
-<pre><code>func myfunc(arg ...int) {
-    for _, n := range arg {
-        fmt.Printf(&quot;Add the number is :%d\n&quot;, n)
-    }
-} // arg 是一个 int 的 slice
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">func myfunc(arg ...int) {</span>
+<span class="err">    for _, n := range arg {</span>
+<span class="err">        fmt.Printf(&quot;Add the number is :%d\n&quot;, n)</span>
+<span class="err">    }</span>
+<span class="err">} // arg 是一个 int 的 slice</span>
+</code></pre></div>
+
 
 <p>传值和传指针：默认传值，无法修改传入的值。除非使用指针</p>
-<pre><code>func add(a int) int {
-    a = a+1
-    return a
-}
-// 如果需要修改值，我们可以传递指针
-func add_p(a *int) int {
-    *a = *a + 1
-    return *a
-}   // x :=
+<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="k">add</span><span class="p">(</span><span class="n">a</span> <span class="nb">int</span><span class="p">)</span> <span class="nb">int</span> <span class="err">{</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">a</span>
+<span class="err">}</span>
+<span class="o">//</span> <span class="err">如果需要修改值，我们可以传递指针</span>
+<span class="n">func</span> <span class="n">add_p</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span><span class="nb">int</span><span class="p">)</span> <span class="nb">int</span> <span class="err">{</span>
+    <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="o">*</span><span class="n">a</span>
+<span class="err">}</span>   <span class="o">//</span> <span class="n">x</span> <span class="p">:</span><span class="o">=</span>
 
-/*
-传递指针使得多个函数能够操作同一个对象
-传指针比较轻量级（8bytes），只是传内存地址，可以用指针传递大结构体。
-GO中 channel, slice，map 实现机制类似指针，可以直接传递，而不用取地址。（如果需要修改 slice 长度让需要取地址）
-*/
-</code></pre>
+<span class="cm">/*</span>
+<span class="cm">传递指针使得多个函数能够操作同一个对象</span>
+<span class="cm">传指针比较轻量级（8bytes），只是传内存地址，可以用指针传递大结构体。</span>
+<span class="cm">GO中 channel, slice，map 实现机制类似指针，可以直接传递，而不用取地址。（如果需要修改 slice 长度让需要取地址）</span>
+<span class="cm">*/</span>
+</code></pre></div>
+
 
 <p>defer: 延迟语句，函数执行到最后时，这些 defer 语句会逆序执行，最后函数返回。用来处理错误，关闭资源</p>
-<pre><code>func ReadWrite() bool {
-    file.Open(&quot;file&quot;)
-    defer file.Close()
-    if failureX {
-        return false
-    }
-    if failureY {
-        return false
-    }
-    return true
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">func ReadWrite() bool {</span>
+<span class="err">    file.Open(&quot;file&quot;)</span>
+<span class="err">    defer file.Close()</span>
+<span class="err">    if failureX {</span>
+<span class="err">        return false</span>
+<span class="err">    }</span>
+<span class="err">    if failureY {</span>
+<span class="err">        return false</span>
+<span class="err">    }</span>
+<span class="err">    return true</span>
+<span class="err">}</span>
+</code></pre></div>
+
 
 <p>函数作为值、类型：go 中函数也是一种变量，可以用 type 定义，类型就是所有拥有相同的参数，相同返回值的一种类型</p>
-<pre><code>// type typeName func(input1 inputType1, intpu2 inputType2 [, ...]) (result1 resultType1 [, ...])
-// 可以把这个类型的函数当做值来传递
+<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="nb">type</span> <span class="n">typeName</span> <span class="n">func</span><span class="p">(</span><span class="n">input1</span> <span class="n">inputType1</span><span class="p">,</span> <span class="n">intpu2</span> <span class="n">inputType2</span> <span class="p">[,</span> <span class="o">...</span><span class="p">])</span> <span class="p">(</span><span class="n">result1</span> <span class="n">resultType1</span> <span class="p">[,</span> <span class="o">...</span><span class="p">])</span>
+<span class="o">//</span> <span class="err">可以把这个类型的函数当做值来传递</span>
 
-package main
+<span class="n">package</span> <span class="n">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
 
-type testInt func(int) bool // 声明一个函数类型
-func isOdd(i int) bool {
-    if i%2 == 0 {
-        return false
-    }
-    return true
-}
+<span class="nb">type</span> <span class="n">testInt</span> <span class="n">func</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="nb">bool</span> <span class="o">//</span> <span class="err">声明一个函数类型</span>
+<span class="n">func</span> <span class="n">isOdd</span><span class="p">(</span><span class="n">i</span> <span class="nb">int</span><span class="p">)</span> <span class="nb">bool</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">false</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">true</span>
+<span class="p">}</span>
 
-func filter(slice []int, f testInt) []int {
-    var result []int
-    for _, value := range slice {
-        if f(value) {
-            result = append(result, value)
-        }
-    }
-    return result
-}
-func main() {
-    slice := []int{1, 2, 3, 4}
-    odd := filter(slice, isOdd)
-    fmt.Println(&quot;Odd:&quot;, odd)
+<span class="n">func</span> <span class="nb">filter</span><span class="p">(</span><span class="nb">slice</span> <span class="p">[]</span><span class="nb">int</span><span class="p">,</span> <span class="n">f</span> <span class="n">testInt</span><span class="p">)</span> <span class="p">[]</span><span class="nb">int</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">result</span> <span class="p">[]</span><span class="nb">int</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="nb">slice</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">f</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span>
+<span class="p">}</span>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">slice</span> <span class="p">:</span><span class="o">=</span> <span class="p">[]</span><span class="nb">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="n">odd</span> <span class="p">:</span><span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="nb">slice</span><span class="p">,</span> <span class="n">isOdd</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Odd:&quot;</span><span class="p">,</span> <span class="n">odd</span><span class="p">)</span>
 
-}
-</code></pre>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>Panic/Recover:</p>
-<pre><code>Panic 是一个内建函数，可以中断原有的控制流程，进入一个令人恐慌的流程中。
-当 F 函数调用 panic，F 的执行逻辑被中断，但是 F 中的延迟函数会正常执行，然后 F 返回调用它的地方。
-在调用的地方，F 的行为就像调用了 panic，继续向上直到发生 panic 的 goroutine 中所有调用的函数返回，此时程序退出。
-panic 可以手动或者运行时错误产生（越界数组）
+<div class="codehilite"><pre><span></span><code><span class="n">Panic</span> <span class="err">是一个内建函数，可以中断原有的控制流程，进入一个令人恐慌的流程中。</span>
+<span class="err">当</span> <span class="n">F</span> <span class="err">函数调用</span> <span class="n">panic</span><span class="err">，</span><span class="n">F</span> <span class="err">的执行逻辑被中断，但是</span> <span class="n">F</span> <span class="err">中的延迟函数会正常执行，然后</span> <span class="n">F</span> <span class="err">返回调用它的地方。</span>
+<span class="err">在调用的地方，</span><span class="n">F</span> <span class="err">的行为就像调用了</span> <span class="n">panic</span><span class="err">，继续向上直到发生</span> <span class="n">panic</span> <span class="err">的</span> <span class="n">goroutine</span> <span class="err">中所有调用的函数返回，此时程序退出。</span>
+<span class="n">panic</span> <span class="err">可以手动或者运行时错误产生（越界数组）</span>
 
- recover：内建函数，可以让进入恐慌的流程中的 goroutine 回复过来。recover 仅在延迟函数中有效。
- 正常逻辑调用 recover 返回 nil。当前的 goroutine 先入恐慌可以用 recover 捕获 panic 的输入值，并且回复正常的执行。
-</code></pre>
+ <span class="n">recover</span><span class="err">：内建函数，可以让进入恐慌的流程中的</span> <span class="n">goroutine</span> <span class="err">回复过来。</span><span class="n">recover</span> <span class="err">仅在延迟函数中有效。</span>
+ <span class="err">正常逻辑调用</span> <span class="n">recover</span> <span class="err">返回</span> <span class="n">nil</span><span class="err">。当前的</span> <span class="n">goroutine</span> <span class="err">先入恐慌可以用</span> <span class="n">recover</span> <span class="err">捕获</span> <span class="n">panic</span> <span class="err">的输入值，并且回复正常的执行。</span>
+</code></pre></div>
+
 
 <p>main init 函数：</p>
 <p><img alt="" src="../main_init.png" /></p>
 <p>import: 导入包文件</p>
-<pre><code>// 点操作，表示你调用的时候可以省略前缀，比如 fmt.Println(&quot;hello&quot;) 可以写 Println(&quot;Hello&quot;)
-import (
- . &quot;fmt&quot;
-)
+<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="err">点操作，表示你调用的时候可以省略前缀，比如</span> <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span> <span class="err">可以写</span> <span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="p">(</span>
+ <span class="o">.</span> <span class="s2">&quot;fmt&quot;</span>
+<span class="p">)</span>
 
-// 别名操作
-import (
-    f &quot;fmt&quot;  //别名，简化调用 f.Println
-    &quot;os&quot;
-)
+<span class="o">//</span> <span class="err">别名操作</span>
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="n">f</span> <span class="s2">&quot;fmt&quot;</span>  <span class="o">//</span><span class="err">别名，简化调用</span> <span class="n">f</span><span class="o">.</span><span class="n">Println</span>
+    <span class="s2">&quot;os&quot;</span>
+<span class="p">)</span>
 
-// _ 操作
-import (
-    _ &quot;github.com/ziutek/mymysql/godrv&quot; //_引入该包，而不直接使用包里的函数，而是调用包里的 init 函数
-)
-</code></pre>
+<span class="o">//</span> <span class="n">_</span> <span class="err">操作</span>
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_</span> <span class="s2">&quot;github.com/ziutek/mymysql/godrv&quot;</span> <span class="o">//</span><span class="n">_引入该包</span><span class="err">，而不直接使用包里的函数，而是调用包里的</span> <span class="n">init</span> <span class="err">函数</span>
+<span class="p">)</span>
+</code></pre></div>
+
 
 <p>Struct 类型：属性或者字段容器</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import (
-    &quot;fmt&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;fmt&quot;</span>
+<span class="p">)</span>
 
-type Person struct {
-    name string
-    age  int
-}
+<span class="nb">type</span> <span class="n">Person</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">name</span> <span class="n">string</span>
+    <span class="n">age</span>  <span class="nb">int</span>
+<span class="p">}</span>
 
-func Older(p1, p2 Person) (Person, int) {
-    if p1.age &gt; p2.age {
-        return p1, p1.age - p2.age
-    }
-    return p2, p2.age - p1.age
-}
+<span class="n">func</span> <span class="n">Older</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="n">Person</span><span class="p">)</span> <span class="p">(</span><span class="n">Person</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">p1</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;</span> <span class="n">p2</span><span class="o">.</span><span class="n">age</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">age</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="n">age</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p2</span><span class="o">.</span><span class="n">age</span> <span class="o">-</span> <span class="n">p1</span><span class="o">.</span><span class="n">age</span>
+<span class="p">}</span>
 
-func main() {
-    // 初始化方式
-    var P Person
-    P.name = &quot;Astaxie&quot;
-    P.age = 23
-    p1 := Person{&quot;Tom&quot;, 12}
-    p2 := Person{age: 10, name: &quot;Tom&quot;}
-    p := new(Person) // p 是个指针
-    fmt.Printf(&quot;name is &quot;, P.name)
-}
-</code></pre>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="err">初始化方式</span>
+    <span class="n">var</span> <span class="n">P</span> <span class="n">Person</span>
+    <span class="n">P</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Astaxie&quot;</span>
+    <span class="n">P</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">23</span>
+    <span class="n">p1</span> <span class="p">:</span><span class="o">=</span> <span class="n">Person</span><span class="p">{</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">}</span>
+    <span class="n">p2</span> <span class="p">:</span><span class="o">=</span> <span class="n">Person</span><span class="p">{</span><span class="n">age</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;Tom&quot;</span><span class="p">}</span>
+    <span class="n">p</span> <span class="p">:</span><span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">//</span> <span class="n">p</span> <span class="err">是个指针</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;name is &quot;</span><span class="p">,</span> <span class="n">P</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
 
-<h3 id="25">2.5 面向对象</h3>
+
+<h3 id="25">2.5 面向对象<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
 <p>method: 带有接受者的函数。method 附属在一个给定的类型上，语法和函数的声明语法几乎一样，只是在函数后加上一个 receiver</p>
 <blockquote>
 <p>A method is a funciton with am inplicit first argument, called a reciver - Rob Pike</p>
 </blockquote>
-<pre><code>/*
-定义： func (r ReceiverType) funcName(parameters) (results)
-虽然 method 名字一样，但是接受者不一样，method 就不一样
-method 里可以访问接受者的字段
-调用 method  通过 . 访问就像 stuct 里访问字段一样
-*/
-package main
+<div class="codehilite"><pre><span></span><code><span class="o">/*</span>
+<span class="err">定义：</span> <span class="n">func</span> <span class="p">(</span><span class="n">r</span> <span class="n">ReceiverType</span><span class="p">)</span> <span class="n">funcName</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span> <span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="err">虽然</span> <span class="n">method</span> <span class="err">名字一样，但是接受者不一样，</span><span class="n">method</span> <span class="err">就不一样</span>
+<span class="n">method</span> <span class="err">里可以访问接受者的字段</span>
+<span class="err">调用</span> <span class="n">method</span>  <span class="err">通过</span> <span class="o">.</span> <span class="err">访问就像</span> <span class="n">stuct</span> <span class="err">里访问字段一样</span>
+<span class="o">*/</span>
+<span class="n">package</span> <span class="n">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;math&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;fmt&quot;</span>
+    <span class="s2">&quot;math&quot;</span>
+<span class="p">)</span>
 
-type Rectangle struct {
-    width, height float64
-}
+<span class="nb">type</span> <span class="n">Rectangle</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="n">float64</span>
+<span class="p">}</span>
 
-type Circle struct {
-    radius float64
-}
+<span class="nb">type</span> <span class="n">Circle</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">radius</span> <span class="n">float64</span>
+<span class="p">}</span>
 
-func (r Rectangle) area() float64 {
-    return r.width * r.height
-}
-func (c Circle) area() float64 {
-    return c.radius * c.radius * math.Pi
-}
+<span class="n">func</span> <span class="p">(</span><span class="n">r</span> <span class="n">Rectangle</span><span class="p">)</span> <span class="n">area</span><span class="p">()</span> <span class="n">float64</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">r</span><span class="o">.</span><span class="n">height</span>
+<span class="p">}</span>
+<span class="n">func</span> <span class="p">(</span><span class="n">c</span> <span class="n">Circle</span><span class="p">)</span> <span class="n">area</span><span class="p">()</span> <span class="n">float64</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">Pi</span>
+<span class="p">}</span>
 
-func main() {
-    r1 := Rectangle{12, 1}
-    c1 := Circle{10}
-    fmt.Println(&quot;r1 area&quot;, r1.area())
-    fmt.Println(&quot;r1 area&quot;, c2.area())
-}
-</code></pre>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">r1</span> <span class="p">:</span><span class="o">=</span> <span class="n">Rectangle</span><span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="n">c1</span> <span class="p">:</span><span class="o">=</span> <span class="n">Circle</span><span class="p">{</span><span class="mi">10</span><span class="p">}</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;r1 area&quot;</span><span class="p">,</span> <span class="n">r1</span><span class="o">.</span><span class="n">area</span><span class="p">())</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;r1 area&quot;</span><span class="p">,</span> <span class="n">c2</span><span class="o">.</span><span class="n">area</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>指针作为 receiver:</p>
-<pre><code>func (r *Rectangle) setHeight(height float64) {
-    r.height = height //NOTE：注意这里不必非要用 *r.hight = hight，Go 发现参数指针以后帮你自动处理
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">func (r *Rectangle) setHeight(height float64) {</span>
+<span class="err">    r.height = height //NOTE：注意这里不必非要用 *r.hight = hight，Go 发现参数指针以后帮你自动处理</span>
+<span class="err">}</span>
+</code></pre></div>
+
 
 <p>method 继承：如果匿名字段实现了一个 method，那么包含这个匿名字段的 struct 也能调用该 method</p>
 <p>method 重写：和匿名字段冲突一样的道理，重写就实现了隐藏匿名字段的 method</p>
-<h3 id="26-interface">2.6 接口 interface</h3>
+<h3 id="26-interface">2.6 接口 interface<a class="headerlink" href="#26-interface" title="Permanent link">&para;</a></h3>
 <p>interface 是一组 method 签名的组合，通过 interface 来定义对象的一组行为，通过 interface 定义对象的一组行为。
 interface 类型定义了一组方法，如果某个对象实现了某个接口的<strong>所有</strong>方法，则此对象实现了这个接口(隐式)。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import (
-    &quot;fmt&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;fmt&quot;</span>
+<span class="p">)</span>
 
-type Human struct {
-    name  string
-    age   int
-    phone string
-}
+<span class="nb">type</span> <span class="n">Human</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">name</span>  <span class="n">string</span>
+    <span class="n">age</span>   <span class="nb">int</span>
+    <span class="n">phone</span> <span class="n">string</span>
+<span class="p">}</span>
 
-type Student struct {
-    Human
-    school string
-    loan   float32
-}
+<span class="nb">type</span> <span class="n">Student</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">Human</span>
+    <span class="n">school</span> <span class="n">string</span>
+    <span class="n">loan</span>   <span class="n">float32</span>
+<span class="p">}</span>
 
-type Employee struct {
-    Human
-    company string
-    money   float32
-}
+<span class="nb">type</span> <span class="n">Employee</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">Human</span>
+    <span class="n">company</span> <span class="n">string</span>
+    <span class="n">money</span>   <span class="n">float32</span>
+<span class="p">}</span>
 
-func (h *Human) SayHi() {
-    fmt.Printf(&quot;Hi %s %s&quot;, h.name, h.phone)
-}
+<span class="n">func</span> <span class="p">(</span><span class="n">h</span> <span class="o">*</span><span class="n">Human</span><span class="p">)</span> <span class="n">SayHi</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;Hi </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">phone</span><span class="p">)</span>
+<span class="p">}</span>
 
-func (h *Human) Sing(lyrics string) {
-    fmt.Println(&quot;la la&quot;, lyrics)
-}
+<span class="n">func</span> <span class="p">(</span><span class="n">h</span> <span class="o">*</span><span class="n">Human</span><span class="p">)</span> <span class="n">Sing</span><span class="p">(</span><span class="n">lyrics</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;la la&quot;</span><span class="p">,</span> <span class="n">lyrics</span><span class="p">)</span>
+<span class="p">}</span>
 
-func (h *Human) Guzzle(beerStein string) {
-    fmt.Println(&quot;Guzzle&quot;, beerStein)
-}
+<span class="n">func</span> <span class="p">(</span><span class="n">h</span> <span class="o">*</span><span class="n">Human</span><span class="p">)</span> <span class="n">Guzzle</span><span class="p">(</span><span class="n">beerStein</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Guzzle&quot;</span><span class="p">,</span> <span class="n">beerStein</span><span class="p">)</span>
+<span class="p">}</span>
 
-func (e *Employee) SayHi() {
-    fmt.Printf(&quot;hi I am %s work at %s call me %s\n&quot;, e.name, e.company, e.phone)
-}
+<span class="n">func</span> <span class="p">(</span><span class="n">e</span> <span class="o">*</span><span class="n">Employee</span><span class="p">)</span> <span class="n">SayHi</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;hi I am </span><span class="si">%s</span><span class="s2"> work at </span><span class="si">%s</span><span class="s2"> call me </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">company</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">phone</span><span class="p">)</span>
+<span class="p">}</span>
 
-func (s *Student) BorrowMoney(amount float32) {
-    s.loan += amount
-}
+<span class="n">func</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span><span class="n">Student</span><span class="p">)</span> <span class="n">BorrowMoney</span><span class="p">(</span><span class="n">amount</span> <span class="n">float32</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">loan</span> <span class="o">+=</span> <span class="n">amount</span>
+<span class="p">}</span>
 
-func (e *Employee) SpendSalary(amount float32) {
-    e.money -= amount
-}
+<span class="n">func</span> <span class="p">(</span><span class="n">e</span> <span class="o">*</span><span class="n">Employee</span><span class="p">)</span> <span class="n">SpendSalary</span><span class="p">(</span><span class="n">amount</span> <span class="n">float32</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="n">money</span> <span class="o">-=</span> <span class="n">amount</span>
+<span class="p">}</span>
 
-type Men interface {
-    SayHi()
-    Sing(lyrics string)
-    Guzzle(beerStein string)
-}
-type YoungChap interface {
-    SayHi()
-    Sing(song string)
-    BorrowMoney(amount float32)
-}
+<span class="nb">type</span> <span class="n">Men</span> <span class="n">interface</span> <span class="p">{</span>
+    <span class="n">SayHi</span><span class="p">()</span>
+    <span class="n">Sing</span><span class="p">(</span><span class="n">lyrics</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">Guzzle</span><span class="p">(</span><span class="n">beerStein</span> <span class="n">string</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nb">type</span> <span class="n">YoungChap</span> <span class="n">interface</span> <span class="p">{</span>
+    <span class="n">SayHi</span><span class="p">()</span>
+    <span class="n">Sing</span><span class="p">(</span><span class="n">song</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">BorrowMoney</span><span class="p">(</span><span class="n">amount</span> <span class="n">float32</span><span class="p">)</span>
+<span class="p">}</span>
 
-type ElderyGent interface {
-    SayHi()
-    Sing(song string)
-    SpendSalary(amount float32)
-}
-</code></pre>
+<span class="nb">type</span> <span class="n">ElderyGent</span> <span class="n">interface</span> <span class="p">{</span>
+    <span class="n">SayHi</span><span class="p">()</span>
+    <span class="n">Sing</span><span class="p">(</span><span class="n">song</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">SpendSalary</span><span class="p">(</span><span class="n">amount</span> <span class="n">float32</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>interface 可以被任意对象实现，一个对象也可以实现任意多个 interface。
 任意类型都是现了空 interface (interface{})，也就是包含了0个 method 的interface。</p>
@@ -1279,12 +991,13 @@ type ElderyGent interface {
 通过这种方式实现了鸭子类型。</p>
 <p>空 interface: 可以存储任意类型数值，类似于 c void*。一个函数把 interface{}
 作为参数，可以接受任意类型。同理也可以返回任意类型。</p>
-<pre><code>    var a interface{}
-    var i int = 5
-    s := &quot;hello&quot;
-    a = i
-    a = s
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">    var a interface{}</span>
+<span class="err">    var i int = 5</span>
+<span class="err">    s := &quot;hello&quot;</span>
+<span class="err">    a = i</span>
+<span class="err">    a = s</span>
+</code></pre></div>
+
 
 <p>interface 的函数参数：interface的变量可以持有任意实现该interface 类型的对象。只要实现接口，我们就可以传入</p>
 <p>interface变量存储的类型：如何知道变量里实际存储的类型呢？</p>
@@ -1292,365 +1005,401 @@ type ElderyGent interface {
 <li>comma-ok</li>
 <li>switch 测试</li>
 </ul>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;strconv&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;fmt&quot;</span>
+    <span class="s2">&quot;strconv&quot;</span>
+<span class="p">)</span>
 
-type Element interface{}
+<span class="nb">type</span> <span class="n">Element</span> <span class="n">interface</span><span class="p">{}</span>
 
-type List []Element
+<span class="nb">type</span> <span class="n">List</span> <span class="p">[]</span><span class="n">Element</span>
 
-type Person struct {
-    name string
-    age  int
-}
+<span class="nb">type</span> <span class="n">Person</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">name</span> <span class="n">string</span>
+    <span class="n">age</span>  <span class="nb">int</span>
+<span class="p">}</span>
 
-func (p Person) String() string {
-    return &quot;(name:&quot; + p.name + &quot;-age:&quot; + strconv.Itoa(p.age) + &quot;years)&quot;
-}
+<span class="n">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">Person</span><span class="p">)</span> <span class="n">String</span><span class="p">()</span> <span class="n">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;(name:&quot;</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;-age:&quot;</span> <span class="o">+</span> <span class="n">strconv</span><span class="o">.</span><span class="n">Itoa</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">age</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;years)&quot;</span>
+<span class="p">}</span>
 
-func main() {
-    list := make(List, 3)
-    list[0] = 1
-    list[1] = &quot;hello&quot;
-    list[3] = Person{&quot;Deniss&quot;, 30}
-    for index, element := range list {
-        switch value := element.(type) {  // element.(type) 只能在 switch 里边使用，外边还是要用 comma-ok
-        case int:
-            fmt.Printf(&quot;int %d %d&quot;, index, value)
-        case string:
-            fmt.Printf(&quot;str %d %d&quot;, index, value)
-        case Person:
-            fmt.Printf(&quot;person %d %d&quot;, index, value)
-        default:
-            fmt.Printf(&quot;list different type %d&quot;, index)
-        }
-    }
-}
-</code></pre>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">list</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">List</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nb">list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="nb">list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+    <span class="nb">list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">Person</span><span class="p">{</span><span class="s2">&quot;Deniss&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">element</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="nb">list</span> <span class="p">{</span>
+        <span class="n">switch</span> <span class="n">value</span> <span class="p">:</span><span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span> <span class="p">{</span>  <span class="o">//</span> <span class="n">element</span><span class="o">.</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span> <span class="err">只能在</span> <span class="n">switch</span> <span class="err">里边使用，外边还是要用</span> <span class="n">comma</span><span class="o">-</span><span class="n">ok</span>
+        <span class="n">case</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;int </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">case</span> <span class="n">string</span><span class="p">:</span>
+            <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;str </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">case</span> <span class="n">Person</span><span class="p">:</span>
+            <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;person </span><span class="si">%d</span><span class="s2"> </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">default</span><span class="p">:</span>
+            <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;list different type </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>嵌入 interface：如果一个 interface1 作为另一个interface2 的嵌入字段，那么interface2 隐式包含了interface1 里的 method</p>
-<h3 id="reflect">反射: 检查程序运行时状态。reflect</h3>
-<pre><code>t := reflect.TypeOf(i)
-v := reflect.ValueOf(i)
-</code></pre>
+<h3 id="reflect">反射: 检查程序运行时状态。reflect<a class="headerlink" href="#reflect" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="err">t := reflect.TypeOf(i)</span>
+<span class="err">v := reflect.ValueOf(i)</span>
+</code></pre></div>
 
-<h3 id="_1">并发</h3>
+
+<h3 id="_1">并发<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>goroutine: 通过 go 的 runtime 管理的一个线程管理器，通过 go 关键字实现。其实就是一个普通的函数</p>
 <p><code>go hello(a,b,c)</code> 通过 go 关键字启动了一个 goroutine</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;runtime&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;fmt&quot;</span>
+    <span class="s2">&quot;runtime&quot;</span>
+<span class="p">)</span>
 
-func say(s string) {
-    for i := 0; i &lt; 5; i++ {
+<span class="n">func</span> <span class="n">say</span><span class="p">(</span><span class="n">s</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
 
-        runtime.Gosched() //让 cpu 让出时间片，下次某个时间继续恢复执行该 goroutine
-        fmt.Println(s)
-    }
-}
+        <span class="n">runtime</span><span class="o">.</span><span class="n">Gosched</span><span class="p">()</span> <span class="o">//</span><span class="err">让</span> <span class="n">cpu</span> <span class="err">让出时间片，下次某个时间继续恢复执行该</span> <span class="n">goroutine</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func main() {
-    go say(&quot;world&quot;)
-    say(&quot;hello&quot;)
-}
-</code></pre>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">go</span> <span class="n">say</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+    <span class="n">say</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>多个 goroutine 运行在同一个进程里边，共享内存数据。
 不过设计上需要遵循：不要通过共享来通信，通过通信来共享。</p>
 <p>channels：goroutine 共享相同的地址空间，访问共享内存需要做好同步。必须用 make 创建</p>
-<pre><code>    ci := make(chan int)
-    cs := make(chan string)
-    cf := make(chan interface{})
-    ch &lt;- v  //发送数据 v 到 channel ch
-    v:= &lt;-ch  //从 ch 中接受数据，并赋值给v
-</code></pre>
+<div class="codehilite"><pre><span></span><code>    <span class="n">ci</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">int</span><span class="p">)</span>
+    <span class="n">cs</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">cf</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
+    <span class="n">ch</span> <span class="o">&lt;-</span> <span class="n">v</span>  <span class="o">//</span>发送数据 <span class="n">v</span> 到 <span class="n">channel</span> <span class="n">ch</span>
+    <span class="n">v</span><span class="o">:=</span> <span class="o">&lt;-</span><span class="n">ch</span>  <span class="o">//</span>从 <span class="n">ch</span> 中接受数据，并赋值给<span class="n">v</span>
+</code></pre></div>
+
 
 <p>默认channel接收和发送数据都是阻塞的，除非另一端准备好，这样使得 goroutine 同步变得简单，无需显示 lock。</p>
 <p>buffered channels: 允许指定 channel 缓冲区大小。<code>ch := make(chan type, value)</code>
 当 value =0，channel 是无缓冲区阻塞读写的，当 value&gt;0，channel 是有缓冲、非阻塞的，知道写满 value 个才阻塞写入。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
 
-func sum(a []int, c chan int) {
-    total := 0
-    for _, v := range a {
-        total += v
-    }
-    c &lt;- total
-}
+<span class="n">func</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span> <span class="p">[]</span><span class="nb">int</span><span class="p">,</span> <span class="n">c</span> <span class="n">chan</span> <span class="nb">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">total</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">a</span> <span class="p">{</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">v</span>
+    <span class="p">}</span>
+    <span class="n">c</span> <span class="o">&lt;-</span> <span class="n">total</span>
+<span class="p">}</span>
 
-func main() {
-    a := []int{3, 1, 3, 5, 6, 7}
-    c := make(chan int)
-    go sum(a[:len(a)/2], c)
-    go sum(a[len(a)/2:], c)
-    x, y := &lt;-c, &lt;-c // 从 c 接收
-    fmt.Println(x, y, x+y)
-}
-</code></pre>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">a</span> <span class="p">:</span><span class="o">=</span> <span class="p">[]</span><span class="nb">int</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">}</span>
+    <span class="n">c</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">go</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">go</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">:],</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;-</span><span class="n">c</span><span class="p">,</span> <span class="o">&lt;-</span><span class="n">c</span> <span class="o">//</span> <span class="err">从</span> <span class="n">c</span> <span class="err">接收</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>Range 和 Close: 通过 range，像操作slice 或者 map 一样操作缓存类型的 channel</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
 
-func fibonacci(n int, c chan int) {
-    x, y := 1, 1
-    for i := 0; i &lt; n; i++ {
-        c &lt;- x
-        x, y = y, x+y
-    }
-    close(c) // 应该在生产者里关闭，防止 panic。当你没有任何数据要发送，或者想显示结束 range 调用 close
-}
-func main() {
-    c := make(chan int, 10)
-    go fibonacci(cap(c), c)
-    for i := range c { //不断读取知道 channel 被显示关闭
-        fmt.Println(i)
-    }
-}
-</code></pre>
+<span class="n">func</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="nb">int</span><span class="p">,</span> <span class="n">c</span> <span class="n">chan</span> <span class="nb">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="n">c</span> <span class="o">&lt;-</span> <span class="n">x</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+    <span class="p">}</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">//</span> <span class="err">应该在生产者里关闭，防止</span> <span class="n">panic</span><span class="err">。当你没有任何数据要发送，或者想显示结束</span> <span class="nb">range</span> <span class="err">调用</span> <span class="n">close</span>
+<span class="p">}</span>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">c</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">go</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">cap</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">c</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">c</span> <span class="p">{</span> <span class="o">//</span><span class="err">不断读取知道</span> <span class="n">channel</span> <span class="err">被显示关闭</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>Select: 多个 channel 操作。Go提供了select监听 channel 数据流动
 Select: 多个 channel。select 可以监听 channel 上的数据流动。select 默认阻塞，只有当监听的 channel 中有发送或接收可以
 进行时才会运行，当多个 channel 都准备好的时候随机选择一个执行。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
 
-func fibonacci(c, quit chan int) {
-    x, y := 1, 1
-    for {
-        select {
-        case c &lt;- x:
-            x, y = y, x+y
-        case &lt;-quit:
-            fmt.Println(&quot;quit&quot;)
-            return
-    default:
-        // 当监听的 channel 没有准备好的时候默认执行(select不再阻塞等待channel)
+<span class="n">func</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">quit</span> <span class="n">chan</span> <span class="nb">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="n">select</span> <span class="p">{</span>
+        <span class="n">case</span> <span class="n">c</span> <span class="o">&lt;-</span> <span class="n">x</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">quit</span><span class="p">:</span>
+            <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;quit&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+    <span class="n">default</span><span class="p">:</span>
+        <span class="o">//</span> <span class="err">当监听的</span> <span class="n">channel</span> <span class="err">没有准备好的时候默认执行</span><span class="p">(</span><span class="n">select不再阻塞等待channel</span><span class="p">)</span>
 
-        }
-    }
-}
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-func main() {
-    c := make(chan int)
-    quit := make(chan int)
-    go func() {
-        for i := 0; i &lt; 10; i++ {
-            fmt.Println(&lt;-c)
-        }
-        quit &lt;- 0
-    }()
-    fibonacci(c, quit)
-}
-</code></pre>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">c</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">quit</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">)</span>
+    <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+            <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="o">&lt;-</span><span class="n">c</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">quit</span> <span class="o">&lt;-</span> <span class="mi">0</span>
+    <span class="p">}()</span>
+    <span class="n">fibonacci</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">quit</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>有时候会出现 goroutine 阻塞的情况。还可以设置 select 设置超时。</p>
-<h1 id="3-web">3 Web基础</h1>
+<h1 id="3-web">3 Web基础<a class="headerlink" href="#3-web" title="Permanent link">&para;</a></h1>
 <p>用 go 实现一个 http server 真滴很简单，支持高并发，内部实现是一个单独的 goroutine 处理请求。</p>
-<pre><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;log&quot;
-    &quot;net/http&quot;
-    &quot;strings&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;fmt&quot;</span>
+    <span class="s2">&quot;log&quot;</span>
+    <span class="s2">&quot;net/http&quot;</span>
+    <span class="s2">&quot;strings&quot;</span>
+<span class="p">)</span>
 
-func sayhelloName(w http.ResponseWriter, r *http.Request) {
-    r.ParseForm()
-    fmt.Println(r.Form)
-    fmt.Println(&quot;path&quot;, r.URL.Path)
-    for k, v := range r.Form {
-        fmt.Println(&quot;key:&quot;, k)
-        fmt.Println(&quot;val:&quot;, strings.Join(v, &quot;&quot;))
-    }
-    fmt.Fprintf(w, &quot;hello&quot;) //输出到客户端
+<span class="n">func</span> <span class="n">sayhelloName</span><span class="p">(</span><span class="n">w</span> <span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">ParseForm</span><span class="p">()</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">Form</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">URL</span><span class="o">.</span><span class="n">Path</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">r</span><span class="o">.</span><span class="n">Form</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;key:&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;val:&quot;</span><span class="p">,</span> <span class="n">strings</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+    <span class="p">}</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">)</span> <span class="o">//</span><span class="err">输出到客户端</span>
 
-}
+<span class="p">}</span>
 
-func main() {
-    http.HandleFunc(&quot;/&quot;, sayhelloName)
-    err := http.ListenAndServe(&quot;:9090&quot;, nil)
-    if err != nil {
-        log.Fatal(&quot;ListenAndServe: &quot;, err)
-    }
-}
-</code></pre>
-
-<h1 id="4">4 表单</h1>
-<h1 id="5">5 访问数据库</h1>
-<h3 id="51-databasesql">5.1 database/sql 接口</h3>
-<pre><code>sql.Register
-driver.Driver   // 返回的数据库conn 只能用在一个 goroutine
-driver.Conn
-driver.Stmt  // Stmt 是一种准备好的状态，只能用在一个goroutine中
-driver.Tx  // 事务提交和回滚
-driver.Execer  /// Conn 选择实现的接口
-driver.Result  // 执行 update/insert 等操作返回的结果接口定义
-driver.Rows // 执行查询返回的结果集接口定义
-driver.RowsAffected  // int64别名
-driver.Value //空接口，容纳任何数据
-driver.ValueConverter // 把一个普通值转换成 driver.Value
-driver.Valuer // 定义了返回一个 driver.Value 的方式
-database/sql
-</code></pre>
-
-<h3 id="52-mysql">5.2 使用 Mysql</h3>
-<p>使用 "github.com/go-sql-driver/mysql" 演示数据库增删改查</p>
-<pre><code>package main
-
-import (
-    &quot;database/sql&quot;
-    &quot;fmt&quot;
-
-    _ &quot;github.com/go-sql-driver/mysql&quot;
-)
-
-func main() {
-    // Open 打开一个注册过的数据库驱动
-    db, err := sql.Open(&quot;mysql&quot;, &quot;root:@/test?charset=utf8&quot;)
-    checkErr(err)
-    // prepare 返回准备要执行的 sql，然后返回准备完毕的执行状态
-    stmt, err := db.Prepare(&quot;INSERT userinfo SET username=?,departname=?,created=?&quot;)
-    checkErr(err)
-
-    //exec  执行 stmt 准备好的 sql 语句
-    res, err := stmt.Exec(&quot;wnn&quot;, &quot;研发&quot;, &quot;2012-12-10&quot;)
-    checkErr(err)
-
-    id, err := res.LastInsertId()
-    checkErr(err)
-
-    fmt.Println(id)
-    stmt, err = db.Prepare(&quot;update userinfo set username=? where uid=?&quot;)
-    checkErr(err)
-
-    res, err = stmt.Exec(&quot;wnnupdate&quot;, id)
-    checkErr(err)
-
-    affect, err := res.RowsAffected()
-    checkErr(err)
-    fmt.Println(affect)
-
-    //query 直接执行 sql 返回 rows 结果
-    rows, err := db.Query(&quot;SELECT * from userinfo&quot;)
-    checkErr(err)
-
-    for rows.Next() {
-        var uid int
-        var username, departname, created string
-        err = rows.Scan(&amp;uid, &amp;username, &amp;departname, &amp;created)
-        checkErr(err)
-        fmt.Println(uid)
-        fmt.Println(username)
-        fmt.Println(departname)
-        fmt.Println(created)
-    }
-    stmt, err = db.Prepare(&quot;delete from userinfo where uid=?&quot;)
-    checkErr(err)
-
-    res, err = stmt.Exec(id)
-    checkErr(err)
-
-    affect, err = res.RowsAffected()
-    checkErr(err)
-    fmt.Println(affect)
-    db.Close()
-}
-
-func checkErr(err error) {
-    if err != nil {
-        panic(err)
-    }
-}
-</code></pre>
-
-<h1 id="55-beego-orm">5.5 使用 Beego orm</h1>
-<pre><code>package main
-
-import (
-    &quot;fmt&quot;
-
-    &quot;github.com/astaxie/beego/orm&quot;
-    _ &quot;github.com/go-sql-driver/mysql&quot;
-)
-
-// Model Struct
-type User struct {
-    Id   int
-    Name string `orm:&quot;size(100)&quot;`
-}
-
-func init() {
-    orm.RegisterDataBase(&quot;default&quot;, &quot;mysql&quot;, &quot;root:@/test?charset=utf8&quot;, 30)
-    orm.RegisterModel(new(User))
-    orm.RunSyncdb(&quot;default&quot;, false, true)
-    orm.RegisterDriver(&quot;mysql&quot;, orm.DRMySQL)
-}
-
-func main() {
-    o := orm.NewOrm()
-    user := User{Name: &quot;wnn&quot;}
-    id, err := o.Insert(&amp;user)
-    user2 := User{Name: &quot;wnn2&quot;}
-    id, err = o.Insert(&amp;user2)
-    fmt.Printf(&quot;id:%d, err:%v\n&quot;, id, err)
-
-    user.Name = &quot;wnnupdate&quot;
-    num, err := o.Update(&amp;user)
-    fmt.Printf(&quot;Num:%d, err:%v\n&quot;, num, err)
-
-    u := User{Id: user.Id}
-    err = o.Read(&amp;u)
-    fmt.Printf(&quot;err: %v\n&quot;, err)
-
-    num, err = o.Delete(&amp;u)
-    fmt.Printf(&quot;num %d, err:%v\n&quot;, num, err)
-
-}
-</code></pre>
-
-<h1 id="56-nosql">5.6 Nosql 数据库使用</h1>
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">http</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">sayhelloName</span><span class="p">)</span>
+    <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">ListenAndServe</span><span class="p">(</span><span class="s2">&quot;:9090&quot;</span><span class="p">,</span> <span class="n">nil</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">Fatal</span><span class="p">(</span><span class="s2">&quot;ListenAndServe: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
-</section>
-</div> <!-- end of search-noresults -->
-<div class="search-results">
-<div class="has-results">
+<h1 id="4">4 表单<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
+<h1 id="5">5 访问数据库<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<h3 id="51-databasesql">5.1 database/sql 接口<a class="headerlink" href="#51-databasesql" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="err">sql.Register</span>
+<span class="err">driver.Driver   // 返回的数据库conn 只能用在一个 goroutine</span>
+<span class="err">driver.Conn</span>
+<span class="err">driver.Stmt  // Stmt 是一种准备好的状态，只能用在一个goroutine中</span>
+<span class="err">driver.Tx  // 事务提交和回滚</span>
+<span class="err">driver.Execer  /// Conn 选择实现的接口</span>
+<span class="err">driver.Result  // 执行 update/insert 等操作返回的结果接口定义</span>
+<span class="err">driver.Rows // 执行查询返回的结果集接口定义</span>
+<span class="err">driver.RowsAffected  // int64别名</span>
+<span class="err">driver.Value //空接口，容纳任何数据</span>
+<span class="err">driver.ValueConverter // 把一个普通值转换成 driver.Value</span>
+<span class="err">driver.Valuer // 定义了返回一个 driver.Value 的方式</span>
+<span class="err">database/sql</span>
+</code></pre></div>
 
-<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-<ul class="search-results-list"></ul>
 
-</div> <!-- end of has-results -->
-<div class="no-results">
+<h3 id="52-mysql">5.2 使用 Mysql<a class="headerlink" href="#52-mysql" title="Permanent link">&para;</a></h3>
+<p>使用 &ldquo;github.com/go-sql-driver/mysql&rdquo; 演示数据库增删改查</p>
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;database/sql&quot;</span>
+    <span class="s2">&quot;fmt&quot;</span>
 
-</div> <!-- end of no-results -->
-</div> <!-- end of search-results -->
-</div> <!-- end of book-search-results -->
+    <span class="n">_</span> <span class="s2">&quot;github.com/go-sql-driver/mysql&quot;</span>
+<span class="p">)</span>
 
-</div> <!-- end of page-inner -->
-</div> <!-- end of page-wrapper -->
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Open</span> <span class="err">打开一个注册过的数据库驱动</span>
+    <span class="n">db</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;mysql&quot;</span><span class="p">,</span> <span class="s2">&quot;root:@/test?charset=utf8&quot;</span><span class="p">)</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="o">//</span> <span class="n">prepare</span> <span class="err">返回准备要执行的</span> <span class="n">sql</span><span class="err">，然后返回准备完毕的执行状态</span>
+    <span class="n">stmt</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Prepare</span><span class="p">(</span><span class="s2">&quot;INSERT userinfo SET username=?,departname=?,created=?&quot;</span><span class="p">)</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 
-</div> <!-- end of body-inner -->
+    <span class="o">//</span><span class="k">exec</span>  <span class="err">执行</span> <span class="n">stmt</span> <span class="err">准备好的</span> <span class="n">sql</span> <span class="err">语句</span>
+    <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">Exec</span><span class="p">(</span><span class="s2">&quot;wnn&quot;</span><span class="p">,</span> <span class="s2">&quot;研发&quot;</span><span class="p">,</span> <span class="s2">&quot;2012-12-10&quot;</span><span class="p">)</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 
-</div> <!-- end of book-body -->
-<script src="../../js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script src="../../search/main.js"></script>
-<script src="../../js/gitbook.min.js"></script>
-<script src="../../js/theme.min.js"></script>
+    <span class="nb">id</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">LastInsertId</span><span class="p">()</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">stmt</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Prepare</span><span class="p">(</span><span class="s2">&quot;update userinfo set username=? where uid=?&quot;</span><span class="p">)</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+    <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">Exec</span><span class="p">(</span><span class="s2">&quot;wnnupdate&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+    <span class="n">affect</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">RowsAffected</span><span class="p">()</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">affect</span><span class="p">)</span>
+
+    <span class="o">//</span><span class="n">query</span> <span class="err">直接执行</span> <span class="n">sql</span> <span class="err">返回</span> <span class="n">rows</span> <span class="err">结果</span>
+    <span class="n">rows</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="s2">&quot;SELECT * from userinfo&quot;</span><span class="p">)</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">rows</span><span class="o">.</span><span class="n">Next</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">var</span> <span class="n">uid</span> <span class="nb">int</span>
+        <span class="n">var</span> <span class="n">username</span><span class="p">,</span> <span class="n">departname</span><span class="p">,</span> <span class="n">created</span> <span class="n">string</span>
+        <span class="n">err</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="n">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">username</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">departname</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">created</span><span class="p">)</span>
+        <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">departname</span><span class="p">)</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">created</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">stmt</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Prepare</span><span class="p">(</span><span class="s2">&quot;delete from userinfo where uid=?&quot;</span><span class="p">)</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+    <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">Exec</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+    <span class="n">affect</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">RowsAffected</span><span class="p">()</span>
+    <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">affect</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="n">func</span> <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+        <span class="n">panic</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h1 id="55-beego-orm">5.5 使用 Beego orm<a class="headerlink" href="#55-beego-orm" title="Permanent link">&para;</a></h1>
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;fmt&quot;</span>
+
+    <span class="s2">&quot;github.com/astaxie/beego/orm&quot;</span>
+    <span class="n">_</span> <span class="s2">&quot;github.com/go-sql-driver/mysql&quot;</span>
+<span class="p">)</span>
+
+<span class="o">//</span> <span class="n">Model</span> <span class="n">Struct</span>
+<span class="nb">type</span> <span class="n">User</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">Id</span>   <span class="nb">int</span>
+    <span class="n">Name</span> <span class="n">string</span> <span class="sb">`orm:&quot;size(100)&quot;`</span>
+<span class="p">}</span>
+
+<span class="n">func</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">orm</span><span class="o">.</span><span class="n">RegisterDataBase</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="s2">&quot;mysql&quot;</span><span class="p">,</span> <span class="s2">&quot;root:@/test?charset=utf8&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="n">orm</span><span class="o">.</span><span class="n">RegisterModel</span><span class="p">(</span><span class="n">new</span><span class="p">(</span><span class="n">User</span><span class="p">))</span>
+    <span class="n">orm</span><span class="o">.</span><span class="n">RunSyncdb</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
+    <span class="n">orm</span><span class="o">.</span><span class="n">RegisterDriver</span><span class="p">(</span><span class="s2">&quot;mysql&quot;</span><span class="p">,</span> <span class="n">orm</span><span class="o">.</span><span class="n">DRMySQL</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">o</span> <span class="p">:</span><span class="o">=</span> <span class="n">orm</span><span class="o">.</span><span class="n">NewOrm</span><span class="p">()</span>
+    <span class="n">user</span> <span class="p">:</span><span class="o">=</span> <span class="n">User</span><span class="p">{</span><span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;wnn&quot;</span><span class="p">}</span>
+    <span class="nb">id</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">Insert</span><span class="p">(</span><span class="o">&amp;</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">user2</span> <span class="p">:</span><span class="o">=</span> <span class="n">User</span><span class="p">{</span><span class="n">Name</span><span class="p">:</span> <span class="s2">&quot;wnn2&quot;</span><span class="p">}</span>
+    <span class="nb">id</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">Insert</span><span class="p">(</span><span class="o">&amp;</span><span class="n">user2</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;id:</span><span class="si">%d</span><span class="s2">, err:%v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="n">user</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;wnnupdate&quot;</span>
+    <span class="n">num</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">Update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;Num:</span><span class="si">%d</span><span class="s2">, err:%v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="n">u</span> <span class="p">:</span><span class="o">=</span> <span class="n">User</span><span class="p">{</span><span class="n">Id</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">Id</span><span class="p">}</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">Read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;err: %v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="n">num</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">Delete</span><span class="p">(</span><span class="o">&amp;</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;num </span><span class="si">%d</span><span class="s2">, err:%v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h1 id="56-nosql">5.6 Nosql 数据库使用<a class="headerlink" href="#56-nosql" title="Permanent link">&para;</a></h1>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../go101/book/" class="btn btn-neutral float-right" title="Go101">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../3_the_go_programming_lauguage/" class="btn btn-neutral" title="3 The Go Programming Language"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/zwiley/mybook/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../3_the_go_programming_lauguage/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../go101/book/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
 </body>
 </html>

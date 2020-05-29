@@ -1,974 +1,690 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-<meta charset="utf-8">
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>《go语言编程》 - ZWiley的读书笔记</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>go语言编程 - ZWiley的读书笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-<meta name="generator" content="mkdocs-1.1.2, mkdocs-gitbook-1.0.7">
-
-<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
-<meta name="HandheldFriendly" content="true"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta rel="next" href="" />
-<link href="../../css/style.min.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "go\u8bed\u8a00\u7f16\u7a0b";
+    var mkdocs_page_input_path = "golang\\go\u8bed\u8a00\u7f16\u7a0b.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
-<body>
-<div class="book">
-<div class="book-summary">
-<div id="book-search-input" role="search">
-<input type="text" placeholder="Type to search" />
-</div> <!-- end of book-search-input -->
-
-<nav role="navigation">
-<ul class="summary">
-<li>
-<a href="../.." target="_blank" class="custom-link">ZWiley的读书笔记</a>
-</li>
-<li class="divider"></li>
-<li class="chapter" data-path="">
-<a href="../..">简介</a>
-<li class="header">C++</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/" class="">《C++编译底层》</a>
-</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="">《C++基础知识》</a>
-</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/" class="">《C++智能指针》</a>
-</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="">《C++面向对象》</a>
-</li>
-
-<li>
-<a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/" class="">《C++ STL》</a>
-</li>
-
-<li class="header">计算机基础知识</li>
-
-<li>
-<a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="">《操作系统》</a>
-</li>
-
-<li>
-<a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="">《计算机网络》</a>
-</li>
-
-<li>
-<a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="">《数据结构》</a>
-</li>
-
-<li>
-<a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="">《海量数据处理》</a>
-</li>
-
-<li class="header">项目基础知识</li>
-
-<li>
-<a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="">《Linux系统编程及基本命令》</a>
-</li>
-
-<li>
-<a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/" class="">《MySQL》</a>
-</li>
-
-<li>
-<a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/" class="">《Redis》</a>
-</li>
-
-<li>
-<a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/" class="">《Socket编程》</a>
-</li>
-
-<li class="header">代码</li>
-
-<li>
-<a href="../../code/work_with_legacy_code/" class="">《Work with legacy code》</a>
-</li>
-
-<li>
-<a href="../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/" class="">《代码大全》</a>
-</li>
-
-<li>
-<a href="../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/" class="">《代码的未来》</a>
-</li>
-
-<li>
-<a href="../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/" class="">《基本功》</a>
-</li>
-
-<li>
-<a href="../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/" class="">《敏捷技能修炼》</a>
-</li>
-
-<li>
-<a href="../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/" class="">《程序员应该知道的97件事》</a>
-</li>
-
-<li>
-<a href="../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/" class="">《编写可读代码的艺术》</a>
-</li>
-
-<li>
-<a href="../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/" class="">《编程匠艺》</a>
-</li>
-
-<li>
-<a href="../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" class="">《领域驱动设计》</a>
-</li>
-
-<li>
-<a href="../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/" class="">《codelife_不止代码》</a>
-</li>
-
-<li class="header">调试技术</li>
-
-<li>
-<a href="../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/" class="">《软件调试修炼之道》</a>
-</li>
-
-<li>
-<a href="../../debug/Effective_Debugging/" class="">《Effective Debugging》</a>
-</li>
-
-<li class="header">数据库</li>
-
-<li>
-<a href="../../database/getting_started_with_impala/" class="">《Getting started with impala》</a>
-</li>
-
-<li>
-<a href="../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/" class="">《mysql必知必会》</a>
-</li>
-
-<li>
-<a href="../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/" class="">《mysql性能调优与架构实践》</a>
-</li>
-
-<li>
-<a href="../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" class="">《Mysql技术内幕InnoDB存储引擎》</a>
-</li>
-
-<li>
-<a href="../../database/redis%E5%AE%9E%E6%88%98/" class="">《Redis实战》</a>
-</li>
-
-<li>
-<a href="../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/" class="">《Redis深度历险核心原理和应用实践》</a>
-</li>
-
-<li>
-<a href="../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="">《redis设计与实现》</a>
-</li>
-
-<li>
-<a href="../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/" class="">《七周七数据库》</a>
-</li>
-
-<li>
-<a href="../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/" class="">《深入浅出mysql》</a>
-</li>
-
-<li>
-<a href="../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/" class="">《高性能mysql第三版》</a>
-</li>
-
-<li class="header">前端</li>
-
-<li>
-<a href="../../frontend/CSS_The_Missing_Manual/" class="">《CSS_The_Missing_Manual》</a>
-</li>
-
-<li>
-<a href="../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/" class="">《reactjs小书》</a>
-</li>
-
-<li>
-<a href="../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/" class="">《ES6标准入门》</a>
-</li>
-
-<li>
-<a href="../../frontend/jquery_pocket_reference/" class="">《jquery_pocket_reference》</a>
-</li>
-
-<li>
-<a href="../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/" class="">《深入理解bootstrap》</a>
-</li>
-
-<li class="header">golang</li>
-
-<li>
-<a href="../1_the_go_programming_lauguage/" class="">《1 The Go Programming Language》</a>
-</li>
-
-<li>
-<a href="../2_the_go_programming_lauguage/" class="">《2 The Go Programming Language》</a>
-</li>
-
-<li>
-<a href="../3_the_go_programming_lauguage/" class="">《3 The Go Programming Language》</a>
-</li>
-
-<li>
-<a href="../build-web-application-with-golang/" class="">《Build Web Application With Golang》</a>
-</li>
-
-<li>
-<a href="../go101/book/" class="">《Go101》</a>
-</li>
-
-<li>
-<a href="../network-programming-with-go/book/" class="">《Network Programming with go》</a>
-</li>
-
-<li>
-<a href="../building-microservices-with-go/book/" class="">《Building Microservices With Go》</a>
-</li>
-
-<li>
-<a href="../building_restful_web_services_with_go/book/" class="">《Building Restful Web Services with Go》</a>
-</li>
-
-<li>
-<a href="../concurrency-in-go/concurrency_in_go/" class="">《Concurrency In Go》</a>
-</li>
-
-<li>
-<a href="../go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/" class="">《Go In Action(Go 实战)》</a>
-</li>
-
-<li>
-<a href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/" class="">《Go学习笔记语言详解》</a>
-</li>
-
-<li>
-<a href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" class="">《Go学习笔记源码剖析》</a>
-</li>
-
-<li>
-<a href="./" class="active">《go语言编程》</a>
-</li>
-
-<li>
-<a href="../the_way_to_go/book/" class="">《go book》</a>
-</li>
-
-<li>
-<a href="../advanced-go-programming-book/advanced-go-programming/" class="">《advanced-go-programming》</a>
-</li>
-
-<li>
-<a href="../go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/" class="">《go-build-web-applications》</a>
-</li>
-
-<li class="header">java</li>
-
-<li>
-<a href="../../java/java-basic-introduction/" class="">《java basic introduction》</a>
-</li>
-
-<li class="header">网络</li>
-
-<li>
-<a href="../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/" class="">《TCP IP详解卷一》</a>
-</li>
-
-<li class="header">python</li>
-
-<li>
-<a href="../../python/fluent_python/" class="">《Fluent Python》</a>
-</li>
-
-<li>
-<a href="../../python/Python_Microservices_Development/" class="">《Python Microservices Development》</a>
-</li>
-
-<li>
-<a href="../../python/high_performance_python/" class="">《High Performance Python》</a>
-</li>
-
-<li>
-<a href="../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="">《Python网络编程》</a>
-</li>
-
-<li class="header">unix/linux</li>
-
-<li>
-<a href="../../unix_linux/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/" class="">《Linux高性能服务器编程》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" class="">《unix编程艺术》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/" class="">《unix网络编程卷一》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" class="">《unix编程艺术》</a>
-</li>
-
-<li>
-<a href="#">《APUE》</a>
-<ul>
-
-<li>
-<a href="../../unix_linux/APUE/environ/" class="">《APUE environ》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/fork/" class="">《APUE fork》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/gcc/" class="">《APUE gcc》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/IO/" class="">《APUE IO》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/IPC/" class="">《APUE IPC》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/makefile/" class="">《APUE makefile》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/wait/" class="">《APUE wait》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E5%8A%A8%E6%80%81%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93/" class="">《APUE 动态库和静态库》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/" class="">《APUE 守护进程》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" class="">《APUE 文件权限》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E7%B3%BB%E7%BB%9FIO%E5%87%BD%E6%95%B0/" class="">《APUE 系统IO函数》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E4%BF%A1%E5%8F%B7/" class="">《APUE 信号》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E4%BF%A1%E5%8F%B72/" class="">《APUE 信号2》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0/" class="">《线程函数》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="">《线程基础》</a>
-</li>
-
-<li>
-<a href="../../unix_linux/APUE/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" class="">《线程同步》</a>
-</li>
-</ul>
-</li>
-
-<li class="header">分布式</li>
-
-<li>
-<a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" class="">《Kafka 权威指南》</a>
-</li>
-
-<li>
-<a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" class="">《分布式框架原理与应用》</a>
-</li>
-
-<li>
-<a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/" class="">《大规模分布式存储系统》</a>
-</li>
-
-<li>
-<a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/" class="">《深入分布式缓存从原理到实践》</a>
-</li>
-
-<li class="header">搜索引擎</li>
-
-<li>
-<a href="../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/" class="">《Elasticsearch实战》</a>
-</li>
-
-<li class="header">容器</li>
-
-<li>
-<a href="../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/" class="">《玩转Kubernets》</a>
-</li>
-
-<li>
-<a href="../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/" class="">《第一本docker书》</a>
-</li>
-
-<li class="header">开发工具</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/" class="">《Practical Vim》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/" class="">《Vim8文本处理实战》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/" class="">《Learn vim scrpt the hard way》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/" class="">《Pro Git》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/" class="">《Mastering Vim》</a>
-</li>
-
-<li>
-<a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/" class="">《Mastering Vim Quickly》</a>
-</li>
-
-<li class="header">思维</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/" class="">《专注力》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/" class="">《为什么精英这样用脑不会累》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/" class="">《刻意练习》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/" class="">《如何想到又做到》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/" class="">《学习之道》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/" class="">《学习力》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/" class="">《批判性思维工具》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/" class="">《程序员的思维修炼》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/" class="">《认知天性》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/" class="">《超效率手册》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/" class="">《如何高效记忆》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/" class="">《科学学习》</a>
-</li>
-
-<li>
-<a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/" class="">《高效程序员的45个习惯》</a>
-</li>
-
-<li class="header">源码</li>
-
-<li>
-<a href="../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/" class="">《源码阅读》</a>
-</li>
-
-<li class="header">网站架构微服务</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/" class="">《微服务架构设计模式》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/" class="">《从0开始学架构》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/" class="">《web scalavility for startup engineers》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/" class="">《design_data_instensive_application》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/" class="">《clean_architecture》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/" class="">《微服务设计》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/" class="">《2_design_data_instensive_application》</a>
-</li>
-
-<li>
-<a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/" class="">《3_design_data_instensive_application》</a>
-</li>
-
-<li class="header">软件工程/项目管理</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/" class="">《人月神话》</a>
-</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/" class="">《代码之殇》</a>
-</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/" class="">《解析极限编程》</a>
-</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/" class="">《项目管理修炼之道》</a>
-</li>
-
-<li>
-<a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/" class="">《修改软件的艺术》</a>
-</li>
-
-<li class="header">运维</li>
-
-<li>
-<a href="../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" class="">《linux集群和自动化运维》</a>
-</li>
-
-<li>
-<a href="../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" class="">《python自动化运维》</a>
-</li>
-
-<li class="header">金融理财</li>
-
-<li>
-<a href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/" class="">《定投十年》</a>
-</li>
-
-<li>
-<a href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/" class="">《穷查理宝典》</a>
-</li>
-
-<li class="header">写作</li>
-
-<li>
-<a href="../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/" class="">《刷屏文案写作技巧》</a>
-</li>
-
-<li class="header">互联网</li>
-
-<li>
-<a href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/" class="">《我的互联网方法论-周鸿祎》</a>
-</li>
-
-<li>
-<a href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/" class="">《用户思维》</a>
-</li>
-
-<li class="header">区块链</li>
-
-<li>
-<a href="../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/" class="">《区块链技术指南》</a>
-</li>
-
-<li class="header">技术演讲</li>
-
-<li>
-<a href="../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/" class="">《哔哩哔哩的go微服务实战》</a>
-</li>
-
-<li>
-<a href="../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/" class="">《go业务基础库之Error&Context》</a>
-</li>
-
-<li>
-<a href="../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/" class="">《Go同步和并发设计模式》</a>
-</li>
-
-<li>
-<a href="../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/" class="">《左耳朵耗子-我这技术二十年》</a>
-</li>
-
-<li class="header">职场</li>
-
-<li>
-<a href="../../career/give_and_take/" class="">《give and take》</a>
-</li>
-
-<li>
-<a href="../../career/the_effective_engineer/" class="">《the_effective_engineer》</a>
-</li>
-
-<li>
-<a href="../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/" class="">《光速成长》</a>
-</li>
-
-<li>
-<a href="../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/" class="">《向上管理》</a>
-</li>
-
-<li>
-<a href="../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/" class="">《成功动机与目标》</a>
-</li>
-
-<li>
-<a href="../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/" class="">《番茄工作法》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/" class="">《聆听沟通学》</a>
-</li>
-
-<li>
-<a href="../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/" class="">《知乎职人觉醒》</a>
-</li>
-
-<li>
-<a href="../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/" class="">《知识变现》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/" class="">《聆听沟通学》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/" class="">《职场动物进化手册》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/" class="">《职场解释系》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/" class="">《请停止无效努力》</a>
-</li>
-
-<li>
-<a href="../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/" class="">《软技能》</a>
-</li>
-
-<li>
-<a href="../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/" class="">《高效15法则》</a>
-</li>
-
-<li>
-<a href="../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/" class="">《高效清单工作法》</a>
-</li>
-
-<li>
-<a href="../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/" class="">《程序员的自我修养》</a>
-</li>
-
-<li class="header">心理学</li>
-
-<li>
-<a href="../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/" class="">《一切都是童年的错吗》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="">《亲密关系》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E6%83%85%E5%95%86/" class="">《情商》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E9%80%86%E5%95%86/" class="">《逆商》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/" class="">《拖延心理学》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/" class="">《积极心理学》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/" class="">《自控力》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/" class="">《自控力-实操篇》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/" class="">《自控力:和压力做朋友》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/" class="">《活出最乐观的自己》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/" class="">《改变心理学的40项研究》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/" class="">《超越自卑》</a>
-</li>
-
-<li>
-<a href="../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/" class="">《反脆弱》</a>
-</li>
-
-<li class="header">创业</li>
-
-<li>
-<a href="../../startup/hello_startup/" class="">《Hello Startup》</a>
-</li>
-
-<li>
-<a href="../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/" class="">《斯坦福公开课如何创业》</a>
-</li>
-
-<li>
-<a href="../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/" class="">《运营其实很简单》</a>
-</li>
-
-<li class="divider"></li>
-
-
-
-<li><a href="http://www.mkdocs.org">
-Published with MkDocs
-</a></li>
-
-<li><a href="https://github.com/GitbookIO/theme-default">
-Theme by GitBook
-</a></li>
-</ul>
-
-</nav>
-
-</div> <!-- end of book-summary -->
-
-<div class="book-body">
-<div class="body-inner">
-<div class="book-header" role="navigation">
-
-<!-- Title -->
-<h1>
-<i class="fa fa-circle-o-notch fa-spin"></i>
-<a href="." ></a>
-</h1>
-
-</div> <!-- end of book-header -->
-
-<div class="page-wrapper" tabindex="-1" role="main">
-<div class="page-inner">
-<div id="book-search-results">
-<div class="search-noresults">
-
-<section class="normal markdown-section">
-
-
-
-<p>七牛-许式伟</p>
-<h1 id="2">2 顺序编程</h1>
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">简介</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">C++</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/">C++编译底层</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">C++基础知识</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/">C++智能指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/">C++ STL</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">计算机基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">海量数据处理</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">基本手写代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%A2%98%E7%9B%AE/">基本手写代码题目</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">项目基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">Linux系统编程及基本命令</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/">MySQL</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/">Redis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/">Socket编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/work_with_legacy_code/">Work with legacy code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/">代码大全</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/">代码的未来</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/">基本功</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/">敏捷技能修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/">程序员应该知道的97件事</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/">编写可读代码的艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/">编程匠艺</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/">codelife_不止代码</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">调试技术</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/">软件调试修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/Effective_Debugging/">Effective Debugging</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">数据库</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/getting_started_with_impala/">Getting started with impala</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/">mysql必知必会</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/">mysql性能调优与架构实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">Mysql技术内幕InnoDB存储引擎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E5%AE%9E%E6%88%98/">Redis实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/">Redis深度历险核心原理和应用实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">redis设计与实现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/">七周七数据库</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/">深入浅出mysql</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/">高性能mysql第三版</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">前端</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/CSS_The_Missing_Manual/">CSS_The_Missing_Manual</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/">reactjs小书</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/">ES6标准入门</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/jquery_pocket_reference/">jquery_pocket_reference</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/">深入理解bootstrap</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">golang</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../1_the_go_programming_lauguage/">1 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../2_the_go_programming_lauguage/">2 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../3_the_go_programming_lauguage/">3 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../build-web-application-with-golang/">Build Web Application With Golang</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go101/book/">Go101</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../network-programming-with-go/book/">Network Programming with go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../building-microservices-with-go/book/">Building Microservices With Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../building_restful_web_services_with_go/book/">Building Restful Web Services with Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../concurrency-in-go/concurrency_in_go/">Concurrency In Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/">Go In Action(Go 实战)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/">Go学习笔记语言详解</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/">Go学习笔记源码剖析</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">go语言编程</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">闭包</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../the_way_to_go/book/">go book</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../advanced-go-programming-book/advanced-go-programming/">advanced-go-programming</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/">go-build-web-applications</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">java</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../java/java-basic-introduction/">java basic introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网络</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/">TCP IP详解卷一</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">python</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/fluent_python/">Fluent Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/Python_Microservices_Development/">Python Microservices Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/high_performance_python/">High Performance Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Python网络编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">unix/linux</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/">Linux高性能服务器编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/">unix网络编程卷一</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分布式</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">Kafka 权威指南</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">分布式框架原理与应用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">大规模分布式存储系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/">深入分布式缓存从原理到实践</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">搜索引擎</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/">Elasticsearch实战</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">容器</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/">玩转Kubernets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/">第一本docker书</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">开发工具</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/">Practical Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/">Vim8文本处理实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/">Learn vim scrpt the hard way</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/">Pro Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/">Mastering Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/">Mastering Vim Quickly</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">思维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/">专注力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/">为什么精英这样用脑不会累</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/">刻意练习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/">如何想到又做到</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/">学习之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/">学习力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/">批判性思维工具</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/">程序员的思维修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/">认知天性</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/">超效率手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/">如何高效记忆</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/">科学学习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/">高效程序员的45个习惯</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">源码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/">源码阅读</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网站架构微服务</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/">微服务架构设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/">web scalavility for startup engineers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/">design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/">clean_architecture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/">微服务设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/">2_design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/">3_design_data_instensive_application</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">软件工程/项目管理</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/">人月神话</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/">代码之殇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/">解析极限编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/">项目管理修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/">修改软件的艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">运维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">linux集群和自动化运维</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">python自动化运维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">金融理财</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/">定投十年</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/">穷查理宝典</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">写作</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/">刷屏文案写作技巧</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">互联网</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/">我的互联网方法论-周鸿祎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/">用户思维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">区块链</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/">区块链技术指南</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">技术演讲</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/">哔哩哔哩的go微服务实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/">go业务基础库之Error&Context</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/">Go同步和并发设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/">左耳朵耗子-我这技术二十年</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">职场</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/give_and_take/">give and take</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/the_effective_engineer/">the_effective_engineer</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/">光速成长</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/">成功动机与目标</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/">番茄工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/">知乎职人觉醒</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/">知识变现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/">职场动物进化手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/">职场解释系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/">请停止无效努力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/">软技能</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/">高效15法则</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/">高效清单工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/">程序员的自我修养</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">心理学</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/">一切都是童年的错吗</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/">亲密关系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%83%85%E5%95%86/">情商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E9%80%86%E5%95%86/">逆商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/">拖延心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/">积极心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/">自控力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/">自控力-实操篇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/">自控力:和压力做朋友</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/">活出最乐观的自己</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/">改变心理学的40项研究</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/">超越自卑</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/">反脆弱</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">创业</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/hello_startup/">Hello Startup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/">斯坦福公开课如何创业</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/">运营其实很简单</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">ZWiley的读书笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>golang &raquo;</li>
+        
+      
+    
+    <li>go语言编程</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/go语言编程.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>七牛-许式伟</p>
+<h1 id="2">2 顺序编程<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <p>字符类型包括俩：rune/byte(uint8别名)，rune 代表单个 unicode 字符</p>
-<pre><code class="go">// go 如何比较 float
-import &quot;math&quot;
-// p为用户自定义的比较精度，比如0.00001
-func IsEqual(f1, f2, p float64) bool {
-    return math.Fdim(f1, f2) &lt; p
-}
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="c1">// go 如何比较 float</span>
+<span class="kn">import</span> <span class="s">&quot;math&quot;</span>
+<span class="c1">// p为用户自定义的比较精度，比如0.00001</span>
+<span class="kd">func</span> <span class="nx">IsEqual</span><span class="p">(</span><span class="nx">f1</span><span class="p">,</span> <span class="nx">f2</span><span class="p">,</span> <span class="nx">p</span> <span class="kt">float64</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Fdim</span><span class="p">(</span><span class="nx">f1</span><span class="p">,</span> <span class="nx">f2</span><span class="p">)</span> <span class="p">&lt;</span> <span class="nx">p</span>
+<span class="p">}</span>
+</code></pre></div>
 
-<p>append 元素： append(slice1, slice2...)</p>
+
+<p>append 元素： append(slice1, slice2&hellip;)</p>
 <p>map: map delete操作如果 key 不存在不会发生作用，也没有任何副作用</p>
 <p>不定参数：</p>
-<pre><code class="go">import &quot;fmt&quot;
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
-// ...type 本质上一个数组切片，`
-func f(args ...int) {
-    for _, arg := range args {
-        fmt.Println(arg)
-        myfunc(args...) // 透传可变参数
-    }
-}
-</code></pre>
+<span class="c1">// ...type 本质上一个数组切片，`</span>
+<span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">args</span> <span class="o">...</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">arg</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">args</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span>
+        <span class="nx">myfunc</span><span class="p">(</span><span class="nx">args</span><span class="o">...</span><span class="p">)</span> <span class="c1">// 透传可变参数</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
-<h3 id="_1">闭包</h3>
+
+<h3 id="_1">闭包<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>闭包：包含是可以包含自由(未绑定到特定对象)变量的代码块，这些变量不在这个代码块内或者任何全局上下文中定义，
 而是在定义代码块的环境中定义。要执行的代码块（由于自由变量包含在代码块中，所以这些自由变量和它们引用的对象都没有被释放）
 为自由变量提供绑定的计算环境（作用域）</p>
 <p>闭包的价值：可以作为函数对象或者匿名函数。支持闭包的多数语言都把函数作为一级对象，这些函数可以存储到变量中作为参数传递给
 其他函数，还能被函数动态创建和返回。</p>
-<h1 id="3">3.面向对象编程</h1>
+<h1 id="3">3.面向对象编程<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>go有4个类型比较特别，看起来像是引用类型：切片；map; channel; interface</p>
-<p>go没有构造函数概念，对象的创建通常交给一个全局创建函数完成，用 NewXXX命名，表示"构造函数"</p>
-<pre><code class="go">
-func NewRect(x, y width, height float64) *Rect {
-    return &amp;Rect{x,y,width,height}
-}
+<p>go没有构造函数概念，对象的创建通常交给一个全局创建函数完成，用 NewXXX命名，表示&rdquo;构造函数&rdquo;</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">NewRect</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span> <span class="kt">float64</span><span class="p">)</span> <span class="o">*</span><span class="nx">Rect</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="nx">Rect</span><span class="p">{</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">width</span><span class="p">,</span><span class="nx">height</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
-</code></pre>
 
-<h1 id="4">4.并发编程</h1>
+<h1 id="4">4.并发编程<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>不要通过共享内存来通信，而应该通过通信来共享内存。</p>
 </blockquote>
 <p>main函数不会等待非主 goroutine 结束。</p>
 <p>两种常见的并发通信模型：共享数据和消息</p>
-<pre><code class="go">var chanName chan ElementType
-ch &lt;- value //向 channle 写入数据会导致程序阻塞，直到有其他 goroutine 从这个channel读入厨具
-value := &lt;-ch //如果 channel 之前没有数据，从 channel 中读取数据也会导致程序阻塞，直到channel中被写入数据为止
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">chanName</span> <span class="kd">chan</span> <span class="nx">ElementType</span>
+<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">value</span> <span class="c1">//向 channle 写入数据会导致程序阻塞，直到有其他 goroutine 从这个channel读入厨具</span>
+<span class="nx">value</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span> <span class="c1">//如果 channel 之前没有数据，从 channel 中读取数据也会导致程序阻塞，直到channel中被写入数据为止</span>
 
-// 随机输出0 or 1
-package main
+<span class="c1">// 随机输出0 or 1</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-import &quot;fmt&quot;
+<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
-func main() {
-    ch := make(chan int, 1)
-    for {
-        select {
-        case ch &lt;- 0:
-        case ch &lt;- 1:
-        }
-        i := &lt;-ch
-        fmt.Println(i)
-    }
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="p">}</span>
+        <span class="nx">i</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>用 select 实现超时机制：</p>
-<pre><code class="go">func main() {
-    timeout := make(chan bool, 1)
-    go func() {
-        time.Sleep(1e9)
-        timeout &lt;- true
-    }()
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">timeout</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
+        <span class="nx">timeout</span> <span class="o">&lt;-</span> <span class="kc">true</span>
+    <span class="p">}()</span>
 
-    select {
-    case &lt;-ch:
-        // read from ch
-    case &lt;-timeout:
-        // 一直没有从 ch 中读取到数据，从timeout读取到了
-    }
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
+        <span class="c1">// read from ch</span>
+    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">timeout</span><span class="p">:</span>
+        <span class="c1">// 一直没有从 ch 中读取到数据，从timeout读取到了</span>
+    <span class="p">}</span>
 
-}
-</code></pre>
+<span class="p">}</span>
+</code></pre></div>
+
 
 <p>如何判断channel是否已经关闭：</p>
-<pre><code>close(ch) //close channel
-x, ok :=&lt;=ch //如果返回的 ok false，表示 ch已经被关闭了
-// 使用 runtime.Gosched() 出让时间片
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">close(ch) //close channel</span>
+<span class="err">x, ok :=&lt;=ch //如果返回的 ok false，表示 ch已经被关闭了</span>
+<span class="err">// 使用 runtime.Gosched() 出让时间片</span>
+</code></pre></div>
+
 
 <p>go 提供了 sync.Mutex和sync.RWmutex 锁类型</p>
 <p>sync.Once 全局唯一操作。</p>
 <p>sync.atomic 提供了对于一些基础数据类型的原子操作。</p>
-<h1 id="5">5.网络编程</h1>
-<h2 id="51-socket">5.1 socket编程</h2>
-<pre><code class="go">package main
-// conn, err  net.Dioal(&quot;tcp&quot;, &quot;127.0.0.1&quot;)
+<h1 id="5">5.网络编程<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<h2 id="51-socket">5.1 socket编程<a class="headerlink" href="#51-socket" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<span class="c1">// conn, err  net.Dioal(&quot;tcp&quot;, &quot;127.0.0.1&quot;)</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;io/ioutil&quot;
-    &quot;net&quot;
-    &quot;os&quot;
-)
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;io/ioutil&quot;</span>
+    <span class="s">&quot;net&quot;</span>
+    <span class="s">&quot;os&quot;</span>
+<span class="p">)</span>
 
-func main() {
-    if len(os.Args) != 2 {
-        fmt.Fprintf(os.Stderr, &quot;Usage: %s host:port&quot;, os.Args[0])
-        os.Exit(1)
-    }
-    service := os.Args[1]
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="s">&quot;Usage: %s host:port&quot;</span><span class="p">,</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">service</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-    tcpAddr, err := net.ResolveTCPAddr(&quot;tcp4&quot;, service)
-    checkError(err)
+    <span class="nx">tcpAddr</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">ResolveTCPAddr</span><span class="p">(</span><span class="s">&quot;tcp4&quot;</span><span class="p">,</span> <span class="nx">service</span><span class="p">)</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-    conn, err := net.DialTCP(&quot;tcp&quot;, nil, tcpAddr)
-    checkError(err)
+    <span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">DialTCP</span><span class="p">(</span><span class="s">&quot;tcp&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">tcpAddr</span><span class="p">)</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-    _, err = conn.Write([]byte(&quot;HEAD / HTTP/1.1\r\n\r\n&quot;))
-    checkError(err)
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&quot;HEAD / HTTP/1.1\r\n\r\n&quot;</span><span class="p">))</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-    result, err := ioutil.ReadAll(conn)
-    checkError(err)
+    <span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nx">ReadAll</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+    <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 
-    fmt.Println(string(result))
-    os.Exit(0)
-}
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
+    <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span>
 
-func checkError(err error) {
-    if err != nil {
-        fmt.Fprintf(os.Stderr, &quot;Fatal Error:%s&quot;, err.Error())
-        os.Exit(1)
-    }
-}
-</code></pre>
+<span class="kd">func</span> <span class="nx">checkError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="s">&quot;Fatal Error:%s&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+        <span class="nx">os</span><span class="p">.</span><span class="nx">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../the_way_to_go/book/" class="btn btn-neutral float-right" title="go book">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" class="btn btn-neutral" title="Go学习笔记源码剖析"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
+  <hr/>
 
-</section>
-</div> <!-- end of search-noresults -->
-<div class="search-results">
-<div class="has-results">
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
 
-<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-<ul class="search-results-list"></ul>
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
 
-</div> <!-- end of has-results -->
-<div class="no-results">
+    </section>
 
-<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+  </div>
 
-</div> <!-- end of no-results -->
-</div> <!-- end of search-results -->
-</div> <!-- end of book-search-results -->
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/zwiley/mybook/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../the_way_to_go/book/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
-</div> <!-- end of page-inner -->
-</div> <!-- end of page-wrapper -->
-
-</div> <!-- end of body-inner -->
-
-</div> <!-- end of book-body -->
-<script src="../../js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script src="../../search/main.js"></script>
-<script src="../../js/gitbook.min.js"></script>
-<script src="../../js/theme.min.js"></script>
 </body>
 </html>

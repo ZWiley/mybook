@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>APUE笔记 - ZWiley的读书笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../../css/theme.css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "APUE\u7b14\u8bb0";
+    var mkdocs_page_input_path = "unix_linux\\APUE\\APUE\u7b14\u8bb0.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../..">简介</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">C++</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/">C++编译底层</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">C++基础知识</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/">C++智能指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/">C++ STL</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">计算机基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">海量数据处理</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">基本手写代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%A2%98%E7%9B%AE/">基本手写代码题目</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">项目基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">Linux系统编程及基本命令</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/">MySQL</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/">Redis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/">Socket编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/work_with_legacy_code/">Work with legacy code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/">代码大全</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/">代码的未来</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/">基本功</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/">敏捷技能修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/">程序员应该知道的97件事</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/">编写可读代码的艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/">编程匠艺</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/">codelife_不止代码</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">调试技术</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/">软件调试修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../debug/Effective_Debugging/">Effective Debugging</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">数据库</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/getting_started_with_impala/">Getting started with impala</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/">mysql必知必会</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/">mysql性能调优与架构实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">Mysql技术内幕InnoDB存储引擎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/redis%E5%AE%9E%E6%88%98/">Redis实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/">Redis深度历险核心原理和应用实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">redis设计与实现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/">七周七数据库</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/">深入浅出mysql</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/">高性能mysql第三版</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">前端</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../frontend/CSS_The_Missing_Manual/">CSS_The_Missing_Manual</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/">reactjs小书</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/">ES6标准入门</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../frontend/jquery_pocket_reference/">jquery_pocket_reference</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/">深入理解bootstrap</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">golang</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/1_the_go_programming_lauguage/">1 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/2_the_go_programming_lauguage/">2 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/3_the_go_programming_lauguage/">3 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/build-web-application-with-golang/">Build Web Application With Golang</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/go101/book/">Go101</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/network-programming-with-go/book/">Network Programming with go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/building-microservices-with-go/book/">Building Microservices With Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/building_restful_web_services_with_go/book/">Building Restful Web Services with Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/concurrency-in-go/concurrency_in_go/">Concurrency In Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/">Go In Action(Go 实战)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/">Go学习笔记语言详解</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/">Go学习笔记源码剖析</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">go语言编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/the_way_to_go/book/">go book</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/advanced-go-programming-book/advanced-go-programming/">advanced-go-programming</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../golang/go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/">go-build-web-applications</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">java</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../java/java-basic-introduction/">java basic introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网络</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/">TCP IP详解卷一</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">python</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../python/fluent_python/">Fluent Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../python/Python_Microservices_Development/">Python Microservices Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../python/high_performance_python/">High Performance Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Python网络编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">unix/linux</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/">Linux高性能服务器编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/">unix网络编程卷一</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分布式</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">Kafka 权威指南</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">分布式框架原理与应用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">大规模分布式存储系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/">深入分布式缓存从原理到实践</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">搜索引擎</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/">Elasticsearch实战</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">容器</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/">玩转Kubernets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/">第一本docker书</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">开发工具</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/">Practical Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/">Vim8文本处理实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/">Learn vim scrpt the hard way</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/">Pro Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/">Mastering Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/">Mastering Vim Quickly</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">思维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/">专注力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/">为什么精英这样用脑不会累</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/">刻意练习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/">如何想到又做到</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/">学习之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/">学习力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/">批判性思维工具</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/">程序员的思维修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/">认知天性</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/">超效率手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/">如何高效记忆</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/">科学学习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/">高效程序员的45个习惯</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">源码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/">源码阅读</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网站架构微服务</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/">微服务架构设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/">web scalavility for startup engineers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/">design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/">clean_architecture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/">微服务设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/">2_design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/">3_design_data_instensive_application</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">软件工程/项目管理</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/">人月神话</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/">代码之殇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/">解析极限编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/">项目管理修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/">修改软件的艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">运维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">linux集群和自动化运维</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">python自动化运维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">金融理财</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/">定投十年</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/">穷查理宝典</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">写作</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/">刷屏文案写作技巧</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">互联网</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/">我的互联网方法论-周鸿祎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/">用户思维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">区块链</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/">区块链技术指南</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">技术演讲</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/">哔哩哔哩的go微服务实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/">go业务基础库之Error&Context</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/">Go同步和并发设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/">左耳朵耗子-我这技术二十年</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">职场</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/give_and_take/">give and take</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/the_effective_engineer/">the_effective_engineer</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/">光速成长</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/">成功动机与目标</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/">番茄工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/">知乎职人觉醒</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/">知识变现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/">职场动物进化手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/">职场解释系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/">请停止无效努力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/">软技能</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/">高效15法则</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/">高效清单工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/">程序员的自我修养</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">心理学</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/">一切都是童年的错吗</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/">亲密关系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E6%83%85%E5%95%86/">情商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E9%80%86%E5%95%86/">逆商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/">拖延心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/">积极心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/">自控力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/">自控力-实操篇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/">自控力:和压力做朋友</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/">活出最乐观的自己</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/">改变心理学的40项研究</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/">超越自卑</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/">反脆弱</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">创业</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../startup/hello_startup/">Hello Startup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/">斯坦福公开课如何创业</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/">运营其实很简单</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">ZWiley的读书笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>APUE笔记</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/zwiley/mybook/edit/master/docs/unix_linux/APUE/APUE笔记.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="environ">environ<a class="headerlink" href="#environ" title="Permanent link">&para;</a></h3>
+<ol>
+<li>获取环境变量<p>```C++
+  extern char** environ; </p>
+</li>
+</ol>
+<p>int main(int argv, char* const argc[]) {
+        int i;
+        for(i =0; environ[i] != NULL; i++){
+            printf(&ldquo;environ[%d]=%s\n &ldquo;,i, environ[i] );</p>
+<div class="codehilite"><pre><span></span><code><span class="err">}</span>
+<span class="err">    return 0;</span>
+<span class="err">}</span>
+<span class="err">```</span>
+</code></pre></div>
+
+
+<h3 id="fork-vfork">fork, vfork<a class="headerlink" href="#fork-vfork" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><em>fork</em>  </p>
+<ul>
+<li>用于创建子进程。</li>
+</ul>
+<ul>
+<li>在调用时，返回两次：子进程的返回值是0，父进程的返回值的新建子进程的ID。</li>
+</ul>
+<ul>
+<li>
+<p>子进程是父进程的副本。子进程和父进程继续执行 <em>fork</em> 之后的指令。</p>
+<ul>
+<li>子进程获得父进程的 <strong>数据空间、堆、栈的副本</strong></li>
+<li>共享的是：<strong>文件描述符、mmap建立的映射区</strong> </li>
+<li>子进程和父进程共享的是 <strong>代码段</strong>，<em>fork</em> 之后各自执行。</li>
+<li>父进程和子进程的执行顺序谁先谁后是未知的，是竞争的关系。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><em>COW</em><br />
+<em>COW</em> 即写时复制(<em>Copy-On-Write</em>)， <strong>数据空间、堆、栈的副本</strong>在创建子进程时并不创建副本。而是在父进程或者子进程修改这片区域时，内核为修改区域的那块内存制作一个副本，以提高效率。  </li>
+</ul>
+<ul>
+<li>
+<p><em>fork</em> <br />
+<em>fork</em> 失败的原因：  </p>
+<ul>
+<li>系统中已经有太多的进程  </li>
+<li>该实际用户Id的进程数超过了系统限制</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>案例  </p>
+<p>```c++
+ int globvar = 10;
+ char buf[] = &ldquo;a writte to stdout.\n&rdquo;;</p>
+<p>int main(int argv, char* argc[]){
+     int var;
+     pid_t pid;</p>
+<div class="codehilite"><pre><span></span><code><span class="err"> var = 88;</span>
+<span class="err"> if(write(STDOUT_FILENO, buf, sizeof(buf)-1) != sizeof(buf)-1){</span>
+<span class="err">     printf(&quot;write error&quot;);</span>
+<span class="err">     exit(1);</span>
+<span class="err"> }</span>
+<span class="err"> printf(&quot;before fork.\n&quot;);</span>
+<span class="err"> // 创建子进程后，后面的代码，父进程和子进程独立运行。</span>
+<span class="err"> if((pid=fork()) &lt; 0){</span>
+<span class="err">     printf(&quot;fork() error.\n&quot;);</span>
+<span class="err">     exit(1);</span>
+<span class="err"> }</span>
+<span class="err"> else if(pid == 0){</span>
+<span class="err">     globvar++; //子进程运行不改变父进程的值</span>
+<span class="err">     var++;</span>
+<span class="err"> }</span>
+<span class="err"> else</span>
+<span class="err">     sleep(2);</span>
+<span class="err"> printf(&quot;pid=%ld, globvar=%d, var=%d.\n&quot;,(long)getpid() , globvar, var);</span>
+<span class="err"> retdurn 0;</span>
+</code></pre></div>
+
+
+<p>}
+ ```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>vfork</em>   </p>
+<ul>
+<li>与 <em>fork</em> 一样都创建新的进程，他的是目的是执行一个程序。  </li>
+</ul>
+<ul>
+<li>
+<p>与 <em>fork</em> 的区别在于：</p>
+<ul>
+<li><strong>它并不将父进程的地址空间复制到子进程中</strong> 。在子进程 <em>exec/exit</em> 之前，和父进程共享地址空间，提高了工作效率。但是在在子进程 <em>exec/exit</em> 之前，子进程如果修改了数据、进行函数调用、返回都会带来未知的结果。  </li>
+<li><em>vfork</em> 保证子进程比父进程先运行，在子进程 <em>exec/exit</em> 之后父进程才会运行。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>案例</p>
+<p><code>C++
+ // 将上面的修改如下：
+ if((pid=vfork()) &lt; 0){
+     printf("fork() error.\n");
+     exit(1);
+ }
+ else if(pid == 0){
+     globvar++; // 会改变父进程的变量值
+     var++;
+     _exit(0);
+ }
+ // 去掉sleep(2)是因为vfork能保证子进程先运行</code></p>
+</li>
+</ul>
+<ul>
+<li>
+<p>结果对比：</p>
+<p>```bash
+ # fork 
+ szz@ubuntu:~/Study/SystemProgram/IO$ ./f
+ a writte to stdout.
+ before fork.
+ pid=4304, globvar=11, var=89. # 子进程
+ pid=4303, globvar=10, var=88. # 父进程</p>
+<p># vfork
+ szz@ubuntu:./vf
+ a writte to stdout.
+ before fork.
+ pid=4301, globvar=11, var=89.# 父进程
+ ```</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><em>gdb</em> 调试<br />
+<em><code>set follow-fork-mode child</code></em>  : 跟踪子进程<br />
+<em><code>set follow-fork-mode parent</code></em> : 跟踪父进程</li>
+<li>进程和程序的区别 <br />
+  程序占用磁盘空间，进程占用系统资源。</li>
+</ul>
+<h3 id="gcc">gcc<a class="headerlink" href="#gcc" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>编译过程</p>
+<ul>
+<li>预处理:头文件展开，宏替换，注释去掉<br />
+<em><code>gcc -E hello.c -o hello.i</code></em></li>
+<li>编译器:C文件变成汇编文件<br />
+<em><code>gcc -S hello.i -o hello.s</code></em></li>
+<li>汇编器:把汇编文件变成二进制文件<br />
+<em><code>gcc -c hello.s -o hello.o</code></em></li>
+<li>链接器:把函数库中的相应代码组合到目标文件中<br />
+<em><code>gcc hello.o -o hello</code></em>  </li>
+</ul>
+<p>编译过程：<img alt="编译过程" src="https://i.loli.net/2020/05/29/uoxDfnRX4CaNwTm.png" /></p>
+</li>
+<li>
+<p>gcc 参数</p>
+<ul>
+<li><em><code>-I</code></em> + 路径： 提供编译时所需头文件路径</li>
+</ul>
+</li>
+</ol>
+<h3 id="io">I/O操作<a class="headerlink" href="#io" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><em><code>errno</code></em><br />
+<em><code>errno</code></em> 是一个全局的错误变量。  </p>
+</li>
+<li>
+<p><em><code>open</code></em><br />
+   open函数有两种设计：</p>
+<p><code>C++
+ int open(const char* filename, int flags); // 打开已经存在的文件
+ int open(const char* filename, int flags, mode_t mode); //可以用于创建文件
+ /**
+   flags: O_RDWR   // 读写
+          O_RDONLY // 只读
+          O_WRONLY // 只写
+          配合
+          "|O_CREAT"  // 文件不存在时创建
+          "|O_TRUNC"  // 将打开的文件原来的内容清空
+   mode: 文件的权限。文件的权限此处需要将实际文件权限(比如777)和本地掩码(umask得到0022)取反后进行按位与。
+ */</code></p>
+</li>
+<li>
+<p><em><code>read</code></em><br />
+<em><code>read</code></em> 设计</p>
+<p><code>c++
+ sszie_t read(int fd, void* buff,  size_t count);
+ /*
+ size_t  表示无符号
+ sszit_t 表示有符号
+ 返回值：
+     -1: 读取失败
+     0 : 读取完成
+     &gt;0: 读取的字节数
+ */</code></p>
+</li>
+<li>
+<p><em><code>write</code></em> 和 <em><code>read</code></em> 类似。</p>
+</li>
+<li>
+<p>系统的I/O函数和C库函数的区别</p>
+<ul>
+<li>标准的C库函数，内部有一个系统维护的缓冲区。</li>
+<li>上面都的 <em><code>write</code></em> 和 <em><code>read</code></em>的缓冲区是由用户自己进行维护。</li>
+</ul>
+</li>
+<li>
+<p><em><code>lseek</code></em>   </p>
+<ul>
+<li>获取文件大小</li>
+<li>移动文件指针</li>
+<li>文件拓展</li>
+</ul>
+</li>
+<li>
+<p><em><code>stat</code></em> </p>
+<ul>
+<li>命令：<em><code>stat</code></em>：<em><code>stat + 文件名</code></em></li>
+<li>函数：  </li>
+</ul>
+</li>
+</ol>
+<h1 id="ipc">IPC<a class="headerlink" href="#ipc" title="Permanent link">&para;</a></h1>
+<ol>
+<li>简介<br />
+   进程间通信的三种主要方式有:
+    + 管道: 使用最简单
+    + 信号：开销最小
+    + 共享映射区：无血缘关系
+    + 本地套接字：最稳定</li>
+</ol>
+<h3 id="1-mmp">1. mmp<a class="headerlink" href="#1-mmp" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>简介</p>
+<ul>
+<li><code>mmp</code>函数</li>
+<li>借组共享内存放磁盘文件，借组指针访问磁盘文件</li>
+<li>父子进程、血缘关系进程 通信</li>
+<li>匿名映射区</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>函数</p>
+<p><code>c++
+void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);</code></p>
+<p>函数返回的是：创建映射区的首地址，失败返回<code>MAP_FAILED</code>。</p>
+<ul>
+<li>参数</li>
+<li><code>addr</code>：直接传入 <font color=blue><code>NULL</code></font><ul>
+<li><code>length</code>：欲创建映射区的大小</li>
+<li><code>prot</code>：<strong>映射区权限</strong>：<code>PORT_READ、PORT_WRITE、PORT_READ|PORT_WRITE</code>。</li>
+<li><code>flags</code>：标志参数。是否会将映射区所作的修改反映到物理设备（磁盘）上。  <br />
+  &emsp;&emsp; a).<code>MAP_SHARED</code>：会   <br />
+  &emsp;&emsp; b). <code>MAP_PRIVATE</code>：不会  </li>
+<li><code>fd</code>：用来创建映射区的文件描述符</li>
+<li><code>offset</code>：映射文件的偏移。(4k的整倍数)</li>
+</ul>
+</li>
+<li>注意事项  <ul>
+<li>不能创建0字节大小的映射区，因此新创建出来的文件不能用于创建映射区</li>
+<li>权限<br />
+  &emsp;&emsp; a). 创建映射区的权限，要小于等于打开文件权限<br />
+  &emsp;&emsp; b). 创建映射区的过程中，隐含着一次对打开文件的读操作。  </li>
+<li><code>offset</code>: 必须是4k的整数倍,<code>mmu</code>创建的最小大小就是4k</li>
+<li>关闭fd，对<code>mmap</code>无影响。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>父子进程通信<br />
+  父子进程之间的也可以通过<code>mmap</code>建立的映射区来完成数据通信。但是<code>mmap</code>函数的<code>flags</code>标志位应该设置<code>flags=MAP_SHARED</code>。</p>
+<ul>
+<li>
+<p>父子进程共享：  </p>
+<ul>
+<li>打开的文件描述符  </li>
+<li><code>mmap</code>建立的映射区。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>匿名映射<br />
+  由于<code>mmap</code>需要在进程之间通信时，需要借组一个文件描述符，但是对应的文件仅仅在通信期间存在，为了省略这一临时文件，产生匿名映射。  </p>
+<ul>
+<li>Linux独有的方法：宏<code>MAP_ANONYMOUS/MAP_ANON</code>。<br />
+<em><code>char* pmem = mmap(NULL, len, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANON, -1, 0);</code></em></li>
+</ul>
+<ul>
+<li>
+<p>通用的方法：  </p>
+<p><code>c
+ int fd = open("/dev/zero", O_RDWR);
+ char* pmem = mmap(NULL, len, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);</code></p>
+<p>使用的是一个文件<code>/dev/zero</code>完成。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><code>mmap</code>实现无血缘关系进程间通信<br />
+  实际上<code>mmp</code>是内核<strong>借助文件</strong>帮我们创建了一个映射区。多个进程利用该映射区完成书的传递。由于内核是多进程共享，因此无血缘关系的进程间也可以使用<code>mmap</code>完成数据通信。</li>
+</ul>
+<h3 id="makefile">makefile<a class="headerlink" href="#makefile" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c"># obj=main.o ./src/add.c ./src/sub.c ./src/mul.c ./src/div.c</span>
+<span class="c"># makefile中提供的函数，都有返回值,使用函数来取代obj的首写输入方式</span>
+<span class="nv">src</span> <span class="o">=</span> <span class="k">$(</span>wildcard ./*.c, ./src/*.c<span class="k">)</span>  <span class="c1"># 表示取出指定目录下所有的.c文件</span>
+<span class="nv">obj</span> <span class="o">=</span> <span class="k">$(</span>patsubst ./%.c, ./%.o, <span class="k">$(</span>src<span class="k">))</span>
+<span class="nv">target</span> <span class="o">=</span> main
+<span class="nv">CC</span> <span class="o">=</span> gcc
+<span class="nv">CPPFLAGS</span> <span class="o">=</span> -I
+<span class="nf">$(target)</span><span class="o">:</span><span class="k">$(</span><span class="nv">obj</span><span class="k">)</span>
+    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>obj<span class="k">)</span> -o <span class="k">$(</span>target<span class="k">)</span>
+
+<span class="nf">%.o</span><span class="o">:</span>%.<span class="n">c</span>
+    <span class="k">$(</span>CC<span class="k">)</span> -c $&lt; -o <span class="nv">$@</span>
+<span class="c"># 自动变量</span>
+<span class="c"># $&lt;: 表示规则中的第一个依赖，比如main.o </span>
+<span class="c"># $@: 表示规则中的目标，比如main</span>
+<span class="c"># $^: 表示规则中的所有依赖，比如main.o ./src/add.c ./src/sub.c ./src/mul.c ./src/div.c,</span>
+<span class="c">#     只能在规则中的命令中使用</span>
+<span class="c"># 系统变量 一般是大写。</span>
+<span class="c"># CC=gcc</span>
+
+<span class="c"># .PHONY:clean 表示生成伪目标，以防止和同目录结构下存在clean文件时无法编译</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="n">clean</span>
+<span class="nf">clean</span><span class="o">:</span>
+<span class="c">#-rm 表示如果这条命令执行失败，就忽略</span>
+<span class="c">#-f  表示强制执行，以防止在没有*.o和main文件时，make clean失败。</span>
+    -rm -f  <span class="k">$(</span>target<span class="k">)</span> <span class="k">$(</span>obj<span class="k">)</span>
+</code></pre></div>
+
+
+<h3 id="exitwaitwaitpidexec">exit、wait、waitpid、exec<a class="headerlink" href="#exitwaitwaitpidexec" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><em>exit</em><br />
+   8种方式使进程终止，其中五种是正常终止:</p>
+<ul>
+<li>正常终止:  <ul>
+<li>从 <em>main</em> 返回：return 0 == exit(0)</li>
+<li>调用 <em>exit</em> <br />
+   在退出时，会调用一系列的终止处理程序(可以调用函数 <em>atexit</em> 进行注册)，关闭所有标准 <em>I/O</em>流等。</li>
+<li>调用 <em>_exit/_Exit</em> <br />
+   Linux的 <em>_exit/_Exit</em> 与 <em>exit</em> 不同，前者是直接退出，不 <em>flush</em> 缓冲区，而后者会。<em>exit</em> 内部调用 <em>_exit</em>，且 <em>flush</em> 缓冲区。  </li>
+<li>最后一个线程从启动例程返回</li>
+<li>从最后一个线程调用 <em>pthread_exit</em></li>
+</ul>
+</li>
+<li>异常终止：<ul>
+<li>调用 <em>abort</em> ：产生 <em>SIGABRT</em> 信号。</li>
+<li>接到一个信号</li>
+<li>最后一个线程对取消请求做出响应</li>
+</ul>
+</li>
+</ul>
+<p>无论如何进程如何终止，最后都会执行内核中的同一段代码，关闭所有的描述符，释放所用的存储器。</p>
+</li>
+<li>
+<p>终止状态 <br />
+   当一个进行终止，内核向其父进程发生 <strong><em>SIGCHLD</em></strong> 信号。进程终止，其父进程通过调用 <em>wiat、waitpid</em> 来获取<strong>正常终止</strong>进程的的退出状态。  </p>
+<ul>
+<li>孤儿进程<br />
+   父进程通过 <em>fork</em> 产生子进程，但是父进程在子进程之前终止，那么该子进程的父进程都会变成 <strong><em>init</em></strong> 进程，<em>init</em> 进程ID是1。这些父进程先终止的子进程被叫做 <strong>孤儿进程</strong>。</li>
+<li>僵死进程<br />
+   如果子进程在父进程之前终止，父进程只能通过 <em>wiat、waitpid</em> 来获取终止的子进程的状态信息。这样一个已经终止、但是其父进程尚未对其进程善后处理的（获取子进程的相关信息、释放它占用的资源）进程叫做 <strong>僵死进程</strong>。 如果父进程没有 <em>wiat、waitpid</em> 来获取终止的子进程的状态状态，这些进程终止后都会变成 <strong>僵死进程</strong>。</li>
+</ul>
+<p><code>init进程的子进程不存在僵死进程：只要有一个进程终止，就会调用一个wait函数取得其终止状态。</code></p>
+<ul>
+<li>查看僵死进程： <code>ps -e -o stat,ppid,pid,cmd|egrep '^[Zz]'</code></li>
+<li>杀死僵死进程： <code>kill -9 ID</code><br />
+<a href="https://blog.csdn.net/qq_37837134/article/details/82683107">参考地址</a></li>
+</ul>
+<p>```bash
+  s：ps命令用于获取当前系统的进程信息.</p>
+<p>-e：参数用于列出所有的进程</p>
+<p>-o：参数用于设定输出格式。这里只输出进程的stat(状态信息)、ppid(父进程pid)、pid(当前进程的pid)，cmd(即进程的可执行文件)。</p>
+<p>egrep：是linux下的正则表达式工具</p>
+<p>&rsquo;^[Zz]&rsquo;：这是正则表达式，^表示第一个字符的位置，[Zz]，表示z或者大写的Z字母，即表示第一个字符为Z或者z开头的进程数据，只所以这样是因为僵尸进程的状态信息以Z或者z字母开头。
+ ```</p>
+</li>
+<li>
+<p><strong><em>wiat、waitpid</em></strong>  </p>
+<p><code>c
+ pid_t wait(int* statloc);  
+ pid_t waitpid(pid_t pid, int* statloc, int options); // 
+ /*
+ // 返回时返回值是终止进程的id，子进程终止状态存储在statloc
+ // 如果不关心终止状态，就令statloc为null，statloc详见P191
+ */</code></p>
+</li>
+</ol>
+<ul>
+<li>异同点
+     + <em>wiat</em> 是阻塞的，<em>waitpid</em> 有个选项可以不阻塞。
+     + <em>wiat</em> 等待其调用后的第一个子线程终止， <em>waitpid</em> 可以控制它等待的子线程。
+     + <em>wait</em> 出错是：调用该函数的进程没有子线程，<em>waitpid</em> 出错还可能是指定的进程或者进程组不存在。
+     + 都可以回收子进程资源
+     + 都获取子进程退出状态（退出原因）。</li>
+</ul>
+<ol>
+<li>
+<p><em>exec</em>  </p>
+<p>```c++
+ extern char **environ;</p>
+<p>int execl  (const char <em>path, const char </em>arg, &hellip; /<em> (char  </em>) NULL <em>/);
+ int execv  (const char </em>path, char <em>const argv[]);
+ int execve (const char </em>path, char <em>const argv[], char const</em> envp[]);
+ int execle (const char <em>path, const char </em>arg, &hellip; /<em>, (char </em>) NULL, char * const envp[] <em>/);
+ int execlp (const char </em>file, const char <em>arg, &hellip; /</em> (char  <em>) NULL </em>/);
+ int execvp (const char <em>file, char </em>const argv[]);
+ int execvpe(const char <em>file, char </em>const argv[], char *const envp[]);
+ ```</p>
+</li>
+</ol>
+<p>只有失败时候才返回-1，成功时直接执行被执行的函数，不会返回，即 <em>exec</em> 同一作用域的后面的部分不会运行：</p>
+<div class="codehilite"><pre><span></span><code>       <span class="n">exec</span><span class="p">(...);</span>
+       <span class="n">perroe</span><span class="p">(</span><span class="s">&quot;exec call error.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+       <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+   <span class="err">```</span>
+
+
+<span class="cp">### 动态库和静态库</span>
+
+<span class="o">---</span>
+
+<span class="err">目录结构：</span>
+</code></pre></div>
+
+
+<p>.
+├── include
+│   ├── head.h
+│   └── note.md
+├── lib
+│   └── libMyCal.a
+├── main.c
+└── src
+    ├── add.c
+    ├── div.c
+    ├── mul.c
+    └── sub.c</p>
+<div class="codehilite"><pre><span></span><code><span class="mi">1</span><span class="p">.</span> <span class="err">静态库</span>
+   <span class="o">+</span> <span class="err">生成</span><span class="p">.</span><span class="n">o文件</span><span class="err">：</span><span class="ss">`gcc *.c -c -I../include`</span>
+   <span class="o">+</span> <span class="err">制作静态库：</span><span class="ss">`ar -cr libMyCal.a  *.o`</span>
+   <span class="o">+</span> <span class="err">使用</span><span class="p">:</span>
+     <span class="o">+</span> <span class="ss">`gcc main.c  lib/libMyCal.a  -o main -I./include`</span>
+     <span class="o">+</span> <span class="ss">`gcc main.c -I ./include -L lib -l MyCal -o main_`</span>
+
+
+
+<span class="mi">2</span><span class="p">.</span> <span class="err">动态库</span>
+
+   <span class="o">+</span> <span class="err">制作：</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">fPIC</span> <span class="o">-</span><span class="n">I</span> <span class="p">..</span><span class="o">/</span><span class="n">include</span> <span class="o">*</span><span class="p">.</span><span class="n">c</span>
+
+   <span class="o">+</span> <span class="err">生成：</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">shared</span> <span class="o">-</span><span class="n">o</span> <span class="n">libMyCal</span><span class="p">.</span><span class="n">so</span> <span class="o">-</span><span class="n">I</span> <span class="p">..</span><span class="o">/</span><span class="n">include</span> <span class="o">*</span><span class="p">.</span><span class="n">o</span>
+
+   <span class="o">+</span> <span class="err">使用：</span>
+
+     <span class="o">+</span> <span class="ss">`gcc main.c lib/libMyCal.so -o m -I ./include`</span>
+
+     <span class="o">+</span> <span class="ss">`gcc main.c -I ./include -L lib -l MyCal -o main_`</span>
+
+       <span class="err">但是这么写会报错：</span>
+
+       <span class="ss">```</span>
+<span class="ss">       ./ main_: error while loading shared libraries: </span>
+<span class="ss">           libMyCal.so: cannot open shared object file: No such file or directory</span>
+<span class="ss">       ```</span>
+
+       <span class="err">解决方法是：</span>
+
+
+       <span class="o">+</span> <span class="err">将</span><span class="n">libMyCal</span><span class="p">.</span><span class="n">so放到系统的lib下</span><span class="err">，放的也都是动态链接库</span><span class="p">:</span> <span class="ss">`sudo cp ./lib/libMyCal.so  /lib/`</span>
+
+         <span class="err">再去执行</span><span class="ss">`./main_`</span> <span class="err">就能顺利编译</span>
+
+         <span class="err">可用</span><span class="ss">`ldd`</span> <span class="err">命令查看</span> <span class="ss">`main_`</span><span class="err">的依赖项目：</span>
+
+         <span class="ss">```bash</span>
+<span class="ss">         (base) szz@szz:/media/szz/Others/Self_study/Cpp/Study/sdll$ ldd main_ </span>
+<span class="ss">             linux-vdso.so.1 =&gt;  (0x00007fff07e96000)                          # shared object file</span>
+<span class="ss">             libMyCal.so =&gt; /lib/libMyCal.so (0x00007fd692a86000)              # 动态库    </span>
+<span class="ss">             libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd6926bc000) # 系统的C库</span>
+<span class="ss">             /lib64/ld-linux-x86-64.so.2 (0x00007fd692c88000)                  # 动态链接器</span>
+<span class="ss">         ```</span>
+
+       <span class="o">+</span> <span class="err">加入搜索路径：</span><span class="ss">`export LD_LIBRARY_PATH=./lib/`</span>
+
+         <span class="err">直接将动态库放到系统的动态库中，很不安全，因此可能会覆盖重名的系统库。更加安全的方式是通过</span><span class="ss">`LD_LIBRARY_PATH`</span><span class="err">使得系统在搜索环境变量之前搜索这个路径。</span> 
+
+         <span class="ss">```bash</span>
+<span class="ss">         linux-vdso.so.1 =&gt;  (0x00007ffce2710000)</span>
+<span class="ss">         libMyCal.so =&gt; ./lib/libMyCal.so (0x00007fee92742000)               # 与上面解决方案对应路径不同</span>
+<span class="ss">         libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fee92378000)</span>
+<span class="ss">         /lib64/ld-linux-x86-64.so.2 (0x00007fee92944000)</span>
+
+<span class="ss">         ```</span>
+
+         <span class="err">注意：</span> <span class="err">这个方案是临时的，用于测试使用，想要永久生效，</span><span class="o">**</span><span class="err">需要将上述命令中的相对路径换成绝对路径加入</span><span class="ss">`.bashrc`</span><span class="err">文件中</span><span class="o">**</span><span class="err">。</span>
+
+
+       <span class="o">+</span> <span class="err">第四种解决方案</span>
+
+
+        <span class="o">+</span> <span class="err">动态库的优、缺点：</span>
+            <span class="o">+</span> <span class="err">体积小；</span> <span class="err">动态库更新了，不需要重新编译程序</span><span class="p">(</span><span class="err">只要函数接口没变</span><span class="p">)</span>
+            <span class="o">+</span> <span class="err">加载速度相对静态库慢一点</span>
+
+<span class="c1"># 守护进程</span>
+
+<span class="nf">Daemon</span><span class="p">(</span><span class="err">进程</span><span class="p">),</span><span class="err">是</span><span class="n">Linux中的后台服务器进程</span><span class="err">，通常独立于控制终端，并且周期性的执行某种任务或者等待处理。某些发生的事件，一般采用</span><span class="n">d结尾的名字</span><span class="err">。</span>
+
+<span class="n">Linux后台的一些系统服务进程</span><span class="err">，没有控制终端，不能直接和用户交互。不受用户登录、注销的影响，一直在运行着，他们就是守护进程。</span>
+
+<span class="c1">## 创建守护进程</span>
+
+<span class="mi">1</span><span class="p">.</span> <span class="err">创建子进程，父进程退出。</span>
+   <span class="err">使得所有工作在子进程中的任务脱离终端。</span>
+<span class="mi">2</span><span class="p">.</span> <span class="err">在子进程中创建新</span><span class="ss">`session`</span>
+   <span class="o">+</span> <span class="ss">`setsid()`</span><span class="err">函数</span>
+   <span class="o">+</span> <span class="err">使得子进程完全独立出来，脱离父进程的权限控制</span>
+<span class="mi">3</span><span class="p">.</span> <span class="err">改变当前目录为根目录</span>
+   <span class="o">+</span> <span class="ss">`chdir()`</span><span class="err">函数</span>
+   <span class="o">+</span> <span class="err">这是为了防止占用可卸载的文件系统</span>
+<span class="mi">4</span><span class="p">.</span> <span class="err">重新设置文件掩码</span>
+   <span class="o">+</span> <span class="ss">`umask()`</span><span class="err">函数</span>
+   <span class="o">+</span> <span class="err">防止继承的文件创建屏蔽字来拒绝某些权限</span>
+<span class="mi">5</span><span class="p">.</span> <span class="err">关闭文件描述符</span>
+   <span class="o">+</span> <span class="err">关闭</span><span class="p">:</span><span class="ss">`STDOUT_FILENO`</span><span class="err">、</span><span class="ss">`STDIN_FILENO`</span><span class="err">、</span><span class="ss">`STDERR_FILENO`</span><span class="err">。</span>
+   <span class="o">+</span> <span class="ss">`dup2()`</span><span class="err">函数，重定向到</span><span class="ss">`dev/null`</span>
+<span class="mi">6</span><span class="p">.</span> <span class="err">守护进程的任务。</span>  
+   <span class="err">完成前面的准备工作，这里开始实现任务。</span>
+<span class="mi">7</span><span class="p">.</span> <span class="err">守护进程退出</span>
+   <span class="err">可使用信号机制。</span>
+
+<span class="c1">## 文件权限</span>
+
+<span class="mi">1</span><span class="p">.</span> <span class="o">*</span><span class="n">chmod</span><span class="o">*</span>  
+
+   <span class="o">+</span> <span class="err">数字表示法</span>
+
+     <span class="o">+</span> <span class="ss">`chmod 权限命令 文件`</span>  
+     <span class="o">+</span> <span class="ss">`chmod -R 权限命令 文件夹`</span>   
+       <span class="err">加上</span> <span class="o">*-</span><span class="n">R</span><span class="o">*</span>  <span class="err">表示递归的执行文件夹下面的所有文件。权限命令分为</span><span class="ss">`r:4,w:2:x:1&quot;`</span><span class="err">的组合。</span>  
+       <span class="err">比如</span><span class="p">:</span> <span class="ss">`-rwxrwxrwx 1 szz szz 560 Nov 29 03:16 wiat_.c`</span> <span class="err">前面的权限</span> <span class="ss">`-rwxrwxrwx`</span> <span class="err">就是表示</span><span class="mi">777</span><span class="err">。</span>
+
+   <span class="o">+</span> <span class="err">字符表示法</span>  
+
+     <span class="o">+</span> <span class="ss">`chmod [用户类型] [+|-|=] [权限字符] 文件名`</span>     
+     <span class="o">+</span> <span class="ss">`chmod -R [用户类型] [+|-|=] [权限字符] 文件夹`</span>     
+       <span class="o">!</span><span class="p">[</span><span class="err">文件权限</span><span class="p">](</span><span class="n">G</span><span class="p">:</span><span class="o">%</span><span class="mi">5</span><span class="n">CSSE</span><span class="o">%</span><span class="mi">5</span><span class="n">CInterview</span><span class="o">%</span><span class="mi">5</span><span class="n">CBackEnd</span><span class="o">%</span><span class="mi">5</span><span class="n">Cmybook</span><span class="o">%</span><span class="mi">5</span><span class="n">Cdocs</span><span class="o">%</span><span class="mi">5</span><span class="n">Cunix_linux</span><span class="o">%</span><span class="mi">5</span><span class="n">CAPUE</span><span class="o">%</span><span class="mi">5</span><span class="n">CImage</span><span class="o">%</span><span class="mi">5</span><span class="n">C</span><span class="o">%</span><span class="mi">25</span><span class="n">E6</span><span class="o">%</span><span class="mi">2596</span><span class="o">%</span><span class="mi">2587</span><span class="o">%</span><span class="mi">25</span><span class="n">E4</span><span class="o">%</span><span class="mi">25</span><span class="n">BB</span><span class="o">%</span><span class="mi">25</span><span class="n">B6</span><span class="o">%</span><span class="mi">25</span><span class="n">E6</span><span class="o">%</span><span class="mi">259</span><span class="n">D</span><span class="o">%</span><span class="mi">2583</span><span class="o">%</span><span class="mi">25</span><span class="n">E9</span><span class="o">%</span><span class="mi">2599</span><span class="o">%</span><span class="mi">2590</span><span class="p">.</span><span class="n">jpg</span><span class="p">)</span>
+
+
+     <span class="err">比如：</span>
+
+     <span class="ss">```bash</span>
+<span class="ss">     $ chmod u+rw wait.c  # 给用户 读写权限</span>
+<span class="ss">     $ chmod u-rw wait.c  # 去掉用户的读写权限</span>
+<span class="ss">     $ chmod g+rw wait.c  # 给组 读写权限</span>
+<span class="ss">     $ chmod g=x wait.c   # 设置组具有执行权限</span>
+<span class="ss">     $ chmod a=x wait.c   # 都有执行权限</span>
+<span class="ss">     ```</span>
+
+<span class="o">+</span> <span class="o">*</span><span class="n">chown</span><span class="o">*</span> 
+
+  <span class="o">+</span> <span class="ss">`chown [选项]... [所有者] [:组] 文件 ...`</span>
+  <span class="o">+</span> <span class="ss">`chown -R [所有者] [:组] 文件夹 ...`</span>
+
+  <span class="err">比如</span><span class="p">:</span>
+
+  <span class="ss">```c</span>
+<span class="ss">  $ ls -l wiat_.c </span>
+<span class="ss">  ---x-wxrwx 1 szz szz 560 Nov 29 03:16 wiat_.c</span>
+
+<span class="ss">  //修改用户</span>
+<span class="ss">  $ sudo chown root wiat_.c </span>
+<span class="ss">  ---xrw-rwx 1 root szz 560 Nov 29 03:16 wiat_.c</span>
+
+<span class="ss">  // 修改组</span>
+<span class="ss">  $ sudo chown .root wiat_.c </span>
+<span class="ss">  ---xrw-rwx 1 root root 560 Nov 29 03:16 wiat_.c</span>
+
+<span class="ss">  //同时修改</span>
+<span class="ss">  $ sudo chown szz.szz wiat_.c </span>
+<span class="ss">  ---xrw-rwx 1 szz szz 560 Nov 29 03:16 wiat_.c</span>
+<span class="ss">  ```</span>
+
+<span class="mi">3</span><span class="p">.</span> <span class="err">增加</span><span class="o">/</span><span class="err">删除用户</span>  
+   <span class="err">在指定的组里添加成员。</span>
+
+   <span class="o">+</span> <span class="err">增加组</span>  <span class="p">:</span> <span class="ss">`groupadd groupname`</span>
+   <span class="o">+</span> <span class="err">增加用户</span><span class="p">:</span> <span class="ss">`useradd username -g groupname`</span> 
+   <span class="o">+</span> <span class="err">删除用户</span><span class="p">:</span> <span class="ss">`userdel username -g groupname`</span> 
+   <span class="o">+</span> <span class="err">查看</span> <span class="p">:</span> <span class="ss">`id username`</span>
+   <span class="o">+</span> <span class="err">改变用户：</span> <span class="ss">`sudo su - username`</span>
+
+<span class="mi">4</span><span class="p">.</span> <span class="err">对于一个文件操作</span>  
+   <span class="err">假设当前环境是：</span>       
+
+   <span class="o">+</span> <span class="err">用户有</span><span class="p">:</span> <span class="o">*</span><span class="n">lam</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">other</span><span class="o">*</span>
+   <span class="o">+</span> <span class="err">组别：</span><span class="o">*</span><span class="n">family</span><span class="o">*</span>  
+     <span class="err">状态如下：</span><span class="o">*</span><span class="n">lam</span><span class="p">,</span> <span class="n">sz</span><span class="o">*</span> <span class="err">属于同一个组</span> <span class="o">*</span><span class="n">family</span><span class="o">*</span><span class="err">。</span>
+
+   <span class="ss">```bash</span>
+<span class="ss">   $ id lam</span>
+<span class="ss">   uid=1001(lam) gid=1002(family) groups=1002(family)</span>
+<span class="ss">   $ id sz</span>
+<span class="ss">   uid=1002(sz) gid=1002(family) groups=1002(family)</span>
+<span class="ss">   ```</span>
+
+   <span class="err">有文件：</span><span class="n">wait</span><span class="p">.</span><span class="n">cpp</span>
+
+   <span class="ss">```bash</span>
+<span class="ss">   $ ls -l wait.cpp </span>
+<span class="ss">   ---xrw-r-- 1 lam family 20 Nov 29 05:09 wait.cpp</span>
+<span class="ss">   ```</span>
+
+   <span class="err">权限解释：</span>  
+
+   <span class="o">+</span> <span class="n">user</span> <span class="p">:</span> <span class="err">对于用户</span> <span class="o">*</span><span class="n">lam</span><span class="o">*</span> <span class="err">具有可执行权限</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">)</span>
+   <span class="o">+</span> <span class="n">gropu</span><span class="p">:</span> <span class="err">对于属于组</span><span class="o">*</span><span class="n">family</span><span class="o">*</span><span class="err">的成员都具有具有</span><span class="n">rw权限</span>
+   <span class="o">+</span> <span class="n">other</span><span class="p">:</span> <span class="err">对于其他人</span><span class="o">*</span><span class="n">other</span><span class="o">*</span><span class="err">具有</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="err">权限</span>
+     <span class="err">要是想让不同的成员获得想要的权限，就可以使用</span> <span class="o">*</span><span class="n">chowm</span><span class="o">*</span> <span class="err">命令来改变。</span>      
+   <span class="o">+</span> <span class="o">**</span><span class="err">删除</span><span class="o">**</span> <span class="err">：删除一个文件，是看该文件所属的目录权限</span>
+
+<span class="mi">5</span><span class="p">.</span> <span class="err">对于一个目录的操作</span>
+
+   <span class="ss">` 目录Process: dr-x--x--- 2 lam family 4096 Nov 29 05:14 Process `</span>
+
+   <span class="err">用户</span><span class="o">*</span><span class="n">other</span><span class="o">*</span> <span class="err">目前对于</span> <span class="o">*</span><span class="n">Process</span><span class="cm">/* 目录没有任何的执行能力。</span>
+
+<span class="cm">   ```</span>
+<span class="cm">   $ cd Process/</span>
+<span class="cm">   -su: cd: Process/: Permission denied</span>
+
+<span class="cm">   $ ls Process/</span>
+<span class="cm">   ls: cannot open directory &#39;Process/&#39;: Permission denied</span>
+<span class="cm">   ```</span>
+
+<span class="cm">   把 *`Process/`* 的权限改为 *`dr-x--x--x`* 可以执行 *`cd`*, 再改为 *`dr-x--xr-x`* 可以执行 *`ls Process/`*。 </span>
+
+<span class="cm">   + 总结</span>
+<span class="cm">     + 可读r: 表示具有浏览目录下面文件及目录的权限。即可用 *ls*。</span>
+<span class="cm">     + 可写w: 表示具有增加、删除或者修改目录内文件名的权限</span>
+<span class="cm">     + 可执行x: 表示居于进入目录的权限，即 *cd*。 </span>
+
+<span class="cm">6. 默认权限  </span>
+<span class="cm">   文件权限计算方法与*umask*   </span>
+
+<span class="cm">   + 创建目录默认的最大权限是：777</span>
+
+<span class="cm">   + 创建文件最大权限是：666  </span>
+
+<span class="cm">     + 创建目录时：用 777- *umask* 即可得到所得目录权限  </span>
+
+<span class="cm">     + 创建文件时：</span>
+<span class="cm">       如果 *umask*得奇数位，用 666-*umask* 后，将 *umask* 的奇数位加1。  </span>
+<span class="cm">       比如 *umask =303*， 那么文件权限是：666-303= 363,363+101=464，即 *-r--rw-r--*</span>
+
+<span class="cm">       ```bash</span>
+<span class="cm">       $ umask 303</span>
+<span class="cm">       $ touch msk_303</span>
+<span class="cm">       $ ls -l</span>
+<span class="cm">       -r--rw-r-- 1 szz szz    0 Nov 29 06:39 msk_303</span>
+<span class="cm">       ```</span>
+
+<span class="cm">7. *uid/gid*  </span>
+
+<span class="cm">+ *uid*  </span>
+
+<span class="cm">  + `uid` 应用的对象是 **命令**，而不是文件。  </span>
+<span class="cm">  + `suid` 仅该指令执行过程中有效。</span>
+<span class="cm">  + 指令经过 *suid* 后，任意用户在执行该指令时，都可获得该指令对应的拥有者所具有的权限。   </span>
+
+<span class="cm">  修改密码的指令权限如下，在用户位权限上有个 `s`，就是代表 *suid* ：</span>
+
+<span class="cm">  ```bash</span>
+<span class="cm">  $ ls -l /usr/bin/passwd</span>
+<span class="cm">  -rwsr-xr-x 1 root root 59640 Mar 22  2019 /usr/bin/passwd</span>
+<span class="cm">  ```</span>
+
+<span class="cm">  **注意**：用户权限前三位上的x位上如果有s就表示 *`suid`*,当x位置上没有x时， *`suid`* 就是 *`S`*。</span>
+
+<span class="cm">  现在有如下目录结构:  </span>
+
+<span class="cm">  ```bash</span>
+<span class="cm">  Permission/</span>
+<span class="cm">  └── test</span>
+<span class="cm">  ```</span>
+
+<span class="cm">  权限：</span>
+
+<span class="cm">  ```bash </span>
+<span class="cm">  drwxrwxr-x 2 root root   4096 Nov 29 19:06 Permission</span>
+<span class="cm">  -rw-r--r-- 1 root root    0   Nov 29 19:06 test</span>
+<span class="cm">  ```</span>
+
+<span class="cm">  普通用户 `sz`想要删除文件 `test` 权限不够。  </span>
+
+<span class="cm">  ```bash</span>
+<span class="cm">  $ rm test</span>
+<span class="cm">  rm: remove write-protected regular empty file &#39;test&#39;? Y</span>
+<span class="cm">  rm: cannot remove &#39;test&#39;: Permission denied</span>
+<span class="cm">  ```</span>
+
+<span class="cm">  经过给指令 `rm` 设置uid之后，即设置命令`rm`具有所属的用户权限。比如：</span>
+
+<span class="cm">  ```bash</span>
+<span class="cm">  $ which rm</span>
+<span class="cm">  /bin/rm</span>
+<span class="cm">  $ ls -l /bin/rm</span>
+<span class="cm">  -rw-r-xr-x 1 root root 63704 Jan 18  2018 /bin/rm</span>
+<span class="cm">  $ sudo chmod u+s `which rm`</span>
+<span class="cm">  $ ls -l /bin/rm</span>
+<span class="cm">  -rwsr-xr-x 1 root root 63704 Jan 18  2018 /bin/rm</span>
+<span class="cm">  $ rm test  # 删除成功</span>
+<span class="cm">  ```</span>
+
+<span class="cm">  上面都设置 *`uid`* 功能就是使得 *`rm`* 命令具有其所属的 *`root`* 具有的权限。  </span>
+<span class="cm">  **注意**：`rm`命令比较危险，需要将其命令改回去。</span>
+
+<span class="cm">  ```bash</span>
+<span class="cm">  $ sudo chmod 755 /bin/rm</span>
+<span class="cm">  $ ls -l /bin/rm</span>
+<span class="cm">  -rwxr-xr-x 1 root root 63704 Jan 18  2018 /bin/rm</span>
+<span class="cm">  ```</span>
+
+<span class="cm">+ *sgid* </span>
+<span class="cm">  *sgid* 与 *suid* 不同地方是 *sgid* 即可以对文件也可以针对目录设置。</span>
+
+<span class="cm">    + 针对文件</span>
+<span class="cm">      + *sgid* 针对二进制程序有效</span>
+<span class="cm">      + 二进制命令或者程序需要可执行权限x</span>
+<span class="cm">      + 指令经过 *sgid* 后，任意用户在执行该指令时，都可获得该指令对应的所属组具有的权限。</span>
+<span class="cm">    + 对于目录</span>
+<span class="cm">      + 用户在此目录下创建的文件和目录，都有和此目录相同的用户组。</span>
+
+<span class="cm">+ *suid/sgid*的数字权限设置方法   </span>
+<span class="cm">  *suid/sgid*位设置也是八进制。</span>
+
+<span class="cm">  + *setuid* 占用的是八进制:`4000` </span>
+<span class="cm">  + *setgid* 占用的是`2000`</span>
+<span class="cm">  + 粘滞位:占用的是 `1000`  </span>
+<span class="cm">    在之前的`chmod`命令前面加上 **4/2/1** 即可。</span>
+
+<span class="cm">+ [参考链接](https://www.bilibili.com/video/av57473824?p=14)</span>
+
+<span class="cm">### 系统IO 函数</span>
+
+<span class="cm">---</span>
+
+<span class="cm">1. C库函数  </span>
+<span class="cm">   C语言的库函数的I/O操作都是带有缓冲区的，只有当缓冲区满了才会进行相应的操作。  </span>
+
+<span class="cm">   ```c</span>
+<span class="cm">   fopen、fclose、fread、fwrite、fgets、fputs、fscanf、fprintf、fseek、fgetc、fputc、ftell、feof、flush...</span>
+<span class="cm">   ```</span>
+
+<span class="cm">   + 刷新缓冲区</span>
+
+<span class="cm">     + 强制性刷新:*`flush`*</span>
+
+<span class="cm">     + 缓冲区已满</span>
+
+<span class="cm">     + 正常关闭文件:  </span>
+
+<span class="cm">       &gt; `fclose`  </span>
+<span class="cm">       &gt; `return`(main函数中)  </span>
+<span class="cm">       &gt; `exit`(main函数中)</span>
+
+<span class="cm">   + C语言的库函数操作后组成:</span>
+
+<span class="cm">     + 文件描述符: *`FILE* fp`*,索引到对应的磁盘文件</span>
+<span class="cm">     + 文件读写指针: 读写文件过程中的实际位置</span>
+<span class="cm">     + I/O缓冲区(默认是8K): 通过寻址找到对应的内存块</span>
+
+<span class="cm">   + *`printf`*  </span>
+<span class="cm">     *`printf`* 函数完成的工作流程如下图所示。</span>
+<span class="cm">       ![*`printf`* 工作流程](https://i.loli.net/2020/05/29/58HCkynFwPJeVjd.png)  </span>
+<span class="cm">        *`printf`*  调用后，会产生一个由系统维护的一个结构体，包含了</span>
+
+<span class="cm">       ```cpp  </span>
+<span class="cm">       file description 文件描述符号</span>
+<span class="cm">       FP_POS           读写指针</span>
+<span class="cm">       I/O buffer       缓冲区</span>
+<span class="cm">       ```</span>
+
+<span class="cm">       +  *`printf`* 会调用系统API *`write`*，系统通过 *`write`* 来操作内核，使得内核可以调用设备驱动使得输出的内容显示在显示器上。</span>
+
+<span class="cm">2. **虚拟地址空间**  </span>
+<span class="cm">   模型如图：  </span>
+<span class="cm">       ![虚拟地址模型](https://i.loli.net/2020/05/29/UQpAGEtMiLFK1Ve.png)</span>
+
+<span class="cm">   + 可执行程序(*`elf格式`*)包括：  </span>
+<span class="cm">     + *`.text`*:代码段</span>
+<span class="cm">     + *`.data`*:已经初始化的全局变量段</span>
+<span class="cm">     + *`.bss`*: 未初始化的全局变量段</span>
+<span class="cm">     + 其他段：只读数据段，符号段等  </span>
+<span class="cm">       main函数就是在 *`.text`* 段中，从这里开始执行。</span>
+
+<span class="cm">   + 栈与堆   </span>
+<span class="cm">     栈，存放的是临时变量，生长方向是向下生长。  </span>
+<span class="cm">     堆，存放的是 *`new/malloc`* 得到的变量，生长方向是向上生长。</span>
+
+<span class="cm">   + 共享库与 *`.text`*</span>
+<span class="cm">     + 共享库存放的是代码的偏移地址。C库函数和Linux系统库函数都是动态库中。</span>
+<span class="cm">     + *`.text`* 存放的是静态库，或者说是存放的是代码的绝对地址。</span>
+
+<span class="cm">   + 命令行参数  </span>
+<span class="cm">     *`int main(int argc, const char* argv[])`* 中的 *`argc, argv`*。  </span>
+
+<span class="cm">   + 环境变量(*`env`*)</span>
+
+<span class="cm">   + Cpu使用虚拟内存地址空间与物理地址空间映射？解决了什么问题？  </span>
+<span class="cm">     + 方便编译器和操作系统安排程序的地址分布。程序可以使用一系列相邻的虚拟地址来访问物理内存中不相邻的大内存缓冲区。</span>
+<span class="cm">     + 方便进行之间隔离。不同进程之间使用虚拟地址彼此隔离，一个进程中代码无法更改另一个进程使用的物理内存。</span>
+<span class="cm">     + 方便使用不多的内存。</span>
+
+<span class="cm"># 信号</span>
+
+<span class="cm">#### 概念</span>
+
+<span class="cm">信号是由于进程产生，但是由内核调度传递给另一个进程：</span>
+<span class="cm">![信号捕捉](G:%5CSSE%5CInterview%5CBackEnd%5Cmybook%5Cdocs%5Cunix_linux%5CAPUE%5CImage%5C%25E4%25BF%25A1%25E5%258F%25B7%25E6%258D%2595%25E6%258D%2589%25E8%25BF%2587%25E7%25A8%258B.jpg)</span>
+
+<span class="cm">1. 产生信号</span>
+
+<span class="cm">   + 按键产生信号:  </span>
+<span class="cm">     + &lt;font color=Crimson&gt; `Ctr+c --&gt; 2)SIGINT(终止/中断)`&lt;/font&gt;   </span>
+<span class="cm">     + &lt;font color=Crimson&gt; `Ctr+z --&gt; 20)SIGTSTOP(终端暂停)` &lt;/font&gt;   </span>
+<span class="cm">     + &lt;font color=Crimson&gt; `Ctr+\ --&gt; 3)SIGQUIT(退出)`&lt;/font&gt;   </span>
+<span class="cm">   + 系统调用产生: `kill(2), raise, abort`</span>
+<span class="cm">   + 软件条件产生: 如定时器`alarm`</span>
+<span class="cm">   + 硬件异常产生: </span>
+<span class="cm">     + 如非法访问内存(段错误): `11)SIGSEV(段错误)`</span>
+<span class="cm">     + 除0: `8)SIGFPE`</span>
+<span class="cm">   + 命令产生：`kill(1)`</span>
+
+<span class="cm">2. 递达：产生的信号递达到了接受信号进程</span>
+
+<span class="cm">3. 未决：</span>
+
+<span class="cm">   + 介于产生信号和递达之间的状态，主要由于阻塞信号集导致。</span>
+<span class="cm">   + 我们可以直接操作的是堵塞信号集，来影响未决信号集。</span>
+
+<span class="cm">4. 信号的处理方式</span>
+
+<span class="cm">   + 默认：但是每个信号的默认动作可能不一致</span>
+<span class="cm">     + Term: 终止进程</span>
+<span class="cm">     + Ign : 忽略信号（默认即时对该种信号忽略操作）</span>
+<span class="cm">     + Core: 终止进程，生成Core文件(查验进程死亡原因，用于gbd调试)</span>
+<span class="cm">     + Stop: 停止（暂停）进程</span>
+<span class="cm">     + Cnt : 继续运行进程</span>
+<span class="cm">     + ***`9)SIGKILL、19)SIGSTOP`*** 不允许忽略和捕捉，只能执行默认动作。</span>
+
+<span class="cm">   + 忽略：对于该信号的处理动作就是忽略</span>
+<span class="cm">   + 捕捉：调用用户处理函数  </span>
+
+
+
+<span class="cm">#### signal相关函数</span>
+
+<span class="cm">##### &lt;font color=Crimson&gt;`1.kill`&lt;/font&gt;  </span>
+
+<span class="cm">```c</span>
+<span class="cm">    #include &lt;sys/types.h&gt;</span>
+<span class="cm">    #include &lt;signal.h&gt;</span>
+
+<span class="cm">    int kill(pid_t pid, int sig);</span>
+</code></pre></div>
+
+
+<ul>
+<li>第一个参数：<ul>
+<li>pid &gt; 0: 发送信号给指定的进程</li>
+<li>pid = 0: 发送信号给与调用进程同一组的的所有进程，<strong>而且发送进程有权向他们发送信号</strong></li>
+<li>pid &lt; 0: 将信号发送对应进程组ID=|pid|，<strong>而且发送进程有权向他们发送信号</strong></li>
+<li>pid =-1: 发送给这样的进程：<strong>而且发送进程有权向他们发送信号</strong>  </li>
+</ul>
+</li>
+</ul>
+<h5 id="2raiseabort"><font color=Crimson><code>2.raise/abort</code></font><a class="headerlink" href="#2raiseabort" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><code>    <span class="c1">// raise</span>
+    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+    <span class="kt">int</span> <span class="nf">raise</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
+    <span class="c1">// abort</span>
+    <span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+    <span class="kt">void</span> <span class="nf">abort</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</code></pre></div>
+
+
+<ul>
+<li>raise : 自己给自己发信号</li>
+<li>abort : 自己给自己发终止信号</li>
+</ul>
+<h5 id="3alarm"><font color=Crimson><code>3.alarm</code></font><a class="headerlink" href="#3alarm" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">alarm</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">seconds</span><span class="p">);</span>
+</code></pre></div>
+
+
+<ul>
+<li>设置定时器，在指定seconds之后，<font face='黑体' color=red>不管进程处于什么状态，时间一到就发送信号</font>。内核给当前进程发送是<code>14)SIGALRM</code>信号，进程收到该信号，默认动作是终止进程。</li>
+<li><code>seconds == 0</code>时，即取消定时器</li>
+<li>第一次设置定时器返回值0。后面再设置定时器时，会覆盖前面的定时器，重新计数，此时返回值是前面定时器剩余的秒数。</li>
+<li><font face="黑体" color=red>每个进程有且只有一个定时器。</font></li>
+</ul>
+<h5 id="4setitimer"><font color=Crimson><code>4.setitimer</code></font><a class="headerlink" href="#4setitimer" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">getitimer</span><span class="p">(</span><span class="kt">int</span> <span class="n">which</span><span class="p">,</span> <span class="k">struct</span> <span class="n">itimerval</span> <span class="o">*</span><span class="n">curr_value</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">setitimer</span><span class="p">(</span><span class="kt">int</span> <span class="n">which</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">itimerval</span> <span class="o">*</span><span class="n">new_value</span><span class="p">,</span>
+                            <span class="k">struct</span> <span class="n">itimerval</span> <span class="o">*</span><span class="n">old_value</span><span class="p">);</span>
+
+        <span class="k">struct</span> <span class="n">itimerval</span> <span class="p">{</span>
+            <span class="k">struct</span> <span class="n">timeval</span> <span class="n">it_interval</span><span class="p">;</span> <span class="cm">/* Interval for periodic timer */</span>
+            <span class="k">struct</span> <span class="n">timeval</span> <span class="n">it_value</span><span class="p">;</span>    <span class="cm">/* Time until next expiration */</span>
+        <span class="p">};</span>
+
+        <span class="k">struct</span> <span class="n">timeval</span> <span class="p">{</span>
+            <span class="kt">time_t</span>      <span class="n">tv_sec</span><span class="p">;</span>         <span class="cm">/* seconds */</span>
+            <span class="n">suseconds_t</span> <span class="n">tv_usec</span><span class="p">;</span>        <span class="cm">/* microseconds */</span>
+        <span class="p">};</span>
+</code></pre></div>
+
+
+<p><code>setitimer</code> 相比较 <code>alarm</code> 提供了更加精确的定时信号控制，前者是微妙级，后者是秒级。</p>
+<ul>
+<li>which<ul>
+<li><code>ITIMER_REAL</code>&emsp;&ensp;: 等同于 <code>alarm</code>，自然定时，即和进行状态无关，时间到就发送<code>SIGALRM</code></li>
+<li><code>ITIMER_VIRTUAL</code>: 计算进程占用cpu时间，发送信号<code>SIGVTALRM</code></li>
+<li><code>ITIMER_PROF</code> &emsp;&ensp;: 计算进程cpu调用及执行系统调用时间，发送信号<code>SIGPROF</code></li>
+</ul>
+</li>
+<li><code>new_value/old_value</code>  <ul>
+<li>前者是需要设置的时间，后者是返回的时间。</li>
+<li><code>setitimer</code> 是一个周期定时，<code>new_value</code>设置的本次和下次定时时间。当下次定时时间为0，就仅仅定时一次。</li>
+</ul>
+</li>
+</ul>
+<h5 id="5-singal"><code>5. singal</code><a class="headerlink" href="#5-singal" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+
+    <span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="kt">sighandler_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
+
+    <span class="kt">sighandler_t</span> <span class="nf">signal</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="kt">sighandler_t</span> <span class="n">handler</span><span class="p">);</span>
+</code></pre></div>
+
+
+<p>通过<code>signal</code>函数可以自定义信号处理函数来应对信号。信号是由内核检测到，而函数<code>signal</code>是将信号和信号处理函数联系起来。</p>
+<ul>
+<li>第一个参数: <code>signal</code>是接受到的信号，传递给信号处理函数。</li>
+<li>第二个参数: 是信号处理函数，其格式:<code>typedef void (*sighandler_t)(int);</code>即返回类型是<code>void</code>，参数是<code>int</code>类型的函数，同时这个函数的接受值就是产生的信号。</li>
+</ul>
+<h5 id="6"><code>6. 信号集</code><a class="headerlink" href="#6" title="Permanent link">&para;</a></h5>
+<p>内核通过读取未决信号集来判断信号是否应该被处理。信号屏蔽字mask可以影响未决信号集，而信号屏蔽字需要通过数据类型<code>sigset_t</code>创建的对象<code>set</code>来设置<code>mask</code>，来达到屏蔽信号的目的，即影响未决信号集来决定信号是否将被处理。他们之间的关系如图:<br />
+<img alt="信号集" src="G:%5CSSE%5CInterview%5CBackEnd%5Cmybook%5Cdocs%5Cunix_linux%5CAPUE%5CImage%5C%25E4%25BF%25A1%25E5%258F%25B7%25E9%2598%25BB%25E5%25A1%259E.jpg" /></p>
+<ul>
+<li>
+<p><a name="mask">mask操作函数</a></p>
+<p>```c
+    #include <signal.h></p>
+<div class="codehilite"><pre><span></span><code><span class="nc">int</span><span class="w"> </span><span class="n">sigemptyset</span><span class="p">(</span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">);</span><span class="w">     </span><span class="o">//</span><span class="w"> </span><span class="n">将信号集合清空</span><span class="w"></span>
+<span class="nc">int</span><span class="w"> </span><span class="n">sigfillset</span><span class="p">(</span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">);</span><span class="w">      </span><span class="o">//</span><span class="w"> </span><span class="n">将信号集全部置1</span><span class="w"></span>
+<span class="nc">int</span><span class="w"> </span><span class="n">sigaddset</span><span class="p">(</span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">,</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="n">signum</span><span class="p">);</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="n">将某个信号加入信号集</span><span class="w"></span>
+<span class="nc">int</span><span class="w"> </span><span class="n">sigdelset</span><span class="p">(</span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">,</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="n">signum</span><span class="p">);</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="n">将某个信号清出信号集</span><span class="w"></span>
+<span class="nc">int</span><span class="w"> </span><span class="n">sigismember</span><span class="p">(</span><span class="n">const</span><span class="w"> </span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">,</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="n">signum</span><span class="p">);</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="n">判断某个信号是否在信号集</span><span class="w"></span>
+
+<span class="n">#define</span><span class="w"> </span><span class="n">_SIGSET_NWORDS</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">unsigned</span><span class="w"> </span><span class="n">long</span><span class="w"> </span><span class="nc">int</span><span class="p">)))</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">32</span><span class="w"></span>
+<span class="n">typedef</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">unsigned</span><span class="w"> </span><span class="n">long</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="n">__val</span><span class="o">[</span><span class="n">_SIGSET_NWORDS</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="w"> </span><span class="n">__sigset_t</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">typedef</span><span class="w"> </span><span class="n">__sigset_t</span><span class="w"> </span><span class="n">sigset_t</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>```</p>
+<p><code>sigset_t</code>是一个位图，通过上述函数来操作这个位图。上面的函数成功返回0，失败返回-1。</p>
+</li>
+</ul>
+<ul>
+<li>
+<p><code>sigprocmask</code> 
+  用来获取或者改变调用进程的信号mask。也可屏蔽信号、解决屏蔽。</p>
+<p>```c
+    #include <signal.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err">int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);</span>
+</code></pre></div>
+
+
+<p>```</p>
+<ul>
+<li>第一个参数：决定了函数调用的行为  <ul>
+<li><code>SIG_BLOCK</code> &emsp;: &ensp;进程的屏蔽信号集是这个<code>set</code>和原来的屏蔽信号笔的并(union)。</li>
+<li><code>SIG_UNBLOCK</code>： 将<code>set</code>中的信号从当前信号集合中移除出去。</li>
+<li><code>SIG_SETMASK</code>： 直接将<code>set</code>覆盖当前信号集</li>
+</ul>
+</li>
+<li>第二个参数：<code>set</code>即上面的<code>sigset_t</code>格式，是本次函数给阻塞信号的设定值。</li>
+<li>第三个参数：返回的当前的信号屏蔽集合。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p><code>sigpending</code></p>
+<p>```c
+    #include <signal.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err">int sigpending(sigset_t *set);</span>
+</code></pre></div>
+
+
+<p>```</p>
+<p>将调用进程的未决信号集存储在<code>set</code>中传出。</p>
+</li>
+</ul>
+<h5 id="7-sigaction"><code>7. sigaction</code><a class="headerlink" href="#7-sigaction" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">sigaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">act</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">oldact</span><span class="p">);</span>
+
+        <span class="k">struct</span> <span class="n">sigaction</span> <span class="p">{</span>
+            <span class="kt">void</span>     <span class="p">(</span><span class="o">*</span><span class="n">sa_handler</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>        
+            <span class="kt">void</span>     <span class="p">(</span><span class="o">*</span><span class="n">sa_sigaction</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">siginfo_t</span> <span class="o">*</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="p">);</span>
+            <span class="kt">sigset_t</span>   <span class="n">sa_mask</span><span class="p">;</span>
+            <span class="kt">int</span>        <span class="n">sa_flags</span><span class="p">;</span>
+            <span class="kt">void</span>     <span class="p">(</span><span class="o">*</span><span class="n">sa_restorer</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
+        <span class="p">};</span>
+</code></pre></div>
+
+
+<ul>
+<li><code>struct sigaction</code> <ul>
+<li><code>sa_handler</code>: 用来指定捕捉到信号时候的行为。<code>SIG_DFL</code>、<code>SIG_IGN</code>、信号处理函数。</li>
+<li><code>sa_sigaction</code>: 
+  当 <code>sa_flags = SA_SIGINFO</code>时，<code>sa_sigaction</code>指定信号处理函数(之前是<code>sa_handler</code>指定)。</li>
+<li><code>sa_mask</code>：指定的是在<font face='黑体' color=red><strong>处理信号的过程中</strong></font>需要屏蔽的信号，即不捕捉该该信号，那么就会执行默认动作。而且触发该处理函数的信号再来时候会丢弃，即<font face='黑体' color=red> <strong>多次信号只执行一次</strong> </font>，除非<code>sa_flags = SA_NODEFER</code>。</li>
+<li><code>sa_flags</code>：指定的是用于修改信号行为的标志位，默认是0，即在信号处理函数执行期间自动屏蔽本信号。这个函数的操作还是要依赖 <a href="mask">mask的操作函数。</a></li>
+<li><code>sa_restorer</code>：不要使用。</li>
+</ul>
+</li>
+<li>返回值：成功是0，失败是-1.</li>
+</ul>
+<h1 id="2">信号2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<h4 id="1-pause">1. <code>pause</code><a class="headerlink" href="#1-pause" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">pause</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</code></pre></div>
+
+
+<p>调用<code>pause</code>函数的进程将一直堵塞到(即放弃cpu)有信号递达将其唤醒。</p>
+<ul>
+<li>返回值：<ul>
+<li>如果信号的默认动作是终止进程，则进程终止。</li>
+<li>如果信号的默认动作是忽略，继承基于处于挂起状态，<code>pause</code>不返回。</li>
+<li>如果信号处理动作是捕捉，则信号处理函数调用结束，<strong><code>pause</code>返回-1, <code>errno</code>设置为<code>EINTR</code></strong>。</li>
+<li><code>pause</code>接受到的信号被屏蔽，<code>puase</code>就将会永远不被唤醒。</li>
+</ul>
+</li>
+<li>实现<code>sleep</code>函数功能：<code>alarm() + pause()</code></li>
+</ul>
+<h4 id="2sigsuspend">2.<code>sigsuspend</code><a class="headerlink" href="#2sigsuspend" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">sigsuspend</span><span class="p">(</span><span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span> <span class="c1">// mask是临时的，在函数执行时有效</span>
+</code></pre></div>
+
+
+<ul>
+<li>特点。这是一个原子操作，将<strong>设置mask指的屏蔽字</strong> + <strong>使得进程休眠（pause）</strong> 变成原子操作。可用来替代<code>pause</code>具有的时许竞争隐患。比如用<code>alarm() + pause()</code>实现的<code>sleep</code>函数功能。</li>
+<li>返回。和<code>pause</code>一样，无成功返回值。如果返回调用进程，返回-1，并且<code>errno=EINTR</code>。</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="n">alarm</span><span class="p">(</span><span class="n">secs</span><span class="p">);</span>
+    <span class="n">pause</span><span class="p">();</span>
+</code></pre></div>
+
+
+<ul>
+<li>
+<p>原因：  </p>
+<p>如果在调用<code>alarm</code>之后，调用进程失去了cpu控制权，但是在cpu控制权回到这个进程之前<code>alarm</code>的计时时候到达，当cpu控制权回归调用进程时先处理<code>SIGALRM</code>信号，再调用<code>pause</code>函数，这就导致<code>pause</code>再也接受不到信号，因此这个进程就永远堵塞。</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>解决方案：  </p>
+<p>使得<code>sigsuspend(sus_mask) = alarm() + pause()</code>成为一个原子操作。</p>
+<ul>
+<li>先使用<code>sigprocmask</code>设置信号屏蔽集合，使得cpu在<code>sigsuspend</code>之前不处理。</li>
+<li>比如同样发生上述调用进程失去cpu控制权的情况，cpu控制权返回时，并不会先处理<code>SIGALRM</code>信号</li>
+<li>因此到<code>sigsuspend</code>函数时，在这个函数的<code>sus_mask</code>中解除对<code>SIGALRM</code>的屏蔽，使得 <strong>信号处理函数的执行后直接返回，唤醒cpu（这是因为pause的堵塞导致）</strong>。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>关键点: <strong>调用进程的堵塞原因</strong></p>
+<ul>
+<li>调用进程失去cpu的控制权</li>
+<li>调用<code>pause</code>导致的cpu挂起</li>
+</ul>
+</li>
+</ul>
+<h4 id="3io">3.全局变量异步I/O<a class="headerlink" href="#3io" title="Permanent link">&para;</a></h4>
+<p>尽量避免使用全局变量。类似于多线程中的多个线程对同一个变量进行操作，很容易造成异常。</p>
+<h4 id="4">4.不可/可重入函数<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>定义可重入函数，函数内部不能含有全局变量或者<code>static</code>变量，以及<code>malloc</code>和<code>free</code>。</li>
+<li>信号捕捉函数应该设计为可重入函数。</li>
+<li>信号处理函数可以调用的可重入函数，参考 man 7 signal</li>
+<li>其他大多是不可重入的，因为：<ul>
+<li>使用静态数据结构</li>
+<li>调用<code>malloc/free</code></li>
+<li>是标准I/O函数</li>
+</ul>
+</li>
+</ul>
+<h4 id="5sigchld">5.<code>SIGCHLD</code><a class="headerlink" href="#5sigchld" title="Permanent link">&para;</a></h4>
+<p>这是子进程向父进程发送的信号，那么可否利用这个信号来回收子进程？</p>
+<ul>
+<li>要求<ul>
+<li>在父进程中注册对信号<code>SIGCHLD</code>的捕捉函数。</li>
+<li>循环产生十个子进程</li>
+<li>十个子进程在父进程前终止</li>
+<li>能顺利回收十个子进程</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>信号处理函数</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="kt">void</span> <span class="nf">exe_sigchld</span><span class="p">(</span><span class="kt">int</span> <span class="n">singo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">pid_t</span> <span class="n">pid</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">statloc</span><span class="p">;</span>
+        <span class="c1">// 这里的while很关键</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">pid</span> <span class="o">=</span> <span class="n">waitpid</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">statloc</span><span class="p">,</span> <span class="n">WNOHANG</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">WIFEXITED</span><span class="p">(</span><span class="n">statloc</span><span class="p">))</span>  
+                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;child process pid=%d, exited  status:%d.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">pid</span><span class="p">,</span> <span class="n">WEXITSTATUS</span><span class="p">(</span><span class="n">statloc</span><span class="p">));</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">WIFSIGNALED</span><span class="p">(</span><span class="n">statloc</span><span class="p">))</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;child process pid=%d, signaled stauts:%d.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">pid</span><span class="p">,</span> <span class="n">WTERMSIG</span><span class="p">(</span><span class="n">statloc</span><span class="p">));</span> 
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+
+<p>上面都<code>while</code>处理很关键，不是<code>if</code>而是<code>while</code>，是因为：</p>
+<ul>
+<li>对于多个子进程同时发送终止信号<code>SINCHLD</code>，父进程只调用一次信号处理函数。</li>
+<li>如果是<code>if</code>那么进入一次信号处理函数，只能处理一个终止的子进程，那么对于同时终止的其他进程就无法处理，剩下的就只能成为僵死进程。</li>
+<li>选用<code>while</code>就可以一次进入信号处理函数，但是可以处理多个终止的子进程。</li>
+</ul>
+<h4 id="6_1">6.信号传参<a class="headerlink" href="#6_1" title="Permanent link">&para;</a></h4>
+<p>信号不能携带大量参数，实在有特殊需求时也可以。有相关的函数：</p>
+<ul>
+<li>发送信号传参</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">sigqueue</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sig</span><span class="p">,</span> <span class="k">const</span> <span class="k">union</span> <span class="n">sigval</span> <span class="n">value</span><span class="p">);</span>
+
+    <span class="k">union</span> <span class="n">sigval</span> <span class="p">{</span>
+        <span class="kt">int</span>   <span class="n">sival_int</span><span class="p">;</span>
+        <span class="kt">void</span> <span class="o">*</span><span class="n">sival_ptr</span><span class="p">;</span>
+    <span class="p">};</span>
+</code></pre></div>
+
+
+<p>类似于<code>kill</code>,但是多了一个发送参数，可以作为数据发送。联合体<code>sigval</code>在跨进程传递数据时候不要使用指针，因此各个进程之间的虚拟地址不同，指针传参是为同一个进程准备的，跨进程传参使用的是int类型。</p>
+<ul>
+<li>捕捉函数传参</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">sigaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">act</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">oldact</span><span class="p">);</span>
+
+    <span class="k">struct</span> <span class="n">sigaction</span> <span class="p">{</span>
+        <span class="kt">void</span>     <span class="p">(</span><span class="o">*</span><span class="n">sa_handler</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>        
+        <span class="kt">void</span>     <span class="p">(</span><span class="o">*</span><span class="n">sa_sigaction</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">siginfo_t</span> <span class="o">*</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="p">);</span>
+        <span class="kt">sigset_t</span>   <span class="n">sa_mask</span><span class="p">;</span>
+        <span class="kt">int</span>        <span class="n">sa_flags</span><span class="p">;</span>
+        <span class="kt">void</span>     <span class="p">(</span><span class="o">*</span><span class="n">sa_restorer</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="p">};</span>
+</code></pre></div>
+
+
+<p>使用的结构体<code>sigaction</code>的第二项:<code>sa_sigaction</code>，此时<code>sa_flags = SA_SIGINFO</code>。</p>
+<h4 id="7">7.中断系统调用<a class="headerlink" href="#7" title="Permanent link">&para;</a></h4>
+<p>系统调用分为二类：慢速系统调用和其他系统调用</p>
+<ul>
+<li>慢速系统调用：可能会使进程永远堵塞的一类。如果在堵塞期间收到一个信号，该系统调用就会被中断，那么就不再被执行。也可以设定系统调用是否重启。这类函数诸如:<code>read、write、pause、wait</code>。</li>
+<li>其他系统调用：<code>getpid(), getppid(),fork()...</code></li>
+</ul>
+<p>慢速系统调用<strong>被信号中断</strong>时的行为，和<code>pause</code>类似：</p>
+<ul>
+<li>想中断<code>pause</code>，信号不能屏蔽</li>
+<li>信号的处理方式必须是捕捉（默认和忽略都不可）</li>
+<li>中断后返回-1，设置<code>errno</code>为<code>EINTR</code></li>
+</ul>
+<p>可修改<code>sa_flags</code>参数来设置被信号中断后系统调用是否重启。 </p>
+<ul>
+<li><code>SA_RESTART</code>:重启这个慢速调用函数<br />
+  比如：<ul>
+<li><code>read</code>被一个信号中断，处理完信号，<code>read</code>应该继续工作，所以需要重启。</li>
+<li><code>pause</code>被信号中断就不需要重启，因为不影响。</li>
+</ul>
+</li>
+<li><code>SA_NODEFER</code>:不屏蔽待捕捉信号</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/zwiley/mybook/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
