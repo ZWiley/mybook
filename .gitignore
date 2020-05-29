@@ -40,3 +40,5 @@ site/
 # pytest
 .pytest_cache/
 .tern-port
+
+site/
