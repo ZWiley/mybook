@@ -517,10 +517,9 @@
               
                 <h3 id="write">write的问题<a class="headerlink" href="#write" title="Permanent link">&para;</a></h3>
 <p>由于网络访问是http请求，在网络访问中，发现小文件没有问题，通过抓包发现http连接没有问题，大文件显示有问题是读取的过程，就往read跟write方向思考，就看write函数，发现是用了文件映射mmap，这个是有文件缓存区的，发现每次调用write，都是用一个文件缓冲区，它是通过一个指针访问文件的那一块内存区域，当多次访问网页文件，文件缓冲区没有及时的释放空间，导致文件显示不全，这边是通过一个文件结构体，先判断bytes_to_send发送数据的多少。有数据还在缓冲区，就通过m_iv结构体的指针偏移，让指针指到内存开始的位置，这样就释放缓冲区空间了</p>
-<p><img alt="image-20200518123529961" src="G:/SSE/Interview/upload/image-20200518123529961.png" /></p>
-<h3 id="epoll">epoll<a class="headerlink" href="#epoll" title="Permanent link">&para;</a></h3>
-<p>https://blog.csdn.net/zxm342698145/article/details/80524331</p>
-<p><img alt="img" src="https://img-blog.csdn.net/20180531185610344" /></p>
+<p><img alt="image-20200518123529961" src="https://i.loli.net/2020/05/29/tZqwK5UJH3csSGh.png" /></p>
+<h3 id="epoll-epolllepollet"><a href="https://blog.csdn.net/zxm342698145/article/details/80524331">epoll EPOLLL、EPOLLET模式与阻塞、非阻塞</a><a class="headerlink" href="#epoll-epolllepollet" title="Permanent link">&para;</a></h3>
+<p><img alt="img" src="https://i.loli.net/2020/05/29/TDy4wWQumbGtrBH.png" /></p>
 <h3 id="le-et">LE ET的问题<a class="headerlink" href="#le-et" title="Permanent link">&para;</a></h3>
 <p>有朋友认为ET需要使用ET的编程方法，LT需要使用LT的编程方法。</p>
 <p>具体的，accept和数据读写部分，ET需要循环接收，LT则不需要。</p>
@@ -537,7 +536,8 @@
 <p><strong>结论：ET必须非阻塞，LT阻塞和非阻塞均可。</strong></p>
 <p>目前的项目中最好的压测是Proactor和LT模式，其中LT模式的数据读取仍然使用了while循环。</p>
 <p>所以，项目中等效于listenfd使用LT，connfd使用ET，压测后的结果是最好的，这也与nginx和muduo达成了一致。</p>
-<h3 id="epoll_1">epoll使用避坑指南<a class="headerlink" href="#epoll_1" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20200529192542406" src="https://i.loli.net/2020/05/29/YUwDMeVgGnRasj7.png" /></p>
+<h3 id="epoll">epoll使用避坑指南<a class="headerlink" href="#epoll" title="Permanent link">&para;</a></h3>
 <h4 id="bug">Bug复现<a class="headerlink" href="#bug" title="Permanent link">&para;</a></h4>
 <p>使用Webbench对服务器进行压力测试，创建1000个客户端，并发访问服务器10s，正常情况下有接近8万个HTTP请求访问服务器。</p>
 <p>结果显示仅有7个请求被成功处理，0个请求处理失败，<strong>服务器也没有返回错误</strong>。此时，从浏览器端访问服务器，发现该请求也不能被处理和响应，必须将服务器重启后，浏览器端才能访问正常。</p>
