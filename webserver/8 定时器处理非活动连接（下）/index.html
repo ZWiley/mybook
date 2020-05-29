@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>8 定时器处理非活动连接（下） - ZWiley的读书笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "8 \u5b9a\u65f6\u5668\u5904\u7406\u975e\u6d3b\u52a8\u8fde\u63a5\uff08\u4e0b\uff09";
+    var mkdocs_page_input_path = "webserver\\8 \u5b9a\u65f6\u5668\u5904\u7406\u975e\u6d3b\u52a8\u8fde\u63a5\uff08\u4e0b\uff09.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">简介</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">C++</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/">C++编译底层</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">C++基础知识</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/">C++智能指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/">C++ STL</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">计算机基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">海量数据处理</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">基本手写代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%A2%98%E7%9B%AE/">基本手写代码题目</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">项目基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">Linux系统编程及基本命令</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/">MySQL</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/">Redis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/">Socket编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">webserver项目</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../0%20%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0/">0 项目概述</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../1%20%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6%E5%B0%81%E8%A3%85%E7%B1%BB/">1 线程同步机制封装类</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../2%20%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%8D%8A%E5%8F%8D%E5%BA%94%E5%A0%86%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E4%B8%8A%EF%BC%89/">2 半同步半反应堆线程池（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../3%20%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%8D%8A%E5%8F%8D%E5%BA%94%E5%A0%86%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E4%B8%8B%EF%BC%89/">3 半同步半反应堆线程池（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../4%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/">4 http连接处理（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../5%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/">5 http连接处理（中）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../6%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/">6 http连接处理（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../7%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8A%EF%BC%89/">7 定时器处理非活动连接（上）</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">8 定时器处理非活动连接（下）</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../9%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8A%EF%BC%89/">9 日志系统（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../10%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8B%EF%BC%89/">10 日志系统（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../11%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/">11 数据库连接池</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../12%20%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">12 常见问题</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/work_with_legacy_code/">Work with legacy code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/">代码大全</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/">代码的未来</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/">基本功</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/">敏捷技能修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/">程序员应该知道的97件事</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/">编写可读代码的艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/">编程匠艺</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/">codelife_不止代码</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">调试技术</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/">软件调试修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/Effective_Debugging/">Effective Debugging</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">数据库</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/getting_started_with_impala/">Getting started with impala</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/">mysql必知必会</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/">mysql性能调优与架构实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">Mysql技术内幕InnoDB存储引擎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E5%AE%9E%E6%88%98/">Redis实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/">Redis深度历险核心原理和应用实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">redis设计与实现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/">七周七数据库</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/">深入浅出mysql</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/">高性能mysql第三版</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">前端</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/CSS_The_Missing_Manual/">CSS_The_Missing_Manual</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/">reactjs小书</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/">ES6标准入门</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/jquery_pocket_reference/">jquery_pocket_reference</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/">深入理解bootstrap</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">golang</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/1_the_go_programming_lauguage/">1 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/2_the_go_programming_lauguage/">2 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/3_the_go_programming_lauguage/">3 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/build-web-application-with-golang/">Build Web Application With Golang</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go101/book/">Go101</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/network-programming-with-go/book/">Network Programming with go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/building-microservices-with-go/book/">Building Microservices With Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/building_restful_web_services_with_go/book/">Building Restful Web Services with Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/concurrency-in-go/concurrency_in_go/">Concurrency In Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/">Go In Action(Go 实战)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/">Go学习笔记语言详解</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/">Go学习笔记源码剖析</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">go语言编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/the_way_to_go/book/">go book</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/advanced-go-programming-book/advanced-go-programming/">advanced-go-programming</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/">go-build-web-applications</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">java</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../java/java-basic-introduction/">java basic introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网络</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/">TCP IP详解卷一</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">python</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/fluent_python/">Fluent Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/Python_Microservices_Development/">Python Microservices Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/high_performance_python/">High Performance Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Python网络编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">unix/linux</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/">Linux高性能服务器编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/">unix网络编程卷一</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分布式</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">Kafka 权威指南</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">分布式框架原理与应用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">大规模分布式存储系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/">深入分布式缓存从原理到实践</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">搜索引擎</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/">Elasticsearch实战</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">容器</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/">玩转Kubernets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/">第一本docker书</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">开发工具</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/">Practical Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/">Vim8文本处理实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/">Learn vim scrpt the hard way</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/">Pro Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/">Mastering Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/">Mastering Vim Quickly</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">思维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/">专注力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/">为什么精英这样用脑不会累</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/">刻意练习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/">如何想到又做到</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/">学习之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/">学习力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/">批判性思维工具</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/">程序员的思维修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/">认知天性</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/">超效率手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/">如何高效记忆</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/">科学学习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/">高效程序员的45个习惯</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">源码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/">源码阅读</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网站架构微服务</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/">微服务架构设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/">web scalavility for startup engineers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/">design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/">clean_architecture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/">微服务设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/">2_design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/">3_design_data_instensive_application</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">软件工程/项目管理</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/">人月神话</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/">代码之殇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/">解析极限编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/">项目管理修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/">修改软件的艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">运维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">linux集群和自动化运维</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">python自动化运维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">金融理财</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/">定投十年</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/">穷查理宝典</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">写作</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/">刷屏文案写作技巧</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">互联网</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/">我的互联网方法论-周鸿祎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/">用户思维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">区块链</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/">区块链技术指南</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">技术演讲</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/">哔哩哔哩的go微服务实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/">go业务基础库之Error&Context</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/">Go同步和并发设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/">左耳朵耗子-我这技术二十年</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">职场</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/give_and_take/">give and take</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/the_effective_engineer/">the_effective_engineer</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/">光速成长</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/">成功动机与目标</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/">番茄工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/">知乎职人觉醒</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/">知识变现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/">职场动物进化手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/">职场解释系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/">请停止无效努力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/">软技能</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/">高效15法则</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/">高效清单工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/">程序员的自我修养</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">心理学</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/">一切都是童年的错吗</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/">亲密关系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%83%85%E5%95%86/">情商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E9%80%86%E5%95%86/">逆商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/">拖延心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/">积极心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/">自控力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/">自控力-实操篇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/">自控力:和压力做朋友</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/">活出最乐观的自己</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/">改变心理学的40项研究</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/">超越自卑</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/">反脆弱</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">创业</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/hello_startup/">Hello Startup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/">斯坦福公开课如何创业</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/">运营其实很简单</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">ZWiley的读书笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>webserver项目 &raquo;</li>
+        
+      
+    
+    <li>8 定时器处理非活动连接（下）</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/zwiley/mybook/edit/master/docs/webserver/8 定时器处理非活动连接（下）.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="_1">本文内容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>定时器处理非活动连接模块，主要分为两部分，其一为定时方法与信号通知流程，其二为定时器及其容器设计、定时任务的处理。</p>
+<p>本篇对第二部分进行介绍，具体的涉及到定时器设计、容器设计、定时任务处理函数和使用定时器。</p>
+<p><code>定时器设计</code>，将连接资源和定时事件等封装起来，具体包括连接资源、超时时间和回调函数，这里的回调函数指向定时事件。</p>
+<p><code>定时器容器设计</code>，将多个定时器串联组织起来统一处理，具体包括升序链表设计。</p>
+<p><code>定时任务处理函数</code>，该函数封装在容器类中，具体的，函数遍历升序链表容器，根据超时时间，处理对应的定时器。</p>
+<p><code>代码分析-使用定时器</code>，通过代码分析，如何在项目中使用定时器。</p>
+<h3 id="_2">定时器设计<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>项目中将连接资源、定时事件和超时时间封装为定时器类，具体的，</p>
+<ul>
+<li>连接资源包括客户端套接字地址、文件描述符和定时器</li>
+<li>定时事件为回调函数，将其封装起来由用户自定义，这里是删除非活动socket上的注册事件，并关闭</li>
+<li>定时器超时时间 = 浏览器和服务器连接时刻 + 固定时间(TIMESLOT)，可以看出，定时器使用绝对时间作为超时值，这里alarm设置为5秒，连接超时为15秒。</li>
+</ul>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//连接资源结构体成员需要用到定时器类</span>
+ <span class="mi">2</span><span class="c1">//需要前向声明</span>
+ <span class="mi">3</span><span class="k">class</span> <span class="nc">util_timer</span><span class="p">;</span>
+ <span class="mi">4</span>
+ <span class="mi">5</span><span class="c1">//连接资源</span>
+ <span class="mi">6</span><span class="k">struct</span> <span class="n">client_data</span>
+ <span class="mi">7</span><span class="p">{</span>
+ <span class="mi">8</span>    <span class="c1">//客户端socket地址</span>
+ <span class="mi">9</span>    <span class="n">sockaddr_in</span> <span class="n">address</span><span class="p">;</span>
+<span class="mi">10</span>
+<span class="mi">11</span>    <span class="c1">//socket文件描述符</span>
+<span class="mi">12</span>    <span class="kt">int</span> <span class="n">sockfd</span><span class="p">;</span>
+<span class="mi">13</span>
+<span class="mi">14</span>    <span class="c1">//定时器</span>
+<span class="mi">15</span>    <span class="n">util_timer</span><span class="o">*</span> <span class="n">timer</span><span class="p">;</span>
+<span class="mi">16</span><span class="p">};</span>
+<span class="mi">17</span>
+<span class="mi">18</span><span class="c1">//定时器类</span>
+<span class="mi">19</span><span class="k">class</span> <span class="nc">util_timer</span>
+<span class="mi">20</span><span class="p">{</span>
+<span class="mi">21</span><span class="k">public</span><span class="o">:</span>
+<span class="mi">22</span>    <span class="n">util_timer</span><span class="p">()</span> <span class="o">:</span> <span class="n">prev</span><span class="p">(</span> <span class="nb">NULL</span> <span class="p">),</span> <span class="n">next</span><span class="p">(</span> <span class="nb">NULL</span> <span class="p">){}</span>
+<span class="mi">23</span>
+<span class="mi">24</span><span class="k">public</span><span class="o">:</span>
+<span class="mi">25</span>    <span class="c1">//超时时间</span>
+<span class="mi">26</span>    <span class="kt">time_t</span> <span class="n">expire</span><span class="p">;</span> 
+<span class="mi">27</span>    <span class="c1">//回调函数</span>
+<span class="mi">28</span>    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">cb_func</span><span class="p">)(</span> <span class="n">client_data</span><span class="o">*</span> <span class="p">);</span>
+<span class="mi">29</span>    <span class="c1">//连接资源</span>
+<span class="mi">30</span>    <span class="n">client_data</span><span class="o">*</span> <span class="n">user_data</span><span class="p">;</span>
+<span class="mi">31</span>    <span class="c1">//前向定时器</span>
+<span class="mi">32</span>    <span class="n">util_timer</span><span class="o">*</span> <span class="n">prev</span><span class="p">;</span>
+<span class="mi">33</span>    <span class="c1">//后继定时器</span>
+<span class="mi">34</span>    <span class="n">util_timer</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+<span class="mi">35</span><span class="p">};</span>
+</code></pre></div>
+
+
+<p>定时事件，具体的，从内核事件表删除事件，关闭文件描述符，释放连接资源。</p>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//定时器回调函数</span>
+ <span class="mi">2</span><span class="kt">void</span> <span class="n">cb_func</span><span class="p">(</span><span class="n">client_data</span> <span class="o">*</span><span class="n">user_data</span><span class="p">)</span>
+ <span class="mi">3</span><span class="p">{</span>
+ <span class="mi">4</span>    <span class="c1">//删除非活动连接在socket上的注册事件</span>
+ <span class="mi">5</span>    <span class="n">epoll_ctl</span><span class="p">(</span><span class="n">epollfd</span><span class="p">,</span> <span class="n">EPOLL_CTL_DEL</span><span class="p">,</span> <span class="n">user_data</span><span class="o">-&gt;</span><span class="n">sockfd</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+ <span class="mi">6</span>    <span class="nf">assert</span><span class="p">(</span><span class="n">user_data</span><span class="p">);</span>
+ <span class="mi">7</span>
+ <span class="mi">8</span>    <span class="c1">//关闭文件描述符</span>
+ <span class="mi">9</span>    <span class="n">close</span><span class="p">(</span><span class="n">user_data</span><span class="o">-&gt;</span><span class="n">sockfd</span><span class="p">);</span>
+<span class="mi">10</span>
+<span class="mi">11</span>    <span class="c1">//减少连接数</span>
+<span class="mi">12</span>    <span class="n">http_conn</span><span class="o">::</span><span class="n">m_user_count</span><span class="o">--</span><span class="p">;</span>
+<span class="mi">13</span><span class="p">}</span>
+</code></pre></div>
+
+
+<h3 id="_3">定时器容器设计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>项目中的定时器容器为带头尾结点的升序双向链表，具体的为每个连接创建一个定时器，将其添加到链表中，并按照超时时间升序排列。执行定时任务时，将到期的定时器从链表中删除。</p>
+<p>从实现上看，主要涉及双向链表的插入，删除操作，其中添加定时器的事件复杂度是O(n),删除定时器的事件复杂度是O(1)。</p>
+<p>升序双向链表主要逻辑如下，具体的，</p>
+<ul>
+<li>创建头尾节点，其中头尾节点没有意义，仅仅统一方便调整</li>
+</ul>
+<ul>
+<li>add_timer函数，将目标定时器添加到链表中，添加时按照升序添加</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>若当前链表中只有头尾节点，直接插入</li>
+<li>否则，将定时器按升序插入</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>adjust_timer函数，当定时任务发生变化,调整对应定时器在链表中的位置</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>客户端在设定时间内有数据收发,则当前时刻对该定时器重新设定时间，这里只是往后延长超时时间</li>
+<li>被调整的目标定时器在尾部，或定时器新的超时值仍然小于下一个定时器的超时，不用调整</li>
+<li>否则先将定时器从链表取出，重新插入链表</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>del_timer函数将超时的定时器从链表中删除</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>常规双向链表删除结点</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>  <span class="mi">1</span><span class="c1">//定时器容器类</span>
+  <span class="mi">2</span><span class="k">class</span> <span class="nc">sort_timer_lst</span>
+  <span class="mi">3</span><span class="p">{</span>
+  <span class="mi">4</span><span class="k">public</span><span class="o">:</span>
+  <span class="mi">5</span>    <span class="n">sort_timer_lst</span><span class="p">()</span> <span class="o">:</span> <span class="n">head</span><span class="p">(</span> <span class="nb">NULL</span> <span class="p">),</span> <span class="n">tail</span><span class="p">(</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{}</span>
+  <span class="mi">6</span>    <span class="c1">//常规销毁链表</span>
+  <span class="mi">7</span>    <span class="o">~</span><span class="n">sort_timer_lst</span><span class="p">()</span>
+  <span class="mi">8</span>    <span class="p">{</span>
+  <span class="mi">9</span>        <span class="n">util_timer</span><span class="o">*</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+ <span class="mi">10</span>        <span class="nf">while</span><span class="p">(</span> <span class="n">tmp</span> <span class="p">)</span>
+ <span class="mi">11</span>        <span class="p">{</span>
+ <span class="mi">12</span>            <span class="n">head</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+ <span class="mi">13</span>            <span class="k">delete</span> <span class="n">tmp</span><span class="p">;</span>
+ <span class="mi">14</span>            <span class="n">tmp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+ <span class="mi">15</span>        <span class="p">}</span>
+ <span class="mi">16</span>    <span class="p">}</span>
+ <span class="mi">17</span>
+ <span class="mi">18</span>    <span class="c1">//添加定时器，内部调用私有成员add_timer</span>
+ <span class="mi">19</span>    <span class="kt">void</span> <span class="n">add_timer</span><span class="p">(</span> <span class="n">util_timer</span><span class="o">*</span> <span class="n">timer</span> <span class="p">)</span>
+ <span class="mi">20</span>    <span class="p">{</span>
+ <span class="mi">21</span>        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">timer</span> <span class="p">)</span>
+ <span class="mi">22</span>        <span class="p">{</span>
+ <span class="mi">23</span>            <span class="k">return</span><span class="p">;</span>
+ <span class="mi">24</span>        <span class="p">}</span>
+ <span class="mi">25</span>        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">head</span> <span class="p">)</span>
+ <span class="mi">26</span>        <span class="p">{</span>
+ <span class="mi">27</span>            <span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">timer</span><span class="p">;</span>
+ <span class="mi">28</span>            <span class="k">return</span><span class="p">;</span> 
+ <span class="mi">29</span>        <span class="p">}</span>
+ <span class="mi">30</span>
+ <span class="mi">31</span>        <span class="c1">//如果新的定时器超时时间小于当前头部结点</span>
+ <span class="mi">32</span>        <span class="c1">//直接将当前定时器结点作为头部结点</span>
+ <span class="mi">33</span>        <span class="k">if</span><span class="p">(</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="o">&lt;</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="p">)</span>
+ <span class="mi">34</span>        <span class="p">{</span>
+ <span class="mi">35</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+ <span class="mi">36</span>            <span class="n">head</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">timer</span><span class="p">;</span>
+ <span class="mi">37</span>            <span class="n">head</span> <span class="o">=</span> <span class="n">timer</span><span class="p">;</span>
+ <span class="mi">38</span>            <span class="k">return</span><span class="p">;</span>
+ <span class="mi">39</span>        <span class="p">}</span>
+ <span class="mi">40</span>
+ <span class="mi">41</span>        <span class="c1">//否则调用私有成员，调整内部结点</span>
+ <span class="mi">42</span>        <span class="n">add_timer</span><span class="p">(</span> <span class="n">timer</span><span class="p">,</span> <span class="n">head</span> <span class="p">);</span>
+ <span class="mi">43</span>    <span class="p">}</span>
+ <span class="mi">44</span>
+ <span class="mi">45</span>    <span class="c1">//调整定时器，任务发生变化时，调整定时器在链表中的位置</span>
+ <span class="mi">46</span>    <span class="kt">void</span> <span class="n">adjust_timer</span><span class="p">(</span> <span class="n">util_timer</span><span class="o">*</span> <span class="n">timer</span> <span class="p">)</span>
+ <span class="mi">47</span>    <span class="p">{</span>
+ <span class="mi">48</span>        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">timer</span> <span class="p">)</span>
+ <span class="mi">49</span>        <span class="p">{</span>
+ <span class="mi">50</span>            <span class="k">return</span><span class="p">;</span>
+ <span class="mi">51</span>        <span class="p">}</span>
+ <span class="mi">52</span>        <span class="n">util_timer</span><span class="o">*</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+ <span class="mi">53</span>
+ <span class="mi">54</span>        <span class="c1">//被调整的定时器在链表尾部</span>
+ <span class="mi">55</span>        <span class="c1">//定时器超时值仍然小于下一个定时器超时值，不调整</span>
+ <span class="mi">56</span>        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">tmp</span> <span class="o">||</span> <span class="p">(</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="o">&lt;</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="p">)</span> <span class="p">)</span>
+ <span class="mi">57</span>        <span class="p">{</span>
+ <span class="mi">58</span>            <span class="k">return</span><span class="p">;</span>
+ <span class="mi">59</span>        <span class="p">}</span>
+ <span class="mi">60</span>
+ <span class="mi">61</span>        <span class="c1">//被调整定时器是链表头结点，将定时器取出，重新插入</span>
+ <span class="mi">62</span>        <span class="k">if</span><span class="p">(</span> <span class="n">timer</span> <span class="o">==</span> <span class="n">head</span> <span class="p">)</span>
+ <span class="mi">63</span>        <span class="p">{</span>
+ <span class="mi">64</span>            <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+ <span class="mi">65</span>            <span class="n">head</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+ <span class="mi">66</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+ <span class="mi">67</span>            <span class="nf">add_timer</span><span class="p">(</span> <span class="n">timer</span><span class="p">,</span> <span class="n">head</span> <span class="p">);</span>
+ <span class="mi">68</span>        <span class="p">}</span>
+ <span class="mi">69</span>
+ <span class="mi">70</span>        <span class="c1">//被调整定时器在内部，将定时器取出，重新插入</span>
+ <span class="mi">71</span>        <span class="k">else</span>
+ <span class="mi">72</span>        <span class="p">{</span>
+ <span class="mi">73</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">prev</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+ <span class="mi">74</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">prev</span><span class="p">;</span>
+ <span class="mi">75</span>            <span class="nf">add_timer</span><span class="p">(</span> <span class="n">timer</span><span class="p">,</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span> <span class="p">);</span>
+ <span class="mi">76</span>        <span class="p">}</span>
+ <span class="mi">77</span>    <span class="p">}</span>
+ <span class="mi">78</span>
+ <span class="mi">79</span>    <span class="c1">//删除定时器</span>
+ <span class="mi">80</span>    <span class="kt">void</span> <span class="n">del_timer</span><span class="p">(</span> <span class="n">util_timer</span><span class="o">*</span> <span class="n">timer</span> <span class="p">)</span>
+ <span class="mi">81</span>    <span class="p">{</span>
+ <span class="mi">82</span>        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">timer</span> <span class="p">)</span>
+ <span class="mi">83</span>        <span class="p">{</span>
+ <span class="mi">84</span>            <span class="k">return</span><span class="p">;</span>
+ <span class="mi">85</span>        <span class="p">}</span>
+ <span class="mi">86</span>
+ <span class="mi">87</span>        <span class="c1">//链表中只有一个定时器，需要删除该定时器</span>
+ <span class="mi">88</span>        <span class="k">if</span><span class="p">(</span> <span class="p">(</span> <span class="n">timer</span> <span class="o">==</span> <span class="n">head</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span> <span class="n">timer</span> <span class="o">==</span> <span class="n">tail</span> <span class="p">)</span> <span class="p">)</span>
+ <span class="mi">89</span>        <span class="p">{</span>
+ <span class="mi">90</span>            <span class="k">delete</span> <span class="n">timer</span><span class="p">;</span>
+ <span class="mi">91</span>            <span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+ <span class="mi">92</span>            <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+ <span class="mi">93</span>            <span class="k">return</span><span class="p">;</span>
+ <span class="mi">94</span>        <span class="p">}</span>
+ <span class="mi">95</span>
+ <span class="mi">96</span>        <span class="c1">//被删除的定时器为头结点</span>
+ <span class="mi">97</span>        <span class="k">if</span><span class="p">(</span> <span class="n">timer</span> <span class="o">==</span> <span class="n">head</span> <span class="p">)</span>
+ <span class="mi">98</span>        <span class="p">{</span>
+ <span class="mi">99</span>            <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="mi">100</span>            <span class="n">head</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="mi">101</span>            <span class="k">delete</span> <span class="n">timer</span><span class="p">;</span>
+<span class="mi">102</span>            <span class="k">return</span><span class="p">;</span>
+<span class="mi">103</span>        <span class="p">}</span>
+<span class="mi">104</span>
+<span class="mi">105</span>        <span class="c1">//被删除的定时器为尾结点</span>
+<span class="mi">106</span>        <span class="k">if</span><span class="p">(</span> <span class="n">timer</span> <span class="o">==</span> <span class="n">tail</span> <span class="p">)</span>
+<span class="mi">107</span>        <span class="p">{</span>
+<span class="mi">108</span>            <span class="n">tail</span> <span class="o">=</span> <span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span><span class="p">;</span>
+<span class="mi">109</span>            <span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="mi">110</span>            <span class="k">delete</span> <span class="n">timer</span><span class="p">;</span>
+<span class="mi">111</span>            <span class="k">return</span><span class="p">;</span>
+<span class="mi">112</span>        <span class="p">}</span>
+<span class="mi">113</span>
+<span class="mi">114</span>        <span class="c1">//被删除的定时器在链表内部，常规链表结点删除</span>
+<span class="mi">115</span>        <span class="n">timer</span><span class="o">-&gt;</span><span class="n">prev</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="mi">116</span>        <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">prev</span><span class="p">;</span>
+<span class="mi">117</span>        <span class="k">delete</span> <span class="n">timer</span><span class="p">;</span>
+<span class="mi">118</span>    <span class="p">}</span>
+<span class="mi">119</span>
+<span class="mi">120</span><span class="k">private</span><span class="o">:</span>
+<span class="mi">121</span>    <span class="c1">//私有成员，被公有成员add_timer和adjust_time调用</span>
+<span class="mi">122</span>    <span class="c1">//主要用于调整链表内部结点</span>
+<span class="mi">123</span>    <span class="kt">void</span> <span class="n">add_timer</span><span class="p">(</span> <span class="n">util_timer</span><span class="o">*</span> <span class="n">timer</span><span class="p">,</span> <span class="n">util_timer</span><span class="o">*</span> <span class="n">lst_head</span> <span class="p">)</span>
+<span class="mi">124</span>    <span class="p">{</span>
+<span class="mi">125</span>        <span class="n">util_timer</span><span class="o">*</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">lst_head</span><span class="p">;</span>
+<span class="mi">126</span>        <span class="n">util_timer</span><span class="o">*</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">prev</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="mi">127</span>
+<span class="mi">128</span>        <span class="c1">//遍历当前结点之后的链表，按照超时时间找到目标定时器对应的位置，常规双向链表插入操作</span>
+<span class="mi">129</span>        <span class="k">while</span><span class="p">(</span> <span class="n">tmp</span> <span class="p">)</span>
+<span class="mi">130</span>        <span class="p">{</span>
+<span class="mi">131</span>            <span class="k">if</span><span class="p">(</span> <span class="n">timer</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="o">&lt;</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="p">)</span>
+<span class="mi">132</span>            <span class="p">{</span>
+<span class="mi">133</span>                <span class="n">prev</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">timer</span><span class="p">;</span>
+<span class="mi">134</span>                <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="mi">135</span>                <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">timer</span><span class="p">;</span>
+<span class="mi">136</span>                <span class="n">timer</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+<span class="mi">137</span>                <span class="k">break</span><span class="p">;</span>
+<span class="mi">138</span>            <span class="p">}</span>
+<span class="mi">139</span>            <span class="n">prev</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="mi">140</span>            <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="mi">141</span>        <span class="p">}</span>
+<span class="mi">142</span>
+<span class="mi">143</span>        <span class="c1">//遍历完发现，目标定时器需要放到尾结点处</span>
+<span class="mi">144</span>        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">tmp</span> <span class="p">)</span>
+<span class="mi">145</span>        <span class="p">{</span>
+<span class="mi">146</span>            <span class="n">prev</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">timer</span><span class="p">;</span>
+<span class="mi">147</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+<span class="mi">148</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="mi">149</span>            <span class="n">tail</span> <span class="o">=</span> <span class="n">timer</span><span class="p">;</span>
+<span class="mi">150</span>        <span class="p">}</span>
+<span class="mi">151</span>
+<span class="mi">152</span>    <span class="p">}</span>
+<span class="mi">153</span>
+<span class="mi">154</span><span class="k">private</span><span class="o">:</span>
+<span class="mi">155</span>    <span class="c1">//头尾结点</span>
+<span class="mi">156</span>    <span class="n">util_timer</span><span class="o">*</span> <span class="n">head</span><span class="p">;</span>
+<span class="mi">157</span>    <span class="n">util_timer</span><span class="o">*</span> <span class="n">tail</span><span class="p">;</span>
+<span class="mi">158</span><span class="p">};</span>
+</code></pre></div>
+
+
+<h3 id="_4">定时任务处理函数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>使用统一事件源，SIGALRM信号每次被触发，主循环中调用一次定时任务处理函数，处理链表容器中到期的定时器。</p>
+<p>具体的逻辑如下，</p>
+<ul>
+<li>遍历定时器升序链表容器，从头结点开始依次处理每个定时器，直到遇到尚未到期的定时器</li>
+<li>若当前时间小于定时器超时时间，跳出循环，即未找到到期的定时器</li>
+<li>若当前时间大于定时器超时时间，即找到了到期的定时器，执行回调函数，然后将它从链表中删除，然后继续遍历</li>
+</ul>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//定时任务处理函数</span>
+ <span class="mi">2</span><span class="kt">void</span> <span class="n">tick</span><span class="p">()</span>
+ <span class="mi">3</span><span class="p">{</span>
+ <span class="mi">4</span>    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">head</span> <span class="p">)</span>
+ <span class="mi">5</span>    <span class="p">{</span>
+ <span class="mi">6</span>        <span class="k">return</span><span class="p">;</span>
+ <span class="mi">7</span>    <span class="p">}</span>
+ <span class="mi">8</span>
+ <span class="mi">9</span>    <span class="c1">//获取当前时间</span>
+<span class="mi">10</span>    <span class="kt">time_t</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">time</span><span class="p">(</span> <span class="nb">NULL</span> <span class="p">);</span>
+<span class="mi">11</span>    <span class="n">util_timer</span><span class="o">*</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="mi">12</span>
+<span class="mi">13</span>    <span class="c1">//遍历定时器链表</span>
+<span class="mi">14</span>    <span class="k">while</span><span class="p">(</span> <span class="n">tmp</span> <span class="p">)</span>
+<span class="mi">15</span>    <span class="p">{</span>
+<span class="mi">16</span>        <span class="c1">//链表容器为升序排列</span>
+<span class="mi">17</span>        <span class="c1">//当前时间小于定时器的超时时间，后面的定时器也没有到期</span>
+<span class="mi">18</span>        <span class="k">if</span><span class="p">(</span> <span class="n">cur</span> <span class="o">&lt;</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="p">)</span>
+<span class="mi">19</span>        <span class="p">{</span>
+<span class="mi">20</span>            <span class="k">break</span><span class="p">;</span>
+<span class="mi">21</span>        <span class="p">}</span>
+<span class="mi">22</span>
+<span class="mi">23</span>        <span class="c1">//当前定时器到期，则调用回调函数，执行定时事件</span>
+<span class="mi">24</span>        <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">cb_func</span><span class="p">(</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">user_data</span> <span class="p">);</span>
+<span class="mi">25</span>
+<span class="mi">26</span>        <span class="c1">//将处理后的定时器从链表容器中删除，并重置头结点</span>
+<span class="mi">27</span>        <span class="n">head</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="mi">28</span>        <span class="nf">if</span><span class="p">(</span> <span class="n">head</span> <span class="p">)</span>
+<span class="mi">29</span>        <span class="p">{</span>
+<span class="mi">30</span>            <span class="n">head</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="mi">31</span>        <span class="p">}</span>
+<span class="mi">32</span>        <span class="k">delete</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="mi">33</span>        <span class="n">tmp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="mi">34</span>    <span class="p">}</span>
+<span class="mi">35</span><span class="p">}</span>
+</code></pre></div>
+
+
+<h3 id="-">代码分析-如何使用定时器<a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
+<p>服务器首先创建定时器容器链表，然后用统一事件源将异常事件，读写事件和信号事件统一处理，根据不同事件的对应逻辑使用定时器。</p>
+<p>具体的，</p>
+<ul>
+<li>浏览器与服务器连接时，创建该连接对应的定时器，并将该定时器添加到链表上</li>
+<li>处理异常事件时，执行定时事件，服务器关闭连接，从链表上移除对应定时器</li>
+<li>处理定时信号时，将定时标志设置为true</li>
+<li>处理读事件时，若某连接上发生读事件，将对应定时器向后移动，否则，执行定时事件</li>
+<li>处理写事件时，若服务器通过某连接给浏览器发送数据，将对应定时器向后移动，否则，执行定时事件</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>  <span class="mi">1</span><span class="c1">//定时处理任务，重新定时以不断触发SIGALRM信号</span>
+  <span class="mi">2</span><span class="kt">void</span> <span class="n">timer_handler</span><span class="p">()</span>
+  <span class="mi">3</span><span class="p">{</span>
+  <span class="mi">4</span>    <span class="n">timer_lst</span><span class="p">.</span><span class="n">tick</span><span class="p">();</span>
+  <span class="mi">5</span>    <span class="nf">alarm</span><span class="p">(</span><span class="n">TIMESLOT</span><span class="p">);</span>
+  <span class="mi">6</span><span class="p">}</span>
+  <span class="mi">7</span>
+  <span class="mi">8</span><span class="c1">//创建定时器容器链表</span>
+  <span class="mi">9</span><span class="k">static</span> <span class="n">sort_timer_lst</span> <span class="n">timer_lst</span><span class="p">;</span>
+ <span class="mi">10</span>
+ <span class="mi">11</span><span class="c1">//创建连接资源数组</span>
+ <span class="mi">12</span><span class="n">client_data</span> <span class="o">*</span><span class="n">users_timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">client_data</span><span class="p">[</span><span class="n">MAX_FD</span><span class="p">];</span>
+ <span class="mi">13</span>
+ <span class="mi">14</span><span class="c1">//超时默认为False</span>
+ <span class="mi">15</span><span class="kt">bool</span> <span class="n">timeout</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+ <span class="mi">16</span>
+ <span class="mi">17</span><span class="c1">//alarm定时触发SIGALRM信号</span>
+ <span class="mi">18</span><span class="n">alarm</span><span class="p">(</span><span class="n">TIMESLOT</span><span class="p">);</span>
+ <span class="mi">19</span>
+ <span class="mi">20</span><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">stop_server</span><span class="p">)</span>
+ <span class="mi">21</span><span class="p">{</span>
+ <span class="mi">22</span>    <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="n">epoll_wait</span><span class="p">(</span><span class="n">epollfd</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">MAX_EVENT_NUMBER</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+ <span class="mi">23</span>    <span class="nf">if</span> <span class="p">(</span><span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">errno</span> <span class="o">!=</span> <span class="n">EINTR</span><span class="p">)</span>
+ <span class="mi">24</span>    <span class="p">{</span>
+ <span class="mi">25</span>        <span class="k">break</span><span class="p">;</span>
+ <span class="mi">26</span>    <span class="p">}</span>
+ <span class="mi">27</span>
+ <span class="mi">28</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+ <span class="mi">29</span>    <span class="p">{</span>
+ <span class="mi">30</span>        <span class="kt">int</span> <span class="n">sockfd</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">data</span><span class="p">.</span><span class="n">fd</span><span class="p">;</span>
+ <span class="mi">31</span>
+ <span class="mi">32</span>        <span class="c1">//处理新到的客户连接</span>
+ <span class="mi">33</span>        <span class="k">if</span> <span class="p">(</span><span class="n">sockfd</span> <span class="o">==</span> <span class="n">listenfd</span><span class="p">)</span>
+ <span class="mi">34</span>        <span class="p">{</span>
+ <span class="mi">35</span>            <span class="c1">//初始化客户端连接地址</span>
+ <span class="mi">36</span>            <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">client_address</span><span class="p">;</span>
+ <span class="mi">37</span>            <span class="kt">socklen_t</span> <span class="n">client_addrlength</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">client_address</span><span class="p">);</span>
+ <span class="mi">38</span>
+ <span class="mi">39</span>            <span class="c1">//该连接分配的文件描述符</span>
+ <span class="mi">40</span>            <span class="kt">int</span> <span class="n">connfd</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">listenfd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">client_address</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">client_addrlength</span><span class="p">);</span>
+ <span class="mi">41</span>
+ <span class="mi">42</span>            <span class="c1">//初始化该连接对应的连接资源</span>
+ <span class="mi">43</span>            <span class="n">users_timer</span><span class="p">[</span><span class="n">connfd</span><span class="p">].</span><span class="n">address</span> <span class="o">=</span> <span class="n">client_address</span><span class="p">;</span>
+ <span class="mi">44</span>            <span class="n">users_timer</span><span class="p">[</span><span class="n">connfd</span><span class="p">].</span><span class="n">sockfd</span> <span class="o">=</span> <span class="n">connfd</span><span class="p">;</span>
+ <span class="mi">45</span>
+ <span class="mi">46</span>            <span class="c1">//创建定时器临时变量</span>
+ <span class="mi">47</span>            <span class="n">util_timer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">util_timer</span><span class="p">;</span>
+ <span class="mi">48</span>            <span class="c1">//设置定时器对应的连接资源</span>
+ <span class="mi">49</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">user_data</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">users_timer</span><span class="p">[</span><span class="n">connfd</span><span class="p">];</span>
+ <span class="mi">50</span>            <span class="c1">//设置回调函数</span>
+ <span class="mi">51</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">cb_func</span> <span class="o">=</span> <span class="n">cb_func</span><span class="p">;</span>
+ <span class="mi">52</span>
+ <span class="mi">53</span>            <span class="kt">time_t</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+ <span class="mi">54</span>            <span class="c1">//设置绝对超时时间</span>
+ <span class="mi">55</span>            <span class="n">timer</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="o">=</span> <span class="n">cur</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">TIMESLOT</span><span class="p">;</span>
+ <span class="mi">56</span>            <span class="c1">//创建该连接对应的定时器，初始化为前述临时变量</span>
+ <span class="mi">57</span>            <span class="n">users_timer</span><span class="p">[</span><span class="n">connfd</span><span class="p">].</span><span class="n">timer</span> <span class="o">=</span> <span class="n">timer</span><span class="p">;</span>
+ <span class="mi">58</span>            <span class="c1">//将该定时器添加到链表中</span>
+ <span class="mi">59</span>            <span class="n">timer_lst</span><span class="p">.</span><span class="n">add_timer</span><span class="p">(</span><span class="n">timer</span><span class="p">);</span>
+ <span class="mi">60</span>        <span class="p">}</span>
+ <span class="mi">61</span>        <span class="c1">//处理异常事件</span>
+ <span class="mi">62</span>        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">events</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">EPOLLRDHUP</span> <span class="o">|</span> <span class="n">EPOLLHUP</span> <span class="o">|</span> <span class="n">EPOLLERR</span><span class="p">))</span>
+ <span class="mi">63</span>        <span class="p">{</span>
+ <span class="mi">64</span>            <span class="c1">//服务器端关闭连接，移除对应的定时器</span>
+ <span class="mi">65</span>            <span class="n">cb_func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">users_timer</span><span class="p">[</span><span class="n">sockfd</span><span class="p">]);</span>
+ <span class="mi">66</span>
+ <span class="mi">67</span>            <span class="n">util_timer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="n">users_timer</span><span class="p">[</span><span class="n">sockfd</span><span class="p">].</span><span class="n">timer</span><span class="p">;</span>
+ <span class="mi">68</span>            <span class="nf">if</span> <span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+ <span class="mi">69</span>            <span class="p">{</span>
+ <span class="mi">70</span>                <span class="n">timer_lst</span><span class="p">.</span><span class="n">del_timer</span><span class="p">(</span><span class="n">timer</span><span class="p">);</span>
+ <span class="mi">71</span>            <span class="p">}</span>
+ <span class="mi">72</span>        <span class="p">}</span>
+ <span class="mi">73</span>
+ <span class="mi">74</span>        <span class="c1">//处理定时器信号</span>
+ <span class="mi">75</span>        <span class="k">else</span> <span class="k">if</span> <span class="p">((</span><span class="n">sockfd</span> <span class="o">==</span> <span class="n">pipefd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">events</span> <span class="o">&amp;</span> <span class="n">EPOLLIN</span><span class="p">))</span>
+ <span class="mi">76</span>        <span class="p">{</span>
+ <span class="mi">77</span>            <span class="c1">//接收到SIGALRM信号，timeout设置为True</span>
+ <span class="mi">78</span>        <span class="p">}</span>
+ <span class="mi">79</span>
+ <span class="mi">80</span>        <span class="c1">//处理客户连接上接收到的数据</span>
+ <span class="mi">81</span>        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">events</span> <span class="o">&amp;</span> <span class="n">EPOLLIN</span><span class="p">)</span>
+ <span class="mi">82</span>        <span class="p">{</span>
+ <span class="mi">83</span>            <span class="c1">//创建定时器临时变量，将该连接对应的定时器取出来</span>
+ <span class="mi">84</span>            <span class="n">util_timer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="n">users_timer</span><span class="p">[</span><span class="n">sockfd</span><span class="p">].</span><span class="n">timer</span><span class="p">;</span>
+ <span class="mi">85</span>            <span class="nf">if</span> <span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">sockfd</span><span class="p">].</span><span class="n">read_once</span><span class="p">())</span>
+ <span class="mi">86</span>            <span class="p">{</span>
+ <span class="mi">87</span>                <span class="c1">//若监测到读事件，将该事件放入请求队列</span>
+ <span class="mi">88</span>                <span class="n">pool</span><span class="o">-&gt;</span><span class="n">append</span><span class="p">(</span><span class="n">users</span> <span class="o">+</span> <span class="n">sockfd</span><span class="p">);</span>
+ <span class="mi">89</span>
+ <span class="mi">90</span>                <span class="c1">//若有数据传输，则将定时器往后延迟3个单位</span>
+ <span class="mi">91</span>                <span class="c1">//对其在链表上的位置进行调整</span>
+ <span class="mi">92</span>                <span class="k">if</span> <span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+ <span class="mi">93</span>                <span class="p">{</span>
+ <span class="mi">94</span>                    <span class="kt">time_t</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+ <span class="mi">95</span>                    <span class="n">timer</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="o">=</span> <span class="n">cur</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">TIMESLOT</span><span class="p">;</span>
+ <span class="mi">96</span>                    <span class="n">timer_lst</span><span class="p">.</span><span class="n">adjust_timer</span><span class="p">(</span><span class="n">timer</span><span class="p">);</span>
+ <span class="mi">97</span>                <span class="p">}</span>
+ <span class="mi">98</span>            <span class="p">}</span>
+ <span class="mi">99</span>            <span class="k">else</span>
+<span class="mi">100</span>            <span class="p">{</span>
+<span class="mi">101</span>                <span class="c1">//服务器端关闭连接，移除对应的定时器</span>
+<span class="mi">102</span>                <span class="n">cb_func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">users_timer</span><span class="p">[</span><span class="n">sockfd</span><span class="p">]);</span>
+<span class="mi">103</span>                <span class="nf">if</span> <span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+<span class="mi">104</span>                <span class="p">{</span>
+<span class="mi">105</span>                    <span class="n">timer_lst</span><span class="p">.</span><span class="n">del_timer</span><span class="p">(</span><span class="n">timer</span><span class="p">);</span>
+<span class="mi">106</span>                <span class="p">}</span>
+<span class="mi">107</span>            <span class="p">}</span>
+<span class="mi">108</span>        <span class="p">}</span>
+<span class="mi">109</span>       <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">events</span> <span class="o">&amp;</span> <span class="n">EPOLLOUT</span><span class="p">)</span>
+<span class="mi">110</span>       <span class="p">{</span>
+<span class="mi">111</span>           <span class="n">util_timer</span> <span class="o">*</span><span class="n">timer</span> <span class="o">=</span> <span class="n">users_timer</span><span class="p">[</span><span class="n">sockfd</span><span class="p">].</span><span class="n">timer</span><span class="p">;</span>
+<span class="mi">112</span>           <span class="nf">if</span> <span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">sockfd</span><span class="p">].</span><span class="n">write</span><span class="p">())</span>
+<span class="mi">113</span>           <span class="p">{</span>
+<span class="mi">114</span>                <span class="c1">//若有数据传输，则将定时器往后延迟3个单位</span>
+<span class="mi">115</span>                <span class="c1">//并对新的定时器在链表上的位置进行调整</span>
+<span class="mi">116</span>                <span class="k">if</span> <span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+<span class="mi">117</span>                <span class="p">{</span>
+<span class="mi">118</span>                    <span class="kt">time_t</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="mi">119</span>                    <span class="n">timer</span><span class="o">-&gt;</span><span class="n">expire</span> <span class="o">=</span> <span class="n">cur</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">TIMESLOT</span><span class="p">;</span>
+<span class="mi">120</span>                    <span class="n">timer_lst</span><span class="p">.</span><span class="n">adjust_timer</span><span class="p">(</span><span class="n">timer</span><span class="p">);</span>
+<span class="mi">121</span>                <span class="p">}</span>
+<span class="mi">122</span>            <span class="p">}</span>
+<span class="mi">123</span>            <span class="k">else</span>
+<span class="mi">124</span>            <span class="p">{</span>
+<span class="mi">125</span>                <span class="c1">//服务器端关闭连接，移除对应的定时器</span>
+<span class="mi">126</span>                <span class="n">cb_func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">users_timer</span><span class="p">[</span><span class="n">sockfd</span><span class="p">]);</span>
+<span class="mi">127</span>                <span class="nf">if</span> <span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+<span class="mi">128</span>                <span class="p">{</span>
+<span class="mi">129</span>                    <span class="n">timer_lst</span><span class="p">.</span><span class="n">del_timer</span><span class="p">(</span><span class="n">timer</span><span class="p">);</span>
+<span class="mi">130</span>                <span class="p">}</span>
+<span class="mi">131</span>            <span class="p">}</span>
+<span class="mi">132</span>       <span class="p">}</span>
+<span class="mi">133</span>    <span class="p">}</span>
+<span class="mi">134</span>    <span class="c1">//处理定时器为非必须事件，收到信号并不是立马处理</span>
+<span class="mi">135</span>    <span class="c1">//完成读写事件后，再进行处理</span>
+<span class="mi">136</span>    <span class="k">if</span> <span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="mi">137</span>    <span class="p">{</span>
+<span class="mi">138</span>        <span class="n">timer_handler</span><span class="p">();</span>
+<span class="mi">139</span>        <span class="n">timeout</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="mi">140</span>    <span class="p">}</span>
+<span class="mi">141</span><span class="p">}</span>
+</code></pre></div>
+
+
+<p><strong>问，连接资源中的address是不是有点鸡肋？</strong></p>
+<p>确实如此，项目中虽然对该变量赋值，但并没有用到。类似的，可以对比HTTP类中address属性，只在日志输出中用到。</p>
+<p>但不能说这个变量没有用，因为我们可以找到客户端连接的ip地址，用它来做一些业务，比如通过ip来判断是否异地登录等等。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../9%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8A%EF%BC%89/" class="btn btn-neutral float-right" title="9 日志系统（上）">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../7%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8A%EF%BC%89/" class="btn btn-neutral" title="7 定时器处理非活动连接（上）"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/zwiley/mybook/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../7%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8A%EF%BC%89/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../9%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8A%EF%BC%89/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

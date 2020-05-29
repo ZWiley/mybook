@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>5 http连接处理（中） - ZWiley的读书笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "5 http\u8fde\u63a5\u5904\u7406\uff08\u4e2d\uff09";
+    var mkdocs_page_input_path = "webserver\\5 http\u8fde\u63a5\u5904\u7406\uff08\u4e2d\uff09.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">简介</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">C++</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/">C++编译底层</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">C++基础知识</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/">C++智能指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/">C++ STL</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">计算机基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">海量数据处理</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">基本手写代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%A2%98%E7%9B%AE/">基本手写代码题目</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">项目基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">Linux系统编程及基本命令</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/">MySQL</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/">Redis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/">Socket编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">webserver项目</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../0%20%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0/">0 项目概述</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../1%20%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6%E5%B0%81%E8%A3%85%E7%B1%BB/">1 线程同步机制封装类</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../2%20%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%8D%8A%E5%8F%8D%E5%BA%94%E5%A0%86%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E4%B8%8A%EF%BC%89/">2 半同步半反应堆线程池（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../3%20%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%8D%8A%E5%8F%8D%E5%BA%94%E5%A0%86%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E4%B8%8B%EF%BC%89/">3 半同步半反应堆线程池（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../4%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/">4 http连接处理（上）</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">5 http连接处理（中）</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../6%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/">6 http连接处理（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../7%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8A%EF%BC%89/">7 定时器处理非活动连接（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../8%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8B%EF%BC%89/">8 定时器处理非活动连接（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../9%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8A%EF%BC%89/">9 日志系统（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../10%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8B%EF%BC%89/">10 日志系统（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../11%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/">11 数据库连接池</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../12%20%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">12 常见问题</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/work_with_legacy_code/">Work with legacy code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/">代码大全</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/">代码的未来</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/">基本功</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/">敏捷技能修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/">程序员应该知道的97件事</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/">编写可读代码的艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/">编程匠艺</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/">codelife_不止代码</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">调试技术</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/">软件调试修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/Effective_Debugging/">Effective Debugging</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">数据库</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/getting_started_with_impala/">Getting started with impala</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/">mysql必知必会</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/">mysql性能调优与架构实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">Mysql技术内幕InnoDB存储引擎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E5%AE%9E%E6%88%98/">Redis实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/">Redis深度历险核心原理和应用实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">redis设计与实现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/">七周七数据库</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/">深入浅出mysql</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/">高性能mysql第三版</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">前端</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/CSS_The_Missing_Manual/">CSS_The_Missing_Manual</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/">reactjs小书</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/">ES6标准入门</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/jquery_pocket_reference/">jquery_pocket_reference</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/">深入理解bootstrap</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">golang</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/1_the_go_programming_lauguage/">1 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/2_the_go_programming_lauguage/">2 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/3_the_go_programming_lauguage/">3 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/build-web-application-with-golang/">Build Web Application With Golang</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go101/book/">Go101</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/network-programming-with-go/book/">Network Programming with go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/building-microservices-with-go/book/">Building Microservices With Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/building_restful_web_services_with_go/book/">Building Restful Web Services with Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/concurrency-in-go/concurrency_in_go/">Concurrency In Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/">Go In Action(Go 实战)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/">Go学习笔记语言详解</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/">Go学习笔记源码剖析</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">go语言编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/the_way_to_go/book/">go book</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/advanced-go-programming-book/advanced-go-programming/">advanced-go-programming</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/">go-build-web-applications</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">java</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../java/java-basic-introduction/">java basic introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网络</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/">TCP IP详解卷一</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">python</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/fluent_python/">Fluent Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/Python_Microservices_Development/">Python Microservices Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/high_performance_python/">High Performance Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Python网络编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">unix/linux</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/">Linux高性能服务器编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/">unix网络编程卷一</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分布式</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">Kafka 权威指南</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">分布式框架原理与应用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">大规模分布式存储系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/">深入分布式缓存从原理到实践</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">搜索引擎</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/">Elasticsearch实战</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">容器</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/">玩转Kubernets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/">第一本docker书</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">开发工具</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/">Practical Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/">Vim8文本处理实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/">Learn vim scrpt the hard way</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/">Pro Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/">Mastering Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/">Mastering Vim Quickly</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">思维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/">专注力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/">为什么精英这样用脑不会累</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/">刻意练习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/">如何想到又做到</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/">学习之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/">学习力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/">批判性思维工具</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/">程序员的思维修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/">认知天性</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/">超效率手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/">如何高效记忆</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/">科学学习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/">高效程序员的45个习惯</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">源码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/">源码阅读</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网站架构微服务</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/">微服务架构设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/">web scalavility for startup engineers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/">design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/">clean_architecture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/">微服务设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/">2_design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/">3_design_data_instensive_application</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">软件工程/项目管理</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/">人月神话</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/">代码之殇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/">解析极限编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/">项目管理修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/">修改软件的艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">运维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">linux集群和自动化运维</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">python自动化运维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">金融理财</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/">定投十年</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/">穷查理宝典</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">写作</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/">刷屏文案写作技巧</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">互联网</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/">我的互联网方法论-周鸿祎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/">用户思维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">区块链</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/">区块链技术指南</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">技术演讲</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/">哔哩哔哩的go微服务实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/">go业务基础库之Error&Context</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/">Go同步和并发设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/">左耳朵耗子-我这技术二十年</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">职场</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/give_and_take/">give and take</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/the_effective_engineer/">the_effective_engineer</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/">光速成长</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/">成功动机与目标</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/">番茄工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/">知乎职人觉醒</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/">知识变现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/">职场动物进化手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/">职场解释系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/">请停止无效努力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/">软技能</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/">高效15法则</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/">高效清单工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/">程序员的自我修养</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">心理学</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/">一切都是童年的错吗</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/">亲密关系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%83%85%E5%95%86/">情商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E9%80%86%E5%95%86/">逆商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/">拖延心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/">积极心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/">自控力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/">自控力-实操篇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/">自控力:和压力做朋友</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/">活出最乐观的自己</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/">改变心理学的40项研究</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/">超越自卑</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/">反脆弱</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">创业</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/hello_startup/">Hello Startup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/">斯坦福公开课如何创业</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/">运营其实很简单</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">ZWiley的读书笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>webserver项目 &raquo;</li>
+        
+      
+    
+    <li>5 http连接处理（中）</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/zwiley/mybook/edit/master/docs/webserver/5 http连接处理（中）.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="_1">本文内容<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>上篇，我们对http连接的基础知识、服务器接收请求的处理流程进行了介绍，本篇将结合流程图和代码分别对状态机和服务器解析请求报文进行详解。</p>
+<p><strong>流程图部分</strong>，描述主、从状态机调用关系与状态转移过程。</p>
+<p><strong>代码部分</strong>，结合代码对http请求报文的解析进行详解。</p>
+<h3 id="_2">流程图与状态机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><strong>从状态机负责读取报文的一行，主状态机负责对该行数据进行解析</strong>，主状态机内部调用从状态机，从状态机驱动主状态机。</p>
+<p><img alt="image-20200529182654436" src="https://i.loli.net/2020/05/29/pMR1INahj6W3HJn.png" /></p>
+<h4 id="_3"><strong>主状态机</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>三种状态，标识解析位置。</p>
+<ul>
+<li>CHECK_STATE_REQUESTLINE，解析请求行</li>
+<li>CHECK_STATE_HEADER，解析请求头</li>
+<li>CHECK_STATE_CONTENT，解析消息体，仅用于解析POST请求</li>
+</ul>
+<h4 id="_4"><strong>从状态机</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>三种状态，标识解析一行的读取状态。</p>
+<ul>
+<li>LINE_OK，完整读取一行</li>
+<li>LINE_BAD，报文语法有误</li>
+<li>LINE_OPEN，读取的行不完整</li>
+</ul>
+<h3 id="-http">代码分析-http报文解析<a class="headerlink" href="#-http" title="Permanent link">&para;</a></h3>
+<p>上篇中介绍了服务器接收http请求的流程与细节，简单来讲，浏览器端发出http连接请求，服务器端主线程创建http对象接收请求并将所有数据读入对应buffer，将该对象插入任务队列后，工作线程从任务队列中取出一个任务进行处理。</p>
+<p>各子线程通过process函数对任务进行处理，调用process_read函数和process_write函数分别完成报文解析与报文响应两个任务。</p>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="kt">void</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">process</span><span class="p">()</span>
+ <span class="mi">2</span><span class="p">{</span>
+ <span class="mi">3</span>    <span class="n">HTTP_CODE</span> <span class="n">read_ret</span><span class="o">=</span><span class="n">process_read</span><span class="p">();</span>
+ <span class="mi">4</span>
+ <span class="mi">5</span>    <span class="c1">//NO_REQUEST，表示请求不完整，需要继续接收请求数据</span>
+ <span class="mi">6</span>    <span class="k">if</span><span class="p">(</span><span class="n">read_ret</span><span class="o">==</span><span class="n">NO_REQUEST</span><span class="p">)</span>
+ <span class="mi">7</span>    <span class="p">{</span>
+ <span class="mi">8</span>        <span class="c1">//注册并监听读事件</span>
+ <span class="mi">9</span>        <span class="n">modfd</span><span class="p">(</span><span class="n">m_epollfd</span><span class="p">,</span><span class="n">m_sockfd</span><span class="p">,</span><span class="n">EPOLLIN</span><span class="p">);</span>
+<span class="mi">10</span>        <span class="k">return</span><span class="p">;</span>
+<span class="mi">11</span>    <span class="p">}</span>
+<span class="mi">12</span>
+<span class="mi">13</span>    <span class="c1">//调用process_write完成报文响应</span>
+<span class="mi">14</span>    <span class="kt">bool</span> <span class="n">write_ret</span><span class="o">=</span><span class="n">process_write</span><span class="p">(</span><span class="n">read_ret</span><span class="p">);</span>
+<span class="mi">15</span>    <span class="nf">if</span><span class="p">(</span><span class="o">!</span><span class="n">write_ret</span><span class="p">)</span>
+<span class="mi">16</span>    <span class="p">{</span>
+<span class="mi">17</span>        <span class="n">close_conn</span><span class="p">();</span>
+<span class="mi">18</span>    <span class="p">}</span>
+<span class="mi">19</span>    <span class="c1">//注册并监听写事件</span>
+<span class="mi">20</span>    <span class="n">modfd</span><span class="p">(</span><span class="n">m_epollfd</span><span class="p">,</span><span class="n">m_sockfd</span><span class="p">,</span><span class="n">EPOLLOUT</span><span class="p">);</span>
+<span class="mi">21</span><span class="p">}</span>
+</code></pre></div>
+
+
+<p>本篇将对<strong>报文解析的流程和process_read函数细节</strong>进行详细介绍。</p>
+<h4 id="http_code"><strong>HTTP_CODE含义</strong><a class="headerlink" href="#http_code" title="Permanent link">&para;</a></h4>
+<p>表示HTTP请求的处理结果，在头文件中初始化了八种情形，在报文解析时只涉及到四种。</p>
+<ul>
+<li>NO_REQUEST</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>请求不完整，需要继续读取请求报文数据</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>GET_REQUEST</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>获得了完整的HTTP请求</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>BAD_REQUEST</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>HTTP请求报文有语法错误</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>INTERNAL_ERROR</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>服务器内部错误，该结果在主状态机逻辑switch的default下，一般不会触发</li>
+</ul>
+</li>
+</ul>
+<h4 id="_5"><strong>解析报文整体流程</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>process_read通过while循环，将主从状态机进行封装，对报文的每一行进行循环处理。</p>
+<ul>
+<li>判断条件</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>主状态机转移到CHECK_STATE_CONTENT，该条件涉及解析消息体</li>
+<li>从状态机转移到LINE_OK，该条件涉及解析请求行和请求头部</li>
+<li>两者为或关系，当条件为真则继续循环，否则退出</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>循环体</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>从状态机读取数据</li>
+<li>调用get_line函数，通过m_start_line将从状态机读取数据间接赋给text</li>
+<li>主状态机解析text</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//m_start_line是行在buffer中的起始位置，将该位置后面的数据赋给text</span>
+ <span class="mi">2</span><span class="c1">//此时从状态机已提前将一行的末尾字符\r\n变为\0\0，所以text可以直接取出完整的行进行解析</span>
+ <span class="mi">3</span><span class="kt">char</span><span class="o">*</span> <span class="n">get_line</span><span class="p">(){</span>
+ <span class="mi">4</span>    <span class="k">return</span> <span class="n">m_read_buf</span><span class="o">+</span><span class="n">m_start_line</span><span class="p">;</span>
+ <span class="mi">5</span><span class="p">}</span>
+ <span class="mi">6</span>
+ <span class="mi">7</span>
+ <span class="mi">8</span><span class="n">http_conn</span><span class="o">::</span><span class="n">HTTP_CODE</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">process_read</span><span class="p">()</span>
+ <span class="mi">9</span><span class="p">{</span>
+<span class="mi">10</span>    <span class="c1">//初始化从状态机状态、HTTP请求解析结果</span>
+<span class="mi">11</span>    <span class="n">LINE_STATUS</span> <span class="n">line_status</span><span class="o">=</span><span class="n">LINE_OK</span><span class="p">;</span>
+<span class="mi">12</span>    <span class="n">HTTP_CODE</span> <span class="n">ret</span><span class="o">=</span><span class="n">NO_REQUEST</span><span class="p">;</span>
+<span class="mi">13</span>    <span class="kt">char</span><span class="o">*</span> <span class="n">text</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="mi">14</span>
+<span class="mi">15</span>    <span class="c1">//这里为什么要写两个判断条件？第一个判断条件为什么这样写？</span>
+<span class="mi">16</span>    <span class="c1">//具体的在主状态机逻辑中会讲解。</span>
+<span class="mi">17</span>
+<span class="mi">18</span>    <span class="c1">//parse_line为从状态机的具体实现</span>
+<span class="mi">19</span>    <span class="k">while</span><span class="p">((</span><span class="n">m_check_state</span><span class="o">==</span><span class="n">CHECK_STATE_CONTENT</span> <span class="o">&amp;&amp;</span> <span class="n">line_status</span><span class="o">==</span><span class="n">LINE_OK</span><span class="p">)</span><span class="o">||</span><span class="p">((</span><span class="n">line_status</span><span class="o">=</span><span class="n">parse_line</span><span class="p">())</span><span class="o">==</span><span class="n">LINE_OK</span><span class="p">))</span>
+<span class="mi">20</span>    <span class="p">{</span>
+<span class="mi">21</span>        <span class="n">text</span><span class="o">=</span><span class="n">get_line</span><span class="p">();</span>
+<span class="mi">22</span>
+<span class="mi">23</span>        <span class="c1">//m_start_line是每一个数据行在m_read_buf中的起始位置</span>
+<span class="mi">24</span>        <span class="c1">//m_checked_idx表示从状态机在m_read_buf中读取的位置</span>
+<span class="mi">25</span>        <span class="n">m_start_line</span><span class="o">=</span><span class="n">m_checked_idx</span><span class="p">;</span>
+<span class="mi">26</span>
+<span class="mi">27</span>        <span class="c1">//主状态机的三种状态转移逻辑</span>
+<span class="mi">28</span>        <span class="k">switch</span><span class="p">(</span><span class="n">m_check_state</span><span class="p">)</span>
+<span class="mi">29</span>        <span class="p">{</span>
+<span class="mi">30</span>            <span class="k">case</span> <span class="nl">CHECK_STATE_REQUESTLINE</span><span class="p">:</span>
+<span class="mi">31</span>            <span class="p">{</span>
+<span class="mi">32</span>                <span class="c1">//解析请求行</span>
+<span class="mi">33</span>                <span class="n">ret</span><span class="o">=</span><span class="n">parse_request_line</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="mi">34</span>                <span class="nf">if</span><span class="p">(</span><span class="n">ret</span><span class="o">==</span><span class="n">BAD_REQUEST</span><span class="p">)</span>
+<span class="mi">35</span>                    <span class="k">return</span> <span class="n">BAD_REQUEST</span><span class="p">;</span>
+<span class="mi">36</span>                <span class="k">break</span><span class="p">;</span>
+<span class="mi">37</span>            <span class="p">}</span>
+<span class="mi">38</span>            <span class="k">case</span> <span class="nl">CHECK_STATE_HEADER</span><span class="p">:</span>
+<span class="mi">39</span>            <span class="p">{</span>
+<span class="mi">40</span>                <span class="c1">//解析请求头</span>
+<span class="mi">41</span>                <span class="n">ret</span><span class="o">=</span><span class="n">parse_headers</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="mi">42</span>                <span class="nf">if</span><span class="p">(</span><span class="n">ret</span><span class="o">==</span><span class="n">BAD_REQUEST</span><span class="p">)</span>
+<span class="mi">43</span>                    <span class="k">return</span> <span class="n">BAD_REQUEST</span><span class="p">;</span>
+<span class="mi">44</span>
+<span class="mi">45</span>                <span class="c1">//完整解析GET请求后，跳转到报文响应函数</span>
+<span class="mi">46</span>                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">ret</span><span class="o">==</span><span class="n">GET_REQUEST</span><span class="p">)</span>
+<span class="mi">47</span>                <span class="p">{</span>
+<span class="mi">48</span>                    <span class="k">return</span> <span class="n">do_request</span><span class="p">();</span>
+<span class="mi">49</span>                <span class="p">}</span>
+<span class="mi">50</span>                <span class="k">break</span><span class="p">;</span>
+<span class="mi">51</span>            <span class="p">}</span>
+<span class="mi">52</span>            <span class="k">case</span> <span class="nl">CHECK_STATE_CONTENT</span><span class="p">:</span>
+<span class="mi">53</span>            <span class="p">{</span>
+<span class="mi">54</span>                <span class="c1">//解析消息体</span>
+<span class="mi">55</span>                <span class="n">ret</span><span class="o">=</span><span class="n">parse_content</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="mi">56</span>
+<span class="mi">57</span>                <span class="c1">//完整解析POST请求后，跳转到报文响应函数</span>
+<span class="mi">58</span>                <span class="k">if</span><span class="p">(</span><span class="n">ret</span><span class="o">==</span><span class="n">GET_REQUEST</span><span class="p">)</span>
+<span class="mi">59</span>                    <span class="k">return</span> <span class="n">do_request</span><span class="p">();</span>
+<span class="mi">60</span>
+<span class="mi">61</span>                <span class="c1">//解析完消息体即完成报文解析，避免再次进入循环，更新line_status</span>
+<span class="mi">62</span>                <span class="n">line_status</span><span class="o">=</span><span class="n">LINE_OPEN</span><span class="p">;</span>
+<span class="mi">63</span>                <span class="k">break</span><span class="p">;</span>
+<span class="mi">64</span>            <span class="p">}</span>
+<span class="mi">65</span>            <span class="k">default</span><span class="o">:</span>
+<span class="mi">66</span>            <span class="k">return</span> <span class="n">INTERNAL_ERROR</span><span class="p">;</span>
+<span class="mi">67</span>        <span class="p">}</span>
+<span class="mi">68</span>    <span class="p">}</span>
+<span class="mi">69</span>    <span class="k">return</span> <span class="n">NO_REQUEST</span><span class="p">;</span>
+<span class="mi">70</span><span class="p">}</span>
+</code></pre></div>
+
+
+<h4 id="_6"><strong>从状态机逻辑</strong><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>上一篇的基础知识讲解中，对于HTTP报文的讲解遗漏了一点细节，在这里作为补充。</p>
+<p>在HTTP报文中，每一行的数据由\r\n作为结束字符，空行则是仅仅是字符\r\n。因此，可以通过查找\r\n将报文拆解成单独的行进行解析，项目中便是利用了这一点。</p>
+<p>从状态机负责读取buffer中的数据，将每行数据末尾的\r\n置为\0\0，并更新从状态机在buffer中读取的位置m_checked_idx，以此来驱动主状态机解析。</p>
+<ul>
+<li>从状态机从m_read_buf中逐字节读取，判断当前字节是否为\r</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>接下来的字符是\n，将\r\n修改成\0\0，将m_checked_idx指向下一行的开头，则返回LINE_OK</li>
+<li>接下来达到了buffer末尾，表示buffer还需要继续接收，返回LINE_OPEN</li>
+<li>否则，表示语法错误，返回LINE_BAD</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>当前字节不是\r，判断是否是\n（<strong>一般是上次读取到\r就到了buffer末尾，没有接收完整，再次接收时会出现这种情况</strong>）</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>如果前一个字符是\r，则将\r\n修改成\0\0，将m_checked_idx指向下一行的开头，则返回LINE_OK</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>当前字节既不是\r，也不是\n</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>表示接收不完整，需要继续接收，返回LINE_OPEN</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//从状态机，用于分析出一行内容</span>
+ <span class="mi">2</span><span class="c1">//返回值为行的读取状态，有LINE_OK,LINE_BAD,LINE_OPEN</span>
+ <span class="mi">3</span>
+ <span class="mi">4</span><span class="c1">//m_read_idx指向缓冲区m_read_buf的数据末尾的下一个字节</span>
+ <span class="mi">5</span><span class="c1">//m_checked_idx指向从状态机当前正在分析的字节</span>
+ <span class="mi">6</span><span class="n">http_conn</span><span class="o">::</span><span class="n">LINE_STATUS</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">parse_line</span><span class="p">()</span>
+ <span class="mi">7</span><span class="p">{</span>
+ <span class="mi">8</span>    <span class="kt">char</span> <span class="n">temp</span><span class="p">;</span>
+ <span class="mi">9</span>    <span class="k">for</span><span class="p">(;</span><span class="n">m_checked_idx</span><span class="o">&lt;</span><span class="n">m_read_idx</span><span class="p">;</span><span class="o">++</span><span class="n">m_checked_idx</span><span class="p">)</span>
+<span class="mi">10</span>    <span class="p">{</span>
+<span class="mi">11</span>        <span class="c1">//temp为将要分析的字节</span>
+<span class="mi">12</span>        <span class="n">temp</span><span class="o">=</span><span class="n">m_read_buf</span><span class="p">[</span><span class="n">m_checked_idx</span><span class="p">];</span>
+<span class="mi">13</span>
+<span class="mi">14</span>        <span class="c1">//如果当前是\r字符，则有可能会读取到完整行</span>
+<span class="mi">15</span>        <span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="o">==</span><span class="sc">&#39;\r&#39;</span><span class="p">){</span>
+<span class="mi">16</span>
+<span class="mi">17</span>            <span class="c1">//下一个字符达到了buffer结尾，则接收不完整，需要继续接收</span>
+<span class="mi">18</span>            <span class="k">if</span><span class="p">((</span><span class="n">m_checked_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">m_read_idx</span><span class="p">)</span>
+<span class="mi">19</span>                <span class="k">return</span> <span class="n">LINE_OPEN</span><span class="p">;</span>
+<span class="mi">20</span>            <span class="c1">//下一个字符是\n，将\r\n改为\0\0</span>
+<span class="mi">21</span>            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">m_read_buf</span><span class="p">[</span><span class="n">m_checked_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39;\n&#39;</span><span class="p">){</span>
+<span class="mi">22</span>                <span class="n">m_read_buf</span><span class="p">[</span><span class="n">m_checked_idx</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="mi">23</span>                <span class="n">m_read_buf</span><span class="p">[</span><span class="n">m_checked_idx</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="mi">24</span>                <span class="k">return</span> <span class="n">LINE_OK</span><span class="p">;</span>
+<span class="mi">25</span>            <span class="p">}</span>
+<span class="mi">26</span>            <span class="c1">//如果都不符合，则返回语法错误</span>
+<span class="mi">27</span>            <span class="k">return</span> <span class="n">LINE_BAD</span><span class="p">;</span>
+<span class="mi">28</span>        <span class="p">}</span>
+<span class="mi">29</span>
+<span class="mi">30</span>        <span class="c1">//如果当前字符是\n，也有可能读取到完整行</span>
+<span class="mi">31</span>        <span class="c1">//一般是上次读取到\r就到buffer末尾了，没有接收完整，再次接收时会出现这种情况</span>
+<span class="mi">32</span>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="o">==</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+<span class="mi">33</span>        <span class="p">{</span>
+<span class="mi">34</span>            <span class="c1">//前一个字符是\r，则接收完整</span>
+<span class="mi">35</span>            <span class="k">if</span><span class="p">(</span><span class="n">m_checked_idx</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">m_read_buf</span><span class="p">[</span><span class="n">m_checked_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39;\r&#39;</span><span class="p">)</span>
+<span class="mi">36</span>            <span class="p">{</span>
+<span class="mi">37</span>                <span class="n">m_read_buf</span><span class="p">[</span><span class="n">m_checked_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="mi">38</span>                <span class="n">m_read_buf</span><span class="p">[</span><span class="n">m_checked_idx</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="mi">39</span>                <span class="k">return</span> <span class="n">LINE_OK</span><span class="p">;</span>
+<span class="mi">40</span>            <span class="p">}</span>
+<span class="mi">41</span>            <span class="k">return</span> <span class="n">LINE_BAD</span><span class="p">;</span>
+<span class="mi">42</span>        <span class="p">}</span>
+<span class="mi">43</span>    <span class="p">}</span>
+<span class="mi">44</span>
+<span class="mi">45</span>    <span class="c1">//并没有找到\r\n，需要继续接收</span>
+<span class="mi">46</span>    <span class="k">return</span> <span class="n">LINE_OPEN</span><span class="p">;</span>
+<span class="mi">47</span><span class="p">}</span>
+</code></pre></div>
+
+
+<h4 id="_7"><strong>主状态机逻辑</strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>主状态机初始状态是CHECK_STATE_REQUESTLINE，通过调用从状态机来驱动主状态机，在主状态机进行解析前，从状态机已经将每一行的末尾\r\n符号改为\0\0，以便于主状态机直接取出对应字符串进行处理。</p>
+<ul>
+<li>CHECK_STATE_REQUESTLINE</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>主状态机的初始状态，调用parse_request_line函数解析请求行</li>
+<li>解析函数从m_read_buf中解析HTTP请求行，获得请求方法、目标URL及HTTP版本号</li>
+<li>解析完成后主状态机的状态变为CHECK_STATE_HEADER</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//解析http请求行，获得请求方法，目标url及http版本号</span>
+ <span class="mi">2</span><span class="n">http_conn</span><span class="o">::</span><span class="n">HTTP_CODE</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">parse_request_line</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">)</span>
+ <span class="mi">3</span><span class="p">{</span>
+ <span class="mi">4</span>    <span class="c1">//在HTTP报文中，请求行用来说明请求类型,要访问的资源以及所使用的HTTP版本，其中各个部分之间通过\t或空格分隔。</span>
+ <span class="mi">5</span>    <span class="c1">//请求行中最先含有空格和\t任一字符的位置并返回</span>
+ <span class="mi">6</span>    <span class="n">m_url</span><span class="o">=</span><span class="n">strpbrk</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="s">&quot; </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span>
+ <span class="mi">7</span>
+ <span class="mi">8</span>    <span class="c1">//如果没有空格或\t，则报文格式有误</span>
+ <span class="mi">9</span>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">m_url</span><span class="p">)</span>
+<span class="mi">10</span>    <span class="p">{</span>
+<span class="mi">11</span>        <span class="k">return</span> <span class="n">BAD_REQUEST</span><span class="p">;</span>
+<span class="mi">12</span>    <span class="p">}</span>
+<span class="mi">13</span>
+<span class="mi">14</span>    <span class="c1">//将该位置改为\0，用于将前面数据取出</span>
+<span class="mi">15</span>    <span class="o">*</span><span class="n">m_url</span><span class="o">++=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="mi">16</span>
+<span class="mi">17</span>    <span class="c1">//取出数据，并通过与GET和POST比较，以确定请求方式</span>
+<span class="mi">18</span>    <span class="kt">char</span> <span class="o">*</span><span class="n">method</span><span class="o">=</span><span class="n">text</span><span class="p">;</span>
+<span class="mi">19</span>    <span class="nf">if</span><span class="p">(</span><span class="n">strcasecmp</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="s">&quot;GET&quot;</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">20</span>        <span class="n">m_method</span><span class="o">=</span><span class="n">GET</span><span class="p">;</span>
+<span class="mi">21</span>    <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">strcasecmp</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="s">&quot;POST&quot;</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">22</span>    <span class="p">{</span>
+<span class="mi">23</span>        <span class="n">m_method</span><span class="o">=</span><span class="n">POST</span><span class="p">;</span>
+<span class="mi">24</span>        <span class="n">cgi</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="mi">25</span>    <span class="p">}</span>
+<span class="mi">26</span>    <span class="k">else</span>
+<span class="mi">27</span>        <span class="k">return</span> <span class="n">BAD_REQUEST</span><span class="p">;</span>
+<span class="mi">28</span>
+<span class="mi">29</span>    <span class="c1">//m_url此时跳过了第一个空格或\t字符，但不知道之后是否还有</span>
+<span class="mi">30</span>    <span class="c1">//将m_url向后偏移，通过查找，继续跳过空格和\t字符，指向请求资源的第一个字符</span>
+<span class="mi">31</span>    <span class="n">m_url</span><span class="o">+=</span><span class="n">strspn</span><span class="p">(</span><span class="n">m_url</span><span class="p">,</span><span class="s">&quot; </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="mi">32</span>
+<span class="mi">33</span>    <span class="c1">//使用与判断请求方式的相同逻辑，判断HTTP版本号</span>
+<span class="mi">34</span>    <span class="n">m_version</span><span class="o">=</span><span class="n">strpbrk</span><span class="p">(</span><span class="n">m_url</span><span class="p">,</span><span class="s">&quot; </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="mi">35</span>    <span class="nf">if</span><span class="p">(</span><span class="o">!</span><span class="n">m_version</span><span class="p">)</span>
+<span class="mi">36</span>        <span class="k">return</span> <span class="n">BAD_REQUEST</span><span class="p">;</span>
+<span class="mi">37</span>    <span class="o">*</span><span class="n">m_version</span><span class="o">++=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="mi">38</span>    <span class="n">m_version</span><span class="o">+=</span><span class="n">strspn</span><span class="p">(</span><span class="n">m_version</span><span class="p">,</span><span class="s">&quot; </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="mi">39</span>
+<span class="mi">40</span>    <span class="c1">//仅支持HTTP/1.1</span>
+<span class="mi">41</span>    <span class="k">if</span><span class="p">(</span><span class="n">strcasecmp</span><span class="p">(</span><span class="n">m_version</span><span class="p">,</span><span class="s">&quot;HTTP/1.1&quot;</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">42</span>        <span class="k">return</span> <span class="n">BAD_REQUEST</span><span class="p">;</span>
+<span class="mi">43</span>
+<span class="mi">44</span>    <span class="c1">//对请求资源前7个字符进行判断</span>
+<span class="mi">45</span>    <span class="c1">//这里主要是有些报文的请求资源中会带有http://，这里需要对这种情况进行单独处理</span>
+<span class="mi">46</span>    <span class="k">if</span><span class="p">(</span><span class="n">strncasecmp</span><span class="p">(</span><span class="n">m_url</span><span class="p">,</span><span class="s">&quot;http://&quot;</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">47</span>    <span class="p">{</span>
+<span class="mi">48</span>        <span class="n">m_url</span><span class="o">+=</span><span class="mi">7</span><span class="p">;</span>
+<span class="mi">49</span>        <span class="n">m_url</span><span class="o">=</span><span class="n">strchr</span><span class="p">(</span><span class="n">m_url</span><span class="p">,</span><span class="sc">&#39;/&#39;</span><span class="p">);</span>
+<span class="mi">50</span>    <span class="p">}</span>
+<span class="mi">51</span>
+<span class="mi">52</span>    <span class="c1">//同样增加https情况</span>
+<span class="mi">53</span>    <span class="k">if</span><span class="p">(</span><span class="n">strncasecmp</span><span class="p">(</span><span class="n">m_url</span><span class="p">,</span><span class="s">&quot;https://&quot;</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">54</span>    <span class="p">{</span>
+<span class="mi">55</span>        <span class="n">m_url</span><span class="o">+=</span><span class="mi">8</span><span class="p">;</span>
+<span class="mi">56</span>        <span class="n">m_url</span><span class="o">=</span><span class="n">strchr</span><span class="p">(</span><span class="n">m_url</span><span class="p">,</span><span class="sc">&#39;/&#39;</span><span class="p">);</span>
+<span class="mi">57</span>    <span class="p">}</span>
+<span class="mi">58</span>
+<span class="mi">59</span>    <span class="c1">//一般的不会带有上述两种符号，直接是单独的/或/后面带访问资源</span>
+<span class="mi">60</span>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">m_url</span><span class="o">||</span><span class="n">m_url</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">!=</span><span class="sc">&#39;/&#39;</span><span class="p">)</span>
+<span class="mi">61</span>        <span class="k">return</span> <span class="n">BAD_REQUEST</span><span class="p">;</span>
+<span class="mi">62</span>
+<span class="mi">63</span>    <span class="c1">//当url为/时，显示欢迎界面</span>
+<span class="mi">64</span>    <span class="k">if</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">m_url</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">65</span>        <span class="n">strcat</span><span class="p">(</span><span class="n">m_url</span><span class="p">,</span><span class="s">&quot;judge.html&quot;</span><span class="p">);</span>
+<span class="mi">66</span>
+<span class="mi">67</span>    <span class="c1">//请求行处理完毕，将主状态机转移处理请求头</span>
+<span class="mi">68</span>    <span class="n">m_check_state</span><span class="o">=</span><span class="n">CHECK_STATE_HEADER</span><span class="p">;</span>
+<span class="mi">69</span>    <span class="k">return</span> <span class="n">NO_REQUEST</span><span class="p">;</span>
+<span class="mi">70</span><span class="p">}</span>
+</code></pre></div>
+
+
+<p>解析完请求行后，主状态机继续分析请求头。在报文中，请求头和空行的处理使用的同一个函数，这里通过判断当前的text首位是不是\0字符，若是，则表示当前处理的是空行，若不是，则表示当前处理的是请求头。</p>
+<ul>
+<li>CHECK_STATE_HEADER</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>调用parse_headers函数解析请求头部信息</li>
+<li>判断是空行还是请求头，若是空行，进而判断content-length是否为0，如果不是0，表明是POST请求，则状态转移到CHECK_STATE_CONTENT，否则说明是GET请求，则报文解析结束。</li>
+<li>若解析的是请求头部字段，则主要分析connection字段，content-length字段，其他字段可以直接跳过，各位也可以根据需求继续分析。</li>
+<li>connection字段判断是keep-alive还是close，决定是长连接还是短连接</li>
+<li>content-length字段，这里用于读取post请求的消息体长度</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//解析http请求的一个头部信息</span>
+ <span class="mi">2</span><span class="n">http_conn</span><span class="o">::</span><span class="n">HTTP_CODE</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">parse_headers</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">)</span>
+ <span class="mi">3</span><span class="p">{</span>
+ <span class="mi">4</span>    <span class="c1">//判断是空行还是请求头</span>
+ <span class="mi">5</span>    <span class="k">if</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+ <span class="mi">6</span>    <span class="p">{</span>
+ <span class="mi">7</span>        <span class="c1">//判断是GET还是POST请求</span>
+ <span class="mi">8</span>        <span class="k">if</span><span class="p">(</span><span class="n">m_content_length</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>
+ <span class="mi">9</span>        <span class="p">{</span>
+<span class="mi">10</span>            <span class="c1">//POST需要跳转到消息体处理状态</span>
+<span class="mi">11</span>            <span class="n">m_check_state</span><span class="o">=</span><span class="n">CHECK_STATE_CONTENT</span><span class="p">;</span>
+<span class="mi">12</span>            <span class="k">return</span> <span class="n">NO_REQUEST</span><span class="p">;</span>
+<span class="mi">13</span>        <span class="p">}</span>
+<span class="mi">14</span>        <span class="k">return</span> <span class="n">GET_REQUEST</span><span class="p">;</span>
+<span class="mi">15</span>    <span class="p">}</span>
+<span class="mi">16</span>    <span class="c1">//解析请求头部连接字段</span>
+<span class="mi">17</span>    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncasecmp</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="s">&quot;Connection:&quot;</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">18</span>    <span class="p">{</span>
+<span class="mi">19</span>        <span class="n">text</span><span class="o">+=</span><span class="mi">11</span><span class="p">;</span>
+<span class="mi">20</span>
+<span class="mi">21</span>        <span class="c1">//跳过空格和\t字符</span>
+<span class="mi">22</span>        <span class="n">text</span><span class="o">+=</span><span class="n">strspn</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="s">&quot; </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="mi">23</span>        <span class="nf">if</span><span class="p">(</span><span class="n">strcasecmp</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="s">&quot;keep-alive&quot;</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">24</span>        <span class="p">{</span>
+<span class="mi">25</span>            <span class="c1">//如果是长连接，则将linger标志设置为true</span>
+<span class="mi">26</span>            <span class="n">m_linger</span><span class="o">=</span><span class="nb">true</span><span class="p">;</span>
+<span class="mi">27</span>        <span class="p">}</span>
+<span class="mi">28</span>    <span class="p">}</span>
+<span class="mi">29</span>    <span class="c1">//解析请求头部内容长度字段</span>
+<span class="mi">30</span>    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncasecmp</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="s">&quot;Content-length:&quot;</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">31</span>    <span class="p">{</span>
+<span class="mi">32</span>        <span class="n">text</span><span class="o">+=</span><span class="mi">15</span><span class="p">;</span>
+<span class="mi">33</span>        <span class="n">text</span><span class="o">+=</span><span class="n">strspn</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="s">&quot; </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="mi">34</span>        <span class="n">m_content_length</span><span class="o">=</span><span class="n">atol</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="mi">35</span>    <span class="p">}</span>
+<span class="mi">36</span>    <span class="c1">//解析请求头部HOST字段</span>
+<span class="mi">37</span>    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncasecmp</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="s">&quot;Host:&quot;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">38</span>    <span class="p">{</span>
+<span class="mi">39</span>        <span class="n">text</span><span class="o">+=</span><span class="mi">5</span><span class="p">;</span>
+<span class="mi">40</span>        <span class="n">text</span><span class="o">+=</span><span class="n">strspn</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="s">&quot; </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="mi">41</span>        <span class="n">m_host</span><span class="o">=</span><span class="n">text</span><span class="p">;</span>
+<span class="mi">42</span>    <span class="p">}</span>
+<span class="mi">43</span>    <span class="k">else</span><span class="p">{</span>
+<span class="mi">44</span>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;oop!unknow header: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">text</span><span class="p">);</span>
+<span class="mi">45</span>    <span class="p">}</span>
+<span class="mi">46</span>    <span class="k">return</span> <span class="n">NO_REQUEST</span><span class="p">;</span>
+<span class="mi">47</span><span class="p">}</span>
+</code></pre></div>
+
+
+<p>如果仅仅是GET请求，如项目中的欢迎界面，那么主状态机只设置之前的两个状态足矣。</p>
+<p>因为在上篇推文中我们曾说道，GET和POST请求报文的区别之一是有无消息体部分，GET请求没有消息体，当解析完空行之后，便完成了报文的解析。</p>
+<p>但后续的登录和注册功能，为了避免将用户名和密码直接暴露在URL中，我们在项目中改用了POST请求，将用户名和密码添加在报文中作为消息体进行了封装。</p>
+<p>为此，我们需要在解析报文的部分添加解析消息体的模块。</p>
+<div class="codehilite"><pre><span></span><code><span class="mi">1</span><span class="k">while</span><span class="p">((</span><span class="n">m_check_state</span><span class="o">==</span><span class="n">CHECK_STATE_CONTENT</span> <span class="o">&amp;&amp;</span> <span class="n">line_status</span><span class="o">==</span><span class="n">LINE_OK</span><span class="p">)</span><span class="o">||</span><span class="p">((</span><span class="n">line_status</span><span class="o">=</span><span class="n">parse_line</span><span class="p">())</span><span class="o">==</span><span class="n">LINE_OK</span><span class="p">))</span>
+<span class="err">那么，这里的判断条件为什么要写成这样呢？</span>
+</code></pre></div>
+
+
+<p>在GET请求报文中，每一行都是\r\n作为结束，所以对报文进行拆解时，仅用从状态机的状态line_status=parse_line())==LINE_OK语句即可。</p>
+<p>但，在POST请求报文中，消息体的末尾没有任何字符，所以不能使用从状态机的状态，这里转而使用主状态机的状态作为循环入口条件。</p>
+<div class="codehilite"><pre><span></span><code>那后面的<span class="o">&amp;&amp;</span> <span class="nv">line_status</span><span class="o">==</span>LINE_OK又是为什么？
+</code></pre></div>
+
+
+<p>解析完消息体后，报文的完整解析就完成了，但此时主状态机的状态还是CHECK_STATE_CONTENT，也就是说，符合循环入口条件，还会再次进入循环，这并不是我们所希望的。</p>
+<p>为此，增加了该语句，并在完成消息体解析后，将line_status变量更改为LINE_OPEN，此时可以跳出循环，完成报文解析任务。</p>
+<ul>
+<li>CHECK_STATE_CONTENT</li>
+</ul>
+<ul>
+<li>
+<ul>
+<li>仅用于解析POST请求，调用parse_content函数解析消息体</li>
+<li>用于保存post请求消息体，为后面的登录和注册做准备</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//判断http请求是否被完整读入</span>
+ <span class="mi">2</span><span class="n">http_conn</span><span class="o">::</span><span class="n">HTTP_CODE</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">parse_content</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">)</span>
+ <span class="mi">3</span><span class="p">{</span>
+ <span class="mi">4</span>    <span class="c1">//判断buffer中是否读取了消息体</span>
+ <span class="mi">5</span>    <span class="k">if</span><span class="p">(</span><span class="n">m_read_idx</span><span class="o">&gt;=</span><span class="p">(</span><span class="n">m_content_length</span><span class="o">+</span><span class="n">m_checked_idx</span><span class="p">)){</span>
+ <span class="mi">6</span>
+ <span class="mi">7</span>        <span class="n">text</span><span class="p">[</span><span class="n">m_content_length</span><span class="p">]</span><span class="o">=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+ <span class="mi">8</span>
+ <span class="mi">9</span>        <span class="c1">//POST请求中最后为输入的用户名和密码</span>
+<span class="mi">10</span>        <span class="n">m_string</span> <span class="o">=</span> <span class="n">text</span><span class="p">;</span>
+<span class="mi">11</span>
+<span class="mi">12</span>        <span class="k">return</span> <span class="n">GET_REQUEST</span><span class="p">;</span>
+<span class="mi">13</span>    <span class="p">}</span>
+<span class="mi">14</span>    <span class="k">return</span> <span class="n">NO_REQUEST</span><span class="p">;</span>
+<span class="mi">15</span><span class="p">}</span>
+</code></pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../6%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/" class="btn btn-neutral float-right" title="6 http连接处理（下）">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../4%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/" class="btn btn-neutral" title="4 http连接处理（上）"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/zwiley/mybook/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../4%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../6%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

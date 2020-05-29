@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>9 日志系统（上） - ZWiley的读书笔记</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "9 \u65e5\u5fd7\u7cfb\u7edf\uff08\u4e0a\uff09";
+    var mkdocs_page_input_path = "webserver\\9 \u65e5\u5fd7\u7cfb\u7edf\uff08\u4e0a\uff09.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">简介</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">C++</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/">C++编译底层</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">C++基础知识</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/">C++智能指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/">C++ STL</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">计算机基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">海量数据处理</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">基本手写代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%A2%98%E7%9B%AE/">基本手写代码题目</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">项目基础知识</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">Linux系统编程及基本命令</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/">MySQL</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/">Redis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/">Socket编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">webserver项目</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../0%20%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0/">0 项目概述</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../1%20%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6%E5%B0%81%E8%A3%85%E7%B1%BB/">1 线程同步机制封装类</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../2%20%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%8D%8A%E5%8F%8D%E5%BA%94%E5%A0%86%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E4%B8%8A%EF%BC%89/">2 半同步半反应堆线程池（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../3%20%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%8D%8A%E5%8F%8D%E5%BA%94%E5%A0%86%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E4%B8%8B%EF%BC%89/">3 半同步半反应堆线程池（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../4%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/">4 http连接处理（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../5%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/">5 http连接处理（中）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../6%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/">6 http连接处理（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../7%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8A%EF%BC%89/">7 定时器处理非活动连接（上）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../8%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8B%EF%BC%89/">8 定时器处理非活动连接（下）</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">9 日志系统（上）</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../10%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8B%EF%BC%89/">10 日志系统（下）</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../11%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/">11 数据库连接池</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../12%20%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">12 常见问题</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">代码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/work_with_legacy_code/">Work with legacy code</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/">代码大全</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/">代码的未来</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/">基本功</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/">敏捷技能修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/">程序员应该知道的97件事</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/">编写可读代码的艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/">编程匠艺</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/">领域驱动设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/">codelife_不止代码</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">调试技术</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/">软件调试修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../debug/Effective_Debugging/">Effective Debugging</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">数据库</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/getting_started_with_impala/">Getting started with impala</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/">mysql必知必会</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/">mysql性能调优与架构实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">Mysql技术内幕InnoDB存储引擎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E5%AE%9E%E6%88%98/">Redis实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/">Redis深度历险核心原理和应用实践</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">redis设计与实现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/">七周七数据库</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/">深入浅出mysql</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/">高性能mysql第三版</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">前端</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/CSS_The_Missing_Manual/">CSS_The_Missing_Manual</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/">reactjs小书</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/">ES6标准入门</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/jquery_pocket_reference/">jquery_pocket_reference</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/">深入理解bootstrap</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">golang</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/1_the_go_programming_lauguage/">1 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/2_the_go_programming_lauguage/">2 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/3_the_go_programming_lauguage/">3 The Go Programming Language</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/build-web-application-with-golang/">Build Web Application With Golang</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go101/book/">Go101</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/network-programming-with-go/book/">Network Programming with go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/building-microservices-with-go/book/">Building Microservices With Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/building_restful_web_services_with_go/book/">Building Restful Web Services with Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/concurrency-in-go/concurrency_in_go/">Concurrency In Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/">Go In Action(Go 实战)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/">Go学习笔记语言详解</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/">Go学习笔记源码剖析</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">go语言编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/the_way_to_go/book/">go book</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/advanced-go-programming-book/advanced-go-programming/">advanced-go-programming</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../golang/go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/">go-build-web-applications</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">java</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../java/java-basic-introduction/">java basic introduction</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网络</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/">TCP IP详解卷一</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">python</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/fluent_python/">Fluent Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/Python_Microservices_Development/">Python Microservices Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/high_performance_python/">High Performance Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Python网络编程</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">unix/linux</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/">Linux高性能服务器编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/">unix网络编程卷一</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">unix编程艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">分布式</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">Kafka 权威指南</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">分布式框架原理与应用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">大规模分布式存储系统</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/">深入分布式缓存从原理到实践</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">搜索引擎</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/">Elasticsearch实战</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">容器</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/">玩转Kubernets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/">第一本docker书</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">开发工具</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/">Practical Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/">Vim8文本处理实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/">Learn vim scrpt the hard way</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/">Pro Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/">Mastering Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/">Mastering Vim Quickly</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">思维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/">专注力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/">为什么精英这样用脑不会累</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/">刻意练习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/">如何想到又做到</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/">学习之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/">学习力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/">批判性思维工具</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/">程序员的思维修炼</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/">认知天性</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/">超效率手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/">如何高效记忆</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/">科学学习</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/">高效程序员的45个习惯</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">源码</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/">源码阅读</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">网站架构微服务</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/">微服务架构设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/">从0开始学架构</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/">web scalavility for startup engineers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/">design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/">clean_architecture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/">微服务设计</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/">2_design_data_instensive_application</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/">3_design_data_instensive_application</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">软件工程/项目管理</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/">人月神话</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/">代码之殇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/">解析极限编程</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/">项目管理修炼之道</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/">修改软件的艺术</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">运维</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">linux集群和自动化运维</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">python自动化运维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">金融理财</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/">定投十年</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/">穷查理宝典</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">写作</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/">刷屏文案写作技巧</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">互联网</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/">我的互联网方法论-周鸿祎</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/">用户思维</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">区块链</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/">区块链技术指南</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">技术演讲</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/">哔哩哔哩的go微服务实战</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/">go业务基础库之Error&Context</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/">Go同步和并发设计模式</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/">左耳朵耗子-我这技术二十年</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">职场</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/give_and_take/">give and take</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/the_effective_engineer/">the_effective_engineer</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/">光速成长</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/">向上管理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/">成功动机与目标</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/">番茄工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/">知乎职人觉醒</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/">知识变现</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/">聆听沟通学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/">职场动物进化手册</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/">职场解释系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/">请停止无效努力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/">软技能</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/">高效15法则</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/">高效清单工作法</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/">程序员的自我修养</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">心理学</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/">一切都是童年的错吗</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/">亲密关系</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%83%85%E5%95%86/">情商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E9%80%86%E5%95%86/">逆商</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/">拖延心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/">积极心理学</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/">自控力</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/">自控力-实操篇</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/">自控力:和压力做朋友</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/">活出最乐观的自己</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/">改变心理学的40项研究</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/">超越自卑</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/">反脆弱</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">创业</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/hello_startup/">Hello Startup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/">斯坦福公开课如何创业</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/">运营其实很简单</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">ZWiley的读书笔记</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>webserver项目 &raquo;</li>
+        
+      
+    
+    <li>9 日志系统（上）</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/zwiley/mybook/edit/master/docs/webserver/9 日志系统（上）.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="_1">基础知识<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><strong><code>日志</code></strong>，由服务器自动创建，并记录运行状态，错误信息，访问数据的文件。</p>
+<p><strong><code>同步日志</code></strong>，日志写入函数与工作线程串行执行，由于涉及到I/O操作，当单条日志比较大的时候，同步模式会阻塞整个处理流程，服务器所能处理的并发能力将有所下降，尤其是在峰值的时候，写日志可能成为系统的瓶颈。</p>
+<p><strong><code>生产者-消费者模型</code></strong>，并发编程中的经典模型。以多线程为例，为了实现线程间数据同步，生产者线程与消费者线程共享一个缓冲区，其中生产者线程往缓冲区中push消息，消费者线程从缓冲区中pop消息。</p>
+<p><strong><code>阻塞队列</code></strong>，将生产者-消费者模型进行封装，使用循环数组实现队列，作为两者共享的缓冲区。</p>
+<p><strong><code>异步日志</code></strong>，将所写的日志内容先存入阻塞队列，写线程从阻塞队列中取出内容，写入日志。</p>
+<p><strong><code>单例模式</code></strong>，最简单也是被问到最多的设计模式之一，保证一个类只创建一个实例，同时提供全局访问的方法。</p>
+<h3 id="_2">整体概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>本项目中，使用单例模式创建日志系统，对服务器运行状态、错误信息和访问数据进行记录，该系统可以实现按天分类，超行分类功能，可以根据实际情况分别使用同步和异步写入两种方式。</p>
+<p>其中异步写入方式，将生产者-消费者模型封装为阻塞队列，创建一个写线程，工作线程将要写的内容push进队列，写线程从队列中取出内容，写入日志文件。</p>
+<p>日志系统大致可以分成两部分，其一是单例模式与阻塞队列的定义，其二是日志类的定义与使用。</p>
+<h3 id="_3">本文内容<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>本篇将介绍单例模式与阻塞队列的定义，具体的涉及到单例模式、生产者-消费者模型，阻塞队列的代码实现。</p>
+<p><strong>单例模式</strong>，描述懒汉与饿汉两种单例模式，并结合线程安全进行讨论。</p>
+<p><strong>生产者-消费者模型</strong>，描述条件变量，基于该同步机制实现简单的生产者-消费者模型。</p>
+<p><strong>代码实现</strong>，结合代码对阻塞队列的设计进行详解。</p>
+<h3 id="_4">单例模式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>单例模式作为最常用的设计模式之一，保证一个类仅有一个实例，并提供一个访问它的全局访问点，该实例被所有程序模块共享。</p>
+<p>实现思路：私有化它的构造函数，以防止外界创建单例类的对象；使用类的私有静态指针变量指向类的唯一实例，并用一个公有的静态方法获取该实例。</p>
+<p>单例模式有两种实现方法，分别是懒汉和饿汉模式。顾名思义，懒汉模式，即非常懒，不用的时候不去初始化，所以在第一次被使用时才进行初始化；饿汉模式，即迫不及待，在程序运行时立即初始化。</p>
+<h4 id="_5"><strong>经典的线程安全懒汉模式</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>单例模式的实现思路如前述所示，其中，经典的线程安全懒汉模式，使用双检测锁模式。</p>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="k">class</span> <span class="nc">single</span><span class="p">{</span>
+ <span class="mi">2</span><span class="k">private</span><span class="o">:</span>
+ <span class="mi">3</span>    <span class="c1">//私有静态指针变量指向唯一实例</span>
+ <span class="mi">4</span>    <span class="k">static</span> <span class="n">single</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+ <span class="mi">5</span>
+ <span class="mi">6</span>    <span class="c1">//静态锁，是由于静态函数只能访问静态成员</span>
+ <span class="mi">7</span>    <span class="k">static</span> <span class="n">pthread_mutex_t</span> <span class="n">lock</span><span class="p">;</span>
+ <span class="mi">8</span>
+ <span class="mi">9</span>    <span class="c1">//私有化构造函数</span>
+<span class="mi">10</span>    <span class="n">single</span><span class="p">(){</span>
+<span class="mi">11</span>        <span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="mi">12</span>    <span class="p">}</span>
+<span class="mi">13</span>    <span class="o">~</span><span class="n">single</span><span class="p">(){}</span>
+<span class="mi">14</span>
+<span class="mi">15</span><span class="k">public</span><span class="o">:</span>
+<span class="mi">16</span>    <span class="c1">//公有静态方法获取实例</span>
+<span class="mi">17</span>    <span class="k">static</span> <span class="n">single</span><span class="o">*</span> <span class="n">getinstance</span><span class="p">();</span>
+<span class="mi">18</span>
+<span class="mi">19</span><span class="p">};</span>
+<span class="mi">20</span>
+<span class="mi">21</span><span class="n">pthread_mutex_t</span> <span class="n">single</span><span class="o">::</span><span class="n">lock</span><span class="p">;</span>
+<span class="mi">22</span>
+<span class="mi">23</span><span class="n">single</span><span class="o">*</span> <span class="n">single</span><span class="o">::</span><span class="n">p</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="mi">24</span><span class="n">single</span><span class="o">*</span> <span class="n">single</span><span class="o">::</span><span class="n">getinstance</span><span class="p">(){</span>
+<span class="mi">25</span>    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">p</span><span class="p">){</span>
+<span class="mi">26</span>        <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">);</span>
+<span class="mi">27</span>        <span class="nf">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">p</span><span class="p">){</span>
+<span class="mi">28</span>            <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">single</span><span class="p">;</span>
+<span class="mi">29</span>        <span class="p">}</span>
+<span class="mi">30</span>        <span class="nf">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">);</span>
+<span class="mi">31</span>    <span class="p">}</span>
+<span class="mi">32</span>    <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+<span class="mi">33</span><span class="p">}</span>
+</code></pre></div>
+
+
+<p><strong><code>为什么要用双检测，只检测一次不行吗？</code></strong></p>
+<p>如果只检测一次，在每次调用获取实例的方法时，都需要加锁，这将严重影响程序性能。双层检测可以有效避免这种情况，仅在第一次创建单例的时候加锁，其他时候都不再符合NULL == p的情况，直接返回已创建好的实例。</p>
+<h4 id="_6"><strong>局部静态变量之线程安全懒汉模式</strong><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>前面的双检测锁模式，写起来不太优雅，《Effective C++》（Item 04）中的提出另一种更优雅的单例模式实现，使用函数内的局部静态对象，这种方法不用加锁和解锁操作。</p>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="k">class</span> <span class="nc">single</span><span class="p">{</span>
+ <span class="mi">2</span><span class="k">private</span><span class="o">:</span>
+ <span class="mi">3</span>    <span class="n">single</span><span class="p">(){}</span>
+ <span class="mi">4</span>    <span class="o">~</span><span class="n">single</span><span class="p">(){}</span>
+ <span class="mi">5</span>
+ <span class="mi">6</span><span class="k">public</span><span class="o">:</span>
+ <span class="mi">7</span>    <span class="k">static</span> <span class="n">single</span><span class="o">*</span> <span class="n">getinstance</span><span class="p">();</span>
+ <span class="mi">8</span>
+ <span class="mi">9</span><span class="p">};</span>
+<span class="mi">10</span>
+<span class="mi">11</span><span class="n">single</span><span class="o">*</span> <span class="n">single</span><span class="o">::</span><span class="n">getinstance</span><span class="p">(){</span>
+<span class="mi">12</span>    <span class="k">static</span> <span class="n">single</span> <span class="n">obj</span><span class="p">;</span>
+<span class="mi">13</span>    <span class="k">return</span> <span class="o">&amp;</span><span class="n">obj</span><span class="p">;</span>
+<span class="mi">14</span><span class="p">}</span>
+</code></pre></div>
+
+
+<p><strong><code>这时候有人说了，这种方法不加锁会不会造成线程安全问题？</code></strong></p>
+<p>其实，C++0X以后，要求编译器保证内部静态变量的线程安全性，故C++0x之后该实现是线程安全的，C++0x之前仍需加锁，其中C++0x是C++11标准成为正式标准之前的草案临时名字。</p>
+<p>所以，如果使用C++11之前的标准，还是需要加锁，这里同样给出加锁的版本。</p>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="k">class</span> <span class="nc">single</span><span class="p">{</span>
+ <span class="mi">2</span><span class="k">private</span><span class="o">:</span>
+ <span class="mi">3</span>    <span class="k">static</span> <span class="n">pthread_mutex_t</span> <span class="n">lock</span><span class="p">;</span>
+ <span class="mi">4</span>    <span class="nf">single</span><span class="p">(){</span>
+ <span class="mi">5</span>        <span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+ <span class="mi">6</span>    <span class="p">}</span>
+ <span class="mi">7</span>    <span class="o">~</span><span class="n">single</span><span class="p">(){}</span>
+ <span class="mi">8</span>
+ <span class="mi">9</span><span class="k">public</span><span class="o">:</span>
+<span class="mi">10</span>    <span class="k">static</span> <span class="n">single</span><span class="o">*</span> <span class="n">getinstance</span><span class="p">();</span>
+<span class="mi">11</span>
+<span class="mi">12</span><span class="p">};</span>
+<span class="mi">13</span><span class="n">pthread_mutex_t</span> <span class="n">single</span><span class="o">::</span><span class="n">lock</span><span class="p">;</span>
+<span class="mi">14</span><span class="n">single</span><span class="o">*</span> <span class="n">single</span><span class="o">::</span><span class="n">getinstance</span><span class="p">(){</span>
+<span class="mi">15</span>    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">);</span>
+<span class="mi">16</span>    <span class="k">static</span> <span class="n">single</span> <span class="n">obj</span><span class="p">;</span>
+<span class="mi">17</span>    <span class="nf">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">);</span>
+<span class="mi">18</span>    <span class="k">return</span> <span class="o">&amp;</span><span class="n">obj</span><span class="p">;</span>
+<span class="mi">19</span><span class="p">}</span>
+</code></pre></div>
+
+
+<h4 id="_7"><strong>饿汉模式</strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>饿汉模式不需要用锁，就可以实现线程安全。原因在于，在程序运行时就定义了对象，并对其初始化。之后，不管哪个线程调用成员函数getinstance()，都只不过是返回一个对象的指针而已。所以是线程安全的，不需要在获取实例的成员函数中加锁。</p>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="k">class</span> <span class="nc">single</span><span class="p">{</span>
+ <span class="mi">2</span><span class="k">private</span><span class="o">:</span>
+ <span class="mi">3</span>    <span class="k">static</span> <span class="n">single</span><span class="o">*</span> <span class="n">p</span><span class="p">;</span>
+ <span class="mi">4</span>    <span class="nf">single</span><span class="p">(){}</span>
+ <span class="mi">5</span>    <span class="o">~</span><span class="n">single</span><span class="p">(){}</span>
+ <span class="mi">6</span>
+ <span class="mi">7</span><span class="k">public</span><span class="o">:</span>
+ <span class="mi">8</span>    <span class="k">static</span> <span class="n">single</span><span class="o">*</span> <span class="n">getinstance</span><span class="p">();</span>
+ <span class="mi">9</span>
+<span class="mi">10</span><span class="p">};</span>
+<span class="mi">11</span><span class="n">single</span><span class="o">*</span> <span class="n">single</span><span class="o">::</span><span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">single</span><span class="p">();</span>
+<span class="mi">12</span><span class="n">single</span><span class="o">*</span> <span class="n">single</span><span class="o">::</span><span class="n">getinstance</span><span class="p">(){</span>
+<span class="mi">13</span>    <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+<span class="mi">14</span><span class="p">}</span>
+<span class="mi">15</span>
+<span class="mi">16</span><span class="c1">//测试方法</span>
+<span class="mi">17</span><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+<span class="mi">18</span>
+<span class="mi">19</span>    <span class="n">single</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="n">single</span><span class="o">::</span><span class="n">getinstance</span><span class="p">();</span>
+<span class="mi">20</span>    <span class="n">single</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="n">single</span><span class="o">::</span><span class="n">getinstance</span><span class="p">();</span>
+<span class="mi">21</span>
+<span class="mi">22</span>    <span class="nf">if</span> <span class="p">(</span><span class="n">p1</span> <span class="o">==</span> <span class="n">p2</span><span class="p">)</span>
+<span class="mi">23</span>        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;same&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mi">24</span>
+<span class="mi">25</span>    <span class="nf">system</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
+<span class="mi">26</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mi">27</span><span class="p">}</span>
+</code></pre></div>
+
+
+<p>饿汉模式虽好，但其存在隐藏的问题，在于非静态对象（函数外的static对象）在不同编译单元中的初始化顺序是未定义的。如果在初始化完成之前调用 getInstance() 方法会返回一个未定义的实例。</p>
+<h3 id="-">条件变量与生产者-消费者模型<a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
+<h4 id="api"><strong>条件变量API与陷阱</strong><a class="headerlink" href="#api" title="Permanent link">&para;</a></h4>
+<p>条件变量提供了一种线程间的通知机制，当某个共享数据达到某个值时,唤醒等待这个共享数据的线程。</p>
+<h5 id="api_1">基础API<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li>pthread_cond_init函数，用于初始化条件变量</li>
+<li>pthread_cond_destory函数，销毁条件变量</li>
+<li>pthread_cond_broadcast函数，以广播的方式唤醒<strong>所有</strong>等待目标条件变量的线程</li>
+<li>pthread_cond_wait函数，用于等待目标条件变量。该函数调用时需要传入 <strong>mutex参数(加锁的互斥锁)</strong> ，函数执行时，先把调用线程放入条件变量的请求队列，然后将互斥锁mutex解锁，当函数成功返回为0时，表示重新抢到了互斥锁，互斥锁会再次被锁上， <strong>也就是说函数内部会有一次解锁和加锁操作</strong>.</li>
+</ul>
+<p>使用pthread_cond_wait方式如下：</p>
+<div class="codehilite"><pre><span></span><code><span class="mi">1</span><span class="n">pthread</span> <span class="nf">_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">)</span>
+<span class="mi">2</span>
+<span class="mi">3</span><span class="k">while</span><span class="p">(</span><span class="err">线程执行的条件是否成立</span><span class="p">){</span>
+<span class="mi">4</span>    <span class="n">pthread_cond_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cond</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+<span class="mi">5</span><span class="p">}</span>
+<span class="mi">6</span>
+<span class="mi">7</span><span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</code></pre></div>
+
+
+<p>pthread_cond_wait执行后的内部操作分为以下几步：</p>
+<ul>
+<li>将线程放在条件变量的请求队列后，内部解锁</li>
+<li>线程等待被pthread_cond_broadcast信号唤醒或者pthread_cond_signal信号唤醒，唤醒后去竞争锁</li>
+<li>若竞争到互斥锁，内部再次加锁</li>
+</ul>
+<h5 id="_8">陷阱一<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h5>
+<p><strong><code>使用前要加锁，为什么要加锁？</code></strong></p>
+<p>多线程访问，为了避免资源竞争，所以要加锁，使得每个线程互斥的访问公有资源。</p>
+<p><strong><code>pthread_cond_wait内部为什么要解锁？</code></strong></p>
+<p>如果while或者if判断的时候，满足执行条件，线程便会调用pthread_cond_wait阻塞自己，此时它还在持有锁，如果他不解锁，那么其他线程将会无法访问公有资源。</p>
+<p>具体到pthread_cond_wait的内部实现，当pthread_cond_wait被调用线程阻塞的时候，pthread_cond_wait会自动释放互斥锁。</p>
+<p><strong><code>为什么要把调用线程放入条件变量的请求队列后再解锁？</code></strong></p>
+<p>线程是并发执行的，如果在把调用线程A放在等待队列之前，就释放了互斥锁，这就意味着其他线程比如线程B可以获得互斥锁去访问公有资源，这时候线程A所等待的条件改变了，但是它没有被放在等待队列上，导致A忽略了等待条件被满足的信号。</p>
+<p>倘若在线程A调用pthread_cond_wait开始，到把A放在等待队列的过程中，都持有互斥锁，其他线程无法得到互斥锁，就不能改变公有资源。</p>
+<p><strong><code>为什么最后还要加锁？</code></strong></p>
+<p>将线程放在条件变量的请求队列后，将其解锁，此时等待被唤醒，若成功竞争到互斥锁，再次加锁。</p>
+<h5 id="_9">陷阱二<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h5>
+<p><strong><code>为什么判断线程执行的条件用while而不是if？</code></strong></p>
+<p>一般来说，在多线程资源竞争的时候，在一个使用资源的线程里面（消费者）判断资源是否可用，不可用，便调用pthread_cond_wait，在另一个线程里面（生产者）如果判断资源可用的话，则调用pthread_cond_signal发送一个资源可用信号。</p>
+<p>在wait成功之后，资源就一定可以被使用么？答案是否定的，如果同时有两个或者两个以上的线程正在等待此资源，wait返回后，资源可能已经被使用了。</p>
+<p>再具体点，有可能多个线程都在等待这个资源可用的信号，信号发出后只有一个资源可用，但是有A，B两个线程都在等待，B比较速度快，获得互斥锁，然后加锁，消耗资源，然后解锁，之后A获得互斥锁，但A回去发现资源已经被使用了，它便有两个选择，一个是去访问不存在的资源，另一个就是继续等待，那么继续等待下去的条件就是使用while，要不然使用if的话pthread_cond_wait返回后，就会顺序执行下去。</p>
+<p>所以，在这种情况下，应该使用while而不是if:</p>
+<div class="codehilite"><pre><span></span><code><span class="mi">1</span><span class="k">while</span><span class="p">(</span><span class="n">resource</span> <span class="o">==</span> <span class="n">FALSE</span><span class="p">)</span>
+<span class="mi">2</span>    <span class="n">pthread_cond_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cond</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
+</code></pre></div>
+
+
+<p>如果只有一个消费者，那么使用if是可以的。</p>
+<h4 id="-_1"><strong>生产者-消费者模型</strong><a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h4>
+<p>这里摘抄《Unix 环境高级编程》中第11章线程关于pthread_cond_wait的介绍中有一个生产者-消费者的例子P311，其中，process_msg相当于消费者，enqueue_msg相当于生产者，struct msg* workq作为缓冲队列。</p>
+<p>生产者和消费者是互斥关系，两者对缓冲区访问互斥，同时生产者和消费者又是一个相互协作与同步的关系，只有生产者生产之后，消费者才能消费。</p>
+<div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">pthread</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+ <span class="mi">2</span><span class="k">struct</span> <span class="n">msg</span> <span class="p">{</span>
+ <span class="mi">3</span>  <span class="k">struct</span> <span class="n">msg</span> <span class="o">*</span><span class="n">m_next</span><span class="p">;</span>
+ <span class="mi">4</span>  <span class="cm">/* value...*/</span>
+ <span class="mi">5</span><span class="p">};</span>
+ <span class="mi">6</span>
+ <span class="mi">7</span><span class="k">struct</span> <span class="n">msg</span><span class="o">*</span> <span class="n">workq</span><span class="p">;</span>
+ <span class="mi">8</span><span class="n">pthread_cond_t</span> <span class="n">qready</span> <span class="o">=</span> <span class="n">PTHREAD_COND_INITIALIZER</span><span class="p">;</span>
+ <span class="mi">9</span><span class="n">pthread_mutex_t</span> <span class="n">qlock</span> <span class="o">=</span> <span class="n">PTHREAD_MUTEX_INITIALIZER</span><span class="p">;</span>
+<span class="mi">10</span>
+<span class="mi">11</span><span class="kt">void</span>
+<span class="mi">12</span><span class="n">process_msg</span><span class="p">()</span> <span class="p">{</span>
+<span class="mi">13</span>  <span class="k">struct</span> <span class="n">msg</span><span class="o">*</span> <span class="n">mp</span><span class="p">;</span>
+<span class="mi">14</span>  <span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>
+<span class="mi">15</span>    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">qlock</span><span class="p">);</span>
+<span class="mi">16</span>    <span class="c1">//这里需要用while，而不是if</span>
+<span class="mi">17</span>    <span class="k">while</span> <span class="p">(</span><span class="n">workq</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">18</span>      <span class="n">pthread_cond_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">qread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">qlock</span><span class="p">);</span>
+<span class="mi">19</span>    <span class="p">}</span>
+<span class="mi">20</span>    <span class="n">mq</span> <span class="o">=</span> <span class="n">workq</span><span class="p">;</span>
+<span class="mi">21</span>    <span class="n">workq</span> <span class="o">=</span> <span class="n">mp</span><span class="o">-&gt;</span><span class="n">m_next</span><span class="p">;</span>
+<span class="mi">22</span>    <span class="nf">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">qlock</span><span class="p">);</span>
+<span class="mi">23</span>    <span class="cm">/* now process the message mp */</span>
+<span class="mi">24</span>  <span class="p">}</span>
+<span class="mi">25</span><span class="p">}</span>
+<span class="mi">26</span>
+<span class="mi">27</span><span class="kt">void</span>
+<span class="mi">28</span><span class="n">enqueue_msg</span><span class="p">(</span><span class="k">struct</span> <span class="n">msg</span><span class="o">*</span> <span class="n">mp</span><span class="p">)</span> <span class="p">{</span>
+<span class="mi">29</span>    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">qlock</span><span class="p">);</span>
+<span class="mi">30</span>    <span class="n">mp</span><span class="o">-&gt;</span><span class="n">m_next</span> <span class="o">=</span> <span class="n">workq</span><span class="p">;</span>
+<span class="mi">31</span>    <span class="n">workq</span> <span class="o">=</span> <span class="n">mp</span><span class="p">;</span>
+<span class="mi">32</span>    <span class="nf">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">qlock</span><span class="p">);</span>
+<span class="mi">33</span>    <span class="cm">/** 此时另外一个线程在signal之前，执行了process_msg，刚好把mp元素拿走*/</span>
+<span class="mi">34</span>    <span class="n">pthread_cond_signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">qready</span><span class="p">);</span>
+<span class="mi">35</span>    <span class="cm">/** 此时执行signal, 在pthread_cond_wait等待的线程被唤醒，</span>
+<span class="cm">36        但是mp元素已经被另外一个线程拿走，所以，workq还是NULL ,因此需要继续等待*/</span>
+<span class="mi">37</span><span class="p">}</span>
+</code></pre></div>
+
+
+<h3 id="_10">阻塞队列代码分析<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>阻塞队列类中封装了生产者-消费者模型，其中push成员是生产者，pop成员是消费者。</p>
+<p>阻塞队列中，使用了循环数组实现了队列，作为两者共享缓冲区，当然了，队列也可以使用STL中的queue。</p>
+<h4 id="_11"><strong>自定义队列</strong><a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>当队列为空时，从队列中获取元素的线程将会被挂起；当队列是满时，往队列里添加元素的线程将会挂起。</p>
+<p>阻塞队列类中，有些代码比较简单，这里仅对push和pop成员进行详解。</p>
+<div class="codehilite"><pre><span></span><code>  <span class="mi">1</span><span class="k">class</span> <span class="nc">block_queue</span>
+  <span class="mi">2</span><span class="p">{</span>
+  <span class="mi">3</span><span class="k">public</span><span class="o">:</span>
+  <span class="mi">4</span>
+  <span class="mi">5</span>    <span class="c1">//初始化私有成员</span>
+  <span class="mi">6</span>    <span class="n">block_queue</span><span class="p">(</span><span class="kt">int</span> <span class="n">max_size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+  <span class="mi">7</span>    <span class="p">{</span>
+  <span class="mi">8</span>        <span class="k">if</span> <span class="p">(</span><span class="n">max_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="mi">9</span>        <span class="p">{</span>
+ <span class="mi">10</span>            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+ <span class="mi">11</span>        <span class="p">}</span>
+ <span class="mi">12</span>
+ <span class="mi">13</span>        <span class="c1">//构造函数创建循环数组</span>
+ <span class="mi">14</span>        <span class="n">m_max_size</span> <span class="o">=</span> <span class="n">max_size</span><span class="p">;</span>
+ <span class="mi">15</span>        <span class="n">m_array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">max_size</span><span class="p">];</span>
+ <span class="mi">16</span>        <span class="n">m_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+ <span class="mi">17</span>        <span class="n">m_front</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+ <span class="mi">18</span>        <span class="n">m_back</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+ <span class="mi">19</span>
+ <span class="mi">20</span>        <span class="c1">//创建互斥锁和条件变量</span>
+ <span class="mi">21</span>        <span class="n">m_mutex</span> <span class="o">=</span> <span class="k">new</span> <span class="n">pthread_mutex_t</span><span class="p">;</span>
+ <span class="mi">22</span>        <span class="n">m_cond</span> <span class="o">=</span> <span class="k">new</span> <span class="n">pthread_cond_t</span><span class="p">;</span>
+ <span class="mi">23</span>        <span class="nf">pthread_mutex_init</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+ <span class="mi">24</span>        <span class="nf">pthread_cond_init</span><span class="p">(</span><span class="n">m_cond</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+ <span class="mi">25</span>    <span class="p">}</span>
+ <span class="mi">26</span>
+ <span class="mi">27</span>    <span class="c1">//往队列添加元素，需要将所有使用队列的线程先唤醒</span>
+ <span class="mi">28</span>    <span class="c1">//当有元素push进队列，相当于生产者生产了一个元素</span>
+ <span class="mi">29</span>    <span class="c1">//若当前没有线程等待条件变量,则唤醒无意义</span>
+ <span class="mi">30</span>    <span class="kt">bool</span> <span class="n">push</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span>
+ <span class="mi">31</span>    <span class="p">{</span>
+ <span class="mi">32</span>        <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">33</span>        <span class="nf">if</span> <span class="p">(</span><span class="n">m_size</span> <span class="o">&gt;=</span> <span class="n">m_max_size</span><span class="p">)</span>
+ <span class="mi">34</span>        <span class="p">{</span>
+ <span class="mi">35</span>            <span class="n">pthread_cond_broadcast</span><span class="p">(</span><span class="n">m_cond</span><span class="p">);</span>
+ <span class="mi">36</span>            <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">37</span>            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+ <span class="mi">38</span>        <span class="p">}</span>
+ <span class="mi">39</span>
+ <span class="mi">40</span>        <span class="c1">//将新增数据放在循环数组的对应位置</span>
+ <span class="mi">41</span>        <span class="n">m_back</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_back</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">m_max_size</span><span class="p">;</span>
+ <span class="mi">42</span>        <span class="n">m_array</span><span class="p">[</span><span class="n">m_back</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="p">;</span>
+ <span class="mi">43</span>        <span class="n">m_size</span><span class="o">++</span><span class="p">;</span>
+ <span class="mi">44</span>
+ <span class="mi">45</span>        <span class="nf">pthread_cond_broadcast</span><span class="p">(</span><span class="n">m_cond</span><span class="p">);</span>
+ <span class="mi">46</span>        <span class="nf">pthread_mutex_unlock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">47</span>
+ <span class="mi">48</span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+ <span class="mi">49</span>    <span class="p">}</span>
+ <span class="mi">50</span>
+ <span class="mi">51</span>    <span class="c1">//pop时，如果当前队列没有元素,将会等待条件变量</span>
+ <span class="mi">52</span>    <span class="kt">bool</span> <span class="n">pop</span><span class="p">(</span><span class="n">T</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span>
+ <span class="mi">53</span>    <span class="p">{</span>
+ <span class="mi">54</span>        <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">55</span>
+ <span class="mi">56</span>        <span class="c1">//多个消费者的时候，这里要是用while而不是if</span>
+ <span class="mi">57</span>        <span class="k">while</span> <span class="p">(</span><span class="n">m_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+ <span class="mi">58</span>        <span class="p">{</span>
+ <span class="mi">59</span>            <span class="c1">//当重新抢到互斥锁，pthread_cond_wait返回为0</span>
+ <span class="mi">60</span>            <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">pthread_cond_wait</span><span class="p">(</span><span class="n">m_cond</span><span class="p">,</span> <span class="n">m_mutex</span><span class="p">))</span>
+ <span class="mi">61</span>            <span class="p">{</span>
+ <span class="mi">62</span>                <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">63</span>                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+ <span class="mi">64</span>            <span class="p">}</span>
+ <span class="mi">65</span>        <span class="p">}</span>
+ <span class="mi">66</span>
+ <span class="mi">67</span>        <span class="c1">//取出队列首的元素，这里需要理解一下，使用循环数组模拟的队列 </span>
+ <span class="mi">68</span>        <span class="n">m_front</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">m_max_size</span><span class="p">;</span>
+ <span class="mi">69</span>        <span class="n">item</span> <span class="o">=</span> <span class="n">m_array</span><span class="p">[</span><span class="n">m_front</span><span class="p">];</span>
+ <span class="mi">70</span>        <span class="n">m_size</span><span class="o">--</span><span class="p">;</span>
+ <span class="mi">71</span>        <span class="nf">pthread_mutex_unlock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">72</span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+ <span class="mi">73</span>    <span class="p">}</span>
+ <span class="mi">74</span>
+ <span class="mi">75</span>    <span class="c1">//增加了超时处理，在项目中没有使用到</span>
+ <span class="mi">76</span>    <span class="c1">//在pthread_cond_wait基础上增加了等待的时间，只指定时间内能抢到互斥锁即可</span>
+ <span class="mi">77</span>    <span class="c1">//其他逻辑不变</span>
+ <span class="mi">78</span>    <span class="kt">bool</span> <span class="n">pop</span><span class="p">(</span><span class="n">T</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ms_timeout</span><span class="p">)</span>
+ <span class="mi">79</span>    <span class="p">{</span>
+ <span class="mi">80</span>        <span class="k">struct</span> <span class="n">timespec</span> <span class="n">t</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+ <span class="mi">81</span>        <span class="k">struct</span> <span class="n">timeval</span> <span class="n">now</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+ <span class="mi">82</span>        <span class="nf">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">now</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+ <span class="mi">83</span>        <span class="nf">pthread_mutex_lock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">84</span>        <span class="nf">if</span> <span class="p">(</span><span class="n">m_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+ <span class="mi">85</span>        <span class="p">{</span>
+ <span class="mi">86</span>            <span class="n">t</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="n">now</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">+</span> <span class="n">ms_timeout</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+ <span class="mi">87</span>            <span class="n">t</span><span class="p">.</span><span class="n">tv_nsec</span> <span class="o">=</span> <span class="p">(</span><span class="n">ms_timeout</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span>
+ <span class="mi">88</span>            <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">pthread_cond_timedwait</span><span class="p">(</span><span class="n">m_cond</span><span class="p">,</span> <span class="n">m_mutex</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">))</span>
+ <span class="mi">89</span>            <span class="p">{</span>
+ <span class="mi">90</span>                <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">91</span>                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+ <span class="mi">92</span>            <span class="p">}</span>
+ <span class="mi">93</span>        <span class="p">}</span>
+ <span class="mi">94</span>
+ <span class="mi">95</span>        <span class="nf">if</span> <span class="p">(</span><span class="n">m_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+ <span class="mi">96</span>        <span class="p">{</span>
+ <span class="mi">97</span>            <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+ <span class="mi">98</span>            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+ <span class="mi">99</span>        <span class="p">}</span>
+<span class="mi">100</span>
+<span class="mi">101</span>        <span class="n">m_front</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">m_max_size</span><span class="p">;</span>
+<span class="mi">102</span>        <span class="n">item</span> <span class="o">=</span> <span class="n">m_array</span><span class="p">[</span><span class="n">m_front</span><span class="p">];</span>
+<span class="mi">103</span>        <span class="n">m_size</span><span class="o">--</span><span class="p">;</span>
+<span class="mi">104</span>        <span class="nf">pthread_mutex_unlock</span><span class="p">(</span><span class="n">m_mutex</span><span class="p">);</span>
+<span class="mi">105</span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="mi">106</span>    <span class="p">}</span>
+<span class="mi">107</span><span class="p">};</span>
+<span class="mi">108</span>
+<span class="mi">109</span><span class="err">#</span><span class="n">endif</span>
+</code></pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../10%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8B%EF%BC%89/" class="btn btn-neutral float-right" title="10 日志系统（下）">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../8%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8B%EF%BC%89/" class="btn btn-neutral" title="8 定时器处理非活动连接（下）"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/zwiley/mybook/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../8%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8B%EF%BC%89/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../10%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8B%EF%BC%89/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
