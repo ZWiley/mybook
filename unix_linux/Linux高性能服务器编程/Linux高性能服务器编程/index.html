@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Linux高性能服务器编程 - ZWiley的读书笔记</title>
+  <title>Linux高性能服务器编程 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -909,12 +909,14 @@ TCP 连接</li>
 <p><img alt="" src="../epoll_proactor.png" /></p>
 <h3 id="85">8.5 两种高效的并发模式<a class="headerlink" href="#85" title="Permanent link">&para;</a></h3>
 <ul>
-<li>半同步/半异步(half-sync/half-async): 同步线程用来处理客户逻辑，异步线程处理I/O事件
-<img alt="" src="../half-sync_half-reactive.png" /></li>
-</ul>
-<ul>
-<li>领导者/追随者(Leader/Followers):领导者/追随者模式是多个工作线程轮流获得事件源集合，轮流监听、分发并处理事件的一种模式。在任意时间点，程序都仅有一个领导者线程，它负责监听I/O事件。而其他线程则都是追随者，它们休眠在线程池中等待成为新的领导者。当前的领导者如果检测到I/O事件，首先要从线程池中推选出新的领导者线程，然后处理I/O事件。此时，新的领导者等待新的I/O事件，而原来的领导者则处理I/O事件，二者实现了并发。
-<img alt="" src="../leader_followers.png" /></li>
+<li>
+<p>半同步/半异步(half-sync/half-async): 同步线程用来处理客户逻辑，异步线程处理I/O事件
+<img alt="" src="../half-sync_half-reactive.png" /></p>
+</li>
+<li>
+<p>领导者/追随者(Leader/Followers):领导者/追随者模式是多个工作线程轮流获得事件源集合，轮流监听、分发并处理事件的一种模式。在任意时间点，程序都仅有一个领导者线程，它负责监听I/O事件。而其他线程则都是追随者，它们休眠在线程池中等待成为新的领导者。当前的领导者如果检测到I/O事件，首先要从线程池中推选出新的领导者线程，然后处理I/O事件。此时，新的领导者等待新的I/O事件，而原来的领导者则处理I/O事件，二者实现了并发。
+<img alt="" src="../leader_followers.png" /></p>
+</li>
 </ul>
 <h3 id="86">8.6 有限状态机<a class="headerlink" href="#86" title="Permanent link">&para;</a></h3>
 <p>逻辑单元内部的一种高效编程方法</p>

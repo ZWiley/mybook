@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>守护进程 - ZWiley的读书笔记</title>
+  <title>守护进程 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -516,18 +516,26 @@
 <ol>
 <li>创建子进程，父进程退出。
 使得所有工作在子进程中的任务脱离终端。</li>
-<li>在子进程中创建新<code>session</code>
-    + <code>setsid()</code>函数
-    + 使得子进程完全独立出来，脱离父进程的权限控制</li>
-<li>改变当前目录为根目录
-    + <code>chdir()</code>函数
-    + 这是为了防止占用可卸载的文件系统</li>
-<li>重新设置文件掩码
-    + <code>umask()</code>函数
-    + 防止继承的文件创建屏蔽字来拒绝某些权限</li>
-<li>关闭文件描述符
-    + 关闭:<code>STDOUT_FILENO</code>、<code>STDIN_FILENO</code>、<code>STDERR_FILENO</code>。
-    + <code>dup2()</code>函数，重定向到<code>dev/null</code></li>
+<li>在子进程中创建新<code>session</code><ul>
+<li><code>setsid()</code>函数</li>
+<li>使得子进程完全独立出来，脱离父进程的权限控制</li>
+</ul>
+</li>
+<li>改变当前目录为根目录<ul>
+<li><code>chdir()</code>函数</li>
+<li>这是为了防止占用可卸载的文件系统</li>
+</ul>
+</li>
+<li>重新设置文件掩码<ul>
+<li><code>umask()</code>函数</li>
+<li>防止继承的文件创建屏蔽字来拒绝某些权限</li>
+</ul>
+</li>
+<li>关闭文件描述符<ul>
+<li>关闭:<code>STDOUT_FILENO</code>、<code>STDIN_FILENO</code>、<code>STDERR_FILENO</code>。</li>
+<li><code>dup2()</code>函数，重定向到<code>dev/null</code></li>
+</ul>
+</li>
 <li>守护进程的任务。<br />
     完成前面的准备工作，这里开始实现任务。</li>
 <li>守护进程退出

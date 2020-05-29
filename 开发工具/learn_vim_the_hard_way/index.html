@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Learn vim scrpt the hard way - ZWiley的读书笔记</title>
+  <title>Learn vim scrpt the hard way - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -963,21 +963,23 @@ Vim将把你的光标移到当前文件的最后一行，就像是在normal模�
 <ul>
 <li>定义：<code>:echo {'a': 1, 100: 'foo'}   " {'a':1,'100':'foo'}</code></li>
 <li>索引：<code>:echo {'a': 1, 100: 'foo',}['a']</code> or <code>:echo {'a': 1, 100: 'foo',}.a</code> ，支持括号和点查找</li>
-<li>赋值和添加<p>:let foo = {&lsquo;a&rsquo;: 1}
-  :let foo.a = 100
-  :let foo.b = 200
-  :echo foo</p>
+<li>
+<p>赋值和添加</p>
+<p>:let foo = {&lsquo;a&rsquo;: 1}
+:let foo.a = 100
+:let foo.b = 200
+:echo foo</p>
 </li>
-</ul>
-<ul>
-<li>移除: 你不能移除字典中不存在的项<p>:let test = remove(foo, &lsquo;a&rsquo;)
-  :unlet foo.b
-  :echo foo
-  :echo test</p>
+<li>
+<p>移除: 你不能移除字典中不存在的项</p>
+<p>:let test = remove(foo, &lsquo;a&rsquo;)
+:unlet foo.b
+:echo foo
+:echo test</p>
 </li>
-</ul>
-<ul>
-<li>字典函数: get(), has_key(), items(), keys(), values()</li>
+<li>
+<p>字典函数: get(), has_key(), items(), keys(), values()</p>
+</li>
 </ul>
 <h1 id="_25">切换<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h1>
 <p><code>:nnoremap &lt;leader&gt;N :setlocal number!&lt;cr&gt;</code> 在normal模式中按下<leader>N看看。Vim将会在开启和关闭行号显示之间切换。</p>

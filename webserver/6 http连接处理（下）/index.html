@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>6 http连接处理（下） - ZWiley的读书笔记</title>
+  <title>6 http连接处理（下） - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -548,36 +548,34 @@
 
 
 <ul>
-<li>start：映射区的开始地址，设置为0时表示由系统决定映射区的起始地址</li>
-</ul>
-<ul>
-<li>length：映射区的长度</li>
-</ul>
-<ul>
-<li>prot：期望的内存保护标志，不能与文件的打开模式冲突</li>
-</ul>
-<ul>
+<li>
+<p>start：映射区的开始地址，设置为0时表示由系统决定映射区的起始地址</p>
+</li>
+<li>
+<p>length：映射区的长度</p>
+</li>
+<li>
+<p>prot：期望的内存保护标志，不能与文件的打开模式冲突</p>
+</li>
 <li>
 <ul>
 <li>PROT_READ 表示页内容可以被读取</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>flags：指定映射对象的类型，映射选项和映射页是否可以共享</li>
-</ul>
-<ul>
+<li>
+<p>flags：指定映射对象的类型，映射选项和映射页是否可以共享</p>
+</li>
 <li>
 <ul>
 <li>MAP_PRIVATE 建立一个写入时拷贝的私有映射，内存区域的写入不会影响到原文件</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>fd：有效的文件描述符，一般是由open()函数返回</li>
-</ul>
-<ul>
-<li>off_toffset：被映射对象内容的起点</li>
+<li>
+<p>fd：有效的文件描述符，一般是由open()函数返回</p>
+</li>
+<li>
+<p>off_toffset：被映射对象内容的起点</p>
+</li>
 </ul>
 <h4 id="iovec"><strong>iovec</strong><a class="headerlink" href="#iovec" title="Permanent link">&para;</a></h4>
 <p>定义了一个向量元素，通常，这个结构用作一个多元素的数组。</p>
@@ -613,75 +611,75 @@
 <h4 id="http_code"><strong>HTTP_CODE含义</strong><a class="headerlink" href="#http_code" title="Permanent link">&para;</a></h4>
 <p>表示HTTP请求的处理结果，在头文件中初始化了八种情形，在报文解析与响应中只用到了七种。</p>
 <ul>
-<li>NO_REQUEST</li>
-</ul>
-<ul>
+<li>
+<p>NO_REQUEST</p>
+</li>
 <li>
 <ul>
 <li>请求不完整，需要继续读取请求报文数据</li>
-<li>跳转主线程继续监测读事件</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>GET_REQUEST</li>
-</ul>
-<ul>
+<li>
+<p>跳转主线程继续监测读事件</p>
+</li>
+<li>
+<p>GET_REQUEST</p>
+</li>
 <li>
 <ul>
 <li>获得了完整的HTTP请求</li>
-<li>调用do_request完成请求资源映射</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>NO_RESOURCE</li>
-</ul>
-<ul>
+<li>
+<p>调用do_request完成请求资源映射</p>
+</li>
+<li>
+<p>NO_RESOURCE</p>
+</li>
 <li>
 <ul>
 <li>请求资源不存在</li>
-<li>跳转process_write完成响应报文</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>BAD_REQUEST</li>
-</ul>
-<ul>
+<li>
+<p>跳转process_write完成响应报文</p>
+</li>
+<li>
+<p>BAD_REQUEST</p>
+</li>
 <li>
 <ul>
 <li>HTTP请求报文有语法错误或请求资源为目录</li>
-<li>跳转process_write完成响应报文</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>FORBIDDEN_REQUEST</li>
-</ul>
-<ul>
+<li>
+<p>跳转process_write完成响应报文</p>
+</li>
+<li>
+<p>FORBIDDEN_REQUEST</p>
+</li>
 <li>
 <ul>
 <li>请求资源禁止访问，没有读取权限</li>
-<li>跳转process_write完成响应报文</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>FILE_REQUEST</li>
-</ul>
-<ul>
+<li>
+<p>跳转process_write完成响应报文</p>
+</li>
+<li>
+<p>FILE_REQUEST</p>
+</li>
 <li>
 <ul>
 <li>请求资源可以正常访问</li>
-<li>跳转process_write完成响应报文</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>INTERNAL_ERROR</li>
-</ul>
-<ul>
+<li>
+<p>跳转process_write完成响应报文</p>
+</li>
+<li>
+<p>INTERNAL_ERROR</p>
+</li>
 <li>
 <ul>
 <li>服务器内部错误，该结果在主状态机逻辑switch的default下，一般不会触发</li>
@@ -694,83 +692,73 @@
 <p>为了更好的理解请求资源的访问流程，这里对各种各页面跳转机制进行简要介绍。其中，浏览器网址栏中的字符，即<code>url</code>，可以将其抽象成<code>ip:port/xxx</code>，<code>xxx</code>通过<code>html</code>文件的<code>action</code>属性进行设置。</p>
 <p>m_url为请求报文中解析出的请求资源，以/开头，也就是<code>/xxx</code>，项目中解析后的m_url有8种情况。</p>
 <ul>
-<li>/</li>
-</ul>
-<ul>
+<li>
+<p>/</p>
+</li>
 <li>
 <ul>
 <li>GET请求，跳转到judge.html，即欢迎访问页面</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>/0</li>
-</ul>
-<ul>
+<li>
+<p>/0</p>
+</li>
 <li>
 <ul>
 <li>POST请求，跳转到register.html，即注册页面</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>/1</li>
-</ul>
-<ul>
+<li>
+<p>/1</p>
+</li>
 <li>
 <ul>
 <li>POST请求，跳转到log.html，即登录页面</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>/2CGISQL.cgi</li>
-</ul>
-<ul>
+<li>
+<p>/2CGISQL.cgi</p>
+</li>
 <li>
 <ul>
 <li>POST请求，进行登录校验</li>
-<li>验证成功跳转到welcome.html，即资源请求成功页面</li>
-<li>验证失败跳转到logError.html，即登录失败页面</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>/3CGISQL.cgi</li>
-</ul>
-<ul>
+<li>验证成功跳转到welcome.html，即资源请求成功页面</li>
+<li>
+<p>验证失败跳转到logError.html，即登录失败页面</p>
+</li>
+<li>
+<p>/3CGISQL.cgi</p>
+</li>
 <li>
 <ul>
 <li>POST请求，进行注册校验</li>
-<li>注册成功跳转到log.html，即登录页面</li>
-<li>注册失败跳转到registerError.html，即注册失败页面</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>/5</li>
-</ul>
-<ul>
+<li>注册成功跳转到log.html，即登录页面</li>
+<li>
+<p>注册失败跳转到registerError.html，即注册失败页面</p>
+</li>
+<li>
+<p>/5</p>
+</li>
 <li>
 <ul>
 <li>POST请求，跳转到picture.html，即图片请求页面</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>/6</li>
-</ul>
-<ul>
+<li>
+<p>/6</p>
+</li>
 <li>
 <ul>
 <li>POST请求，跳转到video.html，即视频请求页面</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>/7</li>
-</ul>
-<ul>
+<li>
+<p>/7</p>
+</li>
 <li>
 <ul>
 <li>POST请求，跳转到fans.html，即关注页面</li>
@@ -853,21 +841,23 @@
 <h4 id="process_write"><strong>process_write</strong><a class="headerlink" href="#process_write" title="Permanent link">&para;</a></h4>
 <p>根据<code>do_request</code>的返回状态，服务器子线程调用<code>process_write</code>向<code>m_write_buf</code>中写入响应报文。</p>
 <ul>
-<li>add_status_line函数，添加状态行：http/1.1 状态码 状态消息</li>
-</ul>
-<ul>
-<li>add_headers函数添加消息报头，内部调用add_content_length和add_linger函数</li>
-</ul>
-<ul>
+<li>
+<p>add_status_line函数，添加状态行：http/1.1 状态码 状态消息</p>
+</li>
+<li>
+<p>add_headers函数添加消息报头，内部调用add_content_length和add_linger函数</p>
+</li>
 <li>
 <ul>
 <li>content-length记录响应报文长度，用于浏览器端判断服务器是否发送完数据</li>
-<li>connection记录连接状态，用于告诉浏览器端保持长连接</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>add_blank_line添加空行</li>
+<li>
+<p>connection记录连接状态，用于告诉浏览器端保持长连接</p>
+</li>
+<li>
+<p>add_blank_line添加空行</p>
+</li>
 </ul>
 <p>上述涉及的5个函数，均是内部调用<code>add_response</code>函数更新<code>m_write_idx</code>指针和缓冲区<code>m_write_buf</code>中的内容。</p>
 <div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="kt">bool</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">add_response</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">format</span><span class="p">,...)</span>
@@ -1027,26 +1017,26 @@
 <p>该函数具体逻辑如下：</p>
 <p>在生成响应报文时初始化byte_to_send，包括头部信息和文件数据大小。通过writev函数循环发送响应报文数据，根据返回值更新byte_have_send和iovec结构体的指针和长度，并判断响应报文整体是否发送成功。</p>
 <ul>
-<li>若writev单次发送成功，更新byte_to_send和byte_have_send的大小，若响应报文整体发送成功,则取消mmap映射,并判断是否是长连接.</li>
-</ul>
-<ul>
+<li>
+<p>若writev单次发送成功，更新byte_to_send和byte_have_send的大小，若响应报文整体发送成功,则取消mmap映射,并判断是否是长连接.</p>
+</li>
 <li>
 <ul>
 <li>长连接重置http类实例，注册读事件，不关闭连接，</li>
-<li>短连接直接关闭连接</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>若writev单次发送不成功，判断是否是写缓冲区满了。</li>
-</ul>
-<ul>
+<li>
+<p>短连接直接关闭连接</p>
+</li>
+<li>
+<p>若writev单次发送不成功，判断是否是写缓冲区满了。</p>
+</li>
 <li>
 <ul>
 <li>若不是因为缓冲区满了而失败，取消mmap映射，关闭连接</li>
-<li>若eagain则满了，更新iovec结构体的指针和长度，并注册写事件，等待下一次写事件触发（当写缓冲区从不可写变为可写，触发epollout），因此在此期间无法立即接收到同一用户的下一请求，但可以保证连接的完整性。</li>
 </ul>
 </li>
+<li>若eagain则满了，更新iovec结构体的指针和长度，并注册写事件，等待下一次写事件触发（当写缓冲区从不可写变为可写，触发epollout），因此在此期间无法立即接收到同一用户的下一请求，但可以保证连接的完整性。</li>
 </ul>
 <div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="kt">bool</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">write</span><span class="p">()</span>
  <span class="mi">2</span><span class="p">{</span>

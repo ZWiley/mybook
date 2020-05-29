@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>C++编译底层 - ZWiley的读书笔记</title>
+  <title>C++编译底层 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -499,7 +499,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -591,35 +591,53 @@
 </blockquote>
 <p>GCC编译加载静态库</p>
 <ul>
-<li>将所有的.c文件编译成.o目标文件
-    * <code>gcc -c add.c</code> 生成add.o
-    * <code>gcc -c max.c</code> 生成max.o</li>
-<li>对生成的.o目标文件打包生成静态库
-    * <code>ar crv libfoo.a add.o max.o //libfoo.a是库的名字</code>
-    * ar:做库的命令
-    * c:创建库
-    * r:将方法添加到库里
-    * v：显示过程，可以不要</li>
+<li>将所有的.c文件编译成.o目标文件<ul>
+<li><code>gcc -c add.c</code> 生成add.o</li>
+<li><code>gcc -c max.c</code> 生成max.o</li>
 </ul>
+</li>
+<li>
+<p>对生成的.o目标文件打包生成静态库</p>
 <ul>
-<li>使用静态库
-    * <code>gcc -o main main.c -static -L. -lfoo //这里写的foo是去掉前后缀后库的名字</code>
-    * -L：指定路径 .代表当前路径
-    * -l：指定库名</li>
+<li><code>ar crv libfoo.a add.o max.o //libfoo.a是库的名字</code></li>
+<li>ar:做库的命令</li>
+<li>c:创建库</li>
+<li>r:将方法添加到库里</li>
+<li>v：显示过程，可以不要</li>
+</ul>
+</li>
+<li>
+<p>使用静态库</p>
+<ul>
+<li><code>gcc -o main main.c -static -L. -lfoo //这里写的foo是去掉前后缀后库的名字</code></li>
+<li>-L：指定路径 .代表当前路径</li>
+<li>-l：指定库名</li>
+</ul>
+</li>
 </ul>
 <p>GCC编译加载动态库</p>
 <ul>
-<li>对生成的.o文件处理生成共享库，共享库的名字为libfoo.so
-    * <code>gcc -shared -fPIC -o libfoo.so add.o max.o</code>
-    * -shared 表示输出结果是共享库类型的
-    * -fPIC 表示使用地址无关代码（Position Independent Code）技术来生产输出文件</li>
-</ul>
+<li>
+<p>对生成的.o文件处理生成共享库，共享库的名字为libfoo.so</p>
 <ul>
-<li>库的使用
-    * <code>cp libfoo.so /usr/lib //将库拷贝到系统库路径下</code>（不推荐）
-    * export更改LD_LIBRARY_PATH当前终端的环境变量
-    * 修改/etc/ld.so.conf文件，加入库文件所在目录的路径，然后 
-运行ldconfig 目录名字，该命令会重建/etc/ld.so.cache文件即可 <p>* 上面三种选一个即可<code>gcc -o main main.c -lfoo</code></p>
+<li><code>gcc -shared -fPIC -o libfoo.so add.o max.o</code></li>
+<li>-shared 表示输出结果是共享库类型的</li>
+<li>-fPIC 表示使用地址无关代码（Position Independent Code）技术来生产输出文件</li>
+</ul>
+</li>
+<li>
+<p>库的使用</p>
+<ul>
+<li><code>cp libfoo.so /usr/lib //将库拷贝到系统库路径下</code>（不推荐）</li>
+<li>export更改LD_LIBRARY_PATH当前终端的环境变量</li>
+<li>
+<p>修改/etc/ld.so.conf文件，加入库文件所在目录的路径，然后 
+运行ldconfig 目录名字，该命令会重建/etc/ld.so.cache文件即可 </p>
+</li>
+<li>
+<p>上面三种选一个即可<code>gcc -o main main.c -lfoo</code></p>
+</li>
+</ul>
 </li>
 </ul>
 <h2 id="extern-ccpp"><a href="https://www.cnblogs.com/qingergege/p/7478864.html">extern-C的结果和CPP编译的区别</a><a class="headerlink" href="#extern-ccpp" title="Permanent link">&para;</a></h2>
@@ -663,14 +681,20 @@
 
 <ul>
 <li>编译后链接出错：main.cpp对print(int, int)未定义的引用。</li>
-<li>原因分析
-    * p.c我们使用的是C语言的编译器gcc进行编译的，其中的函数print编译之后，在符号表中的名字为 _print
-    * 我们链接的时候采用的是g++进行链接，也就是C++链接方式，程序在运行到调用print函数的代码时，会在符号表中寻找_print_int_int（是按照C++的链接方法来寻找的，所以是找_print_int_int而不是找_print）的名字，发现找不到，所以会t提示“未定义的引用”
-    * 此时如果我们在对print的声明中加入 extern “C” ，这个时候，g++编译器就会按照C语言的链接方式进行寻找，也就是在符号表中寻找_print，这个时候是可以找到的，是不会报错的。</li>
-</ul>
+<li>
+<p>原因分析</p>
 <ul>
-<li>总结
-    * 编译后底层解析的符号不同，C语言是_print，C++是_print_int_int</li>
+<li>p.c我们使用的是C语言的编译器gcc进行编译的，其中的函数print编译之后，在符号表中的名字为 _print</li>
+<li>我们链接的时候采用的是g++进行链接，也就是C++链接方式，程序在运行到调用print函数的代码时，会在符号表中寻找_print_int_int（是按照C++的链接方法来寻找的，所以是找_print_int_int而不是找_print）的名字，发现找不到，所以会t提示“未定义的引用”</li>
+<li>此时如果我们在对print的声明中加入 extern “C” ，这个时候，g++编译器就会按照C语言的链接方式进行寻找，也就是在符号表中寻找_print，这个时候是可以找到的，是不会报错的。</li>
+</ul>
+</li>
+<li>
+<p>总结</p>
+<ul>
+<li>编译后底层解析的符号不同，C语言是_print，C++是_print_int_int</li>
+</ul>
+</li>
 </ul>
 <h2 id="_1"><a href="https://blog.csdn.net/fantian_/article/details/80719144">重载的底层原理</a><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>根据上面的编译分析，可以知道C语言没有重载，只有C++才有函数重载，因为函数重载通过参数列表的不同来实现。</p>
@@ -685,30 +709,48 @@
 
 <p>在C语言中被解析为_Add，三个一样，所以不能进行区分，因此C语言不支持函数重载</p>
 <ul>
-<li>C++重载
-底层的重命名机制将Add函数根据参数的个数，参数的类型，返回值的类型都做了重新命名。那么借助函数重载，一个函数就有多种命名机制。 _Add_int_int，_Add_long_long，_Add_double_double</li>
-</ul>
-<ul>
-<li>C++中可以通过在函数声明前加 extern &ldquo;C&rdquo; 将一个函数按照 C 语言的风格来进行编译。</li>
+<li>
+<p>C++重载
+底层的重命名机制将Add函数根据参数的个数，参数的类型，返回值的类型都做了重新命名。那么借助函数重载，一个函数就有多种命名机制。 _Add_int_int，_Add_long_long，_Add_double_double</p>
+</li>
+<li>
+<p>C++中可以通过在函数声明前加 extern &ldquo;C&rdquo; 将一个函数按照 C 语言的风格来进行编译。</p>
+</li>
 </ul>
 <h2 id="_2"><a href="https://blog.csdn.net/u014647208/article/details/78329187">编译性语言和解释性语言的本质区别和优缺点</a><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>根本区别
-    * 计算机不能直接的理解高级语言，只能直接理解机器语言，所以必须要把高级语言翻译成机器语言，计算机才能执行高级语言的编写的程序。翻译的方式有两种，一个是编译，一个是解释。<strong>两种方式只是翻译的时间不同</strong>。
-    * 解释性语言不用编译，在运行时翻译
-    * 编译性语言是编译的时候直接编译成机器可以执行的语言，编译和运行是分开的，但是不能跨平台。比如exe文件，以后要运行的话就不用重新编译了，直接使用编译的结果就行了（exe文件），因为翻译只做了一次，运行的时不要翻译，所以编译型语言的程序执行效率高</li>
-</ul>
+<li>
+<p>根本区别</p>
 <ul>
-<li>编译性语言的优缺点
-    * 优点
-        * 运行速度快，代码效率高，编译后程序不可以修改，保密性好
-    * 缺点
-        * 代码需要经过编译方可运行，可移植性差，只能在兼容的操作系统上运行。</li>
-<li>解释性语言的优缺点
-    * 优点
-        * 可移植性好，只要有解释环境，可以在不同的操作系统上运行。
-    * 缺点
-        * 运行需要解释环境，运行起来比编译的要慢，占用的资源也要多一些，代码效率低，代码修改后就可以运行，不需要编译过程</li>
+<li>计算机不能直接的理解高级语言，只能直接理解机器语言，所以必须要把高级语言翻译成机器语言，计算机才能执行高级语言的编写的程序。翻译的方式有两种，一个是编译，一个是解释。<strong>两种方式只是翻译的时间不同</strong>。</li>
+<li>解释性语言不用编译，在运行时翻译</li>
+<li>编译性语言是编译的时候直接编译成机器可以执行的语言，编译和运行是分开的，但是不能跨平台。比如exe文件，以后要运行的话就不用重新编译了，直接使用编译的结果就行了（exe文件），因为翻译只做了一次，运行的时不要翻译，所以编译型语言的程序执行效率高</li>
+</ul>
+</li>
+<li>
+<p>编译性语言的优缺点</p>
+<ul>
+<li>优点<ul>
+<li>运行速度快，代码效率高，编译后程序不可以修改，保密性好</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>代码需要经过编译方可运行，可移植性差，只能在兼容的操作系统上运行。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>解释性语言的优缺点<ul>
+<li>优点<ul>
+<li>可移植性好，只要有解释环境，可以在不同的操作系统上运行。</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>运行需要解释环境，运行起来比编译的要慢，占用的资源也要多一些，代码效率低，代码修改后就可以运行，不需要编译过程</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
               
             </div>

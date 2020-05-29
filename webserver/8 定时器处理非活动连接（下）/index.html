@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>8 定时器处理非活动连接（下） - ZWiley的读书笔记</title>
+  <title>8 定时器处理非活动连接（下） - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -589,35 +589,35 @@
 <p>从实现上看，主要涉及双向链表的插入，删除操作，其中添加定时器的事件复杂度是O(n),删除定时器的事件复杂度是O(1)。</p>
 <p>升序双向链表主要逻辑如下，具体的，</p>
 <ul>
-<li>创建头尾节点，其中头尾节点没有意义，仅仅统一方便调整</li>
-</ul>
-<ul>
-<li>add_timer函数，将目标定时器添加到链表中，添加时按照升序添加</li>
-</ul>
-<ul>
+<li>
+<p>创建头尾节点，其中头尾节点没有意义，仅仅统一方便调整</p>
+</li>
+<li>
+<p>add_timer函数，将目标定时器添加到链表中，添加时按照升序添加</p>
+</li>
 <li>
 <ul>
 <li>若当前链表中只有头尾节点，直接插入</li>
-<li>否则，将定时器按升序插入</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>adjust_timer函数，当定时任务发生变化,调整对应定时器在链表中的位置</li>
-</ul>
-<ul>
+<li>
+<p>否则，将定时器按升序插入</p>
+</li>
+<li>
+<p>adjust_timer函数，当定时任务发生变化,调整对应定时器在链表中的位置</p>
+</li>
 <li>
 <ul>
 <li>客户端在设定时间内有数据收发,则当前时刻对该定时器重新设定时间，这里只是往后延长超时时间</li>
-<li>被调整的目标定时器在尾部，或定时器新的超时值仍然小于下一个定时器的超时，不用调整</li>
-<li>否则先将定时器从链表取出，重新插入链表</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>del_timer函数将超时的定时器从链表中删除</li>
-</ul>
-<ul>
+<li>被调整的目标定时器在尾部，或定时器新的超时值仍然小于下一个定时器的超时，不用调整</li>
+<li>
+<p>否则先将定时器从链表取出，重新插入链表</p>
+</li>
+<li>
+<p>del_timer函数将超时的定时器从链表中删除</p>
+</li>
 <li>
 <ul>
 <li>常规双向链表删除结点</li>

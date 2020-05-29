@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Redis深度历险核心原理和应用实践 - ZWiley的读书笔记</title>
+  <title>Redis深度历险核心原理和应用实践 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -666,10 +666,8 @@ Redis4.0 提供了一个限流 redis 模块，redis-cell，提供了漏斗算法
 <li>计算距离：geodist company juejin ireader km</li>
 <li>获取元素位置(轻微误差，不影响附近的人功能)：geopos company juejin ireader</li>
 <li>获取元素 hash(geohash 52位编码)：geohash company ireader   # http://gohash.org/XXXX 可以获取位置</li>
-<li>附近的公司: georadiusbymember copany ireader 20 km count 3 asc<ul>
+<li>附近的公司: georadiusbymember copany ireader 20 km count 3 asc</li>
 <li>范围20公里以内最多的3个元素按照距离正序排序，不会排除自身</li>
-</ul>
-</li>
 <li>根据坐标查询：georadius company 116.514202 39.905409 20 km withdist count 3 asc</li>
 </ul>
 <p>集群环境中单个 zset key 数据量不宜超过 1M，否则迁移集群出现卡顿。
@@ -721,37 +719,23 @@ redis 知道未来 timeout 时间段内，没有其他定时任务需要处理�
 <p>RESP(Redis Serialization Protocol): redis序列化协议</p>
 <p>resp 把传输的数据结构分成5种最小单元类型，单元结束后统一加上回车换行符 \r\n</p>
 <ul>
-<li>单行字符串以+开头<ul>
+<li>单行字符串以+开头</li>
 <li>+hello\r\n</li>
-</ul>
-</li>
-<li>多行字符串以$开头，后缀字符串长度<ul>
+<li>多行字符串以$开头，后缀字符串长度</li>
 <li>$11\r\nhello world\r\n</li>
-</ul>
-</li>
-<li>整数值以: 开头，跟上字符串形式<ul>
+<li>整数值以: 开头，跟上字符串形式</li>
 <li>:1024\r\n</li>
-</ul>
-</li>
-<li>错误消息，以-开头<ul>
+<li>错误消息，以-开头</li>
 <li>WRONGTYPE Operation against a key holding the wrong kind of value</li>
-</ul>
-</li>
-<li>数组，以 * 开头，后跟数组的长度<ul>
+<li>数组，以 * 开头，后跟数组的长度</li>
 <li>*3\r\n:1\r\n:2\r\n:3\r\n</li>
-</ul>
-</li>
 </ul>
 <p>特殊：</p>
 <ul>
-<li>NULL 用多行字符串，长度-1<ul>
+<li>NULL 用多行字符串，长度-1</li>
 <li>$-1\r\n</li>
-</ul>
-</li>
-<li>空串，用多行字符串表示，长度0。注意这里的俩\r\n 中间隔的是空串<ul>
+<li>空串，用多行字符串表示，长度0。注意这里的俩\r\n 中间隔的是空串</li>
 <li>$0\r\n\r\n</li>
-</ul>
-</li>
 </ul>
 <h3 id="-">客户端-&gt;服务器<a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
 <p>只有一种格式，多行字符串数组</p>

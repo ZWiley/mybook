@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>计算机网络 - ZWiley的读书笔记</title>
+  <title>计算机网络 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -585,7 +585,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -654,38 +654,52 @@
 </blockquote>
 <h2 id="ositcpip">OSI七层协议及TCP/IP四层协议<a class="headerlink" href="#ositcpip" title="Permanent link">&para;</a></h2>
 <ul>
-<li>七层协议：物、数、网、传、会、表、应
-    * 物理层  RJ45   <br />
-    * 数据链路层  PPP，IEEE 802.3/802.2
-    * 网络层 IP，ARP 
-    * 传输层 TCP，UDP
-    * 会话层 <br />
-    * 表示层 TIFF，GIF，JPEG, 
-    * 应用层 DNS，HTTP，FTP      </li>
-</ul>
+<li>
+<p>七层协议：物、数、网、传、会、表、应</p>
 <ul>
-<li>四层协议：数据链路层（物理层，数据链路层），网络层（网络层），传输层（传输层），应用层（会话层，表示层，应用层）
-    * 数据链路层： PPP<strong>MAC不属于协议，只是一个地址</strong>
-    * 网络层：IP、ARP、ICMP
-    * 传输层：TCP、UDP
-    * 应用层：DNS、HTTP、FTP</li>
+<li>物理层  RJ45     </li>
+<li>数据链路层  PPP，IEEE 802.3/802.2</li>
+<li>网络层 IP，ARP </li>
+<li>传输层 TCP，UDP</li>
+<li>会话层   </li>
+<li>表示层 TIFF，GIF，JPEG, </li>
+<li>应用层 DNS，HTTP，FTP      </li>
+</ul>
+</li>
+<li>
+<p>四层协议：数据链路层（物理层，数据链路层），网络层（网络层），传输层（传输层），应用层（会话层，表示层，应用层）</p>
+<ul>
+<li>数据链路层： PPP<strong>MAC不属于协议，只是一个地址</strong></li>
+<li>网络层：IP、ARP、ICMP</li>
+<li>传输层：TCP、UDP</li>
+<li>应用层：DNS、HTTP、FTP</li>
+</ul>
+</li>
 </ul>
 <h2 id="_2">通信交互方式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>单工通信
-    * 只能有一个方向的通信没有反方向的交互 </li>
-<li>半双工通信
-    * 双方可以发送消息，但不能同时发送。可以交替进行一方发送、另一方接收 </li>
-<li>全双工通信
-    * 通信的双方可以同时发送和接收信息</li>
+<li>单工通信<ul>
+<li>只能有一个方向的通信没有反方向的交互 </li>
+</ul>
+</li>
+<li>半双工通信<ul>
+<li>双方可以发送消息，但不能同时发送。可以交替进行一方发送、另一方接收 </li>
+</ul>
+</li>
+<li>全双工通信<ul>
+<li>通信的双方可以同时发送和接收信息</li>
+</ul>
+</li>
 </ul>
 <h2 id="macip">MAC地址和IP地址<a class="headerlink" href="#macip" title="Permanent link">&para;</a></h2>
 <ul>
 <li>MAC地址又叫硬件地址或物理地址，它不是地址位置，实际上是适配器地址，每一台计算机中固化在适配器的ROM中的地址，作用是用来定义网络设备的位置</li>
 <li>IP地址是IP协议提供的一种统一的地址格式，为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异</li>
-<li>两者的区别
-    * 物理地址是数据链路层和物理层使用的地址，放在MAC帧的首部
-    * IP地址是网络层和以上各层使用的地址，放在IP数据报的首部</li>
+<li>两者的区别<ul>
+<li>物理地址是数据链路层和物理层使用的地址，放在MAC帧的首部</li>
+<li>IP地址是网络层和以上各层使用的地址，放在IP数据报的首部</li>
+</ul>
+</li>
 </ul>
 <h2 id="arp">ARP协议的作用<a class="headerlink" href="#arp" title="Permanent link">&para;</a></h2>
 <p>网络层使用的是IP地址，数据链路层使用的是硬件地址。
@@ -719,34 +733,48 @@ ARP协议的用途是为了从网络层使用的IP地址，解析出数据链路
 <p>TCP，全称：传输控制协议，面向连接的安全的流式传输协议
 UDP，全称：用户数据报协议，面向无连接的不安全的报式传输协议</p>
 <ul>
-<li>连接
-    * TCP是面向连接的传输层协议，即传输数据之前必须先建立好连接。
-    * UDP无连接。</li>
-</ul>
+<li>
+<p>连接</p>
 <ul>
-<li>服务对象
-    * TCP是点对点的两点间服务，即一条TCP连接只能有两个端点
-    * UDP支持一对一，一对多，多对一，多对多的交互通信。</li>
+<li>TCP是面向连接的传输层协议，即传输数据之前必须先建立好连接。</li>
+<li>UDP无连接。</li>
 </ul>
+</li>
+<li>
+<p>服务对象</p>
 <ul>
-<li>可靠性
-    * TCP是可靠交付：无差错，不丢失，不重复，按序到达。
-    * UDP是尽最大努力交付，不保证可靠交付。</li>
+<li>TCP是点对点的两点间服务，即一条TCP连接只能有两个端点</li>
+<li>UDP支持一对一，一对多，多对一，多对多的交互通信。</li>
 </ul>
+</li>
+<li>
+<p>可靠性</p>
 <ul>
-<li>拥塞控制，流量控制
-    * TCP有拥塞控制和流量控制保证数据传输的安全性。
-    * UDP没有拥塞控制，网络拥塞不会影响源主机的发送效率。</li>
+<li>TCP是可靠交付：无差错，不丢失，不重复，按序到达。</li>
+<li>UDP是尽最大努力交付，不保证可靠交付。</li>
 </ul>
+</li>
+<li>
+<p>拥塞控制，流量控制</p>
 <ul>
-<li>报文长度
-    * TCP是动态报文长度，即TCP报文长度是根据接收方的窗口大小和当前网络拥塞情况决定的，流式传输
-    * UDP面向报文，不合并，不拆分，保留上面（应用层）传下来报文的边界，直接传输报文。</li>
+<li>TCP有拥塞控制和流量控制保证数据传输的安全性。</li>
+<li>UDP没有拥塞控制，网络拥塞不会影响源主机的发送效率。</li>
 </ul>
+</li>
+<li>
+<p>报文长度</p>
 <ul>
-<li>首部开销
-    * TCP首部开销大，首部20个字节。
-    * UDP首部开销小，8字节。（源端口，目的端口，UDP数据报长度，检验和，每个字段两个字节） </li>
+<li>TCP是动态报文长度，即TCP报文长度是根据接收方的窗口大小和当前网络拥塞情况决定的，流式传输</li>
+<li>UDP面向报文，不合并，不拆分，保留上面（应用层）传下来报文的边界，直接传输报文。</li>
+</ul>
+</li>
+<li>
+<p>首部开销</p>
+<ul>
+<li>TCP首部开销大，首部20个字节。</li>
+<li>UDP首部开销小，8字节。（源端口，目的端口，UDP数据报长度，检验和，每个字段两个字节） </li>
+</ul>
+</li>
 </ul>
 <h3 id="_4">应用场景<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <ul>
@@ -772,9 +800,11 @@ UDP，全称：用户数据报协议，面向无连接的不安全的报式传�
 </ul>
 <h2 id="tcp_2"><a href="https://blog.csdn.net/shuxnhs/article/details/80644531">TCP拥塞机制</a><a class="headerlink" href="#tcp_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>拥塞的标志
-    * 超时重传
-    * 3次重复的ACK</li>
+<li>拥塞的标志<ul>
+<li>超时重传</li>
+<li>3次重复的ACK</li>
+</ul>
+</li>
 </ul>
 <p>慢启动，拥塞避免，快恢复，快重传</p>
 <h2 id="ack-syn-fin">ACK SYN FIN解释及是否消耗序列号<a class="headerlink" href="#ack-syn-fin" title="Permanent link">&para;</a></h2>
@@ -785,47 +815,63 @@ UDP，全称：用户数据报协议，面向无连接的不安全的报式传�
 </ul>
 <h2 id="tcp_3">TCP三次握手及三次缘由<a class="headerlink" href="#tcp_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>为什么TCP三次握手，不能两次或者四次吗？</strong>
-    *  三次握手是为了防止，客户端的请求报文在网络滞留，客户端超时重传了请求报文，服务端建立连接，传输数据，释放连接之后，服务器又收到了客户端滞留的请求报文，建立连接一直等待客户端发送数据。
-    *  服务器对客户端的请求进行回应(第二次握手)后，就会理所当然的认为连接已建立，而如果客户端并没有收到服务器的回应呢？此时，客户端仍认为连接未建立，服务器会对已建立的连接保存必要的资源，如果大量的这种情况，服务器会崩溃。 
-    *  服务器端给客户端发送同步及确认报文时可以合并，四次会浪费时间</li>
+<li><strong>为什么TCP三次握手，不能两次或者四次吗？</strong><ul>
+<li>三次握手是为了防止，客户端的请求报文在网络滞留，客户端超时重传了请求报文，服务端建立连接，传输数据，释放连接之后，服务器又收到了客户端滞留的请求报文，建立连接一直等待客户端发送数据。</li>
+<li>服务器对客户端的请求进行回应(第二次握手)后，就会理所当然的认为连接已建立，而如果客户端并没有收到服务器的回应呢？此时，客户端仍认为连接未建立，服务器会对已建立的连接保存必要的资源，如果大量的这种情况，服务器会崩溃。 </li>
+<li>服务器端给客户端发送同步及确认报文时可以合并，四次会浪费时间</li>
+</ul>
+</li>
 </ul>
 <h2 id="tcp_4">TCP四次挥手及四次缘由<a class="headerlink" href="#tcp_4" title="Permanent link">&para;</a></h2>
 <p>四次报文中服务器端发送给客户端的请求关闭连接报文FIN和ACK也是合并的，相对于三次来说，只是前面多了一次ACK的确认。</p>
 <ul>
-<li><strong>为什么TCP四次挥手，不能三次吗？</strong>
-    * 当客户端确认发送完数据且知道服务器已经接收完了，想要关闭发送数据口（当然确认信号还是可以发），就会发FIN给服务器。
-    * 服务器收到客户端发送的FIN，表示收到了，就会发送ACK回复。
-    * 但这时候服务器可能还在发送数据，没有想要关闭数据口的意思，所以服务器的FIN与ACK不是同时发送的，而是等到服务器数据发送完了，才会发送FIN给客户端。
-    * 客户端收到服务器发来的FIN，知道服务器的数据也发送完了，回复ACK， 客户端等待2MSL以后，没有收到服务器传来的任何消息，知道服务器已经收到自己的ACK了，客户端就关闭链接，服务器也关闭链接（服务器比客户端早关闭）。 </li>
+<li><strong>为什么TCP四次挥手，不能三次吗？</strong><ul>
+<li>当客户端确认发送完数据且知道服务器已经接收完了，想要关闭发送数据口（当然确认信号还是可以发），就会发FIN给服务器。</li>
+<li>服务器收到客户端发送的FIN，表示收到了，就会发送ACK回复。</li>
+<li>但这时候服务器可能还在发送数据，没有想要关闭数据口的意思，所以服务器的FIN与ACK不是同时发送的，而是等到服务器数据发送完了，才会发送FIN给客户端。</li>
+<li>客户端收到服务器发来的FIN，知道服务器的数据也发送完了，回复ACK， 客户端等待2MSL以后，没有收到服务器传来的任何消息，知道服务器已经收到自己的ACK了，客户端就关闭链接，服务器也关闭链接（服务器比客户端早关闭）。 </li>
+</ul>
+</li>
 </ul>
 <h2 id="time-wait2msl">TIME-WAIT状态及2MSL时间<a class="headerlink" href="#time-wait2msl" title="Permanent link">&para;</a></h2>
 <ul>
 <li>四次挥手期间，客户端和服务器端都可主动释放连接，谁主动释放，谁将进入TIME_WAIT状态</li>
 <li>MSL是最长报文寿命，一般为2分钟，2MSL即4分钟</li>
-<li>为什么TIME-WAIT状态必须等待2MSL时间？
-    * <strong>保证最后一次挥手报文能到B，能进行超时重传。</strong>若B收不到A的ACK报文，则B会超时重传FIN+ACK，A会在2MSL时间内收到重传报文段，然后发送ACK，重新启动2MSL计时器
-    * 2MSL后，本次连接的所有报文都会消失，不会影响下一次连接。 </li>
+<li>为什么TIME-WAIT状态必须等待2MSL时间？<ul>
+<li><strong>保证最后一次挥手报文能到B，能进行超时重传。</strong>若B收不到A的ACK报文，则B会超时重传FIN+ACK，A会在2MSL时间内收到重传报文段，然后发送ACK，重新启动2MSL计时器</li>
+<li>2MSL后，本次连接的所有报文都会消失，不会影响下一次连接。 </li>
+</ul>
+</li>
 </ul>
 <h2 id="dns">域名系统DNS<a class="headerlink" href="#dns" title="Permanent link">&para;</a></h2>
 <p>用于将域名转换为IP地址。
 DNS解析过程有两种，分别是递归查询和迭代查询。</p>
 <ul>
-<li>递归查询
-    * 若主机询问的本地域名服务器不知道被查询域名的IP地址，本地域名服务器以DNS客户身份，向其他根域名服务器继续发出查询请求报文（代替该主机继续查询），而不是该主机自己进行下一步查询 </li>
-<li>迭代查询
-    * 当根域名服务器收到本地域名服务器发出的迭代查询请求报文时，要么给出IP地址，要么告诉本地域名服务器，应该向哪一个域名服务器进行查询，然后本地域名服务器进行后续查询</li>
+<li>递归查询<ul>
+<li>若主机询问的本地域名服务器不知道被查询域名的IP地址，本地域名服务器以DNS客户身份，向其他根域名服务器继续发出查询请求报文（代替该主机继续查询），而不是该主机自己进行下一步查询 </li>
+</ul>
+</li>
+<li>迭代查询<ul>
+<li>当根域名服务器收到本地域名服务器发出的迭代查询请求报文时，要么给出IP地址，要么告诉本地域名服务器，应该向哪一个域名服务器进行查询，然后本地域名服务器进行后续查询</li>
+</ul>
+</li>
 </ul>
 <h2 id="url">统一资源定位符URL<a class="headerlink" href="#url" title="Permanent link">&para;</a></h2>
 <p>统一资源定位符URL，用来表示从互联网上得到的资源位置。</p>
 <ul>
-<li>一般由四个部分组成
-    * &lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;
-    * 主机一般为域名，需要通过DNS系统解析出IP</li>
-</ul>
+<li>
+<p>一般由四个部分组成</p>
 <ul>
-<li>使用HTTP的URL
-    * http://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;</li>
+<li>&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;</li>
+<li>主机一般为域名，需要通过DNS系统解析出IP</li>
+</ul>
+</li>
+<li>
+<p>使用HTTP的URL</p>
+<ul>
+<li>http://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;</li>
+</ul>
+</li>
 </ul>
 <h2 id="http"><a href="https://www.cnblogs.com/ranyonsue/p/5984001.html">描述一下HTTP协议</a><a class="headerlink" href="#http" title="Permanent link">&para;</a></h2>
 <h3 id="_6">概述<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
@@ -835,12 +881,18 @@ DNS解析过程有两种，分别是递归查询和迭代查询。</p>
 </ul>
 <h3 id="_7">特点<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <ul>
-<li>灵活
-    * HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</li>
-<li>无连接
-    * 无连接的含义是通信双方在交换HTTP报文之前不需要建立HTTP连接</li>
-<li>无状态
-    * 无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时应答较快。</li>
+<li>灵活<ul>
+<li>HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</li>
+</ul>
+</li>
+<li>无连接<ul>
+<li>无连接的含义是通信双方在交换HTTP报文之前不需要建立HTTP连接</li>
+</ul>
+</li>
+<li>无状态<ul>
+<li>无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时应答较快。</li>
+</ul>
+</li>
 <li>支持B/S和C/S模式</li>
 <li>默认端口80</li>
 <li>基于TCP协议 </li>
@@ -868,42 +920,65 @@ Web服务器解析请求，定位请求资源。服务器将资源复本写到TC
 </blockquote>
 <h2 id="http2"><a href="https://www.cnblogs.com/heluan/p/8620312.html">HTTP2</a><a class="headerlink" href="#http2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>新的二进制格式（Binary Format）
-    * HTTP1.x的解析是基于文本。基于文本协议的格式解析存在天然缺陷，文本的表现形式有多样性，要做到健壮性考虑的场景必然很多，二进制则不同，只认0和1的组合。基于这种考虑HTTP2.0的协议解析决定采用二进制格式，实现方便且健壮。</li>
-<li>多路复用（MultiPlexing）
-    * 即连接共享，即每一个request都是是用作连接共享机制的。一个request对应一个id，这样一个连接上可以有多个request，每个连接的request可以随机的混杂在一起，接收方可以根据request的 id将request再归属到各自不同的服务端请求里面。
-    * pipelining在接收response返回时，必须依顺序接收，如果前一个请求遇到了阻塞，后面的请求即使已经处理完毕了，仍然需要等待阻塞的请求处理完毕。这种情况就如图中第三种，第一个请求阻塞后，后面的请求都需要等待，这也就是队头阻塞</li>
-<li>header压缩
-    * 对前面提到过HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP2.0使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小</li>
-<li>服务端推送
-     * 我的网页有一个sytle.css的请求，在客户端收到sytle.css数据的同时，服务端会将sytle.js的文件推送给客户端，当客户端再次尝试获取sytle.js时就可以直接从缓存中获取到，不用再发请求了</li>
+<li>新的二进制格式（Binary Format）<ul>
+<li>HTTP1.x的解析是基于文本。基于文本协议的格式解析存在天然缺陷，文本的表现形式有多样性，要做到健壮性考虑的场景必然很多，二进制则不同，只认0和1的组合。基于这种考虑HTTP2.0的协议解析决定采用二进制格式，实现方便且健壮。</li>
+</ul>
+</li>
+<li>多路复用（MultiPlexing）<ul>
+<li>即连接共享，即每一个request都是是用作连接共享机制的。一个request对应一个id，这样一个连接上可以有多个request，每个连接的request可以随机的混杂在一起，接收方可以根据request的 id将request再归属到各自不同的服务端请求里面。</li>
+<li>pipelining在接收response返回时，必须依顺序接收，如果前一个请求遇到了阻塞，后面的请求即使已经处理完毕了，仍然需要等待阻塞的请求处理完毕。这种情况就如图中第三种，第一个请求阻塞后，后面的请求都需要等待，这也就是队头阻塞</li>
+</ul>
+</li>
+<li>header压缩<ul>
+<li>对前面提到过HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP2.0使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小</li>
+</ul>
+</li>
+<li>服务端推送<ul>
+<li>我的网页有一个sytle.css的请求，在客户端收到sytle.css数据的同时，服务端会将sytle.js的文件推送给客户端，当客户端再次尝试获取sytle.js时就可以直接从缓存中获取到，不用再发请求了</li>
+</ul>
+</li>
 </ul>
 <h2 id="http_2">HTTP持久连接与管线化<a class="headerlink" href="#http_2" title="Permanent link">&para;</a></h2>
 <p>HTTP协议首先要和服务器建立TCP连接，这需要三次握手。</p>
 <ul>
-<li>请求一个万维网文档的时间
-    * 当建立TCP连接的三次握手前两次完成后，即经过一个RTT时间，万维网客户就把HTTP请求报文，作为建立TCP连接的三次握手中的第三次的数据，发送给万维网服务器，服务器收到HTTP请求后，把请求的文档作为响应报文返回给客户。
-    * 文档传输时间+2*RTT</li>
-</ul>
+<li>
+<p>请求一个万维网文档的时间</p>
 <ul>
-<li>HTTP1.0非持久连接的缺点
-    * 每请求一个文档，需要两倍RTT的开销。服务器主动关闭TCP连接，客户端被动关闭连接，释放TCP连接，然后重新建立连接发出请求</li>
+<li>当建立TCP连接的三次握手前两次完成后，即经过一个RTT时间，万维网客户就把HTTP请求报文，作为建立TCP连接的三次握手中的第三次的数据，发送给万维网服务器，服务器收到HTTP请求后，把请求的文档作为响应报文返回给客户。</li>
+<li>文档传输时间+2*RTT</li>
 </ul>
+</li>
+<li>
+<p>HTTP1.0非持久连接的缺点</p>
 <ul>
-<li>HTTP1.1持久连接
-    * 万维网服务器在发送响应后仍然在一段时间内保持这段连接，可以使得同一用户继续在该连接上传送后续请求和响应报文</li>
+<li>每请求一个文档，需要两倍RTT的开销。服务器主动关闭TCP连接，客户端被动关闭连接，释放TCP连接，然后重新建立连接发出请求</li>
 </ul>
+</li>
+<li>
+<p>HTTP1.1持久连接</p>
 <ul>
-<li>持久连接的两种工作方式
-    * 非管线化
-        * 发送请求后需等待并收到回应，才能发送下一个请求 
-    * 管线化
-        * 不用等待响应，直接发送下一个请求，但接收的时候必须按照顺序接收，如果有一个请求阻塞，则接收会全部阻塞</li>
+<li>万维网服务器在发送响应后仍然在一段时间内保持这段连接，可以使得同一用户继续在该连接上传送后续请求和响应报文</li>
+</ul>
+</li>
+<li>
+<p>持久连接的两种工作方式</p>
+<ul>
+<li>非管线化<ul>
+<li>发送请求后需等待并收到回应，才能发送下一个请求 </li>
+</ul>
+</li>
+<li>管线化<ul>
+<li>不用等待响应，直接发送下一个请求，但接收的时候必须按照顺序接收，如果有一个请求阻塞，则接收会全部阻塞</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="http_3">HTTP协议请求报文具体信息<a class="headerlink" href="#http_3" title="Permanent link">&para;</a></h2>
 <p>HTTP请求报文由请求行（request line）、请求头部（header）、空行和请求数据四个部分组成</p>
 <ul>
-<li><strong>GET</strong>
+<li>
+<p><strong>GET</strong>
     <code>C++
     GET /562f25980001b1b106000338.jpg HTTP/1.1
     Host:img.mukewang.com
@@ -914,10 +989,10 @@ Web服务器解析请求，定位请求资源。服务器将资源复本写到TC
     Accept-Encoding:gzip, deflate, sdch
     Accept-Language:zh-CN,zh;q=0.8
     空行
-    请求数据为空</code></li>
-</ul>
-<ul>
-<li><strong>POST</strong>
+    请求数据为空</code></p>
+</li>
+<li>
+<p><strong>POST</strong>
     <code>C++
     POST / HTTP1.1
     Host:www.wrox.com
@@ -926,21 +1001,24 @@ Web服务器解析请求，定位请求资源。服务器将资源复本写到TC
     Content-Length:40
     Connection: Keep-Alive
     空行
-    name=Professional%20Ajax&amp;publisher=Wiley</code></li>
+    name=Professional%20Ajax&amp;publisher=Wiley</code></p>
+</li>
 </ul>
 <blockquote>
 <ul>
 <li><strong>请求行</strong>，用来说明请求类型,要访问的资源以及所使用的HTTP版本.
 GET说明请求类型为GET，/562f25980001b1b106000338.jpg(URL)为要访问的资源，该行的最后一部分说明使用的是HTTP1.1版本。</li>
-<li><strong>请求头部</strong>，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息
-    * HOST，给出请求资源所在服务器的域名.
-    * User-Agent，HTTP客户端程序的信息，该信息由你发出请求使用的浏览器来定义,并且在每个请求中自动发送等
-    * Accept，说明用户代理可处理的媒体类型
-    * Accept-Encoding，说明用户代理支持的内容编码
-    * Accept-Language，说明用户代理能够处理的自然语言集
-    * Content-Type，说明实现主体的媒体类型
-    * Content-Length，说明实现主体的大小
-    * Connection，连接管理，可以是Keep-Alive或close</li>
+<li><strong>请求头部</strong>，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息<ul>
+<li>HOST，给出请求资源所在服务器的域名.</li>
+<li>User-Agent，HTTP客户端程序的信息，该信息由你发出请求使用的浏览器来定义,并且在每个请求中自动发送等</li>
+<li>Accept，说明用户代理可处理的媒体类型</li>
+<li>Accept-Encoding，说明用户代理支持的内容编码</li>
+<li>Accept-Language，说明用户代理能够处理的自然语言集</li>
+<li>Content-Type，说明实现主体的媒体类型</li>
+<li>Content-Length，说明实现主体的大小</li>
+<li>Connection，连接管理，可以是Keep-Alive或close</li>
+</ul>
+</li>
 <li><strong>空行</strong>，请求头部后面的空行是必须的即使第四部分的请求数据为空，也必须有空行。</li>
 <li><strong>请求数据</strong>也叫主体，可以添加任意的其他数据。</li>
 </ul>
@@ -957,13 +1035,17 @@ GET说明请求类型为GET，/562f25980001b1b106000338.jpg(URL)为要访问的�
 
 
 <ul>
-<li>区别
-    * <strong>get参数通过url传递，post放在request body中</strong>，GET提交的数据会在地址栏中显示出来，而POST提交，地址栏不会改变
-    * <strong>POST的安全性要比GET的安全性高</strong>，一个登录页面，通过GET方式提交数据时，用户名和密码将出现在URL上，如果页面可以被缓存或者其他人可以访问这台机器，就可以从历史记录获得该用户的账号和密码.
-    * <strong>get请求在url中传递的参数是有长度限制的，而post没有</strong>
-    * <strong>GET产生一个TCP数据包，POST产生两个TCP数据包</strong>。 
-        *  对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；
-        * 对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据） </li>
+<li>区别<ul>
+<li><strong>get参数通过url传递，post放在request body中</strong>，GET提交的数据会在地址栏中显示出来，而POST提交，地址栏不会改变</li>
+<li><strong>POST的安全性要比GET的安全性高</strong>，一个登录页面，通过GET方式提交数据时，用户名和密码将出现在URL上，如果页面可以被缓存或者其他人可以访问这台机器，就可以从历史记录获得该用户的账号和密码.</li>
+<li><strong>get请求在url中传递的参数是有长度限制的，而post没有</strong></li>
+<li><strong>GET产生一个TCP数据包，POST产生两个TCP数据包</strong>。 <ul>
+<li>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</li>
+<li>对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据） </li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="http_4">HTTP协议响应报文具体信息<a class="headerlink" href="#http_4" title="Permanent link">&para;</a></h2>
 <p>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</p>
@@ -992,19 +1074,27 @@ GET说明请求类型为GET，/562f25980001b1b106000338.jpg(URL)为要访问的�
 <h2 id="http_5">HTTP状态码<a class="headerlink" href="#http_5" title="Permanent link">&para;</a></h2>
 <ul>
 <li>1xx：指示信息&ndash;表示请求已接收，继续处理。</li>
-<li>2xx：成功&ndash;表示请求正常处理完毕。
-    * 200 OK：客户端请求被正常处理 
-    * 206 Partial content：客户端进行了范围请求</li>
-<li>3xx：重定向&ndash;要完成请求必须进行更进一步的操作。
-    *  301 Moved Permanently：永久重定向，该资源已被永久移动到新位置，将来任何对该资源的访问都要使用本响应返回的若干个URI之一
-    *  302 Found：临时重定向，请求的资源现在临时从不同的URI中获得</li>
-<li>4xx：客户端错误&ndash;请求有语法错误，服务器无法处理请求。
-    * 400 Bad Request：请求报文存在语法错误
-    * 403 Forbidden：请求被服务器拒绝
-    * 404 Not Found：请求不存在，服务器上找不到请求的资源</li>
-<li>5xx：服务器端错误&ndash;服务器处理请求出错。 
-    * 500 Internal Server Error：服务器在执行请求时出现错误
-    * 503 Service Unavaliable：服务器正在停机维护</li>
+<li>2xx：成功&ndash;表示请求正常处理完毕。<ul>
+<li>200 OK：客户端请求被正常处理 </li>
+<li>206 Partial content：客户端进行了范围请求</li>
+</ul>
+</li>
+<li>3xx：重定向&ndash;要完成请求必须进行更进一步的操作。<ul>
+<li>301 Moved Permanently：永久重定向，该资源已被永久移动到新位置，将来任何对该资源的访问都要使用本响应返回的若干个URI之一</li>
+<li>302 Found：临时重定向，请求的资源现在临时从不同的URI中获得</li>
+</ul>
+</li>
+<li>4xx：客户端错误&ndash;请求有语法错误，服务器无法处理请求。<ul>
+<li>400 Bad Request：请求报文存在语法错误</li>
+<li>403 Forbidden：请求被服务器拒绝</li>
+<li>404 Not Found：请求不存在，服务器上找不到请求的资源</li>
+</ul>
+</li>
+<li>5xx：服务器端错误&ndash;服务器处理请求出错。 <ul>
+<li>500 Internal Server Error：服务器在执行请求时出现错误</li>
+<li>503 Service Unavaliable：服务器正在停机维护</li>
+</ul>
+</li>
 </ul>
 <h2 id="url_1">浏览器键入URL后的访问流程<a class="headerlink" href="#url_1" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1023,58 +1113,90 @@ GET说明请求类型为GET，/562f25980001b1b106000338.jpg(URL)为要访问的�
 <ul>
 <li>MTU以太网帧的长度为1500字节，所能接收的传输层数据段最大为 1480 个字节（以太网帧中的数据包括 IP 协议的报头信息，IP 协议的报头信息为 20 字节）</li>
 <li>在计算 MSS （网络传输数据最大值）的时候，用 MTU 减去网络层报头长度以及传输层报头长度即可。</li>
-<li>UDP
-    * 一旦 UDP 携带的数据超过了 1472 （MTU - IP报头 - UDP报头 = 1500 - 20 - 8），那么在 IP 层就会对该数据分片，一旦分片就意味着增加了 UDP 传输丢包的可能性。 由于 UDP 协议传输本身就不负责可靠性，再加上分片，那么丢包的可能性就大大增加</li>
+<li>UDP<ul>
+<li>一旦 UDP 携带的数据超过了 1472 （MTU - IP报头 - UDP报头 = 1500 - 20 - 8），那么在 IP 层就会对该数据分片，一旦分片就意味着增加了 UDP 传输丢包的可能性。 由于 UDP 协议传输本身就不负责可靠性，再加上分片，那么丢包的可能性就大大增加</li>
+</ul>
+</li>
 </ul>
 <div align=center><img width="970" height="240" src="https://github.com/twomonkeyclub/BackEnd/blob/master/%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/utils/mtu.png"/></div>
 
 <h2 id="_8">对称密钥和公钥密码体制<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <ul>
-<li>对称密钥密码体制
-    * 加密密码和解密密码是相同的密钥</li>
-<li>公钥密码体制，非对称加密
-    * 加密密码和解密密码不同
-    * 加密和解密算法都是公开的，加密密钥也是公开的，解密密钥是保密的
-    * 公钥和私钥是配对关系，公钥加密就用私钥解密，反之亦然</li>
+<li>对称密钥密码体制<ul>
+<li>加密密码和解密密码是相同的密钥</li>
+</ul>
+</li>
+<li>公钥密码体制，非对称加密<ul>
+<li>加密密码和解密密码不同</li>
+<li>加密和解密算法都是公开的，加密密钥也是公开的，解密密钥是保密的</li>
+<li>公钥和私钥是配对关系，公钥加密就用私钥解密，反之亦然</li>
+</ul>
+</li>
 </ul>
 <h2 id="_9"><a href="https://juejin.im/post/5b8f3190e51d4538a67abfad">数字签名和数字证书</a><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>使用公钥密码加密的一般流程：通过A的公钥对报文加密，发送给B，然后B拿A的私钥进行解密，得到报文.
  <strong>注意：并不是每次传输报文的时候都要加数字签名，数字签名一般用于数字证书的验证，这样的话浏览器内置的CA拥有服务端的公钥和私钥。</strong></p>
 <ul>
-<li>数字签名
-    * 普通数字签名(<strong>能核实发送者，但无法保证报文完整性</strong>)
-        * A通过A的私钥对报文进行加密，将其附在报文的后面，发送给B，然后B拿A的公钥对附加信息进行解密的过程，为数字签名
-        * 上述过程中仅仅实现了数字签名，但并没有对实际报文进行加密。实际操作时，可以通过A&ndash;&gt;A私钥(数字签名)&ndash;&gt;B公钥(报文加密)&ndash;&gt;B私钥(报文解密)&ndash;&gt;A公钥(验证数字签名)<p>* 密码散列函数
-      * 使用密码散列函数对报文进行与运算得到hash值，简称摘要
-      * 密码散列函数有MD5和安全散列算法SHA</p>
-<p>* 报文摘要数字签名(<strong>核实发送者，保证报文完整性</strong>)
-      对报文本身加密可能是个耗时过程，比如这封Email足够大，那么私钥加密整个文件以及拿到文件后的解密无疑是巨大的开销
-      * A先对这封Email执行哈希运算得到hash值简称“摘要”，取名h1
-      * 然后用自己私钥对摘要加密，生成的东西叫“数字签名”
-      * 把数字签名加在Email正文后面，一起发送给B
-      * 防止邮件被窃听你可以用继续B公钥加密
-      * B收到邮件后使用B私钥对报文解密，用A的公钥对数字签名解密，成功则代表Email确实来自A，失败说明有人冒充
-      * B对邮件正文执行哈希运算得到hash值，取名h2
-      * B会对比数字签名的hash值h1和自己运算得到的h2，一致则说明邮件未被篡改。</p>
-<p>* 数字签名的作用
-      * 确认核实发送者
-      * 保证报文的完整性
-      * 一般用于验证数字证书</p>
+<li>
+<p>数字签名</p>
+<ul>
+<li>
+<p>普通数字签名(<strong>能核实发送者，但无法保证报文完整性</strong>)</p>
+<ul>
+<li>A通过A的私钥对报文进行加密，将其附在报文的后面，发送给B，然后B拿A的公钥对附加信息进行解密的过程，为数字签名</li>
+<li>上述过程中仅仅实现了数字签名，但并没有对实际报文进行加密。实际操作时，可以通过A&ndash;&gt;A私钥(数字签名)&ndash;&gt;B公钥(报文加密)&ndash;&gt;B私钥(报文解密)&ndash;&gt;A公钥(验证数字签名)</li>
+</ul>
+</li>
+<li>
+<p>密码散列函数</p>
+<ul>
+<li>使用密码散列函数对报文进行与运算得到hash值，简称摘要</li>
+<li>密码散列函数有MD5和安全散列算法SHA</li>
+</ul>
+</li>
+<li>
+<p>报文摘要数字签名(<strong>核实发送者，保证报文完整性</strong>)
+    对报文本身加密可能是个耗时过程，比如这封Email足够大，那么私钥加密整个文件以及拿到文件后的解密无疑是巨大的开销</p>
+<ul>
+<li>A先对这封Email执行哈希运算得到hash值简称“摘要”，取名h1</li>
+<li>然后用自己私钥对摘要加密，生成的东西叫“数字签名”</li>
+<li>把数字签名加在Email正文后面，一起发送给B</li>
+<li>防止邮件被窃听你可以用继续B公钥加密</li>
+<li>B收到邮件后使用B私钥对报文解密，用A的公钥对数字签名解密，成功则代表Email确实来自A，失败说明有人冒充</li>
+<li>B对邮件正文执行哈希运算得到hash值，取名h2</li>
+<li>B会对比数字签名的hash值h1和自己运算得到的h2，一致则说明邮件未被篡改。</li>
+</ul>
+</li>
+<li>
+<p>数字签名的作用</p>
+<ul>
+<li>确认核实发送者</li>
+<li>保证报文的完整性</li>
+<li>一般用于验证数字证书</li>
+</ul>
 </li>
 </ul>
+</li>
+<li>
+<p>数字证书
+    明文和数字签名共同组成了数字证书，这样一份数字证书就可以颁发给网站了，由认证中心（CA）或者认证中心的下级认证中心颁发。通俗来说，A确认收到的公钥真的是B的公钥，而不是别人伪造的</p>
 <ul>
-<li>数字证书
-    明文和数字签名共同组成了数字证书，这样一份数字证书就可以颁发给网站了，由认证中心（CA）或者认证中心的下级认证中心颁发。通俗来说，A确认收到的公钥真的是B的公钥，而不是别人伪造的
-    * 制作数字签名
-        * CA拥有非对称加密的私钥和公钥。
-        * CA对证书明文信息进行hash。
-        * 对hash后的值用私钥加密，得到数字签名
-        * 明文和数字签名共同组成了数字证书
-    * 数字证书验证过程
-        * 拿到证书，得到明文T，数字签名S。
-        * 用CA机构的公钥对S解密，得到S’。（由于是浏览器信任的机构，浏览器保有它的公钥，操作系统、浏览器本身会预装一些它们信任的根证书，如果其中有该CA机构的根证书，那就可以拿到它对应的可信公钥）
-        * 用证书里说明的hash算法对明文T进行hash得到T’。
-        * 比较S’是否等于T’，等于则表明证书可信。</li>
+<li>制作数字签名<ul>
+<li>CA拥有非对称加密的私钥和公钥。</li>
+<li>CA对证书明文信息进行hash。</li>
+<li>对hash后的值用私钥加密，得到数字签名</li>
+<li>明文和数字签名共同组成了数字证书</li>
+</ul>
+</li>
+<li>数字证书验证过程<ul>
+<li>拿到证书，得到明文T，数字签名S。</li>
+<li>用CA机构的公钥对S解密，得到S’。（由于是浏览器信任的机构，浏览器保有它的公钥，操作系统、浏览器本身会预装一些它们信任的根证书，如果其中有该CA机构的根证书，那就可以拿到它对应的可信公钥）</li>
+<li>用证书里说明的hash算法对明文T进行hash得到T’。</li>
+<li>比较S’是否等于T’，等于则表明证书可信。</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="httphttps">HTTP和HTTPS的区别<a class="headerlink" href="#httphttps" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -1090,20 +1212,32 @@ GET说明请求类型为GET，/562f25980001b1b106000338.jpg(URL)为要访问的�
 <ul>
 <li>SSL 安全套接字层协议</li>
 <li>TLS 运输层安全协议，在SSL的基础上设计</li>
-<li>SSL工作过程
-    * 协商加密算法
-        * 浏览器A向服务器B发送SSL版本，及自身支持的加密组件（包括加密算法及密钥长度等）
-        * B从中选择自身支持的加密组件和SSL版本，发送给A
-    * 服务器鉴别
-        * B向A发送包含公开密钥的数字证书
-        * A对数字证书进行鉴别，获取B的公钥
-    * 会话密钥计算
-        * A随机产生秘密数，将秘密数通过B的公钥发送给B，之后A通过协商的加密算法产生会话密钥
-        * B接收到秘密数后，通过B的私钥将其解密得到秘密数，然后根据协商加密算法产生会话密钥
-    * 安全数据传输
-        * 双方会互相发送一次数据，用会话密钥加密和解密他们之间传达的数据并验证其完整性
-    * 通信
-        * 上述验证通过后，才继续进行http通信</li>
+<li>SSL工作过程<ul>
+<li>协商加密算法<ul>
+<li>浏览器A向服务器B发送SSL版本，及自身支持的加密组件（包括加密算法及密钥长度等）</li>
+<li>B从中选择自身支持的加密组件和SSL版本，发送给A</li>
+</ul>
+</li>
+<li>服务器鉴别<ul>
+<li>B向A发送包含公开密钥的数字证书</li>
+<li>A对数字证书进行鉴别，获取B的公钥</li>
+</ul>
+</li>
+<li>会话密钥计算<ul>
+<li>A随机产生秘密数，将秘密数通过B的公钥发送给B，之后A通过协商的加密算法产生会话密钥</li>
+<li>B接收到秘密数后，通过B的私钥将其解密得到秘密数，然后根据协商加密算法产生会话密钥</li>
+</ul>
+</li>
+<li>安全数据传输<ul>
+<li>双方会互相发送一次数据，用会话密钥加密和解密他们之间传达的数据并验证其完整性</li>
+</ul>
+</li>
+<li>通信<ul>
+<li>上述验证通过后，才继续进行http通信</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="httpsssltls">HTTPS必须在每次请求中都要先在SSL/TLS层进行握手传输密钥吗？<a class="headerlink" href="#httpsssltls" title="Permanent link">&para;</a></h2>
 <p>显然每次请求都经历一次密钥传输过程非常耗时，那怎么达到只传输一次呢？用session就行。</p>
@@ -1122,10 +1256,14 @@ GET说明请求类型为GET，/562f25980001b1b106000338.jpg(URL)为要访问的�
 <h4 id="_11"><strong>基础知识</strong><a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
 <p>Cookie总是保存在客户端中，按在客户端中的存储位置，可分为内存Cookie和硬盘Cookie，它是服务器端存放在本地机器中的数据，随每一个请求发送给服务器，由于Cookie在客户端，所以可以编辑伪造，不是十分安全。</p>
 <ul>
-<li>非持久cookie
-    * 内存Cookie由浏览器维护，保存在内存中，浏览器关闭后就消失了，其存在时间是短暂的。 </li>
-<li>持久cookie
-    * 硬盘Cookie保存在硬盘里，有一个过期时间（客户端cookie设置的时间），除非用户手工清理或到了过期时间，硬盘Cookie不会被删除，其存在时间是长期的。</li>
+<li>非持久cookie<ul>
+<li>内存Cookie由浏览器维护，保存在内存中，浏览器关闭后就消失了，其存在时间是短暂的。 </li>
+</ul>
+</li>
+<li>持久cookie<ul>
+<li>硬盘Cookie保存在硬盘里，有一个过期时间（客户端cookie设置的时间），除非用户手工清理或到了过期时间，硬盘Cookie不会被删除，其存在时间是长期的。</li>
+</ul>
+</li>
 </ul>
 <h3 id="session">session<a class="headerlink" href="#session" title="Permanent link">&para;</a></h3>
 <h4 id="_12"><strong>工作流程</strong><a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
@@ -1136,21 +1274,31 @@ GET说明请求类型为GET，/562f25980001b1b106000338.jpg(URL)为要访问的�
 <h4 id="_13"><strong>基础知识</strong><a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
 <p>session是存放在服务器里的，所以session 里的东西不断增加会增加服务器的负担，我们会把一些重要的东西放在session里，不太重要的放在客户端cookie里</p>
 <ul>
-<li>session失效
-    * 服务器（非正常）关闭时
-    * session过期/失效（默认30分钟）
-        * 问题：时间的起算点 从何时开始计算30分钟？从不操作服务器端的资源开始计时（例如：当你访问淘宝页面时，点开页面不动，第29分钟再动一下页面，就得重新计时30分钟；当过了30分钟，就失效了。）
-    * 手动销毁session</li>
-</ul>
+<li>
+<p>session失效</p>
 <ul>
-<li>sessionID的传递方式
-    * 通过cookie传递
-    * 当cookie禁用后，可以通过url传递</li>
-<li>不同场景下的session
-    * 当在同一个浏览器中同时打开多个标签，发送同一个请求或不同的请求，仍是同一个session;
-    * 当不在同一个窗口中打开相同的浏览器时（打开多个相同的浏览器），发送请求，仍是同一个session;
-    * 当使用不同的浏览器时，发送请求，即使发送相同的请求，是不同的session;
-    * 当把当前某个浏览器的窗口全关闭，再打开，发起相同的请求时，是不同的session。</li>
+<li>服务器（非正常）关闭时</li>
+<li>session过期/失效（默认30分钟）<ul>
+<li>问题：时间的起算点 从何时开始计算30分钟？从不操作服务器端的资源开始计时（例如：当你访问淘宝页面时，点开页面不动，第29分钟再动一下页面，就得重新计时30分钟；当过了30分钟，就失效了。）</li>
+</ul>
+</li>
+<li>手动销毁session</li>
+</ul>
+</li>
+<li>
+<p>sessionID的传递方式</p>
+<ul>
+<li>通过cookie传递</li>
+<li>当cookie禁用后，可以通过url传递</li>
+</ul>
+</li>
+<li>不同场景下的session<ul>
+<li>当在同一个浏览器中同时打开多个标签，发送同一个请求或不同的请求，仍是同一个session;</li>
+<li>当不在同一个窗口中打开相同的浏览器时（打开多个相同的浏览器），发送请求，仍是同一个session;</li>
+<li>当使用不同的浏览器时，发送请求，即使发送相同的请求，是不同的session;</li>
+<li>当把当前某个浏览器的窗口全关闭，再打开，发起相同的请求时，是不同的session。</li>
+</ul>
+</li>
 </ul>
 <h3 id="_14">区别<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <ul>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>C++ STL - ZWiley的读书笔记</title>
+  <title>C++ STL - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -499,7 +499,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -659,20 +659,24 @@
 </ul>
 <h2 id="stl_1">STL中的哈希表扩容<a class="headerlink" href="#stl_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>这里需要知道STL中的swap底层，其实扩容也是vector扩容
-    * 创建一个新桶，该桶是原来桶两倍大最接近的质数(判断n是不是质数的方法：用n除2到sqrt(n)范围内的数) ；
-    * 将原来桶里的数通过指针的转换，插入到新桶中(注意STL这里做的很精细，没有直接将数据从旧桶遍历拷贝数据插入到新桶，而是通过指针转换两个桶的地址)
-    * 通过swap函数将新桶和旧桶交换，销毁新桶</li>
+<li>这里需要知道STL中的swap底层，其实扩容也是vector扩容<ul>
+<li>创建一个新桶，该桶是原来桶两倍大最接近的质数(判断n是不是质数的方法：用n除2到sqrt(n)范围内的数) ；</li>
+<li>将原来桶里的数通过指针的转换，插入到新桶中(注意STL这里做的很精细，没有直接将数据从旧桶遍历拷贝数据插入到新桶，而是通过指针转换两个桶的地址)</li>
+<li>通过swap函数将新桶和旧桶交换，销毁新桶</li>
+</ul>
+</li>
 </ul>
 <h2 id="vector_1">vector删除元素后如何避免当前迭代器会失效<a class="headerlink" href="#vector_1" title="Permanent link">&para;</a></h2>
 <p>删除时，将当前的迭代器存起来</p>
 <h2 id="stl_2">STL迭代器失效的情况和原因<a class="headerlink" href="#stl_2" title="Permanent link">&para;</a></h2>
 <p>迭代器失效分三种情况考虑，也是分三种数据结构考虑，分别为数组型，链表型，树型数据结构。</p>
 <ul>
-<li>数组型数据结构
-    * 该数据结构的元素是分配在连续的内存中
-    * insert和erase操作，都会使得删除点和插入点之后的元素挪位置，所以，插入点和删除掉之后的迭代器全部失效，也就是说insert(<em>iter)(或erase(</em>iter))，然后在iter++，是没有意义的。
-    * 解决方法：erase(*iter)的返回值是下一个有效迭代器的值。 <code>iter = cont.erase(iter);</code></li>
+<li>数组型数据结构<ul>
+<li>该数据结构的元素是分配在连续的内存中</li>
+<li>insert和erase操作，都会使得删除点和插入点之后的元素挪位置，所以，插入点和删除掉之后的迭代器全部失效，也就是说insert(<em>iter)(或erase(</em>iter))，然后在iter++，是没有意义的。</li>
+<li>解决方法：erase(*iter)的返回值是下一个有效迭代器的值。 <code>iter = cont.erase(iter);</code></li>
+</ul>
+</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="c1">//不要直接在循环条件中写++iter</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">iter</span> <span class="o">=</span> <span class="n">cont</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">iter</span> <span class="o">!=</span> <span class="n">cont</span><span class="p">.</span><span class="n">end</span><span class="p">();)</span>
@@ -687,32 +691,44 @@
 
 
 <ul>
-<li>链表型数据结构
-    * 对于list型的数据结构，使用了不连续分配的内存
-    * 插入不会使得任何迭代器失效
-    * 删除运算使指向删除位置的迭代器失效，但是不会失效其他迭代器.
-    * 解决办法两种，erase(*iter)会返回下一个有效迭代器的值，或者erase(iter++).</li>
-</ul>
+<li>
+<p>链表型数据结构</p>
 <ul>
-<li>树形数据结构
-    * 使用红黑树来存储数据
-    * 插入不会使得任何迭代器失效
-    * 删除运算使指向删除位置的迭代器失效，但是不会失效其他迭代器.
-    * <strong>erase迭代器只是被删元素的迭代器失效，但是返回值为void</strong>，所以要采用erase(iter++)的方式删除迭代器。</li>
+<li>对于list型的数据结构，使用了不连续分配的内存</li>
+<li>插入不会使得任何迭代器失效</li>
+<li>删除运算使指向删除位置的迭代器失效，但是不会失效其他迭代器.</li>
+<li>解决办法两种，erase(*iter)会返回下一个有效迭代器的值，或者erase(iter++).</li>
+</ul>
+</li>
+<li>
+<p>树形数据结构</p>
+<ul>
+<li>使用红黑树来存储数据</li>
+<li>插入不会使得任何迭代器失效</li>
+<li>删除运算使指向删除位置的迭代器失效，但是不会失效其他迭代器.</li>
+<li><strong>erase迭代器只是被删元素的迭代器失效，但是返回值为void</strong>，所以要采用erase(iter++)的方式删除迭代器。</li>
+</ul>
+</li>
 </ul>
 <p><strong>注意</strong> ：经过erase(iter)之后的迭代器完全失效，该迭代器iter不能参与任何运算，包括iter++,*ite</p>
 <h2 id="vectoriteratorconst_iteratorconst-iterator">vector的iterator和const_iterator和const iterator<a class="headerlink" href="#vectoriteratorconst_iteratorconst-iterator" title="Permanent link">&para;</a></h2>
 <ul>
-<li>三种的区别
-    * iterator，可遍历，可改变所指元素 
-    * const_iterator，可遍历，不可改变所指元素 
-    * const iterator，不可遍历，可改变所指元素 </li>
-<li>const_iterator转iterator，iterator不能转const_iterator
-    * const_iterator 主要是 <strong>在容器被定义成常量、或者非常量容器但不想改变元素值的情况</strong> 下使用的，而且容器被定义成常量之后，它返回的迭代器只能是const_iterator
-    * 有些容器成员函数只接受iterator作为参数，而不是const_iterator。那么，如果你只有一const_iterator，而你要在它所指向的容器位置上插入新元素呢？
-        * const_iterator转iterator
-        * 强制转换的函数会报错，只能通过 <code>advance(a, distance(a, b));</code> 其中，distance用于取得两个迭代器之间的距离，advance用于将一个迭代器移动指定的距离
-        * 如果a是iterator，b是const_iterator，distance会报错，可以显式的指明distance调用的模板参数类型，从而避免编译器自己得出它们的类型</li>
+<li>三种的区别<ul>
+<li>iterator，可遍历，可改变所指元素 </li>
+<li>const_iterator，可遍历，不可改变所指元素 </li>
+<li>const iterator，不可遍历，可改变所指元素 </li>
+</ul>
+</li>
+<li>const_iterator转iterator，iterator不能转const_iterator<ul>
+<li>const_iterator 主要是 <strong>在容器被定义成常量、或者非常量容器但不想改变元素值的情况</strong> 下使用的，而且容器被定义成常量之后，它返回的迭代器只能是const_iterator</li>
+<li>有些容器成员函数只接受iterator作为参数，而不是const_iterator。那么，如果你只有一const_iterator，而你要在它所指向的容器位置上插入新元素呢？<ul>
+<li>const_iterator转iterator</li>
+<li>强制转换的函数会报错，只能通过 <code>advance(a, distance(a, b));</code> 其中，distance用于取得两个迭代器之间的距离，advance用于将一个迭代器移动指定的距离</li>
+<li>如果a是iterator，b是const_iterator，distance会报错，可以显式的指明distance调用的模板参数类型，从而避免编译器自己得出它们的类型</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">IntDeque</span><span class="p">;</span>
 <span class="k">typedef</span> <span class="n">IntDeque</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iter</span><span class="p">;</span>

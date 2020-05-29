@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>敏捷技能修炼 - ZWiley的读书笔记</title>
+  <title>敏捷技能修炼 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -599,14 +599,18 @@
 </ul>
 <h4 id="_3">耦合(一个给定实体与其他实体之间的依赖是符合逻辑、显而易见和最小化的)<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <ul>
-<li>描述：
-    - 本体耦合：一种类型和另一种已存在的类型发生关联，比如 ClassA 的方法返回了 ClassB 的一个引用
-    - 表象耦合：一种类型与另一种类型的接口发生关联的时候。
-    - 继承耦合：派生类和基类之间的关联关系，基类发生变化，子类也会发生变化
-    - 子类耦合：关联到某个类型具备多态的时候</li>
-</ul>
+<li>
+<p>描述：</p>
 <ul>
-<li>原则：开闭原则</li>
+<li>本体耦合：一种类型和另一种已存在的类型发生关联，比如 ClassA 的方法返回了 ClassB 的一个引用</li>
+<li>表象耦合：一种类型与另一种类型的接口发生关联的时候。</li>
+<li>继承耦合：派生类和基类之间的关联关系，基类发生变化，子类也会发生变化</li>
+<li>子类耦合：关联到某个类型具备多态的时候</li>
+</ul>
+</li>
+<li>
+<p>原则：开闭原则</p>
+</li>
 <li>实践：封装，仅在需要的时候暴露细节；针对接口设计；继承是针对可插入性（系统应该能比较容易把一个类抽出去，同时将另一个同样接口的类加进来）</li>
 <li>病理症状：边界效应</li>
 <li>测试中的迹象：缓慢复杂的测试；大量的测试准备</li>

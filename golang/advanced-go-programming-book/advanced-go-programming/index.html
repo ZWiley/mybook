@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>advanced-go-programming - ZWiley的读书笔记</title>
+  <title>advanced-go-programming - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -968,10 +968,12 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <p>磁盘 IO/CPU/带宽瓶颈</p>
 <p>常见的限流手段：</p>
 <ul>
-<li>漏桶: 有一个一直装满水的桶，每过固定一段时间向外漏一滴水。如果你接收到了这滴水，就可以继续请求服务，否则等待下一滴水</li>
-</ul>
-<ul>
-<li>令牌桶: 匀速向桶中添加令牌，服务请求需要从桶中获取令牌</li>
+<li>
+<p>漏桶: 有一个一直装满水的桶，每过固定一段时间向外漏一滴水。如果你接收到了这滴水，就可以继续请求服务，否则等待下一滴水</p>
+</li>
+<li>
+<p>令牌桶: 匀速向桶中添加令牌，服务请求需要从桶中获取令牌</p>
+</li>
 </ul>
 <p>令牌桶使用比较广泛，业界流行限流器大多数基于令牌桶。</p>
 <p>github.com/juju/ratelimit</p>

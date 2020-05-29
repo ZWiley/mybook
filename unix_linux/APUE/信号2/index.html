@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>信号2 - ZWiley的读书笔记</title>
+  <title>信号2 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -541,18 +541,22 @@
 
 
 <ul>
-<li>原因：  <p>如果在调用<code>alarm</code>之后，调用进程失去了cpu控制权，但是在cpu控制权回到这个进程之前<code>alarm</code>的计时时候到达，当cpu控制权回归调用进程时先处理<code>SIGALRM</code>信号，再调用<code>pause</code>函数，这就导致<code>pause</code>再也接受不到信号，因此这个进程就永远堵塞。
+<li>
+<p>原因：  </p>
+<p>如果在调用<code>alarm</code>之后，调用进程失去了cpu控制权，但是在cpu控制权回到这个进程之前<code>alarm</code>的计时时候到达，当cpu控制权回归调用进程时先处理<code>SIGALRM</code>信号，再调用<code>pause</code>函数，这就导致<code>pause</code>再也接受不到信号，因此这个进程就永远堵塞。
 + 解决方案：  </p>
 <p>使得<code>sigsuspend(sus_mask) = alarm() + pause()</code>成为一个原子操作。
-  + 先使用<code>sigprocmask</code>设置信号屏蔽集合，使得cpu在<code>sigsuspend</code>之前不处理。
-  + 比如同样发生上述调用进程失去cpu控制权的情况，cpu控制权返回时，并不会先处理<code>SIGALRM</code>信号
-  + 因此到<code>sigsuspend</code>函数时，在这个函数的<code>sus_mask</code>中解除对<code>SIGALRM</code>的屏蔽，使得 <strong>信号处理函数的执行后直接返回，唤醒cpu（这是因为pause的堵塞导致）</strong>。</p>
++ 先使用<code>sigprocmask</code>设置信号屏蔽集合，使得cpu在<code>sigsuspend</code>之前不处理。
++ 比如同样发生上述调用进程失去cpu控制权的情况，cpu控制权返回时，并不会先处理<code>SIGALRM</code>信号
++ 因此到<code>sigsuspend</code>函数时，在这个函数的<code>sus_mask</code>中解除对<code>SIGALRM</code>的屏蔽，使得 <strong>信号处理函数的执行后直接返回，唤醒cpu（这是因为pause的堵塞导致）</strong>。</p>
 </li>
-</ul>
+<li>
+<p>关键点: <strong>调用进程的堵塞原因</strong></p>
 <ul>
-<li>关键点: <strong>调用进程的堵塞原因</strong>
-    + 调用进程失去cpu的控制权
-    + 调用<code>pause</code>导致的cpu挂起</li>
+<li>调用进程失去cpu的控制权</li>
+<li>调用<code>pause</code>导致的cpu挂起</li>
+</ul>
+</li>
 </ul>
 <h4 id="3io">3.全局变量异步I/O<a class="headerlink" href="#3io" title="Permanent link">&para;</a></h4>
 <p>尽量避免使用全局变量。类似于多线程中的多个线程对同一个变量进行操作，很容易造成异常。</p>
@@ -561,10 +565,12 @@
 <li>定义可重入函数，函数内部不能含有全局变量或者<code>static</code>变量，以及<code>malloc</code>和<code>free</code>。</li>
 <li>信号捕捉函数应该设计为可重入函数。</li>
 <li>信号处理函数可以调用的可重入函数，参考 man 7 signal</li>
-<li>其他大多是不可重入的，因为：
-    + 使用静态数据结构
-    + 调用<code>malloc/free</code>
-    + 是标准I/O函数</li>
+<li>其他大多是不可重入的，因为：<ul>
+<li>使用静态数据结构</li>
+<li>调用<code>malloc/free</code></li>
+<li>是标准I/O函数</li>
+</ul>
+</li>
 </ul>
 <h4 id="5sigchld">5.<code>SIGCHLD</code><a class="headerlink" href="#5sigchld" title="Permanent link">&para;</a></h4>
 <p>这是子进程向父进程发送的信号，那么可否利用这个信号来回收子进程？

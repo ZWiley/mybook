@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>协议 - ZWiley的读书笔记</title>
+  <title>协议 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -511,24 +511,24 @@
               
                 <h1 id="_1">协议<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <ul>
-<li>
-<p><code>OSI</code>七层模型和<code>TCP/IP</code>模型</p>
+<li><code>OSI</code>七层模型和<code>TCP/IP</code>模型</li>
+</ul>
 <p><img alt="OSI" src="https://i.loli.net/2020/05/29/ywiTB98ukC6pYMH.png" /></p>
 <ul>
 <li>
 <p>为什么套接字编程接口提供的是从OSI模型的顶上三层进入传入层接口？  </p>
 <ul>
-<li>因为应用层处理具体的网络应用，对通信细节了解不多；而下面的四层对具体网络应用了解不多却处理所有的通信细节。</li>
-</ul>
-<ul>
-<li>顶上三次构成用户进程，底下四层构成却是操作系统的内核</li>
-</ul>
+<li>
+<p>因为应用层处理具体的网络应用，对通信细节了解不多；而下面的四层对具体网络应用了解不多却处理所有的通信细节。</p>
+</li>
+<li>
+<p>顶上三次构成用户进程，底下四层构成却是操作系统的内核</p>
 </li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>通信过程  </li>
+<li>
+<p>通信过程  </p>
+</li>
 </ul>
 <p><img alt="通信过程" src="https://i.loli.net/2020/05/29/8Hxz5FCbqDyMEao.png" /></p>
 <ul>
@@ -550,62 +550,58 @@
 <h3 id="1-tcp">1. TCP状态<a class="headerlink" href="#1-tcp" title="Permanent link">&para;</a></h3>
 <ul>
 <li>TCP建立连接<br />
-  通常服务端是被动打开，客户端调用<code>connect</code>函数实现主动打开，开启tcp三次握手：<ul>
+  通常服务端是被动打开，客户端调用<code>connect</code>函数实现主动打开，开启tcp三次握手：</li>
 <li>client调用<code>connect</code>发起主动打开，使得客户端向服务端发送一个<code>SYN</code>分节，告诉服务器客户端将在待建立连接中要发送的数据初始序列号，比如<code>J</code>。</li>
 <li>服务器端确认(<code>ACK</code>)客户的<code>SYN</code>，同时自己也得发送一个<code>SYN</code>分节，告诉客户端将在同一连接中发送得数据初始序列号，比如<code>K</code>。</li>
 <li>客户端确认服务器端的<code>SYN</code>分解。</li>
-</ul>
-</li>
 </ul>
 <p><img alt="tcp三次握手" src="G:%5CSSE%5CInterview%5CBackEnd%5Cmybook%5Cdocs%5Cunix_linux%5Cunp%5CImage%5Ctcp%25E4%25B8%2589%25E6%25AC%25A1%25E6%258F%25A1%25E6%2589%258B.jpg" /></p>
 <ul>
 <li>
 <p>TCP断开连接<br />
   TCP的建立需要三个分节，终止需要四个分节。</p>
-<ul>
-<li>一端调用 <strong><em><code>close</code></em></strong>，该端TCP发送一个<code>FIN</code>分节，<strong>表示数据发送完毕</strong>。</li>
+</li>
+<li>
+<p>一端调用 <strong><em><code>close</code></em></strong>，该端TCP发送一个<code>FIN</code>分节，<strong>表示数据发送完毕</strong>。</p>
+</li>
 <li>接受到这个<code>FIN</code>分节的一端是被动关闭方。TCP接受到<code>FIN</code>分节后确认(<code>ACK</code>)。<code>FIN</code>的接受表示再也数据可以接受。</li>
 <li><strong>一段时间后*<em>，被动关闭方将调用 </em></strong><code>close</code>***函数关闭它的套接字，使得TCP向主动关闭方也发送一个<code>FIN</code>分节。</li>
-<li>主动关闭方确认这个由被动关闭方发送的<code>FIN</code>分节。<br />
+<li>
+<p>主动关闭方确认这个由被动关闭方发送的<code>FIN</code>分节。<br />
 <img alt="tcp断开链接" src="G:%5CSSE%5CInterview%5CBackEnd%5Cmybook%5Cdocs%5Cunix_linux%5Cunp%5CImage%5Ctcp%25E6%2596%25AD%25E5%25BC%2580%25E9%2593%25BE%25E6%258E%25A5.jpg" /><br />
-  这里的关闭是全关闭，即TCP的两端都关闭了。对方<code>read</code>函数在遇到<code>FIN</code>时返回0，就类似于<code>EOF</code>。</li>
-</ul>
+    这里的关闭是全关闭，即TCP的两端都关闭了。对方<code>read</code>函数在遇到<code>FIN</code>时返回0，就类似于<code>EOF</code>。</p>
 </li>
-</ul>
-<ul>
 <li>
 <p>TCP状态图<br />
   TCP为连接定义了11种状态，如下图，是11种状态之间的转换。</p>
-<ul>
+</li>
 <li>
 <p>主动方三个重要状态</p>
 <ul>
-<li><code>ESTABLISHED</code>：三次握手已经完成</li>
-</ul>
-<ul>
-<li><code>FIN_WAIT_2</code>：<strong>主动关闭方</strong>，半关闭完成</li>
-</ul>
-<ul>
+<li>
+<p><code>ESTABLISHED</code>：三次握手已经完成</p>
+</li>
+<li>
+<p><code>FIN_WAIT_2</code>：<strong>主动关闭方</strong>，半关闭完成</p>
+</li>
 <li>
 <p><code>TIME_WAIT</code>：<br />
   这个状态存在原因：  </p>
-<ul>
-<li><strong>主动关闭方</strong>，用来等<code>2MLS</code>超时，等的原因是不确定对方是否接受到自己发的<code>ACK</code>信号，如果没有送到，那么就需要对方再发送一次<code>FIN</code>分节，这一端再重新发送一次<code>ACK</code>。</li>
-<li>允许老的重复分节在网络中流逝。</li>
-</ul>
 </li>
-</ul>
-<ul>
+<li>
+<p><strong>主动关闭方</strong>，用来等<code>2MLS</code>超时，等的原因是不确定对方是否接受到自己发的<code>ACK</code>信号，如果没有送到，那么就需要对方再发送一次<code>FIN</code>分节，这一端再重新发送一次<code>ACK</code>。</p>
+</li>
+<li>
+<p>允许老的重复分节在网络中流逝。</p>
+</li>
 <li>
 <p><code>TIME_WAIT</code>状态，对大并发服务器的影响     </p>
+</li>
+</ul>
 <blockquote>
 <p>应该尽可能避免在服务器端出现<code>TIME_WAIT</code>状态。如果服务器主动断开连接（先于clinet调用close），服务器就会进入<code>TIME_WAIT</code>。  <br />
 因此，协议设计上，应该让客户端主动断开连接，这样就把<code>TIME_WAIT</code>分散到大量的客户端。如果客户端不活跃了，一些客户端不断开连接，就会占用服务器的连接资源，服务器也要有个机制来踢掉不活跃的client。</p>
 </blockquote>
-</li>
-</ul>
-</li>
-</ul>
 </li>
 </ul>
 <p><img alt="TCP状态转换图" src="G:%5CSSE%5CInterview%5CBackEnd%5Cmybook%5Cdocs%5Cunix_linux%5Cunp%5CImage%5Ctcp%25E7%258A%25B6%25E6%2580%2581%25E8%25BD%25AC%25E6%258D%25A2.jpg" /></p>
@@ -615,21 +611,21 @@
 <h1 id="socket"><em>socket</em><a class="headerlink" href="#socket" title="Permanent link">&para;</a></h1>
 <h3 id="1-socket">1. socket地址结构<a class="headerlink" href="#1-socket" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><code>sockaddr_in</code><br />
-  ipv4协议的地址结构是<code>sockaddr_in</code>，ipv6的地址结构是<code>sockaddr_in6</code>。</p>
+<li><code>sockaddr_in</code><br />
+  ipv4协议的地址结构是<code>sockaddr_in</code>，ipv6的地址结构是<code>sockaddr_in6</code>。</li>
+</ul>
 <p>```c
-    struct sockaddr_in
-    {
-        sa_family_t     sin_family;
-        in_port_t       sin_port;     /<em> Port number.  </em>/
-        struct in_addr  sin_addr;     /<em> Internet address.  </em>/</p>
-<div class="codehilite"><pre><span></span><code><span class="err">    /* Pad to size of `struct sockaddr&#39;.  */</span>
-<span class="err">    unsigned char sin_zero[sizeof (struct sockaddr) -</span>
-<span class="err">            __SOCKADDR_COMMON_SIZE -</span>
-<span class="err">            sizeof (in_port_t) -</span>
-<span class="err">            sizeof (struct in_addr)];</span>
-<span class="err">};</span>
+      struct sockaddr_in
+      {
+          sa_family_t     sin_family;
+          in_port_t       sin_port;     /<em> Port number.  </em>/
+          struct in_addr  sin_addr;     /<em> Internet address.  </em>/</p>
+<div class="codehilite"><pre><span></span><code><span class="err">      /* Pad to size of `struct sockaddr&#39;.  */</span>
+<span class="err">      unsigned char sin_zero[sizeof (struct sockaddr) -</span>
+<span class="err">              __SOCKADDR_COMMON_SIZE -</span>
+<span class="err">              sizeof (in_port_t) -</span>
+<span class="err">              sizeof (struct in_addr)];</span>
+<span class="err">  };</span>
 </code></pre></div>
 
 
@@ -637,82 +633,87 @@
 <ul>
 <li><code>sin_family</code>：表示地址簇，<code>ipv4: AF_INET, ipv6: AF_INET6</code>，</li>
 <li><code>sin_port</code>：16位的端口号</li>
-<li><code>sin_addr</code>：点分十进制。</li>
-</ul>
+<li>
+<p><code>sin_addr</code>：点分十进制。</p>
 </li>
-</ul>
-<ul>
 <li>
 <p>通用地址结构<br />
   结构体是<code>sockaddr</code>，方便可以接受ipv4/ipv6的地址结构。之所以采用<code>sockaddr</code>，而不采用<code>void*</code>是因此socket编程早于ANSI C。</p>
-<p><code>c
-    struct sockaddr {
-        sa_family_t  sa_family;
-        char         ss_data[14];
-    };</code></p>
-<p>将<code>sockaddr_in/sockaddr_in6</code>强制转换为<code>sockaddr</code>，通过<code>sockaddr</code>的<code>sa_family</code>来分别使用的是ipv4/ipv6。</p>
 </li>
 </ul>
+<p><code>c
+      struct sockaddr {
+          sa_family_t  sa_family;
+          char         ss_data[14];
+      };</code></p>
+<p>将<code>sockaddr_in/sockaddr_in6</code>强制转换为<code>sockaddr</code>，通过<code>sockaddr</code>的<code>sa_family</code>来分别使用的是ipv4/ipv6。</p>
 <ul>
-<li>网络字节序列和主机字节序列转换<br />
+<li>
+<p>网络字节序列和主机字节序列转换<br />
   &emsp;&ensp;TCP/IP协议规定，网络传输字节按照<strong>大端字节序列</strong>方式    <br />
-  &emsp;&ensp;大端：低地址存储在高位。小端：低地址存低位。  <p>+ <code>sin_port</code> 转换</p>
-<div class="codehilite"><pre><span></span><code><span class="err">```</span><span class="n">c</span>
-    <span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
+  &emsp;&ensp;大端：低地址存储在高位。小端：低地址存低位。  </p>
+<ul>
+<li><code>sin_port</code> 转换</li>
+</ul>
+<p>```c
+      #include <arpa/inet.h></p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">uint32_t</span> <span class="n">htonl</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">hostlong</span><span class="p">);</span>  <span class="o">//</span> <span class="k">host</span> <span class="k">to</span> <span class="n">net</span> <span class="n">long</span><span class="p">(</span><span class="mi">32</span><span class="err">位置</span><span class="p">)</span>
 
-    <span class="kt">uint32_t</span> <span class="n">htonl</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">hostlong</span><span class="p">);</span>  <span class="c1">// host to net long(32位置)</span>
+  <span class="n">uint16_t</span> <span class="n">htons</span><span class="p">(</span><span class="n">uint16_t</span> <span class="n">hostshort</span><span class="p">);</span> <span class="o">//</span> <span class="k">host</span> <span class="k">to</span> <span class="n">net</span> <span class="n">short</span><span class="p">(</span><span class="mi">16</span><span class="err">位置</span><span class="p">)</span>
 
-    <span class="kt">uint16_t</span> <span class="nf">htons</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">hostshort</span><span class="p">);</span> <span class="c1">// host to net short(16位置)</span>
+  <span class="n">uint32_t</span> <span class="n">ntohl</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">netlong</span><span class="p">);</span>   <span class="o">//</span> <span class="n">net</span> <span class="k">to</span> <span class="k">host</span> <span class="n">long</span>
 
-    <span class="kt">uint32_t</span> <span class="nf">ntohl</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">netlong</span><span class="p">);</span>   <span class="c1">// net to host long</span>
-
-    <span class="kt">uint16_t</span> <span class="nf">ntohs</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">netshort</span><span class="p">);</span>
-<span class="err">```</span>
+  <span class="n">uint16_t</span> <span class="n">ntohs</span><span class="p">(</span><span class="n">uint16_t</span> <span class="n">netshort</span><span class="p">);</span>
 </code></pre></div>
 
 
-<p>+ <code>sin_addr</code> 转换<br />
-    与协议无关的的转换函数，即ipv4/ipv6都可以。</p>
-<div class="codehilite"><pre><span></span><code><span class="err">```</span><span class="n">c</span>
-    <span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
+<p>```</p>
+<ul>
+<li><code>sin_addr</code> 转换<br />
+  与协议无关的的转换函数，即ipv4/ipv6都可以。</li>
+</ul>
+<p>```c
+      #include <arpa/inet.h></p>
+<div class="codehilite"><pre><span></span><code>  <span class="nb">int</span> 
+  <span class="n">inet_pton</span><span class="p">(</span><span class="nb">int</span> <span class="n">af</span><span class="p">,</span> <span class="n">const</span> <span class="nb">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">void</span> <span class="o">*</span><span class="n">dst</span><span class="p">);</span>
 
-    <span class="kt">int</span> 
-    <span class="n">inet_pton</span><span class="p">(</span><span class="kt">int</span> <span class="n">af</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">dst</span><span class="p">);</span>
-
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span>
-    <span class="nf">inet_ntop</span><span class="p">(</span><span class="kt">int</span> <span class="n">af</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="kt">socklen_t</span> <span class="n">size</span><span class="p">);</span>
-<span class="err">```</span>
-
-<span class="n">ipv4专用的转换函数</span>
-
-<span class="err">```</span><span class="n">c</span>
-    <span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
-
-    <span class="kt">int</span> 
-    <span class="n">inet_aton</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">,</span> <span class="k">struct</span> <span class="n">in_addr</span> <span class="o">*</span><span class="n">inp</span><span class="p">);</span>
-
-    <span class="kt">char</span> 
-    <span class="o">*</span><span class="nf">inet_ntoa</span><span class="p">(</span><span class="k">struct</span> <span class="n">in_addr</span> <span class="n">in</span><span class="p">);</span>
-
-    <span class="n">in_addr_t</span> 
-    <span class="nf">inet_addr</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">);</span> <span class="c1">// 有风险，不建议使用</span>
-<span class="err">```</span>
+  <span class="n">const</span> <span class="nb">char</span> <span class="o">*</span>
+  <span class="n">inet_ntop</span><span class="p">(</span><span class="nb">int</span> <span class="n">af</span><span class="p">,</span> <span class="n">const</span> <span class="n">void</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="nb">char</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="n">socklen_t</span> <span class="k">size</span><span class="p">);</span>
 </code></pre></div>
 
 
+<p>```</p>
+<p>ipv4专用的转换函数</p>
+<p>```c
+      #include <arpa/inet.h></p>
+<div class="codehilite"><pre><span></span><code>  <span class="nb">int</span> 
+  <span class="n">inet_aton</span><span class="p">(</span><span class="n">const</span> <span class="nb">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">,</span> <span class="n">struct</span> <span class="n">in_addr</span> <span class="o">*</span><span class="n">inp</span><span class="p">);</span>
+
+  <span class="nb">char</span> 
+  <span class="o">*</span><span class="n">inet_ntoa</span><span class="p">(</span><span class="n">struct</span> <span class="n">in_addr</span> <span class="k">in</span><span class="p">);</span>
+
+  <span class="n">in_addr_t</span> 
+  <span class="n">inet_addr</span><span class="p">(</span><span class="n">const</span> <span class="nb">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">);</span> <span class="o">//</span> <span class="err">有风险，不建议使用</span>
+</code></pre></div>
+
+
+<p>```</p>
 </li>
 </ul>
 <h3 id="2-socket">2. socket函数<a class="headerlink" href="#2-socket" title="Permanent link">&para;</a></h3>
 <p>客户端的tcp和服务端tcp通信与socket函数关系，如图所示。<br />
 &emsp;&emsp;&emsp;<img alt="基本tcp通信与socket函数" src="https://i.loli.net/2020/05/29/s839OXUaCBe6hGo.png" /></p>
 <ul>
-<li>
-<p><code>socket</code></p>
+<li><code>socket</code></li>
+</ul>
 <p>```c
-   #include <sys/types.h>       <br />
-   #include <sys/socket.h></p>
-<p>int socket(int family, int type, int protocol);
-```</p>
+     #include <sys/types.h>       <br />
+     #include <sys/socket.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err"> int socket(int family, int type, int protocol);</span>
+</code></pre></div>
+
+
+<p>```</p>
 <p>失败时返回-1，成功是返回一个非零整数值，表示套接字描述符，sockfd。</p>
 <ul>
 <li>参数<ul>
@@ -721,23 +722,26 @@
 <li><em><code>protocol</code></em>：0，表示选择<code>family</code>和<code>type</code>组合系统默认值。</li>
 </ul>
 </li>
-<li>状态：<br />
-  创建<code>sockfd</code>以后，处于<code>CLOSED</code>状态。</li>
-</ul>
+<li>
+<p>状态：<br />
+    创建<code>sockfd</code>以后，处于<code>CLOSED</code>状态。</p>
 </li>
-</ul>
-<ul>
 <li>
 <p><code>connect</code></p>
+</li>
+</ul>
 <p>```c
-   #include <sys/types.h>       <br />
-   #include <sys/socket.h></p>
-<p>int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
-```</p>
+     #include <sys/types.h>       <br />
+     #include <sys/socket.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err"> int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</span>
+</code></pre></div>
+
+
+<p>```</p>
 <p>客户端调用函数。  </p>
 <ul>
 <li>返回值：成功返回0，失败返回-1。
-  客户端调用<code>connect</code>函数，<strong>会激发<code>TCP</code>的三次握手过程</strong>，而且仅仅在连接成功或者失败才返回。<strong>客户端是在第二个分节返回，服务端是第三个分节返回</strong>。  <ul>
+    客户端调用<code>connect</code>函数，<strong>会激发<code>TCP</code>的三次握手过程</strong>，而且仅仅在连接成功或者失败才返回。<strong>客户端是在第二个分节返回，服务端是第三个分节返回</strong>。  <ul>
 <li><em><code>ETIMEOUT</code></em>：若客户端没有收到<code>SYN</code>分节响应，就会返回这个错误。</li>
 <li><em><code>ECONNREFUSED</code></em>：若对客户端的<code>SYN</code>分节响应的是<code>RST</code>，表示服务器主机在指定的端口上没有进程与之连接，客户端一接受到<code>RST</code>就返回<code>ECONNREFUSED</code>错误。</li>
 <li>不可达错误。</li>
@@ -749,31 +753,35 @@
 <li><em><code>addrlen</code></em>：传入的地址结构大小。  </li>
 </ul>
 </li>
-<li>状态：<br />
-<code>connect</code>会使得当前套接字从<code>closed</code>状态转移到<code>SYN_SENT</code>状态，如成功再转移到<code>ESTABLISHED</code>状态，若失败则该套接字不可用，<strong>必须关闭</strong>。</li>
-</ul>
+<li>
+<p>状态：<br />
+<code>connect</code>会使得当前套接字从<code>closed</code>状态转移到<code>SYN_SENT</code>状态，如成功再转移到<code>ESTABLISHED</code>状态，若失败则该套接字不可用，<strong>必须关闭</strong>。</p>
 </li>
-</ul>
-<ul>
 <li>
 <p><code>blind</code></p>
-<p>```c
-   #include <sys/types.h>       <br />
-   #include <sys/socket.h></p>
-<p>int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
-```</p>
-<p>服务器端调用函数。<br />
-addr的地址一般选择通配地址<code>ADDR_ANY</code>，端口选择一个大于1024的端口。ip地址和端口哪个是0，哪个就由内核决定。</p>
 </li>
 </ul>
-<ul>
-<li>
-<p><code>listen</code></p>
 <p>```c
-   #include <sys/types.h>       <br />
-   #include <sys/socket.h></p>
-<p>int listen(int sockfd, int backlog);
-```</p>
+     #include <sys/types.h>       <br />
+     #include <sys/socket.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err"> int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</span>
+</code></pre></div>
+
+
+<p>```</p>
+<p>服务器端调用函数。<br />
+  addr的地址一般选择通配地址<code>ADDR_ANY</code>，端口选择一个大于1024的端口。ip地址和端口哪个是0，哪个就由内核决定。</p>
+<ul>
+<li><code>listen</code></li>
+</ul>
+<p>```c
+     #include <sys/types.h>       <br />
+     #include <sys/socket.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err"> int listen(int sockfd, int backlog);</span>
+</code></pre></div>
+
+
+<p>```</p>
 <p><code>listen</code>函数由服务器端调用。</p>
 <ul>
 <li>作用完成两件事：<ul>
@@ -782,24 +790,24 @@ addr的地址一般选择通配地址<code>ADDR_ANY</code>，端口选择一个�
 </ul>
 </li>
 <li><code>backlog</code><br />
-  内核为每个<strong>监听</strong>套接字维护两个队列：<br />
-    &emsp;&ensp;(1) 未完成连接队列：处于<code>SYN_RCVD</code>状态的客户端套接字。 <br />
-    &emsp;&ensp;(2) 已完成连接队列：每个已经完成TCP三次握手过程的客户端套接字。这些套接字处于<code>ESTABLISHED</code>状态。<br />
-    backlog = 两个队列数之后。
-  <img alt="listen.jpg" src="https://i.loli.net/2020/05/29/kK8UO7nuFmbqXsa.png" />  </li>
-<li>状态转移 <br />
-  如图，当来自客户的<code>SYN</code>分节到达时，TCP在未连接队列创建一个新项，然后响应以三次握手的第二个分节，这一项一直保留在未完成连接队列中，直到三次握手的第三个分节到达或者超时。如果到达，该项就从未完成连接队列中移到已完成连接队列的队尾。当调用<code>accept</code>时，已完成连接队列的队首将作为<code>accept</code>的返回值，如果已完成连接队列是空，那么调用<code>accept</code>函数的进程会进入睡眠状态。
-  &emsp;&ensp;&emsp;&ensp;<img alt="listen_2.jpg" src="https://i.loli.net/2020/05/29/S4gNcEQuGjaXJov.png" />  </li>
-</ul>
+    内核为每个<strong>监听</strong>套接字维护两个队列：<br />
+      &emsp;&ensp;(1) 未完成连接队列：处于<code>SYN_RCVD</code>状态的客户端套接字。 <br />
+      &emsp;&ensp;(2) 已完成连接队列：每个已经完成TCP三次握手过程的客户端套接字。这些套接字处于<code>ESTABLISHED</code>状态。<br />
+      backlog = 两个队列数之后。
+    <img alt="listen.jpg" src="https://i.loli.net/2020/05/29/kK8UO7nuFmbqXsa.png" />  </li>
+<li>
+<p>状态转移 <br />
+    如图，当来自客户的<code>SYN</code>分节到达时，TCP在未连接队列创建一个新项，然后响应以三次握手的第二个分节，这一项一直保留在未完成连接队列中，直到三次握手的第三个分节到达或者超时。如果到达，该项就从未完成连接队列中移到已完成连接队列的队尾。当调用<code>accept</code>时，已完成连接队列的队首将作为<code>accept</code>的返回值，如果已完成连接队列是空，那么调用<code>accept</code>函数的进程会进入睡眠状态。
+    &emsp;&ensp;&emsp;&ensp;<img alt="listen_2.jpg" src="https://i.loli.net/2020/05/29/S4gNcEQuGjaXJov.png" />  </p>
 </li>
-</ul>
-<ul>
 <li>
 <p><code>accept</code></p>
+</li>
+</ul>
 <p>```c
-    #include <sys/types.h>          /<em> See NOTES </em>/
-    #include <sys/socket.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err">int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);</span>
+      #include <sys/types.h>          /<em> See NOTES </em>/
+      #include <sys/socket.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err">  int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);</span>
 </code></pre></div>
 
 
@@ -807,37 +815,40 @@ addr的地址一般选择通配地址<code>ADDR_ANY</code>，端口选择一个�
 <p>调用<code>accept</code>时，已完成连接队列的队首将作为<code>accept</code>的返回值，如果已完成连接队列是空，那么调用进程进入睡眠状态。成功返回客户端的已连接套接字<code>connfd</code>，失败返回-1。</p>
 <p><code>accpet</code>函数返回时，表示已连接套接字<code>connfd</code>和服务器端的监听套接字<code>listenfd</code>完成了三次握手。</p>
 <ul>
-<li><em><code>EMFILE</code></em><br />
-  如果函数<code>accept</code>返回<code>EMFILE</code>，即文件描述符过多，怎么处理？<blockquote>
+<li>
+<p><em><code>EMFILE</code></em><br />
+    如果函数<code>accept</code>返回<code>EMFILE</code>，即文件描述符过多，怎么处理？</p>
+<blockquote>
 <p>先实现准备一个空闲的文件描述符 <em><code>/dev/null</code></em>。遇到这种情况，先关闭这个空闲的文件描述符，就可以获得一个文件描述名额，然后再<code>accept</code>就可以拿到这个连接的<code>socket</code>文件描述符，随后立即<code>close</code>，就优雅的断开了与客户端的连接，最后重新打开空闲文件，以备这种情况再次出现。</p>
 </blockquote>
 </li>
-</ul>
-</li>
-</ul>
-<ul>
 <li>
 <p><code>close</code></p>
+</li>
+</ul>
 <p>```c
-   #include <unistd.h></p>
-<p>int close(int fd);
-```</p>
+     #include <unistd.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err"> int close(int fd);</span>
+</code></pre></div>
+
+
+<p>```</p>
 <p>这个函数表示的把该套接字标记为已关闭，然后立即返回到调用进程，该套接字描述符不能再被调用进程使用。  </p>
 <ul>
-<li>注意事项<ul>
+<li>
+<p>注意事项</p>
+<ul>
 <li>由于描述符是引用计数，close只是减少该引用计数，只有当该引用计数为0时才会引用终止序列</li>
 <li>tcp会先将已经排队等待发送到对端的任何数据发送过去，然后再发送终止序列<code>FIN</code>。因此，调用close不是立即发送终止序列。</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<ul>
 <li>
 <p><code>shutdown</code></p>
+</li>
+</ul>
 <p>```c
-    #include <sys/socket.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err">int shutdown(int sockfd, int how);</span>
+      #include <sys/socket.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err">  int shutdown(int sockfd, int how);</span>
 </code></pre></div>
 
 
@@ -856,73 +867,78 @@ addr的地址一般选择通配地址<code>ADDR_ANY</code>，端口选择一个�
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 <h1 id="selectpollepoll"><em><code>select/poll/epoll</code></em><a class="headerlink" href="#selectpollepoll" title="Permanent link">&para;</a></h1>
 <p>让内核来监听客户端。使用进程或者线程，消耗的资源比较大。</p>
 <h3 id="3-epoll">3. <code>epoll</code><a class="headerlink" href="#3-epoll" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p><code>event</code></p>
+</li>
+<li>
+<p><code>EPOLLIN</code></p>
 <ul>
-<li><code>EPOLLIN</code><ul>
 <li>内核中socket接受缓冲区为空  &ndash;&gt;  低电平 &ndash;&gt; 不可读</li>
 <li>内核中socket接受缓冲区不空  &ndash;&gt;  高电平 &ndash;&gt; 可读</li>
 </ul>
 </li>
-<li><code>EPOLLOUT</code><ul>
+<li>
+<p><code>EPOLLOUT</code></p>
+<ul>
 <li>内核中socket接受缓冲区为满  &ndash;&gt;  低电平 &ndash;&gt; 不可写</li>
 <li>内核中socket接受缓冲区不满  &ndash;&gt;  高电平 &ndash;&gt; 可写</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<ul>
 <li>
 <p>工作模式  </p>
+</li>
+<li>
+<p><code>LT</code>电平触发：高电平触发</p>
+</li>
+<li>
+<p><code>ET</code>边缘触发：</p>
 <ul>
-<li><code>LT</code>电平触发：高电平触发</li>
-<li><code>ET</code>边缘触发：<ul>
 <li>低电平&ndash;&gt;高电平 触发</li>
 <li>高电平&ndash;&gt;低电平 触发</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
+<li>
+<p>LT模式的工作流程
+  <img alt="epoll_LT电平触发" src="https://i.loli.net/2020/05/29/vS2D1eEWJalqQuK.png" /></p>
 <ul>
-<li>LT模式的工作流程
-  <img alt="epoll_LT电平触发" src="https://i.loli.net/2020/05/29/vS2D1eEWJalqQuK.png" /><p>+ <code>busy loop</code><br />
-    在使用<code>epoll_LT</code>模型时，要注意一个忙等待事件(<code>busy-loop</code>)。  </p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;</span> <span class="err">在</span> <span class="o">*</span><span class="ss">`connfd=accept(listenfd,...)`</span><span class="o">*</span> <span class="err">获得监听套接字</span><span class="ss">`connfd`</span><span class="err">之后，不能立即监听</span><span class="ss">`connfd`</span><span class="err">的</span><span class="ss">`EPOLLOUT`</span><span class="err">事件，因为刚获得</span><span class="ss">`connfd`</span><span class="err">的接受缓冲区肯定是空的，一直处于高电平，处于可写状态。如果此时就监听那么将一直触发</span><span class="ss">`epoll_wait`</span><span class="err">函数，会一直等待写满，即</span><span class="ss">`busy loop`</span><span class="err">。</span>
-</code></pre></div>
-
-
-<p>+ 正确的流程<br />
-    在第一次你 <em><code>n=write(connfd, buffer, sizeof(BUFFER))</code></em> 之后，如果返回的字节数<code>n!=sizeof(buffer)</code>，说明socket的发送缓冲区小于应用层的buffer的缓冲区，此时需要做两件事：</p>
-<div class="codehilite"><pre><span></span><code><span class="o">+</span> <span class="err">需要将未发完的数据添加到应用层缓冲区</span><span class="n">OuyBuffer</span>
-<span class="o">+</span> <span class="o">**</span><span class="err">关注</span><span class="ss">`connfd`</span><span class="err">的</span><span class="ss">`EPOLLOUT`</span><span class="err">事件</span><span class="o">**</span>
-
-<span class="err">等待</span><span class="ss">`connfd`</span><span class="err">的</span><span class="ss">`EPOLLOUT`</span><span class="err">事件的到来：取出应用层的缓冲区中的数据发送，</span><span class="o">*</span><span class="ss">`write(connfd, ...)`</span><span class="o">*</span> <span class="err">。如果应用层缓冲区中的数据发送完毕，</span><span class="o">**</span><span class="err">取消关注</span><span class="ss">`EPOLLOUT`</span><span class="err">事件</span><span class="o">**</span><span class="err">。因为不取消，</span><span class="n">sokcet发送缓冲区为空后</span><span class="err">，又会触发</span><span class="ss">`EPOLLOUT`</span><span class="err">，但是此时数据已经发送完毕，又会陷入</span><span class="ss">`busy loop。`</span>
-</code></pre></div>
-
-
-</li>
+<li><code>busy loop</code><br />
+  在使用<code>epoll_LT</code>模型时，要注意一个忙等待事件(<code>busy-loop</code>)。  </li>
 </ul>
+<blockquote>
+<p>在 <em><code>connfd=accept(listenfd,...)</code></em> 获得监听套接字<code>connfd</code>之后，不能立即监听<code>connfd</code>的<code>EPOLLOUT</code>事件，因为刚获得<code>connfd</code>的接受缓冲区肯定是空的，一直处于高电平，处于可写状态。如果此时就监听那么将一直触发<code>epoll_wait</code>函数，会一直等待写满，即<code>busy loop</code>。</p>
+</blockquote>
 <ul>
-<li>ET模式的工作流程  <br />
+<li>
+<p>正确的流程<br />
+  在第一次你 <em><code>n=write(connfd, buffer, sizeof(BUFFER))</code></em> 之后，如果返回的字节数<code>n!=sizeof(buffer)</code>，说明socket的发送缓冲区小于应用层的buffer的缓冲区，此时需要做两件事：</p>
+</li>
+<li>
+<p>需要将未发完的数据添加到应用层缓冲区OuyBuffer</p>
+</li>
+<li><strong>关注<code>connfd</code>的<code>EPOLLOUT</code>事件</strong>   </li>
+</ul>
+<p>等待<code>connfd</code>的<code>EPOLLOUT</code>事件的到来：取出应用层的缓冲区中的数据发送，<em><code>write(connfd, ...)</code></em> 。如果应用层缓冲区中的数据发送完毕，<strong>取消关注<code>EPOLLOUT</code>事件</strong>。因为不取消，sokcet发送缓冲区为空后，又会触发<code>EPOLLOUT</code>，但是此时数据已经发送完毕，又会陷入<code>busy loop。</code></p>
+</li>
+<li>
+<p>ET模式的工作流程  <br />
 <img alt="epoll_ET边缘触发" src="https://i.loli.net/2020/05/29/zyjAxcuvtaGB4NI.png" /><br />
-  ET工作模式不存在LT中的<code>busy loop</code>，但是会有更麻烦的问题：<em><code>read/write</code></em> 直到返回<code>EAGAIN</code>错误。否则程序会发送意外。  <p>+ <code>read</code><br />
-    在 <em><code>connfd=accept(listenfd,...)</code></em> 之后得到的<code>connfd</code>是边缘触发，因此不会在一开始就触发<code>EPOLLIN/EPOLLOUT</code>。</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;</span> <span class="err">触发</span><span class="ss">`EPOLLIN`</span><span class="err">事件后，如果</span><span class="ss">`connfd`</span><span class="err">的接受缓冲区中的数据没有读取完毕，那么当</span><span class="ss">`connfd`</span><span class="err">的又接受到新的缓冲区数据时，</span><span class="ss">`EPOLLIN`</span><span class="err">事件不会触发。因为之前的数据没有读取完，处于高电平状态，此时又来新的数据并没有改变电平状态，因此即使有新的数据到来也无法触发</span><span class="ss">`EPOLLIN`</span><span class="err">。同理</span><span class="ss">`write`</span><span class="err">。</span>
-
-<span class="o">&lt;</span><span class="n">font</span> <span class="n">color</span><span class="o">=</span><span class="n">red</span><span class="o">&gt;</span><span class="err">重点：</span><span class="o">&lt;/</span><span class="n">font</span><span class="o">&gt;</span> <span class="o">***</span><span class="ss">`read/write`</span><span class="o">***</span> <span class="err">必须将缓冲区读完或者写满。</span>
-</code></pre></div>
-
-
-<p>+ <code>EMFILE</code><br />
-    如果在使用 <em><code>connfd=accept(listenfd,...)</code></em> 返回失败，并且返回的错误是 <code>EMFILE</code>，那么会使得<code>listenfd</code>的接受缓冲区有数据为高电平。如果不清除，那么即使后面有空余的文件描述符也无法使用，因为<code>listenfd</code>的接受缓冲区一直处于有数据的高电平状态，无法触发<code>EPOLLIN</code>。</p>
+  ET工作模式不存在LT中的<code>busy loop</code>，但是会有更麻烦的问题：<em><code>read/write</code></em> 直到返回<code>EAGAIN</code>错误。否则程序会发送意外。  </p>
+<ul>
+<li><code>read</code><br />
+  在 <em><code>connfd=accept(listenfd,...)</code></em> 之后得到的<code>connfd</code>是边缘触发，因此不会在一开始就触发<code>EPOLLIN/EPOLLOUT</code>。</li>
+</ul>
+<blockquote>
+<p>触发<code>EPOLLIN</code>事件后，如果<code>connfd</code>的接受缓冲区中的数据没有读取完毕，那么当<code>connfd</code>的又接受到新的缓冲区数据时，<code>EPOLLIN</code>事件不会触发。因为之前的数据没有读取完，处于高电平状态，此时又来新的数据并没有改变电平状态，因此即使有新的数据到来也无法触发<code>EPOLLIN</code>。同理<code>write</code>。</p>
+</blockquote>
+<p><font color=red>重点：</font> <strong><em><code>read/write</code></em></strong> 必须将缓冲区读完或者写满。</p>
+<ul>
+<li><code>EMFILE</code><br />
+  如果在使用 <em><code>connfd=accept(listenfd,...)</code></em> 返回失败，并且返回的错误是 <code>EMFILE</code>，那么会使得<code>listenfd</code>的接受缓冲区有数据为高电平。如果不清除，那么即使后面有空余的文件描述符也无法使用，因为<code>listenfd</code>的接受缓冲区一直处于有数据的高电平状态，无法触发<code>EPOLLIN</code>。</li>
+</ul>
 </li>
 </ul>
 <h3 id="4-io">4. I/O复用模型对比<a class="headerlink" href="#4-io" title="Permanent link">&para;</a></h3>

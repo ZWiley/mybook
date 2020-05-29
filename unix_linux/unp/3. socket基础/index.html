@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>*socket* - ZWiley的读书笔记</title>
+  <title>*socket* - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -512,163 +512,156 @@
                 <h1 id="socket"><em>socket</em><a class="headerlink" href="#socket" title="Permanent link">&para;</a></h1>
 <h3 id="1-socket">1. socket地址结构<a class="headerlink" href="#1-socket" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>sockaddr_in</code><br />
+<li>
+<p><code>sockaddr_in</code><br />
     ipv4协议的地址结构是<code>sockaddr_in</code>，ipv6的地址结构是<code>sockaddr_in6</code>。
     ```c
         struct sockaddr_in
         {
             sa_family_t     sin_family;
             in_port_t       sin_port;       /<em> Port number.  </em>/
-            struct in_addr  sin_addr;       /<em> Internet address.  </em>/<div class="codehilite"><pre><span></span><code><span class="err">      /* Pad to size of `struct sockaddr&#39;.  */</span>
-<span class="err">      unsigned char sin_zero[sizeof (struct sockaddr) -</span>
-<span class="err">              __SOCKADDR_COMMON_SIZE -</span>
-<span class="err">              sizeof (in_port_t) -</span>
-<span class="err">              sizeof (struct in_addr)];</span>
-<span class="err">  };</span>
+            struct in_addr  sin_addr;       /<em> Internet address.  </em>/</p>
+<div class="codehilite"><pre><span></span><code><span class="err">    /* Pad to size of `struct sockaddr&#39;.  */</span>
+<span class="err">    unsigned char sin_zero[sizeof (struct sockaddr) -</span>
+<span class="err">            __SOCKADDR_COMMON_SIZE -</span>
+<span class="err">            sizeof (in_port_t) -</span>
+<span class="err">            sizeof (struct in_addr)];</span>
+<span class="err">};</span>
 </code></pre></div>
 
 
 <p>```</p>
-<p>+ <code>sin_family</code>：表示地址簇，<code>ipv4: AF_INET, ipv6: AF_INET6</code>，
-  + <code>sin_port</code>：16位的端口号
-  + <code>sin_addr</code>：点分十进制。
-+ 通用地址结构<br />
-  结构体是<code>sockaddr</code>，方便可以接受ipv4/ipv6的地址结构。之所以采用<code>sockaddr</code>，而不采用<code>void*</code>是因此socket编程早于ANSI C。
-  <code>c
-      struct sockaddr {
-          sa_family_t  sa_family;
-          char         ss_data[14];
-      };</code>
-  将<code>sockaddr_in/sockaddr_in6</code>强制转换为<code>sockaddr</code>，通过<code>sockaddr</code>的<code>sa_family</code>来分别使用的是ipv4/ipv6。
-+ 网络字节序列和主机字节序列转换<br />
+<ul>
+<li><code>sin_family</code>：表示地址簇，<code>ipv4: AF_INET, ipv6: AF_INET6</code>，</li>
+<li><code>sin_port</code>：16位的端口号</li>
+<li><code>sin_addr</code>：点分十进制。</li>
+<li>通用地址结构<br />
+结构体是<code>sockaddr</code>，方便可以接受ipv4/ipv6的地址结构。之所以采用<code>sockaddr</code>，而不采用<code>void*</code>是因此socket编程早于ANSI C。
+<code>c
+    struct sockaddr {
+        sa_family_t  sa_family;
+        char         ss_data[14];
+    };</code>
+将<code>sockaddr_in/sockaddr_in6</code>强制转换为<code>sockaddr</code>，通过<code>sockaddr</code>的<code>sa_family</code>来分别使用的是ipv4/ipv6。</li>
+<li>网络字节序列和主机字节序列转换<br />
 &emsp;&ensp;TCP/IP协议规定，网络传输字节按照<strong>大端字节序列</strong>方式    <br />
-&emsp;&ensp;大端：低地址存储在高位。小端：低地址存低位。<br />
-  + <code>sin_port</code> 转换
-      ```c
-          #include <arpa/inet.h></p>
-<div class="codehilite"><pre><span></span><code>      <span class="n">uint32_t</span> <span class="n">htonl</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">hostlong</span><span class="p">);</span>  <span class="o">//</span> <span class="k">host</span> <span class="k">to</span> <span class="n">net</span> <span class="n">long</span><span class="p">(</span><span class="mi">32</span><span class="err">位置</span><span class="p">)</span>
+&emsp;&ensp;大端：低地址存储在高位。小端：低地址存低位。  </li>
+<li><code>sin_port</code> 转换
+    ```c
+        #include <arpa/inet.h><div class="codehilite"><pre><span></span><code><span class="n">uint32_t</span> <span class="n">htonl</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">hostlong</span><span class="p">);</span>  <span class="o">//</span> <span class="k">host</span> <span class="k">to</span> <span class="n">net</span> <span class="n">long</span><span class="p">(</span><span class="mi">32</span><span class="err">位置</span><span class="p">)</span>
 
-      <span class="n">uint16_t</span> <span class="n">htons</span><span class="p">(</span><span class="n">uint16_t</span> <span class="n">hostshort</span><span class="p">);</span> <span class="o">//</span> <span class="k">host</span> <span class="k">to</span> <span class="n">net</span> <span class="n">short</span><span class="p">(</span><span class="mi">16</span><span class="err">位置</span><span class="p">)</span>
+<span class="n">uint16_t</span> <span class="n">htons</span><span class="p">(</span><span class="n">uint16_t</span> <span class="n">hostshort</span><span class="p">);</span> <span class="o">//</span> <span class="k">host</span> <span class="k">to</span> <span class="n">net</span> <span class="n">short</span><span class="p">(</span><span class="mi">16</span><span class="err">位置</span><span class="p">)</span>
 
-      <span class="n">uint32_t</span> <span class="n">ntohl</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">netlong</span><span class="p">);</span>   <span class="o">//</span> <span class="n">net</span> <span class="k">to</span> <span class="k">host</span> <span class="n">long</span>
+<span class="n">uint32_t</span> <span class="n">ntohl</span><span class="p">(</span><span class="n">uint32_t</span> <span class="n">netlong</span><span class="p">);</span>   <span class="o">//</span> <span class="n">net</span> <span class="k">to</span> <span class="k">host</span> <span class="n">long</span>
 
-      <span class="n">uint16_t</span> <span class="n">ntohs</span><span class="p">(</span><span class="n">uint16_t</span> <span class="n">netshort</span><span class="p">);</span>
-  <span class="o">```</span>
+<span class="n">uint16_t</span> <span class="n">ntohs</span><span class="p">(</span><span class="n">uint16_t</span> <span class="n">netshort</span><span class="p">);</span>
 </code></pre></div>
 
 
-<p>+ <code>sin_addr</code> 转换<br />
-  与协议无关的的转换函数，即ipv4/ipv6都可以。
-      ```c
-          #include <arpa/inet.h></p>
-<div class="codehilite"><pre><span></span><code>      <span class="kt">int</span> 
-      <span class="nf">inet_pton</span><span class="p">(</span><span class="kt">int</span> <span class="n">af</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">dst</span><span class="p">);</span>
+<p><code>+ `sin_addr` 转换  
+    与协议无关的的转换函数，即ipv4/ipv6都可以。</code>c
+    #include <arpa/inet.h></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">int</span> 
+<span class="n">inet_pton</span><span class="p">(</span><span class="nb">int</span> <span class="n">af</span><span class="p">,</span> <span class="n">const</span> <span class="nb">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">void</span> <span class="o">*</span><span class="n">dst</span><span class="p">);</span>
 
-      <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span>
-      <span class="nf">inet_ntop</span><span class="p">(</span><span class="kt">int</span> <span class="n">af</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="kt">socklen_t</span> <span class="n">size</span><span class="p">);</span>
-  <span class="err">```</span>
-  <span class="n">ipv4专用的转换函数</span>
-  <span class="err">```</span><span class="n">c</span>
-      <span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
-
-      <span class="kt">int</span> 
-      <span class="n">inet_aton</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">,</span> <span class="k">struct</span> <span class="n">in_addr</span> <span class="o">*</span><span class="n">inp</span><span class="p">);</span>
-
-      <span class="kt">char</span> 
-      <span class="o">*</span><span class="nf">inet_ntoa</span><span class="p">(</span><span class="k">struct</span> <span class="n">in_addr</span> <span class="n">in</span><span class="p">);</span>
-
-      <span class="n">in_addr_t</span> 
-      <span class="nf">inet_addr</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">);</span> <span class="c1">// 有风险，不建议使用</span>
-  <span class="err">```</span>
+<span class="n">const</span> <span class="nb">char</span> <span class="o">*</span>
+<span class="n">inet_ntop</span><span class="p">(</span><span class="nb">int</span> <span class="n">af</span><span class="p">,</span> <span class="n">const</span> <span class="n">void</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="nb">char</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="n">socklen_t</span> <span class="k">size</span><span class="p">);</span>
 </code></pre></div>
 
 
+<p><code>ipv4专用的转换函数</code>c
+    #include <arpa/inet.h></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">int</span> 
+<span class="n">inet_aton</span><span class="p">(</span><span class="n">const</span> <span class="nb">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">,</span> <span class="n">struct</span> <span class="n">in_addr</span> <span class="o">*</span><span class="n">inp</span><span class="p">);</span>
+
+<span class="nb">char</span> 
+<span class="o">*</span><span class="n">inet_ntoa</span><span class="p">(</span><span class="n">struct</span> <span class="n">in_addr</span> <span class="k">in</span><span class="p">);</span>
+
+<span class="n">in_addr_t</span> 
+<span class="n">inet_addr</span><span class="p">(</span><span class="n">const</span> <span class="nb">char</span> <span class="o">*</span><span class="n">cp</span><span class="p">);</span> <span class="o">//</span> <span class="err">有风险，不建议使用</span>
+</code></pre></div>
+
+
+<p>```</p>
 <h3 id="2-socket">2. socket函数<a class="headerlink" href="#2-socket" title="Permanent link">&para;</a></h3>
 <p>客户端的tcp和服务端tcp通信与socket函数关系，如图所示。<br />
 &emsp;&emsp;&emsp;<img alt="基本tcp通信与socket函数" src="../Image/4.1.jpg" />
 + <code>socket</code>
-  ```c
-     #include <sys/types.h>       <br />
-     #include <sys/socket.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err"> int socket(int family, int type, int protocol);</span>
-</code></pre></div>
-
-
-<p><code>失败时返回-1，成功是返回一个非零整数值，表示套接字描述符，sockfd。
-  + 参数
-      + *`family`*：`AF_INET,AF_INET6,AF_LOCAL`
-      + *`type`*：`SOCK_STREAM`、`SOCK_DGRAM`，还可和`SOCK_NOBLOCK`和`SOCK_CLOEXEC`进行组合使用。
-      + *`protocol`*：0，表示选择`family`和`type`组合系统默认值。
-  + 状态：  
-      创建`sockfd`以后，处于`CLOSED`状态。
+    ```c
+       #include <sys/types.h>       <br />
+       #include <sys/socket.h></p>
+</li>
+</ul>
+<p>int socket(int family, int type, int protocol);
+<code>失败时返回-1，成功是返回一个非零整数值，表示套接字描述符，sockfd。
++ 参数
+    + *`family`*：`AF_INET,AF_INET6,AF_LOCAL`
+    + *`type`*：`SOCK_STREAM`、`SOCK_DGRAM`，还可和`SOCK_NOBLOCK`和`SOCK_CLOEXEC`进行组合使用。
+    + *`protocol`*：0，表示选择`family`和`type`组合系统默认值。
++ 状态：  
+    创建`sockfd`以后，处于`CLOSED`状态。
 + `connect`</code>c
-     #include <sys/types.h>       <br />
-     #include <sys/socket.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err"> int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</span>
-</code></pre></div>
-
-
-<p><code>客户端调用函数。  
-  + 返回值：成功返回0，失败返回-1。
-     客户端调用`connect`函数，**会激发`TCP`的三次握手过程**，而且仅仅在连接成功或者失败才返回。**客户端是在第二个分节返回，服务端是第三个分节返回**。  
-      + *`ETIMEOUT`*：若客户端没有收到`SYN`分节响应，就会返回这个错误。
-      + *`ECONNREFUSED`*：若对客户端的`SYN`分节响应的是`RST`，表示服务器主机在指定的端口上没有进程与之连接，客户端一接受到`RST`就返回`ECONNREFUSED`错误。
-      + 不可达错误。
-  + 参数
-      + *`sockfd`*：是`socket`函数返回值。
-      + *`sockaddr`*：是套接字的地址结构，`sockaddr_int/sockaddr_in6`强制转换而来。
-      + *`addrlen`*：传入的地址结构大小。  
-  + 状态：  
-    `connect`会使得当前套接字从`closed`状态转移到`SYN_SENT`状态，如成功再转移到`ESTABLISHED`状态，若失败则该套接字不可用，**必须关闭**。
+   #include <sys/types.h>       <br />
+   #include <sys/socket.h></p>
+<p>int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+<code>客户端调用函数。  
++ 返回值：成功返回0，失败返回-1。
+   客户端调用`connect`函数，**会激发`TCP`的三次握手过程**，而且仅仅在连接成功或者失败才返回。**客户端是在第二个分节返回，服务端是第三个分节返回**。  
+    + *`ETIMEOUT`*：若客户端没有收到`SYN`分节响应，就会返回这个错误。
+    + *`ECONNREFUSED`*：若对客户端的`SYN`分节响应的是`RST`，表示服务器主机在指定的端口上没有进程与之连接，客户端一接受到`RST`就返回`ECONNREFUSED`错误。
+    + 不可达错误。
++ 参数
+    + *`sockfd`*：是`socket`函数返回值。
+    + *`sockaddr`*：是套接字的地址结构，`sockaddr_int/sockaddr_in6`强制转换而来。
+    + *`addrlen`*：传入的地址结构大小。  
++ 状态：  
+  `connect`会使得当前套接字从`closed`状态转移到`SYN_SENT`状态，如成功再转移到`ESTABLISHED`状态，若失败则该套接字不可用，**必须关闭**。
 + `blind`</code>c
-     #include <sys/types.h>       <br />
-     #include <sys/socket.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err"> int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</span>
-</code></pre></div>
-
-
-<p><code>服务器端调用函数。  
-  addr的地址一般选择通配地址`ADDR_ANY`，端口选择一个大于1024的端口。ip地址和端口哪个是0，哪个就由内核决定。
+   #include <sys/types.h>       <br />
+   #include <sys/socket.h></p>
+<p>int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+<code>服务器端调用函数。  
+addr的地址一般选择通配地址`ADDR_ANY`，端口选择一个大于1024的端口。ip地址和端口哪个是0，哪个就由内核决定。
 + `listen`</code>c
-     #include <sys/types.h>       <br />
-     #include <sys/socket.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err"> int listen(int sockfd, int backlog);</span>
-</code></pre></div>
-
-
-<p><code>`listen`函数由服务器端调用。
-  + 作用完成两件事：
-      + `socket`函数创建的套接字是一个主动套接字，即是一个将会主动调用`connect`函数发起连接的客户端套接字。`listen`把一个未连接的套接字转换程一个被动套接字，告诉内核接受指向这个被动套接字的连接请求。**此时的状态是:`LISTEN`**
-      + 参数`backlog`规定了内核为相应套接字排队的最大连接个数。
-  + `backlog`  
-  内核为每个**监听**套接字维护两个队列：  
-      &amp;emsp;&amp;ensp;(1) 未完成连接队列：处于`SYN_RCVD`状态的客户端套接字。   
-      &amp;emsp;&amp;ensp;(2) 已完成连接队列：每个已经完成TCP三次握手过程的客户端套接字。这些套接字处于`ESTABLISHED`状态。  
-      backlog = 两个队列数之后。
-  ![listen.jpg](./Image/listen.jpg)  
-  + 状态转移   
-  如图，当来自客户的`SYN`分节到达时，TCP在未连接队列创建一个新项，然后响应以三次握手的第二个分节，这一项一直保留在未完成连接队列中，直到三次握手的第三个分节到达或者超时。如果到达，该项就从未完成连接队列中移到已完成连接队列的队尾。当调用`accept`时，已完成连接队列的队首将作为`accept`的返回值，如果已完成连接队列是空，那么调用`accept`函数的进程会进入睡眠状态。
-  &amp;emsp;&amp;ensp;&amp;emsp;&amp;ensp;![listen_2.jpg](./Image/listen_2.jpg)  
+   #include <sys/types.h>       <br />
+   #include <sys/socket.h></p>
+<p>int listen(int sockfd, int backlog);
+<code>`listen`函数由服务器端调用。
++ 作用完成两件事：
+    + `socket`函数创建的套接字是一个主动套接字，即是一个将会主动调用`connect`函数发起连接的客户端套接字。`listen`把一个未连接的套接字转换程一个被动套接字，告诉内核接受指向这个被动套接字的连接请求。**此时的状态是:`LISTEN`**
+    + 参数`backlog`规定了内核为相应套接字排队的最大连接个数。
++ `backlog`  
+内核为每个**监听**套接字维护两个队列：  
+    &amp;emsp;&amp;ensp;(1) 未完成连接队列：处于`SYN_RCVD`状态的客户端套接字。   
+    &amp;emsp;&amp;ensp;(2) 已完成连接队列：每个已经完成TCP三次握手过程的客户端套接字。这些套接字处于`ESTABLISHED`状态。  
+    backlog = 两个队列数之后。
+![listen.jpg](./Image/listen.jpg)  
++ 状态转移   
+如图，当来自客户的`SYN`分节到达时，TCP在未连接队列创建一个新项，然后响应以三次握手的第二个分节，这一项一直保留在未完成连接队列中，直到三次握手的第三个分节到达或者超时。如果到达，该项就从未完成连接队列中移到已完成连接队列的队尾。当调用`accept`时，已完成连接队列的队首将作为`accept`的返回值，如果已完成连接队列是空，那么调用`accept`函数的进程会进入睡眠状态。
+&amp;emsp;&amp;ensp;&amp;emsp;&amp;ensp;![listen_2.jpg](./Image/listen_2.jpg)  
 + `accept`</code>c
-      #include <sys/types.h>          /<em> See NOTES </em>/
-      #include <sys/socket.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err">  int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);</span>
+    #include <sys/types.h>          /<em> See NOTES </em>/
+    #include <sys/socket.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err">int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);</span>
 </code></pre></div>
 
 
 <p><code>``
-  调用</code>accept<code>时，已完成连接队列的队首将作为</code>accept<code>的返回值，如果已完成连接队列是空，那么调用进程进入睡眠状态。成功返回客户端的已连接套接字</code>connfd`，失败返回-1。</p>
+调用</code>accept<code>时，已完成连接队列的队首将作为</code>accept<code>的返回值，如果已完成连接队列是空，那么调用进程进入睡眠状态。成功返回客户端的已连接套接字</code>connfd`，失败返回-1。</p>
 <p><code>accpet</code>函数返回时，表示已连接套接字<code>connfd</code>和服务器端的监听套接字<code>listenfd</code>完成了三次握手。</p>
-<p>+ <em><code>EMFILE</code></em><br />
-  如果函数<code>accept</code>返回<code>EMFILE</code>，即文件描述符过多，怎么处理？</p>
-<div class="codehilite"><pre><span></span><code>   <span class="o">&gt;</span><span class="err">先实现准备一个空闲的文件描述符</span> <span class="o">*</span><span class="ss">`/dev/null`</span><span class="o">*</span><span class="err">。遇到这种情况，先关闭这个空闲的文件描述符，就可以获得一个文件描述名额，然后再</span><span class="ss">`accept`</span><span class="err">就可以拿到这个连接的</span><span class="ss">`socket`</span><span class="err">文件描述符，随后立即</span><span class="ss">`close`</span><span class="err">，就优雅的断开了与客户端的连接，最后重新打开空闲文件，以备这种情况再次出现。</span>
-</code></pre></div>
-
-
 <ul>
-<li><code>close</code>
-  ```c
-     #include <unistd.h><p>int close(int fd);
+<li>
+<p><em><code>EMFILE</code></em><br />
+如果函数<code>accept</code>返回<code>EMFILE</code>，即文件描述符过多，怎么处理？</p>
+<blockquote>
+<p>先实现准备一个空闲的文件描述符 <em><code>/dev/null</code></em>。遇到这种情况，先关闭这个空闲的文件描述符，就可以获得一个文件描述名额，然后再<code>accept</code>就可以拿到这个连接的<code>socket</code>文件描述符，随后立即<code>close</code>，就优雅的断开了与客户端的连接，最后重新打开空闲文件，以备这种情况再次出现。
++ <code>close</code>
+    ```c
+       #include <unistd.h></p>
+</blockquote>
+</li>
+</ul>
+<p>int close(int fd);
 <code>这个函数表示的把该套接字标记为已关闭，然后立即返回到调用进程，该套接字描述符不能再被调用进程使用。  
 + 注意事项
     + 由于描述符是引用计数，close只是减少该引用计数，只有当该引用计数为0时才会引用终止序列
@@ -688,8 +681,6 @@
     +</code>SHUT_RD<code>：关闭读
     +</code>SHUT_WR<code>：关闭写
     +</code>SHUT_RDWR`：关闭读写</p>
-</li>
-</ul>
 </li>
 </ul>
               

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>5 http连接处理（中） - ZWiley的读书笔记</title>
+  <title>5 http连接处理（中） - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -567,39 +567,33 @@
 <h4 id="http_code"><strong>HTTP_CODE含义</strong><a class="headerlink" href="#http_code" title="Permanent link">&para;</a></h4>
 <p>表示HTTP请求的处理结果，在头文件中初始化了八种情形，在报文解析时只涉及到四种。</p>
 <ul>
-<li>NO_REQUEST</li>
-</ul>
-<ul>
+<li>
+<p>NO_REQUEST</p>
+</li>
 <li>
 <ul>
 <li>请求不完整，需要继续读取请求报文数据</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>GET_REQUEST</li>
-</ul>
-<ul>
+<li>
+<p>GET_REQUEST</p>
+</li>
 <li>
 <ul>
 <li>获得了完整的HTTP请求</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>BAD_REQUEST</li>
-</ul>
-<ul>
+<li>
+<p>BAD_REQUEST</p>
+</li>
 <li>
 <ul>
 <li>HTTP请求报文有语法错误</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>INTERNAL_ERROR</li>
-</ul>
-<ul>
+<li>
+<p>INTERNAL_ERROR</p>
+</li>
 <li>
 <ul>
 <li>服务器内部错误，该结果在主状态机逻辑switch的default下，一般不会触发</li>
@@ -609,28 +603,28 @@
 <h4 id="_5"><strong>解析报文整体流程</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <p>process_read通过while循环，将主从状态机进行封装，对报文的每一行进行循环处理。</p>
 <ul>
-<li>判断条件</li>
-</ul>
-<ul>
+<li>
+<p>判断条件</p>
+</li>
 <li>
 <ul>
 <li>主状态机转移到CHECK_STATE_CONTENT，该条件涉及解析消息体</li>
-<li>从状态机转移到LINE_OK，该条件涉及解析请求行和请求头部</li>
-<li>两者为或关系，当条件为真则继续循环，否则退出</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>循环体</li>
-</ul>
-<ul>
+<li>从状态机转移到LINE_OK，该条件涉及解析请求行和请求头部</li>
+<li>
+<p>两者为或关系，当条件为真则继续循环，否则退出</p>
+</li>
+<li>
+<p>循环体</p>
+</li>
 <li>
 <ul>
 <li>从状态机读取数据</li>
-<li>调用get_line函数，通过m_start_line将从状态机读取数据间接赋给text</li>
-<li>主状态机解析text</li>
 </ul>
 </li>
+<li>调用get_line函数，通过m_start_line将从状态机读取数据间接赋给text</li>
+<li>主状态机解析text</li>
 </ul>
 <div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//m_start_line是行在buffer中的起始位置，将该位置后面的数据赋给text</span>
  <span class="mi">2</span><span class="c1">//此时从状态机已提前将一行的末尾字符\r\n变为\0\0，所以text可以直接取出完整的行进行解析</span>
@@ -710,31 +704,29 @@
 <p>在HTTP报文中，每一行的数据由\r\n作为结束字符，空行则是仅仅是字符\r\n。因此，可以通过查找\r\n将报文拆解成单独的行进行解析，项目中便是利用了这一点。</p>
 <p>从状态机负责读取buffer中的数据，将每行数据末尾的\r\n置为\0\0，并更新从状态机在buffer中读取的位置m_checked_idx，以此来驱动主状态机解析。</p>
 <ul>
-<li>从状态机从m_read_buf中逐字节读取，判断当前字节是否为\r</li>
-</ul>
-<ul>
+<li>
+<p>从状态机从m_read_buf中逐字节读取，判断当前字节是否为\r</p>
+</li>
 <li>
 <ul>
 <li>接下来的字符是\n，将\r\n修改成\0\0，将m_checked_idx指向下一行的开头，则返回LINE_OK</li>
-<li>接下来达到了buffer末尾，表示buffer还需要继续接收，返回LINE_OPEN</li>
-<li>否则，表示语法错误，返回LINE_BAD</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>当前字节不是\r，判断是否是\n（<strong>一般是上次读取到\r就到了buffer末尾，没有接收完整，再次接收时会出现这种情况</strong>）</li>
-</ul>
-<ul>
+<li>接下来达到了buffer末尾，表示buffer还需要继续接收，返回LINE_OPEN</li>
+<li>
+<p>否则，表示语法错误，返回LINE_BAD</p>
+</li>
+<li>
+<p>当前字节不是\r，判断是否是\n（<strong>一般是上次读取到\r就到了buffer末尾，没有接收完整，再次接收时会出现这种情况</strong>）</p>
+</li>
 <li>
 <ul>
 <li>如果前一个字符是\r，则将\r\n修改成\0\0，将m_checked_idx指向下一行的开头，则返回LINE_OK</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>当前字节既不是\r，也不是\n</li>
-</ul>
-<ul>
+<li>
+<p>当前字节既不是\r，也不是\n</p>
+</li>
 <li>
 <ul>
 <li>表示接收不完整，需要继续接收，返回LINE_OPEN</li>
@@ -794,16 +786,16 @@
 <h4 id="_7"><strong>主状态机逻辑</strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
 <p>主状态机初始状态是CHECK_STATE_REQUESTLINE，通过调用从状态机来驱动主状态机，在主状态机进行解析前，从状态机已经将每一行的末尾\r\n符号改为\0\0，以便于主状态机直接取出对应字符串进行处理。</p>
 <ul>
-<li>CHECK_STATE_REQUESTLINE</li>
-</ul>
-<ul>
+<li>
+<p>CHECK_STATE_REQUESTLINE</p>
+</li>
 <li>
 <ul>
 <li>主状态机的初始状态，调用parse_request_line函数解析请求行</li>
-<li>解析函数从m_read_buf中解析HTTP请求行，获得请求方法、目标URL及HTTP版本号</li>
-<li>解析完成后主状态机的状态变为CHECK_STATE_HEADER</li>
 </ul>
 </li>
+<li>解析函数从m_read_buf中解析HTTP请求行，获得请求方法、目标URL及HTTP版本号</li>
+<li>解析完成后主状态机的状态变为CHECK_STATE_HEADER</li>
 </ul>
 <div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//解析http请求行，获得请求方法，目标url及http版本号</span>
  <span class="mi">2</span><span class="n">http_conn</span><span class="o">::</span><span class="n">HTTP_CODE</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">parse_request_line</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">)</span>
@@ -880,18 +872,18 @@
 
 <p>解析完请求行后，主状态机继续分析请求头。在报文中，请求头和空行的处理使用的同一个函数，这里通过判断当前的text首位是不是\0字符，若是，则表示当前处理的是空行，若不是，则表示当前处理的是请求头。</p>
 <ul>
-<li>CHECK_STATE_HEADER</li>
-</ul>
-<ul>
+<li>
+<p>CHECK_STATE_HEADER</p>
+</li>
 <li>
 <ul>
 <li>调用parse_headers函数解析请求头部信息</li>
+</ul>
+</li>
 <li>判断是空行还是请求头，若是空行，进而判断content-length是否为0，如果不是0，表明是POST请求，则状态转移到CHECK_STATE_CONTENT，否则说明是GET请求，则报文解析结束。</li>
 <li>若解析的是请求头部字段，则主要分析connection字段，content-length字段，其他字段可以直接跳过，各位也可以根据需求继续分析。</li>
 <li>connection字段判断是keep-alive还是close，决定是长连接还是短连接</li>
 <li>content-length字段，这里用于读取post请求的消息体长度</li>
-</ul>
-</li>
 </ul>
 <div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//解析http请求的一个头部信息</span>
  <span class="mi">2</span><span class="n">http_conn</span><span class="o">::</span><span class="n">HTTP_CODE</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">parse_headers</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">)</span>
@@ -961,15 +953,15 @@
 <p>解析完消息体后，报文的完整解析就完成了，但此时主状态机的状态还是CHECK_STATE_CONTENT，也就是说，符合循环入口条件，还会再次进入循环，这并不是我们所希望的。</p>
 <p>为此，增加了该语句，并在完成消息体解析后，将line_status变量更改为LINE_OPEN，此时可以跳出循环，完成报文解析任务。</p>
 <ul>
-<li>CHECK_STATE_CONTENT</li>
-</ul>
-<ul>
+<li>
+<p>CHECK_STATE_CONTENT</p>
+</li>
 <li>
 <ul>
 <li>仅用于解析POST请求，调用parse_content函数解析消息体</li>
-<li>用于保存post请求消息体，为后面的登录和注册做准备</li>
 </ul>
 </li>
+<li>用于保存post请求消息体，为后面的登录和注册做准备</li>
 </ul>
 <div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//判断http请求是否被完整读入</span>
  <span class="mi">2</span><span class="n">http_conn</span><span class="o">::</span><span class="n">HTTP_CODE</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">parse_content</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">)</span>

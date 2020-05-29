@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>12 常见问题 - ZWiley的读书笔记</title>
+  <title>12 常见问题 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -553,18 +553,18 @@
 
 
 <ul>
-<li>函数功能，把一个未连接的套接字转换成一个被动套接字，指示内核应接受指向该套接字的连接请求。根据TCP状态转换图，<strong>调用listen导致套接字从CLOSED状态转换成LISTEN状态</strong>。</li>
-</ul>
-<ul>
-<li>backlog是队列的长度，内核为任何一个给定的监听套接口维护两个队列：</li>
-</ul>
-<ul>
+<li>
+<p>函数功能，把一个未连接的套接字转换成一个被动套接字，指示内核应接受指向该套接字的连接请求。根据TCP状态转换图，<strong>调用listen导致套接字从CLOSED状态转换成LISTEN状态</strong>。</p>
+</li>
+<li>
+<p>backlog是队列的长度，内核为任何一个给定的监听套接口维护两个队列：</p>
+</li>
 <li>
 <ul>
 <li>未完成连接队列（incomplete connection queue），每个这样的 SYN 分节对应其中一项：已由某个客户发出并到达服务器，而服务器正在等待完成相应的 TCP 三次握手过程。<strong>这些套接口处于 SYN_RCVD 状态</strong>。</li>
-<li>已完成连接队列（completed connection queue），每个已完成 TCP 三次握手过程的客户对应其中一项。<strong>这些套接口处于ESTABLISHED状态</strong>。</li>
 </ul>
 </li>
+<li>已完成连接队列（completed connection queue），每个已完成 TCP 三次握手过程的客户对应其中一项。<strong>这些套接口处于ESTABLISHED状态</strong>。</li>
 </ul>
 <h4 id="connect">connect<a class="headerlink" href="#connect" title="Permanent link">&para;</a></h4>
 <ul>
@@ -642,26 +642,26 @@
 <p>分析代码发现，web端和服务器端建立连接，采用<strong>epoll的边缘触发模式</strong>同时监听多个文件描述符。</p>
 <h4 id="epolletlt">epoll的ET、LT<a class="headerlink" href="#epolletlt" title="Permanent link">&para;</a></h4>
 <ul>
-<li>LT水平触发模式</li>
-</ul>
-<ul>
+<li>
+<p>LT水平触发模式</p>
+</li>
 <li>
 <ul>
 <li>epoll_wait检测到文件描述符有事件发生，则将其通知给应用程序，应用程序可以不立即处理该事件。</li>
-<li>当下一次调用epoll_wait时，epoll_wait还会再次向应用程序报告此事件，直至被处理。</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>ET边缘触发模式</li>
-</ul>
-<ul>
+<li>
+<p>当下一次调用epoll_wait时，epoll_wait还会再次向应用程序报告此事件，直至被处理。</p>
+</li>
+<li>
+<p>ET边缘触发模式</p>
+</li>
 <li>
 <ul>
 <li>epoll_wait检测到文件描述符有事件发生，则将其通知给应用程序，应用程序必须立即处理该事件。</li>
-<li><strong>必须要一次性将数据读取完，使用非阻塞I/O，读取到出现eagain</strong>。</li>
 </ul>
 </li>
+<li><strong>必须要一次性将数据读取完，使用非阻塞I/O，读取到出现eagain</strong>。</li>
 </ul>
 <p>从上面的定位分析，问题可能是<strong>错误使用epoll的ET模式</strong>。</p>
 <hr />
@@ -696,20 +696,20 @@
 <hr />
 <h4 id="_3">复盘总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Bug原因</li>
-</ul>
-<ul>
+<li>
+<p>Bug原因</p>
+</li>
 <li>
 <ul>
 <li>established状态的连接队列backlog参数，历史上被定义为已连接队列和未连接队列两个的大小之和，大多数实现默认值为5。<strong>当连接较少时</strong>，队列不会变满，即使listenfd设置成ET非阻塞，不使用while一次性读取完，也<strong>不会出现Bug</strong>。</li>
-<li>若此时1000个客户端同时对服务器发起连接请求，连接过多会造成established 状态的连接队列变满。但accept并没有使用while一次性读取完，只读取一个。因此，连接过多导致TCP就绪队列中剩下的连接都得不到处理，同时新的连接也不会到来。</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>解决方案</li>
-</ul>
-<ul>
+<li>
+<p>若此时1000个客户端同时对服务器发起连接请求，连接过多会造成established 状态的连接队列变满。但accept并没有使用while一次性读取完，只读取一个。因此，连接过多导致TCP就绪队列中剩下的连接都得不到处理，同时新的连接也不会到来。</p>
+</li>
+<li>
+<p>解决方案</p>
+</li>
 <li>
 <ul>
 <li>将listenfd设置成LT阻塞，或者ET非阻塞模式下while包裹accept即可解决问题。</li>

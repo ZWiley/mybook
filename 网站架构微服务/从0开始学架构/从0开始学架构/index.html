@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>从0开始学架构 - ZWiley的读书笔记</title>
+  <title>从0开始学架构 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -638,9 +638,11 @@
 <ul>
 <li>主备：适合内部、后台使用人数不多，频率不高的业务，不太适合在线业务</li>
 <li>主从：从机也执行部分任务。任务分配器会复杂一些</li>
-<li>集群：
-    - 对称集群(负载均衡集群)，任务分配器需要选取分配策略，检查服务器状态。
-    - 非对称集群。一部分任务给 master，一部分 slave。任务分配和角色分配更复杂（ZAB,Raft leader 选举）</li>
+<li>集群：<ul>
+<li>对称集群(负载均衡集群)，任务分配器需要选取分配策略，检查服务器状态。</li>
+<li>非对称集群。一部分任务给 master，一部分 slave。任务分配和角色分配更复杂（ZAB,Raft leader 选举）</li>
+</ul>
+</li>
 </ul>
 <h1 id="_11">业务高可用：异地多活架构<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h1>
 <p>处理地域级别灾难。异地指的是地理位置不同地方，多活值得是每个位置都能提供服务（活跃）
@@ -651,22 +653,18 @@
 <li>跨城异地。不同城市的多个机房。复杂度大幅上升。不可控因素增多（网线挖断等），时延。
   强一致性无法做到跨城异地多活（存款余额，支付宝余额等）这种只能用同城异区。
   对数据一致性要求没那么高，或者数据不经常变动，或者丢失也没太大影响的可以用。</li>
-<li>跨国异地。场景：<ul>
+<li>跨国异地。场景：</li>
 <li>为不同地区用户提供服务</li>
 <li>只读类业务。比如搜索引擎</li>
-</ul>
-</li>
 </ul>
 <h1 id="_12">如何有效地学习开源项目<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h1>
 <p>自顶向下的学习技巧。</p>
 <ul>
 <li>安装。学习系统依赖组件，目录结构，系统工具。带着问题学习</li>
 <li>运行。命令行和配置文件</li>
-<li>原理研究。系统性。通读设计文档；阅读网上已有的分析文档；Demo验证<ul>
+<li>原理研究。系统性。通读设计文档；阅读网上已有的分析文档；Demo验证</li>
 <li>关键特性的基本实现原理</li>
 <li>优缺点对比分析</li>
-</ul>
-</li>
 <li>测试。先研究原理后测试</li>
 <li>源码研究。不建议通读所有代码。写demo测试调用基础库完成一些简单的功能，通过调用栈理解处理逻辑</li>
 </ul>
@@ -874,11 +872,9 @@ Hadoop 系列（HDFS, HBase）</p>
 <p>降低系统间相互关联复杂度</p>
 <ul>
 <li>配置中心 通过系统标识+host+port</li>
-<li>服务中心<ul>
+<li>服务中心</li>
 <li>服务名字系统</li>
 <li>服务总线系统</li>
-</ul>
-</li>
 <li>消息队列。RocketMQ, Kafka, ActiveMQ</li>
 </ul>
 <h1 id="_50">互联网架构模板：网络层技术<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h1>
@@ -896,17 +892,13 @@ Hadoop 系列（HDFS, HBase）</p>
 <h1 id="_54">互联网架构模板：用户层和业务层技术<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h1>
 <h3 id="_55">用户层技术<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h3>
 <ul>
-<li>用户管理<ul>
+<li>用户管理</li>
 <li>单点登录(SSO), cookie, JSONP, token，最成熟的 CAS</li>
 <li>授权登录, OAuth2.0</li>
-</ul>
-</li>
-<li>消息推送<ul>
+<li>消息推送</li>
 <li>途径：短信、邮件、站内信、app推送</li>
 <li>APP: iOS APNS。Android 五花八门</li>
 <li>自研推送：设备管理（唯一标识、注册、注销）、连接管理和消息管理</li>
-</ul>
-</li>
 <li>存储云、图片云</li>
 </ul>
 <h3 id="_56">业务层技术<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h3>
@@ -993,12 +985,10 @@ Hadoop 系列（HDFS, HBase）</p>
 <h3 id="_71">备选方案模板<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h3>
 <ul>
 <li>需求介绍: 背景、目标、范围</li>
-<li>需求分析：<ul>
+<li>需求分析：</li>
 <li>5w(who, when, what, why, where)</li>
 <li>1H(how)</li>
 <li>8C(Constraints, Performance, Cost, Reliability, Security, Compliance, Technology, Compatibility)</li>
-</ul>
-</li>
 <li>复杂度分析：高可用、高性能、可扩展</li>
 <li>备选方案：至少三个</li>
 <li>备选方案评估：360度环评</li>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Fork - ZWiley的读书笔记</title>
+  <title>Fork - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -512,95 +512,105 @@
                 <h3 id="fork-vfork"><strong>fork, vfork</strong><a class="headerlink" href="#fork-vfork" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p><em>fork</em><br />
-    + 用于创建子进程。
-    + 在调用时，返回两次：子进程的返回值是0，父进程的返回值的新建子进程的ID。
-    + 子进程是父进程的副本。子进程和父进程继续执行 <em>fork</em> 之后的指令。
-        + 子进程获得父进程的 <strong>数据空间、堆、栈的副本</strong>
-        + 共享的是：<strong>文件描述符、mmap建立的映射区</strong> 
-        + 子进程和父进程共享的是 <strong>代码段</strong>，<em>fork</em> 之后各自执行。
-        + 父进程和子进程的执行顺序谁先谁后是未知的，是竞争的关系。
-    + <em>COW</em><br />
-<em>COW</em> 即写时复制(<em>Copy-On-Write</em>)， <strong>数据空间、堆、栈的副本</strong>在创建子进程时并不创建副本。而是在父进程或者子进程修改这片区域时，内核为修改区域的那块内存制作一个副本，以提高效率。<br />
-    + <em>fork</em> <br />
-<em>fork</em> 失败的原因：<br />
-        + 系统中已经有太多的进程<br />
-        + 该实际用户Id的进程数超过了系统限制
-    + 案例<br />
-        ```c
-        #include<stdio.h>
-        #include<stdlib.h>
-        #include<unistd.h></p>
-<div class="codehilite"><pre><span></span><code>  <span class="nb">int</span> <span class="n">globvar</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-  <span class="nb">char</span> <span class="n">buf</span><span class="p">[]</span> <span class="o">=</span> <span class="ss">&quot;a writte to stdout.\n&quot;</span><span class="p">;</span>
-
-  <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argv</span><span class="p">,</span> <span class="nb">char</span><span class="o">*</span> <span class="n">argc</span><span class="p">[])</span><span class="err">{</span>
-
-      <span class="nb">int</span> <span class="n">var</span><span class="p">;</span>
-      <span class="n">pid_t</span> <span class="n">pid</span><span class="p">;</span>
-
-      <span class="n">var</span> <span class="o">=</span> <span class="mi">88</span><span class="p">;</span>
-      <span class="k">if</span><span class="p">(</span><span class="k">write</span><span class="p">(</span><span class="n">STDOUT_FILENO</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="err">{</span>
-          <span class="n">printf</span><span class="p">(</span><span class="ss">&quot;write error&quot;</span><span class="p">);</span>
-          <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-      <span class="err">}</span>
-      <span class="n">printf</span><span class="p">(</span><span class="ss">&quot;before fork.\n&quot;</span><span class="p">);</span>
-      <span class="o">//</span> <span class="err">创建子进程后，后面的代码，父进程和子进程独立运行。</span>
-      <span class="k">if</span><span class="p">((</span><span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="err">{</span>
-          <span class="n">printf</span><span class="p">(</span><span class="ss">&quot;fork() error.\n&quot;</span><span class="p">);</span>
-          <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-      <span class="err">}</span>
-      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="err">{</span>
-          <span class="n">globvar</span><span class="o">++</span><span class="p">;</span> <span class="o">//</span><span class="err">子进程运行不改变父进程的值</span>
-          <span class="n">var</span><span class="o">++</span><span class="p">;</span>
-      <span class="err">}</span>
-      <span class="k">else</span>
-          <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-      <span class="n">printf</span><span class="p">(</span><span class="ss">&quot;pid=%ld, globvar=%d, var=%d.\n&quot;</span><span class="p">,(</span><span class="n">long</span><span class="p">)</span><span class="n">getpid</span><span class="p">()</span> <span class="p">,</span> <span class="n">globvar</span><span class="p">,</span> <span class="n">var</span><span class="p">);</span>
-      <span class="n">retdurn</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="err">}</span>
-  <span class="o">```</span>
-</code></pre></div>
-
-
+<p><em>fork</em>  </p>
+<ul>
+<li>用于创建子进程。</li>
+<li>在调用时，返回两次：子进程的返回值是0，父进程的返回值的新建子进程的ID。</li>
+<li>子进程是父进程的副本。子进程和父进程继续执行 <em>fork</em> 之后的指令。<ul>
+<li>子进程获得父进程的 <strong>数据空间、堆、栈的副本</strong></li>
+<li>共享的是：<strong>文件描述符、mmap建立的映射区</strong> </li>
+<li>子进程和父进程共享的是 <strong>代码段</strong>，<em>fork</em> 之后各自执行。</li>
+<li>父进程和子进程的执行顺序谁先谁后是未知的，是竞争的关系。</li>
+</ul>
+</li>
+<li><em>COW</em><br />
+<em>COW</em> 即写时复制(<em>Copy-On-Write</em>)， <strong>数据空间、堆、栈的副本</strong>在创建子进程时并不创建副本。而是在父进程或者子进程修改这片区域时，内核为修改区域的那块内存制作一个副本，以提高效率。  </li>
+<li><em>fork</em> <br />
+<em>fork</em> 失败的原因：  <ul>
+<li>系统中已经有太多的进程  </li>
+<li>该实际用户Id的进程数超过了系统限制</li>
+</ul>
 </li>
 <li>
-<p><em>vfork</em> <br />
-    + 与 <em>fork</em> 一样都创建新的进程，他的是目的是执行一个程序。<br />
-    + 与 <em>fork</em> 的区别在于：
-        + <strong>它并不将父进程的地址空间复制到子进程中</strong> 。在子进程 <em>exec/exit</em> 之前，和父进程共享地址空间，提高了工作效率。但是在在子进程 <em>exec/exit</em> 之前，子进程如果修改了数据、进行函数调用、返回都会带来未知的结果。<br />
-        + <em>vfork</em> 保证子进程比父进程先运行，在子进程 <em>exec/exit</em> 之后父进程才会运行。
-    + 案例
-        <code>c
-        // 将上面的修改如下：
-        if((pid=vfork()) &lt; 0){
-            printf("fork() error.\n");
-            exit(1);
-        }
-        else if(pid == 0){
-            globvar++; // 会改变父进程的变量值
-            var++;
-            _exit(0);
-        }
-        // 去掉sleep(2)是因为vfork能保证子进程先运行</code></p>
-<p>+ 结果对比：</p>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="err">```</span><span class="n">bash</span><span class="w"> </span>
-<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">fork</span><span class="w"> </span>
-<span class="w">  </span><span class="n">szz</span><span class="nv">@ubuntu</span><span class="err">:</span><span class="o">~/</span><span class="n">Study</span><span class="o">/</span><span class="n">SystemProgram</span><span class="o">/</span><span class="n">IO</span><span class="err">$</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">f</span><span class="w"></span>
-<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="n">writte</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">stdout</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">before</span><span class="w"> </span><span class="n">fork</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="n">pid</span><span class="o">=</span><span class="mi">4304</span><span class="p">,</span><span class="w"> </span><span class="n">globvar</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="nf">var</span><span class="o">=</span><span class="mf">89.</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">子进程</span><span class="w"></span>
-<span class="w">  </span><span class="n">pid</span><span class="o">=</span><span class="mi">4303</span><span class="p">,</span><span class="w"> </span><span class="n">globvar</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nf">var</span><span class="o">=</span><span class="mf">88.</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">父进程</span><span class="w"></span>
+<p>案例<br />
+    ```c
+    #include<stdio.h>
+    #include<stdlib.h>
+    #include<unistd.h></p>
+<p>int globvar = 10;
+char buf[] = &ldquo;a writte to stdout.\n&rdquo;;</p>
+<p>int main(int argv, char* argc[]){</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">int</span> <span class="n">var</span><span class="p">;</span>
+<span class="n">pid_t</span> <span class="n">pid</span><span class="p">;</span>
 
-<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">vfork</span><span class="w"></span>
-<span class="w">  </span><span class="n">szz</span><span class="nv">@ubuntu</span><span class="err">:</span><span class="p">.</span><span class="o">/</span><span class="n">vf</span><span class="w"></span>
-<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="n">writte</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">stdout</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="k">before</span><span class="w"> </span><span class="n">fork</span><span class="p">.</span><span class="w"></span>
-<span class="w">  </span><span class="n">pid</span><span class="o">=</span><span class="mi">4301</span><span class="p">,</span><span class="w"> </span><span class="n">globvar</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="nf">var</span><span class="o">=</span><span class="mf">89.</span><span class="err">#</span><span class="w"> </span><span class="n">父进程</span><span class="w"></span>
-<span class="w">  </span><span class="err">```</span><span class="w"></span>
+<span class="n">var</span> <span class="o">=</span> <span class="mi">88</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="k">write</span><span class="p">(</span><span class="n">STDOUT_FILENO</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="err">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="ss">&quot;write error&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="err">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="ss">&quot;before fork.\n&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="err">创建子进程后，后面的代码，父进程和子进程独立运行。</span>
+<span class="k">if</span><span class="p">((</span><span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="err">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="ss">&quot;fork() error.\n&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="err">}</span>
+<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="err">{</span>
+    <span class="n">globvar</span><span class="o">++</span><span class="p">;</span> <span class="o">//</span><span class="err">子进程运行不改变父进程的值</span>
+    <span class="n">var</span><span class="o">++</span><span class="p">;</span>
+<span class="err">}</span>
+<span class="k">else</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="ss">&quot;pid=%ld, globvar=%d, var=%d.\n&quot;</span><span class="p">,(</span><span class="n">long</span><span class="p">)</span><span class="n">getpid</span><span class="p">()</span> <span class="p">,</span> <span class="n">globvar</span><span class="p">,</span> <span class="n">var</span><span class="p">);</span>
+<span class="n">retdurn</span> <span class="mi">0</span><span class="p">;</span>
 </code></pre></div>
 
 
+<p>}
+```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>vfork</em>   </p>
+<ul>
+<li>与 <em>fork</em> 一样都创建新的进程，他的是目的是执行一个程序。  </li>
+<li>与 <em>fork</em> 的区别在于：<ul>
+<li><strong>它并不将父进程的地址空间复制到子进程中</strong> 。在子进程 <em>exec/exit</em> 之前，和父进程共享地址空间，提高了工作效率。但是在在子进程 <em>exec/exit</em> 之前，子进程如果修改了数据、进行函数调用、返回都会带来未知的结果。  </li>
+<li><em>vfork</em> 保证子进程比父进程先运行，在子进程 <em>exec/exit</em> 之后父进程才会运行。</li>
+</ul>
+</li>
+<li>
+<p>案例
+    <code>c
+    // 将上面的修改如下：
+    if((pid=vfork()) &lt; 0){
+        printf("fork() error.\n");
+        exit(1);
+    }
+    else if(pid == 0){
+        globvar++; // 会改变父进程的变量值
+        var++;
+        _exit(0);
+    }
+    // 去掉sleep(2)是因为vfork能保证子进程先运行</code></p>
+</li>
+<li>
+<p>结果对比：</p>
+<p>```bash </p>
+<h1 id="fork">fork<a class="headerlink" href="#fork" title="Permanent link">&para;</a></h1>
+<p>szz@ubuntu:~/Study/SystemProgram/IO$ ./f
+a writte to stdout.
+before fork.
+pid=4304, globvar=11, var=89. # 子进程
+pid=4303, globvar=10, var=88. # 父进程</p>
+<h1 id="vfork">vfork<a class="headerlink" href="#vfork" title="Permanent link">&para;</a></h1>
+<p>szz@ubuntu:./vf
+a writte to stdout.
+before fork.
+pid=4301, globvar=11, var=89.# 父进程
+```</p>
+</li>
+</ul>
 </li>
 </ol>
 <ul>

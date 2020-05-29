@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
-  <title>Go同步和并发设计模式 - ZWiley的读书笔记</title>
+  <title>Go同步和并发设计模式 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -499,7 +499,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../..">ZWiley的读书笔记</a>
+        <a href="../../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -535,10 +535,12 @@
 <li>互斥锁 Mutual exclusion</li>
 <li>任何时间只允许一个 goroutine 在临界区运行</li>
 <li>避免死锁</li>
-<li>公平</li>
-</ul>
-<ul>
-<li>零值是未锁状态</li>
+<li>
+<p>公平</p>
+</li>
+<li>
+<p>零值是未锁状态</p>
+</li>
 <li>Unlock  未加锁的 Mutex 会 panic</li>
 <li>加锁的 Mutex 不和这个特定的 goroutine 关联</li>
 <li>非重入锁</li>
@@ -555,10 +557,12 @@
 <ul>
 <li>Mutex有些不适用</li>
 <li>Monitor vs Mutex. Monitor = Mutex + Condition Variables</li>
-<li>Condition variable 是一组等待同意一个条件的goroutine的容器</li>
-</ul>
-<ul>
-<li>每个 cond 和一个Locker 相关联</li>
+<li>
+<p>Condition variable 是一组等待同意一个条件的goroutine的容器</p>
+</li>
+<li>
+<p>每个 cond 和一个Locker 相关联</p>
+</li>
 <li>改变条件或者调用 Wait 需要获取锁</li>
 </ul>
 <h3 id="waitgroup">WaitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h3>
@@ -590,11 +594,9 @@
 </ul>
 <h3 id="syncmap">Sync.Map<a class="headerlink" href="#syncmap" title="Permanent link">&para;</a></h3>
 <ul>
-<li>适用于两个 case(空间换时间)：<ul>
+<li>适用于两个 case(空间换时间)：</li>
 <li>设置一次，多次读(cache)</li>
 <li>多个 goroutine 并发的读，写，更新不同的 key</li>
-</ul>
-</li>
 <li>装箱/拆箱</li>
 <li>Range 进行遍历，可能会加锁</li>
 <li>没有 Len 方法，并且也不会添加</li>
@@ -614,10 +616,12 @@
 <li>Dijkstra 提出并发访问通用资源的并发原语 (sync/semaphore)</li>
 <li>初始化一个非负的值 S</li>
 <li>P(wait)减1，如果 S 小于0 ，阻塞本 goroutine 进入临界区</li>
-<li>V(signal)加1， 如果 S 不为负值， 其他goroutine可以进入临界区</li>
-</ul>
-<ul>
-<li>二进制信号量可以实现锁(0,1)</li>
+<li>
+<p>V(signal)加1， 如果 S 不为负值， 其他goroutine可以进入临界区</p>
+</li>
+<li>
+<p>二进制信号量可以实现锁(0,1)</p>
+</li>
 <li>计数信号量</li>
 </ul>
 <p>实现： sync/semaphore  sync/singleflight</p>
@@ -643,10 +647,12 @@
 <h1 id="_3">原子操作<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <h3 id="atomic">atomic 数据类型<a class="headerlink" href="#atomic" title="Permanent link">&para;</a></h3>
 <ul>
-<li>int32, int64, uint32, uint64, uintptr, unsafe.Pointer</li>
-</ul>
-<ul>
-<li>AddXXX(整数类型)</li>
+<li>
+<p>int32, int64, uint32, uint64, uintptr, unsafe.Pointer</p>
+</li>
+<li>
+<p>AddXXX(整数类型)</p>
+</li>
 <li>CompareAndSwapXXX: cas</li>
 <li>LoadXXX: 读取</li>
 <li>StoreXXX: 存储</li>
@@ -674,21 +680,19 @@
 <h3 id="channel-vs-mutex">Channel vs Mutex<a class="headerlink" href="#channel-vs-mutex" title="Permanent link">&para;</a></h3>
 <p>过度使用channel 和goroutine</p>
 <ul>
-<li>Channel<ul>
+<li>Channel</li>
 <li>传递数据的owner</li>
 <li>分发任务单元</li>
 <li>交流异步结果</li>
-<li>任务编排</li>
-</ul>
+<li>
+<p>任务编排</p>
 </li>
-</ul>
-<ul>
-<li>Mutex<ul>
+<li>
+<p>Mutex</p>
+</li>
 <li>cache</li>
 <li>状态</li>
 <li>临界区</li>
-</ul>
-</li>
 </ul>
 <p><img alt="" src="../bug.png" /></p>
 <h3 id="ordone">OrDone<a class="headerlink" href="#ordone" title="Permanent link">&para;</a></h3>

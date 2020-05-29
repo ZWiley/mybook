@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>TCP/IP - ZWiley的读书笔记</title>
+  <title>TCP/IP - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -514,10 +514,12 @@
 <h3 id="1-tcp">1. TCP状态<a class="headerlink" href="#1-tcp" title="Permanent link">&para;</a></h3>
 <ul>
 <li>TCP建立连接<br />
-    通常服务端是被动打开，客户端调用<code>connect</code>函数实现主动打开，开启tcp三次握手：
-    + client调用<code>connect</code>发起主动打开，使得客户端向服务端发送一个<code>SYN</code>分节，告诉服务器客户端将在待建立连接中要发送的数据初始序列号，比如<code>J</code>。
-    + 服务器端确认(<code>ACK</code>)客户的<code>SYN</code>，同时自己也得发送一个<code>SYN</code>分节，告诉客户端将在同一连接中发送得数据初始序列号，比如<code>K</code>。
-    + 客户端确认服务器端的<code>SYN</code>分解。</li>
+    通常服务端是被动打开，客户端调用<code>connect</code>函数实现主动打开，开启tcp三次握手：<ul>
+<li>client调用<code>connect</code>发起主动打开，使得客户端向服务端发送一个<code>SYN</code>分节，告诉服务器客户端将在待建立连接中要发送的数据初始序列号，比如<code>J</code>。</li>
+<li>服务器端确认(<code>ACK</code>)客户的<code>SYN</code>，同时自己也得发送一个<code>SYN</code>分节，告诉客户端将在同一连接中发送得数据初始序列号，比如<code>K</code>。</li>
+<li>客户端确认服务器端的<code>SYN</code>分解。</li>
+</ul>
+</li>
 </ul>
 <p><img alt="tcp三次握手" src="../Image/tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg" />
 + TCP断开连接<br />
@@ -530,17 +532,23 @@
     这里的关闭是全关闭，即TCP的两端都关闭了。对方<code>read</code>函数在遇到<code>FIN</code>时返回0，就类似于<code>EOF</code>。</p>
 <ul>
 <li>TCP状态图<br />
-    TCP为连接定义了11种状态，如下图，是11种状态之间的转换。
-    + 主动方三个重要状态
-        + <code>ESTABLISHED</code>：三次握手已经完成
-        + <code>FIN_WAIT_2</code>：<strong>主动关闭方</strong>，半关闭完成
-        + <code>TIME_WAIT</code>：<br />
-            这个状态存在原因：<br />
-            + <strong>主动关闭方</strong>，用来等<code>2MLS</code>超时，等的原因是不确定对方是否接受到自己发的<code>ACK</code>信号，如果没有送到，那么就需要对方再发送一次<code>FIN</code>分节，这一端再重新发送一次<code>ACK</code>。
-            + 允许老的重复分节在网络中流逝。
-        + <code>TIME_WAIT</code>状态，对大并发服务器的影响   <br />
-             &gt; 应该尽可能避免在服务器端出现<code>TIME_WAIT</code>状态。如果服务器主动断开连接（先于clinet调用close），服务器就会进入<code>TIME_WAIT</code>。  <br />
-            因此，协议设计上，应该让客户端主动断开连接，这样就把<code>TIME_WAIT</code>分散到大量的客户端。如果客户端不活跃了，一些客户端不断开连接，就会占用服务器的连接资源，服务器也要有个机制来踢掉不活跃的client。</li>
+    TCP为连接定义了11种状态，如下图，是11种状态之间的转换。<ul>
+<li>主动方三个重要状态<ul>
+<li><code>ESTABLISHED</code>：三次握手已经完成</li>
+<li><code>FIN_WAIT_2</code>：<strong>主动关闭方</strong>，半关闭完成</li>
+<li><code>TIME_WAIT</code>：<br />
+    这个状态存在原因：  <ul>
+<li><strong>主动关闭方</strong>，用来等<code>2MLS</code>超时，等的原因是不确定对方是否接受到自己发的<code>ACK</code>信号，如果没有送到，那么就需要对方再发送一次<code>FIN</code>分节，这一端再重新发送一次<code>ACK</code>。</li>
+<li>允许老的重复分节在网络中流逝。</li>
+</ul>
+</li>
+<li><code>TIME_WAIT</code>状态，对大并发服务器的影响   <br />
+     &gt; 应该尽可能避免在服务器端出现<code>TIME_WAIT</code>状态。如果服务器主动断开连接（先于clinet调用close），服务器就会进入<code>TIME_WAIT</code>。  <br />
+    因此，协议设计上，应该让客户端主动断开连接，这样就把<code>TIME_WAIT</code>分散到大量的客户端。如果客户端不活跃了，一些客户端不断开连接，就会占用服务器的连接资源，服务器也要有个机制来踢掉不活跃的client。</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p><img alt="TCP状态转换图" src="../Image/tcp%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2.jpg" /></p>
 <h3 id="2-tcp">2. TCP输出<a class="headerlink" href="#2-tcp" title="Permanent link">&para;</a></h3>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>3 半同步半反应堆线程池（下） - ZWiley的读书笔记</title>
+  <title>3 半同步半反应堆线程池（下） - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -493,7 +493,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -528,31 +528,31 @@
 <p>将类成员变量声明为static，则为静态成员变量，与一般的成员变量不同，无论建立多少对象，都只有一个静态成员变量的拷贝，静态成员变量属于一个类，所有对象共享。</p>
 <p>静态变量在编译阶段就分配了空间，对象还没创建时就已经分配了空间，放到全局静态区。</p>
 <ul>
-<li>静态成员变量</li>
-</ul>
-<ul>
+<li>
+<p>静态成员变量</p>
+</li>
 <li>
 <ul>
 <li>最好是类内声明，类外初始化（以免类名访问静态成员访问不到）。</li>
+</ul>
+</li>
 <li>无论公有，私有，静态成员都可以在类外定义，但私有成员仍有访问权限。</li>
 <li>非静态成员类外不能初始化。</li>
 <li>静态成员数据是共享的。</li>
 </ul>
-</li>
-</ul>
 <h4 id="_3"><strong>静态成员函数</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <p>将类成员函数声明为static，则为静态成员函数。</p>
 <ul>
-<li>静态成员函数</li>
-</ul>
-<ul>
+<li>
+<p>静态成员函数</p>
+</li>
 <li>
 <ul>
 <li>静态成员函数可以直接访问静态成员变量，不能直接访问普通成员变量，但可以通过参数传递的方式访问。</li>
-<li>普通成员函数可以访问普通成员变量，也可以访问静态成员变量。</li>
-<li>静态成员函数没有this指针。非静态数据成员为对象单独维护，但静态成员函数为共享函数，无法区分是哪个对象，因此不能直接访问普通变量成员，也没有this指针。</li>
 </ul>
 </li>
+<li>普通成员函数可以访问普通成员变量，也可以访问静态成员变量。</li>
+<li>静态成员函数没有this指针。非静态数据成员为对象单独维护，但静态成员函数为共享函数，无法区分是哪个对象，因此不能直接访问普通变量成员，也没有this指针。</li>
 </ul>
 <h4 id="pthread_create"><strong>pthread_create陷阱</strong><a class="headerlink" href="#pthread_create" title="Permanent link">&para;</a></h4>
 <p>首先看一下该函数的函数原型。</p>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>编写可读代码的艺术 - ZWiley的读书笔记</title>
+  <title>编写可读代码的艺术 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -556,11 +556,13 @@
 <ul>
 <li>什么不需要注释。不要拐杖式注释，试图粉饰可读性差的代码的注释。</li>
 <li>用代码记录你的思想。加入『指导性批注』；为瑕疵写注释(TODO,FIXME,HACK)；给常量加注释；</li>
-<li>站在读者的角度，去想象他们需要知道什么。
-    - 别人读你代码在想为什么要这样的地方需要注释；
-    - 可能的陷阱。比如代码中数据上规模以后有严重性能问题等
-    - 全局观注释。类之间如何交互，数据流动，入口点在哪里等。
-    - 总结性注释。帮助快速理解代码块，不用迷失在细节中</li>
+<li>站在读者的角度，去想象他们需要知道什么。<ul>
+<li>别人读你代码在想为什么要这样的地方需要注释；</li>
+<li>可能的陷阱。比如代码中数据上规模以后有严重性能问题等</li>
+<li>全局观注释。类之间如何交互，数据流动，入口点在哪里等。</li>
+<li>总结性注释。帮助快速理解代码块，不用迷失在细节中</li>
+</ul>
+</li>
 </ul>
 <h1 id="6">6. 写出言简意赅的注释<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <p>注释应当具有很高的高信息/空间率</p>
@@ -588,13 +590,17 @@
 <h1 id="8">8. 拆分超长表达式<a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
 <p>大多数人的大脑最多只能同时考虑 3~4 件事情，代码中的表达式越长，就越难理解。</p>
 <ul>
-<li>引入解释变量。
-    - <code>if line.split(':')[0].strip() == "root"</code> 改为如下表达式:
-    - <code>username = line.split(':')[0].strip(); if username == "root"</code></li>
+<li>引入解释变量。<ul>
+<li><code>if line.split(':')[0].strip() == "root"</code> 改为如下表达式:</li>
+<li><code>username = line.split(':')[0].strip(); if username == "root"</code></li>
+</ul>
+</li>
 <li>总结变量。<code>boolean user_owns_document = (request.user.id == document.owner_id)</code></li>
-<li>使用德摩根律简化逻辑表达式。（口诀：分别取反，转换与/或）
-    - not (a or b or c) &lt;=&gt; (not a) and (not b) and (not c)
-    - not (a and b and c) &lt;=&gt; (not a) or (not b) or (not c)</li>
+<li>使用德摩根律简化逻辑表达式。（口诀：分别取反，转换与/或）<ul>
+<li>not (a or b or c) &lt;=&gt; (not a) and (not b) and (not c)</li>
+<li>not (a and b and c) &lt;=&gt; (not a) or (not b) or (not c)</li>
+</ul>
+</li>
 <li>不要滥用短路逻辑。短路求值有时候会很简洁，但是影响可读性</li>
 <li>从逻辑的反面思考有时候能简化表达式</li>
 <li>提炼重复表达式为变量</li>
@@ -641,11 +647,13 @@
 <ul>
 <li>你不会需要它：不要提前实现不需要的功能</li>
 <li>质疑和拆分你的需求：『减少需求』和『解决更简单的问题』</li>
-<li>保持小代码库：
-    - 创建越多越好的『工具』代码来减少重复代码
-    - 减少无用代码或没有用到的功能
-    - 让你的项目保持分开的子项目状态
-    - 小心代码『重量』。程序员往往不情愿删除无用代码，因为它代表很多实际的工作量</li>
+<li>保持小代码库：<ul>
+<li>创建越多越好的『工具』代码来减少重复代码</li>
+<li>减少无用代码或没有用到的功能</li>
+<li>让你的项目保持分开的子项目状态</li>
+<li>小心代码『重量』。程序员往往不情愿删除无用代码，因为它代表很多实际的工作量</li>
+</ul>
+</li>
 <li>熟悉你周边的库：每个一段时间时间阅读下标准库中所有函数、模块、类型的名字，防止重复发明轮子</li>
 </ul>
 <h1 id="14">14. 测试与可读性<a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>

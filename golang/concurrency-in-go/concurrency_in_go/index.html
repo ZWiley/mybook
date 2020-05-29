@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Concurrency In Go - ZWiley的读书笔记</title>
+  <title>Concurrency In Go - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -491,7 +491,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -876,9 +876,9 @@ it can help safely bring channels together with concepts like cancellations, tim
 <ul>
 <li>
 <p>What happens when multiple channels have something to read?</p>
-<ul>
-<li>random select, each has an equal  chance of being selected as all the others</li>
-</ul>
+</li>
+<li>
+<p>random select, each has an equal  chance of being selected as all the others</p>
 </li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -903,9 +903,9 @@ it can help safely bring channels together with concepts like cancellations, tim
 <ul>
 <li>
 <p>What if there are never any channels that become ready?</p>
-<ul>
-<li>you may want to timeout</li>
-</ul>
+</li>
+<li>
+<p>you may want to timeout</p>
 </li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -922,11 +922,11 @@ it can help safely bring channels together with concepts like cancellations, tim
 <ul>
 <li>
 <p>what if we want to do something but no channels are currently ready?</p>
-<ul>
-<li>use default</li>
-<li>this allows a goroutine to make progress on work while waiting for another goroutine to report a result</li>
-</ul>
 </li>
+<li>
+<p>use default</p>
+</li>
+<li>this allows a goroutine to make progress on work while waiting for another goroutine to report a result</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">start</span> <span class="o">:=</span> <span class="nf">time.Now</span><span class="p">()</span>
@@ -1929,11 +1929,9 @@ synchronized through channels or types in the sync package.</p>
 <li>If the thread is idle, steal work from the head of deque associated with some other random thread</li>
 <li>At a join point that cannot be realized yet(i.e.,the goroutine it is synchronized with has not completed yet), pop
      work off the tail of the thread&rsquo;s own deque.</li>
-<li>if the thread&rsquo;s deque is empty, either:<ul>
-<li>stall at a join</li>
-<li>steal work from the head of a random thread&rsquo;s associated deque</li>
-</ul>
-</li>
+<li>if the thread&rsquo;s deque is empty, either:
+  - stall at a join
+  - steal work from the head of a random thread&rsquo;s associated deque</li>
 </ol>
 <h3 id="stealing-tasks-or-continuations">Stealing Tasks or Continuations?<a class="headerlink" href="#stealing-tasks-or-continuations" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>

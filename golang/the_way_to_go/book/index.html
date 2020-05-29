@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>go book - ZWiley的读书笔记</title>
+  <title>go book - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -495,7 +495,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -1129,15 +1129,21 @@ the select ekyworkd. A select is terminated when a break or return is executed i
 
 <p>when to use: a sync.Mutex or a channel?</p>
 <ul>
-<li>use locking(mutexes) when:
-    - caching information in a shared data structure
-    - holding state information, that is context or status of the running application</li>
-</ul>
+<li>
+<p>use locking(mutexes) when:</p>
 <ul>
-<li>use channels when:
-    - communicating asynchronous results
-    - distributing units of work
-    - passing owership of data</li>
+<li>caching information in a shared data structure</li>
+<li>holding state information, that is context or status of the running application</li>
+</ul>
+</li>
+<li>
+<p>use channels when:</p>
+<ul>
+<li>communicating asynchronous results</li>
+<li>distributing units of work</li>
+<li>passing owership of data</li>
+</ul>
+</li>
 </ul>
 <h2 id="148-implementing-a-lazy-generator">14.8 Implementing a lazy generator<a class="headerlink" href="#148-implementing-a-lazy-generator" title="Permanent link">&para;</a></h2>
 <p>A generator is a function that returns the next value in a sequence each time the function is called.</p>

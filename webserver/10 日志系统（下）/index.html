@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>10 日志系统（下） - ZWiley的读书笔记</title>
+  <title>10 日志系统（下） - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -557,37 +557,37 @@
 <h3 id="_2">流程图与日志类定义<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <h4 id="_3"><strong>流程图</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <ul>
-<li>日志文件</li>
-</ul>
-<ul>
+<li>
+<p>日志文件</p>
+</li>
 <li>
 <ul>
 <li>局部变量的懒汉模式获取实例</li>
-<li>生成日志文件，并判断同步和异步写入方式</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>同步</li>
-</ul>
-<ul>
+<li>
+<p>生成日志文件，并判断同步和异步写入方式</p>
+</li>
+<li>
+<p>同步</p>
+</li>
 <li>
 <ul>
 <li>判断是否分文件</li>
-<li>直接格式化输出内容，将信息写入日志文件</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>异步</li>
-</ul>
-<ul>
+<li>
+<p>直接格式化输出内容，将信息写入日志文件</p>
+</li>
+<li>
+<p>异步</p>
+</li>
 <li>
 <ul>
 <li>判断是否分文件</li>
+</ul>
+</li>
 <li>格式化输出内容，将内容写入阻塞队列，创建一个写线程，从阻塞队列取出内容写入日志文件</li>
-</ul>
-</li>
 </ul>
 <p><img alt="image-20200529183226872" src="https://i.loli.net/2020/05/29/gfhORHGYxceKoSJ.png" /></p>
 <h4 id="_4"><strong>日志类定义</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
@@ -752,15 +752,15 @@
 <p>上述的使用方法仅仅是个人理解，在开发中具体如何选择等级因人而异。项目中给出了除Fatal外的四种分级，实际使用了Debug，Info和Error三种。</p>
 <p>超行、按天分文件逻辑，具体的，</p>
 <ul>
-<li>日志写入前会判断当前day是否为创建日志的时间，行数是否超过最大行限制</li>
-</ul>
-<ul>
+<li>
+<p>日志写入前会判断当前day是否为创建日志的时间，行数是否超过最大行限制</p>
+</li>
 <li>
 <ul>
 <li>若为创建日志时间，写入日志，否则按当前时间创建新log，更新创建时间和行数</li>
-<li>若行数超过最大行限制，在当前日志的末尾加count/max_lines为后缀创建新log</li>
 </ul>
 </li>
+<li>若行数超过最大行限制，在当前日志的末尾加count/max_lines为后缀创建新log</li>
 </ul>
 <p>将系统信息格式化后输出，具体为：格式化时间 + 格式化内容</p>
 <div class="codehilite"><pre><span></span><code>  <span class="mi">1</span><span class="kt">void</span> <span class="n">Log</span><span class="o">::</span><span class="n">write_log</span><span class="p">(</span><span class="kt">int</span> <span class="n">level</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">format</span><span class="p">,</span> <span class="p">...)</span>

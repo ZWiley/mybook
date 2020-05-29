@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>深入分布式缓存从原理到实践 - ZWiley的读书笔记</title>
+  <title>深入分布式缓存从原理到实践 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -487,7 +487,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -750,16 +750,16 @@ Cache: 一个内存型键值对存储系统</p>
 </ul>
 <h5 id="_13">热点数据处理<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h5>
 <ul>
-<li>数据预热。<ul>
+<li>数据预热。</li>
 <li>是否有监控机制确保预热数据都写入成功</li>
 <li>数据预热配备回滚方案</li>
 <li>评估数据量</li>
-<li>注意是否会引发数据库批量操作和慢查询问题</li>
-</ul>
+<li>
+<p>注意是否会引发数据库批量操作和慢查询问题</p>
 </li>
-</ul>
-<ul>
-<li>非预期热点：nginx+lua 应用内缓存（热点发现系统）</li>
+<li>
+<p>非预期热点：nginx+lua 应用内缓存（热点发现系统）</p>
+</li>
 <li>多级缓存：localCache</li>
 <li>数据复制模式：通过多个 key_index 解决热点读问题。所有热点 key 发布到所有的 web 服务器</li>
 </ul>

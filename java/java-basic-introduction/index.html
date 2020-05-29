@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>java basic introduction - ZWiley的读书笔记</title>
+  <title>java basic introduction - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -493,7 +493,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -577,10 +577,12 @@
 <p>super关键字：用于访问父类的成员变量、方法、和构造方法。</p>
 <ul>
 <li>区分重载（同一个类中同名不同参）</li>
-<li>重写or 覆盖(override)，子类覆盖父类方法
-    - 无法覆盖父类中的私有方法
-    - 无法覆盖父类中 static 方法
-    - 覆盖时，子类方法权限一定要大于等于父类方法权限(更开放权限)</li>
+<li>重写or 覆盖(override)，子类覆盖父类方法<ul>
+<li>无法覆盖父类中的私有方法</li>
+<li>无法覆盖父类中 static 方法</li>
+<li>覆盖时，子类方法权限一定要大于等于父类方法权限(更开放权限)</li>
+</ul>
+</li>
 </ul>
 <p>子类构造函数默认会执行父类的构造函数，第一行有一个默认的隐士语句：super().
 super() 语句必须要定义在子类构造函数的第一行，父类的初始化动作要先完成。</p>

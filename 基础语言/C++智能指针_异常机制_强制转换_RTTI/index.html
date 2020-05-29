@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>C++智能指针 - ZWiley的读书笔记</title>
+  <title>C++智能指针 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -509,7 +509,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -591,23 +591,25 @@
 <h2 id="_5"><a href="https://www.cnblogs.com/TianFang/archive/2008/09/20/1294590.html">智能指针</a><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>智能指针有shared_ptr,weak_ptr,unique_ptr，<a href="https://www.cnblogs.com/wxquare/p/4759020.html">参考</a>，使用普通指针，容易造成堆内存泄露（忘记释放），二次释放，程序发生异常时内存泄露等问题等，使用智能指针能更好的管理堆内存。</p>
 <ul>
-<li>shared_ptr核心要理解引用计数，什么时候销毁底层指针，还有赋值，拷贝构造时候的引用计数的变化，析构的时候要判断底层指针的引用计数为0了才能真正释放底层指针的内存<ul>
+<li>shared_ptr核心要理解引用计数，什么时候销毁底层指针，还有赋值，拷贝构造时候的引用计数的变化，析构的时候要判断底层指针的引用计数为0了才能真正释放底层指针的内存</li>
 <li>不能将指针直接赋值给一个智能指针，一个是类，一个是指针。例如<code>std::shared_ptr&lt;int&gt; p4 = new int(1);</code></li>
 <li>可以<code>std::shared_ptr&lt;int&gt;p4(new int(1));</code></li>
 <li>拷贝使得对象的引用计数增加1，赋值使得原对象引用计数减1，当计数为0时，自动释放内存。后来指向的对象引用计数加1，指向后来的对象</li>
-<li>赋值操作符减少左操作数所指对象的引用计数（如果引用计数为减至0，则删除对象），并增加右操作数所指对象的引用计数</li>
+<li>
+<p>赋值操作符减少左操作数所指对象的引用计数（如果引用计数为减至0，则删除对象），并增加右操作数所指对象的引用计数</p>
+</li>
+<li>
+<p>shared_ptr创建后是栈上的对象，当出作用域后，每个对象会自动调用析构函数，如上所述，new int(1)会生成一个指针，此时将其传参数给shared_ptr,由shared_ptr对其进行管理，shared_ptr虽然是对象，但其有指针的特性，通过重载运算符*和-&gt;实现指针的特性来访问被管理的指针。</p>
+</li>
+<li>
+<p>shared_ptr是可以共享所有权的智能指针</p>
+<ul>
+<li>shared_ptr的管理机制其实并不复杂，就是对所管理的对象（这里的对象本质是被管理的指针new int(1)，并不是类和对象中的对象）进行了引用计数，当新增一个shared_ptr对该对象进行管理时，就将该对象的引用计数加一；减少一个shared_ptr对该对象进行管理时，就将该对象的引用计数减一，如果该对象的引用计数为0的时候，说明没有任何指针对其管理，才调用delete释放其所占的内存。   </li>
+<li>对shared_ptr进行初始化时不能将一个普通指针直接赋值给智能指针，因为一个是指针，一个是类，可以通过make_shared函数或者通过构造函数传入普通指针</li>
+<li>不要把一个原生指针给多个shared_ptr，不要把this指针交给智能指针管理，这样会重复释放</li>
+<li>shared_ptr之间的资源共享是通过shared_ptr智能指针拷贝、赋值实现的，因为这样可以引起计数器的更新；而如果直接通过原生指针来初始化，就会导致m_sp和p都根本不知道对方的存在，然而却两者都管理同一块地方</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>shared_ptr创建后是栈上的对象，当出作用域后，每个对象会自动调用析构函数，如上所述，new int(1)会生成一个指针，此时将其传参数给shared_ptr,由shared_ptr对其进行管理，shared_ptr虽然是对象，但其有指针的特性，通过重载运算符*和-&gt;实现指针的特性来访问被管理的指针。</li>
-</ul>
-<ul>
-<li>shared_ptr是可以共享所有权的智能指针
-    * shared_ptr的管理机制其实并不复杂，就是对所管理的对象（这里的对象本质是被管理的指针new int(1)，并不是类和对象中的对象）进行了引用计数，当新增一个shared_ptr对该对象进行管理时，就将该对象的引用计数加一；减少一个shared_ptr对该对象进行管理时，就将该对象的引用计数减一，如果该对象的引用计数为0的时候，说明没有任何指针对其管理，才调用delete释放其所占的内存。 <br />
-    * 对shared_ptr进行初始化时不能将一个普通指针直接赋值给智能指针，因为一个是指针，一个是类，可以通过make_shared函数或者通过构造函数传入普通指针
-    * 不要把一个原生指针给多个shared_ptr，不要把this指针交给智能指针管理，这样会重复释放
-    * shared_ptr之间的资源共享是通过shared_ptr智能指针拷贝、赋值实现的，因为这样可以引起计数器的更新；而如果直接通过原生指针来初始化，就会导致m_sp和p都根本不知道对方的存在，然而却两者都管理同一块地方</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>
 <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
@@ -617,8 +619,10 @@
 
 
 <ul>
-<li>shared_ptr循环引用导致内存泄漏，引出weak_ptr
-    * 循环引用是两个强引用（shared_ptr）互相引用，使得两者的引用计数无法为0，进而无法释放，此时将循环引用的一方变为weak_ptr即可。</li>
+<li>shared_ptr循环引用导致内存泄漏，引出weak_ptr<ul>
+<li>循环引用是两个强引用（shared_ptr）互相引用，使得两者的引用计数无法为0，进而无法释放，此时将循环引用的一方变为weak_ptr即可。</li>
+</ul>
+</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="k">class</span> <span class="nc">Node</span>
@@ -684,24 +688,30 @@
 <h2 id="_7">野指针<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>野指针指向一个已删除的对象或 申请访问受限内存区域的指针。</p>
 <ul>
-<li>原因<ul>
+<li>原因</li>
 <li>指针变量未初始化</li>
 <li>指针释放未置空</li>
 <li>指针操作超出作用域。返回指向栈内存的指针或引用，因为栈内存在函数结束时会被释放。</li>
 </ul>
-</li>
-</ul>
 <h2 id="_8">强制转换<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>C++中强制转换为static_cast, dynamic_cast,const_cast, reinterpret_cast</p>
 <ul>
-<li>static_cast
-    * 完成基础数据类型；同一个继承体系中类型的转换；任意类型与空指针类型void* 之间的转换，不能用于普通指针的转换（void空指针除外）</li>
-<li>dynamic_cast
-    * 动态类型转换，用于实现RTTI。只能用于含有虚函数的类，用于类层次间的向上和向下转化。只能转指针或引用。向下转化时，如果是非法的对于指针返回NULL，对于引用抛异常bad_cast</li>
-<li>const_cast
-    * 用于删除 const、volatile特性</li>
-<li>reinterpret_cast
-    * 几乎什么都可以转,不能丢掉 const、volatile特性</li>
+<li>static_cast<ul>
+<li>完成基础数据类型；同一个继承体系中类型的转换；任意类型与空指针类型void* 之间的转换，不能用于普通指针的转换（void空指针除外）</li>
+</ul>
+</li>
+<li>dynamic_cast<ul>
+<li>动态类型转换，用于实现RTTI。只能用于含有虚函数的类，用于类层次间的向上和向下转化。只能转指针或引用。向下转化时，如果是非法的对于指针返回NULL，对于引用抛异常bad_cast</li>
+</ul>
+</li>
+<li>const_cast<ul>
+<li>用于删除 const、volatile特性</li>
+</ul>
+</li>
+<li>reinterpret_cast<ul>
+<li>几乎什么都可以转,不能丢掉 const、volatile特性</li>
+</ul>
+</li>
 </ul>
 <h2 id="rtti">RTTI<a class="headerlink" href="#rtti" title="Permanent link">&para;</a></h2>
 <p>运行时类型检查，在C++层面主要体现在dynamic_cast和typeid</p>
@@ -721,20 +731,30 @@
 </ul>
 <h2 id="cpp11">CPP11新特性<a class="headerlink" href="#cpp11" title="Permanent link">&para;</a></h2>
 <ul>
-<li>nullptr常量
-    * C++中NULL仅仅是<code>define NULL 0</code>的一个宏定义，因此，有时候会产生歧义
-        * 比如f（char<em>）和f（int），参数传NULL的话到底该调用哪个？
-        * 事实上，在VS下测试这样的函数重载会优先调用f（int），但是f（char </em>）也是正确的，因此C++引入nullptr来避免这个问题
-    * nullptr是一个空指针，可以被转换成其他任意指针的类型</li>
-<li>auto类型指示符
-    * 让编译器替我们去分析表达式所属的类型，直接推导
-    * 尤其是STL中map的迭代器这种很长的类型，适合用auto</li>
-<li>decltype类型指示符
-    * 从表达式的类型推断出要定义的变量的类型，跟表达式的类型也就是参数类型紧密相关
-    * <code>delctype (f()) sum = x;</code> 并不实际调用函数f()，只是使用f()的返回值当做sum的类型
-    * <code>delctype (i) sum = x;</code>和<code>delctype ((i)) sum = x;</code> 其中i为int类型，前面的为int类型，后面的为int&amp;引用</li>
-<li>范围for语句
-    * 多与auto配合使用</li>
+<li>nullptr常量<ul>
+<li>C++中NULL仅仅是<code>define NULL 0</code>的一个宏定义，因此，有时候会产生歧义<ul>
+<li>比如f（char*）和f（int），参数传NULL的话到底该调用哪个？</li>
+<li>事实上，在VS下测试这样的函数重载会优先调用f（int），但是f（char *）也是正确的，因此C++引入nullptr来避免这个问题</li>
+</ul>
+</li>
+<li>nullptr是一个空指针，可以被转换成其他任意指针的类型</li>
+</ul>
+</li>
+<li>auto类型指示符<ul>
+<li>让编译器替我们去分析表达式所属的类型，直接推导</li>
+<li>尤其是STL中map的迭代器这种很长的类型，适合用auto</li>
+</ul>
+</li>
+<li>decltype类型指示符<ul>
+<li>从表达式的类型推断出要定义的变量的类型，跟表达式的类型也就是参数类型紧密相关</li>
+<li><code>delctype (f()) sum = x;</code> 并不实际调用函数f()，只是使用f()的返回值当做sum的类型</li>
+<li><code>delctype (i) sum = x;</code>和<code>delctype ((i)) sum = x;</code> 其中i为int类型，前面的为int类型，后面的为int&amp;引用</li>
+</ul>
+</li>
+<li>范围for语句<ul>
+<li>多与auto配合使用</li>
+</ul>
+</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="n">string</span> <span class="nf">str</span><span class="p">(</span><span class="s">&quot;somthing&quot;</span><span class="p">);</span>
 <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">i</span><span class="p">:</span><span class="n">str</span><span class="p">)</span> <span class="c1">//对于str中的每个字符，i类型为char</span>
@@ -746,10 +766,14 @@
 
 
 <ul>
-<li>定义双层vector
-    * <code>vector&lt;vector&lt;int&gt;&gt;(m, vector&lt;int&gt;(n, 0))</code> 创建m行n列的二维数组，全部初始化为0</li>
-<li><a href="https://blog.csdn.net/qq_43265890/article/details/83218413">lambda表达式</a>
-    * 用于实现匿名函数，匿名函数只有函数体，没有函数名</li>
+<li>定义双层vector<ul>
+<li><code>vector&lt;vector&lt;int&gt;&gt;(m, vector&lt;int&gt;(n, 0))</code> 创建m行n列的二维数组，全部初始化为0</li>
+</ul>
+</li>
+<li><a href="https://blog.csdn.net/qq_43265890/article/details/83218413">lambda表达式</a><ul>
+<li>用于实现匿名函数，匿名函数只有函数体，没有函数名</li>
+</ul>
+</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">capture</span> <span class="n">list</span><span class="p">]</span> <span class="p">(</span><span class="n">params</span> <span class="n">list</span><span class="p">)</span> <span class="k">mutable</span> <span class="n">exception</span><span class="o">-&gt;</span> <span class="k">return</span> <span class="n">type</span> <span class="p">{</span><span class="n">function</span> <span class="n">body</span><span class="p">};</span>  <span class="c1">//1</span>
 <span class="p">[</span><span class="n">capture</span> <span class="n">list</span><span class="p">]</span> <span class="p">(</span><span class="n">params</span> <span class="n">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">type</span> <span class="p">{</span><span class="n">function</span> <span class="n">body</span><span class="p">};</span>  <span class="c1">//1 省略mutable，表示const不可修改</span>
@@ -759,13 +783,15 @@
 
 
 <ul>
-<li>参数
-    * capture list：捕获外部变量列表
-    * params list：形参列表
-    * mutable指示符：用来说用是否可以修改捕获的变量
-    * exception：异常设定
-    * return type：返回类型
-    * function body：函数体</li>
+<li>参数<ul>
+<li>capture list：捕获外部变量列表</li>
+<li>params list：形参列表</li>
+<li>mutable指示符：用来说用是否可以修改捕获的变量</li>
+<li>exception：异常设定</li>
+<li>return type：返回类型</li>
+<li>function body：函数体</li>
+</ul>
+</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="c1">//示例</span>
 <span class="n">sort</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span><span class="o">-&gt;</span><span class="kt">bool</span><span class="p">{</span><span class="k">return</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">})</span>
@@ -773,23 +799,33 @@
 
 
 <ul>
-<li>参数捕获方式
-    * 值捕获(传参)、引用捕获（传引用）、隐式捕获（传=，函数体直接使用变量））。 </li>
-</ul>
+<li>
+<p>参数捕获方式</p>
 <ul>
-<li>智能指针
-    * shared_ptr
-    * weak_ptr
-    * unique_ptr</li>
-<li>右值引用
-    * 左值引用，必须引用左值 <code>int a = 0; int &amp;b = a;</code>
-    *  右值引用可以引用结果 <code>int &amp;&amp; i = 0</code></li>
+<li>值捕获(传参)、引用捕获（传引用）、隐式捕获（传=，函数体直接使用变量））。 </li>
+</ul>
+</li>
+<li>
+<p>智能指针</p>
+<ul>
+<li>shared_ptr</li>
+<li>weak_ptr</li>
+<li>unique_ptr</li>
+</ul>
+</li>
+<li>右值引用<ul>
+<li>左值引用，必须引用左值 <code>int a = 0; int &amp;b = a;</code></li>
+<li>右值引用可以引用结果 <code>int &amp;&amp; i = 0</code></li>
+</ul>
+</li>
 </ul>
 <h2 id="_9">仿函数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
-<li>定义
-    * 仿函数(functor)又称之为函数对象（function object），其实就是重载了operator()操作符的struct或class，是一个能行使函数功能的类
-    * 它使一个类的使用看上去像一个函数，这个类就有了类似函数的行为，就是一个仿函数类。 </li>
+<li>定义<ul>
+<li>仿函数(functor)又称之为函数对象（function object），其实就是重载了operator()操作符的struct或class，是一个能行使函数功能的类</li>
+<li>它使一个类的使用看上去像一个函数，这个类就有了类似函数的行为，就是一个仿函数类。 </li>
+</ul>
+</li>
 </ul>
               
             </div>

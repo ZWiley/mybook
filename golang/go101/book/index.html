@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Go101 - ZWiley的读书笔记</title>
+  <title>Go101 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -2478,7 +2478,7 @@ reflect.TypeOf(t).FieldAlign()。</p>
 <li>the apparent conversion rule:</li>
 </ol>
 <p>values of type byte/uint8, rune/int32, []byte/[]uint8 can be converted to each other</p>
-<ol>
+<ol start="2">
 <li>underlying type related conversion rules</li>
 </ol>
 <p>Giving a non-interface value x and a non-interface type T, assume the type of x is Tx</p>
@@ -2502,35 +2502,35 @@ reflect.TypeOf(t).FieldAlign()。</p>
 </code></pre></div>
 
 
-<ol>
+<ol start="3">
 <li>channel specific conversion rule</li>
 </ol>
 <p>Assume Tx is a bidirectional channel type, T is also a channel type(bidirectional or not), if Tx and T have the
 identical element type, and either Tx or T is a non-defined type, then x can be implicitly converted to T.</p>
-<ol>
+<ol start="4">
 <li>interface implementation related conversion rules</li>
 </ol>
 <p>x can be implicitly converted to type T if type(or default type) of x is Tx and Tx implements T.</p>
-<ol>
+<ol start="5">
 <li>untyped value conversion rule</li>
 </ol>
 <p>An untyped value can be implicitly converted to type T, if the untyped value can represent as values of type T.</p>
-<ol>
+<ol start="6">
 <li>constants conversion rule</li>
 </ol>
 <p>Given a constant value x and a type T, if x is represent as a value of type T, then x can be explicitly converted to T.
 In particular if x is an untyped value, then x can be implicitly converted to T.</p>
-<ol>
+<ol start="7">
 <li>non-constant number conversion rules
 Non-constant floating-point and integer values can be explicitly converted to any floating-point and integer types.
 Non-constant complex values can be explicitly converted to any complex types.</li>
 </ol>
 <p>注意浮点数到整数的截断问题(the fraction is discarded, truncation towards zero)。</p>
-<ol>
+<ol start="8">
 <li>string related conversion rules</li>
 </ol>
 <p>If the type(or default type) of a value is an integer type, then the value can be explicitly converted to string types.</p>
-<ol>
+<ol start="9">
 <li>unsafe pointers related conversion rules
 A pointer value of any type can be explicitly converted to a type whose underlying type is unsafe.Pointer, and vice versa.</li>
 </ol>

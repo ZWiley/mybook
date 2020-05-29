@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Python网络编程 - ZWiley的读书笔记</title>
+  <title>Python网络编程 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -687,25 +687,27 @@
 </ul>
 <p>解决方式：</p>
 <ul>
-<li>模式1：对于一些极简单的网络协议，只涉及到数据的发送而不关注响应。
+<li>
+<p>模式1：对于一些极简单的网络协议，只涉及到数据的发送而不关注响应。
 发送方循环发送数据，直到所有数据被传递给sendall()为止，然后使用close()关闭套接字。
-接收方只需要不断调用 recv()直到最后一个recv() 返回空字符串</li>
-</ul>
-<ul>
-<li>模式2：两个方向都通过流发送消息，首先流在一个方向发送消息然后关闭该方向，接着在另一方向上通过流发送数据。最后关闭套接字。
-一定要先完成一个方向上的数据传输，然后反过来在另一个方向上通过流发送数据。否则可能导致客户端和服务端发生死锁。</li>
-</ul>
-<ul>
-<li>模式3：使用定长消息</li>
-</ul>
-<ul>
-<li>模式4：通过特殊字符划分消息的边界</li>
-</ul>
-<ul>
-<li>模式5：每个消息前加上长度作为前缀</li>
-</ul>
-<ul>
-<li>模式6：发送多个数据块，每个数据块前加上长度作为其前缀。抵达信息结尾时，发送方可以发送一个事先约定好的信号(比如0)</li>
+接收方只需要不断调用 recv()直到最后一个recv() 返回空字符串</p>
+</li>
+<li>
+<p>模式2：两个方向都通过流发送消息，首先流在一个方向发送消息然后关闭该方向，接着在另一方向上通过流发送数据。最后关闭套接字。
+一定要先完成一个方向上的数据传输，然后反过来在另一个方向上通过流发送数据。否则可能导致客户端和服务端发生死锁。</p>
+</li>
+<li>
+<p>模式3：使用定长消息</p>
+</li>
+<li>
+<p>模式4：通过特殊字符划分消息的边界</p>
+</li>
+<li>
+<p>模式5：每个消息前加上长度作为前缀</p>
+</li>
+<li>
+<p>模式6：发送多个数据块，每个数据块前加上长度作为其前缀。抵达信息结尾时，发送方可以发送一个事先约定好的信号(比如0)</p>
+</li>
 </ul>
 <p>HTTP混合使用了模式4和模式5。用 &lsquo;\r\n&rsquo; 和 Content-Length</p>
 <h4 id="_1">处理网络异常<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
@@ -718,9 +720,11 @@
 <p>如何处理异常:</p>
 <ul>
 <li>抛出更具体的异常</li>
-<li>捕捉与报告网络异常
-    - granular 异常处理程序：针对每个网络调用 try except 然后在 except 从句中打印出简洁的错误信息
-    - blanket 异常处理程序: 封装代码片段并且从外部捕获</li>
+<li>捕捉与报告网络异常<ul>
+<li>granular 异常处理程序：针对每个网络调用 try except 然后在 except 从句中打印出简洁的错误信息</li>
+<li>blanket 异常处理程序: 封装代码片段并且从外部捕获</li>
+</ul>
+</li>
 </ul>
 <h1 id="6-tlsssl">6 TLS/SSL<a class="headerlink" href="#6-tlsssl" title="Permanent link">&para;</a></h1>
 <p>Pycon2014 The Sorry State of SSL</p>

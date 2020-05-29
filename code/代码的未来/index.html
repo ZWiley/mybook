@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>代码的未来 - ZWiley的读书笔记</title>
+  <title>代码的未来 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -546,11 +546,13 @@ GC(Garabage Collection)
 - 分代回收(Generational GC): 大部分对象都会在短时间内成为垃圾,经过一定时间依然存活的对象用有较长的寿命。
 老生代对新生代的引用放到记录集（remembered set）。小回收和大回收。写屏障</p>
 <ul>
-<li>增量回收(Incremental GC):为了维持程序的实时性，不等到GC全部回收完成，而是将GC操作细分成多个部分逐一执行。
-写屏障:当已经被标记的对象的引用关系发生变化时，通过写屏障会将新被引用的对象作为扫描的起点记录下来</li>
-</ul>
-<ul>
-<li>并行回收:在原有程序运行的同时进行GC操作。</li>
+<li>
+<p>增量回收(Incremental GC):为了维持程序的实时性，不等到GC全部回收完成，而是将GC操作细分成多个部分逐一执行。
+写屏障:当已经被标记的对象的引用关系发生变化时，通过写屏障会将新被引用的对象作为扫描的起点记录下来</p>
+</li>
+<li>
+<p>并行回收:在原有程序运行的同时进行GC操作。</p>
+</li>
 </ul>
 <p>2.5 异常处理
 正常化偏见</p>

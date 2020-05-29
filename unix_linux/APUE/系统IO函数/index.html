@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>系统IO函数 - ZWiley的读书笔记</title>
+  <title>系统IO函数 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -516,51 +516,83 @@
 <p>C库函数<br />
     C语言的库函数的I/O操作都是带有缓冲区的，只有当缓冲区满了才会进行相应的操作。<br />
 <code>c
-    fopen、fclose、fread、fwrite、fgets、fputs、fscanf、fprintf、fseek、fgetc、fputc、ftell、feof、flush...</code><br />
-    + 刷新缓冲区
-        + 强制性刷新:<em><code>flush</code></em>
-        + 缓冲区已满
-        + 正常关闭文件:<br />
-            &gt; <code>fclose</code><br />
-            &gt; <code>return</code>(main函数中)<br />
-            &gt; <code>exit</code>(main函数中)
-    + C语言的库函数操作后组成:
-        + 文件描述符: <em><code>FILE* fp</code></em>,索引到对应的磁盘文件
-        + 文件读写指针: 读写文件过程中的实际位置
-        + I/O缓冲区(默认是8K): 通过寻址找到对应的内存块</p>
-<p>+ <em><code>printf</code></em><br />
+    fopen、fclose、fread、fwrite、fgets、fputs、fscanf、fprintf、fseek、fgetc、fputc、ftell、feof、flush...</code>  </p>
+<ul>
+<li>刷新缓冲区<ul>
+<li>强制性刷新:<em><code>flush</code></em></li>
+<li>缓冲区已满</li>
+<li>正常关闭文件:<br />
+    &gt; <code>fclose</code><br />
+    &gt; <code>return</code>(main函数中)<br />
+    &gt; <code>exit</code>(main函数中)</li>
+</ul>
+</li>
+<li>
+<p>C语言的库函数操作后组成:</p>
+<ul>
+<li>文件描述符: <em><code>FILE* fp</code></em>,索引到对应的磁盘文件</li>
+<li>文件读写指针: 读写文件过程中的实际位置</li>
+<li>I/O缓冲区(默认是8K): 通过寻址找到对应的内存块</li>
+</ul>
+</li>
+<li>
+<p><em><code>printf</code></em><br />
 <em><code>printf</code></em> 函数完成的工作流程如下图所示。
-      <img alt="*printf* 工作流程" src="../Image/printf.jpg" /><br />
+    <img alt="*printf* 工作流程" src="../Image/printf.jpg" /><br />
 <em><code>printf</code></em>  调用后，会产生一个由系统维护的一个结构体，包含了
-      <code>cpp  
-      file description 文件描述符号
-      FP_POS           读写指针
-      I/O buffer       缓冲区</code>
-      +  <em><code>printf</code></em> 会调用系统API <em><code>write</code></em>，系统通过 <em><code>write</code></em> 来操作内核，使得内核可以调用设备驱动使得输出的内容显示在显示器上。</p>
+    <code>cpp  
+    file description 文件描述符号
+    FP_POS           读写指针
+    I/O buffer       缓冲区</code></p>
+<ul>
+<li><em><code>printf</code></em> 会调用系统API <em><code>write</code></em>，系统通过 <em><code>write</code></em> 来操作内核，使得内核可以调用设备驱动使得输出的内容显示在显示器上。</li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
 <p><strong>虚拟地址空间</strong><br />
     模型如图：<br />
 <img alt="虚拟地址模型" src="../Image/virtual_address.jpg" /></p>
-<p>+ 可执行程序(<em><code>elf格式</code></em>)包括：<br />
-      + <em><code>.text</code></em>:代码段
-      + <em><code>.data</code></em>:已经初始化的全局变量段
-      + <em><code>.bss</code></em>: 未初始化的全局变量段
-      + 其他段：只读数据段，符号段等<br />
-      main函数就是在 <em><code>.text</code></em> 段中，从这里开始执行。</p>
-<p>+ 栈与堆 <br />
-  栈，存放的是临时变量，生长方向是向下生长。<br />
-  堆，存放的是 <em><code>new/malloc</code></em> 得到的变量，生长方向是向上生长。</p>
-<p>+ 共享库与 <em><code>.text</code></em>
-      + 共享库存放的是代码的偏移地址。C库函数和Linux系统库函数都是动态库中。
-      + <em><code>.text</code></em> 存放的是静态库，或者说是存放的是代码的绝对地址。</p>
-<p>+ 命令行参数<br />
+<ul>
+<li>
+<p>可执行程序(<em><code>elf格式</code></em>)包括：  </p>
+<ul>
+<li><em><code>.text</code></em>:代码段</li>
+<li><em><code>.data</code></em>:已经初始化的全局变量段</li>
+<li><em><code>.bss</code></em>: 未初始化的全局变量段</li>
+<li>其他段：只读数据段，符号段等<br />
+main函数就是在 <em><code>.text</code></em> 段中，从这里开始执行。</li>
+</ul>
+</li>
+<li>
+<p>栈与堆 <br />
+栈，存放的是临时变量，生长方向是向下生长。<br />
+堆，存放的是 <em><code>new/malloc</code></em> 得到的变量，生长方向是向上生长。</p>
+</li>
+<li>
+<p>共享库与 <em><code>.text</code></em></p>
+<ul>
+<li>共享库存放的是代码的偏移地址。C库函数和Linux系统库函数都是动态库中。</li>
+<li><em><code>.text</code></em> 存放的是静态库，或者说是存放的是代码的绝对地址。</li>
+</ul>
+</li>
+<li>
+<p>命令行参数<br />
 <em><code>int main(int argc, const char* argv[])</code></em> 中的 <em><code>argc, argv</code></em>。  </p>
-<p>+ 环境变量(<em><code>env</code></em>)</p>
-<p>+ Cpu使用虚拟内存地址空间与物理地址空间映射？解决了什么问题？<br />
-      + 方便编译器和操作系统安排程序的地址分布。程序可以使用一系列相邻的虚拟地址来访问物理内存中不相邻的大内存缓冲区。
-      + 方便进行之间隔离。不同进程之间使用虚拟地址彼此隔离，一个进程中代码无法更改另一个进程使用的物理内存。
-      + 方便使用不多的内存。</p>
+</li>
+<li>
+<p>环境变量(<em><code>env</code></em>)</p>
+</li>
+<li>
+<p>Cpu使用虚拟内存地址空间与物理地址空间映射？解决了什么问题？  </p>
+<ul>
+<li>方便编译器和操作系统安排程序的地址分布。程序可以使用一系列相邻的虚拟地址来访问物理内存中不相邻的大内存缓冲区。</li>
+<li>方便进行之间隔离。不同进程之间使用虚拟地址彼此隔离，一个进程中代码无法更改另一个进程使用的物理内存。</li>
+<li>方便使用不多的内存。</li>
+</ul>
+</li>
+</ul>
 </li>
 </ol>
               

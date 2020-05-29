@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>C++基础知识 - ZWiley的读书笔记</title>
+  <title>C++基础知识 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -527,7 +527,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -674,12 +674,18 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 </blockquote>
 <h2 id="new"><a href="https://blog.csdn.net/hihozoo/article/details/51441521">new运算符的原理</a><a class="headerlink" href="#new" title="Permanent link">&para;</a></h2>
 <ul>
-<li>内存分配
-    *  调用相应的  operator new(size_t) 函数，动态分配内存。如果 operator new(size_t) 不能成功获得内存，则调用 new_handler()函数用于处理new失败问题。如果没有设置 new_handler() 函数或者 new_handler() 未能分配足够内存，则抛出 std::bad_alloc 异常</li>
-</ul>
+<li>
+<p>内存分配</p>
 <ul>
-<li>构造函数
-    *  在分配到的动态内存块上 初始化相应类型的对象（构造函数）并返回其首地址。如果调用构造函数初始化对象时抛出异常，则自动调用 operator delete(void<em>, void</em>) 函数释放已经分配到的内存。</li>
+<li>调用相应的  operator new(size_t) 函数，动态分配内存。如果 operator new(size_t) 不能成功获得内存，则调用 new_handler()函数用于处理new失败问题。如果没有设置 new_handler() 函数或者 new_handler() 未能分配足够内存，则抛出 std::bad_alloc 异常</li>
+</ul>
+</li>
+<li>
+<p>构造函数</p>
+<ul>
+<li>在分配到的动态内存块上 初始化相应类型的对象（构造函数）并返回其首地址。如果调用构造函数初始化对象时抛出异常，则自动调用 operator delete(void<em>, void</em>) 函数释放已经分配到的内存。</li>
+</ul>
+</li>
 </ul>
 <h2 id="malloc">malloc的内存分配机制<a class="headerlink" href="#malloc" title="Permanent link">&para;</a></h2>
 <p>malloc内存分配机制是怎么样的,在哪里分配内存，最大可以申请多大的内存？</p>
@@ -690,14 +696,22 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 </blockquote>
 <h2 id="_5"><a href="https://blog.csdn.net/caogenwangbaoqiang/article/details/79788368">栈和堆的区别</a><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li>管理方式不同
-    * 对于栈来讲，是由编译器自动管理，无需我们手工控制；对于堆来说，释放工作由程序员控制，容易产生memory leak。</li>
-<li>空间大小不同
-    * 一般来讲在32位系统下，堆内存可以达到4G的空间，从这个角度来看堆内存几乎是没有什么限制的。但是对于栈来讲，一般都是有一定的空间大小的，例如，在VC6下面，默认的栈空间大小是1M</li>
-<li>能否产生碎片不同
-    * 对于堆来讲，频繁的new/delete势必会造成内存空间的不连续，从而造成大量的碎片，使程序效率降低。对于栈来讲，则不会存在这个问题，因为栈是先进后出的队列，他们是如此的一一对应，以至于永远都不可能有一个内存块从栈中间弹出</li>
-<li>生长方向不同
-    * 对于堆来讲，生长方向是向上的，也就是向着内存地址增加的方向；对于栈来讲，它的生长方向是向下的，是向着内存地址减小的方向增长</li>
+<li>管理方式不同<ul>
+<li>对于栈来讲，是由编译器自动管理，无需我们手工控制；对于堆来说，释放工作由程序员控制，容易产生memory leak。</li>
+</ul>
+</li>
+<li>空间大小不同<ul>
+<li>一般来讲在32位系统下，堆内存可以达到4G的空间，从这个角度来看堆内存几乎是没有什么限制的。但是对于栈来讲，一般都是有一定的空间大小的，例如，在VC6下面，默认的栈空间大小是1M</li>
+</ul>
+</li>
+<li>能否产生碎片不同<ul>
+<li>对于堆来讲，频繁的new/delete势必会造成内存空间的不连续，从而造成大量的碎片，使程序效率降低。对于栈来讲，则不会存在这个问题，因为栈是先进后出的队列，他们是如此的一一对应，以至于永远都不可能有一个内存块从栈中间弹出</li>
+</ul>
+</li>
+<li>生长方向不同<ul>
+<li>对于堆来讲，生长方向是向上的，也就是向着内存地址增加的方向；对于栈来讲，它的生长方向是向下的，是向着内存地址减小的方向增长</li>
+</ul>
+</li>
 </ul>
 <h2 id="_6"><a href="https://blog.csdn.net/jerry11112/article/details/79027834">面向对象和面向过程的区别</a><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>面向对象就是高度实物抽象化、面向过程就是自顶向下的编程</p>
@@ -705,12 +719,16 @@ int *pi=new int<a href=""></a>;  //指针pi所指向的地址初始化为0</li>
 <ul>
 <li>面向过程就是分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现，使用的时候一个一个依次调用</li>
 <li>面向对象是把要解决的问题分解成各个对象，建立对象的目的不是为了完成一个步骤，而是为了描叙某个事物在整个解决问题的步骤中的行为</li>
-<li>面向过程的优缺点
-    1. 优点：性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、Linux/Unix等一般采用面向过程开发，性能是最重要的因素。
-    2. 缺点：没有面向对象易维护、易复用、易扩展</li>
-<li>面向对象的优缺点
-    1. 优点：易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 
-    2. 缺点：性能比面向过程低</li>
+<li>面向过程的优缺点<ol>
+<li>优点：性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、Linux/Unix等一般采用面向过程开发，性能是最重要的因素。</li>
+<li>缺点：没有面向对象易维护、易复用、易扩展</li>
+</ol>
+</li>
+<li>面向对象的优缺点<ol>
+<li>优点：易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护 </li>
+<li>缺点：性能比面向过程低</li>
+</ol>
+</li>
 </ul>
 </blockquote>
 <h2 id="const">const关键字(不可修改)<a class="headerlink" href="#const" title="Permanent link">&para;</a></h2>
@@ -799,10 +817,14 @@ void test05(){
 <h3 id="_9">定义<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>一个16进制的地址，存放在内存中从低地址开始存储，如16进制的地址为0x1234，对于地址而言，从右往左是从低到高</p>
 <ul>
-<li>大端
-    * 若16进制的高地址存放在内存的低地址，则为大端字节序，34存储在高位，12存储在低位</li>
-<li>小端
-    * 若16进制的低地址存放在内存的低地址，则为小端字节序，12存储在高位，34存储在高位</li>
+<li>大端<ul>
+<li>若16进制的高地址存放在内存的低地址，则为大端字节序，34存储在高位，12存储在低位</li>
+</ul>
+</li>
+<li>小端<ul>
+<li>若16进制的低地址存放在内存的低地址，则为小端字节序，12存储在高位，34存储在高位</li>
+</ul>
+</li>
 </ul>
 <h3 id="_10">代码判断<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>可以通过联合体来判断，联合体是同一块内存被联合体中的所有成员公用，如果后续成员对内存重新赋值，会覆盖内存中原有数据</p>

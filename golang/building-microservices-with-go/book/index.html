@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Building Microservices With Go - ZWiley的读书笔记</title>
+  <title>Building Microservices With Go - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -793,41 +793,49 @@ call of panic.</p>
 <ul>
 <li>Layer 2 or 3 firewalls</li>
 <li>Web application firewall(WAF), Cloudflare supports OWASP CRS</li>
-<li>API Gateway
-    - Request validation
-    - Authorization
-    - Rate limiting
-    - Logging
-    - Caching
-    - Request and response transformations</li>
-<li>DDoS protection
-    - UDP fragment: creating datagrams which contain fake packets, when server attempts to reassemble packets, it is unable to do so and the resources are quickly overwhelmed
-    - UDP flood: sending a flood of UDP packets with a spoofed source address to an IP address
-    - DNS: A DNS attack utilizes a UDP flood to take out a DNS server.
-    - NTP: is another amplification attach which takes advantage of a feature built into NTP servers
-    - Chargen: character generation protocol
-    - SYN flood: a classic DDoS attack that sends a lot of packets to a machine
-    - SSDP: simple services discovery protocol
-    - ACK: firewall; network scrubbing filters</li>
+<li>API Gateway<ul>
+<li>Request validation</li>
+<li>Authorization</li>
+<li>Rate limiting</li>
+<li>Logging</li>
+<li>Caching</li>
+<li>Request and response transformations</li>
+</ul>
+</li>
+<li>DDoS protection<ul>
+<li>UDP fragment: creating datagrams which contain fake packets, when server attempts to reassemble packets, it is unable to do so and the resources are quickly overwhelmed</li>
+<li>UDP flood: sending a flood of UDP packets with a spoofed source address to an IP address</li>
+<li>DNS: A DNS attack utilizes a UDP flood to take out a DNS server.</li>
+<li>NTP: is another amplification attach which takes advantage of a feature built into NTP servers</li>
+<li>Chargen: character generation protocol</li>
+<li>SYN flood: a classic DDoS attack that sends a lot of packets to a machine</li>
+<li>SSDP: simple services discovery protocol</li>
+<li>ACK: firewall; network scrubbing filters</li>
+</ul>
+</li>
 </ul>
 <h3 id="application-sercurity">Application sercurity<a class="headerlink" href="#application-sercurity" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Prevention
-    - secure communication
-    - authorization
-    - authentication</li>
-</ul>
+<li>
+<p>Prevention</p>
 <ul>
-<li>Detection: applications logs</li>
+<li>secure communication</li>
+<li>authorization</li>
+<li>authentication</li>
 </ul>
-<ul>
-<li>Response</li>
-</ul>
-<ul>
-<li>Recovery: well backed up and aotomated</li>
-</ul>
-<ul>
-<li>input validation: github.com/go-playground/validator</li>
+</li>
+<li>
+<p>Detection: applications logs</p>
+</li>
+<li>
+<p>Response</p>
+</li>
+<li>
+<p>Recovery: well backed up and aotomated</p>
+</li>
+<li>
+<p>input validation: github.com/go-playground/validator</p>
+</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">validation</span>
 
@@ -868,39 +876,47 @@ call of panic.</p>
 
 
 <ul>
-<li>Fuzzing : github.com/dvyukov/go-fuzz/go-fuzz  generating random input</li>
-</ul>
+<li>
+<p>Fuzzing : github.com/dvyukov/go-fuzz/go-fuzz  generating random input</p>
+</li>
+<li>
+<p>TLS:</p>
+</li>
+<li>
+<p>Securing data at rest : encrypt data in the database</p>
+</li>
+<li>
+<p>Physical machine access</p>
+</li>
+<li>
+<p>OWASP: REST Security Cheat Sheet (https://www.owasp.org/index.php/REST_Security_Cheat_Sheet).</p>
 <ul>
-<li>TLS:</li>
+<li>Never storing session tokens in a URL, use cookie or a post value (url can query in log)</li>
+<li>XSS and CSRF.</li>
+<li>Insecure direct object references. Checking authenticated users can modify the object in the request</li>
 </ul>
+</li>
+<li>
+<p>Password Hashing, hash is one-way cryptography</p>
 <ul>
-<li>Securing data at rest : encrypt data in the database</li>
+<li>Adding a salt and a pepper. （加盐是一种常见的方式，防止被彩虹表暴力破解）</li>
+<li>bcrypt: golang.org/x/crypto/bcrypt</li>
 </ul>
-<ul>
-<li>Physical machine access</li>
-</ul>
-<ul>
-<li>OWASP: REST Security Cheat Sheet (https://www.owasp.org/index.php/REST_Security_Cheat_Sheet).
-    - Never storing session tokens in a URL, use cookie or a post value (url can query in log)
-    - XSS and CSRF.
-    - Insecure direct object references. Checking authenticated users can modify the object in the request</li>
-</ul>
-<ul>
-<li>Password Hashing, hash is one-way cryptography
-    - Adding a salt and a pepper. （加盐是一种常见的方式，防止被彩虹表暴力破解）
-    - bcrypt: golang.org/x/crypto/bcrypt</li>
+</li>
 </ul>
 <h3 id="maintenance">Maintenance<a class="headerlink" href="#maintenance" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Patching containers: run a regular build and deploy even if the application code does not change</li>
 <li>Software upadtes:</li>
 <li>Patching application code</li>
-<li>Logging
-    - Who is preforming the action
-    - what has failed or succeed
-    - when is the action occurring
-    - why this has failed or succeeded
-    - how you can deal with the issue</li>
+<li>Logging<ul>
+<li>Who is preforming the action</li>
+<li>what has failed or succeed</li>
+<li>when is the action occurring</li>
+<li>why this has failed or succeeded</li>
+<li>how you can deal with the issue</li>
+</ul>
+</li>
 </ul>
 <h1 id="9-event-driven-architecture">9. Event-Driven Architecture<a class="headerlink" href="#9-event-driven-architecture" title="Permanent link">&para;</a></h1>
 <h3 id="differences-between-synchronous-and-asynchronous-processing">Differences between synchronous and asynchronous processing<a class="headerlink" href="#differences-between-synchronous-and-asynchronous-processing" title="Permanent link">&para;</a></h3>

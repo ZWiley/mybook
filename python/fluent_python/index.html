@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Fluent Python - ZWiley的读书笔记</title>
+  <title>Fluent Python - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -570,18 +570,20 @@
 <li>collections.OrderedDict: 保持 key 的顺序</li>
 <li>collections.ChainMap: 容纳多个不同的映射对象</li>
 <li>collections.Counter: 计数器</li>
-<li>collections.UserDict : 其实就是把标准 dict 用纯 python 实习一遍<p>import UserDict</p>
+<li>
+<p>collections.UserDict : 其实就是把标准 dict 用纯 python 实习一遍</p>
+<p>import UserDict</p>
 <p>class StrKeyDict(UserDict):</p>
-<div class="codehilite"><pre><span></span><code>  <span class="n">def</span> <span class="n">__missing__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">):</span>
-      <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="k">key</span><span class="p">,</span> <span class="n">str</span><span class="p">):</span>    <span class="o">#</span> <span class="err">如果</span> <span class="n">str</span> <span class="err">的</span> <span class="k">key</span> <span class="err">还找不到就抛出</span> <span class="n">KeyError</span><span class="err">，没有这句会无限递归</span>
-          <span class="n">raise</span> <span class="n">KeyError</span><span class="p">(</span><span class="k">key</span><span class="p">)</span>
-      <span class="k">return</span> <span class="k">self</span><span class="p">[</span><span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)]</span>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">__missing__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="k">key</span><span class="p">,</span> <span class="n">str</span><span class="p">):</span>    <span class="o">#</span> <span class="err">如果</span> <span class="n">str</span> <span class="err">的</span> <span class="k">key</span> <span class="err">还找不到就抛出</span> <span class="n">KeyError</span><span class="err">，没有这句会无限递归</span>
+        <span class="n">raise</span> <span class="n">KeyError</span><span class="p">(</span><span class="k">key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">self</span><span class="p">[</span><span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)]</span>
 
-  <span class="n">def</span> <span class="n">__setitem__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-      <span class="k">self</span><span class="p">.</span><span class="k">data</span><span class="p">[</span><span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)]</span> <span class="o">=</span> <span class="n">item</span>
+<span class="n">def</span> <span class="n">__setitem__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">self</span><span class="p">.</span><span class="k">data</span><span class="p">[</span><span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)]</span> <span class="o">=</span> <span class="n">item</span>
 
-  <span class="n">def</span> <span class="n">__contains__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">):</span>
-      <span class="k">return</span> <span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="k">data</span>
+<span class="n">def</span> <span class="n">__contains__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="k">data</span>
 </code></pre></div>
 
 
@@ -837,40 +839,44 @@ dict 实现是稀疏列表。</p>
 <li>通过 mixin 重用代码。mixin 不定义新类型, 只是打包方法，便于重用。mixin 类绝对不能实例化，应该提供某方面的特定行为，只是实现少量关系非常紧密的方法</li>
 <li>明确指名 mixin。类应该以 mixin 后缀</li>
 <li>抽象基类可以作为 mixin，但是反过来不成立</li>
-<li>不要子类化多个具体类。具体类的超类中除了一个具体类，其他都应该是抽象基类或者 mixin<p>class MyConcreteClass(Alpha, Beta, Gamma):
-      &ldquo;&rdquo;&rdquo; 如果 Alpha 是具体类，Beta 和 Gamma 必须是抽象基类或者 mixin&rdquo;&ldquo;&rdquo;
-      pass</p>
+<li>
+<p>不要子类化多个具体类。具体类的超类中除了一个具体类，其他都应该是抽象基类或者 mixin</p>
+<p>class MyConcreteClass(Alpha, Beta, Gamma):
+    &ldquo;&rdquo;&rdquo; 如果 Alpha 是具体类，Beta 和 Gamma 必须是抽象基类或者 mixin&rdquo;&ldquo;&rdquo;
+    pass</p>
 </li>
-</ul>
-<ul>
-<li>创建聚合类。django 中的 ListView，tinker中的 Widget<p>class Widget(BaseWidget, Pack, Place, Grid):
-      pass</p>
+<li>
+<p>创建聚合类。django 中的 ListView，tinker中的 Widget</p>
+<p>class Widget(BaseWidget, Pack, Place, Grid):
+    pass</p>
 </li>
-</ul>
-<ul>
-<li>优先使用组合而非继承。子类化是一种紧耦合，不要过度使用</li>
+<li>
+<p>优先使用组合而非继承。子类化是一种紧耦合，不要过度使用</p>
+</li>
 </ul>
 <h1 id="13">13  正确重载运算符<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
 <p>python 不允许用户随意创建运算符，禁止重载内置类型的运算符。python支持运算符重载是其在科学计算领域使用广泛的原因。</p>
 <ul>
 <li>一元运算符：始终返回一个新对象。</li>
-<li>NotImplemented 是个特殊的单例值，如果中缀运算符特殊方法不能处理给定的操作数，要把它返回给解释器。NotImplementedError 是一种异常，抽象类中的方法把它 raise 出，提醒子类必须覆盖。<div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">__add__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="n">try</span><span class="p">:</span>
-            <span class="n">pairs</span> <span class="o">=</span> <span class="n">itertools</span><span class="p">.</span><span class="n">zip_longest</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="k">in</span> <span class="n">pairs</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">TypeError</span><span class="p">:</span>
-            <span class="o">#</span> <span class="err">返回</span> <span class="n">NotImplemented</span> <span class="err">解释器会尝试调用</span> <span class="err">反向运算符方法</span> <span class="n">__radd__</span>
-            <span class="k">return</span> <span class="n">NotImplemented</span>
+<li>
+<p>NotImplemented 是个特殊的单例值，如果中缀运算符特殊方法不能处理给定的操作数，要把它返回给解释器。NotImplementedError 是一种异常，抽象类中的方法把它 raise 出，提醒子类必须覆盖。</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">def</span> <span class="n">__add__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+      <span class="n">try</span><span class="p">:</span>
+          <span class="n">pairs</span> <span class="o">=</span> <span class="n">itertools</span><span class="p">.</span><span class="n">zip_longest</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span>
+          <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="k">in</span> <span class="n">pairs</span><span class="p">)</span>
+      <span class="k">except</span> <span class="n">TypeError</span><span class="p">:</span>
+          <span class="o">#</span> <span class="err">返回</span> <span class="n">NotImplemented</span> <span class="err">解释器会尝试调用</span> <span class="err">反向运算符方法</span> <span class="n">__radd__</span>
+          <span class="k">return</span> <span class="n">NotImplemented</span>
 
-    <span class="n">def</span> <span class="n">__radd__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="k">self</span> <span class="o">+</span> <span class="n">other</span>
+  <span class="n">def</span> <span class="n">__radd__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+      <span class="k">return</span> <span class="k">self</span> <span class="o">+</span> <span class="n">other</span>
 </code></pre></div>
 
 
 </li>
-</ul>
-<ul>
-<li>增量赋值运算符不会修改不可变目标，而是新建实例，然后重新绑定。</li>
+<li>
+<p>增量赋值运算符不会修改不可变目标，而是新建实例，然后重新绑定。</p>
+</li>
 </ul>
 <h1 id="14">14 可迭代对象、迭代器和生成器<a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>
 <p>解释器需要迭代对象 x 时，会自动调用 iter(x)。内置的 iter 有以下作用：</p>

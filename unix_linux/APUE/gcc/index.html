@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Gcc - ZWiley的读书笔记</title>
+  <title>Gcc - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -512,20 +512,24 @@
                 <h3 id="gcc">gcc<a class="headerlink" href="#gcc" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>编译过程
-    +  预处理:头文件展开，宏替换，注释去掉<br />
-<em><code>gcc -E hello.c -o hello.i</code></em>
-    +  编译器:C文件变成汇编文件<br />
-<em><code>gcc -S hello.i -o hello.s</code></em>
-    + 汇编器:把汇编文件变成二进制文件<br />
-<em><code>gcc -c hello.s -o hello.o</code></em>
-    + 链接器:把函数库中的相应代码组合到目标文件中<br />
-<em><code>gcc hello.o -o hello</code></em>  </p>
+<p>编译过程</p>
+<ul>
+<li>预处理:头文件展开，宏替换，注释去掉<br />
+<em><code>gcc -E hello.c -o hello.i</code></em></li>
+<li>编译器:C文件变成汇编文件<br />
+<em><code>gcc -S hello.i -o hello.s</code></em></li>
+<li>汇编器:把汇编文件变成二进制文件<br />
+<em><code>gcc -c hello.s -o hello.o</code></em></li>
+<li>链接器:把函数库中的相应代码组合到目标文件中<br />
+<em><code>gcc hello.o -o hello</code></em>  </li>
+</ul>
 <p>编译过程：<img alt="编译过程" src="../Image/complie.png" /></p>
 </li>
 <li>
 <p>gcc 参数</p>
-<p>+ <em><code>-I</code></em> + 路径： 提供编译时所需头文件路径</p>
+<ul>
+<li><em><code>-I</code></em> + 路径： 提供编译时所需头文件路径</li>
+</ul>
 </li>
 </ol>
               

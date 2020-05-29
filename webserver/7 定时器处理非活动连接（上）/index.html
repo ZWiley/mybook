@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>7 定时器处理非活动连接（上） - ZWiley的读书笔记</title>
+  <title>7 定时器处理非活动连接（上） - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -550,31 +550,33 @@
 
 
 <ul>
-<li>sa_handler是一个函数指针，指向信号处理函数</li>
-</ul>
-<ul>
-<li>sa_sigaction同样是信号处理函数，有三个参数，可以获得关于信号更详细的信息</li>
-</ul>
-<ul>
-<li>sa_mask用来指定在信号处理函数执行期间需要被屏蔽的信号</li>
-</ul>
-<ul>
-<li>sa_flags用于指定信号处理的行为</li>
-</ul>
-<ul>
+<li>
+<p>sa_handler是一个函数指针，指向信号处理函数</p>
+</li>
+<li>
+<p>sa_sigaction同样是信号处理函数，有三个参数，可以获得关于信号更详细的信息</p>
+</li>
+<li>
+<p>sa_mask用来指定在信号处理函数执行期间需要被屏蔽的信号</p>
+</li>
+<li>
+<p>sa_flags用于指定信号处理的行为</p>
+</li>
 <li>
 <ul>
 <li>SA_RESTART，使被信号打断的系统调用自动重新发起</li>
+</ul>
+</li>
 <li>SA_NOCLDSTOP，使父进程在它的子进程暂停或继续运行时不会收到 SIGCHLD 信号</li>
 <li>SA_NOCLDWAIT，使父进程在它的子进程退出时不会收到 SIGCHLD 信号，这时子进程如果退出也不会成为僵尸进程</li>
 <li>SA_NODEFER，使对信号的屏蔽无效，即在信号处理函数执行期间仍能发出这个信号</li>
 <li>SA_RESETHAND，信号处理之后重新设置为默认的处理方式</li>
-<li>SA_SIGINFO，使用 sa_sigaction 成员而不是 sa_handler 作为信号处理函数</li>
-</ul>
+<li>
+<p>SA_SIGINFO，使用 sa_sigaction 成员而不是 sa_handler 作为信号处理函数</p>
 </li>
-</ul>
-<ul>
-<li>sa_restorer一般不使用</li>
+<li>
+<p>sa_restorer一般不使用</p>
+</li>
 </ul>
 <h4 id="sigaction_1"><strong>sigaction函数</strong><a class="headerlink" href="#sigaction_1" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code><span class="mi">1</span><span class="err">#</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">signal</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
@@ -648,40 +650,38 @@
 <p>每个进程之中，都有存着一个表，里面存着每种信号所代表的含义，内核通过设置表项中每一个位来标识对应的信号类型。</p>
 <p><img alt="image-20200529183054018" src="https://i.loli.net/2020/05/29/kjmwbzQ76aNtTeB.png" /></p>
 <ul>
-<li>信号的接收</li>
-</ul>
-<ul>
+<li>
+<p>信号的接收</p>
+</li>
 <li>
 <ul>
 <li>接收信号的任务是由内核代理的，当内核接收到信号后，会将其放到对应进程的信号队列中，同时向进程发送一个中断，使其陷入内核态。注意，此时信号还只是在队列中，对进程来说暂时是不知道有信号到来的。</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>信号的检测</li>
-</ul>
-<ul>
+<li>
+<p>信号的检测</p>
+</li>
 <li>
 <ul>
 <li>进程从内核态返回到用户态前进行信号检测</li>
-<li>进程在内核态中，从睡眠状态被唤醒的时候进行信号检测</li>
-<li>进程陷入内核态后，有两种场景会对信号进行检测：</li>
-<li>当发现有新信号时，便会进入下一步，信号的处理。</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>信号的处理</li>
-</ul>
-<ul>
+<li>进程在内核态中，从睡眠状态被唤醒的时候进行信号检测</li>
+<li>进程陷入内核态后，有两种场景会对信号进行检测：</li>
+<li>
+<p>当发现有新信号时，便会进入下一步，信号的处理。</p>
+</li>
+<li>
+<p>信号的处理</p>
+</li>
 <li>
 <ul>
 <li>( <strong>内核</strong> )信号处理函数是运行在用户态的，调用处理函数前，内核会将当前内核栈的内容备份拷贝到用户栈上，并且修改指令寄存器（eip）将其指向信号处理函数。</li>
+</ul>
+</li>
 <li>( <strong>用户</strong> )接下来进程返回到用户态中，执行相应的信号处理函数。</li>
 <li>( <strong>内核</strong> )信号处理函数执行完成后，还需要返回内核态，检查是否还有其它信号未处理。</li>
 <li>( <strong>用户</strong> )如果所有信号都处理完成，就会将内核栈恢复（从用户栈的备份拷贝回来），同时恢复指令寄存器（eip）将其指向中断前的运行位置，最后回到用户态继续执行进程。</li>
-</ul>
-</li>
 </ul>
 <p>至此，一个完整的信号处理流程便结束了，如果同时有多个信号到达，上面的处理流程会在第2步和第3步骤间重复进行。</p>
 <h3 id="_7">代码分析<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
@@ -728,24 +728,26 @@
 <p>项目中设置信号函数，仅关注SIGTERM和SIGALRM两个信号。</p>
 <h4 id="_9"><strong>信号通知逻辑</strong><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
 <ul>
-<li>创建管道，其中管道写端写入信号值，管道读端通过I/O复用系统监测读事件</li>
-</ul>
-<ul>
-<li>设置信号处理函数SIGALRM（时间到了触发）和SIGTERM（kill会触发，Ctrl+C）</li>
-</ul>
-<ul>
+<li>
+<p>创建管道，其中管道写端写入信号值，管道读端通过I/O复用系统监测读事件</p>
+</li>
+<li>
+<p>设置信号处理函数SIGALRM（时间到了触发）和SIGTERM（kill会触发，Ctrl+C）</p>
+</li>
 <li>
 <ul>
 <li>通过struct sigaction结构体和sigaction函数注册信号捕捉函数</li>
-<li>在结构体的handler参数设置信号处理函数，具体的，从管道写端写入信号的名字</li>
 </ul>
 </li>
-</ul>
-<ul>
-<li>利用I/O复用系统监听管道读端文件描述符的可读事件</li>
-</ul>
-<ul>
-<li>信息值传递给主循环，主循环再根据接收到的信号值执行目标信号对应的逻辑代码</li>
+<li>
+<p>在结构体的handler参数设置信号处理函数，具体的，从管道写端写入信号的名字</p>
+</li>
+<li>
+<p>利用I/O复用系统监听管道读端文件描述符的可读事件</p>
+</li>
+<li>
+<p>信息值传递给主循环，主循环再根据接收到的信号值执行目标信号对应的逻辑代码</p>
+</li>
 </ul>
 <h4 id="_10"><strong>代码分析</strong><a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code> <span class="mi">1</span><span class="c1">//创建管道套接字</span>

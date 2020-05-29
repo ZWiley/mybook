@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>大规模分布式存储系统 - ZWiley的读书笔记</title>
+  <title>大规模分布式存储系统 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -566,7 +566,7 @@ Paxos选举协议: 用于多个节点之间达成一致，往往用于实现总�
 - 网络异常：设计容错系统的一个基本原则就是：网络永远是不可靠的，任何一个消息只有收到对方回复后才可以认为发送成功，
 系统设计时总是假设网络出现会出现异常并采取相应处理措施。
 - 磁盘故障：磁盘损坏和磁盘数据错误（校验和机制）</p>
-<ol>
+<ol start="2">
 <li>超时
 分布式系统中，如果某个节点向另外一个节点发起rpc，这个rpc执行的结果有三种状态：成功、失败、超时（幂等，一直重试到成功）</li>
 </ol>
@@ -578,12 +578,14 @@ Paxos选举协议: 用于多个节点之间达成一致，往往用于实现总�
 <li>弱一致性：假如A先写入了一个值到存储系统，存储系统不能保证后续A、B、C的读取操作都将返回最新值</li>
 <li>最终一致性：是弱一致性的一种特例。假如A先写入一个值到存储系统，存储系统保证如果后续没有写操作更新同样的值，
 A、B、C的读取操作『最终都会读取到A写入的最新值』。『最终』有一个『不一致窗口』的概念，它特指从A写入值，到后续A、B
-C读取到最新值的这段时间。 最终一致性变体：
-    - 读写（raed-your-writes）一致性：如果A写入最新值，A的后续操作会读取导致最新值。但是其他用户可能要过一会能看到
-    - 会话（session）一致性：要求客户端和存储系统交互的整个会话保持读写一致性。
-    - 单调读（monotonic read）一致性：A已经读取到对象的某个值，后续操作不会读取更早的值
-    _ 单调写（monotonic write）一致性：A的写操作按顺序完成，对同一个客户端的操作，存储系统的多个副本需要按照与客户端相同
-    的顺序完成。</li>
+C读取到最新值的这段时间。 最终一致性变体：<ul>
+<li>读写（raed-your-writes）一致性：如果A写入最新值，A的后续操作会读取导致最新值。但是其他用户可能要过一会能看到</li>
+<li>会话（session）一致性：要求客户端和存储系统交互的整个会话保持读写一致性。</li>
+<li>单调读（monotonic read）一致性：A已经读取到对象的某个值，后续操作不会读取更早的值
+_ 单调写（monotonic write）一致性：A的写操作按顺序完成，对同一个客户端的操作，存储系统的多个副本需要按照与客户端相同
+的顺序完成。</li>
+</ul>
+</li>
 </ul>
 <p>从存储系统的角度看，一致性主要包括几个方面：
 - 副本一致性:存储系统的多个副本之间的数据是否一致，不一致的时间窗口等

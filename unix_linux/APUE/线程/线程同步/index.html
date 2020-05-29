@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
-  <title>线程同步 - ZWiley的读书笔记</title>
+  <title>线程同步 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../..">ZWiley的读书笔记</a>
+        <a href="../../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -513,62 +513,61 @@
 <p>下面的函数都是成功返回0，失败返回错误号。</p>
 <h3 id="1-mutext">1. <code>mutext</code><a class="headerlink" href="#1-mutext" title="Permanent link">&para;</a></h3>
 <ul>
-<li>初始化
+<li>
+<p>初始化
     ```c
-        #include <pthread.h><div class="codehilite"><pre><span></span><code><span class="err">  int pthread_mutex_destroy(pthread_mutex_t *mutex);</span>
-<span class="err">  int pthread_mutex_init(pthread_mutex_t *restrict mutex,</span>
-<span class="err">                         const pthread_mutexattr_t *restrict attr);</span>
-<span class="err">  pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</span>
+        #include <pthread.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err">int pthread_mutex_destroy(pthread_mutex_t *mutex);</span>
+<span class="err">int pthread_mutex_init(pthread_mutex_t *restrict mutex,</span>
+<span class="err">                       const pthread_mutexattr_t *restrict attr);</span>
+<span class="err">pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</span>
 </code></pre></div>
 
 
 <p>```
-  互斥量初始化后是1。</p>
+互斥量初始化后是1。</p>
 </li>
-</ul>
-<ul>
-<li><code>lock/unlock</code>
+<li>
+<p><code>lock/unlock</code>
     ```c
-        #include <pthread.h><div class="codehilite"><pre><span></span><code><span class="err">  int pthread_mutex_lock(pthread_mutex_t *mutex);     // 堵塞</span>
-<span class="err">  int pthread_mutex_trylock(pthread_mutex_t *mutex);  // 不堵塞</span>
-<span class="err">  int pthread_mutex_unlock(pthread_mutex_t *mutex);</span>
+        #include <pthread.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err">int pthread_mutex_lock(pthread_mutex_t *mutex);     // 堵塞</span>
+<span class="err">int pthread_mutex_trylock(pthread_mutex_t *mutex);  // 不堵塞</span>
+<span class="err">int pthread_mutex_unlock(pthread_mutex_t *mutex);</span>
 </code></pre></div>
 
 
 <p><code>注意这是锁是为了保护共享数据区域，&lt;font color=red&gt;应该使得锁的粒度越小越好&lt;/font&gt;。  
-  比如：</code>c
-      while(1) {
-          pthread_mutex_lock(&amp;mutex);
-          printf(&ldquo;h &ldquo;);       // 1
-          sleep(rand() % 3);
-          printf(&ldquo;w.\n&rdquo;);     // 2
-          pthread_mutex_unlock(&amp;mutex); 
-          sleep(rand() % 3);
-      }
-  <code>``
-  上面的锁是为了保护</code>stdout<code>。unlock应该放在第二个print的位置，而不是放在最后一个sleep的后面。
+比如：</code>c
+    while(1) {
+        pthread_mutex_lock(&amp;mutex);
+        printf(&ldquo;h &ldquo;);       // 1
+        sleep(rand() % 3);
+        printf(&ldquo;w.\n&rdquo;);     // 2
+        pthread_mutex_unlock(&amp;mutex); 
+        sleep(rand() % 3);
+    }
+<code>``
+上面的锁是为了保护</code>stdout<code>。unlock应该放在第二个print的位置，而不是放在最后一个sleep的后面。
 + 死锁
-  + 同一个线程试图对同一个互斥量加锁两次，即两次调用</code>pthread_mutex_lock<code>，而中间没有调用</code>pthread_mutex_unlock<code>。
-  + 线程1拥有A锁，请求B锁，线程2拥有B锁，请求A锁
-      +</code>pthread_mutex_trylock`：当拿不到锁时，就会放弃所有的锁，就不会有死锁。</p>
++ 同一个线程试图对同一个互斥量加锁两次，即两次调用</code>pthread_mutex_lock<code>，而中间没有调用</code>pthread_mutex_unlock<code>。
++ 线程1拥有A锁，请求B锁，线程2拥有B锁，请求A锁
+    +</code>pthread_mutex_trylock`：当拿不到锁时，就会放弃所有的锁，就不会有死锁。</p>
 <h3 id="2">2. 读写锁<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <ul>
 <li><font color=red face='黑体'>写独占，读共享，写锁优先级更高</font>。相比较互斥量锁，效率更高，因为读时可以共享。</li>
-<li>函数
-  ```c
-      int pthread_rwlock_init(pthread_rwlock_t <em>restrict rwlock,
-                              const pthread_rwlockattr_t </em>restrict attr);<div class="codehilite"><pre><span></span><code><span class="nb">int</span> <span class="n">pthread_rwlock_rdlock</span><span class="p">(</span><span class="n">pthread_rwlock_t</span> <span class="o">*</span><span class="n">rwlock</span><span class="p">);</span>
-<span class="nb">int</span> <span class="n">pthread_rwlock_tryrdlock</span><span class="p">(</span><span class="n">pthread_rwlock_t</span> <span class="o">*</span><span class="n">rwlock</span><span class="p">);</span>
-
-<span class="nb">int</span> <span class="n">pthread_rwlock_trywrlock</span><span class="p">(</span><span class="n">pthread_rwlock_t</span> <span class="o">*</span><span class="n">rwlock</span><span class="p">);</span>
-<span class="nb">int</span> <span class="n">pthread_rwlock_wrlock</span><span class="p">(</span><span class="n">pthread_rwlock_t</span> <span class="o">*</span><span class="n">rwlock</span><span class="p">);</span>
-
-<span class="nb">int</span> <span class="n">pthread_rwlock_unlock</span><span class="p">(</span><span class="n">pthread_rwlock_t</span> <span class="o">*</span><span class="n">rwlock</span><span class="p">);</span>
-<span class="nb">int</span> <span class="n">pthread_rwlock_destroy</span><span class="p">(</span><span class="n">pthread_rwlock_t</span> <span class="o">*</span><span class="n">rwlock</span><span class="p">);</span>
-</code></pre></div>
-
-
-<p>```</p>
+<li>
+<p>函数
+```c
+    int pthread_rwlock_init(pthread_rwlock_t <em>restrict rwlock,
+                            const pthread_rwlockattr_t </em>restrict attr);</p>
+<p>int pthread_rwlock_rdlock(pthread_rwlock_t <em>rwlock);
+int pthread_rwlock_tryrdlock(pthread_rwlock_t </em>rwlock);</p>
+<p>int pthread_rwlock_trywrlock(pthread_rwlock_t <em>rwlock);
+int pthread_rwlock_wrlock(pthread_rwlock_t </em>rwlock);</p>
+<p>int pthread_rwlock_unlock(pthread_rwlock_t <em>rwlock);
+int pthread_rwlock_destroy(pthread_rwlock_t </em>rwlock);
+    ```</p>
 </li>
 </ul>
 </li>
@@ -576,39 +575,39 @@
 <h3 id="3">3. 条件变量<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>条件变量不是锁，但它可以造成线程堵塞。通常和<code>mutex</code>配合使用，给多线程提供一个会和的场所。</li>
-<li>函数
+<li>
+<p>函数
     ```c
-        #include <pthread.h><div class="codehilite"><pre><span></span><code> <span class="nb">int</span> <span class="n">pthread_cond_destroy</span><span class="p">(</span><span class="n">pthread_cond_t</span> <span class="o">*</span><span class="n">cond</span><span class="p">);</span>
- <span class="nb">int</span> <span class="n">pthread_cond_init</span><span class="p">(</span><span class="n">pthread_cond_t</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">cond</span><span class="p">,</span>
-                       <span class="n">const</span> <span class="n">pthread_condattr_t</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">attr</span><span class="p">);</span>
-
-  <span class="nb">int</span> <span class="n">pthread_cond_timedwait</span><span class="p">(</span><span class="n">pthread_cond_t</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">cond</span><span class="p">,</span>
-                             <span class="n">pthread_mutex_t</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">mutex</span><span class="p">,</span>
-                             <span class="n">const</span> <span class="n">struct</span> <span class="n">timespec</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">abstime</span><span class="p">);</span>
- <span class="nb">int</span> <span class="n">pthread_cond_wait</span><span class="p">(</span><span class="n">pthread_cond_t</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">cond</span><span class="p">,</span>
-                       <span class="n">pthread_mutex_t</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">mutex</span><span class="p">);</span>
-
- <span class="nb">int</span> <span class="n">pthread_cond_broadcast</span><span class="p">(</span><span class="n">pthread_cond_t</span> <span class="o">*</span><span class="n">cond</span><span class="p">);</span>
- <span class="nb">int</span> <span class="n">pthread_cond_signal</span><span class="p">(</span><span class="n">pthread_cond_t</span> <span class="o">*</span><span class="n">cond</span><span class="p">);</span>
+        #include <pthread.h></p>
+<p>int pthread_cond_destroy(pthread_cond_t <em>cond);
+   int pthread_cond_init(pthread_cond_t </em>restrict cond,
+                         const pthread_condattr_t *restrict attr);</p>
+<div class="codehilite"><pre><span></span><code><span class="err">int pthread_cond_timedwait(pthread_cond_t *restrict cond,</span>
+<span class="err">                           pthread_mutex_t *restrict mutex,</span>
+<span class="err">                           const struct timespec *restrict abstime);</span>
 </code></pre></div>
 
 
-<p><code>+ `pthread_cond_wait`：堵塞等待一个条件变量。
-      + 堵塞等待条件变量`cond`满足
-      + 释放已掌握的互斥锁，相当于`pthread_mutex_unlock(&amp;mutex)`。&lt;font color=red face='楷体'&gt;这两步是一个原子操作。&lt;/font&gt;
-      + 当被唤醒，`pthread_cond_wait`函数返回时，解除堵塞并且重新申请获取互斥锁。
-  + `pthread_cond_broadcast/pthread_cond_signal`:唤醒堵塞中的`pthread_cond_wait`。
-      + `pthread_cond_broadcast`：唤醒所有堵塞的条件量
-      + `pthread_cond_signal`: 至少唤醒一个条件量
-  + `pthread_cond_timedwait`:
-      + 绝对时间的获取:</code>c
-          time_t cur = time(NULL); // 获取当前的时间
-          timespec t;
-          t.tv_sec = cur + secons; // 在当前时间的基础上向后偏移才能获取绝对时间 
-          ```
+<p>int pthread_cond_wait(pthread_cond_t <em>restrict cond,
+                         pthread_mutex_t </em>restrict mutex);</p>
+<p>int pthread_cond_broadcast(pthread_cond_t <em>cond);
+   int pthread_cond_signal(pthread_cond_t </em>cond);
+<code>+ `pthread_cond_wait`：堵塞等待一个条件变量。
+    + 堵塞等待条件变量`cond`满足
+    + 释放已掌握的互斥锁，相当于`pthread_mutex_unlock(&amp;mutex)`。&lt;font color=red face='楷体'&gt;这两步是一个原子操作。&lt;/font&gt;
+    + 当被唤醒，`pthread_cond_wait`函数返回时，解除堵塞并且重新申请获取互斥锁。
++ `pthread_cond_broadcast/pthread_cond_signal`:唤醒堵塞中的`pthread_cond_wait`。
+    + `pthread_cond_broadcast`：唤醒所有堵塞的条件量
+    + `pthread_cond_signal`: 至少唤醒一个条件量
++ `pthread_cond_timedwait`:
+    + 绝对时间的获取:</code>c
+        time_t cur = time(NULL); // 获取当前的时间
+        timespec t;
+        t.tv_sec = cur + secons; // 在当前时间的基础上向后偏移才能获取绝对时间 
+        ```
 + <strong>生产者与消费者</strong>设计模式
 + 条件量的优点:<br />
-  相较于mutex可以减少竞争。</p>
+相较于mutex可以减少竞争。</p>
 <p>如果直接使用mutex，除了生产者和消费者之间要竞争互斥量之外，消费者之间也需要竞争互斥量，但是如果链表中没有数据，消费者之间的竞争是没有意义的。通过条件变量的机制，只有在生产者完成生产之后，消费者之间才会开始竞争，提高了效率。</p>
 </li>
 </ul>

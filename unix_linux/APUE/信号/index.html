@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>信号 - ZWiley的读书笔记</title>
+  <title>信号 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -514,30 +514,48 @@
 <p>信号是由于进程产生，但是由内核调度传递给另一个进程：
 <img alt="信号捕捉" src="../Image/%E4%BF%A1%E5%8F%B7%E6%8D%95%E6%8D%89%E8%BF%87%E7%A8%8B.jpg" /></p>
 <ol>
-<li>产生信号
-    + 按键产生信号:<br />
-        + <font color=Crimson> <code>Ctr+c --&gt; 2)SIGINT(终止/中断)</code></font> <br />
-        + <font color=Crimson> <code>Ctr+z --&gt; 20)SIGTSTOP(终端暂停)</code> </font> <br />
-        + <font color=Crimson> <code>Ctr+\ --&gt; 3)SIGQUIT(退出)</code></font> <br />
-    + 系统调用产生: <code>kill(2), raise, abort</code>
-    + 软件条件产生: 如定时器<code>alarm</code>
-    + 硬件异常产生: 
-        + 如非法访问内存(段错误): <code>11)SIGSEV(段错误)</code>
-        + 除0: <code>8)SIGFPE</code>
-    + 命令产生：<code>kill(1)</code></li>
+<li>产生信号<ul>
+<li>按键产生信号:  <ul>
+<li><font color=Crimson> <code>Ctr+c --&gt; 2)SIGINT(终止/中断)</code></font>   </li>
+<li><font color=Crimson> <code>Ctr+z --&gt; 20)SIGTSTOP(终端暂停)</code> </font>   </li>
+<li><font color=Crimson> <code>Ctr+\ --&gt; 3)SIGQUIT(退出)</code></font>   </li>
+</ul>
+</li>
+<li>系统调用产生: <code>kill(2), raise, abort</code></li>
+<li>软件条件产生: 如定时器<code>alarm</code></li>
+<li>硬件异常产生: <ul>
+<li>如非法访问内存(段错误): <code>11)SIGSEV(段错误)</code></li>
+<li>除0: <code>8)SIGFPE</code></li>
+</ul>
+</li>
+<li>命令产生：<code>kill(1)</code></li>
+</ul>
+</li>
 <li>递达：产生的信号递达到了接受信号进程</li>
-<li>未决：
-    + 介于产生信号和递达之间的状态，主要由于阻塞信号集导致。
-    + 我们可以直接操作的是堵塞信号集，来影响未决信号集。</li>
-<li>信号的处理方式
-    + 默认：但是每个信号的默认动作可能不一致
-        + Term: 终止进程
-        + Ign : 忽略信号（默认即时对该种信号忽略操作）
-        + Core: 终止进程，生成Core文件(查验进程死亡原因，用于gbd调试)
-        + Stop: 停止（暂停）进程
-        + Cnt : 继续运行进程
-        + <strong><em><code>9)SIGKILL、19)SIGSTOP</code></em></strong> 不允许忽略和捕捉，只能执行默认动作。<p>+ 忽略：对于该信号的处理动作就是忽略
-  + 捕捉：调用用户处理函数  </p>
+<li>未决：<ul>
+<li>介于产生信号和递达之间的状态，主要由于阻塞信号集导致。</li>
+<li>我们可以直接操作的是堵塞信号集，来影响未决信号集。</li>
+</ul>
+</li>
+<li>
+<p>信号的处理方式</p>
+<ul>
+<li>
+<p>默认：但是每个信号的默认动作可能不一致</p>
+<ul>
+<li>Term: 终止进程</li>
+<li>Ign : 忽略信号（默认即时对该种信号忽略操作）</li>
+<li>Core: 终止进程，生成Core文件(查验进程死亡原因，用于gbd调试)</li>
+<li>Stop: 停止（暂停）进程</li>
+<li>Cnt : 继续运行进程</li>
+<li><strong><em><code>9)SIGKILL、19)SIGSTOP</code></em></strong> 不允许忽略和捕捉，只能执行默认动作。</li>
+</ul>
+</li>
+<li>
+<p>忽略：对于该信号的处理动作就是忽略</p>
+</li>
+<li>捕捉：调用用户处理函数  </li>
+</ul>
 </li>
 </ol>
 <h4 id="signal">signal相关函数<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h4>
@@ -550,11 +568,13 @@
 
 
 <ul>
-<li>第一个参数：
-    + pid &gt; 0: 发送信号给指定的进程
-    + pid = 0: 发送信号给与调用进程同一组的的所有进程，<strong>而且发送进程有权向他们发送信号</strong>
-    + pid &lt; 0: 将信号发送对应进程组ID=|pid|，<strong>而且发送进程有权向他们发送信号</strong>
-    + pid =-1: 发送给这样的进程：<strong>而且发送进程有权向他们发送信号</strong>  </li>
+<li>第一个参数：<ul>
+<li>pid &gt; 0: 发送信号给指定的进程</li>
+<li>pid = 0: 发送信号给与调用进程同一组的的所有进程，<strong>而且发送进程有权向他们发送信号</strong></li>
+<li>pid &lt; 0: 将信号发送对应进程组ID=|pid|，<strong>而且发送进程有权向他们发送信号</strong></li>
+<li>pid =-1: 发送给这样的进程：<strong>而且发送进程有权向他们发送信号</strong>  </li>
+</ul>
+</li>
 </ul>
 <h5 id="2raiseabort"><font color=Crimson><code>2.raise/abort</code></font><a class="headerlink" href="#2raiseabort" title="Permanent link">&para;</a></h5>
 <div class="codehilite"><pre><span></span><code>    <span class="c1">// raise</span>
@@ -648,24 +668,24 @@
 <li><code>sigprocmask</code> 
     用来获取或者改变调用进程的信号mask。也可屏蔽信号、解决屏蔽。
     ```c
-        #include <signal.h><div class="codehilite"><pre><span></span><code><span class="err">  int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);</span>
+        #include <signal.h><div class="codehilite"><pre><span></span><code><span class="err">int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);</span>
 </code></pre></div>
 
 
 <p><code>+ 第一个参数：决定了函数调用的行为  
-      + `SIG_BLOCK` &amp;emsp;: &amp;ensp;进程的屏蔽信号集是这个`set`和原来的屏蔽信号笔的并(union)。
-      + `SIG_UNBLOCK`： 将`set`中的信号从当前信号集合中移除出去。
-      + `SIG_SETMASK`： 直接将`set`覆盖当前信号集
-  + 第二个参数：`set`即上面的`sigset_t`格式，是本次函数给阻塞信号的设定值。
-  + 第三个参数：返回的当前的信号屏蔽集合。
+    + `SIG_BLOCK` &amp;emsp;: &amp;ensp;进程的屏蔽信号集是这个`set`和原来的屏蔽信号笔的并(union)。
+    + `SIG_UNBLOCK`： 将`set`中的信号从当前信号集合中移除出去。
+    + `SIG_SETMASK`： 直接将`set`覆盖当前信号集
++ 第二个参数：`set`即上面的`sigset_t`格式，是本次函数给阻塞信号的设定值。
++ 第三个参数：返回的当前的信号屏蔽集合。
 + `sigpending`</code>c
-      #include <signal.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err">  int sigpending(sigset_t *set);</span>
+    #include <signal.h></p>
+<div class="codehilite"><pre><span></span><code><span class="err">int sigpending(sigset_t *set);</span>
 </code></pre></div>
 
 
 <p><code>``
-  将调用进程的未决信号集存储在</code>set`中传出。</p>
+将调用进程的未决信号集存储在</code>set`中传出。</p>
 </li>
 </ul>
 <h5 id="7-sigaction"><code>7. sigaction</code><a class="headerlink" href="#7-sigaction" title="Permanent link">&para;</a></h5>
@@ -684,13 +704,15 @@
 
 
 <ul>
-<li><code>struct sigaction</code> 
-    + <code>sa_handler</code>: 用来指定捕捉到信号时候的行为。<code>SIG_DFL</code>、<code>SIG_IGN</code>、信号处理函数。
-    + <code>sa_sigaction</code>: 
-        当 <code>sa_flags = SA_SIGINFO</code>时，<code>sa_sigaction</code>指定信号处理函数(之前是<code>sa_handler</code>指定)。
-    + <code>sa_mask</code>：指定的是在<font face='黑体' color=red><strong>处理信号的过程中</strong></font>需要屏蔽的信号，即不捕捉该该信号，那么就会执行默认动作。而且触发该处理函数的信号再来时候会丢弃，即<font face='黑体' color=red> <strong>多次信号只执行一次</strong> </font>，除非<code>sa_flags = SA_NODEFER</code>。
-    + <code>sa_flags</code>：指定的是用于修改信号行为的标志位，默认是0，即在信号处理函数执行期间自动屏蔽本信号。这个函数的操作还是要依赖 <a href="mask">mask的操作函数。</a>
-    + <code>sa_restorer</code>：不要使用。</li>
+<li><code>struct sigaction</code> <ul>
+<li><code>sa_handler</code>: 用来指定捕捉到信号时候的行为。<code>SIG_DFL</code>、<code>SIG_IGN</code>、信号处理函数。</li>
+<li><code>sa_sigaction</code>: 
+    当 <code>sa_flags = SA_SIGINFO</code>时，<code>sa_sigaction</code>指定信号处理函数(之前是<code>sa_handler</code>指定)。</li>
+<li><code>sa_mask</code>：指定的是在<font face='黑体' color=red><strong>处理信号的过程中</strong></font>需要屏蔽的信号，即不捕捉该该信号，那么就会执行默认动作。而且触发该处理函数的信号再来时候会丢弃，即<font face='黑体' color=red> <strong>多次信号只执行一次</strong> </font>，除非<code>sa_flags = SA_NODEFER</code>。</li>
+<li><code>sa_flags</code>：指定的是用于修改信号行为的标志位，默认是0，即在信号处理函数执行期间自动屏蔽本信号。这个函数的操作还是要依赖 <a href="mask">mask的操作函数。</a></li>
+<li><code>sa_restorer</code>：不要使用。</li>
+</ul>
+</li>
 <li>返回值：成功是0，失败是-1.</li>
 </ul>
               

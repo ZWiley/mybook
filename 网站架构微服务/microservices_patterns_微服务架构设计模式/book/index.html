@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>微服务架构设计模式 - ZWiley的读书笔记</title>
+  <title>微服务架构设计模式 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -590,20 +590,18 @@
 <h3 id="22">2.2 为应用程序定义微服务架构<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
 <h5 id="221">2.2.1 识别系统操作<a class="headerlink" href="#221" title="Permanent link">&para;</a></h5>
 <ul>
-<li>定义系统操作。起点是用户需求，包含用户故事和相关用户场景。<ul>
+<li>定义系统操作。起点是用户需求，包含用户故事和相关用户场景。</li>
 <li>
 <ol>
 <li>创建由关键类组成的抽象领域模型，这些关键类提供了用于系统操作的词汇表</li>
 </ol>
 </li>
 <li>
-<ol>
+<ol start="2">
 <li>确定系统操作， 并根据领域模型描述每个系统操作的行为</li>
 <li>命令型：创建，更新或者删除数据。命令对应的参数，返回值和行为（行为包括前置条件和后置条件）</li>
 <li>查询型：查询和读取数据的系统操作</li>
 </ol>
-</li>
-</ul>
 </li>
 </ul>
 <p><img alt="" src="../%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C.png" /></p>
@@ -641,10 +639,12 @@
 <p>交互方式两个纬度：</p>
 <ul>
 <li>一对一</li>
-<li>一对多</li>
-</ul>
-<ul>
-<li>同步</li>
+<li>
+<p>一对多</p>
+</li>
+<li>
+<p>同步</p>
+</li>
 <li>异步</li>
 </ul>
 <p>API 演化:</p>
@@ -690,13 +690,15 @@ grpc 不太好处理获取多个资源的情况</p>
 <h3 id="33">3.3 基于异步消息模式的通信<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
 <ul>
 <li>点对点</li>
-<li>发布订阅</li>
-</ul>
-<ul>
-<li>无代理架构: ZeroMQ</li>
-</ul>
-<ul>
-<li>基于代理的消息</li>
+<li>
+<p>发布订阅</p>
+</li>
+<li>
+<p>无代理架构: ZeroMQ</p>
+</li>
+<li>
+<p>基于代理的消息</p>
+</li>
 </ul>
 <p>Apache ActiveMQ/RabbitMQ/Apache Kafka，还有基于云的消息服务 AWS Kinesis, SQS 等。</p>
 <h5 id="335">3.3.5 处理并发和消息顺序<a class="headerlink" href="#335" title="Permanent link">&para;</a></h5>
@@ -712,13 +714,11 @@ grpc 不太好处理获取多个资源的情况</p>
 <ul>
 <li>使用数据表作为消息队列（事务性发件箱）</li>
 <li>通过轮询模式发布事件</li>
-<li>使用事务日志拖尾(tailing)模式发布事件<ul>
+<li>使用事务日志拖尾(tailing)模式发布事件</li>
 <li>Debezium</li>
 <li>LinkedIn Databus</li>
 <li>DynamoDB streams</li>
 <li>Eventuate Tram</li>
-</ul>
-</li>
 </ul>
 <h3 id="34">3.4 使用异步消息提高可用性<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
 <p>同步消息会降低可用性。（要求依赖的所有同步服务都可用）</p>
@@ -793,18 +793,14 @@ grpc 不太好处理获取多个资源的情况</p>
 </ul>
 <p>使用：</p>
 <ul>
-<li>现成的  API Gateway 产品或者服务。灵活性低，几乎不支持 API 组合<ul>
+<li>现成的  API Gateway 产品或者服务。灵活性低，几乎不支持 API 组合</li>
 <li>AWS API Gateway</li>
 <li>产品化的 API Gateway: Kong , Traefik。需要自己运维</li>
-</ul>
-</li>
-<li>使用 API Gateway 框架或者 web 框架自己开发<ul>
+<li>使用 API Gateway 框架或者 web 框架自己开发</li>
 <li>实现定义路由规则的机制以简化复杂代码</li>
 <li>正确实现 HTTP 代理行为，包括如何处理 HTTP 头</li>
 <li>Netflix Zuul(实现边缘路由功能), Spring Cloud Zuul</li>
 <li>Spring Cloud Gateway</li>
-</ul>
-</li>
 </ul>
 <p>使用GraphQL 来实现 API Gateway</p>
 <h1 id="9">9. 微服务架构中的测试策略(上)<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>

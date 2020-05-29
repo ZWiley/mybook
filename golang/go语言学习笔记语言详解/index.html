@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Go学习笔记语言详解 - ZWiley的读书笔记</title>
+  <title>Go学习笔记语言详解 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">ZWiley的读书笔记</a>
+        <a href="../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -874,12 +874,14 @@ panic。比如文件系统无权限、端口被占用、数据库未启动等。
 <p>方法和函数一样出了直接调用还可以赋值给变量、或者作为参数传递。按照具体引用方式不同，
 分为 expression/value 两种状态。</p>
 <ul>
-<li>method expression: 通过类型引用的 method expression会被还原为普通函数样式，receiver是第一参数，调用时需要显示传参。</li>
-</ul>
-<ul>
-<li>method value:基于实例或者指针引用的method value，参数签名不会改变，按照正常方式调用。
+<li>
+<p>method expression: 通过类型引用的 method expression会被还原为普通函数样式，receiver是第一参数，调用时需要显示传参。</p>
+</li>
+<li>
+<p>method value:基于实例或者指针引用的method value，参数签名不会改变，按照正常方式调用。
 但当method value被赋值给变量或者作为参数传递，会立即计算并复制该方法执行所需的receiver对象，与其绑定，
-以便稍后执行时，能隐式传入 receiver 参数。</li>
+以便稍后执行时，能隐式传入 receiver 参数。</p>
+</li>
 </ul>
 <h1 id="7">7 接口<a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
 <p>接口代表一种调用契约，是多个方法声明的集合。
@@ -1247,24 +1249,26 @@ CSP：Communicating Sequential Process.</p>
 <ul>
 <li>向已关闭通道发送数据，引发panic。</li>
 <li>从已关闭接收数据，返回已缓冲数据或零值。</li>
-<li>无论收发，nil通道都会阻塞。<p>package main</p>
+<li>
+<p>无论收发，nil通道都会阻塞。</p>
+<p>package main</p>
 <p>func main() {
-      c := make(chan int, 3)
-      c &lt;- 10
-      c &lt;- 20
-      close(c)</p>
-<div class="codehilite"><pre><span></span><code>  <span class="n">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nf">cap</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="m">+1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-      <span class="n">x</span><span class="p">,</span> <span class="n">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="n">c</span>
-      <span class="nf">println</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">,</span> <span class="n">ok</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-  <span class="p">}</span>
+    c := make(chan int, 3)
+    c &lt;- 10
+    c &lt;- 20
+    close(c)</p>
+<div class="codehilite"><pre><span></span><code><span class="n">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nf">cap</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="m">+1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="n">c</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s">&quot;:&quot;</span><span class="p">,</span> <span class="n">ok</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div>
 
 
 <p>}
-  // 0 : true 10
-  // 1 : true 20
-  // 2 : false 0
-  // 3 : false 0</p>
+// 0 : true 10
+// 1 : true 20
+// 2 : false 0
+// 3 : false 0</p>
 </li>
 </ul>
 <p>单向通道：通道默认是双向的，并不区分发送和接收端。但某些时候，我们可限制收发操作的方向来获得更严谨的操作逻辑。
@@ -1762,18 +1766,20 @@ CSP：Communicating Sequential Process.</p>
 <li>测试代码须放在当前包以“_test.go”结尾的文件中。</li>
 <li>测试函数以Test为名称前缀。</li>
 <li>测试命令（go test）忽略以“_”或“.”开头的测试文件。</li>
-<li>正常编译操作（go build/install）会忽略测试文件。<p>// main_test.go
-  // go test -v
-  package main</p>
+<li>
+<p>正常编译操作（go build/install）会忽略测试文件。</p>
+<p>// main_test.go
+// go test -v
+package main</p>
 <p>import &ldquo;testing&rdquo;</p>
 <p>func add(x, y int) int {
-      return x + y
-  }</p>
+    return x + y
+}</p>
 <p>func TestAdd(t *testing.T) {
-      if add(1, 2) != 3 {
-          t.FailNow()
-      }
-  }</p>
+    if add(1, 2) != 3 {
+        t.FailNow()
+    }
+}</p>
 </li>
 </ul>
 <p>对于测试是否应该和目标放在同一目录，一直有不同看法。某些人认为应该另建一个专门的包用来存放单元测试，且只测试目标公开接口。好处是，当目标内部发生变化时，无须同步维护测试代码。每个人对于测试都有不同理解，就像覆盖率是否要做到90%以上，也是见仁见智。</p>

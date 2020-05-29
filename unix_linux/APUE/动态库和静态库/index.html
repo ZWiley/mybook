@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>动态库和静态库 - ZWiley的读书笔记</title>
+  <title>动态库和静态库 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -529,64 +529,70 @@
 
 <ol>
 <li>
-<p>静态库
-    + 生成.o文件：<code>gcc *.c -c -I../include</code>
-    + 制作静态库：<code>ar -cr libMyCal.a  *.o</code>
-    + 使用:
-        + <code>gcc main.c  lib/libMyCal.a  -o main -I./include</code>
-        + <code>gcc main.c -I ./include -L lib -l MyCal -o main_</code></p>
+<p>静态库</p>
+<ul>
+<li>生成.o文件：<code>gcc *.c -c -I../include</code></li>
+<li>制作静态库：<code>ar -cr libMyCal.a  *.o</code></li>
+<li>使用:<ul>
+<li><code>gcc main.c  lib/libMyCal.a  -o main -I./include</code></li>
+<li><code>gcc main.c -I ./include -L lib -l MyCal -o main_</code></li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
-<p>动态库
-    + 制作： gcc -c -fPIC -I ../include <em>.c
-    + 生成： gcc -shared -o libMyCal.so -I ../include </em>.o
-    + 使用：
-        + <code>gcc main.c lib/libMyCal.so -o m -I ./include</code>
-        + <code>gcc main.c -I ./include -L lib -l MyCal -o main_</code></p>
-<div class="codehilite"><pre><span></span><code>      <span class="err">但是这么写会报错：</span>
-      <span class="ss">```</span>
-<span class="ss">      ./ main_: error while loading shared libraries: </span>
-<span class="ss">          libMyCal.so: cannot open shared object file: No such file or directory</span>
-<span class="ss">      ```</span>
-
-      <span class="err">解决方法是：</span>
-
-      <span class="o">+</span> <span class="err">将</span><span class="n">libMyCal</span><span class="p">.</span><span class="n">so放到系统的lib下</span><span class="err">，放的也都是动态链接库</span><span class="p">:</span> <span class="ss">`sudo cp ./lib/libMyCal.so  /lib/`</span>
-
-          <span class="err">再去执行</span><span class="ss">`./main_`</span> <span class="err">就能顺利编译</span>
-
-          <span class="err">可用</span><span class="ss">`ldd`</span> <span class="err">命令查看</span> <span class="ss">`main_`</span><span class="err">的依赖项目：</span>
-
-          <span class="ss">```bash</span>
-<span class="ss">          (base) szz@szz:/media/szz/Others/Self_study/Cpp/Study/sdll$ ldd main_ </span>
-<span class="ss">              linux-vdso.so.1 =&gt;  (0x00007fff07e96000)                          # shared object file</span>
-<span class="ss">              libMyCal.so =&gt; /lib/libMyCal.so (0x00007fd692a86000)              # 动态库    </span>
-<span class="ss">              libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd6926bc000) # 系统的C库</span>
-<span class="ss">              /lib64/ld-linux-x86-64.so.2 (0x00007fd692c88000)                  # 动态链接器</span>
-<span class="ss">          ```</span>
-
-      <span class="o">+</span>  <span class="err">加入搜索路径：</span><span class="ss">`export LD_LIBRARY_PATH=./lib/`</span>
-
-          <span class="err">直接将动态库放到系统的动态库中，很不安全，因此可能会覆盖重名的系统库。更加安全的方式是通过</span><span class="ss">`LD_LIBRARY_PATH`</span><span class="err">使得系统在搜索环境变量之前搜索这个路径。</span>
-
-          <span class="ss">```bash</span>
-<span class="ss">          linux-vdso.so.1 =&gt;  (0x00007ffce2710000)</span>
-<span class="ss">          libMyCal.so =&gt; ./lib/libMyCal.so (0x00007fee92742000)               # 与上面解决方案对应路径不同</span>
-<span class="ss">          libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fee92378000)</span>
-<span class="ss">          /lib64/ld-linux-x86-64.so.2 (0x00007fee92944000)</span>
-
-<span class="ss">          ```</span>
-
-          <span class="err">注意：</span> <span class="err">这个方案是临时的，用于测试使用，想要永久生效，</span><span class="o">**</span><span class="err">需要将上述命令中的相对路径换成绝对路径加入</span><span class="ss">`.bashrc`</span><span class="err">文件中</span><span class="o">**</span><span class="err">。</span>
-
-      <span class="o">+</span> <span class="err">第四种解决方案</span>
-
-  <span class="o">+</span> <span class="err">动态库的优、缺点：</span>
-      <span class="o">+</span> <span class="err">体积小；</span> <span class="err">动态库更新了，不需要重新编译程序</span><span class="p">(</span><span class="err">只要函数接口没变</span><span class="p">)</span>
-      <span class="o">+</span> <span class="err">加载速度相对静态库慢一点</span>
-</code></pre></div>
-
-
+<p>动态库</p>
+<ul>
+<li>制作： gcc -c -fPIC -I ../include *.c</li>
+<li>生成： gcc -shared -o libMyCal.so -I ../include *.o</li>
+<li>
+<p>使用：</p>
+<ul>
+<li><code>gcc main.c lib/libMyCal.so -o m -I ./include</code></li>
+<li>
+<p><code>gcc main.c -I ./include -L lib -l MyCal -o main_</code></p>
+<p>但是这么写会报错：
+<code>./ main_: error while loading shared libraries: 
+    libMyCal.so: cannot open shared object file: No such file or directory</code></p>
+<p>解决方法是：</p>
+<ul>
+<li>
+<p>将libMyCal.so放到系统的lib下，放的也都是动态链接库: <code>sudo cp ./lib/libMyCal.so  /lib/</code></p>
+<p>再去执行<code>./main_</code> 就能顺利编译</p>
+<p>可用<code>ldd</code> 命令查看 <code>main_</code>的依赖项目：</p>
+<p><code>bash
+(base) szz@szz:/media/szz/Others/Self_study/Cpp/Study/sdll$ ldd main_ 
+    linux-vdso.so.1 =&gt;  (0x00007fff07e96000)                          # shared object file
+    libMyCal.so =&gt; /lib/libMyCal.so (0x00007fd692a86000)              # 动态库    
+    libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd6926bc000) # 系统的C库
+    /lib64/ld-linux-x86-64.so.2 (0x00007fd692c88000)                  # 动态链接器</code></p>
+</li>
+<li>
+<p>加入搜索路径：<code>export LD_LIBRARY_PATH=./lib/</code></p>
+<p>直接将动态库放到系统的动态库中，很不安全，因此可能会覆盖重名的系统库。更加安全的方式是通过<code>LD_LIBRARY_PATH</code>使得系统在搜索环境变量之前搜索这个路径。 </p>
+<p>```bash
+linux-vdso.so.1 =&gt;  (0x00007ffce2710000)
+libMyCal.so =&gt; ./lib/libMyCal.so (0x00007fee92742000)               # 与上面解决方案对应路径不同
+libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fee92378000)
+/lib64/ld-linux-x86-64.so.2 (0x00007fee92944000)</p>
+<p>```</p>
+<p>注意： 这个方案是临时的，用于测试使用，想要永久生效，<strong>需要将上述命令中的相对路径换成绝对路径加入<code>.bashrc</code>文件中</strong>。</p>
+</li>
+<li>
+<p>第四种解决方案</p>
+</li>
+</ul>
+</li>
+<li>
+<p>动态库的优、缺点：</p>
+<ul>
+<li>体积小； 动态库更新了，不需要重新编译程序(只要函数接口没变)</li>
+<li>加载速度相对静态库慢一点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ol>
               

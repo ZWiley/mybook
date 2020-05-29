@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>软件调试修炼之道 - ZWiley的读书笔记</title>
+  <title>软件调试修炼之道 - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -485,7 +485,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -558,18 +558,14 @@
 <p>推测可能输入:</p>
 <ul>
 <li>回溯工作</li>
-<li>探测可能输入值<ul>
+<li>探测可能输入值</li>
 <li>边界分析</li>
 <li>分之覆盖</li>
 <li>利用错误条件</li>
 <li>引入随机性：模糊测试；生成模糊器；变异模糊器</li>
-</ul>
-</li>
-<li>记录输入值<ul>
+<li>记录输入值</li>
 <li>日志框架。可以开启 or 关闭；日志级别；上下文（代码行数等）；分析工具（ELK）</li>
 <li>外部日志。代理服务器等</li>
-</ul>
-</li>
 <li>负载和压力。有些缺陷只有在某种压力才表现出来（高负载网络流量，有限的可用内存）</li>
 </ul>
 <h3 id="25">2.5 改进问题重现<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
@@ -603,31 +599,29 @@
 <h1 id="3">3 诊断<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <h3 id="31">3.1 不要急于动手，试试科学方法<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
 <ul>
-<li>调试方法：<ul>
+<li>调试方法：</li>
 <li>根据你对软件运行情况的理解，提出一个可以导致这种情况的假设</li>
 <li>设计一个实验，证明假设是否正确</li>
 <li>如果无法证明你的假设，重新设计然后再次实验</li>
-<li>如果实验支持你的假设，继续证明，知道能够证明或者证伪</li>
-</ul>
+<li>
+<p>如果实验支持你的假设，继续证明，知道能够证明或者证伪</p>
 </li>
-</ul>
-<ul>
-<li>实验必须起到验证的作用。(与他人争辩试图推翻你的假设)</li>
-</ul>
-<ul>
-<li>每次只做一个修改。多处修改可能导致错误的结论。</li>
-</ul>
-<ul>
-<li>记录你做的调试。定期回顾你已经尝试过的实验和学到的东西，使用日记簿或者电子笔记。</li>
-</ul>
-<ul>
-<li>不要忽略任何细节。凡是你不明白的都是潜在的缺陷。(Anything that you don&rsquo;t understand is potentially a bug)<ul>
+<li>
+<p>实验必须起到验证的作用。(与他人争辩试图推翻你的假设)</p>
+</li>
+<li>
+<p>每次只做一个修改。多处修改可能导致错误的结论。</p>
+</li>
+<li>
+<p>记录你做的调试。定期回顾你已经尝试过的实验和学到的东西，使用日记簿或者电子笔记。</p>
+</li>
+<li>
+<p>不要忽略任何细节。凡是你不明白的都是潜在的缺陷。(Anything that you don&rsquo;t understand is potentially a bug)</p>
+</li>
 <li>写出假设。曾经做过的假设写到纸上</li>
 <li>可以跟踪详细信息</li>
 <li>确保不会忘记需要做的事情</li>
 <li>短暂休息，可以尝试头脑风暴</li>
-</ul>
-</li>
 </ul>
 <h3 id="32">3.2 相关策略<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
 <h5 id="321">3.2.1 插桩<a class="headerlink" href="#321" title="Permanent link">&para;</a></h5>
@@ -654,11 +648,9 @@
 <ul>
 <li>你做的修改是正确的么？如果没有，说明你没修改到点子上。尝试引入明显的失败比如断言让其暴露出来</li>
 <li>验证假设。思维定势造成的先验假设可能会让你得不到结果</li>
-<li>多重原因。问题有时候是复杂的，<ul>
+<li>多重原因。问题有时候是复杂的，</li>
 <li>对问题进行隔离，找到一个方法重现缺陷。</li>
 <li>先找同一个区域内其他较明显的缺陷，扫清障碍，让缺陷更加明显</li>
-</ul>
-</li>
 <li>查出变化并且控制它。第三方系统或者数据库。</li>
 </ul>
 <h3 id="35">3.5 思维游戏<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
@@ -707,13 +699,11 @@
 <p>五个为什么？</p>
 <ul>
 <li>我们已经做到了么？</li>
-<li>根本原因分析。责备没有用<ul>
+<li>根本原因分析。责备没有用</li>
 <li>需求是否正确，是否是模糊的，误解了</li>
 <li>架构或者设计。有没有正确按照设计来做</li>
 <li>测试。测试覆盖率足够么？</li>
 <li>构造</li>
-</ul>
-</li>
 </ul>
 <h3 id="53">5.3 它不会再发生了<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
 <ul>
@@ -754,10 +744,12 @@
 <p>早期修复缺陷是一个好的策略：</p>
 <ul>
 <li>可能发现缺陷的过程（比如测试、代码审查、用户使用等）要连续贯穿整个开发过程</li>
-<li>缺陷修复优先于其他任何事情</li>
-</ul>
-<ul>
-<li>质量底下具有传染性。</li>
+<li>
+<p>缺陷修复优先于其他任何事情</p>
+</li>
+<li>
+<p>质量底下具有传染性。</p>
+</li>
 <li>破窗理论。发现缺陷就立马解决，不要留破窗户</li>
 </ul>
 <h3 id="72">7.2 调试的思维模式<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>

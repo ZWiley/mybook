@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>*`select/poll/epoll`* - ZWiley的读书笔记</title>
+  <title>*`select/poll/epoll`* - ZWiley的笔记</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> ZWiley的读书笔记</a>
+        <a href="../../.." class="icon icon-home"> ZWiley的笔记</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -483,7 +483,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">ZWiley的读书笔记</a>
+        <a href="../../..">ZWiley的笔记</a>
       </nav>
 
       
@@ -513,46 +513,58 @@
 <p>让内核来监听客户端。使用进程或者线程，消耗的资源比较大。</p>
 <h3 id="3-epoll">3. <code>epoll</code><a class="headerlink" href="#3-epoll" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>event</code>
-    + <code>EPOLLIN</code>
-        + 内核中socket接受缓冲区为空  &ndash;&gt;  低电平 &ndash;&gt; 不可读
-        + 内核中socket接受缓冲区不空  &ndash;&gt;  高电平 &ndash;&gt; 可读
-    + <code>EPOLLOUT</code>
-        + 内核中socket接受缓冲区为满  &ndash;&gt;  低电平 &ndash;&gt; 不可写
-        + 内核中socket接受缓冲区不满  &ndash;&gt;  高电平 &ndash;&gt; 可写</li>
+<li>
+<p><code>event</code></p>
+<ul>
+<li><code>EPOLLIN</code><ul>
+<li>内核中socket接受缓冲区为空  &ndash;&gt;  低电平 &ndash;&gt; 不可读</li>
+<li>内核中socket接受缓冲区不空  &ndash;&gt;  高电平 &ndash;&gt; 可读</li>
 </ul>
-<ul>
-<li>工作模式<br />
-    + <code>LT</code>电平触发：高电平触发
-    + <code>ET</code>边缘触发：
-        + 低电平&ndash;&gt;高电平 触发
-        + 高电平&ndash;&gt;低电平 触发</li>
+</li>
+<li><code>EPOLLOUT</code><ul>
+<li>内核中socket接受缓冲区为满  &ndash;&gt;  低电平 &ndash;&gt; 不可写</li>
+<li>内核中socket接受缓冲区不满  &ndash;&gt;  高电平 &ndash;&gt; 可写</li>
 </ul>
-<ul>
-<li>LT模式的工作流程
-<img alt="epoll_LT电平触发" src="../Image/epoll_LT.jpg" />
-    + <code>busy loop</code><br />
-    在使用<code>epoll_LT</code>模型时，要注意一个忙等待事件(<code>busy-loop</code>)。<br />
-        &gt; 在 <em><code>connfd=accept(listenfd,...)</code></em> 获得监听套接字<code>connfd</code>之后，不能立即监听<code>connfd</code>的<code>EPOLLOUT</code>事件，因为刚获得<code>connfd</code>的接受缓冲区肯定是空的，一直处于高电平，处于可写状态。如果此时就监听那么将一直触发<code>epoll_wait</code>函数，会一直等待写满，即<code>busy loop</code>。
-    + 正确的流程<br />
-    在第一次你 <em><code>n=write(connfd, buffer, sizeof(BUFFER))</code></em> 之后，如果返回的字节数<code>n!=sizeof(buffer)</code>，说明socket的发送缓冲区小于应用层的buffer的缓冲区，此时需要做两件事：<div class="codehilite"><pre><span></span><code>  <span class="o">+</span> <span class="err">需要将未发完的数据添加到应用层缓冲区</span><span class="n">OuyBuffer</span>
-  <span class="o">+</span> <span class="o">**</span><span class="err">关注</span><span class="ss">`connfd`</span><span class="err">的</span><span class="ss">`EPOLLOUT`</span><span class="err">事件</span><span class="o">**</span>
-
-  <span class="err">等待</span><span class="ss">`connfd`</span><span class="err">的</span><span class="ss">`EPOLLOUT`</span><span class="err">事件的到来：取出应用层的缓冲区中的数据发送，</span><span class="o">*</span><span class="ss">`write(connfd, ...)`</span><span class="o">*</span> <span class="err">。如果应用层缓冲区中的数据发送完毕，</span><span class="o">**</span><span class="err">取消关注</span><span class="ss">`EPOLLOUT`</span><span class="err">事件</span><span class="o">**</span><span class="err">。因为不取消，</span><span class="n">sokcet发送缓冲区为空后</span><span class="err">，又会触发</span><span class="ss">`EPOLLOUT`</span><span class="err">，但是此时数据已经发送完毕，又会陷入</span><span class="ss">`busy loop。`</span>
-</code></pre></div>
-
-
-<ul>
-<li>ET模式的工作流程  <br />
-<img alt="epoll_ET边缘触发" src="../Image/epoll_ET.jpg" /><br />
-ET工作模式不存在LT中的<code>busy loop</code>，但是会有更麻烦的问题：<em><code>read/write</code></em> 直到返回<code>EAGAIN</code>错误。否则程序会发送意外。  <ul>
-<li><code>read</code><br />
-在 <em><code>connfd=accept(listenfd,...)</code></em> 之后得到的<code>connfd</code>是边缘触发，因此不会在一开始就触发<code>EPOLLIN/EPOLLOUT</code>。
-    &gt; 触发<code>EPOLLIN</code>事件后，如果<code>connfd</code>的接受缓冲区中的数据没有读取完毕，那么当<code>connfd</code>的又接受到新的缓冲区数据时，<code>EPOLLIN</code>事件不会触发。因为之前的数据没有读取完，处于高电平状态，此时又来新的数据并没有改变电平状态，因此即使有新的数据到来也无法触发<code>EPOLLIN</code>。同理<code>write</code>。<p><font color=red>重点：</font> <strong><em><code>read/write</code></em></strong> 必须将缓冲区读完或者写满。
-    + <code>EMFILE</code><br />
-    如果在使用 <em><code>connfd=accept(listenfd,...)</code></em> 返回失败，并且返回的错误是 <code>EMFILE</code>，那么会使得<code>listenfd</code>的接受缓冲区有数据为高电平。如果不清除，那么即使后面有空余的文件描述符也无法使用，因为<code>listenfd</code>的接受缓冲区一直处于有数据的高电平状态，无法触发<code>EPOLLIN</code>。</p>
 </li>
 </ul>
+</li>
+<li>
+<p>工作模式  </p>
+<ul>
+<li><code>LT</code>电平触发：高电平触发</li>
+<li><code>ET</code>边缘触发：<ul>
+<li>低电平&ndash;&gt;高电平 触发</li>
+<li>高电平&ndash;&gt;低电平 触发</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>LT模式的工作流程
+<img alt="epoll_LT电平触发" src="../Image/epoll_LT.jpg" /></p>
+<ul>
+<li><code>busy loop</code><br />
+在使用<code>epoll_LT</code>模型时，要注意一个忙等待事件(<code>busy-loop</code>)。<br />
+    &gt; 在 <em><code>connfd=accept(listenfd,...)</code></em> 获得监听套接字<code>connfd</code>之后，不能立即监听<code>connfd</code>的<code>EPOLLOUT</code>事件，因为刚获得<code>connfd</code>的接受缓冲区肯定是空的，一直处于高电平，处于可写状态。如果此时就监听那么将一直触发<code>epoll_wait</code>函数，会一直等待写满，即<code>busy loop</code>。</li>
+<li>
+<p>正确的流程<br />
+在第一次你 <em><code>n=write(connfd, buffer, sizeof(BUFFER))</code></em> 之后，如果返回的字节数<code>n!=sizeof(buffer)</code>，说明socket的发送缓冲区小于应用层的buffer的缓冲区，此时需要做两件事：</p>
+<ul>
+<li>需要将未发完的数据添加到应用层缓冲区OuyBuffer</li>
+<li><strong>关注<code>connfd</code>的<code>EPOLLOUT</code>事件</strong>   </li>
+</ul>
+<p>等待<code>connfd</code>的<code>EPOLLOUT</code>事件的到来：取出应用层的缓冲区中的数据发送，<em><code>write(connfd, ...)</code></em> 。如果应用层缓冲区中的数据发送完毕，<strong>取消关注<code>EPOLLOUT</code>事件</strong>。因为不取消，sokcet发送缓冲区为空后，又会触发<code>EPOLLOUT</code>，但是此时数据已经发送完毕，又会陷入<code>busy loop。</code>
++ ET模式的工作流程  <br />
+<img alt="epoll_ET边缘触发" src="../Image/epoll_ET.jpg" /><br />
+ET工作模式不存在LT中的<code>busy loop</code>，但是会有更麻烦的问题：<em><code>read/write</code></em> 直到返回<code>EAGAIN</code>错误。否则程序会发送意外。<br />
+    + <code>read</code><br />
+    在 <em><code>connfd=accept(listenfd,...)</code></em> 之后得到的<code>connfd</code>是边缘触发，因此不会在一开始就触发<code>EPOLLIN/EPOLLOUT</code>。</p>
+<blockquote>
+<p>触发<code>EPOLLIN</code>事件后，如果<code>connfd</code>的接受缓冲区中的数据没有读取完毕，那么当<code>connfd</code>的又接受到新的缓冲区数据时，<code>EPOLLIN</code>事件不会触发。因为之前的数据没有读取完，处于高电平状态，此时又来新的数据并没有改变电平状态，因此即使有新的数据到来也无法触发<code>EPOLLIN</code>。同理<code>write</code>。</p>
+</blockquote>
+<p><font color=red>重点：</font> <strong><em><code>read/write</code></em></strong> 必须将缓冲区读完或者写满。
+    + <code>EMFILE</code><br />
+    如果在使用 <em><code>connfd=accept(listenfd,...)</code></em> 返回失败，并且返回的错误是 <code>EMFILE</code>，那么会使得<code>listenfd</code>的接受缓冲区有数据为高电平。如果不清除，那么即使后面有空余的文件描述符也无法使用，因为<code>listenfd</code>的接受缓冲区一直处于有数据的高电平状态，无法触发<code>EPOLLIN</code>。</p>
 </li>
 </ul>
 </li>
