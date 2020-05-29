@@ -2,6 +2,14 @@ site_name: ZWiley的笔记
 
 theme:
     name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+    hljs_style: github
+    prev_next_buttons_location: bottom
+    navigation_depth: 6
+    sticky_navigation: False
         
 repo_name: 'GitHub'
 repo_url: https://github.com/zwiley/mybook/
