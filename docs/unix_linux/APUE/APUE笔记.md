@@ -1,19 +1,3 @@
-### environ
-1. 获取环境变量
-
-    ```C++
-    extern char** environ; 
-    
-int main(int argv, char* const argc[]) {
-        int i;
-        for(i =0; environ[i] != NULL; i++){
-            printf("environ[%d]=%s\n ",i, environ[i] );
-    
-    }
-        return 0;
-    }
-    ```
-
 ### fork, vfork
 
 1. *fork*  
@@ -359,7 +343,7 @@ clean:
      + *wait* 出错是：调用该函数的进程没有子线程，*waitpid* 出错还可能是指定的进程或者进程组不存在。
      + 都可以回收子进程资源
      + 都获取子进程退出状态（退出原因）。
-   
+
 4. *exec*  
 
    ```c++
@@ -374,13 +358,14 @@ clean:
    int execvpe(const char *file, char *const argv[], char *const envp[]);
    ```
    
+
 只有失败时候才返回-1，成功时直接执行被执行的函数，不会返回，即 *exec* 同一作用域的后面的部分不会运行：
-   
+
 ```c
        exec(...);
        perroe("exec call error.\n");
        exit(1);
-   ```
+```
 
 
 ### 动态库和静态库

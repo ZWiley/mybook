@@ -1,4 +1,4 @@
-site_name: ZWiley的笔记
+site_name: ZWiley的随记
 
 theme:
     name: material
@@ -35,18 +35,18 @@ markdown_extensions:
 nav:
     - 简介: 'index.md'
     - C++: 
+      - C++ STL: '基础语言/STL.md'
       - C++编译底层: '基础语言/C++编译底层.md'
       - C++基础知识: '基础语言/C++基础知识.md'
       - C++智能指针: '基础语言/C++智能指针_异常机制_强制转换_RTTI.md'
       - C++面向对象: '基础语言/C++面向对象.md'
-      - C++ STL: '基础语言/STL.md'
-    - 计算机基础知识: 
+    - 计算机基础: 
       - 操作系统: '计算机基础知识/操作系统.md'
       - 计算机网络: '计算机基础知识/计算机网络.md'
       - 数据结构: '计算机基础知识/数据结构.md'
       - 海量数据处理: '计算机基础知识/海量数据处理.md'
     - 基本手写代码: 
-      - 基本手写代码题目: '基本手写代码/基本手写代码题目.md'
+      - 常见基本代码: '基本手写代码/基本手写代码题目.md'
     - 项目基础知识: 
       - Linux系统编程及基本命令: '项目基础知识/Linux系统编程及基本命令.md'
       - MySQL: '项目基础知识/MySQL.md'
@@ -66,8 +66,18 @@ nav:
       - 10 日志系统（下）: 'webserver/10 日志系统（下）.md'
       - 11 数据库连接池: 'webserver/11 数据库连接池.md'
       - 12 常见问题: 'webserver/12 常见问题.md'
+    - 数据库:
+      - Getting started with impala: 'database/getting_started_with_impala.md'
+      - mysql必知必会: 'database/mysql必知必会.md'
+      - mysql性能调优与架构实践: 'database/mysql性能调优与架构实践.md'
+      - Mysql技术内幕InnoDB存储引擎: 'database/Mysql技术内幕InnoDB存储引擎.md'
+      - Redis实战: 'database/redis实战.md'
+      - Redis深度历险核心原理和应用实践: 'database/redis深度历险核心原理和应用实践/book.md'
+      - redis设计与实现: 'database/redis设计与实现.md'
+      - 七周七数据库: 'database/七周七数据库.md'
+      - 深入浅出mysql: 'database/深入浅出mysql.md'
+      - 高性能mysql第三版: 'database/高性能mysql第三版.md'  
     - 代码:
-      - Work with legacy code: 'code/work_with_legacy_code.md'
       - 代码大全: 'code/代码大全.md'
       - 代码的未来: 'code/代码的未来.md'
       - 基本功: 'code/基本功.md'
@@ -80,17 +90,6 @@ nav:
     - 调试技术:
       - 软件调试修炼之道: 'debug/软件调试修炼之道/book.md'
       - Effective Debugging: 'debug/Effective_Debugging.md'
-    - 数据库:
-      - Getting started with impala: 'database/getting_started_with_impala.md'
-      - mysql必知必会: 'database/mysql必知必会.md'
-      - mysql性能调优与架构实践: 'database/mysql性能调优与架构实践.md'
-      - Mysql技术内幕InnoDB存储引擎: 'database/Mysql技术内幕InnoDB存储引擎.md'
-      - Redis实战: 'database/redis实战.md'
-      - Redis深度历险核心原理和应用实践: 'database/redis深度历险核心原理和应用实践/book.md'
-      - redis设计与实现: 'database/redis设计与实现.md'
-      - 七周七数据库: 'database/七周七数据库.md'
-      - 深入浅出mysql: 'database/深入浅出mysql.md'
-      - 高性能mysql第三版: 'database/高性能mysql第三版.md'
     - 前端:
       - CSS_The_Missing_Manual: 'frontend/CSS_The_Missing_Manual.md'
       - reactjs小书: 'frontend/reactjs_小书.md'
@@ -114,22 +113,22 @@ nav:
       - go book: 'golang/the_way_to_go/book.md'
       - advanced-go-programming: 'golang/advanced-go-programming-book/advanced-go-programming.md'
       - go-build-web-applications: 'golang/go-build-web-applications/module1/go-build-web-applications/go-build-web-applications.md'
-    - java:
-      - java basic introduction: 'java/java-basic-introduction.md'
-    - 网络:
-      - TCP IP详解卷一: 'network/tcp_ip详解卷一/tcp_ip详解卷一.md'
     - python:
       - Fluent Python: 'python/fluent_python.md'
       - Python Microservices Development: 'python/Python_Microservices_Development.md'
       - High Performance Python: 'python/high_performance_python.md'
       - Python网络编程: 'python/python_网络编程.md'
+    - java:
+      - java basic introduction: 'java/java-basic-introduction.md'
+    - 网络:
+      - TCP IP详解卷一: 'network/tcp_ip详解卷一/tcp_ip详解卷一.md'
     - unix/linux:
       - Linux高性能服务器编程: 'unix_linux/Linux高性能服务器编程/Linux高性能服务器编程.md'
       - unix编程艺术: 'unix_linux/unix编程艺术.md'
       - unix网络编程卷一: 'unix_linux/unix网络编程卷一.md'
-      - unix编程艺术: 'unix_linux/unix编程艺术.md'
-#      - APUE: 'unix_linux/APUE/APUE笔记.md'   
-#      - UNP: 'unix_linux/unp/unp笔记.md'             
+      - unix编程艺术: 'unix_linux/unix编程艺术.md' 
+      - UNP: 'unix_linux/unp/unp笔记.md'           
+#      - APUE: 'unix_linux/APUE/APUE笔记.md'        
     - 分布式:
       - Kafka 权威指南:  '分布式/Kafka权威指南.md'
       - 分布式框架原理与应用:  '分布式/分布式框架原理与应用.md'
@@ -147,20 +146,6 @@ nav:
       - Pro Git: '开发工具/pro_git.md'
       - Mastering Vim: '开发工具/Mastering_vim.md'
       - Mastering Vim Quickly: '开发工具/mastering_vim_quickly.md'
-    - 思维:
-      - 专注力: '思维认知/专注力_化繁为简的惊人力量.md'
-      - 为什么精英这样用脑不会累: '思维认知/为什么精英这样用脑不会累.md'
-      - 刻意练习: '思维认知/刻意练习.md'
-      - 如何想到又做到: '思维认知/如何想到又做到.md'
-      - 学习之道: '思维认知/学习之道.md'
-      - 学习力: '思维认知/学习力.md'
-      - 批判性思维工具: '思维认知/批判性思维工具.md'
-      - 程序员的思维修炼: '思维认知/程序员的思维修炼(开发认知潜能的九堂课).md'
-      - 认知天性: '思维认知/认知天性.md'
-      - 超效率手册: '思维认知/超效率手册.md'
-      - 如何高效记忆: '思维认知/如何高效记忆.md'
-      - 科学学习: '思维认知/科学学习.md'
-      - 高效程序员的45个习惯: '思维认知/高效程序员的45个习惯.md'
     - 源码:
       - 源码阅读: '源码阅读_sourcecode/README.md'
     - 网站架构微服务:
@@ -181,11 +166,6 @@ nav:
     - 运维:
       - linux集群和自动化运维: '运维/linux集群和自动化运维.md'
       - python自动化运维: '运维/python自动化运维.md'
-    - 金融理财:
-      - 定投十年: '金融理财/定投十年.md'
-      - 穷查理宝典: '金融理财/穷查理宝典.md'
-    - 写作:
-      - 刷屏文案写作技巧: '写作/刷屏文案写作技巧.md'
     - 互联网:
       - 我的互联网方法论-周鸿祎: '互联网/我的互联网方法论-周鸿祎.md'
       - 用户思维: '互联网/用户思维.md'
@@ -196,6 +176,25 @@ nav:
       - go业务基础库之Error&Context: 'lecture/Gopher/Go_Error/go业务基础库之Error&Context.md'
       - Go同步和并发设计模式: 'lecture/Gopher/Go同步和并发设计模式/note.md'
       - 左耳朵耗子-我这技术二十年: 'lecture/技术演讲/左耳朵耗子-我这技术二十年.md'
+    - 金融理财:
+      - 定投十年: '金融理财/定投十年.md'
+      - 穷查理宝典: '金融理财/穷查理宝典.md'
+    - 写作:
+      - 刷屏文案写作技巧: '写作/刷屏文案写作技巧.md'
+    - 思维:
+      - 专注力: '思维认知/专注力_化繁为简的惊人力量.md'
+      - 为什么精英这样用脑不会累: '思维认知/为什么精英这样用脑不会累.md'
+      - 刻意练习: '思维认知/刻意练习.md'
+      - 如何想到又做到: '思维认知/如何想到又做到.md'
+      - 学习之道: '思维认知/学习之道.md'
+      - 学习力: '思维认知/学习力.md'
+      - 批判性思维工具: '思维认知/批判性思维工具.md'
+      - 程序员的思维修炼: '思维认知/程序员的思维修炼(开发认知潜能的九堂课).md'
+      - 认知天性: '思维认知/认知天性.md'
+      - 超效率手册: '思维认知/超效率手册.md'
+      - 如何高效记忆: '思维认知/如何高效记忆.md'
+      - 科学学习: '思维认知/科学学习.md'
+      - 高效程序员的45个习惯: '思维认知/高效程序员的45个习惯.md'
     - 职场:
       - give and take: 'career/give_and_take.md'
       - the_effective_engineer: 'career/the_effective_engineer.md'
