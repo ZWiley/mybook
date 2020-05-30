@@ -1,7 +1,11 @@
 site_name: ZWiley的笔记
 
 theme:
-    name: readthedocs
+    name: material
+    features:
+        - instant
+    font:
+        code: Ubuntu Mono
     highlightjs: true
     hljs_languages:
         - yaml
@@ -10,7 +14,7 @@ theme:
     prev_next_buttons_location: bottom
     navigation_depth: 6
     sticky_navigation: False
-        
+
 repo_name: 'GitHub'
 repo_url: https://github.com/zwiley/mybook/
 
