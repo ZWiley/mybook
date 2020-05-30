@@ -3267,8 +3267,9 @@
                   <h1>0 项目概述</h1>
                 
                 <h3 id="_1">项目概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/ZWiley/TinyWebServer">项目地址</a></p>
 <h4 id="tinywebserver">TinyWebServer<a class="headerlink" href="#tinywebserver" title="Permanent link">&para;</a></h4>
-<p>Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭建属于自己的服务器.</p>
+<p>Linux下C++轻量级Web服务器，快速实践网络编程，搭建属于自己的服务器。参考《Linux高性能服务器编程》</p>
 <ul>
 <li>使用 <strong>线程池 + 非阻塞socket + epoll(ET和LT均实现) + 事件处理(Reactor和Proactor均实现)</strong> 的并发模型</li>
 <li>使用<strong>状态机</strong>解析HTTP请求报文，支持解析<strong>GET和POST</strong>请求</li>
@@ -3360,7 +3361,7 @@
 <p>测试前确认已安装MySQL数据库</p>
 </li>
 </ul>
-<p>```sqlite
+<p>```sql
   create database yourdb;// 建立yourdb库</p>
 <p>// 创建user表
   USE yourdb;
@@ -3392,7 +3393,7 @@
 <li>浏览器端</li>
 </ul>
 <p><code>sh
-  ip:9006</code></p>
+  127.0.0.1:9006</code></p>
 <h4 id="_5">个性化运行<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code>./server <span class="o">[</span>-p port<span class="o">]</span> <span class="o">[</span>-v SQLVerify<span class="o">]</span> <span class="o">[</span>-l LOGWrite<span class="o">]</span> <span class="o">[</span>-m TRIGMode<span class="o">]</span> <span class="o">[</span>-o OPT_LINGER<span class="o">]</span> <span class="o">[</span>-s sql_num<span class="o">]</span> <span class="o">[</span>-t thread_num<span class="o">]</span> <span class="o">[</span>-c close_log<span class="o">]</span> <span class="o">[</span>-a actor_model<span class="o">]</span>
 </code></pre></div>
@@ -3509,7 +3510,7 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.config.lang": "en", "search.result.placeholder": "Type to start searching", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "1 matching document", "clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.result.none": "No matching documents", "search.config.separator": "[\\s\\-]+", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "search.result.none": "No matching documents", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.other": "# matching documents", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.lang": "en", "search.result.one": "1 matching document"}</script>
       
       <script>
         app = initialize({
