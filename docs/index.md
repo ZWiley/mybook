@@ -1,6 +1,6 @@
 # 读书笔记
 
-> Stay Hungry Stay Foolish.
+> Stay Hungry Stay Foolish.<br>
 > 整理自己记录的笔记以及搬运其他文章笔记，方便自己记录学习。
 > https://github.com/zwiley/mybook
 
