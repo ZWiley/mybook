@@ -3361,129 +3361,77 @@
 
 
 <h1 id="_4">归并排序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="c1">//快速排序思想：</span>
-<span class="c1">//选出一个哨兵，通过一趟排序将待排序列分割成两部分</span>
-<span class="c1">//其中一部分小于哨兵值，另外一部分大于哨兵值</span>
-<span class="c1">//然后再对两部分分别进行上述操作，直到排序完成</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">//两个序列从相同位置往右遍历比较，根据大小重新排列在新数组中的前提是，左右两个序列都是从小到大排列的</span>
 
+<span class="c1">//归并排序思想：先递归再归并</span>
+<span class="c1">//先递归，将左右归并为有序序列，再将左右进行归并</span>
+<span class="c1">//将左右有序归并时，两个序列从相同位置往右遍历比较，根据大小重新排列在新数组中</span>
+<span class="c1">//核心函数是merge，Msort函数是递归分治调用merge的过程</span>
+
+<span class="c1">//归并排序，平均情况O(nlogn),最好O(nlogn)，最坏O(nlogn)，空间复杂度O(n + logn)，稳定</span>
 
 <span class="c1">//解释时间复杂度为nlogn</span>
-<span class="c1">//分治算法，每次选出哨兵，将待排序列分成两部分，一直分下去，直到只有一个元素，平均分开，相当于n个结点的二叉树，共有logn层，递归深度为logn</span>
-<span class="c1">//每一层都需要对当前分组的元素排序，问题规模大概为n，第一层遍历n个元素，第二层遍历n-1个...直到最后一层为一个</span>
+<span class="c1">//一趟归并要将整个序列所有元素遍历一遍，复杂度为O(n)</span>
+<span class="c1">//递归树的高度为logn，每次递归都要一趟归并</span>
 <span class="c1">//nlogn</span>
 
-<span class="c1">//解释空间复杂度O(logn)~O(n)</span>
-<span class="c1">//主要是递归造成的栈空间的使用</span>
-<span class="c1">//最好情况递归树深度为logn，最坏情况为n</span>
-
-<span class="c1">//快排的最差情况什么时候发生？</span>
-<span class="c1">//1. 已排序</span>
-<span class="c1">//2. 数值全部相等（1的特殊情况）</span>
-<span class="c1">//在上面的情况下选择的标定元素一直为第一个，则时间复杂度变为O(n^2)</span>
-
-<span class="c1">//快速排序，平均情况O(nlogn),最好O(nlogn)，最坏O(n^2)（选择标定元素有关），空间复杂度O(logn)~O(n)，不稳定</span>
-
-<span class="cm">/**************************************************************************</span>
-<span class="cm">**  要取得[a,b)的随机整数，使用(rand() % (b-a))+ a;</span>
-<span class="cm">**  要取得[a,b]的随机整数，使用(rand() % (b-a+1))+ a;</span>
-<span class="cm">**  要取得(a,b]的随机整数，使用(rand() % (b-a))+ a + 1;</span>
-<span class="cm">**  通用公式:a + rand() % n；其中的a是起始值，n是整数的范围。</span>
-<span class="cm">**  要取得a到b之间的随机整数，另一种表示：a + (int)b * rand() / (RAND_MAX + 1)。</span>
-<span class="cm">**  要取得0～1之间的浮点数，可以使用rand() / double(RAND_MAX)。</span>
-<span class="cm">*************************************************************************/</span>
-
-
+<span class="c1">//解释空间复杂度O(n + logn)</span>
+<span class="c1">//主要是递归造成的栈空间的使用logn，和每次归并都需要将原数组归并到新数组，再拷贝回原数组，和每次归并都需要将原数组归并到新数组，再拷贝回原数组O(n)</span>
+<span class="c1">//O(n + logn)</span>
 <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span class="c1">//双路快排，尽量写这种</span>
-<span class="c1">//begin,begin+1...i...j...end</span>
-<span class="kt">int</span> <span class="nf">partition2</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">){</span>
-    <span class="c1">//产生start和end之间的随机数</span>
-    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+<span class="c1">//函数是将sr两侧归并的数据，重新排列进tr中</span>
+<span class="c1">//sr[s...m, m+1...t]</span>
+<span class="c1">//int num = 0;</span>
+<span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span><span class="kt">int</span> <span class="n">sr</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">tr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">length</span><span class="p">];</span>
 
-    <span class="c1">//将选中的数字交换到start位置</span>
-    <span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">]);</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">s</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">];</span>
-
-    <span class="c1">//选择的pivot为start位置</span>
-    <span class="c1">//data[start+1, i) &lt;= pivot   i-1 为小于v的最后一个元素，i为当前左边访问的元素</span>
-    <span class="c1">//data(j, end] &gt;= pivot  j+1 为大于v的第一个元素，j为当前右边访问的元素</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">end</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">){</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="p">)</span>
-            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pivot</span><span class="p">)</span>
-            <span class="n">j</span><span class="o">--</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">)</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
-
-        <span class="c1">//下面这两行，swap交换之后，双方需要移动，否则会增加一次无用的比较</span>
-        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-        <span class="n">j</span><span class="o">--</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">//最后j停止在&lt;= v的最后一个位置， i停止在&gt;=pivot的第一个位置，pivot与j进行交换</span>
-    <span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
-    <span class="k">return</span> <span class="n">j</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">swapOffer</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">){</span>
-    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">//单路随机快排</span>
-<span class="c1">//begin,begin+1...small,small+1...end</span>
-<span class="kt">int</span> <span class="nf">partition</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">){</span>
-    <span class="c1">//产生start和end之间的随机数</span>
-    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
-
-    <span class="c1">//将选中的数字交换到start位置</span>
-    <span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">]);</span>
-
-    <span class="c1">//选择的pivot为start位置</span>
-    <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">];</span>
-
-    <span class="c1">//我们要达到这样的效果</span>
-    <span class="c1">//data[start+1, small] &lt; v   small为小于pivot的最后一个元素</span>
-    <span class="c1">//data[small+1, i - 1] &gt;= v   small+1为大于等于pivot的第一个元素</span>
-
-    <span class="c1">//注意small的取值,small是为了标识小于</span>
-    <span class="kt">int</span> <span class="n">small</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">){</span>
-            <span class="c1">//若当前的元素小于pivot，需要将该元素放到data[start+1, small]中紧挨着small位置</span>
-            <span class="c1">//将small+1和i进行交换，并将small的长度加长</span>
-            <span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">small</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-            <span class="o">++</span><span class="n">small</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">sr</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">tr</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">sr</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">];</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="c1">//num += m - i + 1;</span>
+            <span class="n">tr</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">sr</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">];</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="c1">//最后将start放在应该的位置，即small和small+1之间，因为左侧全是小于pivot的，因此将small和pivot交换</span>
-    <span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">small</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">start</span><span class="p">]);</span>
-    <span class="k">return</span> <span class="n">small</span><span class="p">;</span>
+    <span class="c1">//当两侧数据长度并非完全相等时，只需要将左、右侧两侧剩余数据拷贝即可</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">)</span>
+        <span class="n">tr</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">sr</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">];</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">)</span>
+        <span class="n">tr</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">sr</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">];</span>
+
+    <span class="c1">//将辅助数组的元素拷贝到原数组中</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">sr</span><span class="p">[</span><span class="n">s</span> <span class="o">+</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">quickSortOffer</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">){</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span>
+<span class="c1">//sr[s, t]原数组</span>
+<span class="kt">void</span> <span class="nf">msort</span><span class="p">(</span><span class="kt">int</span> <span class="n">sr</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;=</span> <span class="n">t</span><span class="p">)</span>
         <span class="k">return</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">){</span>
-        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">partition2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>  <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
-        <span class="n">quickSortOffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>  <span class="n">start</span><span class="p">,</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="n">quickSortOffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
-    <span class="p">}</span>
+
+    <span class="c1">//创建平分中点</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">msort</span><span class="p">(</span><span class="n">sr</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+    <span class="n">msort</span><span class="p">(</span><span class="n">sr</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+    <span class="c1">//优化，因为左右两侧都是排序好的数组，只有当左侧最大大于右侧最小时才合并，因为合并意味着比较，会浪费时间</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sr</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">sr</span><span class="p">[</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">merge</span><span class="p">(</span><span class="n">sr</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-    <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span><span class="mi">53</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span> <span class="p">};</span>
-    <span class="n">quickSortOffer</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>  <span class="c1">//0表示从数组0位置开始，到4位置排序 </span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="kt">int</span> <span class="n">sr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">};</span>
+    <span class="n">msort</span><span class="p">(</span><span class="n">sr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+    <span class="c1">//std::cout &lt;&lt; num &lt;&lt; endl;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">system</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -4097,7 +4045,7 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "search.result.none": "No matching documents", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.other": "# matching documents", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.lang": "en", "search.result.one": "1 matching document"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "search.config.separator": "[\\s\\-]+", "search.result.other": "# matching documents", "clipboard.copied": "Copied to clipboard", "search.result.placeholder": "Type to start searching", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "1 matching document", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en"}</script>
       
       <script>
         app = initialize({
