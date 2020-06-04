@@ -1,0 +1,4091 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
+    
+    
+      
+        <title>muduo中的线程 - ZWiley的随记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a2408e81.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=:300,400,400i,700%7CUbuntu+Mono&display=fallback">
+        <style>body,input{font-family:"",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            ZWiley的随记
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              muduo中的线程
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    ZWiley的随记
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="简介" class="md-nav__link">
+      简介
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      C++
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="C++" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        C++
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/STL/" title="C++ STL" class="md-nav__link">
+      C++ STL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E7%BC%96%E8%AF%91%E5%BA%95%E5%B1%82/" title="C++编译底层" class="md-nav__link">
+      C++编译底层
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="C++基础知识" class="md-nav__link">
+      C++基础知识
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88_%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6_%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2_RTTI/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%9F%BA%E7%A1%80%E8%AF%AD%E8%A8%80/C%2B%2B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="C++面向对象" class="md-nav__link">
+      C++面向对象
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      计算机基础
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="计算机基础" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        计算机基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统" class="md-nav__link">
+      操作系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络" class="md-nav__link">
+      计算机网络
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构" class="md-nav__link">
+      数据结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" title="海量数据处理" class="md-nav__link">
+      海量数据处理
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      基本手写代码
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="基本手写代码" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        基本手写代码
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81%E9%A2%98%E7%9B%AE/" title="常见基本代码" class="md-nav__link">
+      常见基本代码
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      项目基础知识
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="项目基础知识" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        项目基础知识
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" title="Linux系统编程及基本命令" class="md-nav__link">
+      Linux系统编程及基本命令
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/MySQL/" title="MySQL" class="md-nav__link">
+      MySQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/" title="Redis" class="md-nav__link">
+      Redis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Socket%E7%BC%96%E7%A8%8B/" title="Socket编程" class="md-nav__link">
+      Socket编程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      webserver项目
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="webserver项目" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        webserver项目
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/0%20%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0/" title="0 项目概述" class="md-nav__link">
+      0 项目概述
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/1%20%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6%E5%B0%81%E8%A3%85%E7%B1%BB/" title="1 线程同步机制封装类" class="md-nav__link">
+      1 线程同步机制封装类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/2%20%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%8D%8A%E5%8F%8D%E5%BA%94%E5%A0%86%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E4%B8%8A%EF%BC%89/" title="2 半同步半反应堆线程池（上）" class="md-nav__link">
+      2 半同步半反应堆线程池（上）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/3%20%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%8D%8A%E5%8F%8D%E5%BA%94%E5%A0%86%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E4%B8%8B%EF%BC%89/" title="3 半同步半反应堆线程池（下）" class="md-nav__link">
+      3 半同步半反应堆线程池（下）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/4%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/" title="4 http连接处理（上）" class="md-nav__link">
+      4 http连接处理（上）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/5%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/" title="5 http连接处理（中）" class="md-nav__link">
+      5 http连接处理（中）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/6%20http%E8%BF%9E%E6%8E%A5%E5%A4%84%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/" title="6 http连接处理（下）" class="md-nav__link">
+      6 http连接处理（下）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/7%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8A%EF%BC%89/" title="7 定时器处理非活动连接（上）" class="md-nav__link">
+      7 定时器处理非活动连接（上）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/8%20%E5%AE%9A%E6%97%B6%E5%99%A8%E5%A4%84%E7%90%86%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%BF%9E%E6%8E%A5%EF%BC%88%E4%B8%8B%EF%BC%89/" title="8 定时器处理非活动连接（下）" class="md-nav__link">
+      8 定时器处理非活动连接（下）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/9%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8A%EF%BC%89/" title="9 日志系统（上）" class="md-nav__link">
+      9 日志系统（上）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/10%20%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8B%EF%BC%89/" title="10 日志系统（下）" class="md-nav__link">
+      10 日志系统（下）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/11%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" title="11 数据库连接池" class="md-nav__link">
+      11 数据库连接池
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/12%20%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" title="12 常见问题" class="md-nav__link">
+      12 常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/13%20%E9%A1%B9%E7%9B%AE%E6%A2%B3%E7%90%86/" title="13 项目梳理" class="md-nav__link">
+      13 项目梳理
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      源码
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="源码" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        源码
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB_sourcecode/" title="源码阅读" class="md-nav__link">
+      源码阅读
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-2" type="checkbox" id="nav-7-2" checked>
+    
+    <label class="md-nav__link" for="nav-7-2">
+      Muduo
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Muduo" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Muduo
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-2-1" type="checkbox" id="nav-7-2-1">
+    
+    <label class="md-nav__link" for="nav-7-2-1">
+      base
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="base" data-md-level="3">
+      <label class="md-nav__title" for="nav-7-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        base
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../base/1.%20%E6%97%B6%E9%97%B4_%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C_%E5%BC%82%E5%B8%B8/" title="时间_原子操作_异常" class="md-nav__link">
+      时间_原子操作_异常
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../base/2.%20%E7%BA%BF%E7%A8%8B/" title="线程" class="md-nav__link">
+      线程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../base/3.%20%E7%BA%BF%E7%A8%8B2/" title="线程2" class="md-nav__link">
+      线程2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../base/4.%20%E6%97%A5%E5%BF%97/" title="日志" class="md-nav__link">
+      日志
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-2-2" type="checkbox" id="nav-7-2-2">
+    
+    <label class="md-nav__link" for="nav-7-2-2">
+      net
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="net" data-md-level="3">
+      <label class="md-nav__title" for="nav-7-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        net
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../net/1.%20EventLoop/" title="EventLoop" class="md-nav__link">
+      EventLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../net/2.%20%E8%BF%9E%E6%8E%A5%E6%97%B6%E5%BA%8F/" title="连接时序" class="md-nav__link">
+      连接时序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../net/3.%20%E5%85%B3%E9%97%AD%E6%97%B6%E5%BA%8F/" title="关闭时序" class="md-nav__link">
+      关闭时序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../net/4.%20Buffer/" title="Buffer" class="md-nav__link">
+      Buffer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../net/5.%20callback/" title="callback" class="md-nav__link">
+      callback
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../net/6.%20Client/" title="Client" class="md-nav__link">
+      Client
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1/" title="服务器方案设计" class="md-nav__link">
+      服务器方案设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1%20%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="基础知识" class="md-nav__link">
+      基础知识
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2%20%E6%80%BB%E4%BD%93%E8%A7%A3%E6%9E%90/" title="总体解析" class="md-nav__link">
+      总体解析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3%20muduo%E8%AF%A6%E7%BB%86%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B/" title="muduo详细运行流程" class="md-nav__link">
+      muduo详细运行流程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4%20muduo%E4%B8%AD%E7%9A%84%E5%AE%9A%E6%97%B6%E5%99%A8/" title="muduo中的定时器" class="md-nav__link">
+      muduo中的定时器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="muduo中的线程" class="md-nav__link md-nav__link--active">
+      muduo中的线程
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6%20muduo%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83/" title="muduo中的回调" class="md-nav__link">
+      muduo中的回调
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      数据库
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="数据库" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        数据库
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/getting_started_with_impala/" title="Getting started with impala" class="md-nav__link">
+      Getting started with impala
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/" title="mysql必知必会" class="md-nav__link">
+      mysql必知必会
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/mysql%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E4%B8%8E%E6%9E%B6%E6%9E%84%E5%AE%9E%E8%B7%B5/" title="mysql性能调优与架构实践" class="md-nav__link">
+      mysql性能调优与架构实践
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/Mysql%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" title="Mysql技术内幕InnoDB存储引擎" class="md-nav__link">
+      Mysql技术内幕InnoDB存储引擎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/redis%E5%AE%9E%E6%88%98/" title="Redis实战" class="md-nav__link">
+      Redis实战
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/" title="Redis深度历险核心原理和应用实践" class="md-nav__link">
+      Redis深度历险核心原理和应用实践
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" title="redis设计与实现" class="md-nav__link">
+      redis设计与实现
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/%E4%B8%83%E5%91%A8%E4%B8%83%E6%95%B0%E6%8D%AE%E5%BA%93/" title="七周七数据库" class="md-nav__link">
+      七周七数据库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAmysql/" title="深入浅出mysql" class="md-nav__link">
+      深入浅出mysql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/%E9%AB%98%E6%80%A7%E8%83%BDmysql%E7%AC%AC%E4%B8%89%E7%89%88/" title="高性能mysql第三版" class="md-nav__link">
+      高性能mysql第三版
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      代码
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="代码" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        代码
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/" title="代码大全" class="md-nav__link">
+      代码大全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%AA%E6%9D%A5/" title="代码的未来" class="md-nav__link">
+      代码的未来
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/%E5%9F%BA%E6%9C%AC%E5%8A%9F/" title="基本功" class="md-nav__link">
+      基本功
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/%E6%95%8F%E6%8D%B7%E6%8A%80%E8%83%BD%E4%BF%AE%E7%82%BC/" title="敏捷技能修炼" class="md-nav__link">
+      敏捷技能修炼
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%8497%E4%BB%B6%E4%BA%8B/" title="程序员应该知道的97件事" class="md-nav__link">
+      程序员应该知道的97件事
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF/" title="编写可读代码的艺术" class="md-nav__link">
+      编写可读代码的艺术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/%E7%BC%96%E7%A8%8B%E5%8C%A0%E8%89%BA/" title="编程匠艺" class="md-nav__link">
+      编程匠艺
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" title="领域驱动设计" class="md-nav__link">
+      领域驱动设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../code/codelife_%E4%B8%8D%E6%AD%A2%E4%BB%A3%E7%A0%81/" title="codelife_不止代码" class="md-nav__link">
+      codelife_不止代码
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      调试技术
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="调试技术" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        调试技术
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../debug/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/book/" title="软件调试修炼之道" class="md-nav__link">
+      软件调试修炼之道
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../debug/Effective_Debugging/" title="Effective Debugging" class="md-nav__link">
+      Effective Debugging
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      前端
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="前端" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        前端
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../frontend/CSS_The_Missing_Manual/" title="CSS_The_Missing_Manual" class="md-nav__link">
+      CSS_The_Missing_Manual
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../frontend/reactjs_%E5%B0%8F%E4%B9%A6/" title="reactjs小书" class="md-nav__link">
+      reactjs小书
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/" title="ES6标准入门" class="md-nav__link">
+      ES6标准入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../frontend/jquery_pocket_reference/" title="jquery_pocket_reference" class="md-nav__link">
+      jquery_pocket_reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../frontend/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3bootstrap/" title="深入理解bootstrap" class="md-nav__link">
+      深入理解bootstrap
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+      golang
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="golang" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        golang
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/1_the_go_programming_lauguage/" title="1 The Go Programming Language" class="md-nav__link">
+      1 The Go Programming Language
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/2_the_go_programming_lauguage/" title="2 The Go Programming Language" class="md-nav__link">
+      2 The Go Programming Language
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/3_the_go_programming_lauguage/" title="3 The Go Programming Language" class="md-nav__link">
+      3 The Go Programming Language
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/build-web-application-with-golang/" title="Build Web Application With Golang" class="md-nav__link">
+      Build Web Application With Golang
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/go101/book/" title="Go101" class="md-nav__link">
+      Go101
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/network-programming-with-go/book/" title="Network Programming with go" class="md-nav__link">
+      Network Programming with go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/building-microservices-with-go/book/" title="Building Microservices With Go" class="md-nav__link">
+      Building Microservices With Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/building_restful_web_services_with_go/book/" title="Building Restful Web Services with Go" class="md-nav__link">
+      Building Restful Web Services with Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/concurrency-in-go/concurrency_in_go/" title="Concurrency In Go" class="md-nav__link">
+      Concurrency In Go
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/go_in_action%28go%E8%AF%AD%E8%A8%80%E5%AE%9E%E6%88%98%29/" title="Go In Action(Go 实战)" class="md-nav__link">
+      Go In Action(Go 实战)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3/" title="Go学习笔记语言详解" class="md-nav__link">
+      Go学习笔记语言详解
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/" title="Go学习笔记源码剖析" class="md-nav__link">
+      Go学习笔记源码剖析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/" title="go语言编程" class="md-nav__link">
+      go语言编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/the_way_to_go/book/" title="go book" class="md-nav__link">
+      go book
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/advanced-go-programming-book/advanced-go-programming/" title="advanced-go-programming" class="md-nav__link">
+      advanced-go-programming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../golang/go-build-web-applications/module1/go-build-web-applications/go-build-web-applications/" title="go-build-web-applications" class="md-nav__link">
+      go-build-web-applications
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+    
+    <label class="md-nav__link" for="nav-13">
+      python
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="python" data-md-level="1">
+      <label class="md-nav__title" for="nav-13">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/fluent_python/" title="Fluent Python" class="md-nav__link">
+      Fluent Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/Python_Microservices_Development/" title="Python Microservices Development" class="md-nav__link">
+      Python Microservices Development
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/high_performance_python/" title="High Performance Python" class="md-nav__link">
+      High Performance Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/python_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="Python网络编程" class="md-nav__link">
+      Python网络编程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+    
+    <label class="md-nav__link" for="nav-14">
+      java
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="java" data-md-level="1">
+      <label class="md-nav__title" for="nav-14">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        java
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../java/java-basic-introduction/" title="java basic introduction" class="md-nav__link">
+      java basic introduction
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+    
+    <label class="md-nav__link" for="nav-15">
+      网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-15">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../network/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/tcp_ip%E8%AF%A6%E8%A7%A3%E5%8D%B7%E4%B8%80/" title="TCP IP详解卷一" class="md-nav__link">
+      TCP IP详解卷一
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16">
+    
+    <label class="md-nav__link" for="nav-16">
+      unix/linux
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="unix/linux" data-md-level="1">
+      <label class="md-nav__title" for="nav-16">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        unix/linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../unix_linux/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B/" title="Linux高性能服务器编程" class="md-nav__link">
+      Linux高性能服务器编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" title="unix编程艺术" class="md-nav__link">
+      unix编程艺术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../unix_linux/unix%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%B7%E4%B8%80/" title="unix网络编程卷一" class="md-nav__link">
+      unix网络编程卷一
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../unix_linux/unix%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" title="unix编程艺术" class="md-nav__link">
+      unix编程艺术
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../unix_linux/unp/unp%E7%AC%94%E8%AE%B0/" title="UNP" class="md-nav__link">
+      UNP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
+    
+    <label class="md-nav__link" for="nav-17">
+      分布式
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="分布式" data-md-level="1">
+      <label class="md-nav__title" for="nav-17">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        分布式
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" title="Kafka 权威指南" class="md-nav__link">
+      Kafka 权威指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" title="分布式框架原理与应用" class="md-nav__link">
+      分布式框架原理与应用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/" title="大规模分布式存储系统" class="md-nav__link">
+      大规模分布式存储系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B7%B1%E5%85%A5%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%8E%E5%8E%9F%E7%90%86%E5%88%B0%E5%AE%9E%E8%B7%B5/" title="深入分布式缓存从原理到实践" class="md-nav__link">
+      深入分布式缓存从原理到实践
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-18" type="checkbox" id="nav-18">
+    
+    <label class="md-nav__link" for="nav-18">
+      搜索引擎
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="搜索引擎" data-md-level="1">
+      <label class="md-nav__title" for="nav-18">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        搜索引擎
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/" title="Elasticsearch实战" class="md-nav__link">
+      Elasticsearch实战
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-19" type="checkbox" id="nav-19">
+    
+    <label class="md-nav__link" for="nav-19">
+      容器
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="容器" data-md-level="1">
+      <label class="md-nav__title" for="nav-19">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        容器
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../devops/%E7%8E%A9%E8%BD%ACKubernets-CloudMan/" title="玩转Kubernets" class="md-nav__link">
+      玩转Kubernets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../devops/%E7%AC%AC%E4%B8%80%E6%9C%ACdocker%E4%B9%A6/" title="第一本docker书" class="md-nav__link">
+      第一本docker书
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-20" type="checkbox" id="nav-20">
+    
+    <label class="md-nav__link" for="nav-20">
+      开发工具
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="开发工具" data-md-level="1">
+      <label class="md-nav__title" for="nav-20">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        开发工具
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/practical_vim/practical_vim/" title="Practical Vim" class="md-nav__link">
+      Practical Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/vim8%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%AE%9E%E6%88%98/" title="Vim8文本处理实战" class="md-nav__link">
+      Vim8文本处理实战
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/learn_vim_the_hard_way/" title="Learn vim scrpt the hard way" class="md-nav__link">
+      Learn vim scrpt the hard way
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/pro_git/" title="Pro Git" class="md-nav__link">
+      Pro Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Mastering_vim/" title="Mastering Vim" class="md-nav__link">
+      Mastering Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/mastering_vim_quickly/" title="Mastering Vim Quickly" class="md-nav__link">
+      Mastering Vim Quickly
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-21" type="checkbox" id="nav-21">
+    
+    <label class="md-nav__link" for="nav-21">
+      网站架构微服务
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="网站架构微服务" data-md-level="1">
+      <label class="md-nav__title" for="nav-21">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        网站架构微服务
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/microservices_patterns_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/book/" title="微服务架构设计模式" class="md-nav__link">
+      微服务架构设计模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/" title="从0开始学架构" class="md-nav__link">
+      从0开始学架构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/web_scalavility_for_startup_engineers/" title="web scalavility for startup engineers" class="md-nav__link">
+      web scalavility for startup engineers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/design_data_instensive_application/" title="design_data_instensive_application" class="md-nav__link">
+      design_data_instensive_application
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/clean_architecture/" title="clean_architecture" class="md-nav__link">
+      clean_architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/" title="微服务设计" class="md-nav__link">
+      微服务设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/2_design_data_instensive_application/" title="2_design_data_instensive_application" class="md-nav__link">
+      2_design_data_instensive_application
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E5%BE%AE%E6%9C%8D%E5%8A%A1/3_design_data_instensive_application/" title="3_design_data_instensive_application" class="md-nav__link">
+      3_design_data_instensive_application
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-22" type="checkbox" id="nav-22">
+    
+    <label class="md-nav__link" for="nav-22">
+      软件工程/项目管理
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="软件工程/项目管理" data-md-level="1">
+      <label class="md-nav__title" for="nav-22">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        软件工程/项目管理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/" title="人月神话" class="md-nav__link">
+      人月神话
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BB%A3%E7%A0%81%E4%B9%8B%E6%AE%87/" title="代码之殇" class="md-nav__link">
+      代码之殇
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E8%A7%A3%E6%9E%90%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B-%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/" title="解析极限编程" class="md-nav__link">
+      解析极限编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93/" title="项目管理修炼之道" class="md-nav__link">
+      项目管理修炼之道
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B_%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%89%BA%E6%9C%AF/" title="修改软件的艺术" class="md-nav__link">
+      修改软件的艺术
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23" type="checkbox" id="nav-23">
+    
+    <label class="md-nav__link" for="nav-23">
+      运维
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="运维" data-md-level="1">
+      <label class="md-nav__title" for="nav-23">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        运维
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%BF%90%E7%BB%B4/linux%E9%9B%86%E7%BE%A4%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" title="linux集群和自动化运维" class="md-nav__link">
+      linux集群和自动化运维
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E8%BF%90%E7%BB%B4/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" title="python自动化运维" class="md-nav__link">
+      python自动化运维
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24">
+    
+    <label class="md-nav__link" for="nav-24">
+      互联网
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="互联网" data-md-level="1">
+      <label class="md-nav__title" for="nav-24">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        互联网
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E6%88%91%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E6%96%B9%E6%B3%95%E8%AE%BA-%E5%91%A8%E9%B8%BF%E7%A5%8E/" title="我的互联网方法论-周鸿祎" class="md-nav__link">
+      我的互联网方法论-周鸿祎
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E4%BA%92%E8%81%94%E7%BD%91/%E7%94%A8%E6%88%B7%E6%80%9D%E7%BB%B4/" title="用户思维" class="md-nav__link">
+      用户思维
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-25" type="checkbox" id="nav-25">
+    
+    <label class="md-nav__link" for="nav-25">
+      区块链
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="区块链" data-md-level="1">
+      <label class="md-nav__title" for="nav-25">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        区块链
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%28blockchain_guide%29/" title="区块链技术指南" class="md-nav__link">
+      区块链技术指南
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-26" type="checkbox" id="nav-26">
+    
+    <label class="md-nav__link" for="nav-26">
+      技术演讲
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="技术演讲" data-md-level="1">
+      <label class="md-nav__title" for="nav-26">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        技术演讲
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture/Gopher/%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%9A%84go%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98/note/" title="哔哩哔哩的go微服务实战" class="md-nav__link">
+      哔哩哔哩的go微服务实战
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture/Gopher/Go_Error/go%E4%B8%9A%E5%8A%A1%E5%9F%BA%E7%A1%80%E5%BA%93%E4%B9%8BError%26Context/" title="go业务基础库之Error&Context" class="md-nav__link">
+      go业务基础库之Error&Context
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture/Gopher/Go%E5%90%8C%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/note/" title="Go同步和并发设计模式" class="md-nav__link">
+      Go同步和并发设计模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../lecture/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/%E5%B7%A6%E8%80%B3%E6%9C%B5%E8%80%97%E5%AD%90-%E6%88%91%E8%BF%99%E6%8A%80%E6%9C%AF%E4%BA%8C%E5%8D%81%E5%B9%B4/" title="左耳朵耗子-我这技术二十年" class="md-nav__link">
+      左耳朵耗子-我这技术二十年
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-27" type="checkbox" id="nav-27">
+    
+    <label class="md-nav__link" for="nav-27">
+      金融理财
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="金融理财" data-md-level="1">
+      <label class="md-nav__title" for="nav-27">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        金融理财
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E5%AE%9A%E6%8A%95%E5%8D%81%E5%B9%B4/" title="定投十年" class="md-nav__link">
+      定投十年
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E9%87%91%E8%9E%8D%E7%90%86%E8%B4%A2/%E7%A9%B7%E6%9F%A5%E7%90%86%E5%AE%9D%E5%85%B8/" title="穷查理宝典" class="md-nav__link">
+      穷查理宝典
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-28" type="checkbox" id="nav-28">
+    
+    <label class="md-nav__link" for="nav-28">
+      写作
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="写作" data-md-level="1">
+      <label class="md-nav__title" for="nav-28">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        写作
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%86%99%E4%BD%9C/%E5%88%B7%E5%B1%8F%E6%96%87%E6%A1%88%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/" title="刷屏文案写作技巧" class="md-nav__link">
+      刷屏文案写作技巧
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-29" type="checkbox" id="nav-29">
+    
+    <label class="md-nav__link" for="nav-29">
+      思维
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="思维" data-md-level="1">
+      <label class="md-nav__title" for="nav-29">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        思维
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%93%E6%B3%A8%E5%8A%9B_%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84%E6%83%8A%E4%BA%BA%E5%8A%9B%E9%87%8F/" title="专注力" class="md-nav__link">
+      专注力
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B2%BE%E8%8B%B1%E8%BF%99%E6%A0%B7%E7%94%A8%E8%84%91%E4%B8%8D%E4%BC%9A%E7%B4%AF/" title="为什么精英这样用脑不会累" class="md-nav__link">
+      为什么精英这样用脑不会累
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/" title="刻意练习" class="md-nav__link">
+      刻意练习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E6%83%B3%E5%88%B0%E5%8F%88%E5%81%9A%E5%88%B0/" title="如何想到又做到" class="md-nav__link">
+      如何想到又做到
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/" title="学习之道" class="md-nav__link">
+      学习之道
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%AD%A6%E4%B9%A0%E5%8A%9B/" title="学习力" class="md-nav__link">
+      学习力
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E6%89%B9%E5%88%A4%E6%80%A7%E6%80%9D%E7%BB%B4%E5%B7%A5%E5%85%B7/" title="批判性思维工具" class="md-nav__link">
+      批判性思维工具
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%E4%BF%AE%E7%82%BC%28%E5%BC%80%E5%8F%91%E8%AE%A4%E7%9F%A5%E6%BD%9C%E8%83%BD%E7%9A%84%E4%B9%9D%E5%A0%82%E8%AF%BE%29/" title="程序员的思维修炼" class="md-nav__link">
+      程序员的思维修炼
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%AE%A4%E7%9F%A5%E5%A4%A9%E6%80%A7/" title="认知天性" class="md-nav__link">
+      认知天性
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E8%B6%85%E6%95%88%E7%8E%87%E6%89%8B%E5%86%8C/" title="超效率手册" class="md-nav__link">
+      超效率手册
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E8%AE%B0%E5%BF%86/" title="如何高效记忆" class="md-nav__link">
+      如何高效记忆
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E7%A7%91%E5%AD%A6%E5%AD%A6%E4%B9%A0/" title="科学学习" class="md-nav__link">
+      科学学习
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%80%9D%E7%BB%B4%E8%AE%A4%E7%9F%A5/%E9%AB%98%E6%95%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%8445%E4%B8%AA%E4%B9%A0%E6%83%AF/" title="高效程序员的45个习惯" class="md-nav__link">
+      高效程序员的45个习惯
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-30" type="checkbox" id="nav-30">
+    
+    <label class="md-nav__link" for="nav-30">
+      职场
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="职场" data-md-level="1">
+      <label class="md-nav__title" for="nav-30">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        职场
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/give_and_take/" title="give and take" class="md-nav__link">
+      give and take
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/the_effective_engineer/" title="the_effective_engineer" class="md-nav__link">
+      the_effective_engineer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E5%85%89%E9%80%9F%E6%88%90%E9%95%BF/" title="光速成长" class="md-nav__link">
+      光速成长
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E5%90%91%E4%B8%8A%E7%AE%A1%E7%90%86/" title="向上管理" class="md-nav__link">
+      向上管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E6%88%90%E5%8A%9F%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%AE%E6%A0%87/" title="成功动机与目标" class="md-nav__link">
+      成功动机与目标
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95/" title="番茄工作法" class="md-nav__link">
+      番茄工作法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/" title="聆听沟通学" class="md-nav__link">
+      聆听沟通学
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E7%9F%A5%E4%B9%8E%E8%81%8C%E4%BA%BA%E8%A7%89%E9%86%92/" title="知乎职人觉醒" class="md-nav__link">
+      知乎职人觉醒
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E7%9F%A5%E8%AF%86%E5%8F%98%E7%8E%B0/" title="知识变现" class="md-nav__link">
+      知识变现
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E8%81%86%E5%90%AC%E6%B2%9F%E9%80%9A%E5%AD%A6/" title="聆听沟通学" class="md-nav__link">
+      聆听沟通学
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E8%81%8C%E5%9C%BA%E5%8A%A8%E7%89%A9%E8%BF%9B%E5%8C%96%E6%89%8B%E5%86%8C/" title="职场动物进化手册" class="md-nav__link">
+      职场动物进化手册
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E8%81%8C%E5%9C%BA%E8%A7%A3%E9%87%8A%E7%B3%BB/" title="职场解释系" class="md-nav__link">
+      职场解释系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E8%AF%B7%E5%81%9C%E6%AD%A2%E6%97%A0%E6%95%88%E5%8A%AA%E5%8A%9B/" title="请停止无效努力" class="md-nav__link">
+      请停止无效努力
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E8%BD%AF%E6%8A%80%E8%83%BD/" title="软技能" class="md-nav__link">
+      软技能
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E9%AB%98%E6%95%8815%E6%B3%95%E5%88%99/" title="高效15法则" class="md-nav__link">
+      高效15法则
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E9%AB%98%E6%95%88%E6%B8%85%E5%8D%95%E5%B7%A5%E4%BD%9C%E6%B3%95/" title="高效清单工作法" class="md-nav__link">
+      高效清单工作法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../career/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/" title="程序员的自我修养" class="md-nav__link">
+      程序员的自我修养
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-31" type="checkbox" id="nav-31">
+    
+    <label class="md-nav__link" for="nav-31">
+      心理学
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="心理学" data-md-level="1">
+      <label class="md-nav__title" for="nav-31">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        心理学
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E4%B8%80%E5%88%87%E9%83%BD%E6%98%AF%E7%AB%A5%E5%B9%B4%E7%9A%84%E9%94%99%E5%90%97/" title="一切都是童年的错吗" class="md-nav__link">
+      一切都是童年的错吗
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" title="亲密关系" class="md-nav__link">
+      亲密关系
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E6%83%85%E5%95%86/" title="情商" class="md-nav__link">
+      情商
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E9%80%86%E5%95%86/" title="逆商" class="md-nav__link">
+      逆商
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%AD%A6/" title="拖延心理学" class="md-nav__link">
+      拖延心理学
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E7%A7%AF%E6%9E%81%E5%BF%83%E7%90%86%E5%AD%A6/" title="积极心理学" class="md-nav__link">
+      积极心理学
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B/" title="自控力" class="md-nav__link">
+      自控力
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%AE%9E%E6%93%8D%E7%AF%87/" title="自控力-实操篇" class="md-nav__link">
+      自控力-实操篇
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E8%87%AA%E6%8E%A7%E5%8A%9B-%E5%92%8C%E5%8E%8B%E5%8A%9B%E5%81%9A%E6%9C%8B%E5%8F%8B/" title="自控力:和压力做朋友" class="md-nav__link">
+      自控力:和压力做朋友
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E6%B4%BB%E5%87%BA%E6%9C%80%E4%B9%90%E8%A7%82%E7%9A%84%E8%87%AA%E5%B7%B1/" title="活出最乐观的自己" class="md-nav__link">
+      活出最乐观的自己
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E6%94%B9%E5%8F%98%E5%BF%83%E7%90%86%E5%AD%A6%E7%9A%8440%E9%A1%B9%E7%A0%94%E7%A9%B6/" title="改变心理学的40项研究" class="md-nav__link">
+      改变心理学的40项研究
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E8%B6%85%E8%B6%8A%E8%87%AA%E5%8D%91/" title="超越自卑" class="md-nav__link">
+      超越自卑
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../psychology/%E5%8F%8D%E8%84%86%E5%BC%B1/" title="反脆弱" class="md-nav__link">
+      反脆弱
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-32" type="checkbox" id="nav-32">
+    
+    <label class="md-nav__link" for="nav-32">
+      创业
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="创业" data-md-level="1">
+      <label class="md-nav__title" for="nav-32">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        创业
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../startup/hello_startup/" title="Hello Startup" class="md-nav__link">
+      Hello Startup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../startup/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%85%AC%E5%BC%80%E8%AF%BE-%E5%A6%82%E4%BD%95%E5%88%9B%E4%B8%9A/" title="斯坦福公开课如何创业" class="md-nav__link">
+      斯坦福公开课如何创业
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../startup/%E8%BF%90%E8%90%A5%E5%85%B6%E5%AE%9E%E5%BE%88%E7%AE%80%E5%8D%95/" title="运营其实很简单" class="md-nav__link">
+      运营其实很简单
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/Muduo/5 muduo中的线程.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                  <h1>muduo中的线程</h1>
+                
+                <p>首先，介绍在多线程编程中不可缺少的同步措施&ndash;Mutex和Condition.</p>
+<ul>
+<li>Mutex</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="cm">/***Mutex.h***/</span>
+<span class="k">class</span> <span class="nc">MutexLock</span> <span class="o">:</span> <span class="n">boost</span><span class="o">::</span><span class="n">noncopyable</span>
+<span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">MutexLock</span><span class="p">()</span>
+    <span class="o">:</span> <span class="n">holder_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex_</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">));</span><span class="c1">//MCHECK有什么作用？</span>
+  <span class="p">}</span>
+
+  <span class="o">~</span><span class="n">MutexLock</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">holder_</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_mutex_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex_</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="c1">// must be called when locked, i.e. for assertion</span>
+  <span class="kt">bool</span> <span class="n">isLockedByThisThread</span><span class="p">()</span> <span class="k">const</span><span class="c1">//是否被当前线程锁住</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">holder_</span> <span class="o">==</span> <span class="n">CurrentThread</span><span class="o">::</span><span class="n">tid</span><span class="p">();</span><span class="c1">//防止跨线程调用</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">assertLocked</span><span class="p">()</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">isLockedByThisThread</span><span class="p">());</span>
+  <span class="p">}</span>
+
+  <span class="c1">// internal usage</span>
+
+  <span class="kt">void</span> <span class="n">lock</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex_</span><span class="p">));</span><span class="c1">//加锁</span>
+    <span class="n">assignHolder</span><span class="p">();</span><span class="c1">//加锁时获得当前线程的线程号，即目前线程拥有这个锁</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">unlock</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">unassignHolder</span><span class="p">();</span><span class="c1">//表示目前没有线程拥有这个锁</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex_</span><span class="p">));</span><span class="c1">//去锁</span>
+  <span class="p">}</span>
+
+  <span class="n">pthread_mutex_t</span><span class="o">*</span> <span class="n">getPthreadMutex</span><span class="p">()</span> <span class="cm">/* non-const */</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="n">mutex_</span><span class="p">;</span>
+  <span class="p">}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="k">friend</span> <span class="k">class</span> <span class="nc">Condition</span><span class="p">;</span><span class="c1">//条件变量必须持有了锁之后才能使用</span>
+
+  <span class="k">class</span> <span class="nc">UnassignGuard</span> <span class="o">:</span> <span class="n">boost</span><span class="o">::</span><span class="n">noncopyable</span><span class="c1">//这个内部类出现的莫名其妙</span>
+  <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+    <span class="n">UnassignGuard</span><span class="p">(</span><span class="n">MutexLock</span><span class="o">&amp;</span> <span class="n">owner</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">owner_</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">owner_</span><span class="p">.</span><span class="n">unassignHolder</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="o">~</span><span class="n">UnassignGuard</span><span class="p">()</span>
+    <span class="p">{</span>
+      <span class="n">owner_</span><span class="p">.</span><span class="n">assignHolder</span><span class="p">();</span>
+    <span class="p">}</span>
+
+   <span class="k">private</span><span class="o">:</span>
+    <span class="n">MutexLock</span><span class="o">&amp;</span> <span class="n">owner_</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="kt">void</span> <span class="nf">unassignHolder</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">holder_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="nf">assignHolder</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">holder_</span> <span class="o">=</span> <span class="n">CurrentThread</span><span class="o">::</span><span class="n">tid</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="n">pthread_mutex_t</span> <span class="n">mutex_</span><span class="p">;</span>
+  <span class="kt">pid_t</span> <span class="n">holder_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Use as a stack variable, eg.</span>
+<span class="c1">// int Foo::size() const</span>
+<span class="c1">// {</span>
+<span class="c1">//   MutexLockGuard lock(mutex_);</span>
+<span class="c1">//   return data_.size();</span>
+<span class="c1">// }</span>
+<span class="c1">//该类负责管理互斥量的加锁和去锁</span>
+<span class="k">class</span> <span class="nc">MutexLockGuard</span> <span class="o">:</span> <span class="n">boost</span><span class="o">::</span><span class="n">noncopyable</span>
+<span class="p">{</span>   
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">explicit</span> <span class="n">MutexLockGuard</span><span class="p">(</span><span class="n">MutexLock</span><span class="o">&amp;</span> <span class="n">mutex</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">mutex_</span><span class="p">(</span><span class="n">mutex</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">mutex_</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="o">~</span><span class="n">MutexLockGuard</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">mutex_</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+  <span class="p">}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+
+  <span class="n">MutexLock</span><span class="o">&amp;</span> <span class="n">mutex_</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+<p>有四种操作互斥锁的方式：创建，销毁，加锁，解锁。在muduo中，用一个低级的资源管理类MutexLock来实现这四种操作，再用一个较高级的资源管理类MutexLockGuard来管理MutexLock，即用RAII手法对资源进行两次封装，防止资源泄漏。
+两个类都具有nocopy的属性，试想对Mutex的拷贝会在多线程程序中造成什么样的结果？有至少两个线程在同一时间拥有对一份资源的使用资格，后果不可设想。
+在MutexLock中有一个好玩的私有变量：holder_. 该变量在一个线程对资源加锁时，将holder_设置为使用资源线程的索引；解锁时将holder_设置为0。初始化Mutex时将holder_设置为0；销毁时检查holder_是否为0。以上四个步骤保证了Mutex在某一个时间段内能被一个线程使用。
+MutexLock与Condition是友元关系，具有很强的耦合度。</p>
+<ul>
+<li>Condition</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="cm">/***Condition.h***/</span>
+<span class="k">class</span> <span class="nc">Condition</span> <span class="o">:</span> <span class="n">boost</span><span class="o">::</span><span class="n">noncopyable</span>
+<span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">explicit</span> <span class="n">Condition</span><span class="p">(</span><span class="n">MutexLock</span><span class="o">&amp;</span> <span class="n">mutex</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">mutex_</span><span class="p">(</span><span class="n">mutex</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_cond_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pcond_</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="o">~</span><span class="n">Condition</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_cond_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pcond_</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">wait</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">MutexLock</span><span class="o">::</span><span class="n">UnassignGuard</span> <span class="n">ug</span><span class="p">(</span><span class="n">mutex_</span><span class="p">);</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_cond_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pcond_</span><span class="p">,</span> <span class="n">mutex_</span><span class="p">.</span><span class="n">getPthreadMutex</span><span class="p">()));</span>
+  <span class="p">}</span>
+
+  <span class="c1">// returns true if time out, false otherwise.</span>
+  <span class="kt">bool</span> <span class="n">waitForSeconds</span><span class="p">(</span><span class="kt">double</span> <span class="n">seconds</span><span class="p">);</span>
+
+  <span class="kt">void</span> <span class="nf">notify</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_cond_signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pcond_</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="nf">notifyAll</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">MCHECK</span><span class="p">(</span><span class="n">pthread_cond_broadcast</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pcond_</span><span class="p">));</span>
+  <span class="p">}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="n">MutexLock</span><span class="o">&amp;</span> <span class="n">mutex_</span><span class="p">;</span>
+  <span class="n">pthread_cond_t</span> <span class="n">pcond_</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+<p>条件变量有五种操作方式：创建，销毁，等待，单一通知，全部通知。
+在MutexLock中有一个内部类：UnassignGuard，该类的实例对象在Condition等待时创建，将holder_设置为0；当等待事件结束，又将holder_设置为原值。用MutexLock的析构函数检查等待事件是否发生在同一个线程中。
+Condition类中有一个waitForSecond函数，用于实现pthread_cond_timewait的封装。
+接下来，聊一聊主题&ndash;Thread。</p>
+<ul>
+<li>Thread</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="cm">/***Thread.h***/</span>
+<span class="k">class</span> <span class="nc">Thread</span> <span class="o">:</span> <span class="n">boost</span><span class="o">::</span><span class="n">noncopyable</span>   <span class="c1">//禁止拷贝</span>
+<span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span> <span class="p">()</span><span class="o">&gt;</span> <span class="n">ThreadFunc</span><span class="p">;</span><span class="c1">//仿函数对象,利用回调的方式使用线程函数</span>
+
+  <span class="k">explicit</span> <span class="nf">Thread</span><span class="p">(</span><span class="k">const</span> <span class="n">ThreadFunc</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span> <span class="o">=</span> <span class="n">string</span><span class="p">());</span><span class="c1">//普通的线程构造函数</span>
+<span class="cp">#ifdef __GXX_EXPERIMENTAL_CXX0X__</span>
+  <span class="k">explicit</span> <span class="nf">Thread</span><span class="p">(</span><span class="n">ThreadFunc</span><span class="o">&amp;&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span> <span class="o">=</span> <span class="n">string</span><span class="p">());</span><span class="c1">//移动的线程构造函数，比上面的更节省资源std::move</span>
+<span class="cp">#endif</span>
+  <span class="o">~</span><span class="n">Thread</span><span class="p">();</span><span class="c1">//析构函数</span>
+
+  <span class="kt">void</span> <span class="nf">start</span><span class="p">();</span><span class="c1">//启动线程</span>
+  <span class="kt">int</span> <span class="nf">join</span><span class="p">();</span> <span class="c1">// 类似于 pthread_join()</span>
+
+  <span class="kt">bool</span> <span class="nf">started</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">started_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="c1">// pthread_t pthreadId() const { return pthreadId_; }</span>
+  <span class="kt">pid_t</span> <span class="nf">tid</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">tid_</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//返回线程索引</span>
+  <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name_</span><span class="p">;</span> <span class="p">}</span><span class="c1">//返回线程名字</span>
+
+  <span class="k">static</span> <span class="kt">int</span> <span class="n">numCreated</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">numCreated_</span><span class="p">.</span><span class="n">get</span><span class="p">();</span> <span class="p">}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="kt">void</span> <span class="n">setDefaultName</span><span class="p">();</span>
+
+  <span class="kt">bool</span>       <span class="n">started_</span><span class="p">;</span>  <span class="c1">//是否启动</span>
+  <span class="kt">bool</span>       <span class="n">joined_</span><span class="p">;</span>   <span class="c1">//是否终止</span>
+  <span class="n">pthread_t</span>  <span class="n">pthreadId_</span><span class="p">;</span>    <span class="c1">//线程索引</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">pid_t</span><span class="o">&gt;</span> <span class="n">tid_</span><span class="p">;</span>    <span class="c1">//持有一个强线程索引</span>
+  <span class="n">ThreadFunc</span> <span class="n">func_</span><span class="p">;</span>     <span class="c1">//线程主体函数</span>
+  <span class="n">string</span>     <span class="n">name_</span><span class="p">;</span>     <span class="c1">//线程名称标号</span>
+
+  <span class="k">static</span> <span class="n">AtomicInt32</span> <span class="n">numCreated_</span><span class="p">;</span>   <span class="c1">//static变量在所有的线程对象中共享，为由该类产生线程排序</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+<ol>
+<li>在muduo的线程对象封装中，最精彩的是使用boost::function函数对象将线程函数以回调的方式传递进线程对象中。
+   <code>typedef boost::function&lt;void ()&gt; ThreadFun;</code></li>
+<li>在多线程情况下，避免在对象外操作指向对象的指针的情形，可以在一定程度上保证了线程安全。</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="cm">/***Thread.cc***/</span>
+<span class="n">AtomicInt32</span> <span class="n">Thread</span><span class="o">::</span><span class="n">numCreated_</span><span class="p">;</span>
+
+<span class="c1">//两种线程构造函数</span>
+<span class="c1">//线程对象的可移动属性很有意思。</span>
+<span class="n">Thread</span><span class="o">::</span><span class="n">Thread</span><span class="p">(</span><span class="k">const</span> <span class="n">ThreadFunc</span><span class="o">&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">started_</span><span class="p">(</span><span class="nb">false</span><span class="p">),</span>
+    <span class="n">joined_</span><span class="p">(</span><span class="nb">false</span><span class="p">),</span>
+    <span class="n">pthreadId_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">tid_</span><span class="p">(</span><span class="k">new</span> <span class="kt">pid_t</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>
+    <span class="n">func_</span><span class="p">(</span><span class="n">func</span><span class="p">),</span>
+    <span class="n">name_</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">setDefaultName</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cp">#ifdef __GXX_EXPERIMENTAL_CXX0X__</span>
+<span class="n">Thread</span><span class="o">::</span><span class="n">Thread</span><span class="p">(</span><span class="n">ThreadFunc</span><span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">started_</span><span class="p">(</span><span class="nb">false</span><span class="p">),</span>
+    <span class="n">joined_</span><span class="p">(</span><span class="nb">false</span><span class="p">),</span>
+    <span class="n">pthreadId_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">tid_</span><span class="p">(</span><span class="k">new</span> <span class="kt">pid_t</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>
+    <span class="n">func_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">func</span><span class="p">)),</span>
+    <span class="n">name_</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">setDefaultName</span><span class="p">();</span>     
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+
+<span class="n">Thread</span><span class="o">::~</span><span class="n">Thread</span><span class="p">()</span> 
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">started_</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">joined_</span><span class="p">)</span>     <span class="c1">//将该线程设置为分离属性</span>
+  <span class="p">{</span>
+    <span class="n">pthread_detach</span><span class="p">(</span><span class="n">pthreadId_</span><span class="p">);</span>     <span class="c1">//线程结束将自动回收资源</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Thread</span><span class="o">::</span><span class="n">setDefaultName</span><span class="p">()</span>   <span class="c1">//设置线程名字，比如Thread1,Thread2等</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">numCreated_</span><span class="p">.</span><span class="n">incrementAndGet</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">name_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>   
+    <span class="n">snprintf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">buf</span><span class="p">,</span> <span class="s">&quot;Thread%d&quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">);</span>
+    <span class="n">name_</span> <span class="o">=</span> <span class="n">buf</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Thread</span><span class="o">::</span><span class="n">start</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">started_</span><span class="p">);</span>    <span class="c1">//断言线程是否已经开始运行</span>
+  <span class="n">started_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>      <span class="c1">//断言失败则设置线程开始运行的标志</span>
+  <span class="c1">// FIXME: move(func_)</span>
+  <span class="n">detail</span><span class="o">::</span><span class="n">ThreadData</span><span class="o">*</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">detail</span><span class="o">::</span><span class="n">ThreadData</span><span class="p">(</span><span class="n">func_</span><span class="p">,</span> <span class="n">name_</span><span class="p">,</span> <span class="n">tid_</span><span class="p">);</span>   <span class="c1">//获得线程运行的所需要的参数</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pthreadId_</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">detail</span><span class="o">::</span><span class="n">startThread</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span><span class="c1">//线程开始运行并且线程的控制流停止再在此。</span>
+  <span class="p">{</span>     <span class="c1">//线程运行结束，线程自行运行结束并且自己做日志记录</span>
+    <span class="n">started_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;blockDim.x: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">delete</span> <span class="n">data</span><span class="p">;</span> <span class="c1">// or no delete?</span>
+    <span class="n">LOG_SYSFATAL</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Failed in pthread_create&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">Thread</span><span class="o">::</span><span class="n">join</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">started_</span><span class="p">);</span>     <span class="c1">//断言线程是否正在运行</span>
+  <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">joined_</span><span class="p">);</span>     <span class="c1">//断言线程是否已经被终止</span>
+  <span class="n">joined_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nf">pthread_join</span><span class="p">(</span><span class="n">pthreadId_</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>        <span class="c1">//等待线程结束</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>在线程的析构函数中只设置线程的分离属性，即等待线程运行结束后自动回收线程资源，不强行终止线程。</p>
+<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="n">ThreadData</span>  <span class="c1">//作为线程数据使用，将线程运行有关的数据保存到该结构体中，有点抽象回调的意思</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">muduo</span><span class="o">::</span><span class="n">Thread</span><span class="o">::</span><span class="n">ThreadFunc</span> <span class="n">ThreadFunc</span><span class="p">;</span>
+  <span class="n">ThreadFunc</span> <span class="n">func_</span><span class="p">;</span>
+  <span class="n">string</span> <span class="n">name_</span><span class="p">;</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="kt">pid_t</span><span class="o">&gt;</span> <span class="n">wkTid_</span><span class="p">;</span>    <span class="c1">//使用弱引用保存线程标号</span>
+
+  <span class="n">ThreadData</span><span class="p">(</span><span class="k">const</span> <span class="n">ThreadFunc</span><span class="o">&amp;</span> <span class="n">func</span><span class="p">,</span>
+             <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span>
+             <span class="k">const</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">pid_t</span><span class="o">&gt;&amp;</span> <span class="n">tid</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">func_</span><span class="p">(</span><span class="n">func</span><span class="p">),</span>
+      <span class="n">name_</span><span class="p">(</span><span class="n">name</span><span class="p">),</span>
+      <span class="n">wkTid_</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>
+  <span class="p">{</span> <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">runInThread</span><span class="p">()</span>    <span class="c1">//核心函数</span>
+  <span class="p">{</span>
+    <span class="kt">pid_t</span> <span class="n">tid</span> <span class="o">=</span> <span class="n">muduo</span><span class="o">::</span><span class="n">CurrentThread</span><span class="o">::</span><span class="n">tid</span><span class="p">();</span>    <span class="c1">//得到当前的线程标志</span>
+
+    <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">pid_t</span><span class="o">&gt;</span> <span class="n">ptid</span> <span class="o">=</span> <span class="n">wkTid_</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>    <span class="c1">//判断保存在ThreadData中的线程是否存在</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ptid</span><span class="p">)</span>    <span class="c1">//如果存在，ptid释放之前指向的线程标识</span>
+    <span class="p">{</span>
+      <span class="o">*</span><span class="n">ptid</span> <span class="o">=</span> <span class="n">tid</span><span class="p">;</span>
+      <span class="n">ptid</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">muduo</span><span class="o">::</span><span class="n">CurrentThread</span><span class="o">::</span><span class="n">t_threadName</span> <span class="o">=</span> <span class="n">name_</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">?</span> <span class="s">&quot;muduoThread&quot;</span> <span class="o">:</span> <span class="n">name_</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span> <span class="c1">//获得当前线程名称</span>
+    <span class="o">::</span><span class="n">prctl</span><span class="p">(</span><span class="n">PR_SET_NAME</span><span class="p">,</span> <span class="n">muduo</span><span class="o">::</span><span class="n">CurrentThread</span><span class="o">::</span><span class="n">t_threadName</span><span class="p">);</span>
+    <span class="k">try</span>
+    <span class="p">{</span>
+      <span class="n">func_</span><span class="p">();</span> <span class="c1">//运行线程函数</span>
+      <span class="n">muduo</span><span class="o">::</span><span class="n">CurrentThread</span><span class="o">::</span><span class="n">t_threadName</span> <span class="o">=</span> <span class="s">&quot;finished&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">Exception</span><span class="o">&amp;</span> <span class="n">ex</span><span class="p">)</span>    <span class="c1">//异常捕捉部分</span>
+    <span class="p">{</span>
+      <span class="n">muduo</span><span class="o">::</span><span class="n">CurrentThread</span><span class="o">::</span><span class="n">t_threadName</span> <span class="o">=</span> <span class="s">&quot;crashed&quot;</span><span class="p">;</span>
+      <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;exception caught in Thread %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">name_</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+      <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;reason: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+      <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;stack trace: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">stackTrace</span><span class="p">());</span>
+      <span class="n">abort</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">ex</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">muduo</span><span class="o">::</span><span class="n">CurrentThread</span><span class="o">::</span><span class="n">t_threadName</span> <span class="o">=</span> <span class="s">&quot;crashed&quot;</span><span class="p">;</span>
+      <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;exception caught in Thread %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">name_</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+      <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;reason: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+      <span class="n">abort</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(...)</span>
+    <span class="p">{</span>
+      <span class="n">muduo</span><span class="o">::</span><span class="n">CurrentThread</span><span class="o">::</span><span class="n">t_threadName</span> <span class="o">=</span> <span class="s">&quot;crashed&quot;</span><span class="p">;</span>
+      <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;unknown exception caught in Thread %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">name_</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+      <span class="k">throw</span><span class="p">;</span> <span class="c1">// rethrow</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="o">*</span> <span class="nf">startThread</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">obj</span><span class="p">)</span>    <span class="c1">//这个函数最有意思</span>
+<span class="p">{</span>
+  <span class="n">ThreadData</span><span class="o">*</span> <span class="n">data</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ThreadData</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>    <span class="c1">//强行转化为ThreadData</span>
+  <span class="n">data</span><span class="o">-&gt;</span><span class="n">runInThread</span><span class="p">();</span>    <span class="c1">//线程跑起来</span>
+  <span class="k">delete</span> <span class="n">data</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>将线程中的若干数据保存到ThreadData中，然后将ThreadData作为传递给<code>pthread_create(...,void* arg)</code>中的最后一个数据参数传递给<code>void Thread(void* )</code>标准的线程启动函数。然后在标准的线程启动函数内将<code>void* arg</code>强行转化为ThreadData，然后使用ThreadData启动线程。
+在使用muduo的接口时，使用bind将线程运行函数再打包，然后传递进Thread.
+最后，向大家介绍muduo库中对于线程池的封装的理解。</p>
+<ol>
+<li>最重要的想法就是线程池将线程看为自己可执行的最小并且可随时增加的单位。</li>
+<li>整个线程池对象维持两个任务队列，threads_表示目前正在运行中的线程池，queue_表示位于存储队列中的等待线程。</li>
+<li>thread_在运行的过程中使用while循环+条件变量判断当前的活动线程池中是否有空位，以及新的等待线程进入线程池。</li>
+<li>线程池从一开始就确定了自己将要运行的线程数目，不能在后面的运行中更改。</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="cm">/***ThreadPool.h***/</span>
+<span class="k">class</span> <span class="nc">ThreadPool</span> <span class="o">:</span> <span class="n">boost</span><span class="o">::</span><span class="n">noncopyable</span>
+<span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span> <span class="p">()</span><span class="o">&gt;</span> <span class="n">Task</span><span class="p">;</span><span class="c1">//将线程池中的线程作为可替换的任务，以线程为基本单位放在线程池中运行</span>
+
+  <span class="k">explicit</span> <span class="nf">ThreadPool</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">nameArg</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="s">&quot;ThreadPool&quot;</span><span class="p">));</span>
+  <span class="o">~</span><span class="n">ThreadPool</span><span class="p">();</span>
+
+  <span class="c1">// Must be called before start().</span>
+  <span class="c1">// 设置线程池运行的最大的负载以及线程池中将要运行的线程</span>
+  <span class="kt">void</span> <span class="nf">setMaxQueueSize</span><span class="p">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="p">)</span> <span class="p">{</span> <span class="n">maxQueueSize_</span> <span class="o">=</span> <span class="n">maxSize</span><span class="p">;</span> <span class="p">}</span><span class="c1">//</span>
+  <span class="kt">void</span> <span class="nf">setThreadInitCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">Task</span><span class="o">&amp;</span> <span class="n">cb</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">threadInitCallback_</span> <span class="o">=</span> <span class="n">cb</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="nf">start</span><span class="p">(</span><span class="kt">int</span> <span class="n">numThreads</span><span class="p">);</span><span class="c1">//启动一定数量的线程</span>
+  <span class="kt">void</span> <span class="nf">stop</span><span class="p">();</span><span class="c1">//线程池运算停止</span>
+
+  <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span>
+  <span class="p">{</span> <span class="k">return</span> <span class="n">name_</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="kt">size_t</span> <span class="n">queueSize</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span><span class="c1">//返回正在排队等待的线程任务</span>
+
+  <span class="c1">// Could block if maxQueueSize &gt; 0</span>
+  <span class="kt">void</span> <span class="nf">run</span><span class="p">(</span><span class="k">const</span> <span class="n">Task</span><span class="o">&amp;</span> <span class="n">f</span><span class="p">);</span><span class="c1">//将一个想要运行的线程放入线程池的任务队列</span>
+<span class="cp">#ifdef __GXX_EXPERIMENTAL_CXX0X__</span>
+  <span class="kt">void</span> <span class="nf">run</span><span class="p">(</span><span class="n">Task</span><span class="o">&amp;&amp;</span> <span class="n">f</span><span class="p">);</span><span class="c1">//C++11的移动方法，用于节省资源</span>
+<span class="cp">#endif</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="kt">bool</span> <span class="n">isFull</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span><span class="c1">//判断线程队列是否已经满了</span>
+  <span class="kt">void</span> <span class="nf">runInThread</span><span class="p">();</span><span class="c1">//真正让线程跑起来的函数</span>
+  <span class="n">Task</span> <span class="nf">take</span><span class="p">();</span><span class="c1">//获得任务队列的首个线程</span>
+
+  <span class="k">mutable</span> <span class="n">MutexLock</span> <span class="n">mutex_</span><span class="p">;</span><span class="c1">//互斥锁</span>
+  <span class="n">Condition</span> <span class="n">notEmpty_</span><span class="p">;</span><span class="c1">//条件变量</span>
+  <span class="n">Condition</span> <span class="n">notFull_</span><span class="p">;</span>
+  <span class="n">string</span> <span class="n">name_</span><span class="p">;</span>
+  <span class="n">Task</span> <span class="n">threadInitCallback_</span><span class="p">;</span><span class="c1">//线程池中执行的线程对象</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">ptr_vector</span><span class="o">&lt;</span><span class="n">muduo</span><span class="o">::</span><span class="n">Thread</span><span class="o">&gt;</span> <span class="n">threads_</span><span class="p">;</span><span class="c1">//线程池</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="n">Task</span><span class="o">&gt;</span> <span class="n">queue_</span><span class="p">;</span><span class="c1">//排队执行的线程对象队列</span>
+  <span class="kt">size_t</span> <span class="n">maxQueueSize_</span><span class="p">;</span><span class="c1">//队列的最大数</span>
+  <span class="kt">bool</span> <span class="n">running_</span><span class="p">;</span><span class="c1">//是否已经启动</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+<ol>
+<li>每一个加入线程池的线程都带有一个while循环，保证线程等待队列中的线程不会等待太久。即所有将加入线程池的线程都会进入线程等待队列接受检查。</li>
+<li>start()：线程池启动函数保证在调用时启动一定数量的线程。</li>
+<li>stop()：保证所有的正在运行的线程停止</li>
+<li>queueSize()：返回此时线程等待队列中的个数，用于判断线程等待队列是否为空</li>
+<li>run()：如果线程池为空，直接跑传入的线程。如果线程池等待队列满了，则当前控制流（线程）在notFull_上等待；否则将传入的线程加入线程等待队列，并且使用条件变量notEmpty_通知一条阻塞在该条件变量上的控制流（线程）。</li>
+<li>take()：如果当前线程等待队列为空并且线程池正在跑，则控制流（线程）阻塞在notEmpty_条件变量上。当条件变量被激活时（有线程对象加入呆线程等待队列），判断是否可以从线程等待队列中拿出一个线程对象，如果可以，则将使用条件变量notFull_通知run()中阻塞在&ndash;想加入队列但是队列没有空余位置的变量上。</li>
+<li>isFull()：返回在线程等待队列中的个数，用于判断是否可以将想要运行的线程放到线程等待队列中。</li>
+<li>runInThread()：如果线程启动函数不为空，则在此将线程的控制流交给用于初始化线程池的线程对象。当此线程对象运行结束的时候，并且此时的线程池还在运行，则线程池离开初始化模式，进入线程池的循环线程补充模式。这种模式控制着线程池中的线程数量：当有新的线程对象进入线程池，则当前的线程控制流交给将要执行的线程对象。也就是说线程池中的线程对象要么主动结束自己的‘life’，然后由线程池的线程补充模式决定将要进入线程池运行的线程对象。然后在后面的take()中使用条件变量完成新的线程进入线程池的同步。</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="cm">/***ThreadPool.cc***/</span>
+<span class="n">ThreadPool</span><span class="o">::</span><span class="n">ThreadPool</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">nameArg</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">mutex_</span><span class="p">(),</span>
+    <span class="n">notEmpty_</span><span class="p">(</span><span class="n">mutex_</span><span class="p">),</span>
+    <span class="n">notFull_</span><span class="p">(</span><span class="n">mutex_</span><span class="p">),</span>
+    <span class="n">name_</span><span class="p">(</span><span class="n">nameArg</span><span class="p">),</span>
+    <span class="n">maxQueueSize_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">running_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="n">ThreadPool</span><span class="o">::~</span><span class="n">ThreadPool</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">running_</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">stop</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">ThreadPool</span><span class="o">::</span><span class="n">start</span><span class="p">(</span><span class="kt">int</span> <span class="n">numThreads</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">threads_</span><span class="p">.</span><span class="n">empty</span><span class="p">());</span><span class="c1">//首次启动，断言线程池为空</span>
+  <span class="n">running_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="n">threads_</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">numThreads</span><span class="p">);</span><span class="c1">//预分配空间，且分配的空间不可变。</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numThreads</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">id</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+    <span class="n">snprintf</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">id</span><span class="p">,</span> <span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">threads_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="k">new</span> <span class="n">muduo</span><span class="o">::</span><span class="n">Thread</span><span class="p">(</span>
+          <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ThreadPool</span><span class="o">::</span><span class="n">runInThread</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="n">name_</span><span class="o">+</span><span class="n">id</span><span class="p">));</span>
+    <span class="n">threads_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">start</span><span class="p">();</span><span class="c1">//直接启动线程</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">numThreads</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">threadInitCallback_</span><span class="p">)</span><span class="c1">//只启动一条线程</span>
+  <span class="p">{</span>
+    <span class="n">threadInitCallback_</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">ThreadPool</span><span class="o">::</span><span class="n">stop</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="p">{</span>
+  <span class="n">MutexLockGuard</span> <span class="n">lock</span><span class="p">(</span><span class="n">mutex_</span><span class="p">);</span>
+  <span class="n">running_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="n">notEmpty_</span><span class="p">.</span><span class="n">notifyAll</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">for_each</span><span class="p">(</span><span class="n">threads_</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>
+           <span class="n">threads_</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+           <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">muduo</span><span class="o">::</span><span class="n">Thread</span><span class="o">::</span><span class="n">join</span><span class="p">,</span> <span class="n">_1</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">size_t</span> <span class="n">ThreadPool</span><span class="o">::</span><span class="n">queueSize</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+  <span class="n">MutexLockGuard</span> <span class="n">lock</span><span class="p">(</span><span class="n">mutex_</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">queue_</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">ThreadPool</span><span class="o">::</span><span class="n">run</span><span class="p">(</span><span class="k">const</span> <span class="n">Task</span><span class="o">&amp;</span> <span class="n">task</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">threads_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="c1">//如果线程池为空，直接跑这条线程</span>
+  <span class="p">{</span>
+    <span class="n">task</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">MutexLockGuard</span> <span class="n">lock</span><span class="p">(</span><span class="n">mutex_</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">isFull</span><span class="p">())</span><span class="c1">//如果线程池满了，在notfull条件变量上等待</span>
+    <span class="p">{</span>
+      <span class="n">notFull_</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">isFull</span><span class="p">());</span>
+
+    <span class="n">queue_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">task</span><span class="p">);</span><span class="c1">//现在线程池中有空位了</span>
+    <span class="n">notEmpty_</span><span class="p">.</span><span class="n">notify</span><span class="p">();</span><span class="c1">//notempty条件变量通知信息</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cp">#ifdef __GXX_EXPERIMENTAL_CXX0X__</span>
+<span class="kt">void</span> <span class="n">ThreadPool</span><span class="o">::</span><span class="n">run</span><span class="p">(</span><span class="n">Task</span><span class="o">&amp;&amp;</span> <span class="n">task</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">threads_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="n">task</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">MutexLockGuard</span> <span class="n">lock</span><span class="p">(</span><span class="n">mutex_</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">isFull</span><span class="p">())</span>
+    <span class="p">{</span>
+      <span class="n">notFull_</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">isFull</span><span class="p">());</span>
+
+    <span class="n">queue_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task</span><span class="p">));</span>
+    <span class="n">notEmpty_</span><span class="p">.</span><span class="n">notify</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+
+<span class="n">ThreadPool</span><span class="o">::</span><span class="n">Task</span> <span class="n">ThreadPool</span><span class="o">::</span><span class="n">take</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">MutexLockGuard</span> <span class="n">lock</span><span class="p">(</span><span class="n">mutex_</span><span class="p">);</span>
+  <span class="c1">// always use a while-loop, due to spurious wakeup</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">queue_</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">running_</span><span class="p">)</span><span class="c1">//如果线程队列为空并且线程池正在跑</span>
+  <span class="p">{</span><span class="c1">//在notempty条件变量上等待</span>
+    <span class="n">notEmpty_</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span><span class="c1">//当前线程停下来等待，当队列不为空了继续跑</span>
+  <span class="p">}</span><span class="c1">//然后获得新任务</span>
+  <span class="n">Task</span> <span class="n">task</span><span class="p">;</span><span class="c1">//创建一个新的任务</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">queue_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">queue_</span><span class="p">.</span><span class="n">front</span><span class="p">();</span><span class="c1">//获得队列中的头任务</span>
+    <span class="n">queue_</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span><span class="c1">//弹出队列中的头任务</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">maxQueueSize_</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="c1">//如果队列最大长度大于0</span>
+    <span class="p">{</span>
+      <span class="n">notFull_</span><span class="p">.</span><span class="n">notify</span><span class="p">();</span><span class="c1">//通知线程可以跑了</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">task</span><span class="p">;</span><span class="c1">//返回任务</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">ThreadPool</span><span class="o">::</span><span class="n">isFull</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span><span class="c1">//用来判断线程队列是否已经</span>
+  <span class="n">mutex_</span><span class="p">.</span><span class="n">assertLocked</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">maxQueueSize_</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">queue_</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">maxQueueSize_</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">ThreadPool</span><span class="o">::</span><span class="n">runInThread</span><span class="p">()</span><span class="c1">//生成一个threadFunc对象</span>
+<span class="p">{</span>
+  <span class="k">try</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">threadInitCallback_</span><span class="p">)</span><span class="c1">//如果线程启动函数不为空，直接启动</span>
+    <span class="p">{</span>
+      <span class="n">threadInitCallback_</span><span class="p">();</span><span class="c1">//此处开启新的线程，程序的运行流程在此停止；当线程运行完成则进入下面的while循环</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">running_</span><span class="p">)</span><span class="c1">//该循环保证当上面的线程运行完成或者没有初始化线程，则进入线程池的循环模式</span>
+    <span class="p">{</span>
+      <span class="n">Task</span> <span class="n">task</span><span class="p">(</span><span class="n">take</span><span class="p">());</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">task</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">task</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">Exception</span><span class="o">&amp;</span> <span class="n">ex</span><span class="p">)</span>   <span class="c1">//异常捕捉过程</span>
+  <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;exception caught in ThreadPool %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">name_</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;reason: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;stack trace: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">stackTrace</span><span class="p">());</span>
+    <span class="n">abort</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">ex</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;exception caught in ThreadPool %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">name_</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;reason: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+    <span class="n">abort</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(...)</span>
+  <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;unknown exception caught in ThreadPool %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">name_</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="k">throw</span><span class="p">;</span> <span class="c1">// rethrow</span>
+  <span class="p">}</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../4%20muduo%E4%B8%AD%E7%9A%84%E5%AE%9A%E6%97%B6%E5%99%A8/" title="muduo中的定时器" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                muduo中的定时器
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../6%20muduo%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83/" title="muduo中的回调" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                muduo中的回调
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["instant"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>
