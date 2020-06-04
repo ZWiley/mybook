@@ -73,7 +73,7 @@ nav:
         - base: 
             - 时间_原子操作_异常 : 'Muduo/base/1. 时间_原子操作_异常.md'
             - 线程 : 'Muduo/base/2. 线程.md'
-            - 线程2 : 'Muduo/base/2. 线程2.md'
+            - 线程2 : 'Muduo/base/3. 线程2.md'
             - 日志 : 'Muduo/base/4. 日志.md'
         - net:
             - EventLoop : 'Muduo/net/1. EventLoop.md'
