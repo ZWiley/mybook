@@ -67,6 +67,28 @@ nav:
       - 11 数据库连接池: 'webserver/11 数据库连接池.md'
       - 12 常见问题: 'webserver/12 常见问题.md'
       - 13 项目梳理: 'webserver/13 项目梳理.md'
+    - 源码:
+      - 源码阅读: '源码阅读_sourcecode/README.md'
+      - Muduo: 
+        - base: 
+            - 时间_原子操作_异常 : 'Muduo/base/1. 时间_原子操作_异常.md'
+            - 线程 : 'Muduo/base/2. 线程.md'
+            - 线程2 : 'Muduo/base/2. 线程2.md'
+            - 日志 : 'Muduo/base/4. 日志.md'
+        - net:
+            - EventLoop : 'Muduo/net/1. EventLoop.md'
+            - 连接时序 : 'Muduo/net/2. 连接时序.md'
+            - 关闭时序 : 'Muduo/net/3. 关闭时序.md'
+            - Buffer : 'Muduo/net/4. Buffer.md'
+            - callback : 'Muduo/net/5. callback.md'
+            - Client: 'Muduo/net/6. Client.md'
+        - 服务器方案设计: 'Muduo/0 服务器方案设计.md'
+        - 基础知识: 'Muduo/1 基础知识.md'
+        - 总体解析: 'Muduo/2 总体解析.md'
+        - muduo详细运行流程: 'Muduo/3 muduo详细运行流程.md'
+        - muduo中的定时器: 'Muduo/4 muduo中的定时器.md'
+        - muduo中的线程: 'Muduo/5 muduo中的线程.md'
+        - muduo中的回调: 'Muduo/6 muduo中的回调.md'
     - 数据库:
       - Getting started with impala: 'database/getting_started_with_impala.md'
       - mysql必知必会: 'database/mysql必知必会.md'
@@ -147,8 +169,6 @@ nav:
       - Pro Git: '开发工具/pro_git.md'
       - Mastering Vim: '开发工具/Mastering_vim.md'
       - Mastering Vim Quickly: '开发工具/mastering_vim_quickly.md'
-    - 源码:
-      - 源码阅读: '源码阅读_sourcecode/README.md'
     - 网站架构微服务:
       - 微服务架构设计模式: '网站架构微服务/microservices_patterns_微服务架构设计模式/book.md'
       - 从0开始学架构: '网站架构微服务/从0开始学架构/从0开始学架构.md'
