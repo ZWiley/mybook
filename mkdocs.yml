@@ -1,4 +1,7 @@
 site_name: ZWiley的随记
+site_description: ZWiley的随记
+site_author: ZWiley
+site_url: https://zwiley.github.io/mybook/
 
 theme:
     name: material
@@ -14,23 +17,45 @@ theme:
     prev_next_buttons_location: bottom
     navigation_depth: 6
     sticky_navigation: False
+    language: 'zh'
 
 repo_name: 'GitHub'
 repo_url: https://github.com/zwiley/mybook/
 
-extra_javascript:
+extra_javascript:   
+    - 'js/extra.js'
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 markdown_extensions:
   - admonition
   - footnotes
-  - codehilite
+  - codehilite:
+      guess_lang: false
+      linenums: false
   - sane_lists
   - mdx_math:
       enable_dollar_delimiter: True
   - smarty
   - toc:
-        permalink: True
+      permalink: True       
+  - footnotes
+  - meta
+  - def_list
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_png
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
 
 nav:
     - 简介: 'index.md'
