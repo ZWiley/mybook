@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/golang/network-programming-with-go/book/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#3-socket-level-programming" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -1549,7 +1555,7 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -1559,7 +1565,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3467,7 +3473,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3477,7 +3483,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3514,7 +3520,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/network-programming-with-go/book.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/network-programming-with-go/book.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3525,181 +3531,174 @@
                 <p>《Network Programming With Go》不是很深入。</p>
 <h1 id="3-socket-level-programming">3. Socket level Programming<a class="headerlink" href="#3-socket-level-programming" title="Permanent link">&para;</a></h1>
 <h3 id="socket">socket<a class="headerlink" href="#socket" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="n">resolve</span> <span class="n">IP</span>
-<span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>// resolve IP
+package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;net&quot;</span>
-    <span class="s2">&quot;os&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">name</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;www.baidu.com&quot;</span>
-    <span class="n">addr</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">ResolveIPAddr</span><span class="p">(</span><span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Resolution error&quot;</span><span class="p">,</span> <span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">())</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;addr ip is &quot;</span><span class="p">,</span> <span class="n">addr</span><span class="o">.</span><span class="n">String</span><span class="p">())</span>
-<span class="p">}</span>
+func main() {
+    name := &quot;www.baidu.com&quot;
+    addr, err := net.ResolveIPAddr(&quot;ip&quot;, name)
+    if err != nil {
+        fmt.Println(&quot;Resolution error&quot;, err.Error())
+        os.Exit(1)
+    }
+    fmt.Println(&quot;addr ip is &quot;, addr.String())
+}
 </code></pre></div>
-
 
 <p>编写一个时间回显tcp服务器：</p>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="n">DaytimeServer</span>
-<span class="o">//</span> <span class="n">telnet</span> <span class="n">localhost</span> <span class="mi">1200</span>
-<span class="n">package</span> <span class="n">main</span>
+<p><div class="highlight"><pre><span></span><code>// DaytimeServer
+// telnet localhost 1200
+package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;net&quot;</span>
-    <span class="s2">&quot;os&quot;</span>
-    <span class="s2">&quot;time&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+    &quot;time&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">service</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;:1200&quot;</span>
-    <span class="n">tcpAddr</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">ResolveTCPAddr</span><span class="p">(</span><span class="s2">&quot;tcp4&quot;</span><span class="p">,</span> <span class="n">service</span><span class="p">)</span>
-    <span class="n">checkError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+func main() {
+    service := &quot;:1200&quot;
+    tcpAddr, err := net.ResolveTCPAddr(&quot;tcp4&quot;, service)
+    checkError(err)
 
-    <span class="n">listener</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">ListenTCP</span><span class="p">(</span><span class="s2">&quot;tcp&quot;</span><span class="p">,</span> <span class="n">tcpAddr</span><span class="p">)</span>
-    <span class="n">checkError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    listener, err := net.ListenTCP(&quot;tcp&quot;, tcpAddr)
+    checkError(err)
 
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="n">conn</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">listener</span><span class="o">.</span><span class="n">Accept</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="k">continue</span>
-        <span class="p">}</span>
-        <span class="n">daytime</span> <span class="p">:</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">String</span><span class="p">()</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">Write</span><span class="p">([]</span><span class="n">byte</span><span class="p">(</span><span class="n">daytime</span><span class="p">))</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    for {
+        conn, err := listener.Accept()
+        if err != nil {
+            continue
+        }
+        daytime := time.Now().String()
+        conn.Write([]byte(daytime))
+        conn.Close()
+    }
+}
 
-<span class="n">func</span> <span class="n">checkErr</span><span class="p">(</span><span class="n">err</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">Stderr</span><span class="p">,</span> <span class="s2">&quot;Fatal error: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">())</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+func checkErr(err error) {
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;Fatal error: %s&quot;, err.Error())
+        os.Exit(1)
+    }
+}
 
-<span class="err">编写一个简单的</span><span class="n">tcp回显服务器</span><span class="err">：</span>
+编写一个简单的tcp回显服务器：
 </code></pre></div>
+<div class="highlight"><pre><span></span><code>// SimpleEchoServer
+package main
 
+import (
+    &quot;fmt&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+)
 
-<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="n">SimpleEchoServer</span>
-<span class="n">package</span> <span class="n">main</span>
+func main() {
+    service := &quot;:1201&quot;
+    tcpAddr, err := net.ResolveTCPAddr(&quot;tcp4&quot;, service)
+    checkError(err)
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;net&quot;</span>
-    <span class="s2">&quot;os&quot;</span>
-<span class="p">)</span>
+    listener, err := net.ListenTCP(&quot;tcp&quot;, tcpAddr)
+    checkError(err)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">service</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;:1201&quot;</span>
-    <span class="n">tcpAddr</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">ResolveTCPAddr</span><span class="p">(</span><span class="s2">&quot;tcp4&quot;</span><span class="p">,</span> <span class="n">service</span><span class="p">)</span>
-    <span class="n">checkError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    for {
+        conn, err := listener.Accept()
+        if err != nil {
+            continue
+        }
+        handleClient(conn)
+        conn.Close() // close  the client
+    }
+}
+func handleClient(conn net.Conn) {
+    var buf [512]byte
+    for {
+        n, err := conn.Read(buf[0:])
+        if err != nil {
+            return
+        }
+        fmt.Println(string(buf[0:]))
+        _, err2 := conn.Write(buf[0:n])
+        if err2 != nil {
+            return
+        }
+    }
+}
 
-    <span class="n">listener</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">ListenTCP</span><span class="p">(</span><span class="s2">&quot;tcp&quot;</span><span class="p">,</span> <span class="n">tcpAddr</span><span class="p">)</span>
-    <span class="n">checkError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="n">conn</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">listener</span><span class="o">.</span><span class="n">Accept</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="k">continue</span>
-        <span class="p">}</span>
-        <span class="n">handleClient</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span> <span class="o">//</span> <span class="n">close</span>  <span class="n">the</span> <span class="n">client</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">func</span> <span class="n">handleClient</span><span class="p">(</span><span class="n">conn</span> <span class="n">net</span><span class="o">.</span><span class="n">Conn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">buf</span> <span class="p">[</span><span class="mi">512</span><span class="p">]</span><span class="n">byte</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">Read</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
-        <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="k">return</span>
-        <span class="p">}</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:]))</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">err2</span> <span class="p">:</span><span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">err2</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="k">return</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">func</span> <span class="n">checkError</span><span class="p">(</span><span class="n">err</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">Stderr</span><span class="p">,</span> <span class="s2">&quot;Fatal error: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">())</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-
+func checkError(err error) {
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;Fatal error: %s&quot;, err.Error())
+        os.Exit(1)
+    }
+}
+</code></pre></div></p>
 <p>可以很容易修改成并发的，使用 goroutine</p>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="n">SimpleEchoServer</span>
-<span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>// SimpleEchoServer
+package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;net&quot;</span>
-    <span class="s2">&quot;os&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">service</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;:1201&quot;</span>
-    <span class="n">tcpAddr</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">ResolveTCPAddr</span><span class="p">(</span><span class="s2">&quot;tcp4&quot;</span><span class="p">,</span> <span class="n">service</span><span class="p">)</span>
-    <span class="n">checkError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+func main() {
+    service := &quot;:1201&quot;
+    tcpAddr, err := net.ResolveTCPAddr(&quot;tcp4&quot;, service)
+    checkError(err)
 
-    <span class="n">listener</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">ListenTCP</span><span class="p">(</span><span class="s2">&quot;tcp&quot;</span><span class="p">,</span> <span class="n">tcpAddr</span><span class="p">)</span>
-    <span class="n">checkError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    listener, err := net.ListenTCP(&quot;tcp&quot;, tcpAddr)
+    checkError(err)
 
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="n">conn</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">listener</span><span class="o">.</span><span class="n">Accept</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="k">continue</span>
-        <span class="p">}</span>
-        <span class="n">go</span> <span class="n">handleClient</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span> <span class="o">//</span> <span class="n">NOTE</span><span class="p">:</span> <span class="n">use</span> <span class="n">goroutine</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">func</span> <span class="n">handleClient</span><span class="p">(</span><span class="n">conn</span> <span class="n">net</span><span class="o">.</span><span class="n">Conn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">defer</span> <span class="n">conn</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span> <span class="o">//</span> <span class="n">NOTE</span><span class="p">:</span> <span class="n">close</span> <span class="n">connection</span> <span class="n">on</span> <span class="nb">exit</span>
-    <span class="n">var</span> <span class="n">buf</span> <span class="p">[</span><span class="mi">512</span><span class="p">]</span><span class="n">byte</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">Read</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
-        <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="k">return</span>
-        <span class="p">}</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:]))</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">err2</span> <span class="p">:</span><span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">err2</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="k">return</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    for {
+        conn, err := listener.Accept()
+        if err != nil {
+            continue
+        }
+        go handleClient(conn) // NOTE: use goroutine
+    }
+}
+func handleClient(conn net.Conn) {
+    defer conn.Close() // NOTE: close connection on exit
+    var buf [512]byte
+    for {
+        n, err := conn.Read(buf[0:])
+        if err != nil {
+            return
+        }
+        fmt.Println(string(buf[0:]))
+        _, err2 := conn.Write(buf[0:n])
+        if err2 != nil {
+            return
+        }
+    }
+}
 
-<span class="n">func</span> <span class="n">checkError</span><span class="p">(</span><span class="n">err</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">Stderr</span><span class="p">,</span> <span class="s2">&quot;Fatal error: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">())</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+func checkError(err error) {
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;Fatal error: %s&quot;, err.Error())
+        os.Exit(1)
+    }
+}
 </code></pre></div>
-
 
 <h3 id="controlling-tcp-connections">Controlling TCP connections<a class="headerlink" href="#controlling-tcp-connections" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Timeout</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Timeout</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">TCPConn</span><span class="p">)</span> <span class="nx">SetTimeout</span><span class="p">(</span><span class="nx">nsec</span> <span class="kt">int64</span><span class="p">)</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Error</span>
 
 <span class="c1">// Staying alive, a client wish to stay connected to a server even if it has nothing to send</span>
 <span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">TCPConn</span><span class="p">)</span> <span class="nx">SetKeepAlive</span><span class="p">(</span><span class="nx">keepalive</span> <span class="kt">bool</span><span class="p">)</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Error</span>
 </code></pre></div>
 
-
 <p>UDP client server demo:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// UDPDaytimeClient</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// UDPDaytimeClient</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -3769,9 +3768,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="raw-sockets-and-the-type-ipconn">Raw sockets and the type IPConn<a class="headerlink" href="#raw-sockets-and-the-type-ipconn" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Ping</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Ping</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -3843,7 +3841,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h1 id="4-data-serialisation">4. Data serialisation<a class="headerlink" href="#4-data-serialisation" title="Permanent link">&para;</a></h1>
 <ul>
 <li>ASN.1</li>
@@ -3863,32 +3860,31 @@
 as a Unicode character can be 1,2 or 4 bytes in UTF8 encoding. A string is an array of rune.</p>
 <h1 id="7-security">7. Security<a class="headerlink" href="#7-security" title="Permanent link">&para;</a></h1>
 <h3 id="data-integrity">Data integrity (数据完整性)<a class="headerlink" href="#data-integrity" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="n">MD5</span> <span class="n">Has</span>
-<span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>// MD5 Has
+package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;crypto/md5&quot;</span>
-    <span class="s2">&quot;fmt&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;crypto/md5&quot;
+    &quot;fmt&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nb">hash</span> <span class="p">:</span><span class="o">=</span> <span class="n">md5</span><span class="o">.</span><span class="n">New</span><span class="p">()</span>
-    <span class="nb">bytes</span> <span class="p">:</span><span class="o">=</span> <span class="p">[]</span><span class="n">byte</span><span class="p">(</span><span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">hash</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
-    <span class="n">hashValue</span> <span class="p">:</span><span class="o">=</span> <span class="nb">hash</span><span class="o">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">nil</span><span class="p">)</span>
-    <span class="n">hashSize</span> <span class="p">:</span><span class="o">=</span> <span class="nb">hash</span><span class="o">.</span><span class="n">Size</span><span class="p">()</span>
-    <span class="o">//</span> <span class="k">print</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">ASCII</span> <span class="kn">from</span> <span class="nn">as</span> <span class="nn">four</span> <span class="nn">hexadcimal</span> <span class="nn">numbers</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">hashSize</span><span class="p">;</span> <span class="n">n</span> <span class="o">+=</span> <span class="mi">4</span> <span class="p">{</span>
-        <span class="n">var</span> <span class="n">val</span> <span class="n">uint32</span>
-        <span class="n">val</span> <span class="o">=</span> <span class="n">uint32</span><span class="p">(</span><span class="n">hashValue</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="o">&lt;&lt;</span><span class="mi">24</span> <span class="o">+</span>
-            <span class="n">uint32</span><span class="p">(</span><span class="n">hashValue</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">&lt;&lt;</span><span class="mi">16</span> <span class="o">+</span>
-            <span class="n">uint32</span><span class="p">(</span><span class="n">hashValue</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span><span class="o">&lt;&lt;</span><span class="mi">8</span> <span class="o">+</span>
-            <span class="n">uint32</span><span class="p">(</span><span class="n">hashValue</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%x</span><span class="s2"> &quot;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+func main() {
+    hash := md5.New()
+    bytes := []byte(&quot;hello\n&quot;)
+    hash.Write(bytes)
+    hashValue := hash.Sum(nil)
+    hashSize := hash.Size()
+    // print out in ASCII from as four hexadcimal numbers
+    for n := 0; n &lt; hashSize; n += 4 {
+        var val uint32
+        val = uint32(hashValue[n])&lt;&lt;24 +
+            uint32(hashValue[n+1])&lt;&lt;16 +
+            uint32(hashValue[n+2])&lt;&lt;8 +
+            uint32(hashValue[n+3])
+        fmt.Printf(&quot;%x &quot;, val)
+    }
+}
 </code></pre></div>
-
 
 <h3 id="symmetric-key-encryption">Symmetric key encryption<a class="headerlink" href="#symmetric-key-encryption" title="Permanent link">&para;</a></h3>
 <ul>
@@ -3908,74 +3904,70 @@ along with additional information such as owner name and location.</p>
 </ul>
 <h1 id="8-http">8. HTTP<a class="headerlink" href="#8-http" title="Permanent link">&para;</a></h1>
 <h1 id="http-client">HTTP client<a class="headerlink" href="#http-client" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;net/http&quot;</span>
-    <span class="s2">&quot;os&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">url</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:8000&quot;</span>
-    <span class="n">response</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">())</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">Status</span> <span class="o">!=</span> <span class="s2">&quot;200 OK&quot;</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">Status</span><span class="p">)</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="o">//</span> <span class="n">b</span><span class="p">,</span> <span class="n">_</span> <span class="p">:</span><span class="o">=</span> <span class="n">httputil</span><span class="o">.</span><span class="n">DumpResponse</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">false</span><span class="p">)</span>
-    <span class="o">//</span> <span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+func main() {
+    url := &quot;http://127.0.0.1:8000&quot;
+    response, err := http.Get(url)
+    if err != nil {
+        fmt.Println(err.Error())
+        os.Exit(2)
+    }
+    if response.Status != &quot;200 OK&quot; {
+        fmt.Println(response.Status)
+        os.Exit(2)
+    }
+    // b, _ := httputil.DumpResponse(response, false)
+    // fmt.Print(string(b))
 
-    <span class="n">var</span> <span class="n">buf</span> <span class="p">[</span><span class="mi">512</span><span class="p">]</span><span class="n">byte</span>
-    <span class="n">reader</span> <span class="p">:</span><span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">Body</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">Read</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
-        <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="p">]))</span>
-    <span class="p">}</span>
+    var buf [512]byte
+    reader := response.Body
+    for {
+        n, err := reader.Read(buf[0:])
+        if err != nil {
+            fmt.Println(err)
+            os.Exit(0)
+        }
+        fmt.Print(string(buf[0:n]))
+    }
 
-<span class="p">}</span>
+}
 </code></pre></div>
-
 
 <p>Proxy handling:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">proxyURL, err := url.Parse(proxyString) // http://proxy-host:port</span>
-<span class="err">transport := &amp;http.Transport{Proxy: http.ProxyURL(proxyURL)}</span>
-<span class="err">client := &amp;http.Client{Transport: transport}</span>
-<span class="err">// func ProxyFromEnvironment(req *Request) (*url.URL, error)</span>
+<div class="highlight"><pre><span></span><code>proxyURL, err := url.Parse(proxyString) // http://proxy-host:port
+transport := &amp;http.Transport{Proxy: http.ProxyURL(proxyURL)}
+client := &amp;http.Client{Transport: transport}
+// func ProxyFromEnvironment(req *Request) (*url.URL, error)
 </code></pre></div>
-
 
 <h3 id="servers">Servers<a class="headerlink" href="#servers" title="Permanent link">&para;</a></h3>
 <ul>
 <li>File server</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="s2">&quot;net/http&quot;</span>
+import &quot;net/http&quot;
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">fileServer</span> <span class="p">:</span><span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">FileServer</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">Dir</span><span class="p">(</span><span class="s2">&quot;/home/httpd/html&quot;</span><span class="p">))</span>
-    <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">ListenAndServe</span><span class="p">(</span><span class="s2">&quot;:8000&quot;</span><span class="p">,</span> <span class="n">fileServer</span><span class="p">)</span>
-    <span class="n">checkError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-<span class="p">}</span>
+func main() {
+    fileServer := http.FileServer(http.Dir(&quot;/home/httpd/html&quot;))
+    err := http.ListenAndServe(&quot;:8000&quot;, fileServer)
+    checkError(err)
+}
 </code></pre></div>
-
 
 <ul>
 <li>Handler function</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="err">func Handle(pattern string, handler Handler)</span>
-<span class="err">func HandleFunc(pattern string, handler func(*Conn, *Request))</span>
+<div class="highlight"><pre><span></span><code>func Handle(pattern string, handler Handler)
+func HandleFunc(pattern string, handler func(*Conn, *Request))
 </code></pre></div>
-
 
 <h1 id="9-templates">9. Templates<a class="headerlink" href="#9-templates" title="Permanent link">&para;</a></h1>
 <ul>
@@ -4010,7 +4002,7 @@ along with additional information such as owner name and location.</p>
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 Go101
               </div>
@@ -4022,7 +4014,7 @@ along with additional information such as owner name and location.</p>
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 Building Microservices With Go
               </div>
@@ -4052,7 +4044,7 @@ along with additional information such as owner name and location.</p>
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -4063,6 +4055,8 @@ along with additional information such as owner name and location.</p>
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

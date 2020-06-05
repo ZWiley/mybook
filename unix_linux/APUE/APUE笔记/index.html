@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/unix_linux/APUE/APUE%E7%AC%94%E8%AE%B0/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#fork-vfork" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -3409,7 +3415,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3425,7 +3431,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/unix_linux/APUE/APUE笔记.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/unix_linux/APUE/APUE笔记.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3455,7 +3461,7 @@
 </li>
 <li>
 <p><em>COW</em><br />
-<em>COW</em> 即写时复制(<em>Copy-On-Write</em>)， <strong>数据空间、堆、栈的副本</strong>在创建子进程时并不创建副本。而是在父进程或者子进程修改这片区域时，内核为修改区域的那块内存制作一个副本，以提高效率。  </p>
+<em>COW</em> 即写时复制(<em>Copy-On-Write</em>)， **数据空间、堆、栈的副本**在创建子进程时并不创建副本。而是在父进程或者子进程修改这片区域时，内核为修改区域的那块内存制作一个副本，以提高效率。  </p>
 </li>
 <li>
 <p><em>fork</em> <br />
@@ -3467,36 +3473,35 @@
 </li>
 <li>
 <p>案例  </p>
-<p>```c++
- int globvar = 10;
- char buf[] = &ldquo;a writte to stdout.\n&rdquo;;</p>
-<p>int main(int argv, char* argc[]){
-     int var;
-     pid_t pid;</p>
-<div class="codehilite"><pre><span></span><code><span class="err"> var = 88;</span>
-<span class="err"> if(write(STDOUT_FILENO, buf, sizeof(buf)-1) != sizeof(buf)-1){</span>
-<span class="err">     printf(&quot;write error&quot;);</span>
-<span class="err">     exit(1);</span>
-<span class="err"> }</span>
-<span class="err"> printf(&quot;before fork.\n&quot;);</span>
-<span class="err"> // 创建子进程后，后面的代码，父进程和子进程独立运行。</span>
-<span class="err"> if((pid=fork()) &lt; 0){</span>
-<span class="err">     printf(&quot;fork() error.\n&quot;);</span>
-<span class="err">     exit(1);</span>
-<span class="err"> }</span>
-<span class="err"> else if(pid == 0){</span>
-<span class="err">     globvar++; //子进程运行不改变父进程的值</span>
-<span class="err">     var++;</span>
-<span class="err"> }</span>
-<span class="err"> else</span>
-<span class="err">     sleep(2);</span>
-<span class="err"> printf(&quot;pid=%ld, globvar=%d, var=%d.\n&quot;,(long)getpid() , globvar, var);</span>
-<span class="err"> retdurn 0;</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">globvar</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">buf</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;a writte to stdout.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argv</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argc</span><span class="p">[]){</span>
+    <span class="kt">int</span> <span class="n">var</span><span class="p">;</span>
+    <span class="kt">pid_t</span> <span class="n">pid</span><span class="p">;</span>
+
+    <span class="n">var</span> <span class="o">=</span> <span class="mi">88</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">write</span><span class="p">(</span><span class="n">STDOUT_FILENO</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;write error&quot;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;before fork.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="c1">// 创建子进程后，后面的代码，父进程和子进程独立运行。</span>
+    <span class="k">if</span><span class="p">((</span><span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fork() error.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">globvar</span><span class="o">++</span><span class="p">;</span> <span class="c1">//子进程运行不改变父进程的值</span>
+        <span class="n">var</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;pid=%ld, globvar=%d, var=%d.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,(</span><span class="kt">long</span><span class="p">)</span><span class="n">getpid</span><span class="p">()</span> <span class="p">,</span> <span class="n">globvar</span><span class="p">,</span> <span class="n">var</span><span class="p">);</span>
+    <span class="n">retdurn</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 
-
-<p>}
- ```</p>
 </li>
 </ul>
 <ol start="2">
@@ -3515,34 +3520,36 @@
 </li>
 <li>
 <p>案例</p>
-<p><code>C++
- // 将上面的修改如下：
- if((pid=vfork()) &lt; 0){
-     printf("fork() error.\n");
-     exit(1);
- }
- else if(pid == 0){
-     globvar++; // 会改变父进程的变量值
-     var++;
-     _exit(0);
- }
- // 去掉sleep(2)是因为vfork能保证子进程先运行</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 将上面的修改如下：</span>
+<span class="k">if</span><span class="p">((</span><span class="n">pid</span><span class="o">=</span><span class="n">vfork</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fork() error.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="n">globvar</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 会改变父进程的变量值</span>
+    <span class="n">var</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 去掉sleep(2)是因为vfork能保证子进程先运行</span>
+</code></pre></div>
+
 </li>
 <li>
 <p>结果对比：</p>
-<p>```bash
- # fork 
- szz@ubuntu:~/Study/SystemProgram/IO$ ./f
- a writte to stdout.
- before fork.
- pid=4304, globvar=11, var=89. # 子进程
- pid=4303, globvar=10, var=88. # 父进程</p>
-<p># vfork
- szz@ubuntu:./vf
- a writte to stdout.
- before fork.
- pid=4301, globvar=11, var=89.# 父进程
- ```</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># fork </span>
+szz@ubuntu:~/Study/SystemProgram/IO$ ./f
+a writte to stdout.
+before fork.
+<span class="nv">pid</span><span class="o">=</span><span class="m">4304</span>, <span class="nv">globvar</span><span class="o">=</span><span class="m">11</span>, <span class="nv">var</span><span class="o">=</span><span class="m">89</span>. <span class="c1"># 子进程</span>
+<span class="nv">pid</span><span class="o">=</span><span class="m">4303</span>, <span class="nv">globvar</span><span class="o">=</span><span class="m">10</span>, <span class="nv">var</span><span class="o">=</span><span class="m">88</span>. <span class="c1"># 父进程</span>
+
+<span class="c1"># vfork</span>
+szz@ubuntu:./vf
+a writte to stdout.
+before fork.
+<span class="nv">pid</span><span class="o">=</span><span class="m">4301</span>, <span class="nv">globvar</span><span class="o">=</span><span class="m">11</span>, <span class="nv">var</span><span class="o">=</span><span class="m">89</span>.# 父进程
+</code></pre></div>
+
 </li>
 <li>
 <p><em>gdb</em> 调试<br />
@@ -3584,32 +3591,34 @@
    open函数有两种设计：</p>
 </li>
 </ol>
-<p><code>C++
-   int open(const char* filename, int flags); // 打开已经存在的文件
-   int open(const char* filename, int flags, mode_t mode); //可以用于创建文件
-   /**
-     flags: O_RDWR   // 读写
-            O_RDONLY // 只读
-            O_WRONLY // 只写
-            配合
-            "|O_CREAT"  // 文件不存在时创建
-            "|O_TRUNC"  // 将打开的文件原来的内容清空
-     mode: 文件的权限。文件的权限此处需要将实际文件权限(比如777)和本地掩码(umask得到0022)取反后进行按位与。
-   */</code></p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">open</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">);</span> <span class="c1">// 打开已经存在的文件</span>
+<span class="kt">int</span> <span class="nf">open</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">filename</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span> <span class="kt">mode_t</span> <span class="n">mode</span><span class="p">);</span> <span class="c1">//可以用于创建文件</span>
+<span class="cm">/**</span>
+<span class="cm">  flags: O_RDWR   // 读写</span>
+<span class="cm">         O_RDONLY // 只读</span>
+<span class="cm">         O_WRONLY // 只写</span>
+<span class="cm">         配合</span>
+<span class="cm">         &quot;|O_CREAT&quot;  // 文件不存在时创建</span>
+<span class="cm">         &quot;|O_TRUNC&quot;  // 将打开的文件原来的内容清空</span>
+<span class="cm">  mode: 文件的权限。文件的权限此处需要将实际文件权限(比如777)和本地掩码(umask得到0022)取反后进行按位与。</span>
+<span class="cm">*/</span>
+</code></pre></div>
+
 <ol start="3">
 <li><em><code>read</code></em><br />
 <em><code>read</code></em> 设计</li>
 </ol>
-<p><code>c++
-   sszie_t read(int fd, void* buff,  size_t count);
-   /*
-   size_t  表示无符号
-   sszit_t 表示有符号
-   返回值：
-       -1: 读取失败
-       0 : 读取完成
-       &gt;0: 读取的字节数
-   */</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">sszie_t</span> <span class="nf">read</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">buff</span><span class="p">,</span>  <span class="kt">size_t</span> <span class="n">count</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">size_t  表示无符号</span>
+<span class="cm">sszit_t 表示有符号</span>
+<span class="cm">返回值：</span>
+<span class="cm">    -1: 读取失败</span>
+<span class="cm">    0 : 读取完成</span>
+<span class="cm">    &gt;0: 读取的字节数</span>
+<span class="cm">*/</span>
+</code></pre></div>
+
 <ol start="4">
 <li>
 <p><em><code>write</code></em> 和 <em><code>read</code></em> 类似。</p>
@@ -3620,7 +3629,7 @@
 </ol>
 <ul>
 <li>标准的C库函数，内部有一个系统维护的缓冲区。</li>
-<li>上面都的 <em><code>write</code></em> 和 <em><code>read</code></em>的缓冲区是由用户自己进行维护。</li>
+<li>上面都的 <em><code>write</code></em> 和 *<code>read</code>*的缓冲区是由用户自己进行维护。</li>
 </ul>
 <ol start="6">
 <li><em><code>lseek</code></em>   </li>
@@ -3665,8 +3674,9 @@
 <p>函数</p>
 </li>
 </ul>
-<p><code>c++
-  void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);</code></p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="o">*</span><span class="nf">mmap</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">addr</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">prot</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">off_t</span> <span class="n">offset</span><span class="p">);</span>
+</code></pre></div>
+
 <p>函数返回的是：创建映射区的首地址，失败返回<code>MAP_FAILED</code>。</p>
 <ul>
 <li>参数</li>
@@ -3714,21 +3724,22 @@
 <p>通用的方法：  </p>
 </li>
 </ul>
-<p><code>c
-   int fd = open("/dev/zero", O_RDWR);
-   char* pmem = mmap(NULL, len, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);</code></p>
-<div class="codehilite"><pre><span></span><code><span class="err">使用的是一个文件`/dev/zero`完成。</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/dev/zero&quot;</span><span class="p">,</span> <span class="n">O_RDWR</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">pmem</span> <span class="o">=</span> <span class="n">mmap</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>使用的是一个文件`/dev/zero`完成。
 </code></pre></div>
 
 
 </li>
 <li>
 <p><code>mmap</code>实现无血缘关系进程间通信<br />
-  实际上<code>mmp</code>是内核<strong>借助文件</strong>帮我们创建了一个映射区。多个进程利用该映射区完成书的传递。由于内核是多进程共享，因此无血缘关系的进程间也可以使用<code>mmap</code>完成数据通信。</p>
+  实际上<code>mmp</code>是内核**借助文件**帮我们创建了一个映射区。多个进程利用该映射区完成书的传递。由于内核是多进程共享，因此无血缘关系的进程间也可以使用<code>mmap</code>完成数据通信。</p>
 </li>
 </ul>
 <h3 id="makefile">makefile<a class="headerlink" href="#makefile" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c"># obj=main.o ./src/add.c ./src/sub.c ./src/mul.c ./src/div.c</span>
+<div class="highlight"><pre><span></span><code><span class="c"># obj=main.o ./src/add.c ./src/sub.c ./src/mul.c ./src/div.c</span>
 <span class="c"># makefile中提供的函数，都有返回值,使用函数来取代obj的首写输入方式</span>
 <span class="nv">src</span> <span class="o">=</span> <span class="k">$(</span>wildcard ./*.c, ./src/*.c<span class="k">)</span>  <span class="c1"># 表示取出指定目录下所有的.c文件</span>
 <span class="nv">obj</span> <span class="o">=</span> <span class="k">$(</span>patsubst ./%.c, ./%.o, <span class="k">$(</span>src<span class="k">))</span>
@@ -3756,7 +3767,6 @@
     -rm -f  <span class="k">$(</span>target<span class="k">)</span> <span class="k">$(</span>obj<span class="k">)</span>
 </code></pre></div>
 
-
 <h3 id="exitwaitwaitpidexec">exit、wait、waitpid、exec<a class="headerlink" href="#exitwaitwaitpidexec" title="Permanent link">&para;</a></h3>
 <ol>
 <li><em>exit</em><br />
@@ -3766,7 +3776,7 @@
 <li>正常终止:  <ul>
 <li>从 <em>main</em> 返回：return 0 == exit(0)</li>
 <li>调用 <em>exit</em> <br />
-   在退出时，会调用一系列的终止处理程序(可以调用函数 <em>atexit</em> 进行注册)，关闭所有标准 <em>I/O</em>流等。</li>
+   在退出时，会调用一系列的终止处理程序(可以调用函数 <em>atexit</em> 进行注册)，关闭所有标准 *I/O*流等。</li>
 <li>调用 <em>_exit/_Exit</em> <br />
    Linux的 <em>_exit/_Exit</em> 与 <em>exit</em> 不同，前者是直接退出，不 <em>flush</em> 缓冲区，而后者会。<em>exit</em> 内部调用 <em>_exit</em>，且 <em>flush</em> 缓冲区。  </li>
 <li>最后一个线程从启动例程返回</li>
@@ -3783,7 +3793,7 @@
 <p>无论如何进程如何终止，最后都会执行内核中的同一段代码，关闭所有的描述符，释放所用的存储器。</p>
 <ol start="2">
 <li>终止状态 <br />
-   当一个进行终止，内核向其父进程发生 <strong><em>SIGCHLD</em></strong> 信号。进程终止，其父进程通过调用 <em>wiat、waitpid</em> 来获取<strong>正常终止</strong>进程的的退出状态。  </li>
+   当一个进行终止，内核向其父进程发生 <strong><em>SIGCHLD</em></strong> 信号。进程终止，其父进程通过调用 <em>wiat、waitpid</em> 来获取**正常终止**进程的的退出状态。  </li>
 </ol>
 <ul>
 <li>孤儿进程<br />
@@ -3797,23 +3807,28 @@
 <li>杀死僵死进程： <code>kill -9 ID</code><br />
 <a href="https://blog.csdn.net/qq_37837134/article/details/82683107">参考地址</a></li>
 </ul>
-<p>```bash
-    s：ps命令用于获取当前系统的进程信息.</p>
-<p>-e：参数用于列出所有的进程</p>
-<p>-o：参数用于设定输出格式。这里只输出进程的stat(状态信息)、ppid(父进程pid)、pid(当前进程的pid)，cmd(即进程的可执行文件)。</p>
-<p>egrep：是linux下的正则表达式工具</p>
-<p>&rsquo;^[Zz]&rsquo;：这是正则表达式，^表示第一个字符的位置，[Zz]，表示z或者大写的Z字母，即表示第一个字符为Z或者z开头的进程数据，只所以这样是因为僵尸进程的状态信息以Z或者z字母开头。
-   ```</p>
+<div class="highlight"><pre><span></span><code> s：ps命令用于获取当前系统的进程信息.
+
+-e：参数用于列出所有的进程
+
+-o：参数用于设定输出格式。这里只输出进程的stat<span class="o">(</span>状态信息<span class="o">)</span>、ppid<span class="o">(</span>父进程pid<span class="o">)</span>、pid<span class="o">(</span>当前进程的pid<span class="o">)</span>，cmd<span class="o">(</span>即进程的可执行文件<span class="o">)</span>。
+
+egrep：是linux下的正则表达式工具
+
+<span class="s1">&#39;^[Zz]&#39;</span>：这是正则表达式，^表示第一个字符的位置，<span class="o">[</span>Zz<span class="o">]</span>，表示z或者大写的Z字母，即表示第一个字符为Z或者z开头的进程数据，只所以这样是因为僵尸进程的状态信息以Z或者z字母开头。
+</code></pre></div>
+
 <ol start="3">
 <li><strong><em>wiat、waitpid</em></strong>  </li>
 </ol>
-<p><code>c
-   pid_t wait(int* statloc);  
-   pid_t waitpid(pid_t pid, int* statloc, int options); // 
-   /*
-   // 返回时返回值是终止进程的id，子进程终止状态存储在statloc
-   // 如果不关心终止状态，就令statloc为null，statloc详见P191
-   */</code></p>
+<div class="highlight"><pre><span></span><code><span class="kt">pid_t</span> <span class="nf">wait</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">statloc</span><span class="p">);</span>  
+<span class="kt">pid_t</span> <span class="nf">waitpid</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">statloc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">options</span><span class="p">);</span> <span class="c1">// </span>
+<span class="cm">/*</span>
+<span class="cm">// 返回时返回值是终止进程的id，子进程终止状态存储在statloc</span>
+<span class="cm">// 如果不关心终止状态，就令statloc为null，statloc详见P191</span>
+<span class="cm">*/</span>
+</code></pre></div>
+
 <ul>
 <li>异同点<ul>
 <li><em>wiat</em> 是阻塞的，<em>waitpid</em> 有个选项可以不阻塞。</li>
@@ -3827,40 +3842,39 @@
 <ol start="4">
 <li><em>exec</em>  </li>
 </ol>
-<p>```c++
-   extern char **environ;</p>
-<p>int execl  (const char <em>path, const char </em>arg, &hellip; /<em> (char  </em>) NULL <em>/);
-   int execv  (const char </em>path, char <em>const argv[]);
-   int execve (const char </em>path, char <em>const argv[], char const</em> envp[]);
-   int execle (const char <em>path, const char </em>arg, &hellip; /<em>, (char </em>) NULL, char * const envp[] <em>/);
-   int execlp (const char </em>file, const char <em>arg, &hellip; /</em> (char  <em>) NULL </em>/);
-   int execvp (const char <em>file, char </em>const argv[]);
-   int execvpe(const char <em>file, char </em>const argv[], char *const envp[]);
-   ```</p>
+<div class="highlight"><pre><span></span><code><span class="k">extern</span> <span class="kt">char</span> <span class="o">**</span><span class="n">environ</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">execl</span>  <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="p">...</span> <span class="cm">/* (char  *)</span> <span class="nb">NULL</span> <span class="err">*/</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">execv</span>  <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="k">const</span> <span class="n">argv</span><span class="p">[]);</span>
+<span class="kt">int</span> <span class="nf">execve</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="k">const</span> <span class="n">argv</span><span class="p">[],</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">envp</span><span class="p">[]);</span>
+<span class="kt">int</span> <span class="nf">execle</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="p">...</span> <span class="cm">/*, (char *)</span> <span class="nb">NULL</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">envp</span><span class="p">[]</span> <span class="err">*/</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">execlp</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">file</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="p">...</span> <span class="cm">/* (char  *)</span> <span class="nb">NULL</span> <span class="err">*/</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">execvp</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">file</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="k">const</span> <span class="n">argv</span><span class="p">[]);</span>
+<span class="kt">int</span> <span class="nf">execvpe</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">file</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="k">const</span> <span class="n">argv</span><span class="p">[],</span> <span class="kt">char</span> <span class="o">*</span><span class="k">const</span> <span class="n">envp</span><span class="p">[]);</span>
+</code></pre></div>
+
 <p>只有失败时候才返回-1，成功时直接执行被执行的函数，不会返回，即 <em>exec</em> 同一作用域的后面的部分不会运行：</p>
-<div class="codehilite"><pre><span></span><code>       <span class="n">exec</span><span class="p">(...);</span>
+<div class="highlight"><pre><span></span><code>       <span class="n">exec</span><span class="p">(...);</span>
        <span class="n">perroe</span><span class="p">(</span><span class="s">&quot;exec call error.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 </code></pre></div>
 
-
 <h3 id="_1">动态库和静态库<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>目录结构：</p>
-<div class="codehilite"><pre><span></span><code><span class="err">.</span>
-<span class="err">├── include</span>
-<span class="err">│   ├── head.h</span>
-<span class="err">│   └── note.md</span>
-<span class="err">├── lib</span>
-<span class="err">│   └── libMyCal.a</span>
-<span class="err">├── main.c</span>
-<span class="err">└── src</span>
-<span class="err">    ├── add.c</span>
-<span class="err">    ├── div.c</span>
-<span class="err">    ├── mul.c</span>
-<span class="err">    └── sub.c</span>
+<div class="highlight"><pre><span></span><code>.
+├── include
+│   ├── head.h
+│   └── note.md
+├── lib
+│   └── libMyCal.a
+├── main.c
+└── src
+    ├── add.c
+    ├── div.c
+    ├── mul.c
+    └── sub.c
 </code></pre></div>
-
 
 <ol>
 <li>
@@ -3895,30 +3909,33 @@
 </li>
 </ul>
 <p>但是这么写会报错：</p>
-<p><code>./ main_: error while loading shared libraries: 
-       libMyCal.so: cannot open shared object file: No such file or directory</code></p>
+<div class="highlight"><pre><span></span><code>./ main_: error while loading shared libraries: 
+    libMyCal.so: cannot open shared object file: No such file or directory
+</code></pre></div>
+
 <p>解决方法是：</p>
 <ul>
 <li>
 <p>将libMyCal.so放到系统的lib下，放的也都是动态链接库: <code>sudo cp ./lib/libMyCal.so  /lib/</code></p>
 <p>再去执行<code>./main_</code> 就能顺利编译</p>
 <p>可用<code>ldd</code> 命令查看 <code>main_</code>的依赖项目：</p>
-<p><code>bash
- (base) szz@szz:/media/szz/Others/Self_study/Cpp/Study/sdll$ ldd main_ 
-     linux-vdso.so.1 =&gt;  (0x00007fff07e96000)                          # shared object file
-     libMyCal.so =&gt; /lib/libMyCal.so (0x00007fd692a86000)              # 动态库    
-     libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd6926bc000) # 系统的C库
-     /lib64/ld-linux-x86-64.so.2 (0x00007fd692c88000)                  # 动态链接器</code></p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span> szz@szz:/media/szz/Others/Self_study/Cpp/Study/sdll$ ldd main_ 
+    linux-vdso.so.1 <span class="o">=</span>&gt;  <span class="o">(</span>0x00007fff07e96000<span class="o">)</span>                          <span class="c1"># shared object file</span>
+    libMyCal.so <span class="o">=</span>&gt; /lib/libMyCal.so <span class="o">(</span>0x00007fd692a86000<span class="o">)</span>              <span class="c1"># 动态库    </span>
+    libc.so.6 <span class="o">=</span>&gt; /lib/x86_64-linux-gnu/libc.so.6 <span class="o">(</span>0x00007fd6926bc000<span class="o">)</span> <span class="c1"># 系统的C库</span>
+    /lib64/ld-linux-x86-64.so.2 <span class="o">(</span>0x00007fd692c88000<span class="o">)</span>                  <span class="c1"># 动态链接器</span>
+</code></pre></div>
+
 </li>
 <li>
 <p>加入搜索路径：<code>export LD_LIBRARY_PATH=./lib/</code></p>
 <p>直接将动态库放到系统的动态库中，很不安全，因此可能会覆盖重名的系统库。更加安全的方式是通过<code>LD_LIBRARY_PATH</code>使得系统在搜索环境变量之前搜索这个路径。 </p>
-<p>```bash
- linux-vdso.so.1 =&gt;  (0x00007ffce2710000)
- libMyCal.so =&gt; ./lib/libMyCal.so (0x00007fee92742000)               # 与上面解决方案对应路径不同
- libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fee92378000)
- /lib64/ld-linux-x86-64.so.2 (0x00007fee92944000)</p>
-<p>```</p>
+<div class="highlight"><pre><span></span><code>linux-vdso.so.1 <span class="o">=</span>&gt;  <span class="o">(</span>0x00007ffce2710000<span class="o">)</span>
+libMyCal.so <span class="o">=</span>&gt; ./lib/libMyCal.so <span class="o">(</span>0x00007fee92742000<span class="o">)</span>               <span class="c1"># 与上面解决方案对应路径不同</span>
+libc.so.6 <span class="o">=</span>&gt; /lib/x86_64-linux-gnu/libc.so.6 <span class="o">(</span>0x00007fee92378000<span class="o">)</span>
+/lib64/ld-linux-x86-64.so.2 <span class="o">(</span>0x00007fee92944000<span class="o">)</span>
+</code></pre></div>
+
 <p>注意： 这个方案是临时的，用于测试使用，想要永久生效，<strong>需要将上述命令中的相对路径换成绝对路径加入<code>.bashrc</code>文件中</strong>。</p>
 </li>
 <li>
@@ -3980,12 +3997,13 @@
 <img alt="文件权限" src="G:%5CSSE%5CInterview%5CBackEnd%5Cmybook%5Cdocs%5Cunix_linux%5CAPUE%5CImage%5C%25E6%2596%2587%25E4%25BB%25B6%25E6%259D%2583%25E9%2599%2590.jpg" /></li>
 </ul>
 <p>比如：</p>
-<p><code>bash
- $ chmod u+rw wait.c  # 给用户 读写权限
- $ chmod u-rw wait.c  # 去掉用户的读写权限
- $ chmod g+rw wait.c  # 给组 读写权限
- $ chmod g=x wait.c   # 设置组具有执行权限
- $ chmod a=x wait.c   # 都有执行权限</code></p>
+<div class="highlight"><pre><span></span><code>$ chmod u+rw wait.c  <span class="c1"># 给用户 读写权限</span>
+$ chmod u-rw wait.c  <span class="c1"># 去掉用户的读写权限</span>
+$ chmod g+rw wait.c  <span class="c1"># 给组 读写权限</span>
+$ chmod <span class="nv">g</span><span class="o">=</span>x wait.c   <span class="c1"># 设置组具有执行权限</span>
+$ chmod <span class="nv">a</span><span class="o">=</span>x wait.c   <span class="c1"># 都有执行权限</span>
+</code></pre></div>
+
 </li>
 <li>
 <p><em>chown</em> </p>
@@ -3996,19 +4014,22 @@
 <li><code>chown -R [所有者] [:组] 文件夹 ...</code></li>
 </ul>
 <p>比如:</p>
-<p>```c
-  $ ls -l wiat_.c 
-  &mdash;x-wxrwx 1 szz szz 560 Nov 29 03:16 wiat_.c</p>
-<p>//修改用户
-  $ sudo chown root wiat_.c 
-  &mdash;xrw-rwx 1 root szz 560 Nov 29 03:16 wiat_.c</p>
-<p>// 修改组
-  $ sudo chown .root wiat_.c 
-  &mdash;xrw-rwx 1 root root 560 Nov 29 03:16 wiat_.c</p>
-<p>//同时修改
-  $ sudo chown szz.szz wiat_.c 
-  &mdash;xrw-rwx 1 szz szz 560 Nov 29 03:16 wiat_.c
-  ```</p>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="n">wiat_</span><span class="p">.</span><span class="n">c</span> 
+<span class="o">---</span><span class="n">x</span><span class="o">-</span><span class="n">wxrwx</span> <span class="mi">1</span> <span class="n">szz</span> <span class="n">szz</span> <span class="mi">560</span> <span class="n">Nov</span> <span class="mi">29</span> <span class="mo">03</span><span class="o">:</span><span class="mi">16</span> <span class="n">wiat_</span><span class="p">.</span><span class="n">c</span>
+
+<span class="c1">//修改用户</span>
+<span class="err">$</span> <span class="n">sudo</span> <span class="n">chown</span> <span class="n">root</span> <span class="n">wiat_</span><span class="p">.</span><span class="n">c</span> 
+<span class="o">---</span><span class="n">xrw</span><span class="o">-</span><span class="n">rwx</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">szz</span> <span class="mi">560</span> <span class="n">Nov</span> <span class="mi">29</span> <span class="mo">03</span><span class="o">:</span><span class="mi">16</span> <span class="n">wiat_</span><span class="p">.</span><span class="n">c</span>
+
+<span class="c1">// 修改组</span>
+<span class="err">$</span> <span class="n">sudo</span> <span class="n">chown</span> <span class="p">.</span><span class="n">root</span> <span class="n">wiat_</span><span class="p">.</span><span class="n">c</span> 
+<span class="o">---</span><span class="n">xrw</span><span class="o">-</span><span class="n">rwx</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">root</span> <span class="mi">560</span> <span class="n">Nov</span> <span class="mi">29</span> <span class="mo">03</span><span class="o">:</span><span class="mi">16</span> <span class="n">wiat_</span><span class="p">.</span><span class="n">c</span>
+
+<span class="c1">//同时修改</span>
+<span class="err">$</span> <span class="n">sudo</span> <span class="n">chown</span> <span class="n">szz</span><span class="p">.</span><span class="n">szz</span> <span class="n">wiat_</span><span class="p">.</span><span class="n">c</span> 
+<span class="o">---</span><span class="n">xrw</span><span class="o">-</span><span class="n">rwx</span> <span class="mi">1</span> <span class="n">szz</span> <span class="n">szz</span> <span class="mi">560</span> <span class="n">Nov</span> <span class="mi">29</span> <span class="mo">03</span><span class="o">:</span><span class="mi">16</span> <span class="n">wiat_</span><span class="p">.</span><span class="n">c</span>
+</code></pre></div>
+
 <ol start="3">
 <li>增加/删除用户<br />
    在指定的组里添加成员。</li>
@@ -4029,20 +4050,22 @@
 <li>组别：<em>family</em><br />
      状态如下：<em>lam, sz</em> 属于同一个组 <em>family</em>。</li>
 </ul>
-<p><code>bash
-   $ id lam
-   uid=1001(lam) gid=1002(family) groups=1002(family)
-   $ id sz
-   uid=1002(sz) gid=1002(family) groups=1002(family)</code></p>
+<div class="highlight"><pre><span></span><code>$ id lam
+<span class="nv">uid</span><span class="o">=</span><span class="m">1001</span><span class="o">(</span>lam<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1002</span><span class="o">(</span>family<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1002</span><span class="o">(</span>family<span class="o">)</span>
+$ id sz
+<span class="nv">uid</span><span class="o">=</span><span class="m">1002</span><span class="o">(</span>sz<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1002</span><span class="o">(</span>family<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1002</span><span class="o">(</span>family<span class="o">)</span>
+</code></pre></div>
+
 <p>有文件：wait.cpp</p>
-<p><code>bash
-   $ ls -l wait.cpp 
-   ---xrw-r-- 1 lam family 20 Nov 29 05:09 wait.cpp</code></p>
+<div class="highlight"><pre><span></span><code>$ ls -l wait.cpp 
+---xrw-r-- <span class="m">1</span> lam family <span class="m">20</span> Nov <span class="m">29</span> <span class="m">05</span>:09 wait.cpp
+</code></pre></div>
+
 <p>权限解释：  </p>
 <ul>
 <li>user : 对于用户 <em>lam</em> 具有可执行权限(<em>x</em>)</li>
-<li>gropu: 对于属于组<em>family</em>的成员都具有具有rw权限</li>
-<li>other: 对于其他人<em>other</em>具有<em>r</em>权限
+<li>gropu: 对于属于组*family*的成员都具有具有rw权限</li>
+<li>other: 对于其他人*other*具有*r*权限
      要是想让不同的成员获得想要的权限，就可以使用 <em>chowm</em> 命令来改变。      </li>
 <li><strong>删除</strong> ：删除一个文件，是看该文件所属的目录权限</li>
 </ul>
@@ -4050,13 +4073,14 @@
 <li>对于一个目录的操作</li>
 </ol>
 <p><code>目录Process: dr-x--x--- 2 lam family 4096 Nov 29 05:14 Process</code></p>
-<p>用户<em>other</em> 目前对于 <em>Process/</em> 目录没有任何的执行能力。</p>
-<p>```
-   $ cd Process/
-   -su: cd: Process/: Permission denied</p>
-<p>$ ls Process/
-   ls: cannot open directory &lsquo;Process/&rsquo;: Permission denied
-   ```</p>
+<p>用户*other* 目前对于 <em>Process/</em> 目录没有任何的执行能力。</p>
+<div class="highlight"><pre><span></span><code>$ cd Process/
+-su: cd: Process/: Permission denied
+
+$ ls Process/
+ls: cannot open directory &#39;Process/&#39;: Permission denied
+</code></pre></div>
+
 <p>把 <em><code>Process/</code></em> 的权限改为 <em><code>dr-x--x--x</code></em> 可以执行 <em><code>cd</code></em>, 再改为 <em><code>dr-x--xr-x</code></em> 可以执行 <em><code>ls Process/</code></em>。 </p>
 <ul>
 <li>总结<ul>
@@ -4068,7 +4092,7 @@
 </ul>
 <ol start="6">
 <li>默认权限<br />
-   文件权限计算方法与<em>umask</em>   </li>
+   文件权限计算方法与*umask*   </li>
 </ol>
 <ul>
 <li>
@@ -4082,15 +4106,16 @@
 </li>
 <li>
 <p>创建文件时：
-   如果 <em>umask</em>得奇数位，用 666-<em>umask</em> 后，将 <em>umask</em> 的奇数位加1。<br />
+   如果 <em>umask*得奇数位，用 666-*umask</em> 后，将 <em>umask</em> 的奇数位加1。<br />
    比如 <em>umask =303</em>， 那么文件权限是：666-303= 363,363+101=464，即 <em>-r&ndash;rw-r&ndash;</em></p>
 </li>
 </ul>
-<p><code>bash
-   $ umask 303
-   $ touch msk_303
-   $ ls -l
-   -r--rw-r-- 1 szz szz    0 Nov 29 06:39 msk_303</code></p>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">umask</span> <span class="m">303</span>
+$ touch msk_303
+$ ls -l
+-r--rw-r-- <span class="m">1</span> szz szz    <span class="m">0</span> Nov <span class="m">29</span> <span class="m">06</span>:39 msk_303
+</code></pre></div>
+
 </li>
 </ul>
 <ol start="7">
@@ -4107,39 +4132,45 @@
 <li>指令经过 <em>suid</em> 后，任意用户在执行该指令时，都可获得该指令对应的拥有者所具有的权限。   </li>
 </ul>
 <p>修改密码的指令权限如下，在用户位权限上有个 <code>s</code>，就是代表 <em>suid</em> ：</p>
-<p><code>bash
-  $ ls -l /usr/bin/passwd
-  -rwsr-xr-x 1 root root 59640 Mar 22  2019 /usr/bin/passwd</code></p>
+<div class="highlight"><pre><span></span><code>$ ls -l /usr/bin/passwd
+-rwsr-xr-x <span class="m">1</span> root root <span class="m">59640</span> Mar <span class="m">22</span>  <span class="m">2019</span> /usr/bin/passwd
+</code></pre></div>
+
 <p><strong>注意</strong>：用户权限前三位上的x位上如果有s就表示 <em><code>suid</code></em>,当x位置上没有x时， <em><code>suid</code></em> 就是 <em><code>S</code></em>。</p>
 <p>现在有如下目录结构:  </p>
-<p><code>bash
-  Permission/
-  └── test</code></p>
+<div class="highlight"><pre><span></span><code>Permission/
+└── <span class="nb">test</span>
+</code></pre></div>
+
 <p>权限：</p>
-<p><code>bash 
-  drwxrwxr-x 2 root root   4096 Nov 29 19:06 Permission
-  -rw-r--r-- 1 root root    0   Nov 29 19:06 test</code></p>
+<div class="highlight"><pre><span></span><code>drwxrwxr-x <span class="m">2</span> root root   <span class="m">4096</span> Nov <span class="m">29</span> <span class="m">19</span>:06 Permission
+-rw-r--r-- <span class="m">1</span> root root    <span class="m">0</span>   Nov <span class="m">29</span> <span class="m">19</span>:06 <span class="nb">test</span>
+</code></pre></div>
+
 <p>普通用户 <code>sz</code>想要删除文件 <code>test</code> 权限不够。  </p>
-<p><code>bash
-  $ rm test
-  rm: remove write-protected regular empty file 'test'? Y
-  rm: cannot remove 'test': Permission denied</code></p>
+<div class="highlight"><pre><span></span><code>$ rm <span class="nb">test</span>
+rm: remove write-protected regular empty file <span class="s1">&#39;test&#39;</span>? Y
+rm: cannot remove <span class="s1">&#39;test&#39;</span>: Permission denied
+</code></pre></div>
+
 <p>经过给指令 <code>rm</code> 设置uid之后，即设置命令<code>rm</code>具有所属的用户权限。比如：</p>
-<p><code>bash
-  $ which rm
-  /bin/rm
-  $ ls -l /bin/rm
-  -rw-r-xr-x 1 root root 63704 Jan 18  2018 /bin/rm
-  $ sudo chmod u+s `which rm`
-  $ ls -l /bin/rm
-  -rwsr-xr-x 1 root root 63704 Jan 18  2018 /bin/rm
-  $ rm test  # 删除成功</code></p>
+<div class="highlight"><pre><span></span><code>$ which rm
+/bin/rm
+$ ls -l /bin/rm
+-rw-r-xr-x <span class="m">1</span> root root <span class="m">63704</span> Jan <span class="m">18</span>  <span class="m">2018</span> /bin/rm
+$ sudo chmod u+s <span class="sb">`</span>which rm<span class="sb">`</span>
+$ ls -l /bin/rm
+-rwsr-xr-x <span class="m">1</span> root root <span class="m">63704</span> Jan <span class="m">18</span>  <span class="m">2018</span> /bin/rm
+$ rm <span class="nb">test</span>  <span class="c1"># 删除成功</span>
+</code></pre></div>
+
 <p>上面都设置 <em><code>uid</code></em> 功能就是使得 <em><code>rm</code></em> 命令具有其所属的 <em><code>root</code></em> 具有的权限。<br />
 <strong>注意</strong>：<code>rm</code>命令比较危险，需要将其命令改回去。</p>
-<p><code>bash
-  $ sudo chmod 755 /bin/rm
-  $ ls -l /bin/rm
-  -rwxr-xr-x 1 root root 63704 Jan 18  2018 /bin/rm</code></p>
+<div class="highlight"><pre><span></span><code>$ sudo chmod <span class="m">755</span> /bin/rm
+$ ls -l /bin/rm
+-rwxr-xr-x <span class="m">1</span> root root <span class="m">63704</span> Jan <span class="m">18</span>  <span class="m">2018</span> /bin/rm
+</code></pre></div>
+
 <ul>
 <li>
 <p><em>sgid</em> 
@@ -4154,8 +4185,8 @@
 </ul>
 </li>
 <li>
-<p><em>suid/sgid</em>的数字权限设置方法 <br />
-<em>suid/sgid</em>位设置也是八进制。</p>
+<p>*suid/sgid*的数字权限设置方法 <br />
+  *suid/sgid*位设置也是八进制。</p>
 </li>
 <li>
 <p><em>setuid</em> 占用的是八进制:<code>4000</code> </p>
@@ -4175,8 +4206,9 @@
 <li>C库函数<br />
    C语言的库函数的I/O操作都是带有缓冲区的，只有当缓冲区满了才会进行相应的操作。  </li>
 </ol>
-<p><code>c
-   fopen、fclose、fread、fwrite、fgets、fputs、fscanf、fprintf、fseek、fgetc、fputc、ftell、feof、flush...</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">fopen</span><span class="err">、</span><span class="n">fclose</span><span class="err">、</span><span class="n">fread</span><span class="err">、</span><span class="n">fwrite</span><span class="err">、</span><span class="n">fgets</span><span class="err">、</span><span class="n">fputs</span><span class="err">、</span><span class="n">fscanf</span><span class="err">、</span><span class="n">fprintf</span><span class="err">、</span><span class="n">fseek</span><span class="err">、</span><span class="n">fgetc</span><span class="err">、</span><span class="n">fputc</span><span class="err">、</span><span class="n">ftell</span><span class="err">、</span><span class="n">feof</span><span class="err">、</span><span class="n">flush</span><span class="p">...</span>
+</code></pre></div>
+
 <ul>
 <li>
 <p>刷新缓冲区</p>
@@ -4210,10 +4242,11 @@
 <em><code>printf</code></em> 函数完成的工作流程如下图所示。
        <img alt="*printf* 工作流程" src="https://i.loli.net/2020/05/29/58HCkynFwPJeVjd.png" /><br />
 <em><code>printf</code></em>  调用后，会产生一个由系统维护的一个结构体，包含了</p>
-<p><code>cpp  
-   file description 文件描述符号
-   FP_POS           读写指针
-   I/O buffer       缓冲区</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">file</span> <span class="n">description</span> <span class="err">文件描述符号</span>
+<span class="n">FP_POS</span>           <span class="err">读写指针</span>
+<span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">buffer</span>       <span class="err">缓冲区</span>
+</code></pre></div>
+
 <ul>
 <li><em><code>printf</code></em> 会调用系统API <em><code>write</code></em>，系统通过 <em><code>write</code></em> 来操作内核，使得内核可以调用设备驱动使得输出的内容显示在显示器上。</li>
 </ul>
@@ -4320,12 +4353,11 @@
 </ul>
 <h4 id="signal">signal相关函数<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h4>
 <h5 id="1kill"><font color=Crimson><code>1.kill</code></font><a class="headerlink" href="#1kill" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
     <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">kill</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
 </code></pre></div>
-
 
 <ul>
 <li>第一个参数：</li>
@@ -4335,7 +4367,7 @@
 <li>pid =-1: 发送给这样的进程：<strong>而且发送进程有权向他们发送信号</strong>  </li>
 </ul>
 <h5 id="2raiseabort"><font color=Crimson><code>2.raise/abort</code></font><a class="headerlink" href="#2raiseabort" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="c1">// raise</span>
+<div class="highlight"><pre><span></span><code>    <span class="c1">// raise</span>
     <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
     <span class="kt">int</span> <span class="nf">raise</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
     <span class="c1">// abort</span>
@@ -4343,16 +4375,14 @@
     <span class="kt">void</span> <span class="nf">abort</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 </code></pre></div>
 
-
 <ul>
 <li>raise : 自己给自己发信号</li>
 <li>abort : 自己给自己发终止信号</li>
 </ul>
 <h5 id="3alarm"><font color=Crimson><code>3.alarm</code></font><a class="headerlink" href="#3alarm" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
     <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">alarm</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">seconds</span><span class="p">);</span>
 </code></pre></div>
-
 
 <ul>
 <li>设置定时器，在指定seconds之后，<font face='黑体' color=red>不管进程处于什么状态，时间一到就发送信号</font>。内核给当前进程发送是<code>14)SIGALRM</code>信号，进程收到该信号，默认动作是终止进程。</li>
@@ -4361,7 +4391,7 @@
 <li><font face="黑体" color=red>每个进程有且只有一个定时器。</font></li>
 </ul>
 <h5 id="4setitimer"><font color=Crimson><code>4.setitimer</code></font><a class="headerlink" href="#4setitimer" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">getitimer</span><span class="p">(</span><span class="kt">int</span> <span class="n">which</span><span class="p">,</span> <span class="k">struct</span> <span class="n">itimerval</span> <span class="o">*</span><span class="n">curr_value</span><span class="p">);</span>
     <span class="kt">int</span> <span class="nf">setitimer</span><span class="p">(</span><span class="kt">int</span> <span class="n">which</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">itimerval</span> <span class="o">*</span><span class="n">new_value</span><span class="p">,</span>
@@ -4378,7 +4408,6 @@
         <span class="p">};</span>
 </code></pre></div>
 
-
 <p><code>setitimer</code> 相比较 <code>alarm</code> 提供了更加精确的定时信号控制，前者是微妙级，后者是秒级。</p>
 <ul>
 <li>which</li>
@@ -4390,13 +4419,12 @@
 <li><code>setitimer</code> 是一个周期定时，<code>new_value</code>设置的本次和下次定时时间。当下次定时时间为0，就仅仅定时一次。</li>
 </ul>
 <h5 id="5-singal"><code>5. singal</code><a class="headerlink" href="#5-singal" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="kt">sighandler_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
 
     <span class="kt">sighandler_t</span> <span class="nf">signal</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="kt">sighandler_t</span> <span class="n">handler</span><span class="p">);</span>
 </code></pre></div>
-
 
 <p>通过<code>signal</code>函数可以自定义信号处理函数来应对信号。信号是由内核检测到，而函数<code>signal</code>是将信号和信号处理函数联系起来。</p>
 <ul>
@@ -4409,36 +4437,32 @@
 <ul>
 <li><a name="mask">mask操作函数</a></li>
 </ul>
-<p>```c
-      #include <signal.h></p>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="nc">int</span><span class="w"> </span><span class="n">sigemptyset</span><span class="p">(</span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">);</span><span class="w">     </span><span class="o">//</span><span class="w"> </span><span class="n">将信号集合清空</span><span class="w"></span>
-<span class="w">  </span><span class="nc">int</span><span class="w"> </span><span class="n">sigfillset</span><span class="p">(</span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">);</span><span class="w">      </span><span class="o">//</span><span class="w"> </span><span class="n">将信号集全部置1</span><span class="w"></span>
-<span class="w">  </span><span class="nc">int</span><span class="w"> </span><span class="n">sigaddset</span><span class="p">(</span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">,</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="n">signum</span><span class="p">);</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="n">将某个信号加入信号集</span><span class="w"></span>
-<span class="w">  </span><span class="nc">int</span><span class="w"> </span><span class="n">sigdelset</span><span class="p">(</span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">,</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="n">signum</span><span class="p">);</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="n">将某个信号清出信号集</span><span class="w"></span>
-<span class="w">  </span><span class="nc">int</span><span class="w"> </span><span class="n">sigismember</span><span class="p">(</span><span class="n">const</span><span class="w"> </span><span class="n">sigset_t</span><span class="w"> </span><span class="o">*</span><span class="k">set</span><span class="p">,</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="n">signum</span><span class="p">);</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="n">判断某个信号是否在信号集</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
-<span class="w">  </span><span class="n">#define</span><span class="w"> </span><span class="n">_SIGSET_NWORDS</span><span class="w"> </span><span class="p">(</span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sizeof</span><span class="w"> </span><span class="p">(</span><span class="n">unsigned</span><span class="w"> </span><span class="n">long</span><span class="w"> </span><span class="nc">int</span><span class="p">)))</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">32</span><span class="w"></span>
-<span class="w">  </span><span class="n">typedef</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">unsigned</span><span class="w"> </span><span class="n">long</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="n">__val</span><span class="o">[</span><span class="n">_SIGSET_NWORDS</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="err">}</span><span class="w"> </span><span class="n">__sigset_t</span><span class="p">;</span><span class="w"></span>
+    <span class="kt">int</span> <span class="nf">sigemptyset</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">);</span>     <span class="c1">// 将信号集合清空</span>
+    <span class="kt">int</span> <span class="nf">sigfillset</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">);</span>      <span class="c1">// 将信号集全部置1</span>
+    <span class="kt">int</span> <span class="nf">sigaddset</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="c1">// 将某个信号加入信号集</span>
+    <span class="kt">int</span> <span class="nf">sigdelset</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="c1">// 将某个信号清出信号集</span>
+    <span class="kt">int</span> <span class="nf">sigismember</span><span class="p">(</span><span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="c1">// 判断某个信号是否在信号集</span>
 
-<span class="w">  </span><span class="n">typedef</span><span class="w"> </span><span class="n">__sigset_t</span><span class="w"> </span><span class="n">sigset_t</span><span class="p">;</span><span class="w"></span>
+    <span class="cp">#define _SIGSET_NWORDS (1024 / (8 * sizeof (unsigned long int))) </span><span class="c1">// 32</span>
+    <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">__val</span><span class="p">[</span><span class="n">_SIGSET_NWORDS</span><span class="p">];</span>
+    <span class="p">}</span> <span class="n">__sigset_t</span><span class="p">;</span>
+
+    <span class="k">typedef</span> <span class="n">__sigset_t</span> <span class="kt">sigset_t</span><span class="p">;</span> 
 </code></pre></div>
 
-
-<p>```</p>
 <p><code>sigset_t</code>是一个位图，通过上述函数来操作这个位图。上面的函数成功返回0，失败返回-1。</p>
 <ul>
 <li><code>sigprocmask</code> 
   用来获取或者改变调用进程的信号mask。也可屏蔽信号、解决屏蔽。</li>
 </ul>
-<p>```c
-      #include <signal.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err">  int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);</span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">sigprocmask</span><span class="p">(</span><span class="kt">int</span> <span class="n">how</span><span class="p">,</span> <span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">,</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">oldset</span><span class="p">);</span>
 </code></pre></div>
 
-
-<p>```</p>
 <ul>
 <li>第一个参数：决定了函数调用的行为  <ul>
 <li><code>SIG_BLOCK</code> &emsp;: &ensp;进程的屏蔽信号集是这个<code>set</code>和原来的屏蔽信号笔的并(union)。</li>
@@ -4454,16 +4478,14 @@
 <p><code>sigpending</code></p>
 </li>
 </ul>
-<p>```c
-      #include <signal.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err">  int sigpending(sigset_t *set);</span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">sigpending</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">);</span>
 </code></pre></div>
 
-
-<p>```</p>
 <p>将调用进程的未决信号集存储在<code>set</code>中传出。</p>
 <h5 id="7-sigaction"><code>7. sigaction</code><a class="headerlink" href="#7-sigaction" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">sigaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">act</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">oldact</span><span class="p">);</span>
 
@@ -4475,7 +4497,6 @@
             <span class="kt">void</span>     <span class="p">(</span><span class="o">*</span><span class="n">sa_restorer</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
         <span class="p">};</span>
 </code></pre></div>
-
 
 <ul>
 <li><code>struct sigaction</code> </li>
@@ -4489,11 +4510,10 @@
 </ul>
 <h1 id="2">信号2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <h4 id="1-pause">1. <code>pause</code><a class="headerlink" href="#1-pause" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">pause</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 </code></pre></div>
-
 
 <p>调用<code>pause</code>函数的进程将一直堵塞到(即放弃cpu)有信号递达将其唤醒。</p>
 <ul>
@@ -4505,20 +4525,18 @@
 <li>实现<code>sleep</code>函数功能：<code>alarm() + pause()</code></li>
 </ul>
 <h4 id="2sigsuspend">2.<code>sigsuspend</code><a class="headerlink" href="#2sigsuspend" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">sigsuspend</span><span class="p">(</span><span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span> <span class="c1">// mask是临时的，在函数执行时有效</span>
 </code></pre></div>
 
-
 <ul>
-<li>特点。这是一个原子操作，将<strong>设置mask指的屏蔽字</strong> + <strong>使得进程休眠（pause）</strong> 变成原子操作。可用来替代<code>pause</code>具有的时许竞争隐患。比如用<code>alarm() + pause()</code>实现的<code>sleep</code>函数功能。</li>
+<li>特点。这是一个原子操作，将**设置mask指的屏蔽字** + <strong>使得进程休眠（pause）</strong> 变成原子操作。可用来替代<code>pause</code>具有的时许竞争隐患。比如用<code>alarm() + pause()</code>实现的<code>sleep</code>函数功能。</li>
 <li>返回。和<code>pause</code>一样，无成功返回值。如果返回调用进程，返回-1，并且<code>errno=EINTR</code>。</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>    <span class="n">alarm</span><span class="p">(</span><span class="n">secs</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code>    <span class="n">alarm</span><span class="p">(</span><span class="n">secs</span><span class="p">);</span>
     <span class="n">pause</span><span class="p">();</span>
 </code></pre></div>
-
 
 <ul>
 <li>原因：  </li>
@@ -4568,7 +4586,7 @@
 <p>信号处理函数</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><code>    <span class="kt">void</span> <span class="nf">exe_sigchld</span><span class="p">(</span><span class="kt">int</span> <span class="n">singo</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code>    <span class="kt">void</span> <span class="nf">exe_sigchld</span><span class="p">(</span><span class="kt">int</span> <span class="n">singo</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">pid_t</span> <span class="n">pid</span><span class="p">;</span>
         <span class="kt">int</span> <span class="n">statloc</span><span class="p">;</span>
         <span class="c1">// 这里的while很关键</span>
@@ -4581,7 +4599,6 @@
     <span class="p">}</span>
 </code></pre></div>
 
-
 <p>上面都<code>while</code>处理很关键，不是<code>if</code>而是<code>while</code>，是因为：</p>
 <ul>
 <li>对于多个子进程同时发送终止信号<code>SINCHLD</code>，父进程只调用一次信号处理函数。</li>
@@ -4593,7 +4610,7 @@
 <ul>
 <li>发送信号传参</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">sigqueue</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sig</span><span class="p">,</span> <span class="k">const</span> <span class="k">union</span> <span class="n">sigval</span> <span class="n">value</span><span class="p">);</span>
 
@@ -4603,12 +4620,11 @@
     <span class="p">};</span>
 </code></pre></div>
 
-
 <p>类似于<code>kill</code>,但是多了一个发送参数，可以作为数据发送。联合体<code>sigval</code>在跨进程传递数据时候不要使用指针，因此各个进程之间的虚拟地址不同，指针传参是为同一个进程准备的，跨进程传参使用的是int类型。</p>
 <ul>
 <li>捕捉函数传参</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">sigaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">act</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">oldact</span><span class="p">);</span>
 
@@ -4621,7 +4637,6 @@
     <span class="p">};</span>
 </code></pre></div>
 
-
 <p>使用的结构体<code>sigaction</code>的第二项:<code>sa_sigaction</code>，此时<code>sa_flags = SA_SIGINFO</code>。</p>
 <h4 id="7">7.中断系统调用<a class="headerlink" href="#7" title="Permanent link">&para;</a></h4>
 <p>系统调用分为二类：慢速系统调用和其他系统调用</p>
@@ -4629,7 +4644,7 @@
 <li>慢速系统调用：可能会使进程永远堵塞的一类。如果在堵塞期间收到一个信号，该系统调用就会被中断，那么就不再被执行。也可以设定系统调用是否重启。这类函数诸如:<code>read、write、pause、wait</code>。</li>
 <li>其他系统调用：<code>getpid(), getppid(),fork()...</code></li>
 </ul>
-<p>慢速系统调用<strong>被信号中断</strong>时的行为，和<code>pause</code>类似：</p>
+<p>慢速系统调用**被信号中断**时的行为，和<code>pause</code>类似：</p>
 <ul>
 <li>想中断<code>pause</code>，信号不能屏蔽</li>
 <li>信号的处理方式必须是捕捉（默认和忽略都不可）</li>
@@ -4675,7 +4690,7 @@
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -4686,6 +4701,8 @@
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

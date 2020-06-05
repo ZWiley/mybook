@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/database/redis%E5%AE%9E%E6%88%98/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#redis-redis-in-action" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -3420,7 +3426,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3436,7 +3442,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/database/redis实战.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/database/redis实战.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3621,13 +3627,12 @@ python客户端 redispy 在 pipe = conn.pipeline(False) 传入False
 <h3 id="53-ip">5.3 查找 IP 所属城市以及国家<a class="headerlink" href="#53-ip" title="Permanent link">&para;</a></h3>
 <p>预先载入 ip 数据和地址数据到redis，存储的时候把点分十进制格式的 ip 转成一个整数分值。
 把数据转换成整数并搭配有序集合进行操作。</p>
-<div class="codehilite"><pre><span></span><code><span class="err">def ip_to_score(ip_address):</span>
-<span class="err">    score = 0</span>
-<span class="err">    for v in ip_address.split(&#39;.&#39;):</span>
-<span class="err">        score = score * 256 + int(v, 10)</span>
-<span class="err">    return score</span>
+<div class="highlight"><pre><span></span><code>def ip_to_score(ip_address):
+    score = 0
+    for v in ip_address.split(&#39;.&#39;):
+        score = score * 256 + int(v, 10)
+    return score
 </code></pre></div>
-
 
 <h3 id="54">5.4 服务的发现与配置<a class="headerlink" href="#54" title="Permanent link">&para;</a></h3>
 <p>将配置存储在redis里，编写应用程序获取配置</p>
@@ -3641,7 +3646,7 @@ python客户端 redispy 在 pipe = conn.pipeline(False) 传入False
 <p>(乐观锁)
 redis WATCH 实现的是乐观锁（只有通知功能）。由WATCH, MULTI EXEC
 组成的事务并不具有可扩展性，程序在尝试完成一个事务的时候，可能会因为事务执行失败反复重试。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_lock</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">lockname</span><span class="p">,</span> <span class="n">acquire_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_lock</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">lockname</span><span class="p">,</span> <span class="n">acquire_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">identifier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">acquire_timeout</span>
     <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
@@ -3668,10 +3673,9 @@ redis WATCH 实现的是乐观锁（只有通知功能）。由WATCH, MULTI EXEC
     <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># 进程已经失去了锁</span>
 </code></pre></div>
 
-
 <p>细粒度的锁能够提升程序性能，但是过细粒度可能导致死锁问题。</p>
 <p>上边的实现在持有者崩溃的时候不会自动释放，会导致锁一直处于被获取的状态，下边加上超时功能。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_lock_with_timeout</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">lockname</span><span class="p">,</span> <span class="n">acquire_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lock_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_lock_with_timeout</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">lockname</span><span class="p">,</span> <span class="n">acquire_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lock_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">identifier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
     <span class="n">lockname</span> <span class="o">=</span> <span class="s1">&#39;lock:&#39;</span> <span class="o">+</span> <span class="n">lockname</span>
     <span class="n">lock_timeout</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">lock_timeout</span><span class="p">))</span>
@@ -3686,11 +3690,10 @@ redis WATCH 实现的是乐观锁（只有通知功能）。由WATCH, MULTI EXEC
     <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div>
 
-
 <h3 id="63">6.3 计数信号量<a class="headerlink" href="#63" title="Permanent link">&para;</a></h3>
 <p>限制一个资源最多同时被多少个进程访问，限定能够同时使用的资源数量。
 和锁不同的是，锁通常在客户端获取锁失败的时候等待，而当客户端获取信号量失败的时候，客户端通常会立即返回失败结果。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_semaphore</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_semaphore</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">identifier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
     <span class="n">now</span>  <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
@@ -3708,13 +3711,12 @@ redis WATCH 实现的是乐观锁（只有通知功能）。由WATCH, MULTI EXEC
     <span class="k">return</span> <span class="n">conn</span><span class="o">.</span><span class="n">zrem</span><span class="p">(</span><span class="n">semname</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>这个信号量简单快速，但是有个问题，就是它假设每个进程访问到的系统事件都是相同的,
 每当锁或者信号量因为系统始终的细微不同导致锁的获取结果出现剧烈变化时，这个锁或者信号量就是不公平的。(unfair)</p>
 <p>如何实现公平信号量：给信号量实现添加一个计数器以及一个有序集合。计数器通过持续执行自增操作，创建出一个类似于计时器的机制，
 确保最先对计数器执行自增操作的客户端能够获得信号量。另外，为了满足『最先对计数器执行自增操作的客户端能够获得信号量』这一要求，
 程序会将计数器生成的值用作分值，存储到一个『信号量拥有者』有序集合里，然后通过检查客户端生成的标志符在有序集合里的排名判断客户端是否取得了信号量。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_faire_lock_semaphore</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span>  <span class="n">limit</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_faire_lock_semaphore</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span>  <span class="n">limit</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">identifier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
     <span class="n">czset</span> <span class="o">=</span> <span class="n">semname</span> <span class="o">+</span> <span class="s1">&#39;:owner&#39;</span>
     <span class="n">ctr</span> <span class="o">=</span> <span class="n">semname</span> <span class="o">+</span> <span class="s1">&#39;:counter&#39;</span>
@@ -3747,23 +3749,21 @@ redis WATCH 实现的是乐观锁（只有通知功能）。由WATCH, MULTI EXEC
     <span class="k">return</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">execute</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># 返回True表示信号量已经释放，False表示想要释放的信号量因为超时被删除了</span>
 </code></pre></div>
 
-
 <p>这里注意如果是频繁大量使用信号量的情况下，32位计数器的值大约2小时就会溢出一次，最好切到64位平台。
 这里实现依然需要控制各个主机的差距系统事件在1 秒之内。</p>
 <p>对信号量进行刷新，防止过期：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">refresh_fair_semaphore</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">identifier</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">refresh_fair_semaphore</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">identifier</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">zadd</span><span class="p">(</span><span class="n">semname</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()):</span>  <span class="c1"># 更新客户端持有的信号量</span>
         <span class="n">release_fair_semaphore</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># 告知调用者已经失去了信号量</span>
     <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># 客户端仍持有信号量</span>
 </code></pre></div>
 
-
 <p>前面介绍的实现会出现不正确的竞争条件。如果AB俩进程都在尝试获取一个信号量时，即使A首先对计数器执行了自增操作，
 但是B只要能抢先把自己的标识符添加到有序集合里，并检查标志符在有序集合中的排名，B就可以成功获取信号量。
 之后当A也将自己的标志符添加到有序集合里时，并检查标志符在有序集合中的排名时，A将『偷走』B已经取得的信号量，
 而B只有在尝试释放或者刷新的时候才能发现。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_semaphore_with_lock</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_semaphore_with_lock</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">identifier</span> <span class="o">=</span> <span class="n">acquire_lock</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">acquire_timeout</span><span class="o">=.</span><span class="mi">01</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">identifier</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
@@ -3771,7 +3771,6 @@ redis WATCH 实现的是乐观锁（只有通知功能）。由WATCH, MULTI EXEC
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">release_lock</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semname</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>信号量可以用来限制同时可运行的 api 调用数量，针对数据库的并发请求等。</p>
 <h3 id="64">6.4 任务队列<a class="headerlink" href="#64" title="Permanent link">&para;</a></h3>
@@ -3860,7 +3859,7 @@ list-max-zip-value 64</p>
 <p>对每个分片进行查询(并行)，最后统一聚合查询结果并且排序输出。</p>
 <h1 id="11-redis-lua">11. Redis Lua 脚本编程<a class="headerlink" href="#11-redis-lua" title="Permanent link">&para;</a></h1>
 <h3 id="111-c">11.1 在不编写C代码的情况下添加功能<a class="headerlink" href="#111-c" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">script_load</span><span class="p">(</span><span class="n">script</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">script_load</span><span class="p">(</span><span class="n">script</span><span class="p">):</span>
     <span class="n">sha</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">args</span><span class="o">=</span><span class="p">[],</span> <span class="n">force_eval</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -3877,9 +3876,8 @@ list-max-zip-value 64</p>
     <span class="k">return</span> <span class="n">call</span>
 </code></pre></div>
 
-
 <h3 id="112-lua">11.2 使用 Lua 重写锁和信号量<a class="headerlink" href="#112-lua" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_lock_with_timeout</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">lockname</span><span class="p">,</span> <span class="n">acquire_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lock_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_lock_with_timeout</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">lockname</span><span class="p">,</span> <span class="n">acquire_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lock_timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">identifier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
     <span class="n">lockname</span> <span class="o">=</span> <span class="s1">&#39;lock:&#39;</span> <span class="o">+</span> <span class="n">lockname</span>
     <span class="n">lock_timeout</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">lock_timeout</span><span class="p">))</span>
@@ -3910,7 +3908,6 @@ list-max-zip-value 64</p>
 <span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h3 id="113-watchmultiexec">11.3 移除 WATCH/MULTI/EXEC 事务<a class="headerlink" href="#113-watchmultiexec" title="Permanent link">&para;</a></h3>
 <p>注意：运行在redis内部的lua脚本只能访问位于 lua 脚本或者 redis 数据库之内的数据， 锁或WATCH/MULTI/EXEC 事务没有这个限制</p>
 <h3 id="114-lua">11.4 使用 Lua 对列表进行分片<a class="headerlink" href="#114-lua" title="Permanent link">&para;</a></h3>
@@ -3939,7 +3936,7 @@ list-max-zip-value 64</p>
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 Mysql技术内幕InnoDB存储引擎
               </div>
@@ -3951,7 +3948,7 @@ list-max-zip-value 64</p>
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 Redis深度历险核心原理和应用实践
               </div>
@@ -3981,7 +3978,7 @@ list-max-zip-value 64</p>
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -3992,6 +3989,8 @@ list-max-zip-value 64</p>
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

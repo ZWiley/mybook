@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/Elasticsearch%E5%AE%9E%E6%88%98/book/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#todo" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -3420,7 +3426,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3436,7 +3442,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/搜索引擎/Elasticsearch实战/book.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/搜索引擎/Elasticsearch实战/book.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3463,7 +3469,7 @@
 <h3 id="_3">组织数据<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>Elasticsearch 以文档方式存储数据</p>
 <h3 id="_4">安装<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>安装完成之后 打开 http://localhost:9200</p>
+<p>安装完成之后 打开 <a href="http://localhost:9200">http://localhost:9200</a></p>
 <h1 id="2">2. 深入功能<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <ul>
 <li>逻辑设计</li>
@@ -3488,13 +3494,12 @@
 <ul>
 <li>发送部分文档</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>curl -XPOST <span class="s1">&#39;localhost:9200/get-together/group/2/_update&#39;</span> -d <span class="s1">&#39;{</span>
+<div class="highlight"><pre><span></span><code>curl -XPOST <span class="s1">&#39;localhost:9200/get-together/group/2/_update&#39;</span> -d <span class="s1">&#39;{</span>
 <span class="s1">　&quot;doc&quot;: {</span>
 <span class="s1">　　&quot;organizer&quot;: &quot;Roy&quot;</span>
 <span class="s1">　}</span>
 <span class="s1">}&#39;</span>
 </code></pre></div>
-
 
 <ul>
 <li>使用 upsert 创建不存在的文档。默认脚本语言是 Groovy</li>
@@ -3523,7 +3528,7 @@
 <li>_source: 指定_source 字段如何返回</li>
 <li>sort: 默认排序基于文档得分。sort 可以额外控制</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>curl <span class="s1">&#39;localhost:9200/get-together/group/_search&#39;</span> -d <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code>curl <span class="s1">&#39;localhost:9200/get-together/group/_search&#39;</span> -d <span class="s1">&#39;</span>
 <span class="s1">{</span>
 <span class="s1">  &quot;query&quot;: {</span>
 <span class="s1">    &quot;match_all&quot;: {}</span>
@@ -3535,10 +3540,9 @@
 <span class="s1">}&#39;</span>
 </code></pre></div>
 
-
 <h3 id="42-dsl">4.2 查询和过滤 DSL<a class="headerlink" href="#42-dsl" title="Permanent link">&para;</a></h3>
 <p>由于不计算得分，过滤器处理更少，并且可以被缓存。</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="s1">&#39;localhost:9200/get-together/_search&#39;</span> -d <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code>curl <span class="s1">&#39;localhost:9200/get-together/_search&#39;</span> -d <span class="s1">&#39;</span>
 <span class="s1">{</span>
 <span class="s1">  &quot;query&quot;: {</span>
 <span class="s1">    &quot;filtered&quot;: {</span>
@@ -3557,7 +3561,6 @@
 <span class="s1">}&#39;</span>
 </code></pre></div>
 
-
 <ul>
 <li>match_all 查询</li>
 <li>query_string 查询</li>
@@ -3574,7 +3577,7 @@
 </ul>
 <h3 id="44-match">4.4 超越 match 和过滤器查询<a class="headerlink" href="#44-match" title="Permanent link">&para;</a></h3>
 <p>范围查询：</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="s1">&#39;localhost:9200/get-together/_search&#39;</span> -d <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code>curl <span class="s1">&#39;localhost:9200/get-together/_search&#39;</span> -d <span class="s1">&#39;</span>
 <span class="s1">{</span>
 <span class="s1">  &quot;query&quot;: {</span>
 <span class="s1">    &quot;range&quot;: {</span>
@@ -3587,9 +3590,8 @@
 <span class="s1">}&#39;</span>
 </code></pre></div>
 
-
 <p>前缀查询：(如果需要可以先转成小写)</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="s1">&#39;localhost:9200/get-together/_search&#39;</span> -d <span class="s1">&#39;</span>
+<div class="highlight"><pre><span></span><code>curl <span class="s1">&#39;localhost:9200/get-together/_search&#39;</span> -d <span class="s1">&#39;</span>
 <span class="s1">{</span>
 <span class="s1">  &quot;query&quot;: {</span>
 <span class="s1">      &quot;prefix&quot;: {</span>
@@ -3599,7 +3601,6 @@
 <span class="s1">  }</span>
 <span class="s1">}&#39;</span>
 </code></pre></div>
-
 
 <p>wildcard 查询: 类似 shell globbing 的工作方式</p>
 <h3 id="45">4.5 使用过滤器查询字段的存在性<a class="headerlink" href="#45" title="Permanent link">&para;</a></h3>
@@ -3656,7 +3657,7 @@
 考虑 boost 的相对值， name boost 3 倍意味着 name 字段的重要性大概是其他字段 3 倍。</p>
 <h3 id="64-explain">6.4 使用 explain 理解文档是被如何评分的<a class="headerlink" href="#64-explain" title="Permanent link">&para;</a></h3>
 <p>explain=true。可以查看为什么一个文档和某个查询没有被匹配，有性能开销，不要在生产环境使用。</p>
-<div class="codehilite"><pre><span></span><code>curl -XPOST <span class="s1">&#39;localhost:9200/get-together/_search?pretty&#39;</span> -d <span class="err">&#39;</span><span class="o">{</span>
+<div class="highlight"><pre><span></span><code>curl -XPOST <span class="s1">&#39;localhost:9200/get-together/_search?pretty&#39;</span> -d <span class="err">&#39;</span><span class="o">{</span>
 　<span class="s2">&quot;query&quot;</span>: <span class="o">{</span>
 　　<span class="s2">&quot;match&quot;</span>: <span class="o">{</span>
       <span class="s2">&quot;description&quot;</span>: <span class="s2">&quot;elasticsearch&quot;</span>
@@ -3665,7 +3666,6 @@
   <span class="s2">&quot;explain&quot;</span>: <span class="nb">true</span>
 <span class="o">}</span>
 </code></pre></div>
-
 
 <h3 id="65">6.5 使用查询打分来减小评分操作的性能影响<a class="headerlink" href="#65" title="Permanent link">&para;</a></h3>
 <p>下列情况可能导致打分变成资源密集操作：</p>
@@ -3693,7 +3693,7 @@
 <h3 id="71">7.1 理解聚集的结构<a class="headerlink" href="#71" title="Permanent link">&para;</a></h3>
 <h3 id="72">7.2 度量聚集<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>
 <p>单独统计：</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">URI</span> <span class="o">=</span> localhost:9200/get-together/event/_search
+<div class="highlight"><pre><span></span><code><span class="nv">URI</span> <span class="o">=</span> localhost:9200/get-together/event/_search
 curl <span class="s2">&quot;</span><span class="nv">$URI</span><span class="s2">?pretty&amp;search_type=count&quot;</span> -d <span class="s1">&#39;</span>
 <span class="s1">{</span>
 <span class="s1">    &quot;aggregations&quot;: {</span>
@@ -3705,7 +3705,6 @@ curl <span class="s2">&quot;</span><span class="nv">$URI</span><span class="s2">
 <span class="s1">    }</span>
 <span class="s1">}&#39;</span>
 </code></pre></div>
-
 
 <p>高级统计：extended_stats，获取平方值、方差和标准差。根据文档统计的，具有 100% 准确性
 (注意你的需求是精确统计还是近似统计，近似统计可以限制内存和 cpu 使用。)</p>
@@ -3734,7 +3733,7 @@ curl <span class="s2">&quot;</span><span class="nv">$URI</span><span class="s2">
 <li>应用端的连接：当数据少，并且可以承受规范化的开销时，可以很好运作</li>
 </ul>
 <h3 id="82">8.2 将对象作为字段值(适合一对一关系)<a class="headerlink" href="#82" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>curl -XPOST <span class="s1">&#39;localhost:9200/get-together/event-object/1&#39;</span> -d <span class="err">&#39;</span><span class="o">{</span>
+<div class="highlight"><pre><span></span><code>curl -XPOST <span class="s1">&#39;localhost:9200/get-together/event-object/1&#39;</span> -d <span class="err">&#39;</span><span class="o">{</span>
     <span class="s2">&quot;title&quot;</span>: <span class="s2">&quot;title&quot;</span>,
     <span class="s2">&quot;location&quot;</span>: <span class="o">{</span>
         <span class="s2">&quot;name&quot;</span> <span class="s2">&quot;name&quot;</span>,
@@ -3742,7 +3741,6 @@ curl <span class="s2">&quot;</span><span class="nv">$URI</span><span class="s2">
     <span class="o">}</span>
 <span class="o">}</span><span class="sb">`</span>
 </code></pre></div>
-
 
 <p>es 会进行扁平化处理， location.name 这种形式。</p>
 <p>不足：</p>
@@ -3781,7 +3779,7 @@ curl <span class="s2">&quot;</span><span class="nv">$URI</span><span class="s2">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 深入分布式缓存从原理到实践
               </div>
@@ -3793,7 +3791,7 @@ curl <span class="s2">&quot;</span><span class="nv">$URI</span><span class="s2">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 玩转Kubernets
               </div>
@@ -3823,7 +3821,7 @@ curl <span class="s2">&quot;</span><span class="nv">$URI</span><span class="s2">
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -3834,6 +3832,8 @@ curl <span class="s2">&quot;</span><span class="nv">$URI</span><span class="s2">
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

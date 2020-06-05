@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/python/high_performance_python/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#1-understanding-performant-python" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -1733,7 +1739,7 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -1741,7 +1747,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3526,7 +3532,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -3534,7 +3540,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3634,7 +3640,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/python/high_performance_python.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/python/high_performance_python.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3679,57 +3685,57 @@
 <h2 id="4dict-and-sets">4章:Dict and Sets<a class="headerlink" href="#4dict-and-sets" title="Permanent link">&para;</a></h2>
 <p>作为dict或者set的键要求是可hash的，可以hash指的是实现了 <strong>hash__和__eq</strong>(或__cmp__)，list这种可变类型的数据结构就无法作为key，dict和set的内部实现都是哈希表。</p>
 <p>对于自定义类型，我们需要实现__has__和__eq__来获得期望的结果:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">Point:</span>
-    <span class="n">def</span> <span class="n">__init__</span>(<span class="nb">self</span>, <span class="nb">x</span>, <span class="n">y</span>):
-        <span class="nb">self</span>.<span class="nb">x</span>, <span class="nb">self</span>.<span class="n">y</span> = <span class="nb">x</span>, <span class="n">y</span>
+<div class="codehilite"><pre><span></span><code>class Point:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
 
-    <span class="n">def</span> <span class="n">__hash__</span>(<span class="nb">self</span>):
-        <span class="s">&quot;&quot;&quot;hash函数尽量保证较少的键冲突&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">hash</span>((<span class="nb">self</span>.<span class="nb">x</span>, <span class="nb">self</span>.<span class="n">y</span>))
+    def __hash__(self):
+        &quot;&quot;&quot;hash函数尽量保证较少的键冲突&quot;&quot;&quot;
+        return hash((self.x, self.y))
 
-    <span class="n">def</span> <span class="n">__eq__</span>(<span class="nb">self</span>, <span class="n">other</span>):
-        <span class="k">return</span> <span class="nb">self</span>.<span class="nb">x</span> == <span class="n">other</span>.<span class="nb">x</span> <span class="o">and</span> <span class="nb">self</span>.<span class="n">y</span> == <span class="n">other</span>.<span class="n">y</span>
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
 </code></pre></div>
 
 
 <ul>
 <li>dict: 键值对.插入和查找都是O(1)，但是比较浪费内存。</li>
-<li>set: 类似数学上的集合。插入和查找O(1)，但是当超过原先分配内存的2/3时，为了维持插入和查找效率，重新分配内存。对于固定长度的集合，最好使用frozenset节省内存。</li>
+<li>set: 类似数学上的集合。插入和查找O(1)，但是当超过原先分配内存的&#8532;时，为了维持插入和查找效率，重新分配内存。对于固定长度的集合，最好使用frozenset节省内存。</li>
 </ul>
 <hr />
 <h2 id="5iterators-and-generators">5章：Iterators and Generators<a class="headerlink" href="#5iterators-and-generators" title="Permanent link">&para;</a></h2>
 <p>使用生成器可以帮助我们节省内存使用。 在python2中，有range和xrange两个函数，区别在于range函数返回list，xrange返回迭代器，非常节省内存。python3的一大改进就是将很多内置返回整个序列的函数改成了返回迭代器。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">range</span><span class="p">(</span><span class="k">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">while</span> <span class="k">start</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
-        <span class="n">nums</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="k">start</span><span class="p">)</span>
-        <span class="k">start</span> <span class="o">+=</span> <span class="n">step</span>
-    <span class="k">return</span> <span class="n">nums</span>
+<div class="codehilite"><pre><span></span><code>def range(start, stop, step=1):
+    nums = []
+    while start &lt; stop:
+        nums.append(start)
+        start += step
+    return nums
 
 
-<span class="n">def</span> <span class="n">xrange</span><span class="p">(</span><span class="k">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">while</span> <span class="k">start</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
-        <span class="n">yield</span> <span class="k">start</span>
-        <span class="k">start</span> <span class="o">+=</span> <span class="n">step</span>
+def xrange(start, stop, step=1):
+    while start &lt; stop:
+        yield start
+        start += step
 </code></pre></div>
 
 
 <p>for 语句的原理:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">object_iterator = iter(object)</span>
-<span class="err">while True:</span>
-<span class="err">    try:</span>
-<span class="err">        i = object_iterator.next()</span>
-<span class="err">        do_work(i)</span>
-<span class="err">    except StopIteration:</span>
-<span class="err">        break</span>
+<div class="codehilite"><pre><span></span><code>object_iterator = iter(object)
+while True:
+    try:
+        i = object_iterator.next()
+        do_work(i)
+    except StopIteration:
+        break
 </code></pre></div>
 
 
 <p>使用itertools模块，内置的itertools模块提供了很多方便的函数处理生成器序列：</p>
-<div class="codehilite"><pre><span></span><code><span class="err">itertools.islice: 对生成器切片操作</span>
-<span class="err">itertools.chain: 连接多个生成器</span>
-<span class="err">itertools.takewhile: 给生成器加上终结条件</span>
-<span class="err">itertools.cycle: 生成循环的的序列</span>
+<div class="codehilite"><pre><span></span><code>itertools.islice: 对生成器切片操作
+itertools.chain: 连接多个生成器
+itertools.takewhile: 给生成器加上终结条件
+itertools.cycle: 生成循环的的序列
 </code></pre></div>
 
 
@@ -3751,241 +3757,192 @@
 <p>本章介绍了提升程序并发性能的几种方案，包括使用gevent，tornado，asyncio等，不过目前貌似异步框架在web应用中使用的比例仍然不高。python3引入的asyncio或许是python异步的未来，已经有基于asyncio和aiohttp的异步web框架<a href="https://github.com/channelcat/sanic/">sanic</a>，性能接近Golang，非常强悍， 不过目前生态圈和案例太少，没有生产环境下的经验能借鉴。异步数据库orm我搜了一下貌似只有一个async-peewee，貌似也没多少人用，感觉python异步web框架还有很多路要走。Instagram，Reddit，Youtube等没有使用异步框架也能撑起巨大的访问，可能有时候可扩展的架构更加重要。</p>
 <p>异步编程中的一些概念:</p>
 <p>Event Loop: 实质上就是一系列需要被执行的函数列表</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">Queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<div class="codehilite"><pre><span></span><code>from Queue import Queue
 
-<span class="n">eventloop</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="k">class</span> <span class="nc">EventLoop</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-            <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="n">function</span><span class="p">()</span>
+eventloop = None
+class EventLoop(Queue):
+    def start(self):
+        while True:
+            function = self.get()
+            function()
 
-<span class="k">def</span> <span class="nf">do_hello</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">eventloop</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
-    <span class="n">eventloop</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">do_world</span><span class="p">)</span>
+def do_hello():
+    global eventloop
+    print(&#39;Hello&#39;)
+    eventloop.put(do_world)
 
-<span class="k">def</span> <span class="nf">do_world</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">eventloop</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">)</span>
-    <span class="n">eventloop</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">do_hello</span><span class="p">)</span>
+def do_world():
+    global eventloop
+    print(&#39;world&#39;)
+    eventloop.put(do_hello)
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">eventloop</span> <span class="o">=</span> <span class="n">EventLoop</span><span class="p">()</span>
-    <span class="n">eventloop</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">do_hello</span><span class="p">)</span>
-    <span class="n">eventloop</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+if __name__ == &quot;__main__&quot;:
+    eventloop = EventLoop()
+    eventloop.put(do_hello)
+    eventloop.start()
 </code></pre></div>
 
 
 <p>我们可以将事件循环和异步IO操作结合，这些操作是非阻塞的，意味着如果我们在一个异步函数上做IO写操作，它会立即返回，即使写操作还没完成。当写操作完成时，事件通知程序写操作完成。这允许我们可以在IO等待时做其他操作。
 一般实现事件循环有两种形式，callbacks或futures.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># callbacks实现</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="k">def</span> <span class="nf">save_value</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Saving {} to datavase&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
-    <span class="c1"># save_result_to_db是一个异步函数，立即返回</span>
-    <span class="n">save_result_to_db</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code># callbacks实现
+from functools import partial
+def save_value(value, callback):
+    print(&#39;Saving {} to datavase&#39;.format(value))
+    # save_result_to_db是一个异步函数，立即返回
+    save_result_to_db(result, callback)
 
 
-<span class="k">def</span> <span class="nf">print_response</span><span class="p">(</span><span class="n">db_response</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Response from database: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">db_response</span><span class="p">))</span>
+def print_response(db_response):
+    print(&#39;Response from database: {}&#39;.format(db_response))
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">eventloop</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
-        <span class="n">partial</span><span class="p">(</span><span class="n">save_value</span><span class="p">,</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">,</span> <span class="n">print_response</span><span class="p">)</span>
-    <span class="p">)</span>
+if __name__ == &#39;__main__&#39;:
+    eventloop.put(
+        partial(save_value, &quot;Hello world&quot;, print_response)
+    )
 </code></pre></div>
 
 
 <p>对于future实现，一个异步函数返回一个future结果的promise而非真正的结果。我们必须等待future完成填充我们需要的结果，期间可以进行其他计算。。</p>
-<div class="codehilite"><pre><span></span><code><span class="err">@coroutine</span>
-<span class="err">def save_value(value, callback):</span>
-<span class="err">    print(&#39;Saving {} to database&#39;.format(value))</span>
-<span class="err">    db_response = yield save_result_to_db(result, callback)</span>
-<span class="err">    print(&#39;Response from database: {}&#39;.format(db_response))</span>
+<div class="codehilite"><pre><span></span><code>@coroutine
+def save_value(value, callback):
+    print(&#39;Saving {} to database&#39;.format(value))
+    db_response = yield save_result_to_db(result, callback)
+    print(&#39;Response from database: {}&#39;.format(db_response))
 </code></pre></div>
 
 
 <p>这种实现下save_result_to_db返回future对象，通过yield我们可以暂停它执行直到返回值准备好了恢复它的执行。python里协程使用生成器实现的，因为生成器是python内置的并且支持暂停和恢复操作。我们需要做的就是yield一个future对象，然后事件循环等待它计算完成。一旦完成，事件循环将恢复函数的执行，发送结果到future对象。
 在python2里边基于future实现的协程有点不优雅，因为我们试图将协程作为真正的函数使用，但是实现协程的生成器是无法返回值的，例如在tornado里python2要 <code>raise gen.Return(json_decode(response.body))</code> 来返回值。从python3.4以后允许协程直接返回值。</p>
 <p>通过爬虫的例子来演示gevent，tornado，asyncio实现异步操作。一个线性运行的爬虫:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">string</span>
-<span class="kn">import</span> <span class="nn">random</span>
+<div class="codehilite"><pre><span></span><code>import requests
+import string
+import random
 
 
-<span class="k">def</span> <span class="nf">generate_urls</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_urls</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    We add random characters to the end of the URL to break any caching</span>
-<span class="sd">    mechanisms in the requests library or the server</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">num_urls</span><span class="p">):</span>
-        <span class="k">yield</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+def generate_urls(base_url, num_urls):
+    &quot;&quot;&quot;
+    We add random characters to the end of the URL to break any caching
+    mechanisms in the requests library or the server
+    &quot;&quot;&quot;
+    for i in xrange(num_urls):
+        yield base_url + &quot;&quot;.join(random.sample(string.ascii_lowercase, 10))
 
 
-<span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-    <span class="n">response_size</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">generate_urls</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_iter</span><span class="p">):</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-        <span class="n">response_size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">response_size</span>
+def run_experiment(base_url, num_iter=500):
+    response_size = 0
+    for url in generate_urls(base_url, num_iter):
+        response = requests.get(url)
+        response_size += len(response.text)
+    return response_size
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">time</span>
-    <span class="n">delay</span> <span class="o">=</span> <span class="mi">100</span>
-    <span class="n">num_iter</span> <span class="o">=</span> <span class="mi">50</span>
-    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:8080/add?name=serial&amp;delay={}&amp;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+if __name__ == &quot;__main__&quot;:
+    import time
+    delay = 100
+    num_iter = 50
+    base_url = &quot;http://127.0.0.1:8080/add?name=serial&amp;delay={}&amp;&quot;.format(delay)
 
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">run_experiment</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_iter</span><span class="p">)</span>
-    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Result: {}, Time: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+    start = time.time()
+    result = run_experiment(base_url, num_iter)
+    end = time.time()
+    print(&quot;Result: {}, Time: {}&quot;.format(result, end - start))
 </code></pre></div>
 
 
 <p>gevent: monkey-patch标准IO函数使之变成异步的。，它有一个被称为『Greenlet』的对象用来执行并发操作。gevent使用事件循环在IO等待期间对greenlet进行调度，直到所有greenlet执行完成。</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">gevent</span> <span class="kn">import</span> <span class="n">monkey</span>
-<span class="n">monkey</span><span class="o">.</span><span class="n">patch_socket</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code>from gevent import monkey
+monkey.patch_socket()
 
-<span class="kn">import</span> <span class="nn">gevent</span>
-<span class="kn">from</span> <span class="nn">gevent.coros</span> <span class="kn">import</span> <span class="n">Semaphore</span>
-<span class="kn">import</span> <span class="nn">urllib2</span>
-<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">closing</span>
-<span class="kn">import</span> <span class="nn">string</span>
-<span class="kn">import</span> <span class="nn">random</span>
-
-
-<span class="k">def</span> <span class="nf">generate_urls</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_urls</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">num_urls</span><span class="p">):</span>
-        <span class="k">yield</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+import gevent
+from gevent.coros import Semaphore
+import urllib2
+from contextlib import closing
+import string
+import random
 
 
-<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">semaphore</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">semaphore</span><span class="p">,</span> <span class="n">closing</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">))</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+def generate_urls(base_url, num_urls):
+    for i in xrange(num_urls):
+        yield base_url + &quot;&quot;.join(random.sample(string.ascii_lowercase, 10))
 
 
-<span class="k">def</span> <span class="nf">chunked_requests</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">semaphore</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">)</span>    <span class="c1"># 用来控制并发数</span>
-    <span class="n">requests</span> <span class="o">=</span> <span class="p">[</span><span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">download</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">semaphore</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">gevent</span><span class="o">.</span><span class="n">iwait</span><span class="p">(</span><span class="n">requests</span><span class="p">):</span>    <span class="c1"># 事件循环只在iwait调用时执行</span>
-        <span class="k">yield</span> <span class="n">response</span>
+def download(url, semaphore):
+    with semaphore, closing(urllib2.urlopen(url)) as data:
+        return data.read()
 
 
-<span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-    <span class="n">urls</span> <span class="o">=</span> <span class="n">generate_urls</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_iter</span><span class="p">)</span>
-    <span class="n">response_futures</span> <span class="o">=</span> <span class="n">chunked_requests</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="n">response_size</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">response_futures</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">response_size</span>
+def chunked_requests(urls, chunk_size=100):
+    semaphore = Semaphore(chunk_size)    # 用来控制并发数
+    requests = [gevent.spawn(download, u, semaphore) for u in urls]
+    for response in gevent.iwait(requests):    # 事件循环只在iwait调用时执行
+        yield response
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">time</span>
-    <span class="n">delay</span> <span class="o">=</span> <span class="mi">100</span>
-    <span class="n">num_iter</span> <span class="o">=</span> <span class="mi">500</span>
-    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:8080/add?name=gevent&amp;delay={}&amp;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
 
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">run_experiment</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_iter</span><span class="p">)</span>
-    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Result: {}, Time: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+def run_experiment(base_url, num_iter=500):
+    urls = generate_urls(base_url, num_iter)
+    response_futures = chunked_requests(urls, 100)
+    response_size = sum(len(r.value) for r in response_futures)
+    return response_size
+
+if __name__ == &quot;__main__&quot;:
+    import time
+    delay = 100
+    num_iter = 500
+    base_url = &quot;http://127.0.0.1:8080/add?name=gevent&amp;delay={}&amp;&quot;.format(delay)
+
+    start = time.time()
+    result = run_experiment(base_url, num_iter)
+    end = time.time()
+    print(&quot;Result: {}, Time: {}&quot;.format(result, end - start))
 </code></pre></div>
 
 
 <p>下边是使用tornado的异步HTTPClient爬虫示例:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">ioloop</span>
-<span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span>
-<span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>
+<div class="codehilite"><pre><span></span><code>from tornado import ioloop
+from tornado.httpclient import AsyncHTTPClient
+from tornado import gen
 
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">import</span> <span class="nn">string</span>
-<span class="kn">import</span> <span class="nn">random</span>
+from functools import partial
+import string
+import random
 
-<span class="n">AsyncHTTPClient</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
-    <span class="s2">&quot;tornado.curl_httpclient.CurlAsyncHTTPClient&quot;</span><span class="p">,</span> <span class="n">max_clients</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">generate_urls</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_urls</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">num_urls</span><span class="p">):</span>
-        <span class="k">yield</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+AsyncHTTPClient.configure(
+    &quot;tornado.curl_httpclient.CurlAsyncHTTPClient&quot;, max_clients=100)
 
 
-<span class="nd">@gen.coroutine</span>
-<span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-    <span class="n">http_client</span> <span class="o">=</span> <span class="n">AsyncHTTPClient</span><span class="p">()</span>
-    <span class="n">urls</span> <span class="o">=</span> <span class="n">generate_urls</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">num_iter</span><span class="p">)</span><span class="n">G</span>
-    <span class="n">responses</span> <span class="o">=</span> <span class="k">yield</span> <span class="p">[</span><span class="n">http_client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">]</span>
-    <span class="n">response_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">body</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">response_sum</span><span class="p">)</span>
+def generate_urls(base_url, num_urls):
+    for i in xrange(num_urls):
+        yield base_url + &quot;&quot;.join(random.sample(string.ascii_lowercase, 10))
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">time</span>
-    <span class="n">delay</span> <span class="o">=</span> <span class="mi">100</span>
-    <span class="n">num_iter</span> <span class="o">=</span> <span class="mi">500</span>
-    <span class="n">_ioloop</span> <span class="o">=</span> <span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
-    <span class="n">run_func</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
-        <span class="n">run_experiment</span><span class="p">,</span>
-        <span class="s2">&quot;http://127.0.0.1:8080/add?name=tornado&amp;delay={}&amp;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">delay</span><span class="p">),</span>
-        <span class="n">num_iter</span><span class="p">)</span>
 
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">_ioloop</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="n">run_func</span><span class="p">)</span>
-    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="k">print</span> <span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+@gen.coroutine
+def run_experiment(base_url, num_iter=500):
+    http_client = AsyncHTTPClient()
+    urls = generate_urls(base_url, num_iter)G
+    responses = yield [http_client.fetch(url) for url in urls]
+    response_sum = sum(len(r.body) for r in responses)
+    raise gen.Return(value=response_sum)
+
+if __name__ == &quot;__main__&quot;:
+    import time
+    delay = 100
+    num_iter = 500
+    _ioloop = ioloop.IOLoop.instance()
+    run_func = partial(
+        run_experiment,
+        &quot;http://127.0.0.1:8080/add?name=tornado&amp;delay={}&amp;&quot;.format(delay),
+        num_iter)
+
+    start = time.time()
+    result = _ioloop.run_sync(run_func)
+    end = time.time()
+    print result, (end - start)
 </code></pre></div>
 
 
 <p>最后一个是使用asyncio的示例，不过asyncio提供的api比较偏低层，我们使用aiphttp来发送http请求:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">aiohttp</span>
@@ -4036,7 +3993,7 @@
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
 </code></pre></div>
-</td></tr></table>
+
 
 <hr />
 <h2 id="9the-multiprocessing-module">9章：The Multiprocessing Module<a class="headerlink" href="#9the-multiprocessing-module" title="Permanent link">&para;</a></h2>
@@ -4051,76 +4008,76 @@
 <li>Synchronization primitives: 同步原语,Locks或者semaphores</li>
 </ul>
 <p>python3.2以后引入了concurrent.futures模块，提供了更加简洁的api来操作进程或者线程，但是不如multiprocessing灵活一些。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Monte Carlo方法来模拟pi的计算</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="codehilite"><pre><span></span><code># Monte Carlo方法来模拟pi的计算
+import math
+import random
+import time
 
 
-<span class="k">def</span> <span class="nf">y_is_in_circle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test if x,y coordinate lives within the radius of the unit circle&quot;&quot;&quot;</span>
-    <span class="n">circle_edge_y</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">circle_edge_y</span>
+def y_is_in_circle(x, y):
+    &quot;&quot;&quot;Test if x,y coordinate lives within the radius of the unit circle&quot;&quot;&quot;
+    circle_edge_y = math.sin(math.acos(x))
+    return y &lt;= circle_edge_y
 
 
-<span class="k">def</span> <span class="nf">estimate_nbr_points_in_circle</span><span class="p">(</span><span class="n">nbr_samples</span><span class="p">):</span>
-    <span class="n">nbr_in_circle</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nbr_samples</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">y_is_in_circle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-            <span class="n">nbr_in_circle</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">nbr_in_circle</span>
+def estimate_nbr_points_in_circle(nbr_samples):
+    nbr_in_circle = 0
+    for n in xrange(nbr_samples):
+        x = random.uniform(0.0, 1.0)
+        y = random.uniform(0.0, 1.0)
+        if y_is_in_circle(x, y):
+            nbr_in_circle += 1
+    return nbr_in_circle
 
-<span class="n">nbr_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">nbr_in_circle</span> <span class="o">=</span> <span class="n">estimate_nbr_points_in_circle</span><span class="p">(</span><span class="n">nbr_samples</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&quot;Took {}s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t1</span><span class="p">)</span>
-<span class="n">pi_estimate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">nbr_in_circle</span><span class="p">)</span> <span class="o">/</span> <span class="n">nbr_samples</span> <span class="o">*</span> <span class="mi">4</span>
-<span class="k">print</span> <span class="s2">&quot;Estimated pi&quot;</span><span class="p">,</span> <span class="n">pi_estimate</span>
-<span class="k">print</span> <span class="s2">&quot;Pi&quot;</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
-
-
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="c1">#from multiprocessing.dummy import Pool</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+nbr_samples = int(1e7)
+t1 = time.time()
+nbr_in_circle = estimate_nbr_points_in_circle(nbr_samples)
+print &quot;Took {}s&quot;.format(time.time() - t1)
+pi_estimate = float(nbr_in_circle) / nbr_samples * 4
+print &quot;Estimated pi&quot;, pi_estimate
+print &quot;Pi&quot;, math.pi
 
 
-<span class="k">def</span> <span class="nf">y_is_in_circle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Test if x,y coordinate lives within the radius of the unit circle&quot;&quot;&quot;</span>
-    <span class="n">circle_edge_y</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">circle_edge_y</span>
+import math
+import random
+import time
+#from multiprocessing.dummy import Pool
+from multiprocessing import Pool
 
 
-<span class="k">def</span> <span class="nf">estimate_nbr_points_in_circle</span><span class="p">(</span><span class="n">nbr_samples</span><span class="p">):</span>
-    <span class="n">nbr_in_circle</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nbr_samples</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">y_is_in_circle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-            <span class="n">nbr_in_circle</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">nbr_in_circle</span>
+def y_is_in_circle(x, y):
+    &quot;&quot;&quot;Test if x,y coordinate lives within the radius of the unit circle&quot;&quot;&quot;
+    circle_edge_y = math.sin(math.acos(x))
+    return y &lt;= circle_edge_y
 
 
-<span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">()</span>
+def estimate_nbr_points_in_circle(nbr_samples):
+    nbr_in_circle = 0
+    for n in xrange(nbr_samples):
+        x = random.uniform(0.0, 1.0)
+        y = random.uniform(0.0, 1.0)
+        if y_is_in_circle(x, y):
+            nbr_in_circle += 1
+    return nbr_in_circle
 
 
-<span class="n">nbr_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e7</span><span class="p">)</span>
-<span class="n">nbr_parallel_blocks</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">map_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">nbr_samples</span><span class="p">]</span> <span class="o">*</span> <span class="n">nbr_parallel_blocks</span>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">estimate_nbr_points_in_circle</span><span class="p">,</span> <span class="n">map_inputs</span><span class="p">)</span>
-<span class="c1"># pool.close()</span>
-<span class="k">print</span> <span class="n">results</span>
-<span class="k">print</span> <span class="s2">&quot;Took {}s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t1</span><span class="p">)</span>
-<span class="n">nbr_in_circle</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-<span class="n">combined_nbr_samples</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">map_inputs</span><span class="p">)</span>
+pool = Pool()
 
-<span class="n">pi_estimate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">nbr_in_circle</span><span class="p">)</span> <span class="o">/</span> <span class="n">combined_nbr_samples</span> <span class="o">*</span> <span class="mi">4</span>
-<span class="k">print</span> <span class="s2">&quot;Estimated pi&quot;</span><span class="p">,</span> <span class="n">pi_estimate</span>
-<span class="k">print</span> <span class="s2">&quot;Pi&quot;</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+
+nbr_samples = int(1e7)
+nbr_parallel_blocks = 4
+map_inputs = [nbr_samples] * nbr_parallel_blocks
+t1 = time.time()
+results = pool.map(estimate_nbr_points_in_circle, map_inputs)
+# pool.close()
+print results
+print &quot;Took {}s&quot;.format(time.time() - t1)
+nbr_in_circle = sum(results)
+combined_nbr_samples = sum(map_inputs)
+
+pi_estimate = float(nbr_in_circle) / combined_nbr_samples * 4
+print &quot;Estimated pi&quot;, pi_estimate
+print &quot;Pi&quot;, math.pi
 </code></pre></div>
 
 
@@ -4148,7 +4105,7 @@
 <li>使用memit(ipython)，memory_profiler衡量内存使用, 内置的sys.getsizeof对于容器类型的计算不准确</li>
 <li>python2里的unicode对象比较耗费内存，在python3中没有这个问题</li>
 <li>如果需要存储大量字符串到内存：使用DAWG(Directed asyclic word graph)和trie(Marisa trie,Datrie,HAT trie)等结构比存储到list或者set里节省大量内存，DAWG等结构通过公用字符串前缀或后缀节省存储，github上有相应实现。</li>
-<li>嵌入式系统可以用&rdquo;Micro Python&rdquo;, http://micropython.org</li>
+<li>嵌入式系统可以用&rdquo;Micro Python&rdquo;, <a href="http://micropython.org">http://micropython.org</a></li>
 </ul>
 <p>Probabilistic Data Structures:如果允许一定概率的精度损失，我们可以使用一些概率数据结构</p>
 <ul>
@@ -4160,13 +4117,13 @@
 <hr />
 <h2 id="12lessons-from-the-field">12章：Lessons from the Field<a class="headerlink" href="#12lessons-from-the-field" title="Permanent link">&para;</a></h2>
 <p>本章汇集了一些公司使用python的成功案例和经验，其实看看Instagram的技术博客有不少干货</p>
-<div class="codehilite"><pre><span></span><code><span class="o">-</span> <span class="n">lyst</span><span class="p">.</span><span class="n">com</span><span class="p">(</span><span class="n">fashion</span> <span class="n">recommendation</span> <span class="n">engine</span><span class="p">):</span><span class="n">django</span><span class="o">/</span><span class="n">Amazon</span> <span class="n">EC2</span><span class="o">/</span><span class="n">Redis</span><span class="o">/</span><span class="n">PyRes</span><span class="o">/</span><span class="n">supervisord</span><span class="o">/</span><span class="n">Elasticsearch</span><span class="o">/</span><span class="n">Graphite</span><span class="o">/</span><span class="n">Sentry</span><span class="o">/</span><span class="n">Jenkins</span><span class="o">/</span><span class="n">Cython</span><span class="o">/</span><span class="n">numpy</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span>
+<div class="codehilite"><pre><span></span><code>- lyst.com(fashion recommendation engine):django/Amazon EC2/Redis/PyRes/supervisord/Elasticsearch/Graphite/Sentry/Jenkins/Cython/numpy/scipy/
 
-<span class="o">-</span> <span class="n">sme</span><span class="p">.</span><span class="n">sh</span><span class="p">(</span><span class="n">social</span> <span class="n">media</span> <span class="n">analytics</span><span class="p">):</span><span class="n">django</span><span class="o">/</span><span class="n">flask</span><span class="o">/</span><span class="n">pyramid</span><span class="o">/</span><span class="n">celery</span><span class="o">/</span><span class="n">Boto</span><span class="o">/</span><span class="n">PyMongo</span><span class="o">/</span><span class="n">MongoEngine</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="n">py</span><span class="o">/</span><span class="n">Pyscopy</span><span class="o">/</span><span class="n">Graphite</span><span class="o">/</span><span class="n">Sentry</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span>
+- sme.sh(social media analytics):django/flask/pyramid/celery/Boto/PyMongo/MongoEngine/redis-py/Pyscopy/Graphite/Sentry/docker/
 
-<span class="o">-</span> <span class="n">adaptivelab</span><span class="p">.</span><span class="n">com</span><span class="p">(</span><span class="n">social</span> <span class="n">media</span> <span class="n">analytics</span><span class="p">):</span> <span class="n">Elasticsearch</span><span class="o">/</span><span class="n">Celery</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">Mozilla</span><span class="s1">&#39;s Circus(替代crontab)/SaltStack/Fabric/Vagrant/敏捷/Amazon&#39;</span><span class="n">s</span> <span class="n">Elastic</span> <span class="n">Compute</span> <span class="n">Cloud</span><span class="p">(</span><span class="n">EC2</span><span class="p">)</span><span class="o">/</span>
+- adaptivelab.com(social media analytics): Elasticsearch/Celery/redis/Mozilla&#39;s Circus(替代crontab)/SaltStack/Fabric/Vagrant/敏捷/Amazon&#39;s Elastic Compute Cloud(EC2)/
 
-<span class="o">-</span> <span class="n">radimrehurek</span><span class="p">.</span><span class="n">com</span><span class="p">(</span><span class="n">Deep</span> <span class="n">Learning</span><span class="p">):</span> <span class="n">Stream</span> <span class="n">your</span> <span class="k">data</span><span class="p">,</span> <span class="n">watch</span> <span class="n">your</span> <span class="n">memory</span><span class="p">.</span><span class="o">/</span> <span class="n">Take</span> <span class="n">advantage</span> <span class="k">of</span> <span class="n">Python</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">rich</span> <span class="n">ecosystem</span><span class="p">.</span> <span class="o">/</span> <span class="n">Profile</span> <span class="k">and</span> <span class="n">compile</span> <span class="n">hotspots</span><span class="p">.</span><span class="o">/</span> <span class="n">Parallelization</span> <span class="k">and</span> <span class="n">multiple</span> <span class="n">cores</span><span class="p">.</span> <span class="o">/</span><span class="k">Static</span> <span class="n">memory</span> <span class="n">allocations</span><span class="p">.</span> <span class="o">/</span> <span class="n">Problem</span><span class="o">-</span><span class="k">specific</span> <span class="n">optimizations</span><span class="p">.</span>
+- radimrehurek.com(Deep Learning): Stream your data, watch your memory./ Take advantage of Python&#39;s rich ecosystem. / Profile and compile hotspots./ Parallelization and multiple cores. /Static memory allocations. / Problem-specific optimizations.
 </code></pre></div>
                 
               
@@ -4193,7 +4150,7 @@
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 Python Microservices Development
               </div>
@@ -4205,7 +4162,7 @@
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 Python网络编程
               </div>
@@ -4235,7 +4192,7 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -4246,6 +4203,8 @@
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

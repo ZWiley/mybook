@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Redis/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#redis" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -469,7 +475,7 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -479,7 +485,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3753,7 +3759,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3763,7 +3769,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -4086,7 +4092,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/项目基础知识/Redis.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/项目基础知识/Redis.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -4146,7 +4152,7 @@
 </li>
 </ul>
 <h3 id="cap32">CAP的3进2<a class="headerlink" href="#cap32" title="Permanent link">&para;</a></h3>
-<p>一个分布式系统<strong>必须实现分区容错性</strong>，CAP只能同时满足其中两个</p>
+<p>一个分布式系统**必须实现分区容错性**，CAP只能同时满足其中两个</p>
 <ul>
 <li>CA<ul>
 <li>传统的MySQL和Orcal数据库</li>
@@ -4189,7 +4195,7 @@
 </li>
 </ul>
 <h2 id="redis_1">Redis及优缺点<a class="headerlink" href="#redis_1" title="Permanent link">&para;</a></h2>
-<p>Redis是Remote Dictionary Server（远程字典服务器），是<strong>高性能的K/V分布式内存数据库</strong></p>
+<p>Redis是Remote Dictionary Server（远程字典服务器），是**高性能的K/V分布式内存数据库**</p>
 <h3 id="memcached">相对于memcached的不同<a class="headerlink" href="#memcached" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Redis支持数据持久化，可以将内存中的数据保存到磁盘中，重启时再次加载到内存中</li>
@@ -4198,7 +4204,7 @@
 </ul>
 <h3 id="_2">缺点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Redis主要消耗内存资源，数据库容量受到<strong>物理内存的限制</strong>，不能用作海量数据的高性能读写</li>
+<li>Redis主要消耗内存资源，数据库容量受到**物理内存的限制**，不能用作海量数据的高性能读写</li>
 <li>因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上</li>
 </ul>
 <h2 id="redis_2">Redis线程模型<a class="headerlink" href="#redis_2" title="Permanent link">&para;</a></h2>
@@ -4263,7 +4269,7 @@
 <li>同时使用 RDB 和 AOF 两种持久化机制，那么在 redis 重启的时候，会使用 AOF 来重新构建数据，因为 AOF 中的数据更加完整。</li>
 </ul>
 <h3 id="rdb">RDB<a class="headerlink" href="#rdb" title="Permanent link">&para;</a></h3>
-<p>RDB（Redis Database）持久化机制，是对redis中的<strong>数据</strong>执行<strong>周期性</strong>的持久化，生成dump.rdb文件。</p>
+<p>RDB（Redis Database）持久化机制，是对redis中的**数据**执行**周期性**的持久化，生成dump.rdb文件。</p>
 <ul>
 <li>snapshot快照<ul>
 <li>在指定时间间隔将内存的数据集快照写入磁盘，恢复时将快照直接读入内存</li>
@@ -4305,7 +4311,7 @@
 </li>
 </ul>
 <h3 id="aof">AOF<a class="headerlink" href="#aof" title="Permanent link">&para;</a></h3>
-<p>AOF（Append Only File） 机制对<strong>每条写命令</strong>作为日志，以 append-only（追加） 的模式写入一个日志文件中，在 redis 重启的时候，可以通过回放 AOF 日志中的写入指令来重新构建整个数据集，生成appendonly.aof文件</p>
+<p>AOF（Append Only File） 机制对**每条写命令**作为日志，以 append-only（追加） 的模式写入一个日志文件中，在 redis 重启的时候，可以通过回放 AOF 日志中的写入指令来重新构建整个数据集，生成appendonly.aof文件</p>
 <ul>
 <li>追加方式<ul>
 <li>everysec<ul>
@@ -4346,7 +4352,7 @@
 <p>优点</p>
 <ul>
 <li>AOF 可以更好的保护数据不丢失，一般 AOF 会每隔 1 秒，通过一个后台线程执行一次fsync操作，最多丢失 1 秒钟的数据。</li>
-<li>AOF 日志文件的命令通过非常可读的方式进行记录，这个特性非常适合<strong>做灾难性的误删除的紧急恢复</strong>。比如某人不小心用 flushall 命令清空了所有数据，只要这个时候后台 rewrite 还没有发生，那么就可以立即拷贝 AOF 文件，将最后一条 flushall 命令给删了，然后再将该 AOF 文件放回去，就可以通过恢复机制，自动恢复所有数据。</li>
+<li>AOF 日志文件的命令通过非常可读的方式进行记录，这个特性非常适合**做灾难性的误删除的紧急恢复**。比如某人不小心用 flushall 命令清空了所有数据，只要这个时候后台 rewrite 还没有发生，那么就可以立即拷贝 AOF 文件，将最后一条 flushall 命令给删了，然后再将该 AOF 文件放回去，就可以通过恢复机制，自动恢复所有数据。</li>
 </ul>
 </li>
 <li>缺点<ul>
@@ -4373,9 +4379,9 @@
 <h3 id="_5">淘汰策略<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>noeviction: 当内存不足以容纳新写入数据时，新写入操作会报错，这个一般没人用吧，实在是太恶心了。</li>
-<li>allkeys-lru：当内存不足以容纳新写入数据时，<strong>在键空间中</strong>，移除最近最少使用的 key<strong>（这个是最常用的）</strong>。</li>
+<li>allkeys-lru：当内存不足以容纳新写入数据时，<strong>在键空间中</strong>，移除最近最少使用的 key**（这个是最常用的）**。</li>
 <li>allkeys-random：当内存不足以容纳新写入数据时，在键空间中，随机移除某个 key，这个一般没人用吧，为啥要随机，肯定是把最近最少使用的 key 给干掉啊。</li>
-<li>volatile-lru：当内存不足以容纳新写入数据时，在<strong>设置了过期时间的键空间中</strong>，移除最近最少使用的 key<strong>（这个一般不太合适）</strong>。</li>
+<li>volatile-lru：当内存不足以容纳新写入数据时，在**设置了过期时间的键空间中**，移除最近最少使用的 key**（这个一般不太合适）**。</li>
 <li>volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个 key。</li>
 <li>volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的 key 优先移除。</li>
 </ul>
@@ -4389,7 +4395,7 @@
 <h2 id="_6">分布式算法一致性哈希<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <h3 id="_7">普通哈希<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <ul>
-<li>原始的做法是对缓存项的键进行哈希，将hash后的结果对<strong>缓存服务器的数量</strong>进行取模操作，通过取模后的结果，决定缓存项将会缓存在哪一台服务器上。</li>
+<li>原始的做法是对缓存项的键进行哈希，将hash后的结果对**缓存服务器的数量**进行取模操作，通过取模后的结果，决定缓存项将会缓存在哪一台服务器上。</li>
 <li>缺点<ul>
 <li>当服务器数量发生变化的时候，所有缓存在一定时间内是失效的，重新哈希，跟服务器结点的数量有关</li>
 <li>当应用无法从缓存中获取数据时，则会向后端服务器请求数据，造成了缓存的雪崩，整个系统很有可能被压垮</li>
@@ -4409,7 +4415,7 @@
 <ul>
 <li>首先求出服务器（节点）的哈希值，并将其配置到0～2^32-1的圆（continuum）上。</li>
 <li>然后采用同样的方法求出存储数据的键的哈希值，并映射到相同的圆上。</li>
-<li>然后从数据映射到的位置开始<strong>顺时针查找</strong>，将数据保存到找到的第一个服务器上。如果超过2^32-1仍然找不到服务器，就会保存到第一台服务器上。(0和2^32重合，超过后就顺序找到第一台了)</li>
+<li>然后从数据映射到的位置开始**顺时针查找**，将数据保存到找到的第一个服务器上。如果超过2<sup>32-1仍然找不到服务器，就会保存到第一台服务器上。(0和2</sup>32重合，超过后就顺序找到第一台了)</li>
 </ul>
 </li>
 <li>
@@ -4515,7 +4521,7 @@
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 MySQL
               </div>
@@ -4527,7 +4533,7 @@
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 Socket编程
               </div>
@@ -4557,7 +4563,7 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -4568,6 +4574,8 @@
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

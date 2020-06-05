@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/golang/go101/book/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#21-channels-the-go-way-to-do-concurrency-synchronizations" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -3420,7 +3426,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3436,7 +3442,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/go101/book.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/go101/book.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3459,7 +3465,7 @@
 - the sending goroutine queue
 - the value buffer queue</p>
 <p><img alt="" src="../channel.png" /></p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// unbufferd demo</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// unbufferd demo</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -3515,7 +3521,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <ul>
 <li>Channel Element Values are Transferred by Copy。If the passed value size too large, use a pointer element type instead.</li>
 <li>A goroutine can be garbage collected when it has already exited.</li>
@@ -3541,7 +3546,7 @@
 <h1 id="37-channel-use-cases">37 Channel Use Cases<a class="headerlink" href="#37-channel-use-cases" title="Permanent link">&para;</a></h1>
 <h2 id="use-channels-as-futurespromises">Use channels as Futures/Promises<a class="headerlink" href="#use-channels-as-futurespromises" title="Permanent link">&para;</a></h2>
 <h4 id="return-receive-only-channels-as-results">Return receive-only channels as results<a class="headerlink" href="#return-receive-only-channels-as-results" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3570,9 +3575,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="pass-send-only-channels-as-arguments">Pass send-only channels as arguments<a class="headerlink" href="#pass-send-only-channels-as-arguments" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3599,9 +3603,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="the-first-response-wins">The first response wins<a class="headerlink" href="#the-first-response-wins" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3630,11 +3633,10 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="use-channels-for-notifications">Use Channels for Notifications<a class="headerlink" href="#use-channels-for-notifications" title="Permanent link">&para;</a></h2>
 <p>Use blank struct{} as element types of the notification channels, size of type struct{} is zero, doesn&rsquo;t consume memory.</p>
 <h4 id="1-to-1-notification-by-sending-a-value-to-a-channel">1-To-1 notification by sending a value to a channel<a class="headerlink" href="#1-to-1-notification-by-sending-a-value-to-a-channel" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3665,9 +3667,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="1-to-1-notification-by-receiving-a-value-from-a-channel">1-To-1 notification by receiving a value from a channel<a class="headerlink" href="#1-to-1-notification-by-receiving-a-value-from-a-channel" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3687,10 +3688,9 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>slowers notify the faster waiting for notifications.</p>
 <h4 id="n-to-1-and-1-to-n-notifications">N-to-1 and 1-to-N notifications<a class="headerlink" href="#n-to-1-and-1-to-n-notifications" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;log&quot;</span>
@@ -3730,12 +3730,11 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>更常见的使用 sync.WaitGroup 做 N-to-1，通过 close channels 实现 1-to-N.</p>
 <h4 id="broadcast-1-to-n-notifications-by-closing-a-channel">Broadcast (1-To-N) notifications by closing a channel<a class="headerlink" href="#broadcast-1-to-n-notifications-by-closing-a-channel" title="Permanent link">&para;</a></h4>
 <p>上例中的三个发送 ready 可以直接换成一个 close(ready)</p>
 <h4 id="timer-scheduled-notification">Timer: scheduled notification<a class="headerlink" href="#timer-scheduled-notification" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3760,7 +3759,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>实际中使用 time.After</p>
 <h2 id="use-channels-as-mutex-locks">Use Channels as Mutex Locks<a class="headerlink" href="#use-channels-as-mutex-locks" title="Permanent link">&para;</a></h2>
 <p>two manners to use one-capacity bufferd channels as mutex locks.</p>
@@ -3768,7 +3766,7 @@
 <li>Lock through a send, unlock through a receive</li>
 <li>Lock through a receive, unlock through a send</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="c1">// lock through send</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// lock through send</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
@@ -3800,7 +3798,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="use-channels-as-counting-semaphores">Use Channels as Counting Semaphores<a class="headerlink" href="#use-channels-as-counting-semaphores" title="Permanent link">&para;</a></h2>
 <p>Buffered channels can be used as counting semaphores.
 Counting semaphores can be viewed a multi-owner locks, can have most N owners at any time.</p>
@@ -3808,7 +3805,7 @@ Counting semaphores can be viewed a multi-owner locks, can have most N owners at
 <li>Acquire ownership through a send, release through a receive</li>
 <li>Acquire ownership through a receive, release through a send</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="c1">// acquire-through-receiving.go</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// acquire-through-receiving.go</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -3850,8 +3847,7 @@ Counting semaphores can be viewed a multi-owner locks, can have most N owners at
 <span class="p">}</span>
 </code></pre></div>
 
-
-<div class="codehilite"><pre><span></span><code><span class="c1">// channeltest/go101/acquire-through-sending.go</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// channeltest/go101/acquire-through-sending.go</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -3887,9 +3883,8 @@ Counting semaphores can be viewed a multi-owner locks, can have most N owners at
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="dialogueping-pong">Dialogue(Ping-Pong)<a class="headerlink" href="#dialogueping-pong" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1">// channeltest/go101/two-goroutines-dialogue-through-channel.go</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// channeltest/go101/two-goroutines-dialogue-through-channel.go</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -3925,51 +3920,49 @@ Counting semaphores can be viewed a multi-owner locks, can have most N owners at
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="channel-encapsulated-in-channel">Channel Encapsulated in Channel<a class="headerlink" href="#channel-encapsulated-in-channel" title="Permanent link">&para;</a></h2>
 <p>We can use a channel type as the element of another channel type.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
+import &quot;fmt&quot;
 
-<span class="o">//</span> <span class="err">元素类型是一个</span> <span class="n">send</span> <span class="n">only</span> <span class="n">channel</span> <span class="nb">type</span> <span class="n">chan</span> <span class="o">&lt;-</span> <span class="nb">int</span>
-<span class="n">var</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">n</span> <span class="nb">int</span><span class="p">)</span> <span class="n">chan</span><span class="o">&lt;-</span> <span class="n">chan</span><span class="o">&lt;-</span> <span class="nb">int</span> <span class="p">{</span>
-    <span class="n">requests</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">chan</span><span class="o">&lt;-</span> <span class="nb">int</span><span class="p">)</span>
-    <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="n">request</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">requests</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="n">request</span> <span class="o">==</span> <span class="n">nil</span> <span class="p">{</span>
-                <span class="n">n</span><span class="o">++</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="n">request</span> <span class="o">&lt;-</span> <span class="n">n</span> <span class="o">//</span> <span class="n">take</span> <span class="n">out</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}()</span>
-    <span class="k">return</span> <span class="n">requests</span> <span class="o">//</span> <span class="n">implicitly</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">chan</span><span class="o">&lt;-</span> <span class="p">(</span><span class="n">chan</span><span class="o">&lt;-</span> <span class="nb">int</span><span class="p">)</span>
-<span class="p">}(</span><span class="mi">0</span><span class="p">)</span>
+// 元素类型是一个 send only channel type chan &lt;- int
+var counter = func(n int) chan&lt;- chan&lt;- int {
+    requests := make(chan chan&lt;- int)
+    go func() {
+        for request := range requests {
+            if request == nil {
+                n++
+            } else {
+                request &lt;- n // take out
+            }
+        }
+    }()
+    return requests // implicitly converted to chan&lt;- (chan&lt;- int)
+}(0)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">increase1000</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="n">chan</span><span class="o">&lt;-</span> <span class="n">struct</span><span class="p">{})</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-            <span class="n">counter</span> <span class="o">&lt;-</span> <span class="n">nil</span>
-        <span class="p">}</span>
-        <span class="n">done</span> <span class="o">&lt;-</span> <span class="n">struct</span><span class="p">{}{}</span>
-    <span class="p">}</span>
+func main() {
+    increase1000 := func(done chan&lt;- struct{}) {
+        for i := 0; i &lt; 1000; i++ {
+            counter &lt;- nil
+        }
+        done &lt;- struct{}{}
+    }
 
-    <span class="n">done</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">struct</span><span class="p">{})</span>
-    <span class="n">go</span> <span class="n">increase1000</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
-    <span class="n">go</span> <span class="n">increase1000</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
-    <span class="o">&lt;-</span><span class="n">done</span>
-    <span class="o">&lt;-</span><span class="n">done</span>
+    done := make(chan struct{})
+    go increase1000(done)
+    go increase1000(done)
+    &lt;-done
+    &lt;-done
 
-    <span class="n">request</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">counter</span> <span class="o">&lt;-</span> <span class="n">request</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="o">&lt;-</span><span class="n">request</span><span class="p">)</span> <span class="o">//</span><span class="mi">2000</span>
-<span class="p">}</span>
+    request := make(chan int, 1)
+    counter &lt;- request
+    fmt.Println(&lt;-request) //2000
+}
 </code></pre></div>
 
-
 <h2 id="check-lengths-and-capacities-of-channels">Check Lengths and Capacities of Channels<a class="headerlink" href="#check-lengths-and-capacities-of-channels" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="nb">len</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="nb">len</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
     <span class="nx">value</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">c</span>
     <span class="c1">// use value</span>
 <span class="p">}</span>
@@ -3979,12 +3972,11 @@ Counting semaphores can be viewed a multi-owner locks, can have most N owners at
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="block-the-current-goroutine-forever">Block the Current Goroutine Forever<a class="headerlink" href="#block-the-current-goroutine-forever" title="Permanent link">&para;</a></h2>
 <p>We can use a blank select block <code>select{}</code> to block the current goroutine for ever.
 Generally, <code>select{}</code> is used to prevent the main goroutine from exiting, for if the main goroutine exits, the whole
 program will also exit.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;runtime&quot;</span>
 
@@ -4002,11 +3994,10 @@ program will also exit.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="try-send-and-try-receive">Try-Send and Try-Receive<a class="headerlink" href="#try-send-and-try-receive" title="Permanent link">&para;</a></h2>
 <p>A select block with one &ldquo;default&rdquo; branch and only one case branch is called a try-send or try-receive channel operation.
 Try-Send and Try-Receive operations never block.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -4034,11 +4025,10 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="check-if-a-channel-is-closed-without-blocking-the-current-goroutine">Check if a channel is closed without blocking the current goroutine<a class="headerlink" href="#check-if-a-channel-is-closed-without-blocking-the-current-goroutine" title="Permanent link">&para;</a></h4>
 <p>no values were ever(and will be) send to a channel, we can use the following code to
 (concurrency and safetly) check whether or not the channel is already closed without blocking the current goroutine.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// T is the element type of the corresponding channel type</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// T is the element type of the corresponding channel type</span>
 <span class="kd">func</span> <span class="nx">IsClosed</span><span class="p">(</span><span class="nx">c</span> <span class="kd">chan</span> <span class="nx">T</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
     <span class="k">select</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">c</span><span class="p">:</span>
@@ -4049,11 +4039,10 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="peakburst-limiting">Peak/burst limiting<a class="headerlink" href="#peakburst-limiting" title="Permanent link">&para;</a></h4>
 <p>limit number of concurrent request without blocking any requests</p>
 <h4 id="another-way-to-implement-the-first-response-wins-use-case">Another way to implement the first-response-wins use case<a class="headerlink" href="#another-way-to-implement-the-first-response-wins-use-case" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4082,10 +4071,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="timeout">Timeout<a class="headerlink" href="#timeout" title="Permanent link">&para;</a></h4>
 <p>请求超时返回 error</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">requestWithTimeout</span><span class="p">(</span><span class="nx">timeout</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">requestWithTimeout</span><span class="p">(</span><span class="nx">timeout</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
     <span class="c1">// may need a long time to get the response.</span>
     <span class="k">go</span> <span class="nx">doRequest</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
@@ -4099,10 +4087,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="ticker">Ticker<a class="headerlink" href="#ticker" title="Permanent link">&para;</a></h4>
 <p>We can use the try-send mechanism to implement a ticker.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4134,10 +4121,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="rate-limiting">Rate Limiting<a class="headerlink" href="#rate-limiting" title="Permanent link">&para;</a></h4>
 <p>use try-send to do rate limiting(with the help of a ticker).</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4180,10 +4166,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="switches">Switches<a class="headerlink" href="#switches" title="Permanent link">&para;</a></h4>
 <p>sending a value to or receiving a value from a nil channel are both blocking operations.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4224,9 +4209,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="control-code-execution-possibility-weights">Control code execution possibility weights<a class="headerlink" href="#control-code-execution-possibility-weights" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -4252,12 +4236,11 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="select-from-dynamic-number-cases">Select from dynamic number cases<a class="headerlink" href="#select-from-dynamic-number-cases" title="Permanent link">&para;</a></h4>
 <p>reflect also provides TrySend and TryRecv functions to implement one-case-plus-default select blocks.</p>
 <h2 id="data-flow-manipulations">Data Flow Manipulations<a class="headerlink" href="#data-flow-manipulations" title="Permanent link">&para;</a></h2>
 <h4 id="data-generationcollectionloading">Data generation/collection/loading<a class="headerlink" href="#data-generationcollectionloading" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;encoding/binary&quot;</span>
@@ -4288,9 +4271,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="data-aggregation">Data aggregation<a class="headerlink" href="#data-aggregation" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4327,10 +4309,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="data-composition">Data composition<a class="headerlink" href="#data-composition" title="Permanent link">&para;</a></h4>
 <p>A data composition worker merges several pieces of data from different input data streams into one piece of data.</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Composor</span><span class="p">(</span><span class="nx">intA</span><span class="p">,</span> <span class="nx">intB</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">Composor</span><span class="p">(</span><span class="nx">intA</span><span class="p">,</span> <span class="nx">intB</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span> <span class="p">{</span>
     <span class="nx">output</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span>
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">{</span>
@@ -4342,10 +4323,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="data-duplicationproliferation">Data duplication/proliferation<a class="headerlink" href="#data-duplicationproliferation" title="Permanent link">&para;</a></h4>
 <p>One piece of data will be duplicated and each of the duplicated data will be sent to different output data streams.</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Duplicator</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">(</span><span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">,</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">Duplicator</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">(</span><span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">,</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">outA</span><span class="p">,</span> <span class="nx">outB</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">),</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span>
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">{</span>
@@ -4358,9 +4338,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="data-calculationanalysis">Data calculation/analysis<a class="headerlink" href="#data-calculationanalysis" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Calculator</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">,</span> <span class="nx">out</span> <span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">Calculator</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">,</span> <span class="nx">out</span> <span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">out</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nx">out</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span>
     <span class="p">}</span>
@@ -4372,9 +4351,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="data-validationfiltering">Data validation/filtering<a class="headerlink" href="#data-validationfiltering" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Filter</span><span class="p">(</span><span class="nx">input</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">,</span> <span class="nx">output</span> <span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">Filter</span><span class="p">(</span><span class="nx">input</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">,</span> <span class="nx">output</span> <span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">output</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nx">output</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span>
     <span class="p">}</span>
@@ -4392,9 +4370,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="data-servingsaving">Data serving/saving<a class="headerlink" href="#data-servingsaving" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Printer</span><span class="p">(</span><span class="nx">input</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">Printer</span><span class="p">(</span><span class="nx">input</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">{</span>
         <span class="nx">x</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">input</span>
         <span class="k">if</span> <span class="nx">ok</span> <span class="p">{</span>
@@ -4406,9 +4383,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="data-flow-system-assembling">Data flow system assembling<a class="headerlink" href="#data-flow-system-assembling" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">Printer</span><span class="p">(</span>
         <span class="nx">Filter</span><span class="p">(</span>
             <span class="nx">Calculator</span><span class="p">(</span>
@@ -4419,9 +4395,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h1 id="how-to-gracefully-close-channels">How to Gracefully Close Channels<a class="headerlink" href="#how-to-gracefully-close-channels" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -4444,7 +4419,6 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="channel-closing-principle">Channel Closing Principle<a class="headerlink" href="#channel-closing-principle" title="Permanent link">&para;</a></h4>
 <ul>
 <li>don&rsquo;t close a channel from the receiver side and don&rsquo;t close a channel if the channel has multiple concurrent senders.</li>
@@ -4452,7 +4426,7 @@ Try-Send and Try-Receive operations never block.</p>
 </ul>
 <h4 id="solutions-which-close-channels-rudely">Solutions which Close Channels Rudely<a class="headerlink" href="#solutions-which-close-channels-rudely" title="Permanent link">&para;</a></h4>
 <p>use recover prevent possible panic.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kd">type</span> <span class="nx">T</span> <span class="kt">int</span>
 
@@ -4478,9 +4452,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="solutions-which-close-channels-politely">Solutions Which Close Channels Politely<a class="headerlink" href="#solutions-which-close-channels-politely" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;sync&quot;</span>
 
@@ -4530,10 +4503,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="solutions-which-close-channels-gracefully">Solutions Which Close Channels Gracefully<a class="headerlink" href="#solutions-which-close-channels-gracefully" title="Permanent link">&para;</a></h4>
 <h6 id="m-receivers-one-sender-the-sender-says-no-more-sends-by-closing-the-data-channel">M receivers, one sender, the sender says &ldquo;no more sends&rdquo; by closing the data channel<a class="headerlink" href="#m-receivers-one-sender-the-sender-says-no-more-sends-by-closing-the-data-channel" title="Permanent link">&para;</a></h6>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;log&quot;</span>
@@ -4582,9 +4554,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="one-receiver-n-senders-the-only-receiver-says-please-stop-sending-more-by-closing-an-additional-signal-channel">One receiver, N senders, the only receiver says &ldquo;please stop sending more&rdquo; by closing an additional signal channel<a class="headerlink" href="#one-receiver-n-senders-the-only-receiver-says-please-stop-sending-more-by-closing-an-additional-signal-channel" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;log&quot;</span>
@@ -4644,9 +4615,8 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="c1">// more, whether it is closed or not.</span>
 </code></pre></div>
 
-
 <h4 id="m-receivers-n-senders-any-one-of-them-says-lets-end-the-game-by-notifying-a-moderator-to-close-an-additional-signal-channel">M receivers, N senders, any one of them says &ldquo;let&rsquo;s end the game&rdquo; by notifying a moderator to close an additional signal channel<a class="headerlink" href="#m-receivers-n-senders-any-one-of-them-says-lets-end-the-game-by-notifying-a-moderator-to-close-an-additional-signal-channel" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;log&quot;</span>
@@ -4747,14 +4717,13 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h1 id="concurrency-synchronization-techniques-provided-in-the-sync-standard-package">Concurrency Synchronization Techniques Provided in the sync Standard Package<a class="headerlink" href="#concurrency-synchronization-techniques-provided-in-the-sync-standard-package" title="Permanent link">&para;</a></h1>
 <p>For the specialized circumstances, sync are more efficient and more readable.</p>
 <p>NOTE: To avoid abnormal behaviors, it is best not to copy the values of the types int the sync standard package.</p>
 <h3 id="the-syncwaitgroup-type">The sync.WaitGroup Type<a class="headerlink" href="#the-syncwaitgroup-type" title="Permanent link">&para;</a></h3>
 <p>Each sync.WaitGroup value maintains a counter(init 0) internally.</p>
 <p>Used for one goroutine waits until all of several other goroutines finish their respective jobs.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;log&quot;</span>
@@ -4783,13 +4752,12 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="the-synconce-type">The sync.Once Type<a class="headerlink" href="#the-synconce-type" title="Permanent link">&para;</a></h3>
 <p>The code in the invoked argument function is guaranteed to be executed before any o.Do method call returns.</p>
 <h3 id="the-syncmutex-and-syncrwmutex-types">The sync.Mutex and sync.RWMutex Types<a class="headerlink" href="#the-syncmutex-and-syncrwmutex-types" title="Permanent link">&para;</a></h3>
 <p>Both implements sync.Locker (Lock/Unlock). m.Lock/m.UnLock() are shortands of (&amp;m).Lock() and (&amp;m).Unlock()</p>
 <p>A lock doesn&rsquo;t know which goroutine acquired it, and any goroutine can release a lock which in acquired status.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4845,10 +4813,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="type-synccond-type">Type sync.Cond Type<a class="headerlink" href="#type-synccond-type" title="Permanent link">&para;</a></h3>
 <p>Notifications among goroutines. Wait(), Signal(), Broadcast()</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4893,13 +4860,12 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h1 id="atomic-operations-provided-in-the-syncatomic-standard-package">Atomic Operations Provided in The sync/atomic Standard Package<a class="headerlink" href="#atomic-operations-provided-in-the-syncatomic-standard-package" title="Permanent link">&para;</a></h1>
 <h3 id="overview-of-atomic-operations-provided-in-go">Overview of Atomic Operations Provided in Go<a class="headerlink" href="#overview-of-atomic-operations-provided-in-go" title="Permanent link">&para;</a></h3>
 <p>AddT/LoadT/StoreT/SwapT/CompareAndSwapT, T must be any of int32,int64,uin32,uint64 and uintptr.</p>
 <p>Value.Load, Value.Store.</p>
 <h3 id="atomic-operations-for-integers">Atomic Operations for Integers<a class="headerlink" href="#atomic-operations-for-integers" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4923,10 +4889,9 @@ Try-Send and Try-Receive operations never block.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>StoreT and LoadT atomic functions are often used to implement the setter/getter methods of a type if the values of the
 type need to be used concurrently.</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Page</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">Page</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">views</span> <span class="kt">uint32</span>
 <span class="p">}</span>
 
@@ -4939,11 +4904,10 @@ type need to be used concurrently.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="atomic-operations-for-pointers">Atomic Operations for Pointers<a class="headerlink" href="#atomic-operations-for-pointers" title="Permanent link">&para;</a></h3>
 <h3 id="atomic-operations-for-values-of-arbitrary-types">Atomic Operations for Values of Arbitrary Types<a class="headerlink" href="#atomic-operations-for-values-of-arbitrary-types" title="Permanent link">&para;</a></h3>
 <p>The Value type provided in the sync/atomic standard pacakge can be used to atomically load and store values of any type.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4964,14 +4928,13 @@ type need to be used concurrently.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h1 id="memory-order-guarantees-in-go">Memory Order Guarantees in Go<a class="headerlink" href="#memory-order-guarantees-in-go" title="Permanent link">&para;</a></h1>
 <p>很多编译器和 cpu 经常会对指令顺序做一些优化，导致和原始的代码可能不同。Instruction ordering is also often called memory
 ordering.</p>
 <p><code>go build -race</code> to check data races in the program.</p>
 <h3 id="go-memory-model">Go Memory Model<a class="headerlink" href="#go-memory-model" title="Permanent link">&para;</a></h3>
 <h4 id="the-creation-of-a-gouroutine-happens-before-the-execution-of-the-goroutine">The creation of a gouroutine happens before the execution of the goroutine<a class="headerlink" href="#the-creation-of-a-gouroutine-happens-before-the-execution-of-the-goroutine" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 
@@ -4988,7 +4951,6 @@ ordering.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="channel-operations-related-order-guarantees">Channel operations related order guarantees<a class="headerlink" href="#channel-operations-related-order-guarantees" title="Permanent link">&para;</a></h4>
 <ul>
 <li>The nth successful send to a channel happens before the nth successful receive from that channel completes(no matter
@@ -4998,7 +4960,7 @@ ordering.</p>
 <li>The closing of a channel happens before a receive completes if the receive returns a zero value because the channel is
     closed.</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">f3</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">f3</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span>
     <span class="kd">var</span> <span class="nx">c</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -5018,7 +4980,6 @@ ordering.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="mutex-related-order-guarantees">Mutex related order guarantees<a class="headerlink" href="#mutex-related-order-guarantees" title="Permanent link">&para;</a></h4>
 <ul>
 <li>For an addressable value m of type Mutex/RWMutex in the sync, the nth successful m.Unlock() call happens before n+1th m.Lock() returns</li>
@@ -5036,7 +4997,7 @@ ordering.</p>
 <p>Don&rsquo;t rely on atomic to guarantee ordering in general Go programming.</p>
 <h1 id="common-concurrent-programming-mistakes">Common Concurrent Programming Mistakes<a class="headerlink" href="#common-concurrent-programming-mistakes" title="Permanent link">&para;</a></h1>
 <h3 id="no-synchronizations-when-synchronizations-are-needed">No Synchronizations When Synchronizations Are Needed<a class="headerlink" href="#no-synchronizations-when-synchronizations-are-needed" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;runtime&quot;</span>
@@ -5071,7 +5032,6 @@ ordering.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="use-timesleep-calls-to-do-synchronizations">Use time.Sleep Calls to Do Synchronizations<a class="headerlink" href="#use-timesleep-calls-to-do-synchronizations" title="Permanent link">&para;</a></h3>
 <p>We should never use time.Sleep calls to do synchronizations in formal projects.</p>
 <h3 id="leave-goroutines-hanging">Leave Goroutines Hanging<a class="headerlink" href="#leave-goroutines-hanging" title="Permanent link">&para;</a></h3>
@@ -5082,7 +5042,7 @@ Go runtime will never release the resources consumed by a hanging goroutine.</p>
 <h3 id="copy-values-of-the-types-in-the-sync-standard-package">Copy Values of the Types in the sync Standard Package<a class="headerlink" href="#copy-values-of-the-types-in-the-sync-standard-package" title="Permanent link">&para;</a></h3>
 <p>Values of types(except the Locker interface values) in the sync standard package should never be copied.
 We should only copy pointers of such values.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="s">&quot;sync&quot;</span>
 
@@ -5109,10 +5069,9 @@ We should only copy pointers of such values.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="call-the-syncwaitgroupadd-method-at-wrong-places">Call the sync.WaitGroup.Add Method at Wrong Places<a class="headerlink" href="#call-the-syncwaitgroupadd-method-at-wrong-places" title="Permanent link">&para;</a></h3>
 <p>Each sync.WaitGroup value maintains a counter internally, a call to wait blocks until counter value becomes 0.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -5140,9 +5099,8 @@ We should only copy pointers of such values.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="use-channels-as-futurespromises-improperly">Use Channels as Futures/Promises Improperly<a class="headerlink" href="#use-channels-as-futurespromises-improperly" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// ERROR: two channel receive are processed sequentially, instead of concurrently</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// ERROR: two channel receive are processed sequentially, instead of concurrently</span>
 <span class="nx">DoSomethingWithFutureArguments</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">fa</span><span class="p">(),</span> <span class="o">&lt;-</span><span class="nx">fb</span><span class="p">())</span>
 
 <span class="c1">// concurrently</span>
@@ -5150,11 +5108,10 @@ We should only copy pointers of such values.</p>
 <span class="nx">DoSomethingWithFutureArguments</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">ca</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">cb</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h3 id="close-channels-not-from-the-last-active-sender-goroutine">Close Channels Not From the Last Active Sender Goroutine<a class="headerlink" href="#close-channels-not-from-the-last-active-sender-goroutine" title="Permanent link">&para;</a></h3>
 <h3 id="do-64-bit-atomic-operations-on-values-which-are-not-guaranteed-to-be-8-byte-aligned">Do 64-bit Atomic Operations on Values Which are Not Guaranteed to Be 8-byte Aligned<a class="headerlink" href="#do-64-bit-atomic-operations-on-values-which-are-not-guaranteed-to-be-8-byte-aligned" title="Permanent link">&para;</a></h3>
 <h3 id="not-pay-attention-to-too-many-resources-are-consumed-by-calls-to-the-timeafter-function">Not Pay Attention to Too Many Resources Are Consumed by Calls to the time.After Function<a class="headerlink" href="#not-pay-attention-to-too-many-resources-are-consumed-by-calls-to-the-timeafter-function" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -5196,9 +5153,8 @@ We should only copy pointers of such values.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="use-timetimer-values-incorrectly">Use time.Timer Values Incorrectly<a class="headerlink" href="#use-timetimer-values-incorrectly" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -5221,7 +5177,6 @@ We should only copy pointers of such values.</p>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Since</span><span class="p">(</span><span class="nx">start</span><span class="p">))</span> <span class="c1">//about 1 s</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h1 id="memory-blocks">Memory Blocks<a class="headerlink" href="#memory-blocks" title="Permanent link">&para;</a></h1>
 <h3 id="memory-blocks_1">Memory Blocks<a class="headerlink" href="#memory-blocks_1" title="Permanent link">&para;</a></h3>
@@ -5275,7 +5230,7 @@ reflect.TypeOf(t).FieldAlign()。</p>
 <h1 id="go-memory-leaking-scenarios">Go Memory Leaking Scenarios<a class="headerlink" href="#go-memory-leaking-scenarios" title="Permanent link">&para;</a></h1>
 <h3 id="kind-of-memory-leaking-caused-by-substrings">Kind-of Memory Leaking Caused by Substrings<a class="headerlink" href="#kind-of-memory-leaking-caused-by-substrings" title="Permanent link">&para;</a></h3>
 <p>Go substring expression result string and base string share same underlying memory block.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kd">var</span> <span class="nx">s0</span> <span class="kt">string</span> <span class="c1">//package level variable</span>
 
@@ -5290,9 +5245,8 @@ reflect.TypeOf(t).FieldAlign()。</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>解决方式：</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">s1</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">f</span><span class="p">(</span><span class="nx">s1</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">s0</span> <span class="p">=</span> <span class="nb">string</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">s1</span><span class="p">[:</span><span class="mi">50</span><span class="p">]))</span>
 <span class="p">}</span>
 
@@ -5309,9 +5263,8 @@ reflect.TypeOf(t).FieldAlign()。</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="kind-of-memory-leaking-caused-by-subslices">Kind-of Memory Leaking Caused by subslices<a class="headerlink" href="#kind-of-memory-leaking-caused-by-subslices" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">s0</span> <span class="p">[]</span><span class="kt">int</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">s0</span> <span class="p">[]</span><span class="kt">int</span>
 <span class="kd">func</span> <span class="nx">g</span><span class="p">(</span><span class="nx">s1</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// assume length of s1 is much larger than 30</span>
     <span class="nx">s0</span><span class="p">=</span><span class="nx">s1</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">s1</span><span class="p">)</span><span class="o">-</span><span class="mi">30</span><span class="p">:]</span>
@@ -5322,9 +5275,8 @@ reflect.TypeOf(t).FieldAlign()。</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="kind-of-memory-leaking-caused-by-not-resetting-pointers-in-lost-slice-elements">Kind-of Memory Leaking Caused by Not resetting Pointers in Lost Slice Elements<a class="headerlink" href="#kind-of-memory-leaking-caused-by-not-resetting-pointers-in-lost-slice-elements" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">h</span><span class="p">()</span> <span class="p">[]</span><span class="o">*</span><span class="kt">int</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">h</span><span class="p">()</span> <span class="p">[]</span><span class="o">*</span><span class="kt">int</span> <span class="p">{</span>
     <span class="nx">s</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="kt">int</span><span class="p">{</span><span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)}</span>
     <span class="c1">// do with s</span>
     <span class="k">return</span> <span class="nx">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
@@ -5340,11 +5292,10 @@ reflect.TypeOf(t).FieldAlign()。</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="kind-of-memory-leaking-caused-by-hanging-goroutines">Kind-of Memory Leaking Caused by Hanging Goroutines<a class="headerlink" href="#kind-of-memory-leaking-caused-by-hanging-goroutines" title="Permanent link">&para;</a></h3>
 <h3 id="real-memory-leaking-caused-by-not-stopping-timeticker-values-which-are-not-used-anymore">Real Memory Leaking Caused by Not Stopping time.Ticker Values Which Are Not Used Anymore<a class="headerlink" href="#real-memory-leaking-caused-by-not-stopping-timeticker-values-which-are-not-used-anymore" title="Permanent link">&para;</a></h3>
 <h3 id="real-memory-leaking-caused-by-using-finalizers-improperly">Real Memory Leaking Caused by Using Finalizers Improperly<a class="headerlink" href="#real-memory-leaking-caused-by-using-finalizers-improperly" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">memoryLeaking</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">memoryLeaking</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">type</span> <span class="nx">T</span> <span class="kd">struct</span> <span class="p">{</span>
         <span class="nx">v</span> <span class="p">[</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">20</span><span class="p">]</span><span class="kt">int</span>
         <span class="nx">t</span> <span class="o">*</span> <span class="nx">T</span>
@@ -5359,7 +5310,6 @@ reflect.TypeOf(t).FieldAlign()。</p>
     <span class="nx">x</span><span class="p">.</span><span class="nx">t</span><span class="p">,</span> <span class="nx">y</span><span class="p">.</span><span class="nx">t</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">y</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">x</span>  <span class="c1">// y also escape to heap</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h3 id="kind-of-resources-leaking-by-deferring-function-calls">Kind-of Resources Leaking by Deferring Function Calls<a class="headerlink" href="#kind-of-resources-leaking-by-deferring-function-calls" title="Permanent link">&para;</a></h3>
 <h1 id="nils-in-go">nils in Go<a class="headerlink" href="#nils-in-go" title="Permanent link">&para;</a></h1>
@@ -5376,14 +5326,13 @@ reflect.TypeOf(t).FieldAlign()。</p>
 <p><code>fmt.Println( (interface{})(nil) == (*int)(nil))  // false</code></p>
 <h3 id="retrieving-elements-from-nil-maps-will-not-panic">Retrieving Elements From Nil Maps Will Not Panic<a class="headerlink" href="#retrieving-elements-from-nil-maps-will-not-panic" title="Permanent link">&para;</a></h3>
 <p>will always return zero value.</p>
-<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)(</span><span class="kc">nil</span><span class="p">)[</span><span class="s">&quot;key&quot;</span><span class="p">]</span>  <span class="c1">// 0</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)(</span><span class="kc">nil</span><span class="p">)[</span><span class="s">&quot;key&quot;</span><span class="p">]</span>  <span class="c1">// 0</span>
 <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">bool</span><span class="p">)(</span><span class="kc">nil</span><span class="p">)[</span><span class="mi">123</span><span class="p">]</span>  <span class="c1">// false</span>
 <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="o">*</span><span class="kt">int64</span><span class="p">)(</span><span class="kc">nil</span><span class="p">)[</span><span class="mi">123</span><span class="p">]</span>  <span class="c1">// nil</span>
 </code></pre></div>
 
-
 <h3 id="it-is-legal-to-range-over-nil-channels-maps-slices-and-array-pointers">It is Legal to Range Over Nil Channels, Maps, Slices and Array Pointers<a class="headerlink" href="#it-is-legal-to-range-over-nil-channels-maps-slices-and-array-pointers" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// following code will print 0,1,2,3 and 4, then block for ever</span>
     <span class="k">for</span> <span class="k">range</span> <span class="p">[]</span><span class="nb">int</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span> <span class="c1">// never print</span>
@@ -5399,7 +5348,6 @@ reflect.TypeOf(t).FieldAlign()。</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h1 id="value-conversion-assignment-and-comparison-rules-in-go">Value Conversion, Assignment and Comparison Rules In Go<a class="headerlink" href="#value-conversion-assignment-and-comparison-rules-in-go" title="Permanent link">&para;</a></h1>
 <h3 id="value-conversion-rules">Value Conversion Rules<a class="headerlink" href="#value-conversion-rules" title="Permanent link">&para;</a></h3>
@@ -5417,19 +5365,18 @@ reflect.TypeOf(t).FieldAlign()。</p>
 <li>if Tx and T have different underlying types, but both Tx and T are non-defined pointer types and there base types
     share the same underlying type(ignoring struct tags), then x can (and must) be explicitly converted to T.</li>
 </ul>
-<p>啥子是 non-defined type: https://keyla.vip/golang/type/introduction/</p>
+<p>啥子是 non-defined type: <a href="https://keyla.vip/golang/type/introduction/">https://keyla.vip/golang/type/introduction/</a></p>
 <p>类型分为已定义类型（defined type）和未定义类型（non-defined type）。 类型定义的规则如下：</p>
 <ul>
 <li>A defined type is a type defined in a type declaration or an alias of another defined type.</li>
 <li>All basic types are defined.</li>
 <li>A non-defined type must be a composite type.</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">A</span> <span class="p">[]</span><span class="kt">string</span>     <span class="err">#</span> <span class="nx">依据规则1</span><span class="err">，</span><span class="nx">A是defined</span> <span class="kd">type</span>
+<div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">A</span> <span class="p">[]</span><span class="kt">string</span>     <span class="err">#</span> <span class="nx">依据规则1</span><span class="err">，</span><span class="nx">A是defined</span> <span class="kd">type</span>
 <span class="kd">type</span> <span class="nx">B</span> <span class="p">=</span> <span class="nx">A</span>          <span class="err">#</span> <span class="nx">依据规则1</span><span class="err">，</span><span class="nx">B是defined</span> <span class="kd">type</span>
 <span class="kd">type</span> <span class="nx">C</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span>   <span class="err">#</span> <span class="nx">依据规则2</span><span class="err">，</span><span class="p">[]</span><span class="nx">string是non</span><span class="o">-</span><span class="nx">defined</span> <span class="nx">types</span><span class="err">，</span><span class="nx">所以C是non</span><span class="o">-</span><span class="nx">defined</span> <span class="nx">types</span>
 <span class="nx">你可以使用类型声明的语法</span><span class="err">，</span><span class="nx">定义一个新的类型</span><span class="err">（</span><span class="nx">也属于defined</span> <span class="kd">type</span><span class="err">）；</span><span class="nx">当你使用类型别名声明时</span><span class="err">，</span><span class="nx">未必会定义一个新的类型</span><span class="err">。</span>
 </code></pre></div>
-
 
 <ol start="3">
 <li>channel specific conversion rule</li>
@@ -5483,11 +5430,10 @@ source value is copied to the destination value.</p>
 <li>basic: Pointer values have no fields</li>
 <li>sugar: we can select the fields of a struct through pointers of the struct value</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">t</span> <span class="nx">T</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">t</span> <span class="nx">T</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">t</span>
 <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">*=</span> <span class="mi">2</span> <span class="c1">// sugar of the following code: (*p).x *= 2</span>
 </code></pre></div>
-
 
 <h3 id="receiver-arguments-of-method-calls">Receiver arguments of method calls<a class="headerlink" href="#receiver-arguments-of-method-calls" title="Permanent link">&para;</a></h3>
 <p>Although the methods explicitly defined on type <code>*T</code> are not methods of type T, addressable values of type T can be
@@ -5520,11 +5466,10 @@ Any type compositions with all kinds of composite types in Go is kinda of generi
 <li>Declared functions can be used as function values</li>
 <li>build-in, unsafe, init can not be used as function values</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">panic</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">panic</span>
 <span class="kd">var</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Sizeof</span>
 <span class="kd">var</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">init</span>
 </code></pre></div>
-
 
 <h3 id="discard-return-values-of-function-calls">Discard return values of function calls<a class="headerlink" href="#discard-return-values-of-function-calls" title="Permanent link">&para;</a></h3>
 <ul>
@@ -5551,7 +5496,7 @@ Any type compositions with all kinds of composite types in Go is kinda of generi
 <li>basic: if the values of a type T can be represented with composite literal, the <code>t{}</code> is its zero value.</li>
 <li>exception: for a map or a slice type T, <code>T{}</code> isn&rsquo;t its zero value. Its zero value is represented with nil.</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>    <span class="kd">type</span> <span class="nx">T0</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code>    <span class="kd">type</span> <span class="nx">T0</span> <span class="kd">struct</span> <span class="p">{</span>
         <span class="nx">x</span> <span class="kt">int</span>
     <span class="p">}</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">T0</span><span class="p">{}</span> <span class="o">==</span> <span class="o">*</span><span class="nb">new</span><span class="p">(</span><span class="nx">T0</span><span class="p">))</span> <span class="c1">//true</span>
@@ -5563,7 +5508,6 @@ Any type compositions with all kinds of composite types in Go is kinda of generi
     <span class="kd">type</span> <span class="nx">T3</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">T3</span><span class="p">{}</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="c1">// false</span>
 </code></pre></div>
-
 
 <h3 id="container-element-iterations">Container element iterations<a class="headerlink" href="#container-element-iterations" title="Permanent link">&para;</a></h3>
 <ul>
@@ -5591,7 +5535,7 @@ Any type compositions with all kinds of composite types in Go is kinda of generi
 <li>whether or not the optional evaluation result of an expression is present will not affect program behavior.</li>
 <li>exception: missing the optional result value in a type assertion will make current goroutine panic if type assertion fails</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{}</span> <span class="p">=</span> <span class="s">&quot;abc&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">v</span> <span class="kd">interface</span><span class="p">{}</span> <span class="p">=</span> <span class="s">&quot;abc&quot;</span>
 <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="p">=</span> <span class="nx">v</span><span class="p">.(</span><span class="kt">int</span><span class="p">)</span> <span class="c1">// will not panic</span>
 <span class="nx">_</span> <span class="p">=</span> <span class="nx">v</span><span class="p">.(</span><span class="kt">int</span><span class="p">)</span> <span class="c1">// will panic!!!</span>
 </code></pre></div>
@@ -5620,7 +5564,7 @@ Any type compositions with all kinds of composite types in Go is kinda of generi
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 Build Web Application With Golang
               </div>
@@ -5632,7 +5576,7 @@ Any type compositions with all kinds of composite types in Go is kinda of generi
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 Network Programming with go
               </div>
@@ -5662,7 +5606,7 @@ Any type compositions with all kinds of composite types in Go is kinda of generi
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -5673,6 +5617,8 @@ Any type compositions with all kinds of composite types in Go is kinda of generi
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

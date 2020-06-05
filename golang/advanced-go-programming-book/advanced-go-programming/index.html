@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/golang/advanced-go-programming-book/advanced-go-programming/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#153" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -3420,7 +3426,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3436,7 +3442,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/advanced-go-programming-book/advanced-go-programming.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/advanced-go-programming-book/advanced-go-programming.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3446,7 +3452,7 @@
                 
                 <h3 id="153">1.5.3 顺序一致性内存模型<a class="headerlink" href="#153" title="Permanent link">&para;</a></h3>
 <p>go 中同一个 goroutine 保证顺序一致性内存模型，但是不同 goroutine 之间不保证，需要定义明确的同步事件。</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3481,11 +3487,10 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="154">1.5.4 初始化顺序<a class="headerlink" href="#154" title="Permanent link">&para;</a></h3>
 <p><img alt="" src="../init_order.png" /></p>
 <h3 id="156-channel">1.5.6 基于Channel通信<a class="headerlink" href="#156-channel" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// 利用channel缓存大小控制并发执行的goroutine最大数</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// 利用channel缓存大小控制并发执行的goroutine最大数</span>
 <span class="kd">var</span> <span class="nx">limit</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
@@ -3500,7 +3505,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="16">1.6 常见并发模式<a class="headerlink" href="#16" title="Permanent link">&para;</a></h2>
 <p>CSP: 同步通信</p>
 <blockquote>
@@ -3509,7 +3513,7 @@
 </blockquote>
 <h3 id="161-hello-world">1.6.1 并发Hello World<a class="headerlink" href="#161-hello-world" title="Permanent link">&para;</a></h3>
 <p>并发编程核心概念是同步通信。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// 错误的示例</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// 错误的示例</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -3528,9 +3532,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>修复方式用main 中使用两次 lock</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">mu</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
     <span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -3541,9 +3544,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>使用无缓冲管道实现同步:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
 
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -3555,12 +3557,11 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>对于无缓存Channel 进行的接收，发生在对该 channel 进行发送完成之前。</p>
 <p>更好的做法是将管道的发送和接受方调换，使用有缓存的管道。避免同步受到管道缓存大小影响。
 对于带缓冲的channel,对于channel 的第 k 个接手完成操作发生在第k+c 个发送操作完成之前，
 其中 c 是 channel 的缓存大小。</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -3571,9 +3572,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>扩展到 n 个：</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<p><div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3595,11 +3595,9 @@
 
 <span class="p">}</span>
 </code></pre></div>
-
-
-<p>当然最简单的方式使用 sync.WaitGroup , wg.Add wg.Done wg.Wait</p>
+当然最简单的方式使用 sync.WaitGroup , wg.Add wg.Done wg.Wait</p>
 <h3 id="162">1.6.2 生产者消费者<a class="headerlink" href="#162" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3632,12 +3630,11 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="163">1.6.3 发布订阅<a class="headerlink" href="#163" title="Permanent link">&para;</a></h3>
 <p>Pub/Sub m:n</p>
 <h3 id="164">1.6.4 控制并发数<a class="headerlink" href="#164" title="Permanent link">&para;</a></h3>
 <p>通过带缓存管道的发送和接收规则实现最大并发阻塞。</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kd">var</span> <span class="nx">limit</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
@@ -3668,9 +3665,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="165">1.6.5 赢者为王<a class="headerlink" href="#165" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
 
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -3689,9 +3685,8 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="167">1.6.7 并发安全退出<a class="headerlink" href="#167" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3726,7 +3721,6 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="168-context">1.6.8 context 包<a class="headerlink" href="#168-context" title="Permanent link">&para;</a></h3>
 <p>go1.7 增加了 context, 简化对于处理单个请求的多个goroutine之间与请求域的数据、超时和退出等操作。</p>
 <h1 id="17">1.7 错误和异常<a class="headerlink" href="#17" title="Permanent link">&para;</a></h1>
@@ -3734,7 +3728,7 @@
 <h3 id="171">1.7.1 错误处理策略<a class="headerlink" href="#171" title="Permanent link">&para;</a></h3>
 <p>go 中的导出函数一般不抛出异常，一个未受控的异常可以看成程序 bug。
 web框架一般会防御性地捕获所有异常。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// go库实现习惯是即使包内部使用了 panic，但是在函数 export 时候会被转换成明确的错误值</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// go库实现习惯是即使包内部使用了 panic，但是在函数 export 时候会被转换成明确的错误值</span>
 <span class="kd">func</span> <span class="nx">ParseJSON</span><span class="p">(</span><span class="nx">input</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Syntax</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="nx">p</span><span class="o">:=</span><span class="nb">recover</span><span class="p">();</span> <span class="nx">p</span><span class="o">!=</span><span class="kc">nil</span> <span class="p">{</span>
@@ -3745,22 +3739,20 @@ web框架一般会防御性地捕获所有异常。</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="172">1.7.2 获取错误上下文<a class="headerlink" href="#172" title="Permanent link">&para;</a></h3>
 <p>一般为了防止丢失错误信息，一般使用包装函数。
 go 大部分代码逻辑类似，先一系列初始检查，用于防止错误发生，然后是实际逻辑。</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">op</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;filename&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">op</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;filename&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span><span class="kc">nil</span> <span class="p">{</span>
     <span class="c1">// 失败场景</span>
 <span class="p">}</span>
 <span class="c1">// 正常流程</span>
 </code></pre></div>
 
-
 <p>`1.7.3 错误的错误返回</p>
 <p>go 中 error 是一种接口类型。接口信息包含了原始类型和原始的值。
 只有当接口的类型和原始值都为空，接口值才对应 nil。`</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// 错误示例</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// 错误示例</span>
 <span class="kd">func</span> <span class="nx">returnsError</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">p</span> <span class="o">*</span><span class="nx">MyError</span> <span class="p">=</span> <span class="kc">nil</span>
     <span class="k">if</span> <span class="nx">bad</span><span class="p">()</span> <span class="p">{</span>
@@ -3778,7 +3770,6 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
     <span class="k">return</span> <span class="kc">nil</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h3 id="174">1.7.4 剖析异常<a class="headerlink" href="#174" title="Permanent link">&para;</a></h3>
 <p>必须在 defer 函数中直接调用 recover，并且不能包装 recover 函数，直接调用。
@@ -3798,7 +3789,7 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <p>go web框架使用radix tree 实现 route</p>
 <h2 id="53-middleware">5.3 中间件middleware<a class="headerlink" href="#53-middleware" title="Permanent link">&para;</a></h2>
 <p>解耦业务和非业务代码逻辑</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;net/http&quot;</span>
@@ -3839,11 +3830,10 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>请求调用链：</p>
 <p>h = getHandler() =&gt; h.ServeHTTP(w, r) =&gt; h(w, r)</p>
 <h3 id="533">5.3.3 更优雅的中间件写法<a class="headerlink" href="#533" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="nx">r</span> <span class="p">=</span> <span class="nx">NewRouter</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="nx">r</span> <span class="p">=</span> <span class="nx">NewRouter</span><span class="p">()</span>
 <span class="nx">r</span><span class="p">.</span><span class="nx">Use</span><span class="p">(</span><span class="nx">logger</span><span class="p">)</span>
 <span class="nx">r</span><span class="p">.</span><span class="nx">Use</span><span class="p">(</span><span class="nx">timeout</span><span class="p">)</span>
 <span class="nx">r</span><span class="p">.</span><span class="nx">Use</span><span class="p">(</span><span class="nx">ratelimit</span><span class="p">)</span>
@@ -3873,13 +3863,12 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>哪些可以写成中间件呢？参考 gin-gonic/contrib</p>
 <h2 id="54-validator">5.4 Validator<a class="headerlink" href="#54-validator" title="Permanent link">&para;</a></h2>
-<p>https://github.com/go-playground/validator</p>
+<p><a href="https://github.com/go-playground/validator">https://github.com/go-playground/validator</a></p>
 <p>通过反射对结构体进行树形遍历</p>
 <h2 id="55-database">5.5 Database 和数据库打交道<a class="headerlink" href="#55-database" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 <span class="kn">import</span> <span class="s">&quot;database/sql&quot;</span>
 <span class="kn">import</span> <span class="nx">_</span> <span class="s">&quot;github.com/go-sql-driver/mysql&quot;</span> 
 
@@ -3890,7 +3879,6 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
     <span class="nx">sql</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span><span class="s">&quot;mysql&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">MySQLDriver</span><span class="p">{})</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>Sql Build 相比orm 在可维护性上取得了更好平衡，不会屏蔽太多细节。</p>
 <h3 id="56-ratelimit">5.6 Ratelimit 服务流量限制<a class="headerlink" href="#56-ratelimit" title="Permanent link">&para;</a></h3>
@@ -3909,7 +3897,7 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <p>原理：令牌桶模型实际上是对全局计数的加减法操作过程，
 但使用计数器需要自己加上读写锁。</p>
 <p>可以使用 bufferd channel 完成简单的加令牌和取令牌操作。</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3959,7 +3947,6 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="563-qos">5.6.3服务瓶颈和 Qos<a class="headerlink" href="#563-qos" title="Permanent link">&para;</a></h3>
 <p>Qos: Quality of Service。包含可用性、吞吐量、时延、时延变化和丢失等</p>
 <h2 id="57">5.7 大型项目分层<a class="headerlink" href="#57" title="Permanent link">&para;</a></h2>
@@ -3977,7 +3964,7 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <p>优点:正交性。依赖反转
 缺点：难以查找实现了接口的类型</p>
 <h3 id="585">5.8.5 表驱动开发<a class="headerlink" href="#585" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">entry</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">bi</span> <span class="nx">BusinessInstance</span>
     <span class="k">switch</span> <span class="nx">businessType</span> <span class="p">{</span>
     <span class="k">case</span> <span class="nx">TravelBusiness</span><span class="p">:</span>
@@ -3999,7 +3986,6 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h2 id="59-ab-test">5.9 灰度发布和A/B test<a class="headerlink" href="#59-ab-test" title="Permanent link">&para;</a></h2>
 <p>恢复一般两种方式实现：</p>
 <ul>
@@ -4015,7 +4001,7 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <p>sonyflake sony一个开源项目，思路和snowflake类似，分配上有所不同</p>
 <p>github.com/sony/sonyflake</p>
 <h2 id="62">6.2 分布式锁<a class="headerlink" href="#62" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4044,11 +4030,10 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="621">6.2.1 进程内加锁<a class="headerlink" href="#621" title="Permanent link">&para;</a></h3>
 <p>trylock: 尝试加锁，加锁成功执行后续流程，如果加锁失败也不会阻塞，
 而会直接返回加锁结果。go 中可以用大小为1的 channel 模拟 trylock。</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4102,7 +4087,6 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>单机系统 trylock 不好，大量 goroutine 抢锁可能导致 cpu 无意义浪费。(活锁)</p>
 <h3 id="623-redis-setnx">6.2.3 基于 redis setnx<a class="headerlink" href="#623-redis-setnx" title="Permanent link">&para;</a></h3>
 <p>redis setnx 模拟分布式锁</p>
@@ -4114,7 +4098,7 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 与单机中的 mutex.Lock 很相似。</p>
 <p>分布式阻塞锁 适合分布式任务调度场景，但是不适合高频次持有锁时间短的抢锁场景。</p>
 <p>Google(chubby论文)，基于强一致性的锁适用于粗粒度加锁操作，粗粒度指的是占用时间较长。</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -4140,7 +4124,6 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;unlock success, finish your logic&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h3 id="625-etcd">6.2.5 基于 etcd<a class="headerlink" href="#625-etcd" title="Permanent link">&para;</a></h3>
 <p>类似 ZooKeeper 的组件</p>
@@ -4190,9 +4173,8 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
 <h2 id="66">6.6 分布式配置管理<a class="headerlink" href="#66" title="Permanent link">&para;</a></h2>
 <h3 id="662-etcd">6.6.2 使用 etcd 实现配置更新<a class="headerlink" href="#662-etcd" title="Permanent link">&para;</a></h3>
 <p>简单的配置可以讲内容完全存储在 etcd 中。</p>
-<div class="codehilite"><pre><span></span><code>etcdctl get /configs/remote_config.json
+<div class="highlight"><pre><span></span><code>etcdctl get /configs/remote_config.json
 </code></pre></div>
-
 
 <h3 id="663">6.6.3 配置膨胀<a class="headerlink" href="#663" title="Permanent link">&para;</a></h3>
 <p>支持版本管理进行回滚</p>
@@ -4226,7 +4208,7 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 go book
               </div>
@@ -4238,7 +4220,7 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 go-build-web-applications
               </div>
@@ -4268,7 +4250,7 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -4279,6 +4261,8 @@ go 大部分代码逻辑类似，先一系列初始检查，用于防止错误�
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

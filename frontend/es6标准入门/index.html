@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/frontend/es6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#let-const" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -1423,7 +1429,7 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -1433,7 +1439,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3460,7 +3466,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3470,7 +3476,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3500,7 +3506,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/frontend/es6标准入门.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/frontend/es6标准入门.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3513,220 +3519,205 @@
 <p>let 声明的变量只在所在的代码块中有效。 let 不存在变量提升，，一定要先声明后使用（暂时性死区）。
 let 实际上为 js 新增了块级作用域，外层作用域无法读取内层作用域的变量。块级作用域的出现使得立即执行表达式不再必要了。
 es5 规定函数不能在块级作用域定义，但是 es6 允许在其中声明函数，但应该尽量避免，而是使用函数表达式。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">}</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>  <span class="c1">// ReferenceError: i is not defined</span>
 </code></pre></div>
-
 
 <h3 id="const">const<a class="headerlink" href="#const" title="Permanent link">&para;</a></h3>
 <p>const 声明一个只读变量，一旦声明不可变。作用域和 let 相同</p>
 <h1 id="_1">变量的解构赋值<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h3 id="_2">数组解构赋值<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>按照『模式匹配』从数组和对象中抽取值。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">let</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="k">c</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<div class="highlight"><pre><span></span><code>let [a, b, c] = [1,2,3];
 
-<span class="n">let</span> <span class="p">[</span><span class="n">head</span><span class="p">,</span> <span class="p">...</span><span class="n">tail</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
-<span class="n">head</span> <span class="o">//</span> <span class="mi">1</span>
-<span class="n">tail</span> <span class="o">//</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+let [head, ...tail] = [1,2,3,4]
+head // 1
+tail // [2,3,4]
 
-<span class="n">let</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="p">...</span><span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
-<span class="n">x</span> <span class="o">//</span> <span class="ss">&quot;a&quot;</span>
-<span class="n">y</span> <span class="o">//</span> <span class="n">undefined</span><span class="p">,</span> <span class="err">解构不成功变量的值就是</span> <span class="n">undefined</span>
-<span class="n">z</span> <span class="o">//</span> <span class="p">[]</span>
+let [x,y, ...z] = [&#39;a&#39;]
+x // &quot;a&quot;
+y // undefined, 解构不成功变量的值就是 undefined
+z // []
 
-<span class="o">//</span> <span class="err">不完全解构也可以成功。事实上，只要具备</span> <span class="n">Iterator</span> <span class="err">接口，都可以用数组形式解构赋值</span>
-<span class="n">let</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">x</span> <span class="o">//</span><span class="mi">1</span>
-<span class="n">y</span> <span class="o">//</span><span class="mi">2</span>
+// 不完全解构也可以成功。事实上，只要具备 Iterator 接口，都可以用数组形式解构赋值
+let [x,y]=[1,2,3]
+x //1
+y //2
 </code></pre></div>
 
-
-<div class="codehilite"><pre><span></span><code><span class="err">function* fibs() {</span>
-<span class="err">  let a=0;</span>
-<span class="err">  let b=1;</span>
-<span class="err">  while (true) {</span>
-<span class="err">    yield a;</span>
-<span class="err">    [a,b] = [b, a+b];</span>
-<span class="err">  }</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>function* fibs() {
+  let a=0;
+  let b=1;
+  while (true) {
+    yield a;
+    [a,b] = [b, a+b];
+  }
+}
 </code></pre></div>
 
-
-<div class="codehilite"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="n">es6</span><span class="w"> </span><span class="n">内部使用严格相等运算符</span><span class="w"> </span><span class="o">===</span><span class="w"></span>
-<span class="n">let</span><span class="w"> </span><span class="o">[</span><span class="n">x=1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">undefined</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
-<span class="n">x</span><span class="w"> </span><span class="o">//</span><span class="mi">1</span><span class="w"></span>
-<span class="n">let</span><span class="w"> </span><span class="o">[</span><span class="n">x=1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">null</span><span class="o">]</span><span class="w"></span>
-<span class="n">x</span><span class="w"> </span><span class="o">//</span><span class="k">null</span><span class="err">，</span><span class="n">以为</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="n">不是严格等于</span><span class="w"> </span><span class="n">undefined</span><span class="err">，</span><span class="n">所以可以被赋值</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>// es6 内部使用严格相等运算符 ===
+let [x=1] = [undefined];
+x //1
+let [x=1] = [null]
+x //null，以为 null 不是严格等于 undefined，所以可以被赋值
 </code></pre></div>
-
 
 <p>注意如果默认值是一个表达式，他是惰性求值的。</p>
 <h3 id="_3">对象解构赋值<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>先找到同名属性，然后赋值给对应的变量</p>
-<div class="codehilite"><pre><span></span><code><span class="err">let {foo, bar} = {foo:&quot;aa&quot;, bar:&quot;bb&quot;};</span>
-<span class="err">foo // &quot;aa&quot;</span>
-<span class="err">bar // &quot;bb&quot;</span>
+<div class="highlight"><pre><span></span><code>let {foo, bar} = {foo:&quot;aa&quot;, bar:&quot;bb&quot;};
+foo // &quot;aa&quot;
+bar // &quot;bb&quot;
 </code></pre></div>
-
 
 <p>用途：</p>
 <ul>
 <li>1.交换变量值</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="err">let x=1;</span>
-<span class="err">let y=2;</span>
-<span class="err">[x, y] = [y, x]</span>
+<div class="highlight"><pre><span></span><code>let x=1;
+let y=2;
+[x, y] = [y, x]
 </code></pre></div>
-
 
 <ul>
 <li>2.从函数返回多个值</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="err">function example() {</span>
-<span class="err">  return [1,2,3]</span>
-<span class="err">}</span>
-<span class="err">let [a,b,c] = example()</span>
-<span class="err">function example() {</span>
-<span class="err">  return {</span>
-<span class="err">    foo: 1,</span>
-<span class="err">    bar: 2</span>
-<span class="err">  }</span>
-<span class="err">}</span>
-<span class="err">let {foo,bar} = example()</span>
+<div class="highlight"><pre><span></span><code>function example() {
+  return [1,2,3]
+}
+let [a,b,c] = example()
+function example() {
+  return {
+    foo: 1,
+    bar: 2
+  }
+}
+let {foo,bar} = example()
 </code></pre></div>
-
 
 <ul>
 <li>3.函数参数定义</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="err">function f([x,y,z]) {...}</span>
-<span class="err">f([1,2,3])</span>
-<span class="err">function f({x,y,z}) {...}</span>
-<span class="err">f({x:1, y:2, z:3})</span>
+<div class="highlight"><pre><span></span><code>function f([x,y,z]) {...}
+f([1,2,3])
+function f({x,y,z}) {...}
+f({x:1, y:2, z:3})
 </code></pre></div>
-
 
 <ul>
 <li>4.提取 json 数据</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="nt">let</span> <span class="nt">jsonData</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">id</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
-  <span class="n">status</span><span class="o">:</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
-  <span class="n">data</span><span class="o">:</span> <span class="cp">[</span><span class="mi">867</span><span class="p">,</span> <span class="mi">5309</span><span class="cp">]</span>
-<span class="p">}</span><span class="o">;</span>
+<div class="highlight"><pre><span></span><code>let jsonData = {
+  id: 42,
+  status: &quot;OK&quot;,
+  data: [867, 5309]
+};
 
-<span class="nt">let</span> <span class="p">{</span> <span class="err">id,</span> <span class="err">status,</span> <span class="n">data</span><span class="p">:</span> <span class="n">number</span> <span class="p">}</span> <span class="o">=</span> <span class="nt">jsonData</span><span class="o">;</span>
+let { id, status, data: number } = jsonData;
 
-<span class="nt">console</span><span class="p">.</span><span class="nc">log</span><span class="o">(</span><span class="nt">id</span><span class="o">,</span> <span class="nt">status</span><span class="o">,</span> <span class="nt">number</span><span class="o">);</span>
-<span class="o">//</span> <span class="nt">42</span><span class="o">,</span> <span class="s2">&quot;OK&quot;</span><span class="o">,</span> <span class="cp">[</span><span class="mi">867</span><span class="p">,</span> <span class="mi">5309</span><span class="cp">]</span>
+console.log(id, status, number);
+// 42, &quot;OK&quot;, [867, 5309]
 </code></pre></div>
-
 
 <ul>
 <li>5.参数默认值</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="err">jQuery.ajax = function (url, {</span>
-<span class="err">  async = true,</span>
-<span class="err">  beforeSend = function () {},</span>
-<span class="err">  cache = true,</span>
-<span class="err">  complete = function () {},</span>
-<span class="err">  crossDomain = false,</span>
-<span class="err">  global = true,</span>
-<span class="err">  // ... more config</span>
-<span class="err">}) {</span>
-<span class="err">  // ... do stuff</span>
-<span class="err">};</span>
+<div class="highlight"><pre><span></span><code>jQuery.ajax = function (url, {
+  async = true,
+  beforeSend = function () {},
+  cache = true,
+  complete = function () {},
+  crossDomain = false,
+  global = true,
+  // ... more config
+}) {
+  // ... do stuff
+};
 </code></pre></div>
-
 
 <ul>
 <li>6.遍历 Map</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">var</span> <span class="k">map</span> <span class="o">=</span> <span class="k">new</span> <span class="k">Map</span><span class="p">();</span>
-<span class="k">map</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">);</span>
-<span class="k">map</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code>var map = new Map();
+map.set(&#39;first&#39;, &#39;hello&#39;);
+map.set(&#39;second&#39;, &#39;world&#39;);
 
-<span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="p">[</span><span class="k">key</span><span class="p">,</span> <span class="n">value</span><span class="p">]</span> <span class="k">of</span> <span class="k">map</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="k">key</span> <span class="o">+</span> <span class="ss">&quot; is &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">);</span>
-<span class="err">}</span>
-<span class="o">//</span> <span class="k">first</span> <span class="k">is</span> <span class="n">hello</span>
-<span class="o">//</span> <span class="k">second</span> <span class="k">is</span> <span class="n">world</span><span class="err">”</span>
+for (let [key, value] of map) {
+  console.log(key + &quot; is &quot; + value);
+}
+// first is hello
+// second is world”
 </code></pre></div>
-
 
 <ul>
 <li>7.输入模块的指定方法</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="err">const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);”</span>
+<div class="highlight"><pre><span></span><code>const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);”
 </code></pre></div>
-
 
 <h1 id="_4">默认参数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
 <h3 id="rest">rest 参数(&hellip;变量名)<a class="headerlink" href="#rest" title="Permanent link">&para;</a></h3>
 <p>用于获取函数的多余参数</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="k">add</span><span class="p">(...</span><span class="k">values</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">let</span> <span class="k">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">val</span> <span class="k">of</span> <span class="k">values</span><span class="p">)</span> <span class="err">{</span>
-    <span class="k">sum</span> <span class="o">+=</span> <span class="n">val</span>
-  <span class="err">}</span>
-  <span class="k">return</span> <span class="k">sum</span>
-<span class="err">}</span>
-<span class="k">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="o">//</span> <span class="mi">10</span>
+<div class="highlight"><pre><span></span><code>function add(...values) {
+  let sum = 0;
+  for (var val of values) {
+    sum += val
+  }
+  return sum
+}
+add(2, 5, 3)  // 10
 
-<span class="n">const</span> <span class="n">sortNumbers</span> <span class="o">=</span> <span class="p">(...</span><span class="n">numbers</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">sort</span><span class="p">();</span>
+const sortNumbers = (...numbers) =&gt; numbers.sort();
 </code></pre></div>
-
 
 <h3 id="_5">箭头函数<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>es6 允许使用 (=&gt;) 定义函数</p>
-<div class="codehilite"><pre><span></span><code><span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">v</span> <span class="o">=&gt;</span> <span class="n">v</span><span class="p">;</span>
-<span class="o">//</span> <span class="n">equal</span> <span class="k">to</span>
-<span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="err">{</span>
-  <span class="k">return</span> <span class="n">v</span>
-<span class="err">}</span>
-<span class="n">var</span> <span class="k">sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">;</span>
-<span class="n">var</span> <span class="k">sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="err">{</span>
-  <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">;</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>var f = v =&gt; v;
+// equal to
+var f = function(v) {
+  return v
+}
+var sum = (num1, num2) =&gt; num1 + num2;
+var sum = (num1, num2) {
+  return num1 + num2;
+}
 
 
-<span class="o">//</span> <span class="err">如果箭头函数代码块多于一条语句，需要用大括号括起来，并使用</span> <span class="k">return</span> <span class="err">返回</span>
-<span class="n">var</span> <span class="k">sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="err">{</span><span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">;</span><span class="err">}</span>
+// 如果箭头函数代码块多于一条语句，需要用大括号括起来，并使用 return 返回
+var sum = (num1, num2) =&gt; {return num1 + num2;}
 
-<span class="o">//</span><span class="err">由于大括号被解释为代码块，所以如果返回一个对象，必须加上括号</span>
-<span class="n">let</span> <span class="n">getTemplItem</span> <span class="o">=</span> <span class="n">id</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="err">{</span><span class="n">id</span><span class="p">:</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="ss">&quot;Temp&quot;</span><span class="err">}</span><span class="p">)</span>
+//由于大括号被解释为代码块，所以如果返回一个对象，必须加上括号
+let getTemplItem = id =&gt; ({id:id, name: &quot;Temp&quot;})
 
-<span class="n">const</span> <span class="n">isEven</span> <span class="o">=</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">n</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">const</span> <span class="n">square</span> <span class="o">=</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">;</span>
+const isEven = n =&gt; n%2 == 0;
+const square = n =&gt; n*n;
 
-<span class="o">//</span><span class="err">一个用途是简化回调</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="k">map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="err">{</span>
-  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
-<span class="err">}</span><span class="p">)</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="k">map</span><span class="p">(</span><span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">);</span>
+//一个用途是简化回调
+[1,2,3].map(function(x) {
+  return x * x;
+})
+[1,2,3].map(x =&gt; x * x);
 
-<span class="o">//</span>
-<span class="n">var</span> <span class="k">result</span> <span class="o">=</span> <span class="k">values</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="err">{</span>
-  <span class="k">return</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
-<span class="err">}</span><span class="p">)</span>
+//
+var result = values.sort(function(a,b) {
+  return a-b;
+})
 
-<span class="n">va</span> <span class="k">result</span> <span class="o">=</span> <span class="k">values</span><span class="p">.</span><span class="n">sort</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+va result = values.sort((a,b) =&gt; a-b)
 </code></pre></div>
-
 
 <h1 id="symbol">Symbol<a class="headerlink" href="#symbol" title="Permanent link">&para;</a></h1>
 <p>es6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。</p>
 <h1 id="set-map">Set 和 Map 结构<a class="headerlink" href="#set-map" title="Permanent link">&para;</a></h1>
 <p>set : add, delete, has, clear; keys() values() entries() forEach()</p>
-<div class="codehilite"><pre><span></span><code><span class="err">const s=  new Set();</span>
-<span class="err">[1,2,3,4].forEach(x =&gt; s.add(x));</span>
-<span class="err">for (let i of s) {</span>
-<span class="err">  console.log(i);</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>const s=  new Set();
+[1,2,3,4].forEach(x =&gt; s.add(x));
+for (let i of s) {
+  console.log(i);
+}
 </code></pre></div>
-
 
 <p>WeakSet: 成员只能是对象；其中的对象都是弱引用。适合临时存放一组对象，以及存放跟对象绑定的信息。</p>
 <p>Map: js 对象本质上是键值对的集合(Hash 结构)，但是传统上只能用字符串当做键，使用受限。</p>
@@ -3742,228 +3733,214 @@ es5 规定函数不能在块级作用域定义，但是 es6 允许在其中声�
 <h1 id="iterator-forof">Iterator 和 forof 循环<a class="headerlink" href="#iterator-forof" title="Permanent link">&para;</a></h1>
 <p>Symbol.iterator 属性。具备原生 iterator 接口的数据结构如下：</p>
 <p>Array, Map, Set, String, TypedArray, 函数的arguments 对象，NodeList 对象</p>
-<div class="codehilite"><pre><span></span><code><span class="n">let</span> <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">];</span>
-<span class="n">let</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">Symbol</span><span class="p">.</span><span class="n">iterator</span><span class="p">]();</span>
+<div class="highlight"><pre><span></span><code>let arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+let iter = arr[Symbol.iterator]();
 
-<span class="n">iter</span><span class="p">.</span><span class="k">next</span><span class="p">()</span> <span class="o">//</span> <span class="err">{</span> <span class="n">value</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="k">false</span> <span class="err">}</span>
-<span class="n">iter</span><span class="p">.</span><span class="k">next</span><span class="p">()</span> <span class="o">//</span> <span class="err">{</span> <span class="n">value</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="k">false</span> <span class="err">}</span>
-<span class="n">iter</span><span class="p">.</span><span class="k">next</span><span class="p">()</span> <span class="o">//</span> <span class="err">{</span> <span class="n">value</span><span class="p">:</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="k">false</span> <span class="err">}</span>
-<span class="n">iter</span><span class="p">.</span><span class="k">next</span><span class="p">()</span> <span class="o">//</span> <span class="err">{</span> <span class="n">value</span><span class="p">:</span> <span class="n">undefined</span><span class="p">,</span> <span class="n">done</span><span class="p">:</span> <span class="k">true</span> <span class="err">}”</span>
+iter.next() // { value: &#39;a&#39;, done: false }
+iter.next() // { value: &#39;b&#39;, done: false }
+iter.next() // { value: &#39;c&#39;, done: false }
+iter.next() // { value: undefined, done: true }”
 </code></pre></div>
-
 
 <h3 id="forof">for&hellip;of 循环<a class="headerlink" href="#forof" title="Permanent link">&para;</a></h3>
 <p>一个数据结构只要部署了 Symbol.iterator 属性，就被视为有 iterator接口，就能用
 for&hellip;of 遍历它的成员。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">var</span> <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">];</span>
+<p><div class="highlight"><pre><span></span><code>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];
 
-<span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">a</span> <span class="k">in</span> <span class="n">arr</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="o">//</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
-<span class="err">}</span>
+for (let a in arr) {
+  console.log(a); // 0 1 2 3
+}
 
-<span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">a</span> <span class="k">of</span> <span class="n">arr</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="o">//</span> <span class="n">a</span> <span class="n">b</span> <span class="k">c</span> <span class="n">d</span>
-<span class="err">}</span>
+for (let a of arr) {
+  console.log(a); // a b c d
+}
 </code></pre></div>
-
-
-<p>for&hellip;in 循环读取键名，for&hellip;of 循环读取键值。</p>
+for&hellip;in 循环读取键名，for&hellip;of 循环读取键值。</p>
 <p>Set, Map 原生具有 iterator 接口，可以直接用 for&hellip;of</p>
-<div class="codehilite"><pre><span></span><code><span class="n">var</span> <span class="n">engines</span> <span class="o">=</span> <span class="k">new</span> <span class="k">Set</span><span class="p">([</span><span class="ss">&quot;Gecko&quot;</span><span class="p">,</span> <span class="ss">&quot;Trident&quot;</span><span class="p">,</span> <span class="ss">&quot;Webkit&quot;</span><span class="p">,</span> <span class="ss">&quot;Webkit&quot;</span><span class="p">]);</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">e</span> <span class="k">of</span> <span class="n">engines</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="err">}</span>
-<span class="o">//</span> <span class="n">Gecko</span>
-<span class="o">//</span> <span class="n">Trident</span>
-<span class="o">//</span> <span class="n">Webkit</span>
+<div class="highlight"><pre><span></span><code>var engines = new Set([&quot;Gecko&quot;, &quot;Trident&quot;, &quot;Webkit&quot;, &quot;Webkit&quot;]);
+for (var e of engines) {
+  console.log(e);
+}
+// Gecko
+// Trident
+// Webkit
 
-<span class="n">var</span> <span class="n">es6</span> <span class="o">=</span> <span class="k">new</span> <span class="k">Map</span><span class="p">();</span>
-<span class="n">es6</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="ss">&quot;edition&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-<span class="n">es6</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="ss">&quot;committee&quot;</span><span class="p">,</span> <span class="ss">&quot;TC39&quot;</span><span class="p">);</span>
-<span class="n">es6</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="ss">&quot;standard&quot;</span><span class="p">,</span> <span class="ss">&quot;ECMA-262&quot;</span><span class="p">);</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">]</span> <span class="k">of</span> <span class="n">es6</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="ss">&quot;: &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">);</span>
-<span class="err">}</span>
-<span class="o">//</span> <span class="n">edition</span><span class="p">:</span> <span class="mi">6</span>
-<span class="o">//</span> <span class="n">committee</span><span class="p">:</span> <span class="n">TC39</span>
-<span class="o">//</span> <span class="n">standard</span><span class="p">:</span> <span class="n">ECMA</span><span class="o">-</span><span class="mi">262</span><span class="err">”</span>
+var es6 = new Map();
+es6.set(&quot;edition&quot;, 6);
+es6.set(&quot;committee&quot;, &quot;TC39&quot;);
+es6.set(&quot;standard&quot;, &quot;ECMA-262&quot;);
+for (var [name, value] of es6) {
+  console.log(name + &quot;: &quot; + value);
+}
+// edition: 6
+// committee: TC39
+// standard: ECMA-262”
 </code></pre></div>
-
 
 <h1 id="generator">Generator 函数语法<a class="headerlink" href="#generator" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="o">*</span> <span class="n">helloWorldGenerator</span><span class="p">()</span> <span class="err">{</span>
-  <span class="n">yield</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
-  <span class="n">yield</span> <span class="s1">&#39;world&#39;</span><span class="p">;</span>
-  <span class="k">return</span> <span class="s1">&#39;ending&#39;</span><span class="p">;</span>
-<span class="err">}</span>
+<p><div class="highlight"><pre><span></span><code>function* helloWorldGenerator() {
+  yield &#39;hello&#39;;
+  yield &#39;world&#39;;
+  return &#39;ending&#39;;
+}
 
-<span class="n">var</span> <span class="n">hw</span> <span class="o">=</span> <span class="n">helloWorldGenerator</span><span class="p">();</span> <span class="o">//</span><span class="err">返回遍历器对象</span>
+var hw = helloWorldGenerator(); //返回遍历器对象
 </code></pre></div>
-
-
-<p>不得不说和 python generator 很像。</p>
+不得不说和 python generator 很像。</p>
 <p>async 函数返回一个 promise 对象。</p>
 <h1 id="class">Class<a class="headerlink" href="#class" title="Permanent link">&para;</a></h1>
 <p>之前 js 通过构造函数编写类，es6 提供了 class 语法糖。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">this</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-  <span class="n">this</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
 
-<span class="n">Point</span><span class="p">.</span><span class="n">prototype</span><span class="p">.</span><span class="n">toString</span> <span class="o">=</span> <span class="k">function</span> <span class="p">()</span> <span class="err">{</span>
-  <span class="k">return</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">;</span>
-<span class="err">}</span><span class="p">;</span>
+Point.prototype.toString = function () {
+  return &#39;(&#39; + this.x + &#39;, &#39; + this.y + &#39;)&#39;;
+};
 
-<span class="n">var</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+var p = new Point(1, 2);
 </code></pre></div>
 
-
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">Point</span> {
-  <span class="n">constructor</span>(<span class="nb">x</span>, <span class="n">y</span>) {
-    <span class="n">this</span>.<span class="nb">x</span> = <span class="nb">x</span>;
-    <span class="n">this</span>.<span class="n">y</span> = <span class="n">y</span>;
+<div class="highlight"><pre><span></span><code>class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
 
-  <span class="n">toString</span>() {   // <span class="n">调用实例方法</span>
-    <span class="k">return</span> <span class="s">&#39;(&#39;</span> + <span class="n">this</span>.<span class="nb">x</span> + <span class="s">&#39;, &#39;</span> + <span class="n">this</span>.<span class="n">y</span> + <span class="s">&#39;)&#39;</span>;
+  toString() {   // 调用实例方法
+    return &#39;(&#39; + this.x + &#39;, &#39; + this.y + &#39;)&#39;;
   }
 }
 
-<span class="k">class</span> <span class="n">Point</span> {
+class Point {
   // ...
 }
 
-<span class="n">typeof</span> <span class="n">Point</span> // <span class="s">&quot;function&quot;</span> ，<span class="n">类的数据类型就是函数</span>，<span class="n">类本身就指向构造函数</span>，<span class="n">可以用</span> <span class="nb">new</span> <span class="n">创建</span>
-<span class="n">Point</span> === <span class="n">Point</span>.<span class="n">prototype</span>.<span class="n">constructor</span> // <span class="n">true</span>”
+typeof Point // &quot;function&quot; ，类的数据类型就是函数，类本身就指向构造函数，可以用 new 创建
+Point === Point.prototype.constructor // true”
 </code></pre></div>
-
 
 <p>类和模块的内部默认是严格模式，无需手动指定。es6 实际上把整个语言升级到了严格模式。</p>
 <h3 id="class_1">class 的继承<a class="headerlink" href="#class_1" title="Permanent link">&para;</a></h3>
 <p>class 可以通过 extends 实现继承。子类必须在 constructor 中调用 super 方法。任何子类都有 constructor 方法（默认添加）。
 调用 super 之后才能使用 this 关键字，否则会报错。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">Point</span> {
+<div class="highlight"><pre><span></span><code>class Point {
 }
 
-<span class="k">class</span> <span class="n">ColorPoint</span> <span class="n">extends</span> <span class="n">Point</span> {
+class ColorPoint extends Point {
 }
 </code></pre></div>
-
 
 <h3 id="mixin">Mixin 模式的实现<a class="headerlink" href="#mixin" title="Permanent link">&para;</a></h3>
 <p>mixin 模式指的是，将多个类的接口『混入』『mix in』另一个类。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="n">mix</span><span class="p">(...</span><span class="n">mixins</span><span class="p">)</span> <span class="err">{</span>
-  <span class="k">class</span> <span class="n">Mix</span> <span class="err">{}</span>
+<div class="highlight"><pre><span></span><code>function mix(...mixins) {
+  class Mix {}
 
-  <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">mixin</span> <span class="k">of</span> <span class="n">mixins</span><span class="p">)</span> <span class="err">{</span>
-    <span class="n">copyProperties</span><span class="p">(</span><span class="n">Mix</span><span class="p">,</span> <span class="n">mixin</span><span class="p">);</span>
-    <span class="n">copyProperties</span><span class="p">(</span><span class="n">Mix</span><span class="p">.</span><span class="n">prototype</span><span class="p">,</span> <span class="n">mixin</span><span class="p">.</span><span class="n">prototype</span><span class="p">);</span>
-  <span class="err">}</span>
+  for (let mixin of mixins) {
+    copyProperties(Mix, mixin);
+    copyProperties(Mix.prototype, mixin.prototype);
+  }
 
-  <span class="k">return</span> <span class="n">Mix</span><span class="p">;</span>
-<span class="err">}</span>
+  return Mix;
+}
 
-<span class="k">function</span> <span class="n">copyProperties</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="k">source</span><span class="p">)</span> <span class="err">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="k">key</span> <span class="k">of</span> <span class="n">Reflect</span><span class="p">.</span><span class="n">ownKeys</span><span class="p">(</span><span class="k">source</span><span class="p">))</span> <span class="err">{</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="k">key</span> <span class="o">!==</span> <span class="ss">&quot;constructor&quot;</span>
-      <span class="o">&amp;&amp;</span> <span class="k">key</span> <span class="o">!==</span> <span class="ss">&quot;prototype&quot;</span>
-      <span class="o">&amp;&amp;</span> <span class="k">key</span> <span class="o">!==</span> <span class="ss">&quot;name&quot;</span>
-    <span class="p">)</span> <span class="err">{</span>
-      <span class="n">let</span> <span class="k">desc</span> <span class="o">=</span> <span class="k">Object</span><span class="p">.</span><span class="n">getOwnPropertyDescriptor</span><span class="p">(</span><span class="k">source</span><span class="p">,</span> <span class="k">key</span><span class="p">);</span>
-      <span class="k">Object</span><span class="p">.</span><span class="n">defineProperty</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="k">key</span><span class="p">,</span> <span class="k">desc</span><span class="p">);</span>
-    <span class="err">}</span>
-  <span class="err">}</span>
-<span class="err">}</span>
+function copyProperties(target, source) {
+  for (let key of Reflect.ownKeys(source)) {
+    if ( key !== &quot;constructor&quot;
+      &amp;&amp; key !== &quot;prototype&quot;
+      &amp;&amp; key !== &quot;name&quot;
+    ) {
+      let desc = Object.getOwnPropertyDescriptor(source, key);
+      Object.defineProperty(target, key, desc);
+    }
+  }
+}
 </code></pre></div>
-
 
 <h1 id="decorator">修饰器 Decorator<a class="headerlink" href="#decorator" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="nv">@testable</span><span class="w"></span>
-<span class="k">class</span><span class="w"> </span><span class="n">MyTestClass</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">  </span><span class="o">//</span><span class="p">...</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>@testable
+class MyTestClass {
+  //...
+}
 
-<span class="k">function</span><span class="w"> </span><span class="n">testable</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">taget</span><span class="p">.</span><span class="n">isTestable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
-<span class="n">MyTestClass</span><span class="p">.</span><span class="n">isTestable</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
+function testable(target) {
+  taget.isTestable = true;
+}
+MyTestClass.isTestable // true
 
 
-<span class="nv">@decorator</span><span class="w"></span>
-<span class="k">class</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+@decorator
+class A {}
 
-<span class="o">//</span><span class="w"> </span><span class="n">等同于</span><span class="w"></span>
-<span class="k">class</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
-<span class="n">A</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">decorator</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">A</span><span class="w"></span>
+// 等同于
+class A {}
+A  = decorator(A) || A
 </code></pre></div>
-
 
 <p>修饰器只能用于类和类的方法， 无法用于函数，因为存在函数提升。类是不会提升的。
 可以用高阶函数的形式修饰。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">function</span> <span class="n">doSomething</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="err">{</span>
-  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="ss">&quot;Hello&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">);</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>function doSomething(name) {
+  console.log(&quot;Hello&quot; + name);
+}
 
-<span class="k">function</span> <span class="n">loggingDecorator</span><span class="p">(</span><span class="n">wrapped</span><span class="p">)</span> <span class="err">{</span>
-  <span class="k">return</span> <span class="k">function</span><span class="p">()</span> <span class="err">{</span>
-    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="ss">&quot;starting&quot;</span><span class="p">);</span>
-    <span class="n">const</span> <span class="k">result</span> <span class="o">=</span> <span class="n">wrapped</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">arguments</span><span class="p">);</span>
-    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="ss">&quot;Finished&quot;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="k">result</span><span class="p">;</span>
-  <span class="err">}</span><span class="p">;</span>
-<span class="err">}</span>
-<span class="n">const</span> <span class="n">wrapped</span> <span class="o">=</span> <span class="n">loggingDecorator</span><span class="p">(</span><span class="n">doSomething</span><span class="p">);</span>
+function loggingDecorator(wrapped) {
+  return function() {
+    console.log(&quot;starting&quot;);
+    const result = wrapped.apply(this, arguments);
+    console.log(&quot;Finished&quot;);
+    return result;
+  };
+}
+const wrapped = loggingDecorator(doSomething);
 </code></pre></div>
-
 
 <p>core-decorator.js 一个第三方模块，提供了几个常见的修饰器。 @autobind， @readonly @override @deprecate, @suppressWarnings</p>
 <h3 id="mixin_1">修饰器实现 Mixin 模式<a class="headerlink" href="#mixin_1" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="n">mixins</span><span class="o">.</span><span class="n">js</span>
-<span class="n">export</span> <span class="n">function</span> <span class="n">mixins</span><span class="p">(</span><span class="o">...</span><span class="n">list</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Object</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">prototype</span><span class="p">,</span> <span class="o">...</span><span class="n">list</span><span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>// mixins.js
+export function mixins(...list) {
+  return function(target) {
+    Object.assign(target.prototype, ...list);
+  };
+}
 
-<span class="kn">import</span> <span class="p">{</span> <span class="n">mixins</span> <span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;./mixins&quot;</span><span class="p">;</span>
-<span class="n">const</span> <span class="n">Foo</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-<span class="nd">@mixins</span><span class="p">(</span><span class="n">Foo</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{}</span>
+import { mixins } from &quot;./mixins&quot;;
+const Foo = {
+  foo() {
+    console.log(&quot;foo&quot;);
+  }
+};
+@mixins(Foo)
+class MyClass {}
 
-<span class="n">let</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MyClass</span><span class="p">();</span>
-<span class="n">obj</span><span class="o">.</span><span class="n">foo</span><span class="p">();</span>
+let obj = new MyClass();
+obj.foo();
 </code></pre></div>
-
 
 <h3 id="trait">Trait<a class="headerlink" href="#trait" title="Permanent link">&para;</a></h3>
 <p>也是一种修饰器，与Mixin类似，提供更多功能，比如防止同名方法冲突，排除混入某些方法，为混入方法起别名等。
 traits-decorator 第三方模块</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="p">{</span> <span class="n">traits</span> <span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;traits-decorator&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>import { traits } from &quot;traits-decorator&quot;;
 
-<span class="k">class</span> <span class="nc">TFoo</span> <span class="p">{</span>
-  <span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+class TFoo {
+  foo() {
+    console.log(&quot;foo&quot;);
+  }
+}
 
-<span class="n">const</span> <span class="n">TBar</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">bar</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">};</span>
+const TBar = {
+  bar() {
+    console.log(&quot;bar&quot;);
+  }
+};
 
-<span class="nd">@traits</span><span class="p">(</span><span class="n">TFoo</span><span class="p">,</span> <span class="n">TBar</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{}</span>
+@traits(TFoo, TBar)
+class MyClass {}
 
-<span class="n">let</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">new</span> <span class="n">MyClass</span><span class="p">();</span>
-<span class="n">obj</span><span class="o">.</span><span class="n">foo</span><span class="p">();</span>
-<span class="n">obj</span><span class="o">.</span><span class="n">bar</span><span class="p">();</span>
+let obj = new MyClass();
+obj.foo();
+obj.bar();
 </code></pre></div>
-
 
 <h3 id="babel">Babel 转码器的支持<a class="headerlink" href="#babel" title="Permanent link">&para;</a></h3>
 <p>Babel 已经支持 Decorator。babel-core, babel-plugin-transform-decorators</p>
@@ -3992,44 +3969,41 @@ es6 模块自动采用严格模式。</p>
 <p>export 规定模块的对外接口，import用于输入其他模块提供的功能。
 一个模块是一个独立的文件，内部所有变量外部无法获取。可以使用 as 作为别名。
 export 语句需要放在模块顶层。</p>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="n">export</span> <span class="err">规定的对外接口，必须和模块内部变量建立一一对应关系</span>
-<span class="o">//</span> <span class="err">三种写法都可以</span>
+<div class="highlight"><pre><span></span><code>// export 规定的对外接口，必须和模块内部变量建立一一对应关系
+// 三种写法都可以
 
-<span class="o">//</span> <span class="mi">1</span>
-<span class="n">export</span> <span class="n">var</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="o">//</span> <span class="mi">2</span>
-<span class="n">var</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">export</span> <span class="err">{</span><span class="n">m</span><span class="err">}</span>
-<span class="o">//</span> <span class="mi">3</span>
-<span class="n">var</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">export</span> <span class="err">{</span><span class="n">n</span> <span class="k">as</span> <span class="n">m</span><span class="err">}</span>
+// 1
+export var m = 1;
+// 2
+var m = 1;
+export {m}
+// 3
+var n = 1;
+export {n as m}
 </code></pre></div>
-
 
 <h3 id="import">import<a class="headerlink" href="#import" title="Permanent link">&para;</a></h3>
 <p>import  .. from &lsquo;&rsquo; 后边指定需要导入的位置，可以是相对或者绝对路径，js 后缀可以省略掉。
 import 编译器期间执行的，静态执行所以无法使用表达式和变量。这些是只有运行时才能获得的语法结构。并且是单例的。</p>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span><span class="err">整体加载。</span>
-<span class="kn">import</span> <span class="o">*</span> <span class="k">as</span> <span class="n">circle</span> <span class="kn">from</span> <span class="s1">&#39;./circle&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>//整体加载。
+import * as circle from &#39;./circle&#39;;
 
-<span class="kn">import</span> <span class="p">{</span> <span class="n">area</span><span class="p">,</span> <span class="n">circumference</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;./circle&#39;</span><span class="p">;</span>
+import { area, circumference } from &#39;./circle&#39;;
 
-<span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;圆面积：&#39;</span> <span class="o">+</span> <span class="n">area</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span>
-<span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;圆周长：&#39;</span> <span class="o">+</span> <span class="n">circumference</span><span class="p">(</span><span class="mi">14</span><span class="p">));</span>
+console.log(&#39;圆面积：&#39; + area(4));
+console.log(&#39;圆周长：&#39; + circumference(14));
 
-<span class="o">//</span> <span class="n">wrong</span> <span class="p">,</span> <span class="err">不允许运行时改变</span>
-<span class="n">circle</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+// wrong , 不允许运行时改变
+circle.foo = &#39;hello&#39;
 </code></pre></div>
-
 
 <h3 id="export-default">export default<a class="headerlink" href="#export-default" title="Permanent link">&para;</a></h3>
 <p>给模块指定默认输出。export default 本质上就是输出一个叫做 default 的变量或者方法，然后系统运行你给它取任意名字。</p>
 <h3 id="_6">模块可以继承<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <h3 id="_7">跨常量<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="err">export const A = 1;</span>
-<span class="err">export const B = 1;</span>
+<div class="highlight"><pre><span></span><code>export const A = 1;
+export const B = 1;
 </code></pre></div>
-
 
 <h3 id="import_1">import() 函数<a class="headerlink" href="#import_1" title="Permanent link">&para;</a></h3>
 <p>实现动态加载</p>
@@ -4059,7 +4033,7 @@ import 编译器期间执行的，静态执行所以无法使用表达式和变�
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 reactjs小书
               </div>
@@ -4071,7 +4045,7 @@ import 编译器期间执行的，静态执行所以无法使用表达式和变�
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 jquery_pocket_reference
               </div>
@@ -4101,7 +4075,7 @@ import 编译器期间执行的，静态执行所以无法使用表达式和变�
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -4112,6 +4086,8 @@ import 编译器期间执行的，静态执行所以无法使用表达式和变�
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

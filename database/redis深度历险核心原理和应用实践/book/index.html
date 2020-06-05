@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/database/redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5/book/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#1" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -3420,7 +3426,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3436,7 +3442,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/database/redis深度历险核心原理和应用实践/book.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/database/redis深度历险核心原理和应用实践/book.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3467,7 +3473,7 @@ blpop,brpop 阻塞操作，如果list 没有数据就会进入休眠。这里需
 <h1 id="6-">应用6：断尾求生-简单限流<a class="headerlink" href="#6-" title="Permanent link">&para;</a></h1>
 <p>思想是使用 zset 记录用户在一个时间窗口之内的操作数量。
 这种方式适合小规模的限流，比如用户发帖等。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># coding:utf8</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># coding:utf8</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">redis</span>
 
@@ -3507,9 +3513,8 @@ blpop,brpop 阻塞操作，如果list 没有数据就会进入休眠。这里需
     <span class="p">)</span>
 </code></pre></div>
 
-
 <h1 id="7-">应用7：一毛不拔-漏斗限流<a class="headerlink" href="#7-" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="c1"># coding:utf8</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># coding:utf8</span>
 <span class="c1"># 单机漏斗算法</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="c1"># 漏斗的剩余空间代表当前行为可以持续进行的数量</span>
@@ -3562,27 +3567,23 @@ blpop,brpop 阻塞操作，如果list 没有数据就会进入休眠。这里需
     <span class="nb">print</span><span class="p">(</span><span class="n">is_action_allowed</span><span class="p">(</span><span class="s2">&quot;laoqian&quot;</span><span class="p">,</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
 </code></pre></div>
 
-
 <p>如何实现分布式限流呢？这里其实可以把 dict 替换成hash，但是要保证从 hash 取值/内存计算/取出字段的原子性。
 Redis4.0 提供了一个限流 redis 模块，redis-cell，提供了漏斗算法和原子限流指令。</p>
-<div class="codehilite"><pre><span></span><code><span class="o">#</span> <span class="err">表示</span><span class="n">user_id的回复行为频率每60秒最多30次</span><span class="err">。</span>
-<span class="n">cl</span><span class="p">.</span><span class="n">throttle</span> <span class="n">user_id</span><span class="p">:</span><span class="n">reply</span> <span class="mi">15</span> <span class="mi">30</span> <span class="mi">60</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><code># 表示user_id的回复行为频率每60秒最多30次。
+cl.throttle user_id:reply 15 30 60 1
 
-<span class="mi">15</span> <span class="n">capacity</span> <span class="err">漏斗容量</span>
-<span class="mi">30</span> <span class="n">operations</span><span class="o">/</span><span class="mi">60</span><span class="n">seconds</span> <span class="err">漏水速率</span>
-<span class="mi">1</span> <span class="err">是可选</span><span class="n">quota</span><span class="p">,</span> <span class="err">默认值</span><span class="mi">1</span>
+15 capacity 漏斗容量
+30 operations/60seconds 漏水速率
+1 是可选quota, 默认值1
 </code></pre></div>
-
 
 <h1 id="8-gehash">应用8：近水楼台-GeHash<a class="headerlink" href="#8-gehash" title="Permanent link">&para;</a></h1>
 <p>redis3.2 以后增加了地理位置 GEO，可以实现附近的餐馆这种功能。</p>
 <p>地图元素的位置数据使用二维经纬度表示，经度范围(-180, 180]，纬度范围（-90，90]</p>
 <p>比如指定一个半径r，使用 sql 可以圈出来。如果用户不满意，可以扩大半径继续筛选。</p>
-<div class="codehilite"><pre><span></span><code><span class="err">select id from positions where x0-r &lt;x&lt; x0+r and y0-r&lt;y&lt;y0+r</span>
+<p><div class="highlight"><pre><span></span><code>select id from positions where x0-r &lt;x&lt; x0+r and y0-r&lt;y&lt;y0+r
 </code></pre></div>
-
-
-<p>一般为了性能加上双向符合索引 (x,y)。但是在高并发场景不是好的选择。</p>
+一般为了性能加上双向符合索引 (x,y)。但是在高并发场景不是好的选择。</p>
 <h3 id="geohash">GEOHash 算法，地理位置距离排序<a class="headerlink" href="#geohash" title="Permanent link">&para;</a></h3>
 <p>原理：把地球看成二维平面，划分成一系列的正方形方格（类似棋盘）。
 所有地图元素坐标都放置在唯一的方格中，方格越小越精确。
@@ -3594,7 +3595,7 @@ Redis4.0 提供了一个限流 redis 模块，redis-cell，提供了漏斗算法
 <li>增加：geoadd company 116.48015 39.996794 juejin</li>
 <li>计算距离：geodist company juejin ireader km</li>
 <li>获取元素位置(轻微误差，不影响附近的人功能)：geopos company juejin ireader</li>
-<li>获取元素 hash(geohash 52位编码)：geohash company ireader   # http://gohash.org/XXXX 可以获取位置</li>
+<li>获取元素 hash(geohash 52位编码)：geohash company ireader   # <a href="http://gohash.org/XXXX">http://gohash.org/XXXX</a> 可以获取位置</li>
 <li>附近的公司: georadiusbymember copany ireader 20 km count 3 asc</li>
 <li>范围20公里以内最多的3个元素按照距离正序排序，不会排除自身</li>
 <li>根据坐标查询：georadius company 116.514202 39.905409 20 km withdist count 3 asc</li>
@@ -3625,14 +3626,13 @@ redis keys 简单粗暴列出所有 满足特定正则的key.  <code>keys codeho
 </ul>
 <h1 id="1-io">原理1：线程 IO 模型<a class="headerlink" href="#1-io" title="Permanent link">&para;</a></h1>
 <p>redis是单线程程序，一定要小心使用O(n)的指令，防止 redis 卡顿</p>
-<div class="codehilite"><pre><span></span><code><span class="err">read_events, write_events = select(read_fds, write_fds, timeout)</span>
-<span class="err">for event in read_events:</span>
-<span class="err">    handle_read(event.fd)</span>
-<span class="err">for event in write_events:</span>
-<span class="err">    handle_write(enent.fd)</span>
-<span class="err">handle_others() # 处理其他任务，比如定时任务</span>
+<div class="highlight"><pre><span></span><code>read_events, write_events = select(read_fds, write_fds, timeout)
+for event in read_events:
+    handle_read(event.fd)
+for event in write_events:
+    handle_write(enent.fd)
+handle_others() # 处理其他任务，比如定时任务
 </code></pre></div>
-
 
 <h3 id="_1">指令队列<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>redis 为每个客户端维护了一个指令队列，先来先服务</p>
@@ -3687,15 +3687,14 @@ redis 知道未来 timeout 时间段内，没有其他定时任务需要处理�
   当父进程对其中一个页面的数据修改时，会将被共享的页面复制一份出来，然后对这个复制的页面修改。
   子进程还是 fork 瞬间的数据。</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="err">pid = os.fork()</span>
-<span class="err">if pid &gt; 0:</span>
-<span class="err">    handle_client_requests() #父进程继续处理 client 请求</span>
-<span class="err">if pid == 0:</span>
-<span class="err">    handle_snapshot_write() # 子进程快照写磁盘</span>
-<span class="err">if pid &lt; 0:</span>
-<span class="err">    # fork error</span>
+<div class="highlight"><pre><span></span><code>pid = os.fork()
+if pid &gt; 0:
+    handle_client_requests() #父进程继续处理 client 请求
+if pid == 0:
+    handle_snapshot_write() # 子进程快照写磁盘
+if pid &lt; 0:
+    # fork error
 </code></pre></div>
-
 
 <h3 id="aof">AOF日志，连续的增量备份，记录内存数据修改的指令记录版本。<a class="headerlink" href="#aof" title="Permanent link">&para;</a></h3>
 <p>只记录对内存进行修改的指令记录。通过『重放』恢复 Redis 当前实例的内存数据结构状态。</p>
@@ -3719,64 +3718,60 @@ redis 知道未来 timeout 时间段内，没有其他定时任务需要处理�
 如果遇到一个失败了，后续指令还是会继续执行，不能算是原子性，仅仅是满足了事务的隔离性。</p>
 <p>discard 用于丢弃事务缓冲队列种的所有指令，在 exec 执行之前。
 通常结合 pipeline 使用减少网络IO。</p>
-<div class="codehilite"><pre><span></span><code><span class="err">pipe = redis.pipeline(transaction=True)</span>
-<span class="err">pipe.multi()</span>
-<span class="err">pipe.incr(&#39;a&#39;)</span>
-<span class="err">pipe.incr(&#39;a&#39;)</span>
-<span class="err">values = pipe.execute()</span>
+<div class="highlight"><pre><span></span><code>pipe = redis.pipeline(transaction=True)
+pipe.multi()
+pipe.incr(&#39;a&#39;)
+pipe.incr(&#39;a&#39;)
+values = pipe.execute()
 </code></pre></div>
-
 
 <h3 id="redis-watch">redis Watch<a class="headerlink" href="#redis-watch" title="Permanent link">&para;</a></h3>
 <p>乐观锁，解决并发修改。</p>
-<div class="codehilite"><pre><span></span><code><span class="err">while True:</span>
-<span class="err">    do_watch()</span>
-<span class="err">    commands()</span>
-<span class="err">    multi()</span>
-<span class="err">    send_commands()</span>
-<span class="err">    try:</span>
-<span class="err">        exec()</span>
-<span class="err">        break</span>
-<span class="err">    except WatchError:</span>
-<span class="err">        continue</span>
+<div class="highlight"><pre><span></span><code>while True:
+    do_watch()
+    commands()
+    multi()
+    send_commands()
+    try:
+        exec()
+        break
+    except WatchError:
+        continue
 </code></pre></div>
-
 
 <p>watch 监控的变量如果事务执行的时候发现被修改了（包括当前客户端），
-exec 指令返回 null 告诉 client 执行失败，一般由 client 重试。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># 使用 redis-py 实现余额加倍</span>
+exec 指令返回 null 告诉 client 执行失败，一般由 client 重试。
+<div class="highlight"><pre><span></span><code># 使用 redis-py 实现余额加倍
 
-<span class="kn">import</span> <span class="nn">redis</span>
-
-
-<span class="k">def</span> <span class="nf">key_for</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s1">&#39;account_{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+import redis
 
 
-<span class="k">def</span> <span class="nf">double_account</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="n">key_for</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
-        <span class="n">value</span> <span class="o">*=</span> <span class="mi">2</span>
-        <span class="n">pipe</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span><span class="n">transaction</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="n">pipe</span><span class="o">.</span><span class="n">multi</span><span class="p">()</span>
-        <span class="n">pipe</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">pipeline</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-            <span class="k">break</span>  <span class="c1"># 成功，退出</span>
-        <span class="k">except</span> <span class="n">redis</span><span class="o">.</span><span class="n">WatchError</span><span class="p">:</span>
-            <span class="k">continue</span>  <span class="c1"># 重试</span>
-    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>  <span class="c1"># 重新获余额</span>
+def key_for(user_id):
+    return &#39;account_{}&#39;.format(user_id)
 
 
-<span class="n">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">StrictRedis</span><span class="p">()</span>
-<span class="n">user_id</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">client</span><span class="o">.</span><span class="n">setnx</span><span class="p">(</span><span class="n">ke_for</span><span class="p">(</span><span class="n">user_id</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># 初始化</span>
-<span class="k">print</span><span class="p">(</span><span class="n">double_account</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">user_id</span><span class="p">))</span>
-</code></pre></div>
+def double_account(client, user_id):
+    key = key_for(user_id)
+    while True:
+        client.watch(key)
+        value = int(client.get(key))
+        value *= 2
+        pipe = client.pipeline(transaction=True)
+        pipe.multi()
+        pipe.set(key, value)
+        try:
+            pipeline.execute()
+            break  # 成功，退出
+        except redis.WatchError:
+            continue  # 重试
+    return int(client.get(key))  # 重新获余额
 
 
+client = client.StrictRedis()
+user_id = 1
+client.setnx(ke_for(user_id), 5)  # 初始化
+print(double_account(client, user_id))
+</code></pre></div></p>
 <h1 id="6pubsub">原理6：Pubsub<a class="headerlink" href="#6pubsub" title="Permanent link">&para;</a></h1>
 <p>发布订阅，不过无法持久化消息队列，一般没啥用。</p>
 <p>redis5.0 加入了 stream 数据结构，给redis 带来了持久化消息队列。
@@ -3808,12 +3803,11 @@ exec 指令返回 null 告诉 client 执行失败，一般由 client 重试。</
 转发到后边的 redis 实例来执行，并将结果返回客户端。客户端可以使用和 redis 一样的客户端。</p>
 <p>codis 将所有key 默认划分为1024个槽(slot),首次对客户端传过来的 key 进行 crc32计算哈希值，再将
 hash 之后的整数值对1024取模得到一个余数，就是对应 key 的槽位。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crc32</span><span class="p">(</span><span class="n">command</span><span class="p">.</span><span class="k">key</span><span class="p">)</span><span class="w"></span>
-<span class="n">slot_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hash</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1024</span><span class="w"></span>
-<span class="n">redis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slots</span><span class="o">[</span><span class="n">slot_index</span><span class="o">]</span><span class="p">.</span><span class="n">redis</span><span class="w"></span>
-<span class="n">redis</span><span class="p">.</span><span class="n">do</span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>hash = crc32(command.key)
+slot_index = hash % 1024
+redis = slots[slot_index].redis
+redis.do(command)
 </code></pre></div>
-
 
 <p>codis 使用 ZooKeeper或者etcd 来持久化槽位关系。codis 增加了 SLOTSSCAN 执行来遍历下slot 下所有槽位。
 官方建议单个集合结构的总字节容量不要超过1M，如果是粉丝列表这种业务，可能要考虑分桶存储，业务上折中。</p>
@@ -3830,10 +3824,9 @@ Cluster 还允许用户通过 key 里嵌入 tag 标记，强制 key 所挂在的
 <h4 id="_7">跳转<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
 <p>当客户端向一个错误的节点发出了指令，该节点会发现key 并不归自己管理，这时它会向客户端发送一个特殊
 跳转指令携带目标操作的节点地址，告诉客户端去连这个节点去获取数据。</p>
-<div class="codehilite"><pre><span></span><code><span class="err">GET x</span>
-<span class="err">-MOVED 3999 127.0.0.1:6381</span>
+<div class="highlight"><pre><span></span><code>GET x
+-MOVED 3999 127.0.0.1:6381
 </code></pre></div>
-
 
 <h3 id="_8">迁移<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>redis cluster 提供了 redis-trib 可以让运维人员手动调整槽位分布。以 slot 为单位进行迁移。
@@ -3856,22 +3849,21 @@ Cluster 还允许用户通过 key 里嵌入 tag 标记，强制 key 所挂在的
 但是又不像 kafka，消息可以分 partition。如果非要 partion，要再客户端做，提供不同的 Stream 名称，
 对消息进行 hash 取模选择放入哪一个 Stream。</p>
 <h1 id="2-info">扩展2：无所不知 - Info 指令<a class="headerlink" href="#2-info" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="o">#</span> <span class="err">查看每秒操作数</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="n">info</span> <span class="n">stats</span>  <span class="o">|</span> <span class="n">grep</span> <span class="n">ops</span>
+<div class="highlight"><pre><span></span><code># 查看每秒操作数
+redis-cli info stats  | grep ops
 
-<span class="o">#</span> <span class="err">查看连接多少客户端</span><span class="p">,</span> <span class="n">connected_clients</span><span class="err">，如果</span><span class="n">rejected_connections很大</span><span class="err">，需要调整</span><span class="n">macxclients</span><span class="p">.</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="n">info</span> <span class="n">clients</span>
+# 查看连接多少客户端, connected_clients，如果rejected_connections很大，需要调整macxclients.
+redis-cli info clients
 
-<span class="o">#</span> <span class="err">查看占用内存，如果单个</span> <span class="n">redis</span> <span class="err">内存占用过大，并且在业务上没有大多压缩空间，可以考虑集群化了</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="n">info</span> <span class="n">memory</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">used</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">human</span>
+# 查看占用内存，如果单个 redis 内存占用过大，并且在业务上没有大多压缩空间，可以考虑集群化了
+redis-cli info memory | grep used | grep human
 
-<span class="o">#</span> <span class="err">复制积压缓冲区多大，严重影响主从复制效率。积压缓冲区是环形的</span>
-<span class="o">#</span> <span class="err">如果从库断开时间太长，或者缓冲区设置太小，从库无法快速恢复中断的主从同步过程，</span>
-<span class="o">#</span> <span class="err">因为中间的指令被覆盖了。这个时候从库会进行全量同步模式，非常消耗</span> <span class="n">cpu</span> <span class="err">和网络资源</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="n">info</span> <span class="n">replication</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">backlog</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="n">info</span> <span class="n">stats</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">sync</span> <span class="o">#</span> <span class="err">通过</span><span class="n">sync_partial_err</span><span class="p">(</span><span class="err">主从半同步复制失败的次数</span><span class="p">)</span> <span class="err">次数决定是否需要扩大积压缓冲区</span>
+# 复制积压缓冲区多大，严重影响主从复制效率。积压缓冲区是环形的
+# 如果从库断开时间太长，或者缓冲区设置太小，从库无法快速恢复中断的主从同步过程，
+# 因为中间的指令被覆盖了。这个时候从库会进行全量同步模式，非常消耗 cpu 和网络资源
+redis-cli info replication | grep backlog
+redis-cli info stats | grep sync # 通过sync_partial_err(主从半同步复制失败的次数) 次数决定是否需要扩大积压缓冲区
 </code></pre></div>
-
 
 <h1 id="3_1">扩展3：再谈分布式锁<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h1>
 <p>集群环境下，当主从发生 failover 时候，分布式锁是不安全的。
@@ -3930,7 +3922,7 @@ redis4.0 引入了 unlink，能对删除进行惰性处理，丢给后台线程�
 <p>redis 字符串 sds (Simple Dynamic String)，带有长度信息的字节数组。
 redis 字符串在长度特别短时，使用 emb 形式存储(embeded)，长度超过44使用 raw 存储。
 字符串小于 1M 之前，扩容采用加倍策略，长度超过 1M 之后，每次扩容只增加 1M。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="n">SDS</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">SDS</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="n">T</span> <span class="n">capacity</span><span class="p">;</span> <span class="c1">//1byte</span>
     <span class="n">T</span> <span class="n">len</span><span class="p">;</span> <span class="c1">//1byte</span>
     <span class="n">byte</span> <span class="n">flags</span><span class="p">;</span><span class="c1">//特殊标识位, 1byte</span>
@@ -3945,13 +3937,12 @@ redis 字符串在长度特别短时，使用 emb 形式存储(embeded)，长度
 <span class="p">}</span> <span class="n">robj</span><span class="p">;</span> <span class="c1">// 一个RedisObject 对象头占用16 byte</span>
 </code></pre></div>
 
-
 <h1 id="2">源码2：探索字典内部<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <p>字典使用两个 hashtable，通常只有一个有值，但是当 dict 扩容缩容时，需要分配薪的 hashtable，然后渐进式搬迁，
 这时两个 hashtable 分别存储旧的和新的 hashtable。搬迁结束后，旧的 hashtable 被删除，新的 hashtable 取而代之。</p>
 <p>hashtable 和 java HashMap 类似，通过分桶的方式解决冲突，第一维是数组，第二维是链表。
 数组中存储的是第二维链表的第一个元素的指针。</p>
-<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="n">dictEntry</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">dictEntry</span> <span class="p">{</span>
     <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">;</span>
     <span class="kt">void</span> <span class="o">*</span><span class="n">val</span><span class="p">;</span>
     <span class="n">dictEntry</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span> <span class="c1">// 链接下一个 entry</span>
@@ -3963,7 +3954,6 @@ redis 字符串在长度特别短时，使用 emb 形式存储(embeded)，长度
     <span class="kt">long</span> <span class="n">used</span><span class="p">;</span> <span class="c1">// hash 表中元素个数</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h3 id="rehash">渐进式 rehash<a class="headerlink" href="#rehash" title="Permanent link">&para;</a></h3>
 <p>redis 使用渐进式rehash （直接 rehash 操作O(n)无法接受)，搬迁操作埋伏在当前字典的后续指令中（来自客户端的hset/hdel等),
@@ -4006,17 +3996,16 @@ siphash在输入 key 很小的情况下，也能产生随机性很好的输出�
 <p>zset 是一个复合结构，需要一个 hash 来存储 value 和 score 的对应关系。
 score 排序和根据指定的 score 范围获取 value 列表的功能，需要另一个结构 siplist.</p>
 <p><img alt="skiplist" src="../skiplist.png" /></p>
-<div class="codehilite"><pre><span></span><code><span class="err">struct zslnode {</span>
-<span class="err">    string value;</span>
-<span class="err">    double score; zslnode*[] forwards; zslnode* backward;</span>
-<span class="err">}</span>
-<span class="err">struct zsl {</span>
-<span class="err">    zslnode* header;</span>
-<span class="err">    int maxLevel;</span>
-<span class="err">    map&lt;string, zslnode*&gt; ht; // hash 结构的所有键值对</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>struct zslnode {
+    string value;
+    double score; zslnode*[] forwards; zslnode* backward;
+}
+struct zsl {
+    zslnode* header;
+    int maxLevel;
+    map&lt;string, zslnode*&gt; ht; // hash 结构的所有键值对
+}
 </code></pre></div>
-
 
 <h3 id="_19">随机层数<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
 <p>对于每一个新插入的节点，都需要调用一个随机算法给它分配一个合理的层数。直观上
@@ -4036,10 +4025,10 @@ score 排序和根据指定的 score 范围获取 value 列表的功能，需要
 <p>Rax 被用在 Redis Stream 结构里面用于存储消息队列，在 Stream 里面消息 ID 的前缀 是时间戳 + 序号，这样的消息可以理解为时间序列消息。使用 Rax 结构进行存储就可以快 速地根据消息 ID 定位到具体的消息，然后继续遍历指定消息之后的所有消息。</p>
 <h1 id="_23">参考：<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h1>
 <ul>
-<li>https://redis.io/</li>
-<li>http://antirez.com/latest/0</li>
-<li>https://redis.io/modules</li>
-<li>https://pauladamsmith.com/articles/redis-under-the-hood.html</li>
+<li><a href="https://redis.io/">https://redis.io/</a></li>
+<li><a href="http://antirez.com/latest/0">http://antirez.com/latest/0</a></li>
+<li><a href="https://redis.io/modules">https://redis.io/modules</a></li>
+<li><a href="https://pauladamsmith.com/articles/redis-under-the-hood.html">https://pauladamsmith.com/articles/redis-under-the-hood.html</a></li>
 </ul>
                 
               
@@ -4066,7 +4055,7 @@ score 排序和根据指定的 score 范围获取 value 列表的功能，需要
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 Redis实战
               </div>
@@ -4078,7 +4067,7 @@ score 排序和根据指定的 score 范围获取 value 列表的功能，需要
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 redis设计与实现
               </div>
@@ -4108,7 +4097,7 @@ score 排序和根据指定的 score 范围获取 value 列表的功能，需要
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -4119,6 +4108,8 @@ score 排序和根据指定的 score 范围获取 value 列表的功能，需要
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

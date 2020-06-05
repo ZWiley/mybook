@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/webserver/13%20%E9%A1%B9%E7%9B%AE%E6%A2%B3%E7%90%86/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#1-web-server" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -677,7 +683,7 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -685,7 +691,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3505,7 +3511,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -3513,7 +3519,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3592,7 +3598,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/webserver/13 项目梳理.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/webserver/13 项目梳理.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3609,7 +3615,7 @@
 <p>通常用户使用Web浏览器与相应服务器进行通信。在浏览器中键入“域名”或“IP地址:端口号”，浏览器则先将你的域名解析成相应的IP地址或者直接根据你的IP地址向对应的Web服务器发送一个HTTP请求。这一过程首先要通过TCP协议的三次握手建立与目标Web服务器的连接，然后HTTP协议生成针对目标Web服务器的HTTP请求报文，通过TCP、IP等协议发送到目标Web服务器上。</p>
 <h3 id="3-webhttp">3. Web服务器如何接收客户端发来的HTTP请求报文呢?<a class="headerlink" href="#3-webhttp" title="Permanent link">&para;</a></h3>
 <p>Web服务器端通过<code>socket</code>监听来自用户的请求。</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
 <span class="cm">/* 创建监听socket文件描述符 */</span>
 <span class="kt">int</span> <span class="n">listenfd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
@@ -3629,9 +3635,8 @@
 <span class="n">ret</span> <span class="o">=</span> <span class="n">listen</span><span class="p">(</span><span class="n">listenfd</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 </code></pre></div>
 
-
-<p>远端的很多用户会尝试去<code>connect()</code>这个Web Server上正在<code>listen</code>的这个<code>port</code>，而监听到的这些连接会排队等待被<code>accept()</code>。由于用户连接请求是随机到达的异步事件，每当监听socket（<code>listenfd</code>）<code>listen</code>到新的客户连接并且放入监听队列，我们都需要告诉我们的Web服务器有连接来了，<code>accept</code>这个连接，并分配一个逻辑单元来处理这个用户请求。而且，我们在处理这个请求的同时，还需要继续监听其他客户的请求并分配其另一逻辑单元来处理（并发，同时处理多个事件，后面会提到使用线程池实现并发）。这里，服务器通过<strong>epoll</strong>这种I/O复用技术（还有select和poll）来实现对监听socket（<code>listenfd</code>）和连接socket（客户请求）的同时监听。注意I/O复用虽然可以同时监听多个文件描述符，但是它本身是阻塞的，并且当有多个文件描述符同时就绪的时候，如果不采取额外措施，程序则只能按顺序处理其中就绪的每一个文件描述符，所以为提高效率，我们将在这部分通过线程池来实现并发（多线程并发），为每个就绪的文件描述符分配一个逻辑单元（线程）来处理。</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;sys/epoll.h&gt;</span><span class="cp"></span>
+<p>远端的很多用户会尝试去<code>connect()</code>这个Web Server上正在<code>listen</code>的这个<code>port</code>，而监听到的这些连接会排队等待被<code>accept()</code>。由于用户连接请求是随机到达的异步事件，每当监听socket（<code>listenfd</code>）<code>listen</code>到新的客户连接并且放入监听队列，我们都需要告诉我们的Web服务器有连接来了，<code>accept</code>这个连接，并分配一个逻辑单元来处理这个用户请求。而且，我们在处理这个请求的同时，还需要继续监听其他客户的请求并分配其另一逻辑单元来处理（并发，同时处理多个事件，后面会提到使用线程池实现并发）。这里，服务器通过**epoll**这种I/O复用技术（还有select和poll）来实现对监听socket（<code>listenfd</code>）和连接socket（客户请求）的同时监听。注意I/O复用虽然可以同时监听多个文件描述符，但是它本身是阻塞的，并且当有多个文件描述符同时就绪的时候，如果不采取额外措施，程序则只能按顺序处理其中就绪的每一个文件描述符，所以为提高效率，我们将在这部分通过线程池来实现并发（多线程并发），为每个就绪的文件描述符分配一个逻辑单元（线程）来处理。</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;sys/epoll.h&gt;</span><span class="cp"></span>
 <span class="cm">/* 将fd上的EPOLLIN和EPOLLET事件注册到epollfd指示的epoll内核事件中 */</span>
 <span class="kt">void</span> <span class="nf">addfd</span><span class="p">(</span><span class="kt">int</span> <span class="n">epollfd</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">one_shot</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">epoll_event</span> <span class="n">event</span><span class="p">;</span>
@@ -3690,13 +3695,12 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>服务器程序通常需要处理三类事件：I/O事件，信号及定时事件。有两种事件处理模式：</p>
 <ul>
 <li>Reactor模式：要求主线程（I/O处理单元）只负责监听文件描述符上是否有事件发生（可读、可写），若有，则立即通知工作线程（逻辑单元），将socket可读可写事件放入请求队列，交给工作线程处理。</li>
 <li>Proactor模式：将所有的I/O操作都交给主线程和内核来处理（进行读、写），工作线程仅负责处理逻辑，如主线程读完成后<code>users[sockfd].read()</code>，选择一个工作线程来处理客户请求<code>pool-&gt;append(users + sockfd)</code>。</li>
 </ul>
-<p>通常使用同步I/O模型（如<code>epoll_wait</code>）实现Reactor，使用异步I/O（如<code>aio_read</code>和<code>aio_write</code>）实现Proactor。但在此项目中，我们使用的是<strong>同步I/O模拟的Proactor</strong>事件处理模式。那么什么是同步I/O，什么是异步I/O呢？
+<p>通常使用同步I/O模型（如<code>epoll_wait</code>）实现Reactor，使用异步I/O（如<code>aio_read</code>和<code>aio_write</code>）实现Proactor。但在此项目中，我们使用的是**同步I/O模拟的Proactor**事件处理模式。那么什么是同步I/O，什么是异步I/O呢？
 <a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017959540289152">廖雪峰：异步IO一节给出解释</a></p>
 <ul>
 <li>同步（阻塞）I/O：在一个线程中，CPU执行代码的速度极快，然而，一旦遇到IO操作，如读写文件、发送网络数据时，就需要等待IO操作完成，才能继续进行下一步操作。这种情况称为同步IO。</li>
@@ -3709,15 +3713,15 @@
 </ul>
 <p>在使用ET模式时，必须要保证该文件描述符是非阻塞的（确保在没有数据可读时，该文件描述符不会一直阻塞）；并且每次调用<code>read</code>和<code>write</code>的时候都必须等到它们返回<code>EWOULDBLOCK</code>（确保所有数据都已读完或写完）。</p>
 <h3 id="4-webhttp">4. Web服务器如何处理以及响应接收到的HTTP请求报文呢?<a class="headerlink" href="#4-webhttp" title="Permanent link">&para;</a></h3>
-<p>该项目使用线程池（半同步半反应堆模式）并发处理用户请求，主线程负责读写，工作线程（线程池中的线程）负责处理逻辑（HTTP请求报文的解析等等）。通过之前的代码，我们将<code>listenfd</code>上到达的<code>connection</code>通过 <code>accept()</code>接收，并返回一个新的socket文件描述符<code>connfd</code>用于和用户通信，并对用户请求返回响应，同时将这个<code>connfd</code>注册到内核事件表中，等用户发来请求报文。这个过程是：通过<code>epoll_wait</code>发现这个<code>connfd</code>上有可读事件了（<code>EPOLLIN</code>），主线程就将这个HTTP的请求报文读进这个连接socket的读缓存中<code>users[sockfd].read()</code>，然后将该任务对象（指针）插入线程池的请求队列中<code>pool-&gt;append(users + sockfd);</code>，线程池的实现还需要依靠<strong>锁机制</strong>以及<strong>信号量</strong>机制来实现线程同步，保证操作的原子性。
+<p>该项目使用线程池（半同步半反应堆模式）并发处理用户请求，主线程负责读写，工作线程（线程池中的线程）负责处理逻辑（HTTP请求报文的解析等等）。通过之前的代码，我们将<code>listenfd</code>上到达的<code>connection</code>通过 <code>accept()</code>接收，并返回一个新的socket文件描述符<code>connfd</code>用于和用户通信，并对用户请求返回响应，同时将这个<code>connfd</code>注册到内核事件表中，等用户发来请求报文。这个过程是：通过<code>epoll_wait</code>发现这个<code>connfd</code>上有可读事件了（<code>EPOLLIN</code>），主线程就将这个HTTP的请求报文读进这个连接socket的读缓存中<code>users[sockfd].read()</code>，然后将该任务对象（指针）插入线程池的请求队列中<code>pool-&gt;append(users + sockfd);</code>，线程池的实现还需要依靠**锁机制**以及**信号量**机制来实现线程同步，保证操作的原子性。
 在线程池部分做几点解释，然后大家去看代码的时候就更容易看懂了：</p>
 <ul>
-<li>所谓线程池，就是一个<code>pthread_t</code>类型的普通数组，通过<code>pthread_create()</code>函数创建<code>m_thread_number</code>个<strong>线程</strong>，用来执行<code>worker()</code>函数以执行每个请求处理函数（HTTP请求的<code>process</code>函数），通过<code>pthread_detach()</code>将线程设置成脱离态（detached）后，当这一线程运行结束时，它的资源会被系统自动回收，而不再需要在其它线程中对其进行 <code>pthread_join()</code> 操作。</li>
+<li>所谓线程池，就是一个<code>pthread_t</code>类型的普通数组，通过<code>pthread_create()</code>函数创建<code>m_thread_number</code>个**线程**，用来执行<code>worker()</code>函数以执行每个请求处理函数（HTTP请求的<code>process</code>函数），通过<code>pthread_detach()</code>将线程设置成脱离态（detached）后，当这一线程运行结束时，它的资源会被系统自动回收，而不再需要在其它线程中对其进行 <code>pthread_join()</code> 操作。</li>
 <li>操作工作队列一定要加锁（<code>locker</code>），因为它被所有线程共享。</li>
 <li>我们用信号量来标识请求队列中的请求数，通过<code>m_queuestat.wait();</code>来等待一个请求队列中待处理的HTTP请求，然后交给线程池中的空闲线程来处理。</li>
 </ul>
 <p>OK，接下来说说每个<code>read()</code>后的HTTP请求是如何被处理的，我们直接看这个处理HTTP请求的入口函数：</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">process</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="n">http_conn</span><span class="o">::</span><span class="n">process</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">HTTP_CODE</span> <span class="n">read_ret</span> <span class="o">=</span> <span class="n">process_read</span><span class="p">();</span>
     <span class="k">if</span><span class="p">(</span><span class="n">read_ret</span> <span class="o">==</span> <span class="n">NO_REQUEST</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">modfd</span><span class="p">(</span><span class="n">m_epollfd</span><span class="p">,</span> <span class="n">m_sockfd</span><span class="p">,</span> <span class="n">EPOLLIN</span><span class="p">);</span>
@@ -3730,11 +3734,10 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>首先，<code>process_read()</code>，也就是对我们读入该<code>connfd</code>读缓冲区的请求报文进行解析。
 HTTP请求报文由请求行（request line）、请求头部（header）、空行和请求数据四个部分组成有。两种请求报文:
 <strong>GET</strong>（Example）</p>
-<div class="codehilite"><pre><span></span><code><span class="nf">GET</span> <span class="nn">/562f25980001b1b106000338.jpg</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">/562f25980001b1b106000338.jpg</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span><span class="l">img.mukewang.com</span>
 <span class="na">User-Agent</span><span class="o">:</span><span class="l">Mozilla/5.0 (Windows NT 10.0; WOW64)</span>
 <span class="err">AppleWebKit/537.36</span> <span class="l">(KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36</span>
@@ -3746,9 +3749,8 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 请求数据为空
 </code></pre></div>
 
-
 <p><strong>POST</strong>（Example，注意POST的请求内容不为空）</p>
-<div class="codehilite"><pre><span></span><code><span class="err">POST / HTTP1.1</span>
+<div class="highlight"><pre><span></span><code><span class="err">POST / HTTP1.1</span>
 <span class="err">Host:www.wrox.com</span>
 <span class="err">User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)</span>
 <span class="err">Content-Type:application/x-www-form-urlencoded</span>
@@ -3758,8 +3760,7 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 <span class="err">name=Professional%20Ajax&amp;publisher=Wiley</span>
 </code></pre></div>
 
-
-<p><code>process_read()</code>函数的作用就是将类似上述例子的请求报文进行解析，因为用户的请求内容包含在这个请求报文里面，只有通过解析，知道用户请求的内容是什么，是请求图片，还是视频，或是其他请求，我们根据这些请求返回相应的HTML页面等。项目中使用<strong>主从状态机</strong>的模式进行解析，每解析一部分都会将整个请求的<code>m_check_state</code>状态改变，状态机也就是根据这个状态来进行不同部分的解析跳转的：</p>
+<p><code>process_read()</code>函数的作用就是将类似上述例子的请求报文进行解析，因为用户的请求内容包含在这个请求报文里面，只有通过解析，知道用户请求的内容是什么，是请求图片，还是视频，或是其他请求，我们根据这些请求返回相应的HTML页面等。项目中使用**主从状态机**的模式进行解析，每解析一部分都会将整个请求的<code>m_check_state</code>状态改变，状态机也就是根据这个状态来进行不同部分的解析跳转的：</p>
 <ul>
 <li><code>parse_request_line(text)</code>，解析请求行，也就是GET中的<code>GET /562f25980001b1b106000338.jpg HTTP/1.1</code>这一行，或者POST中的<code>POST / HTTP1.1</code>这一行。通过请求行的解析我们可以判断该HTTP请求的类型（GET/POST），而请求行中最重要的部分就是<code>URL</code>部分，我们会将这部分保存下来用于后面的生成HTTP响应。</li>
 <li><code>parse_headers(text);</code>，解析请求头部，GET和POST中<code>空行</code>以上，请求行以下的部分。</li>
@@ -3768,7 +3769,7 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 <p>OK，经过上述解析，当得到一个完整的，正确的HTTP请求时，就到了<code>do_request</code>代码部分，我们需要首先对GET请求和不同POST请求（登录，注册，请求图片，视频等等）做不同的预处理，然后分析目标文件的属性，若目标文件存在、对所有用户可读且不是目录时，则使用<code>mmap</code>将其映射到内存地址<code>m_file_address</code>处，并告诉调用者获取文件成功。</p>
 <p>抛开<code>mmap</code>这部分，先来看看这些不同请求是怎么来的：
 假设你已经搭好了你的HTTP服务器，然后你在本地浏览器中键入<code>localhost:9000</code>，然后回车，这时候你就给你的服务器发送了一个GET请求，什么都没做，然后服务器端就会解析你的这个HTTP请求，然后发现是个GET请求，然后返回给你一个静态HTML页面，也就是项目中的<code>judge.html</code>页面，那POST请求怎么来的呢？这时你会发现，返回的这个<code>judge</code>页面中包含着一些<code>新用户</code>和<code>已有账号</code>这两个<code>button</code>元素，当你用鼠标点击这个<code>button</code>时，你的浏览器就会向你的服务器发送一个POST请求，服务器段通过检查<code>action</code>来判断你的POST请求类型是什么，进而做出不同的响应。</p>
-<div class="codehilite"><pre><span></span><code>/* judge.html */
+<div class="highlight"><pre><span></span><code>/* judge.html */
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -3794,9 +3795,8 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
 <h3 id="5">5. 数据库连接池是如何运行的<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
-<p>在处理用户注册，登录请求的时候，我们需要将这些用户的用户名和密码保存下来用于新用户的注册及老用户的登录校验，相信每个人都体验过，当你在一个网站上注册一个用户时，应该经常会遇到“您的用户名已被使用”，或者在登录的时候输错密码了网页会提示你“您输入的用户名或密码有误”等等类似情况，这种功能是服务器端通过用户键入的用户名密码和数据库中已记录下来的用户名密码数据进行校验实现的。若每次用户请求我们都需要新建一个数据库连接，请求结束后我们释放该数据库连接，当用户请求连接过多时，这种做法过于低效，所以类似<strong>线程池</strong>的做法，我们构建一个数据库连接池，预先生成一些数据库连接放在那里供用户请求使用。
+<p>在处理用户注册，登录请求的时候，我们需要将这些用户的用户名和密码保存下来用于新用户的注册及老用户的登录校验，相信每个人都体验过，当你在一个网站上注册一个用户时，应该经常会遇到“您的用户名已被使用”，或者在登录的时候输错密码了网页会提示你“您输入的用户名或密码有误”等等类似情况，这种功能是服务器端通过用户键入的用户名密码和数据库中已记录下来的用户名密码数据进行校验实现的。若每次用户请求我们都需要新建一个数据库连接，请求结束后我们释放该数据库连接，当用户请求连接过多时，这种做法过于低效，所以类似**线程池**的做法，我们构建一个数据库连接池，预先生成一些数据库连接放在那里供用户请求使用。
 我们首先看单个数据库连接是如何生成的：</p>
 <ol>
 <li>使用<code>mysql_init()</code>初始化连接</li>
@@ -3814,7 +3814,7 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 <p>CGI（通用网关接口），它是一个运行在Web服务器上的程序，在编译的时候将相应的<code>.cpp</code>文件编程成<code>.cgi</code>文件并在主程序中调用即可（通过<code>makefile</code>文件内容也可以看出）。这些CGI程序通常通过客户在其浏览器上点击一个<code>button</code>时运行。这些程序通常用来执行一些信息搜索、存储等任务，而且通常会生成一个动态的HTML网页来响应客户的HTTP请求。我们可以发现项目中的<code>sign.cpp</code>文件就是我们的CGI程序，将用户请求中的用户名和密码保存在一个<code>id_passwd.txt</code>文件中，通过将数据库中的用户名和密码存到一个<code>map</code>中用于校验。在主程序中通过<code>execl(m_real_file, &amp;flag, name, password, NULL);</code>这句命令来执行这个CGI文件，这里CGI程序仅用于校验，并未直接返回给用户响应。这个CGI程序的运行通过多进程来实现，根据其返回结果判断校验结果（使用<code>pipe</code>进行父子进程的通信，子进程将校验结果写到pipe的写端，父进程在读端读取）。</p>
 <h3 id="7-http">7. 生成HTTP响应并返回给用户<a class="headerlink" href="#7-http" title="Permanent link">&para;</a></h3>
 <p>通过以上操作，我们已经对读到的请求做好了处理，然后也对目标文件的属性作了分析，若目标文件存在、对所有用户可读且不是目录时，则使用<code>mmap</code>将其映射到内存地址<code>m_file_address</code>处，并告诉调用者获取文件成功<code>FILE_REQUEST</code>。 接下来要做的就是根据读取结果对用户做出响应了，也就是到了<code>process_write(read_ret);</code>这一步，该函数根据<code>process_read()</code>的返回结果来判断应该返回给用户什么响应，我们最常见的就是<code>404</code>错误了，说明客户请求的文件不存在，除此之外还有其他类型的请求出错的响应，具体的可以去百度。然后呢，假设用户请求的文件存在，而且已经被<code>mmap</code>到<code>m_file_address</code>这里了，那么我们就将做如下写操作，将响应写到这个<code>connfd</code>的写缓存<code>m_write_buf</code>中去：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">case</span> <span class="nl">FILE_REQUEST</span><span class="p">:</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">case</span> <span class="nl">FILE_REQUEST</span><span class="p">:</span> <span class="p">{</span>
     <span class="n">add_status_line</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">ok_200_title</span><span class="p">);</span>
     <span class="k">if</span><span class="p">(</span><span class="n">m_file_stat</span><span class="p">.</span><span class="n">st_size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">add_headers</span><span class="p">(</span><span class="n">m_file_stat</span><span class="p">.</span><span class="n">st_size</span><span class="p">);</span>
@@ -3835,18 +3835,16 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 <span class="p">}</span>
 </code></pre></div>
 
-
-<p>首先将<code>状态行</code>写入写缓存，<code>响应头</code>也是要写进<code>connfd</code>的写缓存（HTTP类自己定义的，与socket无关）中的，对于请求的文件，我们已经直接将其映射到<code>m_file_address</code>里面，然后将该<code>connfd</code>文件描述符上修改为<code>EPOLLOUT</code>（可写）事件，然后<code>epoll_Wait</code>监测到这一事件后，使用<code>writev</code>来将响应信息和请求文件<strong>聚集写</strong>到<strong>TCP Socket</strong>本身定义的发送缓冲区（这个缓冲区大小一般是默认的，但我们也可以通过<code>setsockopt</code>来修改）中，交由内核发送给用户。OVER！</p>
+<p>首先将<code>状态行</code>写入写缓存，<code>响应头</code>也是要写进<code>connfd</code>的写缓存（HTTP类自己定义的，与socket无关）中的，对于请求的文件，我们已经直接将其映射到<code>m_file_address</code>里面，然后将该<code>connfd</code>文件描述符上修改为<code>EPOLLOUT</code>（可写）事件，然后<code>epoll_Wait</code>监测到这一事件后，使用<code>writev</code>来将响应信息和请求文件**聚集写**到**TCP Socket**本身定义的发送缓冲区（这个缓冲区大小一般是默认的，但我们也可以通过<code>setsockopt</code>来修改）中，交由内核发送给用户。OVER！</p>
 <h3 id="8">8. 服务器优化：定时器处理非活动链接<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
 <p>项目中，我们预先分配了<code>MAX_FD</code>个http连接对象：</p>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="n">预先为每个可能的客户连接分配一个http_conn对象</span><span class="w"></span>
-<span class="n">http_conn</span><span class="o">*</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">http_conn</span><span class="o">[</span><span class="n">MAX_FD</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>// 预先为每个可能的客户连接分配一个http_conn对象
+http_conn* users = new http_conn[MAX_FD];
 </code></pre></div>
-
 
 <p>如果某一用户<code>connect()</code>到服务器之后，长时间不交换数据，一直占用服务器端的文件描述符，导致连接资源的浪费。这时候就应该利用定时器把这些超时的非活动连接释放掉，关闭其占用的文件描述符。这种情况也很常见，当你登录一个网站后长时间没有操作该网站的网页，再次访问的时候你会发现需要重新登录。
 项目中使用的是<code>SIGALRM信号</code>来实现定时器，利用<code>alarm</code>函数周期性的触发<code>SIGALRM</code>信号，信号处理函数利用管道通知主循环，主循环接收到该信号后对升序链表上所有定时器进行处理，若该段时间内没有交换数据，则将该连接关闭，释放所占用的资源。我们接下来看项目中的具体实现。</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/* 定时器相关参数 */</span>
+<div class="highlight"><pre><span></span><code><span class="cm">/* 定时器相关参数 */</span>
 <span class="k">static</span> <span class="kt">int</span> <span class="n">pipefd</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 <span class="k">static</span> <span class="n">sort_timer_lst</span> <span class="n">timer_lst</span>
 
@@ -3865,10 +3863,9 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 <span class="n">addsig</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="n">sig_handler</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
 </code></pre></div>
 
-
 <p><code>alarm</code>函数会定期触发<code>SIGALRM</code>信号，这个信号交由<code>sig_handler</code>来处理，每当监测到有这个信号的时候，都会将这个信号写到<code>pipefd[1]</code>里面，传递给主循环：</p>
 <p>主循环中：</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/* 处理信号 */</span>
+<div class="highlight"><pre><span></span><code><span class="cm">/* 处理信号 */</span>
 <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">sockfd</span> <span class="o">==</span> <span class="n">pipefd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">events</span> <span class="o">&amp;</span> <span class="n">EPOLLIN</span><span class="p">))</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">sig</span><span class="p">;</span>
     <span class="kt">char</span> <span class="n">signals</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
@@ -3895,9 +3892,8 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>当我们在读端<code>pipefd[0]</code>读到这个信号的的时候，就会将<code>timeout</code>变量置为<code>true</code>并跳出循环，让<code>timer_handler()</code>函数取出来定时器容器上的到期任务，该定时器容器是通过升序链表来实现的，从头到尾对检查任务是否超时，若超时则调用定时器的回调函数<code>cb_func()</code>，关闭该socket连接，并删除其对应的定时器<code>del_timer</code>。</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">timer_handler</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">timer_handler</span><span class="p">()</span> <span class="p">{</span>
     <span class="cm">/* 定时处理任务 */</span>
     <span class="n">timer_lst</span><span class="p">.</span><span class="n">tick</span><span class="p">();</span>
     <span class="cm">/* 重新定时以不断触发SIGALRM信号 */</span>
@@ -3905,10 +3901,9 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h3 id="9">9. 优化<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
-<ul>
-<li>[ ] 定时器的实现改成时间轮模式</li>
+<ul class="task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> 定时器的实现改成时间轮模式</li>
 </ul>
                 
               
@@ -3935,7 +3930,7 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 12 常见问题
               </div>
@@ -3947,7 +3942,7 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 源码阅读
               </div>
@@ -3977,7 +3972,7 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -3988,6 +3983,8 @@ HTTP请求报文由请求行（request line）、请求头部（header）、空�
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

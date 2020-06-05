@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/unix_linux/APUE/%E4%BF%A1%E5%8F%B7/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#_1" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -3409,7 +3415,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3419,7 +3425,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3504,7 +3510,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/unix_linux/APUE/信号.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/unix_linux/APUE/信号.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3563,50 +3569,36 @@
 </ol>
 <h4 id="signal">signal相关函数<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h4>
 <h5 id="1kill"><font color=Crimson><code>1.kill</code></font><a class="headerlink" href="#1kill" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<p><div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
     <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">kill</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
 </code></pre></div>
-
-
-<ul>
-<li>第一个参数：<ul>
-<li>pid &gt; 0: 发送信号给指定的进程</li>
-<li>pid = 0: 发送信号给与调用进程同一组的的所有进程，<strong>而且发送进程有权向他们发送信号</strong></li>
-<li>pid &lt; 0: 将信号发送对应进程组ID=|pid|，<strong>而且发送进程有权向他们发送信号</strong></li>
-<li>pid =-1: 发送给这样的进程：<strong>而且发送进程有权向他们发送信号</strong>  </li>
-</ul>
-</li>
-</ul>
++ 第一个参数：
+    + pid &gt; 0: 发送信号给指定的进程
+    + pid = 0: 发送信号给与调用进程同一组的的所有进程，<strong>而且发送进程有权向他们发送信号</strong>
+    + pid &lt; 0: 将信号发送对应进程组ID=|pid|，<strong>而且发送进程有权向他们发送信号</strong>
+    + pid =-1: 发送给这样的进程：<strong>而且发送进程有权向他们发送信号</strong>  </p>
 <h5 id="2raiseabort"><font color=Crimson><code>2.raise/abort</code></font><a class="headerlink" href="#2raiseabort" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="c1">// raise</span>
+<p><div class="highlight"><pre><span></span><code>    <span class="c1">// raise</span>
     <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
     <span class="kt">int</span> <span class="nf">raise</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">);</span>
     <span class="c1">// abort</span>
     <span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
     <span class="kt">void</span> <span class="nf">abort</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 </code></pre></div>
-
-
-<ul>
-<li>raise : 自己给自己发信号</li>
-<li>abort : 自己给自己发终止信号</li>
-</ul>
++ raise : 自己给自己发信号
++ abort : 自己给自己发终止信号</p>
 <h5 id="3alarm"><font color=Crimson><code>3.alarm</code></font><a class="headerlink" href="#3alarm" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<p><div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
     <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">alarm</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">seconds</span><span class="p">);</span>
 </code></pre></div>
-
-
-<ul>
-<li>设置定时器，在指定seconds之后，<font face='黑体' color=red>不管进程处于什么状态，时间一到就发送信号</font>。内核给当前进程发送是<code>14)SIGALRM</code>信号，进程收到该信号，默认动作是终止进程。</li>
-<li><code>seconds == 0</code>时，即取消定时器</li>
-<li>第一次设置定时器返回值0。后面再设置定时器时，会覆盖前面的定时器，重新计数，此时返回值是前面定时器剩余的秒数。</li>
-<li><font face="黑体" color=red>每个进程有且只有一个定时器。</font></li>
-</ul>
++ 设置定时器，在指定seconds之后，<font face='黑体' color=red>不管进程处于什么状态，时间一到就发送信号</font>。内核给当前进程发送是<code>14)SIGALRM</code>信号，进程收到该信号，默认动作是终止进程。
++ <code>seconds == 0</code>时，即取消定时器
++ 第一次设置定时器返回值0。后面再设置定时器时，会覆盖前面的定时器，重新计数，此时返回值是前面定时器剩余的秒数。
++ <font face="黑体" color=red>每个进程有且只有一个定时器。</font></p>
 <h5 id="4setitimer"><font color=Crimson><code>4.setitimer</code></font><a class="headerlink" href="#4setitimer" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;sys/time.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">getitimer</span><span class="p">(</span><span class="kt">int</span> <span class="n">which</span><span class="p">,</span> <span class="k">struct</span> <span class="n">itimerval</span> <span class="o">*</span><span class="n">curr_value</span><span class="p">);</span>
     <span class="kt">int</span> <span class="nf">setitimer</span><span class="p">(</span><span class="kt">int</span> <span class="n">which</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">itimerval</span> <span class="o">*</span><span class="n">new_value</span><span class="p">,</span>
@@ -3623,7 +3615,6 @@
         <span class="p">};</span>
 </code></pre></div>
 
-
 <p><code>setitimer</code> 相比较 <code>alarm</code> 提供了更加精确的定时信号控制，前者是微妙级，后者是秒级。
 + which
     + <code>ITIMER_REAL</code>&emsp;&ensp;: 等同于 <code>alarm</code>，自然定时，即和进行状态无关，时间到就发送<code>SIGALRM</code>
@@ -3633,66 +3624,55 @@
     + 前者是需要设置的时间，后者是返回的时间。
     + <code>setitimer</code> 是一个周期定时，<code>new_value</code>设置的本次和下次定时时间。当下次定时时间为0，就仅仅定时一次。</p>
 <h5 id="5-singal"><code>5. singal</code><a class="headerlink" href="#5-singal" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<p><div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="kt">sighandler_t</span><span class="p">)(</span><span class="kt">int</span><span class="p">);</span>
 
     <span class="kt">sighandler_t</span> <span class="nf">signal</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="kt">sighandler_t</span> <span class="n">handler</span><span class="p">);</span>
 </code></pre></div>
-
-
-<p>通过<code>signal</code>函数可以自定义信号处理函数来应对信号。信号是由内核检测到，而函数<code>signal</code>是将信号和信号处理函数联系起来。
+通过<code>signal</code>函数可以自定义信号处理函数来应对信号。信号是由内核检测到，而函数<code>signal</code>是将信号和信号处理函数联系起来。
 + 第一个参数: <code>signal</code>是接受到的信号，传递给信号处理函数。
 + 第二个参数: 是信号处理函数，其格式:<code>typedef void (*sighandler_t)(int);</code>即返回类型是<code>void</code>，参数是<code>int</code>类型的函数，同时这个函数的接受值就是产生的信号。</p>
 <h5 id="6"><code>6. 信号集</code><a class="headerlink" href="#6" title="Permanent link">&para;</a></h5>
 <p>内核通过读取未决信号集来判断信号是否应该被处理。信号屏蔽字mask可以影响未决信号集，而信号屏蔽字需要通过数据类型<code>sigset_t</code>创建的对象<code>set</code>来设置<code>mask</code>，来达到屏蔽信号的目的，即影响未决信号集来决定信号是否将被处理。他们之间的关系如图:<br />
 <img alt="信号集" src="../Image/%E4%BF%A1%E5%8F%B7%E9%98%BB%E5%A1%9E.jpg" />
 + <a name="mask">mask操作函数</a>
-    ```c
-        #include <signal.h></p>
-<div class="codehilite"><pre><span></span><code>    <span class="kt">int</span> <span class="nf">sigemptyset</span><span class="p">(</span><span class="n">sigset_t</span> <span class="o">*</span><span class="kt">set</span><span class="p">);</span>     <span class="o">//</span> <span class="err">将信号集合清空</span>
-    <span class="kt">int</span> <span class="nf">sigfillset</span><span class="p">(</span><span class="n">sigset_t</span> <span class="o">*</span><span class="kt">set</span><span class="p">);</span>      <span class="o">//</span> <span class="err">将信号集全部置</span><span class="mi">1</span>
-    <span class="kt">int</span> <span class="nf">sigaddset</span><span class="p">(</span><span class="n">sigset_t</span> <span class="o">*</span><span class="kt">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="o">//</span> <span class="err">将某个信号加入信号集</span>
-    <span class="kt">int</span> <span class="nf">sigdelset</span><span class="p">(</span><span class="n">sigset_t</span> <span class="o">*</span><span class="kt">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="o">//</span> <span class="err">将某个信号清出信号集</span>
-    <span class="kt">int</span> <span class="nf">sigismember</span><span class="p">(</span><span class="n">const</span> <span class="n">sigset_t</span> <span class="o">*</span><span class="kt">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="o">//</span> <span class="err">判断某个信号是否在信号集</span>
+    <div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
-    <span class="c1">#define _SIGSET_NWORDS (1024 / (8 * sizeof (unsigned long int))) // 32</span>
-    <span class="n">typedef</span> <span class="n">struct</span> <span class="err">{</span>
-        <span class="k">unsigned</span> <span class="k">long</span> <span class="kt">int</span> <span class="n">__val</span><span class="p">[</span><span class="n">_SIGSET_NWORDS</span><span class="p">];</span>
-    <span class="err">}</span> <span class="n">__sigset_t</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">sigemptyset</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">);</span>     <span class="c1">// 将信号集合清空</span>
+    <span class="kt">int</span> <span class="nf">sigfillset</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">);</span>      <span class="c1">// 将信号集全部置1</span>
+    <span class="kt">int</span> <span class="nf">sigaddset</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="c1">// 将某个信号加入信号集</span>
+    <span class="kt">int</span> <span class="nf">sigdelset</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="c1">// 将某个信号清出信号集</span>
+    <span class="kt">int</span> <span class="nf">sigismember</span><span class="p">(</span><span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signum</span><span class="p">);</span>   <span class="c1">// 判断某个信号是否在信号集</span>
 
-    <span class="n">typedef</span> <span class="n">__sigset_t</span> <span class="n">sigset_t</span><span class="p">;</span> 
-<span class="ss">```</span>
-<span class="ss">`</span><span class="n">sigset_t</span><span class="o">`</span><span class="err">是一个位图，通过上述函数来操作这个位图。上面的函数成功返回</span><span class="mi">0</span><span class="err">，失败返回</span><span class="o">-</span><span class="mi">1</span><span class="err">。</span>
+    <span class="cp">#define _SIGSET_NWORDS (1024 / (8 * sizeof (unsigned long int))) </span><span class="c1">// 32</span>
+    <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">__val</span><span class="p">[</span><span class="n">_SIGSET_NWORDS</span><span class="p">];</span>
+    <span class="p">}</span> <span class="n">__sigset_t</span><span class="p">;</span>
+
+    <span class="k">typedef</span> <span class="n">__sigset_t</span> <span class="kt">sigset_t</span><span class="p">;</span> 
 </code></pre></div>
-
-
-<ul>
-<li><code>sigprocmask</code> 
+    <code>sigset_t</code>是一个位图，通过上述函数来操作这个位图。上面的函数成功返回0，失败返回-1。
++ <code>sigprocmask</code> 
     用来获取或者改变调用进程的信号mask。也可屏蔽信号、解决屏蔽。
-    ```c
-        #include <signal.h><div class="codehilite"><pre><span></span><code><span class="err">int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);</span>
+    <div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+
+    <span class="kt">int</span> <span class="nf">sigprocmask</span><span class="p">(</span><span class="kt">int</span> <span class="n">how</span><span class="p">,</span> <span class="k">const</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">,</span> <span class="kt">sigset_t</span> <span class="o">*</span><span class="n">oldset</span><span class="p">);</span>
 </code></pre></div>
+    + 第一个参数：决定了函数调用的行为<br />
+        + <code>SIG_BLOCK</code> &emsp;: &ensp;进程的屏蔽信号集是这个<code>set</code>和原来的屏蔽信号笔的并(union)。
+        + <code>SIG_UNBLOCK</code>： 将<code>set</code>中的信号从当前信号集合中移除出去。
+        + <code>SIG_SETMASK</code>： 直接将<code>set</code>覆盖当前信号集
+    + 第二个参数：<code>set</code>即上面的<code>sigset_t</code>格式，是本次函数给阻塞信号的设定值。
+    + 第三个参数：返回的当前的信号屏蔽集合。
++ <code>sigpending</code>
+    <div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
-
-<p><code>+ 第一个参数：决定了函数调用的行为  
-    + `SIG_BLOCK` &amp;emsp;: &amp;ensp;进程的屏蔽信号集是这个`set`和原来的屏蔽信号笔的并(union)。
-    + `SIG_UNBLOCK`： 将`set`中的信号从当前信号集合中移除出去。
-    + `SIG_SETMASK`： 直接将`set`覆盖当前信号集
-+ 第二个参数：`set`即上面的`sigset_t`格式，是本次函数给阻塞信号的设定值。
-+ 第三个参数：返回的当前的信号屏蔽集合。
-+ `sigpending`</code>c
-    #include <signal.h></p>
-<div class="codehilite"><pre><span></span><code><span class="err">int sigpending(sigset_t *set);</span>
+    <span class="kt">int</span> <span class="nf">sigpending</span><span class="p">(</span><span class="kt">sigset_t</span> <span class="o">*</span><span class="n">set</span><span class="p">);</span>
 </code></pre></div>
-
-
-<p><code>``
-将调用进程的未决信号集存储在</code>set`中传出。</p>
-</li>
-</ul>
+    将调用进程的未决信号集存储在<code>set</code>中传出。</p>
 <h5 id="7-sigaction"><code>7. sigaction</code><a class="headerlink" href="#7-sigaction" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<p><div class="highlight"><pre><span></span><code>    <span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
 
     <span class="kt">int</span> <span class="nf">sigaction</span><span class="p">(</span><span class="kt">int</span> <span class="n">signum</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">act</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sigaction</span> <span class="o">*</span><span class="n">oldact</span><span class="p">);</span>
 
@@ -3704,20 +3684,14 @@
             <span class="kt">void</span>     <span class="p">(</span><span class="o">*</span><span class="n">sa_restorer</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
         <span class="p">};</span>
 </code></pre></div>
-
-
-<ul>
-<li><code>struct sigaction</code> <ul>
-<li><code>sa_handler</code>: 用来指定捕捉到信号时候的行为。<code>SIG_DFL</code>、<code>SIG_IGN</code>、信号处理函数。</li>
-<li><code>sa_sigaction</code>: 
-    当 <code>sa_flags = SA_SIGINFO</code>时，<code>sa_sigaction</code>指定信号处理函数(之前是<code>sa_handler</code>指定)。</li>
-<li><code>sa_mask</code>：指定的是在<font face='黑体' color=red><strong>处理信号的过程中</strong></font>需要屏蔽的信号，即不捕捉该该信号，那么就会执行默认动作。而且触发该处理函数的信号再来时候会丢弃，即<font face='黑体' color=red> <strong>多次信号只执行一次</strong> </font>，除非<code>sa_flags = SA_NODEFER</code>。</li>
-<li><code>sa_flags</code>：指定的是用于修改信号行为的标志位，默认是0，即在信号处理函数执行期间自动屏蔽本信号。这个函数的操作还是要依赖 <a href="mask">mask的操作函数。</a></li>
-<li><code>sa_restorer</code>：不要使用。</li>
-</ul>
-</li>
-<li>返回值：成功是0，失败是-1.</li>
-</ul>
++ <code>struct sigaction</code> 
+    + <code>sa_handler</code>: 用来指定捕捉到信号时候的行为。<code>SIG_DFL</code>、<code>SIG_IGN</code>、信号处理函数。
+    + <code>sa_sigaction</code>: 
+        当 <code>sa_flags = SA_SIGINFO</code>时，<code>sa_sigaction</code>指定信号处理函数(之前是<code>sa_handler</code>指定)。
+    + <code>sa_mask</code>：指定的是在<font face='黑体' color=red><strong>处理信号的过程中</strong></font>需要屏蔽的信号，即不捕捉该该信号，那么就会执行默认动作。而且触发该处理函数的信号再来时候会丢弃，即<font face='黑体' color=red> <strong>多次信号只执行一次</strong> </font>，除非<code>sa_flags = SA_NODEFER</code>。
+    + <code>sa_flags</code>：指定的是用于修改信号行为的标志位，默认是0，即在信号处理函数执行期间自动屏蔽本信号。这个函数的操作还是要依赖 <a href="mask">mask的操作函数。</a>
+    + <code>sa_restorer</code>：不要使用。
++ 返回值：成功是0，失败是-1.</p>
                 
               
               
@@ -3750,7 +3724,7 @@
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -3761,6 +3735,8 @@
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

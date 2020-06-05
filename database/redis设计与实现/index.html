@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/database/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#2" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -3420,7 +3426,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3436,7 +3442,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/database/redis设计与实现.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/database/redis设计与实现.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3448,17 +3454,16 @@
 <p>SDS: simple dynamic string，用作 redis 默认字符串表示，还被用作buffer，AOF 缓冲区和客户端状态中的输入缓冲区。
 sds能减少缓冲区溢出漏洞。</p>
 <p>SDS是二进制安全的，不仅可以保存文本，还可以是任意二进制数据</p>
-<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="n">sdshdr</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">sdshdr</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">len</span><span class="p">;</span> <span class="c1">//保存字符串的长度，获取长度变成了 O(1)</span>
   <span class="kt">int</span> <span class="n">free</span><span class="p">;</span> <span class="c1">//未使用的字节数量，实现了空间预分配和惰性空间释放两种优化策略</span>
   <span class="kt">char</span> <span class="n">buf</span><span class="p">[];</span> <span class="c1">//保存字符串</span>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h1 id="3">3. 链表<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>redis 实现的实际上是 无环的双端链表</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// adlist.h/listNode</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// adlist.h/listNode</span>
 <span class="k">typedef</span> <span class="k">struct</span> <span class="n">listNode</span> <span class="p">{</span>
   <span class="k">struct</span> <span class="n">listNode</span> <span class="o">*</span><span class="n">prev</span><span class="p">;</span>
   <span class="k">struct</span> <span class="n">listNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
@@ -3476,11 +3481,10 @@ sds能减少缓冲区溢出漏洞。</p>
 <span class="p">}</span><span class="n">list</span><span class="p">;</span>
 </code></pre></div>
 
-
 <h1 id="4">4. 字典<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
 <p>保存键值对，通过哈希表作为底层实现</p>
 <p>哈希表定义：</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">/* dict.h/dictht */</span>
+<div class="highlight"><pre><span></span><code><span class="cm">/* dict.h/dictht */</span>
 <span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictht</span> <span class="p">{</span>
   <span class="n">dictEntry</span> <span class="o">**</span><span class="n">table</span><span class="p">;</span> <span class="c1">//哈希表数组，表其实是个数组</span>
   <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">size</span><span class="p">;</span>
@@ -3489,9 +3493,8 @@ sds能减少缓冲区溢出漏洞。</p>
 <span class="p">}</span><span class="n">dictht</span><span class="p">;</span>
 </code></pre></div>
 
-
 <p>哈希表节点 dictEntry，保存一个键值对</p>
-<div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictEntry</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictEntry</span> <span class="p">{</span>
   <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">;</span>
   <span class="k">union</span> <span class="p">{</span>
     <span class="kt">void</span> <span class="o">*</span><span class="n">val</span><span class="p">;</span>
@@ -3502,9 +3505,8 @@ sds能减少缓冲区溢出漏洞。</p>
 <span class="p">}</span><span class="n">dictEntry</span><span class="p">;</span>
 </code></pre></div>
 
-
 <p>字典的定义：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dict</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dict</span> <span class="p">{</span>
   <span class="n">dictType</span> <span class="o">*</span><span class="n">type</span><span class="p">;</span> <span class="c1">// dictType 保存了用于操作特定类型键值对的函数,redis为不用的字典设置不同的类型特定函数</span>
   <span class="kt">void</span> <span class="o">*</span><span class="n">privdata</span><span class="p">;</span> <span class="c1">//保存需要传给特定类型特定函数的可选参数</span>
   <span class="n">dictht</span> <span class="n">ht</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">//ht属性是一个包含两个项的数组，数组中的每个项都是一个dictht哈希表，一般情况下，字典只使用ht[0]哈希表，ht[1]哈希表只会在对ht[0]哈希表进行rehash时使用。</span>
@@ -3512,8 +3514,7 @@ sds能减少缓冲区溢出漏洞。</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
-<div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictType</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictType</span> <span class="p">{</span>
   <span class="c1">// 计算哈希值的函数</span>
   <span class="kt">unsigned</span> <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">hashFunction</span><span class="p">)(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span>
   <span class="c1">// 复制键的函数</span>
@@ -3529,7 +3530,6 @@ sds能减少缓冲区溢出漏洞。</p>
 <span class="p">}</span> <span class="n">dictType</span><span class="p">;</span>
 </code></pre></div>
 
-
 <p>当字典被用作数据库的底层实现，或者哈希键的底层实现时，Redis使用MurmurHash2算法来计算键的哈希值。
 MurmurHash算法最初由Austin Appleby于2008年发明，这种算法的优点在于，即使输入的键是有规律的，算法仍能给出一个很好的随机分布性，并且算法的计算速度也非常快。</p>
 <p>Redis的哈希表使用链地址法（separate chaining）来解决键冲突，每个哈希表节点都有一个next指针，多个哈希表节点可以用next指针构成一个单向链表，被分配到同一个索引上的多个节点可以用这个单向链表连接起来，这就解决了键冲突的问题。</p>
@@ -3541,7 +3541,7 @@ load_factor = ht[0].used / ht[0].size</p>
 <p>skiplist: 一种有序数据结构，它通过在每个节点中维持多个指向其他节点的指针，从而达到快速访问节点的目的。
 Redis使用跳跃表作为有序集合键的底层实现之一，如果一个有序集合包含的元素数量比较多，又或者有序集合中元素的成员（member）是比较长的字符串时，Redis就会使用跳跃表来作为有序集合键的底层实现。
 Redis只在两个地方用到了跳跃表，一个是实现有序集合键，另一个是在集群节点中用作内部数据结构，除此之外，跳跃表在Redis里面没有其他用途。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// redis.h/zskiplistNode</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// redis.h/zskiplistNode</span>
 <span class="k">typedef</span> <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="p">{</span>
   <span class="c1">// 层</span>
   <span class="k">struct</span> <span class="n">zskiplistLevel</span> <span class="p">{</span>
@@ -3568,10 +3568,9 @@ Redis只在两个地方用到了跳跃表，一个是实现有序集合键，另
 <span class="p">}</span> <span class="n">zskiplist</span><span class="p">;</span>
 </code></pre></div>
 
-
 <h1 id="6">6.整数集合<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <p>整数集合（intset）是集合键的底层实现之一，当一个集合只包含整数值元素，并且这个集合的元素数量不多时，Redis就会使用整数集合作为集合键的底层实现。</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// intset.h/intset</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// intset.h/intset</span>
 <span class="k">typedef</span> <span class="k">struct</span> <span class="n">intset</span> <span class="p">{</span>
   <span class="c1">// 编码方式</span>
   <span class="kt">uint32_t</span> <span class="n">encoding</span><span class="p">;</span>
@@ -3581,7 +3580,6 @@ Redis只在两个地方用到了跳跃表，一个是实现有序集合键，另
   <span class="kt">int8_t</span> <span class="n">contents</span><span class="p">[];</span>  <span class="c1">//元素有序</span>
 <span class="p">}</span><span class="n">intset</span><span class="p">;</span>
 </code></pre></div>
-
 
 <p>升级操作：
 每当我们要将一个新元素添加到整数集合里面，并且新元素的类型比整数集合现有所有元素的类型都要长时，整数集合需要先进行升级（upgrade），然后才能将新元素添加到整数集合里面。</p>
@@ -3593,7 +3591,7 @@ insert 操作是 O(N)，find 操作是 O(logN)</p>
 <h1 id="7">7. 压缩列表<a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
 <p>压缩列表（ziplist）是列表键和哈希键的底层实现之一。当一个列表键只包含少量列表项，并且每个列表项要么就是小整数值，要么就是长度比较短的字符串，那么Redis就会使用压缩列表来做列表键的底层实现。
 另外，当一个哈希键只包含少量键值对，比且每个键值对的键和值要么就是小整数值，要么就是长度比较短的字符串，那么Redis就会使用压缩列表来做哈希键的底层实现。</p>
-<div class="codehilite"><pre><span></span><code>redis&gt; RPUSH lst <span class="m">1</span> <span class="m">3</span> <span class="m">5</span> <span class="m">10086</span> <span class="s2">&quot;hello&quot;</span> <span class="s2">&quot;world&quot;</span>
+<div class="highlight"><pre><span></span><code>redis&gt; RPUSH lst <span class="m">1</span> <span class="m">3</span> <span class="m">5</span> <span class="m">10086</span> <span class="s2">&quot;hello&quot;</span> <span class="s2">&quot;world&quot;</span>
 <span class="o">(</span>integer<span class="o">)</span><span class="m">6</span>
 redis&gt; OBJECT ENCODING lst
 <span class="s2">&quot;ziplist&quot;</span>
@@ -3602,7 +3600,6 @@ OK
 redis&gt; OBJECT ENCODING profile
 <span class="s2">&quot;ziplist&quot;</span>
 </code></pre></div>
-
 
 <p>压缩列表是Redis为了节约内存而开发的，是由一系列特殊编码的连续内存块组成的顺序型（sequential）数据结构。一个压缩列表可以包含任意多个节点（entry），每个节点可以保存一个字节数组或者一个整数值。</p>
 <p>|zlbytes|zltail|zllen|entry1|entry2|&hellip;|entryN|zlend|</p>
@@ -3648,7 +3645,7 @@ redis&gt; OBJECT ENCODING profile
 </table>
 <h1 id="8">8. 对象<a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
 <h3 id="redis">Redis 对象<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
   <span class="c1">// 类型, REDIS_STRING, REDIS_LIST, REDIS_HASH, REDIS_SET, REDIS_ZSET</span>
   <span class="kt">unsigned</span> <span class="nl">type</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span>
   <span class="c1">// 编码，记录这个对象底层使用了什么数据结构来实现</span>
@@ -3658,7 +3655,6 @@ redis&gt; OBJECT ENCODING profile
   <span class="c1">//...</span>
 <span class="p">}</span> <span class="n">robj</span><span class="p">;</span>
 </code></pre></div>
-
 
 <h3 id="_1">字符串对象<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>字符串对象的编码可以是 int , raw 或者 embstr。
@@ -3730,7 +3726,7 @@ hashtable编码的集合对象使用字典作为底层实现，字典的每个�
 尽管共享更复杂的对象可以节约更多的内存，但受到CPU时间的限制，Redis只对包含整数值的字符串对象进行共享。</p>
 <h3 id="_9">对象的空转时长<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>除了前面介绍过的type、encoding、ptr和refcount四个属性之外，redisObject结构包含的最后一个属性为lru属性，该属性记录了对象最后一次被命令程序访问的时间：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
   <span class="c1">// 类型, REDIS_STRING, REDIS_LIST, REDIS_HASH, REDIS_SET, REDIS_ZSET</span>
   <span class="kt">unsigned</span> <span class="nl">type</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span>
   <span class="c1">// 编码，记录这个对象底层使用了什么数据结构来实现</span>
@@ -3744,12 +3740,11 @@ hashtable编码的集合对象使用字典作为底层实现，字典的每个�
 <span class="p">}</span> <span class="n">robj</span><span class="p">;</span>
 </code></pre></div>
 
-
 <p>除了可以被OBJECT IDLETIME命令打印出来之外，键的空转时长还有另外一项作用：如果服务器打开了maxmemory选项，
 并且服务器用于回收内存的算法为volatile-lru或者allkeys-lru，那么当服务器占用的内存数超过了maxmemory选项所设置的上限值时，
 空转时长较高的那部分键会优先被服务器释放，从而回收内存。</p>
 <h1 id="9">9. 数据库<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code><span class="c1">// redis.h/redisDB</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// redis.h/redisDB</span>
 <span class="k">struct</span> <span class="n">redisServer</span> <span class="p">{</span>
   <span class="n">redisDb</span> <span class="o">*</span><span class="n">db</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">dbnum</span><span class="p">;</span>    <span class="c1">// 默认是 16</span>
@@ -3762,25 +3757,22 @@ hashtable编码的集合对象使用字典作为底层实现，字典的每个�
 <span class="p">}</span><span class="n">redisClient</span><span class="p">;</span>
 </code></pre></div>
 
-
 <p>数据库键空间：</p>
-<div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisDb</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisDb</span> <span class="p">{</span>
   <span class="c1">//数据库键空间，保存数据库中所有的键值对</span>
  <span class="n">dict</span> <span class="o">*</span><span class="n">dict</span><span class="p">;</span>
 <span class="p">}</span><span class="n">redisDb</span><span class="p">;</span>
 </code></pre></div>
 
-
 <p>键的过期时间：
 PEXPIREAT 和 PERSIST  可以设置和移除键过期时间</p>
-<div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisDb</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisDb</span> <span class="p">{</span>
   <span class="c1">//数据库键空间，保存数据库中所有的键值对</span>
  <span class="n">dict</span> <span class="o">*</span><span class="n">dict</span><span class="p">;</span>
  <span class="c1">// 过期字典保存键的过期时间, { *key, long long(毫秒精度的unix时间错) }</span>
  <span class="n">dict</span> <span class="o">*</span><span class="n">expires</span><span class="p">;</span>
 <span class="p">}</span><span class="n">redisDb</span><span class="p">;</span>
 </code></pre></div>
-
 
 <p>如果一个键过期了，它什么时候会被删除呢？
 - 定时删除: 设置过期实践的同时创建一个定时器。
@@ -3858,7 +3850,7 @@ AOF 重写缓冲区，这个缓冲区在服务器创建子进程之后开始使�
 ·时间事件的实际处理时间通常会比设定的到达时间晚一些。</p>
 <h1 id="13">13 客户端<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
 <p>一对多客户端程序，redis 服务器状态结构的clients 属性是一个链表</p>
-<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="n">redisServer</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">redisServer</span> <span class="p">{</span>
   <span class="c1">//...</span>
   <span class="c1">// 一个链表保存了客户端所有状态</span>
   <span class="n">list</span> <span class="o">*</span><span class="n">clients</span><span class="p">;</span>
@@ -3891,7 +3883,6 @@ AOF 重写缓冲区，这个缓冲区在服务器创建子进程之后开始使�
 
 <span class="p">}</span><span class="n">redisClient</span><span class="p">;</span>
 </code></pre></div>
-
 
 <p>服务器使用两种模式来限制客户端输出缓冲区的大小：</p>
 <ul>
@@ -4042,7 +4033,7 @@ BITCOUNT 要解决的问题-统一一个位数组中非0二进制位的数量，
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 Redis深度历险核心原理和应用实践
               </div>
@@ -4054,7 +4045,7 @@ BITCOUNT 要解决的问题-统一一个位数组中非0二进制位的数量，
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 七周七数据库
               </div>
@@ -4084,7 +4075,7 @@ BITCOUNT 要解决的问题-统一一个位数组中非0二进制位的数量，
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -4095,6 +4086,8 @@ BITCOUNT 要解决的问题-统一一个位数组中非0二进制位的数量，
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

@@ -2,13 +2,19 @@
 
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ZWiley的随记">
       
+      
+        <link rel="canonical" href="https://zwiley.github.io/mybook/golang/concurrency-in-go/concurrency_in_go/">
+      
+      
+        <meta name="author" content="ZWiley">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
@@ -49,7 +55,7 @@
       
         
         <a href="#1-an-introduction-to-concurrency" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -59,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-header-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -91,7 +97,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -116,7 +122,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -146,7 +152,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
+    <a href="https://zwiley.github.io/mybook/" title="ZWiley的随记" class="md-nav__button md-logo" aria-label="ZWiley的随记">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -157,7 +163,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/zwiley/mybook/" title="Go to repository" class="md-source">
+<a href="https://github.com/zwiley/mybook/" title="前往 GitHub 仓库" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -1585,7 +1591,7 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -1595,7 +1601,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3467,7 +3473,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -3477,7 +3483,7 @@
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -3514,7 +3520,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/concurrency-in-go/concurrency_in_go.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/zwiley/mybook/edit/master/docs/golang/concurrency-in-go/concurrency_in_go.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -3541,11 +3547,10 @@
 <li>how is the problem space mapped onto concurrency primitives?</li>
 <li>who is responsible for the synchronization?</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">CalculatePi</span><span class="p">(</span><span class="nx">begin</span><span class="p">,</span><span class="nx">end</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">pi</span> <span class="o">*</span><span class="nx">Pi</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nx">CalculatePi</span><span class="p">(</span><span class="nx">begin</span><span class="p">,</span><span class="nx">end</span> <span class="kt">int64</span><span class="p">,</span> <span class="nx">pi</span> <span class="o">*</span><span class="nx">Pi</span><span class="p">)</span>
 <span class="kd">func</span> <span class="nx">CalculatePi</span><span class="p">(</span><span class="nx">begin</span><span class="p">,</span><span class="nx">end</span> <span class="kt">int64</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int64</span>
 <span class="kd">func</span> <span class="nx">CalculatePi</span><span class="p">(</span><span class="nx">begin</span><span class="p">,</span><span class="nx">end</span> <span class="kt">int64</span><span class="p">)</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">uint</span>
 </code></pre></div>
-
 
 <h3 id="simplicity-in-the-face-of-complexity">Simplicity in the Face of Complexity<a class="headerlink" href="#simplicity-in-the-face-of-complexity" title="Permanent link">&para;</a></h3>
 <h1 id="2-modeling-your-code-communicating-sequential-processes">2 Modeling Your Code: Communicating Sequential Processes<a class="headerlink" href="#2-modeling-your-code-communicating-sequential-processes" title="Permanent link">&para;</a></h1>
@@ -3561,7 +3566,7 @@ Use whichever is most expressive and/or most simple.</p>
 <p>Coroutines are simply concurrent subroutines(functions, clousures or methods in Go) that are nonpreemptive.(非抢占式)</p>
 <p>Go follows a model of concurrency called the fork-join model.</p>
 <p><img alt="" src="../join_point.png" /></p>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
 
 <span class="nx">sayHello</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
@@ -3572,13 +3577,12 @@ Use whichever is most expressive and/or most simple.</p>
 <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span> <span class="err">#</span> <span class="nx">this</span> <span class="nx">is</span> <span class="nx">the</span> <span class="nx">join</span> <span class="nx">point</span><span class="err">，</span><span class="nx">等</span> <span class="nx">child</span> <span class="nx">执行完毕</span>
 </code></pre></div>
 
-
 <h3 id="the-sync-package">The sync Package<a class="headerlink" href="#the-sync-package" title="Permanent link">&para;</a></h3>
 <p>The sync package contains the concurrency primitives that are most useful for low-level memory access synchronization.</p>
 <h4 id="waitgroup">WaitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h4>
 <p>Wait for a set of concurrent operations to complete when you either don&rsquo;t care about the result of the concurrent
 operations , or you have other means of collecting their results.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -3608,9 +3612,8 @@ operations , or you have other means of collecting their results.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <h4 id="mutex-and-rwmutex">Mutex and RWMutex<a class="headerlink" href="#mutex-and-rwmutex" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Mutex demo</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Mutex demo</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -3658,131 +3661,121 @@ operations , or you have other means of collecting their results.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>RWMutex: 适合读多写少场景。可以获取多个读锁，除非锁用来持有写入。</p>
 <h4 id="cond">Cond<a class="headerlink" href="#cond" title="Permanent link">&para;</a></h4>
 <p>A rendezvous point for goroutine waiting for or announcing the occurrence of an event.</p>
-<div class="codehilite"><pre><span></span><code><span class="err">for conditoinTrue() == false{</span>
-<span class="err">    time.Sleep(1*time.Millisecond) //sleep多久是个问题，太久效率低下，太快消耗 cpu</span>
-<span class="err">}</span>
+<p><div class="highlight"><pre><span></span><code>for conditoinTrue() == false{
+    time.Sleep(1*time.Millisecond) //sleep多久是个问题，太久效率低下，太快消耗 cpu
+}
 </code></pre></div>
-
-
-<p>use Cond, we cloud write like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">c := sync.NewCond(&amp;sync.Mutex{})</span>
-<span class="err">c.L.Lock()</span>
-<span class="err">for conditoinTrue() == false {</span>
-<span class="err">    c.Wait() // blocking call, will suspend</span>
-<span class="err">}</span>
-<span class="err">c.L.UnLock()</span>
+use Cond, we cloud write like this:</p>
+<p><div class="highlight"><pre><span></span><code>c := sync.NewCond(&amp;sync.Mutex{})
+c.L.Lock()
+for conditoinTrue() == false {
+    c.Wait() // blocking call, will suspend
+}
+c.L.UnLock()
 </code></pre></div>
-
-
-<p>考虑有一个固定长度为2的队列，10个 items 想要 push 进去。
+考虑有一个固定长度为2的队列，10个 items 想要 push 进去。
 只要有空间我们就希望入队，被尽早通知。</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;sync&quot;</span>
-    <span class="s2">&quot;time&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">c</span> <span class="p">:</span><span class="o">=</span> <span class="n">sync</span><span class="o">.</span><span class="n">NewCond</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sync</span><span class="o">.</span><span class="n">Mutex</span><span class="p">{})</span>
-    <span class="n">queue</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">([]</span><span class="n">interface</span><span class="p">{},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+func main() {
+    c := sync.NewCond(&amp;sync.Mutex{})
+    queue := make([]interface{}, 0, 10)
 
-    <span class="n">removeFromQueue</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">delay</span> <span class="n">time</span><span class="o">.</span><span class="n">Duration</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">L</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span> <span class="o">//</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">critical</span> <span class="n">section</span>
-        <span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">//</span><span class="n">simulate</span> <span class="n">dequeuing</span> <span class="n">an</span> <span class="n">item</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;removed from queue&quot;</span><span class="p">)</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">L</span><span class="o">.</span><span class="n">Unlock</span><span class="p">()</span> <span class="o">//</span> <span class="nb">exit</span> <span class="n">critical</span> <span class="n">section</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">Signal</span><span class="p">()</span> <span class="o">//</span> <span class="n">let</span> <span class="n">a</span> <span class="n">goroutine</span> <span class="n">waiting</span> <span class="n">on</span> <span class="n">the</span> <span class="n">condition</span> <span class="n">know</span> <span class="n">that</span> <span class="n">something</span> <span class="n">has</span> <span class="n">occured</span>
-    <span class="p">}</span>
+    removeFromQueue := func(delay time.Duration) {
+        time.Sleep(delay)
+        c.L.Lock() // enter the critical section
+        queue = queue[1:] //simulate dequeuing an item
+        fmt.Println(&quot;removed from queue&quot;)
+        c.L.Unlock() // exit critical section
+        c.Signal() // let a goroutine waiting on the condition know that something has occured
+    }
 
-    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">L</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span> <span class="o">//</span><span class="err">进入临界区</span><span class="p">,</span> <span class="n">critical</span> <span class="n">section</span>
-        <span class="k">for</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">{</span>
-            <span class="n">c</span><span class="o">.</span><span class="n">Wait</span><span class="p">()</span> <span class="o">//</span><span class="n">will</span> <span class="n">suspend</span> <span class="n">the</span> <span class="n">main</span> <span class="n">goroutine</span> <span class="n">until</span> <span class="n">a</span> <span class="n">signal</span> <span class="n">on</span> <span class="n">the</span> <span class="n">condition</span> <span class="n">has</span> <span class="n">been</span> <span class="n">sent</span>
-        <span class="p">}</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Adding to queue&quot;</span><span class="p">)</span>
-        <span class="n">queue</span> <span class="o">=</span> <span class="n">append</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="n">struct</span><span class="p">{}{})</span>
-        <span class="n">go</span> <span class="n">removeFromQueue</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="p">)</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">L</span><span class="o">.</span><span class="n">Unlock</span><span class="p">()</span> <span class="o">//</span><span class="nb">exit</span> <span class="n">critical</span> <span class="n">section</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    for i := 0; i &lt; 10; i++ {
+        c.L.Lock() //进入临界区, critical section
+        for len(queue) == 2 {
+            c.Wait() //will suspend the main goroutine until a signal on the condition has been sent
+        }
+        fmt.Println(&quot;Adding to queue&quot;)
+        queue = append(queue, struct{}{})
+        go removeFromQueue(1 * time.Second)
+        c.L.Unlock() //exit critical section
+    }
+}
 </code></pre></div>
-
 
 <h4 id="once">Once<a class="headerlink" href="#once" title="Permanent link">&para;</a></h4>
 <p>only one call to &ldquo;Do&rdquo;, even on different goroutines.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<p><div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;sync&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">count</span> <span class="nb">int</span>
+func main() {
+    var count int
 
-    <span class="n">increment</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">count</span><span class="o">++</span>
-    <span class="p">}</span>
+    increment := func() {
+        count++
+    }
 
-    <span class="n">var</span> <span class="n">once</span> <span class="n">sync</span><span class="o">.</span><span class="n">Once</span>
-    <span class="n">var</span> <span class="n">wg</span> <span class="n">sync</span><span class="o">.</span><span class="n">WaitGroup</span>
-    <span class="n">wg</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">wg</span><span class="o">.</span><span class="n">Done</span><span class="p">()</span>
-            <span class="n">once</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">increment</span><span class="p">)</span>
-        <span class="p">}()</span>
-    <span class="p">}</span>
-    <span class="n">wg</span><span class="o">.</span><span class="n">Wait</span><span class="p">()</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;count is </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="o">//</span><span class="mi">1</span>
-<span class="p">}</span>
+    var once sync.Once
+    var wg sync.WaitGroup
+    wg.Add(100)
+    for i := 0; i &lt; 100; i++ {
+        go func() {
+            defer wg.Done()
+            once.Do(increment)
+        }()
+    }
+    wg.Wait()
+    fmt.Printf(&quot;count is %d\n&quot;, count) //1
+}
 </code></pre></div>
-
-
-<p>NOTES: sync.Once only counts the number of times Do is Called, not
+NOTES: sync.Once only counts the number of times Do is Called, not
 how many times unique functions passed into Do are called.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;sync&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">count</span> <span class="nb">int</span>
-    <span class="n">increment</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span> <span class="n">count</span><span class="o">++</span> <span class="p">}</span>
-    <span class="n">decremet</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span> <span class="n">count</span><span class="o">--</span> <span class="p">}</span>
+func main() {
+    var count int
+    increment := func() { count++ }
+    decremet := func() { count-- }
 
-    <span class="n">var</span> <span class="n">once</span> <span class="n">sync</span><span class="o">.</span><span class="n">Once</span>
-    <span class="n">once</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">increment</span><span class="p">)</span>
-    <span class="n">once</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">decremet</span><span class="p">)</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;count is </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="o">//</span><span class="mi">1</span>
-<span class="p">}</span>
+    var once sync.Once
+    once.Do(increment)
+    once.Do(decremet)
+    fmt.Printf(&quot;count is %d\n&quot;, count) //1
+}
 </code></pre></div>
-
 
 <h4 id="pool">Pool(并发安全对象池)<a class="headerlink" href="#pool" title="Permanent link">&para;</a></h4>
 <p>Pool is a concurrent-safe implementation of the object pool pattern.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">myPool</span> <span class="p">:</span><span class="o">=</span> <span class="o">&amp;</span><span class="n">sync</span><span class="p">.</span><span class="n">Pool</span><span class="err">{</span>
-    <span class="k">New</span><span class="p">:</span> <span class="n">func</span><span class="p">()</span> <span class="n">interface</span><span class="err">{}{</span>
-        <span class="n">fmt</span><span class="p">.</span><span class="n">Println</span><span class="p">(</span><span class="ss">&quot;Creating new instance.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">struct</span><span class="err">{}{}</span>
-    <span class="err">}</span><span class="p">,</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>myPool := &amp;sync.Pool{
+    New: func() interface{}{
+        fmt.Println(&quot;Creating new instance.&quot;)
+        return struct{}{}
+    },
+}
 
-<span class="n">myPool</span><span class="p">.</span><span class="k">Get</span><span class="p">()</span>
-<span class="n">instance</span><span class="p">:</span><span class="o">=</span><span class="n">myPool</span><span class="p">.</span><span class="k">Get</span><span class="p">()</span>
-<span class="n">myPool</span><span class="p">.</span><span class="n">Put</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
-<span class="n">myPool</span><span class="p">.</span><span class="k">Get</span><span class="p">()</span>
+myPool.Get()
+instance:=myPool.Get()
+myPool.Put(instance)
+myPool.Get()
 </code></pre></div>
-
 
 <p>Another common situation where a Pool is useful is for warming a cache of pre-allocated
 objects for operations that must run as quickly as possible.</p>
@@ -3795,19 +3788,17 @@ objects for operations that must run as quickly as possible.</p>
 </ul>
 <h3 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h3>
 <p>Go will implicitly convert bidirectional channels to unidirectional channels when needed.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">var</span> <span class="n">receiveChan</span> <span class="o">&lt;-</span> <span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span>
-<span class="n">var</span> <span class="n">sendChan</span> <span class="n">chan</span> <span class="o">&lt;-</span> <span class="n">interface</span><span class="p">{}</span>
-<span class="n">dataStream</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-<span class="o">//</span><span class="n">valid</span> <span class="n">statements</span><span class="p">,</span> 双向的可以赋值给单向的
-<span class="n">receiveChan</span> <span class="o">=</span> <span class="n">dataStream</span>
-<span class="n">sendChan</span> <span class="o">=</span> <span class="n">dataStream</span>
+<div class="highlight"><pre><span></span><code>var receiveChan &lt;- chan interface{}
+var sendChan chan &lt;- interface{}
+dataStream := make(chan interface{})
+//valid statements, 双向的可以赋值给单向的
+receiveChan = dataStream
+sendChan = dataStream
 </code></pre></div>
-
 
 <p>Unbufferd channel in Go are said to be blocking.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">val</span><span class="p">,</span> <span class="n">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="n">stringStream</span> <span class="o">//</span> <span class="n">ok</span> 判断还有没有值，从一个已经 <span class="n">closed</span> 的 <span class="n">channel</span> 依然会获取默认值
+<div class="highlight"><pre><span></span><code>val, ok := &lt;-stringStream // ok 判断还有没有值，从一个已经 closed 的 channel 依然会获取默认值
 </code></pre></div>
-
 
 <p>The second return value is a way for a read operation to indicate whether the read off the channel
 was a value generated by a write elsewhere in the process, or a default value generated from a closed channel.</p>
@@ -3828,51 +3819,49 @@ You can treat buffered channels are an inmemory FIFO queue for concurrent proces
 <li>Knowing when a channel is closed (use val, ok)</li>
 <li>Responsibly handling blocking for any reason</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="n">keep</span> <span class="n">the</span> <span class="n">scope</span> <span class="n">of</span> <span class="n">channel</span> <span class="n">ownership</span> <span class="n">small</span>
-<span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code>// keep the scope of channel ownership small
+func main() {
 
-    <span class="n">chanOwner</span> <span class="o">:=</span> <span class="nf">func</span><span class="p">()</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span> <span class="p">{</span>
-        <span class="n">resultStream</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">int</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">resultStream</span><span class="p">)</span>
-            <span class="n">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="m">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-                <span class="n">resultStream</span> <span class="o">&lt;-</span> <span class="n">i</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">resultStream</span> <span class="o">//</span> <span class="n">will</span> <span class="n">implicityly</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">read</span><span class="o">-</span><span class="n">only</span> <span class="n">for</span> <span class="n">consumers</span>
-    <span class="p">}</span>
+    chanOwner := func() &lt;-chan int {
+        resultStream := make(chan int, 5)
+        go func() {
+            defer close(resultStream)
+            for i := 0; i &lt;= 5; i++ {
+                resultStream &lt;- i
+            }
+        }()
+        return resultStream // will implicityly converted to read-only for consumers
+    }
 
-    <span class="n">resultStream</span> <span class="o">:=</span> <span class="nf">chanOwner</span><span class="p">()</span>
-    <span class="n">for</span> <span class="n">result</span> <span class="o">:=</span> <span class="n">range</span> <span class="n">resultStream</span> <span class="p">{</span>
-        <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;received : %d\n&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
-    <span class="p">}</span>
+    resultStream := chanOwner()
+    for result := range resultStream {
+        fmt.Printf(&quot;received : %d\n&quot;, result)
+    }
 
-    <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;Done receiving!&quot;</span><span class="p">)</span>
-<span class="p">}</span>
+    fmt.Println(&quot;Done receiving!&quot;)
+}
 </code></pre></div>
-
 
 <h3 id="the-select-statement">The select Statement<a class="headerlink" href="#the-select-statement" title="Permanent link">&para;</a></h3>
 <p>The select statement is the glue that binds channels together,
 it can help safely bring channels together with concepts like cancellations, timeouts, waiting, and default values.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="o">//</span> <span class="n">a</span> <span class="n">bit</span> <span class="n">like</span> <span class="n">switch</span>
-    <span class="n">var</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span>   <span class="o">//</span> <span class="n">receive</span> <span class="n">only</span> <span class="n">chan</span>
-    <span class="n">var</span> <span class="n">c3</span> <span class="n">chan</span><span class="o">&lt;-</span> <span class="n">interface</span><span class="p">{}</span>  <span class="o">//</span> <span class="n">send</span> <span class="n">only</span> <span class="n">chan</span>
-    <span class="o">//</span> <span class="n">all</span> <span class="n">channels</span> <span class="n">reads</span> <span class="n">and</span> <span class="n">writes</span> <span class="n">are</span> <span class="n">considered</span> <span class="n">simultaneously</span> <span class="n">to</span> <span class="n">see</span> <span class="n">if</span> <span class="n">any</span> <span class="n">of</span> <span class="n">them</span> <span class="n">are</span> <span class="n">ready</span>
-    <span class="o">//</span> <span class="n">populated</span> <span class="n">or</span> <span class="n">closed</span> <span class="n">channels</span> <span class="n">in</span> <span class="n">the</span> <span class="n">case</span> <span class="n">of</span> <span class="n">reads</span><span class="p">,</span> <span class="n">and</span> <span class="n">channels</span> <span class="n">that</span> <span class="n">are</span> <span class="n">not</span> <span class="n">at</span> <span class="n">capacity</span> <span class="n">in</span> <span class="n">the</span> <span class="n">case</span> <span class="n">of</span> <span class="n">writes</span>
-    <span class="o">//</span> <span class="n">if</span> <span class="n">none</span> <span class="n">of</span> <span class="n">the</span> <span class="n">channels</span> <span class="n">are</span> <span class="n">ready</span><span class="p">,</span> <span class="n">the</span> <span class="n">entire</span> <span class="n">select</span> <span class="n">statement</span> <span class="n">blocks</span>
-    <span class="n">select</span> <span class="p">{</span>
-    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">c1</span><span class="o">:</span>
-        <span class="o">//</span> <span class="n">do</span> <span class="n">something</span>
-    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">c2</span><span class="o">:</span>
-        <span class="o">//</span> <span class="n">do</span> <span class="n">something</span>
-    <span class="n">case</span> <span class="n">c3</span> <span class="o">&lt;-</span> <span class="n">struct</span><span class="p">{}{}</span><span class="o">:</span>
-        <span class="o">//</span> <span class="n">do</span> <span class="n">something</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    // a bit like switch
+    var c1, c2 &lt;-chan interface{}   // receive only chan
+    var c3 chan&lt;- interface{}  // send only chan
+    // all channels reads and writes are considered simultaneously to see if any of them are ready
+    // populated or closed channels in the case of reads, and channels that are not at capacity in the case of writes
+    // if none of the channels are ready, the entire select statement blocks
+    select {
+    case &lt;-c1:
+        // do something
+    case &lt;-c2:
+        // do something
+    case c3 &lt;- struct{}{}:
+        // do something
+    }
+}
 </code></pre></div>
-
 
 <ul>
 <li>
@@ -3882,24 +3871,23 @@ it can help safely bring channels together with concepts like cancellations, tim
 <p>random select, each has an equal  chance of being selected as all the others</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">c1</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="nf">close</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
-    <span class="n">c2</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="nf">close</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
-    <span class="n">var</span> <span class="n">c1Count</span><span class="p">,</span> <span class="n">c2Count</span> <span class="n">int</span>
-    <span class="n">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">1000</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span> <span class="p">{</span>
-        <span class="n">select</span> <span class="p">{</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">c1</span><span class="o">:</span>
-            <span class="n">c1Count</span><span class="o">++</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">c2</span><span class="o">:</span>
-            <span class="n">c2Count</span><span class="o">++</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;c1: %d\n, c2: %d\n&quot;</span><span class="p">,</span> <span class="n">c1Count</span><span class="p">,</span> <span class="n">c2Count</span><span class="p">)</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    c1 := make(chan interface{})
+    close(c1)
+    c2 := make(chan interface{})
+    close(c2)
+    var c1Count, c2Count int
+    for i := 1000; i &gt;= 0; i-- {
+        select {
+        case &lt;-c1:
+            c1Count++
+        case &lt;-c2:
+            c2Count++
+        }
+    }
+    fmt.Printf(&quot;c1: %d\n, c2: %d\n&quot;, c1Count, c2Count)
+}
 </code></pre></div>
-
 
 <ul>
 <li>
@@ -3909,16 +3897,15 @@ it can help safely bring channels together with concepts like cancellations, tim
 <p>you may want to timeout</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">c</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span>
-    <span class="n">select</span> <span class="p">{</span>
-    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">c</span><span class="o">:</span>
-    <span class="n">case</span> <span class="o">&lt;-</span><span class="nf">time.After</span><span class="p">(</span><span class="m">1</span> <span class="o">*</span> <span class="n">time.Second</span><span class="p">)</span><span class="o">:</span>
-        <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;Time out&quot;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    var c &lt;-chan int
+    select {
+    case &lt;-c:
+    case &lt;-time.After(1 * time.Second):
+        fmt.Println(&quot;Time out&quot;)
+    }
+}
 </code></pre></div>
-
 
 <ul>
 <li>
@@ -3929,41 +3916,39 @@ it can help safely bring channels together with concepts like cancellations, tim
 </li>
 <li>this allows a goroutine to make progress on work while waiting for another goroutine to report a result</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">start</span> <span class="o">:=</span> <span class="nf">time.Now</span><span class="p">()</span>
-    <span class="n">var</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span>
-    <span class="n">select</span> <span class="p">{</span>
-    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">c1</span><span class="o">:</span>
-    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">c2</span><span class="o">:</span>
-    <span class="n">default</span><span class="o">:</span>
-        <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;In default after %v\n\n&quot;</span><span class="p">,</span> <span class="nf">time.Since</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    start := time.Now()
+    var c1, c2 &lt;-chan int
+    select {
+    case &lt;-c1:
+    case &lt;-c2:
+    default:
+        fmt.Printf(&quot;In default after %v\n\n&quot;, time.Since(start))
+    }
+}
 </code></pre></div>
 
-
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">done</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nf">time.Sleep</span><span class="p">(</span><span class="m">5</span> <span class="o">*</span> <span class="n">time.Second</span><span class="p">)</span>
-        <span class="nf">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
-    <span class="p">}()</span>
-    <span class="n">workCounter</span> <span class="o">:=</span> <span class="m">0</span>
-<span class="n">loop</span><span class="o">:</span>
-    <span class="n">for</span> <span class="p">{</span>
-        <span class="n">select</span> <span class="p">{</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="o">:</span>
-            <span class="n">break</span> <span class="n">loop</span>
-        <span class="n">default</span><span class="o">:</span>
-        <span class="p">}</span>
-        <span class="o">//</span> <span class="n">simulate</span> <span class="n">work</span>
-        <span class="n">workCounter</span><span class="o">++</span>
-        <span class="nf">time.Sleep</span><span class="p">(</span><span class="m">1</span> <span class="o">*</span> <span class="n">time.Second</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;Achieved %v cycles of work before signalled to stop.\n&quot;</span><span class="p">,</span> <span class="n">workCounter</span><span class="p">)</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    done := make(chan interface{})
+    go func() {
+        time.Sleep(5 * time.Second)
+        close(done)
+    }()
+    workCounter := 0
+loop:
+    for {
+        select {
+        case &lt;-done:
+            break loop
+        default:
+        }
+        // simulate work
+        workCounter++
+        time.Sleep(1 * time.Second)
+    }
+    fmt.Printf(&quot;Achieved %v cycles of work before signalled to stop.\n&quot;, workCounter)
+}
 </code></pre></div>
-
 
 <h6 id="empty-select">empty select<a class="headerlink" href="#empty-select" title="Permanent link">&para;</a></h6>
 <p><code>seelct {}</code> will block forever.</p>
@@ -3978,69 +3963,66 @@ it can help safely bring channels together with concepts like cancellations, tim
 <li>Immutable Data (copy of values)</li>
 <li>Data protected by confinement (ad hoc and lexical)</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="o">//</span> <span class="n">confines</span> <span class="n">the</span> <span class="n">write</span> <span class="n">aspect</span> <span class="n">of</span> <span class="n">this</span> <span class="n">channel</span> <span class="n">to</span> <span class="n">prevent</span> <span class="n">other</span> <span class="n">goroutines</span> <span class="n">from</span> <span class="n">writing</span> <span class="n">to</span> <span class="n">it</span>
-    <span class="o">//</span> 限制向 <span class="n">channel</span> 写数据到一个 <span class="n">func</span> 里
-    <span class="n">chanOnwer</span> <span class="o">:=</span> <span class="nf">func</span><span class="p">()</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span> <span class="p">{</span>
-        <span class="n">results</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">int</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-            <span class="n">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="m">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-                <span class="n">results</span> <span class="o">&lt;-</span> <span class="n">i</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">results</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    // confines the write aspect of this channel to prevent other goroutines from writing to it
+    // 限制向 channel 写数据到一个 func 里
+    chanOnwer := func() &lt;-chan int {
+        results := make(chan int, 5)
+        go func() {
+            defer close(results)
+            for i := 0; i &lt;= 5; i++ {
+                results &lt;- i
+            }
+        }()
+        return results
+    }
 
-    <span class="n">consumer</span> <span class="o">:=</span> <span class="nf">func</span><span class="p">(</span><span class="n">results</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">for</span> <span class="n">result</span> <span class="o">:=</span> <span class="n">range</span> <span class="n">results</span> <span class="p">{</span>
-            <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;Received : %d\n&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;Done receiving!&quot;</span><span class="p">)</span>
-    <span class="p">}</span>
+    consumer := func(results &lt;-chan int) {
+        for result := range results {
+            fmt.Printf(&quot;Received : %d\n&quot;, result)
+        }
+        fmt.Println(&quot;Done receiving!&quot;)
+    }
 
-    <span class="n">results</span> <span class="o">:=</span> <span class="nf">chanOnwer</span><span class="p">()</span>
-    <span class="nf">consumer</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-<span class="p">}</span>
+    results := chanOnwer()
+    consumer(results)
+}
 </code></pre></div>
-
 
 <h3 id="the-for-select-loop">The for-select Loop<a class="headerlink" href="#the-for-select-loop" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Sending iteration variables out on a channel</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>    <span class="n">for</span> _<span class="p">,</span> <span class="n">s</span> <span class="o">:=</span> <span class="n">range</span> <span class="p">[]</span><span class="n">string</span><span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">}</span> <span class="p">{</span>
-        <span class="n">select</span> <span class="p">{</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="o">:</span>
-            <span class="n">return</span>
-        <span class="n">case</span> <span class="n">stringStream</span> <span class="o">&lt;-</span> <span class="n">s</span><span class="o">:</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code>    for _, s := range []string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;} {
+        select {
+        case &lt;-done:
+            return
+        case stringStream &lt;- s:
+        }
+    }
 </code></pre></div>
-
 
 <ul>
 <li>Looping infinitely waiting to be stopped</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>    <span class="n">for</span> <span class="p">{</span>
-        <span class="n">select</span> <span class="p">{</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="o">:</span>
-            <span class="n">return</span>
-        <span class="n">default</span><span class="o">:</span>
-        <span class="p">}</span>
-        <span class="o">//</span> <span class="n">do</span> <span class="n">non</span><span class="o">-</span><span class="n">preemptable</span> <span class="n">work</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code>    for {
+        select {
+        case &lt;-done:
+            return
+        default:
+        }
+        // do non-preemptable work
+    }
 </code></pre></div>
 
-
-<div class="codehilite"><pre><span></span><code><span class="n">for</span> <span class="p">{</span>
-    <span class="n">select</span> <span class="p">{</span>
-    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="o">:</span>
-        <span class="n">return</span>
-    <span class="n">default</span><span class="o">:</span>
-    <span class="p">}</span>
-    <span class="o">//</span> <span class="n">do</span> <span class="n">non</span><span class="o">-</span><span class="n">preemptable</span> <span class="n">work</span>
-<span class="p">}</span>
+<div class="codehilite"><pre><span></span><code>for {
+    select {
+    case &lt;-done:
+        return
+    default:
+    }
+    // do non-preemptable work
+}
 </code></pre></div>
 
 
@@ -4053,127 +4035,122 @@ The goroutine has a few paths to terminiation:</p>
 <li>when it&rsquo;s told to stop working</li>
 </ul>
 <p>A simple example of a goroutine leak:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">doWork</span> <span class="o">:=</span> <span class="nf">func</span><span class="p">(</span><span class="n">strings</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">string</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">completed</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;doWork exited.&quot;</span><span class="p">)</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">completed</span><span class="p">)</span>
-            <span class="n">for</span> <span class="n">s</span> <span class="o">:=</span> <span class="n">range</span> <span class="n">strings</span> <span class="p">{</span>
-                <span class="o">//</span> <span class="n">do</span> <span class="n">something</span> <span class="n">interesting</span>
-                <span class="nf">fmt.Println</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">completed</span>
-    <span class="p">}</span>
-    <span class="o">//</span><span class="n">pass</span> <span class="n">nil</span><span class="p">,</span> <span class="n">the</span> <span class="n">strings</span> <span class="n">channel</span> <span class="n">will</span> <span class="n">never</span> <span class="n">actually</span> <span class="n">gets</span> <span class="n">any</span> <span class="n">strings</span> <span class="n">written</span> <span class="n">onto</span> <span class="n">it</span>
-    <span class="o">//</span><span class="n">and</span> <span class="n">the</span> <span class="n">goroutine</span> <span class="n">doWork</span> <span class="n">will</span> <span class="n">remain</span> <span class="n">in</span> <span class="n">memory</span> <span class="n">for</span> <span class="n">the</span> <span class="n">lifetime</span> <span class="n">of</span> <span class="n">this</span> <span class="n">process</span>
-    <span class="nf">doWork</span><span class="p">(</span><span class="n">nil</span><span class="p">)</span>
-    <span class="o">//</span> <span class="n">perhaps</span> <span class="n">more</span> <span class="n">work</span> <span class="n">is</span> <span class="n">done</span> <span class="n">here</span>
-    <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;Done.&quot;</span><span class="p">)</span>
-<span class="p">}</span>
+<p><div class="highlight"><pre><span></span><code>func main() {
+    doWork := func(strings &lt;-chan string) &lt;-chan interface{} {
+        completed := make(chan interface{})
+        go func() {
+            defer fmt.Println(&quot;doWork exited.&quot;)
+            defer close(completed)
+            for s := range strings {
+                // do something interesting
+                fmt.Println(s)
+            }
+        }()
+        return completed
+    }
+    //pass nil, the strings channel will never actually gets any strings written onto it
+    //and the goroutine doWork will remain in memory for the lifetime of this process
+    doWork(nil)
+    // perhaps more work is done here
+    fmt.Println(&quot;Done.&quot;)
+}
 </code></pre></div>
-
-
-<p>Use signal done. The parent goroutine passed this channel to child goroutine,
+Use signal done. The parent goroutine passed this channel to child goroutine,
 and then closes the channel when it wants to cancel the child goroutine.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;time&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+func main() {
 
-    <span class="n">doWork</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span>
-        <span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span>
-        <span class="n">strings</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">string</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">terminated</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;doWork exited&quot;</span><span class="p">)</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">terminated</span><span class="p">)</span>
-            <span class="k">for</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="n">s</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;-</span><span class="n">strings</span><span class="p">:</span>
-                    <span class="o">//</span><span class="n">do</span> <span class="n">somthing</span>
-                    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
+    doWork := func(
+        done &lt;-chan interface{},
+        strings &lt;-chan string,
+    ) &lt;-chan interface{} {
+        terminated := make(chan interface{})
+        go func() {
+            defer fmt.Println(&quot;doWork exited&quot;)
+            defer close(terminated)
+            for {
+                select {
+                case s := &lt;-strings:
+                    //do somthing
+                    fmt.Println(s)
+                case &lt;-done:
+                    return
+                }
+            }
+        }()
 
-        <span class="n">done</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">terminated</span> <span class="p">:</span><span class="o">=</span> <span class="n">doWork</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">nil</span><span class="p">)</span>
+        done := make(chan interface{})
+        terminated := doWork(done, nil)
 
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="o">//</span> <span class="n">cancel</span> <span class="n">operation</span> <span class="n">after</span> <span class="mi">1</span> <span class="n">second</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="p">)</span>
-            <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;canceling doWork goroutine...&quot;</span><span class="p">)</span>
-            <span class="n">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
-        <span class="p">}()</span>
+        go func() {
+            // cancel operation after 1 second
+            time.Sleep(1 * time.Second)
+            fmt.Println(&quot;canceling doWork goroutine...&quot;)
+            close(done)
+        }()
 
-        <span class="o">&lt;-</span><span class="n">terminated</span> <span class="o">//</span> <span class="n">joined</span> <span class="n">the</span> <span class="n">goroutine</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+        &lt;-terminated // joined the goroutine
+        fmt.Println(&quot;Done&quot;)
+    }
+}
 </code></pre></div>
-
 
 <p>What if a goroutine blocked on attempting wo write a value to a channel?</p>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">newRandStream</span> <span class="o">:=</span> <span class="nf">func</span><span class="p">()</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span> <span class="p">{</span>
-        <span class="n">randStream</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">int</span><span class="p">)</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;newRandStream closure exited.&quot;</span><span class="p">)</span> <span class="o">//</span><span class="n">never</span> <span class="n">run</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">randStream</span><span class="p">)</span>
-            <span class="n">for</span> <span class="p">{</span>
-                <span class="n">randStream</span> <span class="o">&lt;-</span> <span class="nf">rand.Int</span><span class="p">()</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">randStream</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    newRandStream := func() &lt;-chan int {
+        randStream := make(chan int)
+        go func() {
+            defer fmt.Println(&quot;newRandStream closure exited.&quot;) //never run
+            defer close(randStream)
+            for {
+                randStream &lt;- rand.Int()
+            }
+        }()
+        return randStream
+    }
 
-    <span class="n">randStream</span> <span class="o">:=</span> <span class="nf">newRandStream</span><span class="p">()</span>
-    <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;3 random ints:&quot;</span><span class="p">)</span>
-    <span class="n">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;%d:%d\n&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&lt;-</span><span class="n">randStream</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="o">//</span> 依然退出，输出<span class="m">1</span>到<span class="m">3</span>
-<span class="p">}</span>
+    randStream := newRandStream()
+    fmt.Println(&quot;3 random ints:&quot;)
+    for i := 1; i &lt;= 3; i++ {
+        fmt.Printf(&quot;%d:%d\n&quot;, i, &lt;-randStream)
+    }
+    // 依然退出，输出1到3
+}
 </code></pre></div>
-
 
 <p>We can also use a done channel:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">newRandStream</span> <span class="o">:=</span> <span class="nf">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span> <span class="p">{</span>
-        <span class="n">randStream</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">int</span><span class="p">)</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;newRandStream closure exited.&quot;</span><span class="p">)</span> <span class="o">//</span><span class="n">never</span> <span class="n">run</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">randStream</span><span class="p">)</span>
-            <span class="n">for</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="n">randStream</span> <span class="o">&lt;-</span> <span class="nf">rand.Int</span><span class="p">()</span><span class="o">:</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="o">:</span>
-                    <span class="n">return</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">randStream</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    newRandStream := func(done &lt;-chan interface{}) &lt;-chan int {
+        randStream := make(chan int)
+        go func() {
+            defer fmt.Println(&quot;newRandStream closure exited.&quot;) //never run
+            defer close(randStream)
+            for {
+                select {
+                case randStream &lt;- rand.Int():
+                case &lt;-done:
+                    return
+                }
+            }
+        }()
+        return randStream
+    }
 
-    <span class="n">done</span> <span class="o">:=</span><span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="n">randStream</span> <span class="o">:=</span> <span class="nf">newRandStream</span><span class="p">()</span>
-    <span class="nf">fmt.Println</span><span class="p">(</span><span class="s">&quot;3 random ints:&quot;</span><span class="p">)</span>
-    <span class="n">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;%d:%d\n&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&lt;-</span><span class="n">randStream</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nf">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
-<span class="p">}</span>
+    done :=make(chan interface{})
+    randStream := newRandStream()
+    fmt.Println(&quot;3 random ints:&quot;)
+    for i := 1; i &lt;= 3; i++ {
+        fmt.Printf(&quot;%d:%d\n&quot;, i, &lt;-randStream)
+    }
+    close(done)
+}
 </code></pre></div>
-
 
 <p>NOTE: If a goroutine is responsible for creating a goroutine, it is also responsible for ensuring
 it can stop the gorutine.</p>
@@ -4181,104 +4158,102 @@ it can stop the gorutine.</p>
 <p>At times you may find yourself wanting to combine one or more done channels into a single done channel
 that closes if any of its component channels close.
 This pattern creates a composite done channel through recursion and goroutines.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">or</span> <span class="nf">func</span><span class="p">(</span><span class="n">channels</span> <span class="kc">...</span><span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span>
-    <span class="n">or</span> <span class="o">=</span> <span class="nf">func</span><span class="p">(</span><span class="n">channels</span> <span class="kc">...</span><span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">switch</span> <span class="nf">len</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">case</span> <span class="m">0</span><span class="o">:</span>
-            <span class="n">return</span> <span class="n">nil</span>
-        <span class="n">case</span> <span class="m">1</span><span class="o">:</span>
-            <span class="n">return</span> <span class="n">channels</span><span class="p">[</span><span class="m">0</span><span class="p">]</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    var or func(channels ...&lt;-chan interface{}) &lt;-chan interface{}
+    or = func(channels ...&lt;-chan interface{}) &lt;-chan interface{} {
+        switch len(channels) {
+        case 0:
+            return nil
+        case 1:
+            return channels[0]
+        }
 
-        <span class="n">orDone</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">orDone</span><span class="p">)</span>
-            <span class="n">switch</span> <span class="nf">len</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">case</span> <span class="m">2</span><span class="o">:</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">channels</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">:</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">channels</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">:</span>
-                <span class="p">}</span>
-            <span class="n">default</span><span class="o">:</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">channels</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">:</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">channels</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">:</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">channels</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">:</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="nf">or</span><span class="p">(</span><span class="nf">append</span><span class="p">(</span><span class="n">channels</span><span class="p">[</span><span class="m">3</span><span class="o">:</span><span class="p">],</span> <span class="n">orDone</span><span class="p">)</span><span class="kc">...</span><span class="p">)</span><span class="o">:</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">orDone</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+        orDone := make(chan interface{})
+        go func() {
+            defer close(orDone)
+            switch len(channels) {
+            case 2:
+                select {
+                case &lt;-channels[0]:
+                case &lt;-channels[1]:
+                }
+            default:
+                select {
+                case &lt;-channels[0]:
+                case &lt;-channels[1]:
+                case &lt;-channels[2]:
+                case &lt;-or(append(channels[3:], orDone)...):
+                }
+            }
+        }()
+        return orDone
+    }
+}
 
-<span class="n">func</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">sig</span> <span class="o">:=</span> <span class="nf">func</span><span class="p">(</span><span class="n">after</span> <span class="n">time.Duration</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">c</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-            <span class="nf">time.Sleep</span><span class="p">(</span><span class="n">after</span><span class="p">)</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">c</span>
-    <span class="p">}</span>
-    <span class="n">start</span> <span class="o">:=</span> <span class="nf">time.Now</span><span class="p">()</span>
-    <span class="o">&lt;-</span><span class="nf">or</span><span class="p">(</span>
-        <span class="nf">sig</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">time.Hour</span><span class="p">),</span>
-        <span class="nf">sig</span><span class="p">(</span><span class="m">5</span><span class="o">*</span><span class="n">time.Minute</span><span class="p">),</span>
-        <span class="nf">sig</span><span class="p">(</span><span class="m">1</span><span class="o">*</span><span class="n">time.Second</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;done after %v\n&quot;</span><span class="p">,</span> <span class="nf">time.Since</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
-<span class="p">}</span>
+func test() {
+    sig := func(after time.Duration) &lt;-chan interface{} {
+        c := make(chan interface{})
+        go func() {
+            defer close(c)
+            time.Sleep(after)
+        }()
+        return c
+    }
+    start := time.Now()
+    &lt;-or(
+        sig(2*time.Hour),
+        sig(5*time.Minute),
+        sig(1*time.Second),
+    )
+    fmt.Printf(&quot;done after %v\n&quot;, time.Since(start))
+}
 </code></pre></div>
-
 
 <h3 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;net/http&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+)
 
-<span class="o">//</span> <span class="n">Result</span> <span class="ow">is</span> <span class="n">http</span> <span class="n">result</span>
-<span class="nb">type</span> <span class="n">Result</span> <span class="n">struct</span> <span class="p">{</span>
-    <span class="n">Error</span>    <span class="n">error</span>
-    <span class="n">Response</span> <span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Response</span>
-<span class="p">}</span>
+// Result is http result
+type Result struct {
+    Error    error
+    Response *http.Response
+}
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">checkStatus</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">urls</span> <span class="o">...</span><span class="n">string</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">Result</span> <span class="p">{</span>
-        <span class="n">results</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">Result</span><span class="p">)</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">url</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">urls</span> <span class="p">{</span>
-                <span class="n">var</span> <span class="n">result</span> <span class="n">Result</span>
-                <span class="n">resp</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-                <span class="n">result</span> <span class="o">=</span> <span class="n">Result</span><span class="p">{</span><span class="n">Error</span><span class="p">:</span> <span class="n">err</span><span class="p">,</span> <span class="n">Response</span><span class="p">:</span> <span class="n">resp</span><span class="p">}</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="n">case</span> <span class="n">results</span> <span class="o">&lt;-</span> <span class="n">result</span><span class="p">:</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">results</span>
-    <span class="p">}</span>
+func main() {
+    checkStatus := func(done &lt;-chan interface{}, urls ...string) &lt;-chan Result {
+        results := make(chan Result)
+        go func() {
+            defer close(results)
+            for _, url := range urls {
+                var result Result
+                resp, err := http.Get(url)
+                result = Result{Error: err, Response: resp}
+                select {
+                case &lt;-done:
+                    return
+                case results &lt;- result:
+                }
+            }
+        }()
+        return results
+    }
 
-    <span class="n">done</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
-    <span class="n">urls</span> <span class="p">:</span><span class="o">=</span> <span class="p">[]</span><span class="n">string</span><span class="p">{</span><span class="s2">&quot;https://www.baidu.com&quot;</span><span class="p">,</span> <span class="s2">&quot;https://badhost&quot;</span><span class="p">}</span>
-    <span class="k">for</span> <span class="n">result</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">checkStatus</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">urls</span><span class="o">...</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">Error</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;error:%v&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">Error</span><span class="p">)</span>
-            <span class="k">continue</span>
-        <span class="p">}</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;Response: %</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">Response</span><span class="o">.</span><span class="n">Status</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    done := make(chan interface{})
+    defer close(done)
+    urls := []string{&quot;https://www.baidu.com&quot;, &quot;https://badhost&quot;}
+    for result := range checkStatus(done, urls...) {
+        if result.Error != nil {
+            fmt.Printf(&quot;error:%v&quot;, result.Error)
+            continue
+        }
+        fmt.Printf(&quot;Response: %\n&quot;, result.Response.Status)
+    }
+}
 </code></pre></div>
-
 
 <p>Errors should be considered first-class citizens when constructing values to return from goroutines.
 If your goroutine can produce errors, those errors should be tightly coupled with your result type,
@@ -4286,131 +4261,128 @@ and passed along through the same lines of communication.</p>
 <h3 id="pipelines">Pipelines<a class="headerlink" href="#pipelines" title="Permanent link">&para;</a></h3>
 <p>It is a very powerful tool to use when your program needs to process streams, or batched of data.</p>
 <p>Stage: taskes data in , performs a transformation on it, and sends the data back out</p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">multiply</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="k">values</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">multiplier</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="err">[]</span><span class="nc">int</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">multipliedValues</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">(</span><span class="err">[]</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="k">values</span><span class="p">))</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">multipliedValues</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">multiplier</span><span class="w"></span>
-<span class="w">        </span><span class="err">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">multipliedValues</span><span class="w"></span>
-<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>    multiply := func(values []int, multiplier int) []int {
+        multipliedValues := make([]int, len(values))
+        for i, v := range values {
+            multipliedValues[i] = v * multiplier
+        }
+        return multipliedValues
+    }
 </code></pre></div>
-
 
 <h4 id="best-practice-for-constructing-pipelines">Best practice for constructing Pipelines<a class="headerlink" href="#best-practice-for-constructing-pipelines" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
+import &quot;fmt&quot;
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">generator</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">integers</span> <span class="o">...</span><span class="n">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="nb">int</span> <span class="p">{</span>
-        <span class="n">intStream</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">)</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">intStream</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">integers</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="n">case</span> <span class="n">intStream</span> <span class="o">&lt;-</span> <span class="n">i</span><span class="p">:</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">intStream</span>
-    <span class="p">}</span>
+func main() {
+    generator := func(done &lt;-chan interface{}, integers ...int) &lt;-chan int {
+        intStream := make(chan int)
+        go func() {
+            defer close(intStream)
+            for _, i := range integers {
+                select {
+                case &lt;-done:
+                    return
+                case intStream &lt;- i:
+                }
+            }
+        }()
+        return intStream
+    }
 
-    <span class="n">multiply</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">intStream</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="nb">int</span><span class="p">,</span> <span class="n">multiplier</span> <span class="nb">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="nb">int</span> <span class="p">{</span>
-        <span class="n">multipliedStream</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">)</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">multipliedStream</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">intStream</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="n">case</span> <span class="n">multipliedStream</span> <span class="o">&lt;-</span> <span class="n">i</span> <span class="o">*</span> <span class="n">multiplier</span><span class="p">:</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">multipliedStream</span>
-    <span class="p">}</span>
+    multiply := func(done &lt;-chan interface{}, intStream &lt;-chan int, multiplier int) &lt;-chan int {
+        multipliedStream := make(chan int)
+        go func() {
+            defer close(multipliedStream)
+            for i := range intStream {
+                select {
+                case &lt;-done:
+                    return
+                case multipliedStream &lt;- i * multiplier:
+                }
+            }
+        }()
+        return multipliedStream
+    }
 
-    <span class="n">add</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">intStream</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="nb">int</span><span class="p">,</span> <span class="n">additive</span> <span class="nb">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="nb">int</span> <span class="p">{</span>
-        <span class="n">addedStream</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">)</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">addedStream</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">intStream</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="n">case</span> <span class="n">addedStream</span> <span class="o">&lt;-</span> <span class="n">i</span> <span class="o">+</span> <span class="n">additive</span><span class="p">:</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">addedStream</span>
-    <span class="p">}</span>
+    add := func(done &lt;-chan interface{}, intStream &lt;-chan int, additive int) &lt;-chan int {
+        addedStream := make(chan int)
+        go func() {
+            defer close(addedStream)
+            for i := range intStream {
+                select {
+                case &lt;-done:
+                    return
+                case addedStream &lt;- i + additive:
+                }
+            }
+        }()
+        return addedStream
+    }
 
-    <span class="n">done</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
+    done := make(chan interface{})
+    defer close(done)
 
-    <span class="n">intStream</span> <span class="p">:</span><span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-    <span class="n">pipeline</span> <span class="p">:</span><span class="o">=</span> <span class="n">multiply</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">add</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">multiply</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">intStream</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">pipeline</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="p">}</span>
+    intStream := generator(done, 1, 2, 3, 4)
+    pipeline := multiply(done, add(done, multiply(done, intStream, 2), 1), 2)
+    for v := range pipeline {
+        fmt.Println(v)
+    }
 
-<span class="p">}</span>
+}
 </code></pre></div>
-
 
 <h4 id="some-handy-generators">Some Handy Generators<a class="headerlink" href="#some-handy-generators" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
+import &quot;fmt&quot;
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+func main() {
 
-    <span class="n">repeat</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">values</span> <span class="o">...</span><span class="n">interface</span><span class="p">{})</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">valueStream</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">valueStream</span><span class="p">)</span>
-            <span class="k">for</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">values</span> <span class="p">{</span>
-                    <span class="n">select</span> <span class="p">{</span>
-                    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                        <span class="k">return</span>
-                    <span class="n">case</span> <span class="n">valueStream</span> <span class="o">&lt;-</span> <span class="n">v</span><span class="p">:</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">valueStream</span>
-    <span class="p">}</span>
+    repeat := func(done &lt;-chan interface{}, values ...interface{}) &lt;-chan interface{} {
+        valueStream := make(chan interface{})
+        go func() {
+            defer close(valueStream)
+            for {
+                for _, v := range values {
+                    select {
+                    case &lt;-done:
+                        return
+                    case valueStream &lt;- v:
+                    }
+                }
+            }
+        }()
+        return valueStream
+    }
 
-    <span class="n">take</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">valueStream</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">num</span> <span class="nb">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">takeStream</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">takeStream</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="n">case</span> <span class="n">takeStream</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="n">valueStream</span><span class="p">:</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
+    take := func(done &lt;-chan interface{}, valueStream &lt;-chan interface{}, num int) &lt;-chan interface{} {
+        takeStream := make(chan interface{})
+        go func() {
+            defer close(takeStream)
+            for i := 0; i &lt; num; i++ {
+                select {
+                case &lt;-done:
+                    return
+                case takeStream &lt;- &lt;-valueStream:
+                }
+            }
 
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">takeStream</span>
-    <span class="p">}</span>
+        }()
+        return takeStream
+    }
 
-    <span class="n">done</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
+    done := make(chan interface{})
+    defer close(done)
 
-    <span class="k">for</span> <span class="n">num</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">take</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;%v &quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="o">//</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
+    for num := range take(done, repeat(done, 1), 10) {
+        fmt.Printf(&quot;%v &quot;, num)
+    }
+    // 1 1 1 1 1 1 1 1 1 1
 
-<span class="p">}</span>
+}
 </code></pre></div>
-
 
 <h3 id="fan-out-fan-in">Fan-Out, Fan-In (扇出，扇入)<a class="headerlink" href="#fan-out-fan-in" title="Permanent link">&para;</a></h3>
 <p>Fan-out is a term to describe the process of starting multiple gortouine to handle input from the pipeline,
@@ -4421,131 +4393,128 @@ and Fan-in is a term to describe the process of combining results into one chann
 <li>It takes a long time to run</li>
 </ul>
 <h3 id="the-or-done-channel">The or-done-channel<a class="headerlink" href="#the-or-done-channel" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>    <span class="n">orDone</span> <span class="o">:=</span> <span class="nf">func</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">c</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">valStream</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">valStream</span><span class="p">)</span>
-            <span class="n">for</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="o">:</span>
-                    <span class="n">return</span>
-                <span class="n">case</span> <span class="n">v</span><span class="p">,</span> <span class="n">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="n">c</span><span class="o">:</span>
-                    <span class="n">if</span> <span class="n">ok</span> <span class="o">==</span> <span class="n">false</span> <span class="p">{</span>
-                        <span class="n">return</span>
-                    <span class="p">}</span>
-                    <span class="n">select</span> <span class="p">{</span>
-                    <span class="n">case</span> <span class="n">valStream</span> <span class="o">&lt;-</span> <span class="n">v</span><span class="o">:</span>
-                    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="o">:</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">valStream</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code>    orDone := func(done, c &lt;-chan interface{}) &lt;-chan interface{} {
+        valStream := make(chan interface{})
+        go func() {
+            defer close(valStream)
+            for {
+                select {
+                case &lt;-done:
+                    return
+                case v, ok := &lt;-c:
+                    if ok == false {
+                        return
+                    }
+                    select {
+                    case valStream &lt;- v:
+                    case &lt;-done:
+                    }
+                }
+            }
+        }()
+        return valStream
+    }
 
-    <span class="n">for</span> <span class="n">val</span> <span class="o">:=</span> <span class="n">range</span> <span class="nf">orDone</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">myChan</span><span class="p">)</span> <span class="p">{</span>
-        <span class="o">//</span> <span class="n">Do</span> <span class="n">something</span> <span class="n">with</span> <span class="n">val</span>
-    <span class="p">}</span>
+    for val := range orDone(done, myChan) {
+        // Do something with val
+    }
 </code></pre></div>
-
 
 <h3 id="the-tee-channel">The tee-channel<a class="headerlink" href="#the-tee-channel" title="Permanent link">&para;</a></h3>
 <p>Sometimes you may want to split values coming in from a channel so that you can send them off
 into two separate areas of your codebase.</p>
 <p>You can pass it a channel to read from , and it will return two seperate channels that will get the same value:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
+import &quot;fmt&quot;
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">tee</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="ow">in</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span> <span class="p">(</span><span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span> <span class="p">{</span>
-        <span class="n">out1</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">out2</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">out1</span><span class="p">)</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">out2</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">val</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">orDone</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="ow">in</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">var</span> <span class="n">out1</span><span class="p">,</span> <span class="n">out2</span> <span class="o">=</span> <span class="n">out1</span><span class="p">,</span> <span class="n">out2</span> <span class="o">//</span><span class="n">shadow</span> <span class="n">the</span> <span class="n">variables</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-                    <span class="n">select</span> <span class="p">{</span>
-                    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="n">case</span> <span class="n">out1</span> <span class="o">&lt;-</span> <span class="n">val</span><span class="p">:</span>
-                        <span class="o">//</span> <span class="nb">set</span> <span class="n">its</span> <span class="n">shadowed</span> <span class="n">copy</span> <span class="n">to</span> <span class="n">nil</span><span class="p">,</span><span class="n">so</span> <span class="n">further</span> <span class="n">writes</span> <span class="n">will</span> <span class="n">block</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">other</span> <span class="n">channel</span> <span class="n">may</span> <span class="k">continue</span>
-                        <span class="n">out1</span> <span class="o">=</span> <span class="n">nil</span>
-                    <span class="n">case</span> <span class="n">out2</span> <span class="o">&lt;-</span> <span class="n">val</span><span class="p">:</span>
-                        <span class="n">out2</span> <span class="o">=</span> <span class="n">nil</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">out1</span><span class="p">,</span> <span class="n">out2</span>
-    <span class="p">}</span>
+func main() {
+    tee := func(done &lt;-chan interface{}, in &lt;-chan interface{}) (&lt;-chan interface{}, &lt;-chan interface{}) {
+        out1 := make(chan interface{})
+        out2 := make(chan interface{})
+        go func() {
+            defer close(out1)
+            defer close(out2)
+            for val := range orDone(done, in) {
+                var out1, out2 = out1, out2 //shadow the variables
+                for i := 0; i &lt; 2; i++ {
+                    select {
+                    case &lt;-done:
+                    case out1 &lt;- val:
+                        // set its shadowed copy to nil,so further writes will block and the other channel may continue
+                        out1 = nil
+                    case out2 &lt;- val:
+                        out2 = nil
+                    }
+                }
+            }
+        }()
+        return out1, out2
+    }
 
-    <span class="n">done</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
-    <span class="n">out1</span><span class="p">,</span> <span class="n">out2</span> <span class="p">:</span><span class="o">=</span> <span class="n">tee</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">take</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">repeat</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">))</span>
+    done := make(chan interface{})
+    defer close(done)
+    out1, out2 := tee(done, take(done, repeat(done, 1, 2), 4))
 
-    <span class="k">for</span> <span class="n">val1</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">out1</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;out1: %v, out2:%v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">val1</span><span class="p">,</span> <span class="o">&lt;-</span><span class="n">out2</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    for val1 := range out1 {
+        fmt.Printf(&quot;out1: %v, out2:%v\n&quot;, val1, &lt;-out2)
+    }
+}
 </code></pre></div>
-
 
 <h3 id="the-bridge-channel">The bridge-channel<a class="headerlink" href="#the-bridge-channel" title="Permanent link">&para;</a></h3>
 <p>define a function that can destructure the channel of channels into s simple channel(bridging the channels)</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
+import &quot;fmt&quot;
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">bridge</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">chanStream</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">valStream</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">valStream</span><span class="p">)</span>
-            <span class="k">for</span> <span class="p">{</span>
-                <span class="n">var</span> <span class="n">stream</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="o">//</span><span class="n">this</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">channel</span> <span class="n">that</span> <span class="n">will</span> <span class="k">return</span> <span class="nb">all</span> <span class="n">values</span> <span class="kn">from</span> <span class="nn">bridge</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="n">maybeStream</span><span class="p">,</span> <span class="n">ok</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;-</span><span class="n">chanStream</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">ok</span> <span class="o">==</span> <span class="n">false</span> <span class="p">{</span>
-                        <span class="k">return</span>
-                    <span class="p">}</span>
-                    <span class="n">stream</span> <span class="o">=</span> <span class="n">maybeStream</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="p">}</span>
-                <span class="k">for</span> <span class="n">val</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">orDone</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">select</span> <span class="p">{</span>
-                    <span class="n">case</span> <span class="n">valStream</span> <span class="o">&lt;-</span> <span class="n">val</span><span class="p">:</span>
-                    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
+func main() {
+    bridge := func(done &lt;-chan interface{}, chanStream &lt;-chan &lt;-chan interface{}) &lt;-chan interface{} {
+        valStream := make(chan interface{})
+        go func() {
+            defer close(valStream)
+            for {
+                var stream &lt;-chan interface{} //this is the channel that will return all values from bridge
+                select {
+                case maybeStream, ok := &lt;-chanStream:
+                    if ok == false {
+                        return
+                    }
+                    stream = maybeStream
+                case &lt;-done:
+                    return
+                }
+                for val := range orDone(done, stream) {
+                    select {
+                    case valStream &lt;- val:
+                    case &lt;-done:
+                    }
+                }
 
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">valStream</span>
-    <span class="p">}</span>
+            }
+        }()
+        return valStream
+    }
 
-    <span class="n">genVals</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">()</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-        <span class="n">chanStream</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="p">(</span><span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}))</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">chanStream</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-                <span class="n">stream</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="n">stream</span> <span class="o">&lt;-</span> <span class="n">i</span>
-                <span class="n">close</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
-                <span class="n">chanStream</span> <span class="o">&lt;-</span> <span class="n">stream</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">chanStream</span>
-    <span class="p">}</span>
+    genVals := func() &lt;-chan &lt;-chan interface{} {
+        chanStream := make(chan (&lt;-chan interface{}))
+        go func() {
+            defer close(chanStream)
+            for i := 0; i &lt; 10; i++ {
+                stream := make(chan interface{}, 1)
+                stream &lt;- i
+                close(stream)
+                chanStream &lt;- stream
+            }
+        }()
+        return chanStream
+    }
 
-    <span class="k">for</span> <span class="n">v</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">bridge</span><span class="p">(</span><span class="n">nil</span><span class="p">,</span> <span class="n">genVals</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;%v &quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">//</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    for v := range bridge(nil, genVals()) {
+        fmt.Printf(&quot;%v &quot;, v) //0 1 2 3 4 5 6 7 8 9
+    }
+}
 </code></pre></div>
-
 
 <h3 id="queuing">Queuing<a class="headerlink" href="#queuing" title="Permanent link">&para;</a></h3>
 <p>queuing should be implemented either:</p>
@@ -4588,336 +4557,331 @@ into two separate areas of your codebase.</p>
 <li>Heartbeats that occur on a time interval.</li>
 <li>Heartbeats that occur at the beginning of a unit of work.</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;time&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">doWork</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">pulseInterval</span> <span class="n">time</span><span class="o">.</span><span class="n">Duration</span><span class="p">)</span> <span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">time</span><span class="o">.</span><span class="n">Time</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">heartbeat</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-        <span class="n">results</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">time</span><span class="o">.</span><span class="n">Time</span><span class="p">)</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">heartbeat</span><span class="p">)</span>
-            <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+func main() {
+    doWork := func(done &lt;-chan interface{}, pulseInterval time.Duration) (chan interface{}, &lt;-chan time.Time) {
+        heartbeat := make(chan interface{})
+        results := make(chan time.Time)
+        go func() {
+            defer close(heartbeat)
+            defer close(results)
 
-            <span class="n">pulse</span> <span class="p">:</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">Tick</span><span class="p">(</span><span class="n">pulseInterval</span><span class="p">)</span>
-            <span class="n">workGen</span> <span class="p">:</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">Tick</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pulseInterval</span><span class="p">)</span> <span class="o">//</span><span class="n">another</span> <span class="n">ticker</span> <span class="n">to</span> <span class="n">simulate</span> <span class="n">work</span> <span class="n">coming</span> <span class="ow">in</span>
+            pulse := time.Tick(pulseInterval)
+            workGen := time.Tick(2 * pulseInterval) //another ticker to simulate work coming in
 
-            <span class="n">sendPulse</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="n">heartbeat</span> <span class="o">&lt;-</span> <span class="n">struct</span><span class="p">{}{}:</span>
-                <span class="n">default</span><span class="p">:</span> <span class="o">//</span> <span class="n">no</span> <span class="n">one</span> <span class="n">maybe</span> <span class="n">listening</span> <span class="n">to</span> <span class="n">our</span> <span class="n">hearteat</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="n">sendResult</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">r</span> <span class="n">time</span><span class="o">.</span><span class="n">Time</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="p">{</span>
-                    <span class="n">select</span> <span class="p">{</span>
-                    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                        <span class="k">return</span>
-                    <span class="n">case</span> <span class="o">&lt;-</span><span class="n">pulse</span><span class="p">:</span>
-                        <span class="n">sendPulse</span><span class="p">()</span>
-                    <span class="n">case</span> <span class="n">results</span> <span class="o">&lt;-</span> <span class="n">r</span><span class="p">:</span>
-                        <span class="k">return</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
+            sendPulse := func() {
+                select {
+                case heartbeat &lt;- struct{}{}:
+                default: // no one maybe listening to our hearteat
+                }
+            }
+            sendResult := func(r time.Time) {
+                for {
+                    select {
+                    case &lt;-done:
+                        return
+                    case &lt;-pulse:
+                        sendPulse()
+                    case results &lt;- r:
+                        return
+                    }
+                }
+            }
 
-            <span class="k">for</span> <span class="p">{</span>
-                <span class="n">select</span> <span class="p">{</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="n">case</span> <span class="o">&lt;-</span><span class="n">pulse</span><span class="p">:</span>
-                    <span class="n">sendPulse</span><span class="p">()</span>
-                <span class="n">case</span> <span class="n">r</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;-</span><span class="n">workGen</span><span class="p">:</span>
-                    <span class="n">sendResult</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-        <span class="k">return</span> <span class="n">heartbeat</span><span class="p">,</span> <span class="n">results</span>
-    <span class="p">}</span>
+            for {
+                select {
+                case &lt;-done:
+                    return
+                case &lt;-pulse:
+                    sendPulse()
+                case r := &lt;-workGen:
+                    sendResult(r)
+                }
+            }
+        }()
+        return heartbeat, results
+    }
 
-    <span class="n">done</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">AfterFunc</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="p">,</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span> <span class="n">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span> <span class="p">})</span>
+    done := make(chan interface{})
+    time.AfterFunc(10*time.Second, func() { close(done) })
 
-    <span class="n">const</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">time</span><span class="o">.</span><span class="n">Second</span>
-    <span class="n">heartbeat</span><span class="p">,</span> <span class="n">results</span> <span class="p">:</span><span class="o">=</span> <span class="n">doWork</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">timeout</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="n">select</span> <span class="p">{</span>
-        <span class="n">case</span> <span class="n">_</span><span class="p">,</span> <span class="n">ok</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;-</span><span class="n">heartbeat</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">ok</span> <span class="o">==</span> <span class="n">false</span> <span class="p">{</span>
-                <span class="k">return</span>
-            <span class="p">}</span>
-            <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;pulse&quot;</span><span class="p">)</span>
-        <span class="n">case</span> <span class="n">r</span><span class="p">,</span> <span class="n">ok</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;-</span><span class="n">results</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">ok</span> <span class="o">==</span> <span class="n">false</span> <span class="p">{</span>
-                <span class="k">return</span>
-            <span class="p">}</span>
-            <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;results %v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">Second</span><span class="p">())</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">time</span><span class="o">.</span><span class="n">After</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
-            <span class="k">return</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+    const timeout = 2 * time.Second
+    heartbeat, results := doWork(done, timeout/2)
+    for {
+        select {
+        case _, ok := &lt;-heartbeat:
+            if ok == false {
+                return
+            }
+            fmt.Println(&quot;pulse&quot;)
+        case r, ok := &lt;-results:
+            if ok == false {
+                return
+            }
+            fmt.Printf(&quot;results %v\n&quot;, r.Second())
+        case &lt;-time.After(timeout):
+            return
+        }
+    }
 
-<span class="p">}</span>
+}
 </code></pre></div>
-
 
 <p>For any long-running goroutines, or goroutines that need to be tested, highly recommend this pattern.</p>
 <h3 id="replicated-request">Replicated Request<a class="headerlink" href="#replicated-request" title="Permanent link">&para;</a></h3>
 <p>You can replicate the request to mulitple handlers(whether those be gorutines, processes, or servers),
 and one of them will run faster than other ones, you can then immediately return the result.
 The downside is that you&rsquo;ll have to utilize resources to keep multiple copies of the handlers running.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-    <span class="s2">&quot;math/rand&quot;</span>
-    <span class="s2">&quot;sync&quot;</span>
-    <span class="s2">&quot;time&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+    &quot;math/rand&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">doWork</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="nb">id</span> <span class="nb">int</span><span class="p">,</span> <span class="n">wg</span> <span class="o">*</span><span class="n">sync</span><span class="o">.</span><span class="n">WaitGroup</span><span class="p">,</span> <span class="n">result</span> <span class="n">chan</span><span class="o">&lt;-</span> <span class="nb">int</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">started</span> <span class="p">:</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span>
-        <span class="n">defer</span> <span class="n">wg</span><span class="o">.</span><span class="n">Done</span><span class="p">()</span>
+func main() {
+    doWork := func(done &lt;-chan interface{}, id int, wg *sync.WaitGroup, result chan&lt;- int) {
+        started := time.Now()
+        defer wg.Done()
 
-        <span class="o">//</span><span class="n">Simulate</span> <span class="n">random</span> <span class="n">load</span>
-        <span class="n">simulateLoadTime</span> <span class="p">:</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rand</span><span class="o">.</span><span class="n">Intn</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="o">*</span> <span class="n">time</span><span class="o">.</span><span class="n">Second</span>
-        <span class="n">select</span> <span class="p">{</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">time</span><span class="o">.</span><span class="n">After</span><span class="p">(</span><span class="n">simulateLoadTime</span><span class="p">):</span>
-        <span class="p">}</span>
-        <span class="n">select</span> <span class="p">{</span>
-        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-        <span class="n">case</span> <span class="n">result</span> <span class="o">&lt;-</span> <span class="nb">id</span><span class="p">:</span>
-        <span class="p">}</span>
+        //Simulate random load
+        simulateLoadTime := time.Duration(1+rand.Intn(5)) * time.Second
+        select {
+        case &lt;-done:
+        case &lt;-time.After(simulateLoadTime):
+        }
+        select {
+        case &lt;-done:
+        case result &lt;- id:
+        }
 
-        <span class="n">took</span> <span class="p">:</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">Since</span><span class="p">(</span><span class="n">started</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">took</span> <span class="o">&lt;</span> <span class="n">simulateLoadTime</span> <span class="p">{</span>
-            <span class="n">took</span> <span class="o">=</span> <span class="n">simulateLoadTime</span>
-        <span class="p">}</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;%v took %v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">took</span><span class="p">)</span>
-    <span class="p">}</span>
+        took := time.Since(started)
+        if took &lt; simulateLoadTime {
+            took = simulateLoadTime
+        }
+        fmt.Printf(&quot;%v took %v\n&quot;, id, took)
+    }
 
-    <span class="n">done</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-    <span class="n">result</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="nb">int</span><span class="p">)</span>
-    <span class="n">var</span> <span class="n">wg</span> <span class="n">sync</span><span class="o">.</span><span class="n">WaitGroup</span>
-    <span class="n">wg</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    done := make(chan interface{})
+    result := make(chan int)
+    var wg sync.WaitGroup
+    wg.Add(10)
 
-    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">go</span> <span class="n">doWork</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wg</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="o">//</span><span class="n">start</span> <span class="mi">10</span> <span class="n">handlers</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">our</span> <span class="n">request</span>
-    <span class="p">}</span>
-    <span class="n">firstReturned</span> <span class="p">:</span><span class="o">=</span> <span class="o">&lt;-</span><span class="n">result</span> <span class="o">//</span> <span class="n">grabs</span> <span class="n">the</span> <span class="n">first</span> <span class="k">return</span> <span class="n">value</span> <span class="kn">from</span> <span class="nn">the</span> <span class="nn">group</span> <span class="nn">of</span> <span class="nn">handlers</span>
-    <span class="n">close</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>               <span class="o">//</span><span class="n">cancel</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">handlers</span>
-    <span class="n">wg</span><span class="o">.</span><span class="n">Wait</span><span class="p">()</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;Received an answer from #%v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">firstReturned</span><span class="p">)</span>
-<span class="p">}</span>
+    for i := 0; i &lt; 10; i++ {
+        go doWork(done, i, &amp;wg, result) //start 10 handlers to handle our request
+    }
+    firstReturned := &lt;-result // grabs the first return value from the group of handlers
+    close(done)               //cancel all the remaining handlers
+    wg.Wait()
+    fmt.Printf(&quot;Received an answer from #%v\n&quot;, firstReturned)
+}
 </code></pre></div>
-
 
 <h3 id="rate-limiting">Rate Limiting<a class="headerlink" href="#rate-limiting" title="Permanent link">&para;</a></h3>
 <p>Most rate limitings is done by utilizing an algorithm called the &ldquo;token bucket&rdquo;.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;context&quot;</span>
-    <span class="s2">&quot;log&quot;</span>
-    <span class="s2">&quot;os&quot;</span>
-    <span class="s2">&quot;sync&quot;</span>
+import (
+    &quot;context&quot;
+    &quot;log&quot;
+    &quot;os&quot;
+    &quot;sync&quot;
 
-    <span class="s2">&quot;golang.org/x/time/rate&quot;</span> <span class="o">//</span> <span class="n">go</span> <span class="n">get</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">golang</span><span class="o">/</span><span class="n">time</span><span class="o">/</span><span class="n">rate</span>
-<span class="p">)</span>
+    &quot;golang.org/x/time/rate&quot; // go get github.com/golang/time/rate
+)
 
-<span class="n">func</span> <span class="n">Open</span><span class="p">()</span> <span class="o">*</span><span class="n">APIConnection</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="o">&amp;</span><span class="n">APIConnection</span><span class="p">{</span>
-        <span class="n">rateLimiter</span><span class="p">:</span> <span class="n">rate</span><span class="o">.</span><span class="n">NewLimiter</span><span class="p">(</span><span class="n">rate</span><span class="o">.</span><span class="n">Limit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="o">//</span><span class="mi">1</span> <span class="n">event</span> <span class="n">per</span> <span class="n">second</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+func Open() *APIConnection {
+    return &amp;APIConnection{
+        rateLimiter: rate.NewLimiter(rate.Limit(1), 1), //1 event per second
+    }
+}
 
-<span class="nb">type</span> <span class="n">APIConnection</span> <span class="n">struct</span> <span class="p">{</span>
-    <span class="n">rateLimiter</span> <span class="o">*</span><span class="n">rate</span><span class="o">.</span><span class="n">Limiter</span> <span class="o">//</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">godoc</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">golang</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">x</span><span class="o">/</span><span class="n">time</span><span class="o">/</span><span class="n">rate</span>
-<span class="p">}</span>
+type APIConnection struct {
+    rateLimiter *rate.Limiter // https://godoc.org/golang.org/x/time/rate
+}
 
-<span class="n">func</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span><span class="n">APIConnection</span><span class="p">)</span> <span class="n">ReadFile</span><span class="p">(</span><span class="n">ctx</span> <span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">error</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">rateLimiter</span><span class="o">.</span><span class="n">Wait</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">err</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">nil</span>
-<span class="p">}</span>
-<span class="n">func</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span><span class="n">APIConnection</span><span class="p">)</span> <span class="n">ResoveAddress</span><span class="p">(</span><span class="n">ctx</span> <span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">error</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">rateLimiter</span><span class="o">.</span><span class="n">Wait</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">err</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">nil</span>
-<span class="p">}</span>
+func (a *APIConnection) ReadFile(ctx context.Context) error {
+    if err := a.rateLimiter.Wait(ctx); err != nil {
+        return err
+    }
+    return nil
+}
+func (a *APIConnection) ResoveAddress(ctx context.Context) error {
+    if err := a.rateLimiter.Wait(ctx); err != nil {
+        return err
+    }
+    return nil
+}
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">defer</span> <span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">SetOutput</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">Stdout</span><span class="p">)</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">SetFlags</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">Ltime</span> <span class="o">|</span> <span class="n">log</span><span class="o">.</span><span class="n">LUTC</span><span class="p">)</span>
-    <span class="n">apiConnection</span> <span class="p">:</span><span class="o">=</span> <span class="n">Open</span><span class="p">()</span>
-    <span class="n">var</span> <span class="n">wg</span> <span class="n">sync</span><span class="o">.</span><span class="n">WaitGroup</span>
-    <span class="n">wg</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+func main() {
+    defer log.Printf(&quot;Done&quot;)
+    log.SetOutput(os.Stdout)
+    log.SetFlags(log.Ltime | log.LUTC)
+    apiConnection := Open()
+    var wg sync.WaitGroup
+    wg.Add(20)
 
-    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">wg</span><span class="o">.</span><span class="n">Done</span><span class="p">()</span>
-            <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">apiConnection</span><span class="o">.</span><span class="n">ReadFile</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Background</span><span class="p">())</span>
-            <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;cannot ReadFile :%v&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-            <span class="p">}</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;ReadFile&quot;</span><span class="p">)</span>
-        <span class="p">}()</span>
-    <span class="p">}</span>
+    for i := 0; i &lt; 10; i++ {
+        go func() {
+            defer wg.Done()
+            err := apiConnection.ReadFile(context.Background())
+            if err != nil {
+                log.Printf(&quot;cannot ReadFile :%v&quot;, err)
+            }
+            log.Printf(&quot;ReadFile&quot;)
+        }()
+    }
 
-    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="n">defer</span> <span class="n">wg</span><span class="o">.</span><span class="n">Done</span><span class="p">()</span>
-            <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">apiConnection</span><span class="o">.</span><span class="n">ResoveAddress</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Background</span><span class="p">())</span>
-            <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;cannot ResolveAddress :%v&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-            <span class="p">}</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;ResolveAddress&quot;</span><span class="p">)</span>
-        <span class="p">}()</span>
-    <span class="p">}</span>
-    <span class="n">wg</span><span class="o">.</span><span class="n">Wait</span><span class="p">()</span>
+    for i := 0; i &lt; 10; i++ {
+        go func() {
+            defer wg.Done()
+            err := apiConnection.ResoveAddress(context.Background())
+            if err != nil {
+                log.Printf(&quot;cannot ResolveAddress :%v&quot;, err)
+            }
+            log.Printf(&quot;ResolveAddress&quot;)
+        }()
+    }
+    wg.Wait()
 
-<span class="p">}</span>
+}
 </code></pre></div>
-
 
 <p>It&rsquo;s eaiser to keep the limiters separate and then combine them into one rate limiter that manages the interaction for
 you.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;context&quot;</span>
-    <span class="s2">&quot;sort&quot;</span>
-    <span class="s2">&quot;time&quot;</span>
+import (
+    &quot;context&quot;
+    &quot;sort&quot;
+    &quot;time&quot;
 
-    <span class="s2">&quot;golang.org/x/time/rate&quot;</span> <span class="o">//</span> <span class="n">go</span> <span class="n">get</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">golang</span><span class="o">/</span><span class="n">time</span><span class="o">/</span><span class="n">rate</span>
-<span class="p">)</span>
+    &quot;golang.org/x/time/rate&quot; // go get github.com/golang/time/rate
+)
 
-<span class="nb">type</span> <span class="n">RateLimiter</span> <span class="n">interface</span> <span class="p">{</span>
-    <span class="n">Wait</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">error</span>
-    <span class="n">Limit</span><span class="p">()</span> <span class="n">rate</span><span class="o">.</span><span class="n">Limit</span>
-<span class="p">}</span>
+type RateLimiter interface {
+    Wait(context.Context) error
+    Limit() rate.Limit
+}
 
-<span class="n">func</span> <span class="n">MultiLimiter</span><span class="p">(</span><span class="n">limiters</span> <span class="o">...</span><span class="n">RateLimiter</span><span class="p">)</span> <span class="o">*</span><span class="n">multiLimiter</span> <span class="p">{</span>
-    <span class="n">byLimit</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="nb">int</span><span class="p">)</span> <span class="nb">bool</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">limiters</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">Limit</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">limiters</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">Limit</span><span class="p">()</span>
-    <span class="p">}</span>
-    <span class="n">sort</span><span class="o">.</span><span class="n">Slice</span><span class="p">(</span><span class="n">limiters</span><span class="p">,</span> <span class="n">byLimit</span><span class="p">)</span>
-    <span class="k">return</span> <span class="o">&amp;</span><span class="n">multiLimiter</span><span class="p">{</span><span class="n">limiters</span><span class="p">:</span> <span class="n">limiters</span><span class="p">}</span>
-<span class="p">}</span>
+func MultiLimiter(limiters ...RateLimiter) *multiLimiter {
+    byLimit := func(i, j int) bool {
+        return limiters[i].Limit() &lt; limiters[j].Limit()
+    }
+    sort.Slice(limiters, byLimit)
+    return &amp;multiLimiter{limiters: limiters}
+}
 
-<span class="nb">type</span> <span class="n">multiLimiter</span> <span class="n">struct</span> <span class="p">{</span>
-    <span class="n">limiters</span> <span class="p">[]</span><span class="n">RateLimiter</span>
-<span class="p">}</span>
+type multiLimiter struct {
+    limiters []RateLimiter
+}
 
-<span class="n">func</span> <span class="p">(</span><span class="n">l</span> <span class="o">*</span><span class="n">multiLimiter</span><span class="p">)</span> <span class="n">Wait</span><span class="p">(</span><span class="n">ctx</span> <span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">error</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">l</span> <span class="p">:</span><span class="o">=</span> <span class="nb">range</span> <span class="n">l</span><span class="o">.</span><span class="n">limiters</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">Wait</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">err</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">nil</span>
-<span class="p">}</span>
+func (l *multiLimiter) Wait(ctx context.Context) error {
+    for _, l := range l.limiters {
+        if err := l.Wait(ctx); err != nil {
+            return err
+        }
+    }
+    return nil
+}
 
-<span class="n">func</span> <span class="p">(</span><span class="n">l</span> <span class="o">*</span><span class="n">multiLimiter</span><span class="p">)</span> <span class="n">Limit</span><span class="p">()</span> <span class="n">rate</span><span class="o">.</span><span class="n">Limit</span> <span class="p">{</span>
-    <span class="o">//</span> <span class="k">return</span> <span class="n">the</span> <span class="n">most</span> <span class="n">restrictive</span> <span class="n">limit</span>
-    <span class="k">return</span> <span class="n">l</span><span class="o">.</span><span class="n">limiters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">Limit</span><span class="p">()</span>
-<span class="p">}</span>
+func (l *multiLimiter) Limit() rate.Limit {
+    // return the most restrictive limit
+    return l.limiters[0].Limit()
+}
 
-<span class="n">func</span> <span class="n">Open</span><span class="p">()</span> <span class="o">*</span><span class="n">APIConnnection</span> <span class="p">{</span>
-    <span class="n">secondLimit</span> <span class="p">:</span><span class="o">=</span> <span class="n">rate</span><span class="o">.</span><span class="n">NewLimiter</span><span class="p">(</span><span class="n">Per</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">minuteLimit</span> <span class="p">:</span><span class="o">=</span> <span class="n">rate</span><span class="o">.</span><span class="n">NewLimiter</span><span class="p">(</span><span class="n">Per</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">Minute</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="k">return</span> <span class="o">&amp;</span><span class="n">APIConnnection</span><span class="p">{</span>
-        <span class="n">rateLimiter</span><span class="p">:</span> <span class="n">MultiLimiter</span><span class="p">(</span><span class="n">secondLimit</span><span class="p">,</span> <span class="n">minuteLimit</span><span class="p">),</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+func Open() *APIConnnection {
+    secondLimit := rate.NewLimiter(Per(2, time.Second), 1)
+    minuteLimit := rate.NewLimiter(Per(10, time.Minute), 10)
+    return &amp;APIConnnection{
+        rateLimiter: MultiLimiter(secondLimit, minuteLimit),
+    }
+}
 
-<span class="nb">type</span> <span class="n">APIConnnection</span> <span class="n">struct</span> <span class="p">{</span>
-    <span class="n">rateLimiter</span> <span class="n">RateLimiter</span>
-<span class="p">}</span>
+type APIConnnection struct {
+    rateLimiter RateLimiter
+}
 
-<span class="n">func</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span><span class="n">APIConnnection</span><span class="p">)</span> <span class="n">ReadFile</span><span class="p">(</span><span class="n">ctx</span> <span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">error</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">rateLimiter</span><span class="o">.</span><span class="n">Wait</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">err</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">nil</span>
-<span class="p">}</span>
+func (a *APIConnnection) ReadFile(ctx context.Context) error {
+    if err := a.rateLimiter.Wait(ctx); err != nil {
+        return err
+    }
+    return nil
+}
 
-<span class="n">func</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span><span class="n">APIConnnection</span><span class="p">)</span> <span class="n">ResolveAddress</span><span class="p">(</span><span class="n">ctx</span> <span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="n">errro</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">rateLimiter</span><span class="o">.</span><span class="n">Wait</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">err</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">nil</span>
-<span class="p">}</span>
+func (a *APIConnnection) ResolveAddress(ctx context.Context) errro {
+    if err := a.rateLimiter.Wait(ctx); err != nil {
+        return err
+    }
+    return nil
+}
 </code></pre></div>
-
 
 <h3 id="healing-unhealthy-goroutines">Healing Unhealthy Goroutines<a class="headerlink" href="#healing-unhealthy-goroutines" title="Permanent link">&para;</a></h3>
 <p>Ensure your long-lived goroutines stay up and healthy.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;log&quot;</span>
-    <span class="s2">&quot;time&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;log&quot;
+    &quot;time&quot;
+)
 
-<span class="nb">type</span> <span class="n">startGoroutineFn</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">pulseInterval</span> <span class="n">time</span><span class="o">.</span><span class="n">Duration</span><span class="p">)</span> <span class="p">(</span><span class="n">heartbeat</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
+type startGoroutineFn func(done &lt;-chan interface{}, pulseInterval time.Duration) (heartbeat &lt;-chan interface{})
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+func main() {
 
-    <span class="n">newSteward</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">timeout</span> <span class="n">time</span><span class="o">.</span><span class="n">Duration</span><span class="p">,</span> <span class="n">startGoroutine</span> <span class="n">startGoroutineFn</span><span class="p">)</span> <span class="n">startGoroutineFn</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">done</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{},</span> <span class="n">pulseInterval</span> <span class="n">time</span><span class="o">.</span><span class="n">Duration</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span> <span class="p">{</span>
-            <span class="n">heartbeat</span> <span class="p">:</span><span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-            <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-                <span class="n">defer</span> <span class="n">close</span><span class="p">(</span><span class="n">heartbeat</span><span class="p">)</span>
+    newSteward := func(timeout time.Duration, startGoroutine startGoroutineFn) startGoroutineFn {
+        return func(done &lt;-chan interface{}, pulseInterval time.Duration) &lt;-chan interface{} {
+            heartbeat := make(chan interface{})
+            go func() {
+                defer close(heartbeat)
 
-                <span class="n">var</span> <span class="n">wardDone</span> <span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span>
-                <span class="n">var</span> <span class="n">wardHeartbeat</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{}</span>
-                <span class="n">startWard</span> <span class="p">:</span><span class="o">=</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-                    <span class="n">wardDone</span> <span class="o">=</span> <span class="n">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">interface</span><span class="p">{})</span>
-                    <span class="n">wardHeartbeat</span> <span class="o">=</span> <span class="n">startGoroutine</span><span class="p">(</span><span class="ow">or</span><span class="p">(</span><span class="n">wardDone</span><span class="p">,</span> <span class="n">done</span><span class="p">),</span> <span class="n">timeout</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-                <span class="p">}</span>
-                <span class="n">startWard</span><span class="p">()</span>
-                <span class="n">pulse</span> <span class="p">:</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">Tick</span><span class="p">(</span><span class="n">pulseInterval</span><span class="p">)</span>
+                var wardDone chan interface{}
+                var wardHeartbeat &lt;-chan interface{}
+                startWard := func() {
+                    wardDone = make(chan interface{})
+                    wardHeartbeat = startGoroutine(or(wardDone, done), timeout/2)
+                }
+                startWard()
+                pulse := time.Tick(pulseInterval)
 
-            <span class="n">monitorLoop</span><span class="p">:</span>
-                <span class="k">for</span> <span class="p">{</span>
-                    <span class="n">timeoutSignal</span> <span class="p">:</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">After</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-                    <span class="k">for</span> <span class="p">{</span>
-                        <span class="n">select</span> <span class="p">{</span>
-                        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">pulse</span><span class="p">:</span>
-                            <span class="n">select</span> <span class="p">{</span>
-                            <span class="n">case</span> <span class="n">heartbeat</span> <span class="o">&lt;-</span> <span class="n">struct</span><span class="p">{}{}:</span>
-                            <span class="n">default</span><span class="p">:</span>
-                            <span class="p">}</span>
-                        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">wardHeartbeat</span><span class="p">:</span>
-                            <span class="k">continue</span> <span class="n">monitorLoop</span>
-                        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">timeoutSignal</span><span class="p">:</span>
-                            <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;steward: ward unhealthy: restarting&quot;</span><span class="p">)</span>
-                            <span class="n">close</span><span class="p">(</span><span class="n">wardDone</span><span class="p">)</span>
-                            <span class="n">startWard</span><span class="p">()</span>
-                            <span class="k">continue</span> <span class="n">monitorLoop</span>
-                        <span class="n">case</span> <span class="o">&lt;-</span><span class="n">done</span><span class="p">:</span>
-                            <span class="k">return</span>
-                        <span class="p">}</span>
-                    <span class="p">}</span>
+            monitorLoop:
+                for {
+                    timeoutSignal := time.After(timeout)
+                    for {
+                        select {
+                        case &lt;-pulse:
+                            select {
+                            case heartbeat &lt;- struct{}{}:
+                            default:
+                            }
+                        case &lt;-wardHeartbeat:
+                            continue monitorLoop
+                        case &lt;-timeoutSignal:
+                            log.Println(&quot;steward: ward unhealthy: restarting&quot;)
+                            close(wardDone)
+                            startWard()
+                            continue monitorLoop
+                        case &lt;-done:
+                            return
+                        }
+                    }
 
-                <span class="p">}</span>
-            <span class="p">}()</span>
-            <span class="k">return</span> <span class="n">heartbeat</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+                }
+            }()
+            return heartbeat
+        }
+    }
+}
 </code></pre></div>
-
 
 <h1 id="6-goroutines-and-the-go-runtime">6 Goroutines and the Go Runtime<a class="headerlink" href="#6-goroutines-and-the-go-runtime" title="Permanent link">&para;</a></h1>
 <h3 id="work-stealing">Work Stealing<a class="headerlink" href="#work-stealing" title="Permanent link">&para;</a></h3>
@@ -4935,24 +4899,23 @@ synchronized through channels or types in the sync package.</p>
   - steal work from the head of a random thread&rsquo;s associated deque</li>
 </ol>
 <h3 id="stealing-tasks-or-continuations">Stealing Tasks or Continuations?<a class="headerlink" href="#stealing-tasks-or-continuations" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="n">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">fib</span> <span class="nf">func</span><span class="p">(</span><span class="n">n</span> <span class="n">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span>
-    <span class="n">fib</span> <span class="o">=</span> <span class="nf">func</span><span class="p">(</span><span class="n">n</span> <span class="n">int</span><span class="p">)</span> <span class="o">&lt;-</span><span class="n">chan</span> <span class="n">int</span> <span class="p">{</span>
-        <span class="n">result</span> <span class="o">:=</span> <span class="nf">make</span><span class="p">(</span><span class="n">chan</span> <span class="n">int</span><span class="p">)</span>
-        <span class="n">go</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span> <span class="o">//</span> <span class="n">tasks</span>
-            <span class="n">defer</span> <span class="nf">close</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-            <span class="n">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="m">2</span> <span class="p">{</span>
-                <span class="n">result</span> <span class="o">&lt;-</span> <span class="m">1</span>
-                <span class="n">return</span>
-            <span class="p">}</span>
-            <span class="n">result</span> <span class="o">&lt;-</span> <span class="o">&lt;-</span><span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="m">-1</span><span class="p">)</span> <span class="o">+</span> <span class="o">&lt;-</span><span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="m">-2</span><span class="p">)</span>
-        <span class="p">}()</span>
-        <span class="n">return</span> <span class="n">result</span> <span class="o">//</span> <span class="n">continuation</span>
-    <span class="p">}</span>
-    <span class="nf">fmt.Printf</span><span class="p">(</span><span class="s">&quot;fib = %d&quot;</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nf">fib</span><span class="p">(</span><span class="m">4</span><span class="p">))</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>func main() {
+    var fib func(n int) &lt;-chan int
+    fib = func(n int) &lt;-chan int {
+        result := make(chan int)
+        go func() { // tasks
+            defer close(result)
+            if n &lt;= 2 {
+                result &lt;- 1
+                return
+            }
+            result &lt;- &lt;-fib(n-1) + &lt;-fib(n-2)
+        }()
+        return result // continuation
+    }
+    fmt.Printf(&quot;fib = %d&quot;, &lt;-fib(4))
+}
 </code></pre></div>
-
 
 <ul>
 <li>In go , goroutines are tasks</li>
@@ -4969,24 +4932,23 @@ synchronized through channels or types in the sync package.</p>
 <h3 id="anatomy-of-a-goroutine-error">Anatomy of a Goroutine Error<a class="headerlink" href="#anatomy-of-a-goroutine-error" title="Permanent link">&para;</a></h3>
 <p>Prior to Go1.6, when a goroutine panicked, the runtime would print stack traces of all the currently executing
 goroutines.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;fmt&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;fmt&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="o">//</span><span class="n">go</span> <span class="n">run</span> <span class="o">-</span><span class="n">race</span> <span class="n">main</span><span class="o">.</span><span class="n">go</span>
-    <span class="n">var</span> <span class="n">data</span> <span class="nb">int</span>
-    <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">data</span><span class="o">++</span>
-    <span class="p">}()</span>
-    <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;value is %v</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+func main() {
+    //go run -race main.go
+    var data int
+    go func() {
+        data++
+    }()
+    if data == 0 {
+        fmt.Printf(&quot;value is %v\n&quot;, data)
+    }
+}
 </code></pre></div>
-
 
 <h3 id="race-detection">Race Detection<a class="headerlink" href="#race-detection" title="Permanent link">&para;</a></h3>
 <p>go run -race main.go</p>
@@ -5000,34 +4962,34 @@ goroutines.</p>
 <li>primitives</li>
 <li>mutex</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
+<div class="highlight"><pre><span></span><code>package main
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s2">&quot;log&quot;</span>
-    <span class="s2">&quot;os&quot;</span>
-    <span class="s2">&quot;runtime/pprof&quot;</span>
-    <span class="s2">&quot;time&quot;</span>
-<span class="p">)</span>
+import (
+    &quot;log&quot;
+    &quot;os&quot;
+    &quot;runtime/pprof&quot;
+    &quot;time&quot;
+)
 
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">SetFlags</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">Ltime</span> <span class="o">|</span> <span class="n">log</span><span class="o">.</span><span class="n">LUTC</span><span class="p">)</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">SetOutput</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">Stdout</span><span class="p">)</span>
+func main() {
+    log.SetFlags(log.Ltime | log.LUTC)
+    log.SetOutput(os.Stdout)
 
-    <span class="o">//</span><span class="n">every</span> <span class="n">second</span> <span class="p">,</span> <span class="n">log</span> <span class="n">how</span> <span class="n">many</span> <span class="n">goroutines</span> <span class="n">are</span> <span class="n">currently</span> <span class="n">running</span>
-    <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">goroutines</span> <span class="p">:</span><span class="o">=</span> <span class="n">pprof</span><span class="o">.</span><span class="n">Lookup</span><span class="p">(</span><span class="s2">&quot;goroutine&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="nb">range</span> <span class="n">time</span><span class="o">.</span><span class="n">Tick</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;goroutine count:</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">goroutines</span><span class="o">.</span><span class="n">Count</span><span class="p">())</span>
-        <span class="p">}</span>
-    <span class="p">}()</span>
+    //every second , log how many goroutines are currently running
+    go func() {
+        goroutines := pprof.Lookup(&quot;goroutine&quot;)
+        for range time.Tick(1 * time.Second) {
+            log.Printf(&quot;goroutine count:%d\n&quot;, goroutines.Count())
+        }
+    }()
 
-    <span class="o">//</span><span class="n">create</span> <span class="n">some</span> <span class="n">goroutines</span> <span class="n">which</span> <span class="n">will</span> <span class="n">never</span> <span class="nb">exit</span>
-    <span class="n">var</span> <span class="n">blockForever</span> <span class="n">chan</span> <span class="n">struct</span><span class="p">{}</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">go</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span> <span class="o">&lt;-</span><span class="n">blockForever</span> <span class="p">}()</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">Sleep</span><span class="p">(</span><span class="mi">500</span> <span class="o">*</span> <span class="n">time</span><span class="o">.</span><span class="n">Millisecond</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    //create some goroutines which will never exit
+    var blockForever chan struct{}
+    for i := 0; i &lt; 10; i++ {
+        go func() { &lt;-blockForever }()
+        time.Sleep(500 * time.Millisecond)
+    }
+}
 </code></pre></div>
                 
               
@@ -5054,7 +5016,7 @@ goroutines.</p>
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 Building Restful Web Services with Go
               </div>
@@ -5066,7 +5028,7 @@ goroutines.</p>
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 Go In Action(Go 实战)
               </div>
@@ -5096,7 +5058,7 @@ goroutines.</p>
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "No matching documents", "clipboard.copy": "Copy to clipboard", "search.result.placeholder": "Type to start searching", "clipboard.copied": "Copied to clipboard", "search.result.one": "1 matching document", "search.config.separator": "[\\s\\-]+", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
@@ -5107,6 +5069,8 @@ goroutines.</p>
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../js/extra.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
