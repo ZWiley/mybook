@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3606,83 +3618,83 @@
 </code></pre></div>
 + 原理：  <br />
 整个<code>Logger</code>内部是靠类 <strong><em><code>Impl</code></em></strong> 和类 <strong><em><code>SourceFile</code></em></strong> 实现的：</p>
-<div class="codehilite"><pre><span></span><code>+ 日志等级: ***`LogLevel`*** ，分为6个等级，由`g_logLevel`指定。
-+ 类`Impl`内部包含了一个缓冲流`LogStream`对象实现缓冲  
-    + 通过`Logger`的构造函数来初始化成员变量`impl`.
-        ```cpp
-        Logger::Impl::Impl(LogLevel level, int savedErrno, const SourceFile&amp; file, int line)
-        : time_(Timestamp::now()), stream_(),
-          level_(level), line_(line), basename_(file) 
-        {
-            formatTime();
-            CurrentThread::tid();
-            stream_ &lt;&lt; T(CurrentThread::tidString(), 6);
-            stream_ &lt;&lt; T(LogLevelName[level], 6);
-            if (savedErrno != 0) {
-                stream_ &lt;&lt; strerror_tl(savedErrno) &lt;&lt; &quot; (errno=&quot; &lt;&lt; savedErrno &lt;&lt; &quot;) &quot;;
-            }
-        }
-        ```
-        在构造`impl`时，由`Logger`构造函数传入三个等级:日志等级`level_`，以及行号`line_`和文件名`basename_`。`Impl`自己初始化`time_`和`stream_`。 通过`stream_`来实现对象的缓冲。至于具体缓冲到哪里，由类`LogStream`决定，`LogStream`重载了运算操作符号`&lt;&lt;`。
+<div class="codehilite"><pre><span></span><code><span class="o">+</span> <span class="err">日志等级</span><span class="p">:</span> <span class="o">***</span><span class="ss">`LogLevel`</span><span class="o">***</span> <span class="err">，分为</span><span class="mi">6</span><span class="err">个等级，由</span><span class="ss">`g_logLevel`</span><span class="err">指定。</span>
+<span class="o">+</span> <span class="err">类</span><span class="ss">`Impl`</span><span class="err">内部包含了一个缓冲流</span><span class="ss">`LogStream`</span><span class="err">对象实现缓冲</span>  
+    <span class="o">+</span> <span class="err">通过</span><span class="ss">`Logger`</span><span class="err">的构造函数来初始化成员变量</span><span class="ss">`impl`</span><span class="p">.</span>
+        <span class="ss">```cpp</span>
+<span class="ss">        Logger::Impl::Impl(LogLevel level, int savedErrno, const SourceFile&amp; file, int line)</span>
+<span class="ss">        : time_(Timestamp::now()), stream_(),</span>
+<span class="ss">          level_(level), line_(line), basename_(file) </span>
+<span class="ss">        {</span>
+<span class="ss">            formatTime();</span>
+<span class="ss">            CurrentThread::tid();</span>
+<span class="ss">            stream_ &lt;&lt; T(CurrentThread::tidString(), 6);</span>
+<span class="ss">            stream_ &lt;&lt; T(LogLevelName[level], 6);</span>
+<span class="ss">            if (savedErrno != 0) {</span>
+<span class="ss">                stream_ &lt;&lt; strerror_tl(savedErrno) &lt;&lt; &quot; (errno=&quot; &lt;&lt; savedErrno &lt;&lt; &quot;) &quot;;</span>
+<span class="ss">            }</span>
+<span class="ss">        }</span>
+<span class="ss">        ```</span>
+        <span class="err">在构造</span><span class="ss">`impl`</span><span class="err">时，由</span><span class="ss">`Logger`</span><span class="err">构造函数传入三个等级</span><span class="p">:</span><span class="err">日志等级</span><span class="ss">`level_`</span><span class="err">，以及行号</span><span class="ss">`line_`</span><span class="err">和文件名</span><span class="ss">`basename_`</span><span class="err">。</span><span class="ss">`Impl`</span><span class="err">自己初始化</span><span class="ss">`time_`</span><span class="err">和</span><span class="ss">`stream_`</span><span class="err">。</span> <span class="err">通过</span><span class="ss">`stream_`</span><span class="err">来实现对象的缓冲。至于具体缓冲到哪里，由类</span><span class="ss">`LogStream`</span><span class="err">决定，</span><span class="ss">`LogStream`</span><span class="err">重载了运算操作符号</span><span class="ss">`&lt;&lt;`</span><span class="err">。</span>
 
-    + 由`SourceFile`来获取文件名及文件名字符数。 
-+ 构造函数
-    ```cpp
-        Logger(SourceFile file, int line);
-        Logger(SourceFile file, int line, LogLevel level);
-        Logger(SourceFile file, int line, LogLevel level, const char* func);
-        Logger(SourceFile file, int line, bool toAbort);
-        ~Logger();
-    ```
-    默认日志等级是`INFO`，可通过`level`改变
-+ 缓冲目的地  
-    ```cpp
-    class Logger {
-    public:
-        typedef void (*OutputFunc)(const char* msg, int len);   
-        typedef void (*FlushFunc)();
-        static void setOutput(OutputFunc);
-        static void setFlush(FlushFunc);
-        ...
-    };
-    ```
-    可以由上述两个函数进行设置改变。默认下缓冲输出到标准输出`stdout`。
-    ```cpp
-        Logger::~Logger() {
-            impl_.finish();
-            const LogStream::Buffer&amp; buf(stream().buffer());
-            // 把buf内容输出到stdout
-            g_output(buf.data(), buf.length());
-            if (impl_.level_ == FATAL) {
-                    g_flush();
-                    abort();
-            }
-        }
-    ```
-    在`Logger`析构时，获取缓冲区并且将缓冲区的内容成输出到`g_output`指定的地方。  
-+ 使用  
-    ```c
-        #define LOG_TRACE \
-            if (muduo::Logger::logLevel() &lt;= muduo::Logger::TRACE) \
-                muduo::Logger(__FILE__, __LINE__, muduo::Logger::TRACE, __func__).stream()  
-        #define LOG_DEBUG  \ 
-            if (muduo::Logger::logLevel() &lt;= muduo::Logger::DEBUG) \
-                muduo::Logger(__FILE__, __LINE__, muduo::Logger::DEBUG, __func__).stream()
-        #define LOG_INFO   \ 
-            if (muduo::Logger::logLevel() &lt;= muduo::Logger::INFO)   \
-                muduo::Logger(__FILE__, __LINE__).stream()
-        #define LOG_WARN     \
-                muduo::Logger(__FILE__, __LINE__, muduo::Logger::WARN).stream()
-        #define LOG_ERROR    \
-                muduo::Logger(__FILE__, __LINE__, muduo::Logger::ERROR).stream()
-        #define LOG_FATAL    \
-                muduo::Logger(__FILE__, __LINE__, muduo::Logger::FATAL).stream()
-        #define LOG_SYSERR   \
-                muduo::Logger(__FILE__, __LINE__, false).stream()
-        #define LOG_SYSFATAL \
-                muduo::Logger(__FILE__, __LINE__, true).stream()
-    ```
-    通过使用宏定义来使用这个`Logger`，可以通过函数 ***`static void setLogLevel(LogLevel level);`*** 来决定使用哪个宏。
+    <span class="o">+</span> <span class="err">由</span><span class="ss">`SourceFile`</span><span class="err">来获取文件名及文件名字符数。</span> 
+<span class="o">+</span> <span class="err">构造函数</span>
+    <span class="ss">```cpp</span>
+<span class="ss">        Logger(SourceFile file, int line);</span>
+<span class="ss">        Logger(SourceFile file, int line, LogLevel level);</span>
+<span class="ss">        Logger(SourceFile file, int line, LogLevel level, const char* func);</span>
+<span class="ss">        Logger(SourceFile file, int line, bool toAbort);</span>
+<span class="ss">        ~Logger();</span>
+<span class="ss">    ```</span>
+    <span class="err">默认日志等级是</span><span class="ss">`INFO`</span><span class="err">，可通过</span><span class="ss">`level`</span><span class="err">改变</span>
+<span class="o">+</span> <span class="err">缓冲目的地</span>  
+    <span class="ss">```cpp</span>
+<span class="ss">    class Logger {</span>
+<span class="ss">    public:</span>
+<span class="ss">        typedef void (*OutputFunc)(const char* msg, int len);   </span>
+<span class="ss">        typedef void (*FlushFunc)();</span>
+<span class="ss">        static void setOutput(OutputFunc);</span>
+<span class="ss">        static void setFlush(FlushFunc);</span>
+<span class="ss">        ...</span>
+<span class="ss">    };</span>
+<span class="ss">    ```</span>
+    <span class="err">可以由上述两个函数进行设置改变。默认下缓冲输出到标准输出</span><span class="ss">`stdout`</span><span class="err">。</span>
+    <span class="ss">```cpp</span>
+<span class="ss">        Logger::~Logger() {</span>
+<span class="ss">            impl_.finish();</span>
+<span class="ss">            const LogStream::Buffer&amp; buf(stream().buffer());</span>
+<span class="ss">            // 把buf内容输出到stdout</span>
+<span class="ss">            g_output(buf.data(), buf.length());</span>
+<span class="ss">            if (impl_.level_ == FATAL) {</span>
+<span class="ss">                    g_flush();</span>
+<span class="ss">                    abort();</span>
+<span class="ss">            }</span>
+<span class="ss">        }</span>
+<span class="ss">    ```</span>
+    <span class="err">在</span><span class="ss">`Logger`</span><span class="err">析构时，获取缓冲区并且将缓冲区的内容成输出到</span><span class="ss">`g_output`</span><span class="err">指定的地方。</span>  
+<span class="o">+</span> <span class="err">使用</span>  
+    <span class="ss">```c</span>
+<span class="ss">        #define LOG_TRACE \</span>
+<span class="ss">            if (muduo::Logger::logLevel() &lt;= muduo::Logger::TRACE) \</span>
+<span class="ss">                muduo::Logger(__FILE__, __LINE__, muduo::Logger::TRACE, __func__).stream()  </span>
+<span class="ss">        #define LOG_DEBUG  \ </span>
+<span class="ss">            if (muduo::Logger::logLevel() &lt;= muduo::Logger::DEBUG) \</span>
+<span class="ss">                muduo::Logger(__FILE__, __LINE__, muduo::Logger::DEBUG, __func__).stream()</span>
+<span class="ss">        #define LOG_INFO   \ </span>
+<span class="ss">            if (muduo::Logger::logLevel() &lt;= muduo::Logger::INFO)   \</span>
+<span class="ss">                muduo::Logger(__FILE__, __LINE__).stream()</span>
+<span class="ss">        #define LOG_WARN     \</span>
+<span class="ss">                muduo::Logger(__FILE__, __LINE__, muduo::Logger::WARN).stream()</span>
+<span class="ss">        #define LOG_ERROR    \</span>
+<span class="ss">                muduo::Logger(__FILE__, __LINE__, muduo::Logger::ERROR).stream()</span>
+<span class="ss">        #define LOG_FATAL    \</span>
+<span class="ss">                muduo::Logger(__FILE__, __LINE__, muduo::Logger::FATAL).stream()</span>
+<span class="ss">        #define LOG_SYSERR   \</span>
+<span class="ss">                muduo::Logger(__FILE__, __LINE__, false).stream()</span>
+<span class="ss">        #define LOG_SYSFATAL \</span>
+<span class="ss">                muduo::Logger(__FILE__, __LINE__, true).stream()</span>
+<span class="ss">    ```</span>
+    <span class="err">通过使用宏定义来使用这个</span><span class="ss">`Logger`</span><span class="err">，可以通过函数</span> <span class="o">***</span><span class="ss">`static void setLogLevel(LogLevel level);`</span><span class="o">***</span> <span class="err">来决定使用哪个宏。</span>
 </code></pre></div>
 
 
@@ -3730,17 +3742,17 @@
 日志文件名通过 <strong><em><code>getLogFileName</code></em></strong> 函数获取，格式是：<code>文件名+年月日时分秒+主机名+进程id+.log</code>。
 + <code>File</code> 
     在内部有个<code>File</code>类，管理着文件及其写操作。</p>
-<div class="codehilite"><pre><span></span><code>```cpp
-    class File :: boost::noncopyable { 
-    private: 
-        FILE* fp_;                  // 指向打开的日志文件
-        char buffer_[64*1024];      // 日志文件大小 64k
-        size_t writtenBytes_;       // 已用大小
-    public:
-        void append(const char* logline, const size_t len); // 向日志写lonline，其长度是len 
-        ...
-    };
-```
+<div class="codehilite"><pre><span></span><code><span class="err">```cpp</span>
+<span class="err">    class File :: boost::noncopyable { </span>
+<span class="err">    private: </span>
+<span class="err">        FILE* fp_;                  // 指向打开的日志文件</span>
+<span class="err">        char buffer_[64*1024];      // 日志文件大小 64k</span>
+<span class="err">        size_t writtenBytes_;       // 已用大小</span>
+<span class="err">    public:</span>
+<span class="err">        void append(const char* logline, const size_t len); // 向日志写lonline，其长度是len </span>
+<span class="err">        ...</span>
+<span class="err">    };</span>
+<span class="err">```</span>
 </code></pre></div>
 
 
@@ -3935,7 +3947,7 @@
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

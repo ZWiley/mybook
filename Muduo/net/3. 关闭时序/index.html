@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3629,7 +3641,7 @@
     <span class="p">}</span>  
 </code></pre></div>
         比如上面的sp1，与sp2，尽管都是引用同一个对象指针，但是由于是通过构造函数完成的，因此他们的引用计数都是1，并不是共享计数，这就导致同一个对象会被析构两次。但sp3是通过赋值操作<code>=</code>完成，就和<code>sp1</code>共享引用，引用计数为2，sp2的引用计数为1。</p>
-<div class="codehilite"><pre><span></span><code>    同理，`fun1`会增加引用计数，而`fun2`不会增加。
+<div class="codehilite"><pre><span></span><code>    <span class="err">同理，</span><span class="ss">`fun1`</span><span class="err">会增加引用计数，而</span><span class="ss">`fun2`</span><span class="err">不会增加。</span>
 </code></pre></div>
 
 
@@ -3762,7 +3774,7 @@ weak_ptr 是为生命周期设计的如果这里是 <code>std::shared_ptr</code>
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

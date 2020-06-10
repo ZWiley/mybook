@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3451,100 +3463,100 @@
                 
                 
                 <h1 id="web">构建 web<a class="headerlink" href="#web" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code>package main
+<div class="codehilite"><pre><span></span><code><span class="n">package</span> <span class="n">main</span>
 
-import (
-    &quot;database/sql&quot;
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s2">&quot;database/sql&quot;</span>
 
-    _ &quot;github.com/go-sql-driver/mysql&quot;
+    <span class="n">_</span> <span class="s2">&quot;github.com/go-sql-driver/mysql&quot;</span>
 
-    &quot;fmt&quot;
-    &quot;log&quot;
-    &quot;net/http&quot;
-    &quot;os&quot;
+    <span class="s2">&quot;fmt&quot;</span>
+    <span class="s2">&quot;log&quot;</span>
+    <span class="s2">&quot;net/http&quot;</span>
+    <span class="s2">&quot;os&quot;</span>
 
-    &quot;github.com/gorilla/mux&quot;
-)
+    <span class="s2">&quot;github.com/gorilla/mux&quot;</span>
+<span class="p">)</span>
 
-var database *sql.DB
+<span class="n">var</span> <span class="n">database</span> <span class="o">*</span><span class="n">sql</span><span class="o">.</span><span class="n">DB</span>
 
-const (
-    PORT    = &quot;:9000&quot;
-    DBHost  = &quot;localhost&quot;
-    DBPort  = &quot;:3306&quot;
-    DBUser  = &quot;wnn&quot;
-    DBPass  = &quot;wnnwnn&quot;
-    DBDbase = &quot;test&quot;
-)
+<span class="n">const</span> <span class="p">(</span>
+    <span class="n">PORT</span>    <span class="o">=</span> <span class="s2">&quot;:9000&quot;</span>
+    <span class="n">DBHost</span>  <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
+    <span class="n">DBPort</span>  <span class="o">=</span> <span class="s2">&quot;:3306&quot;</span>
+    <span class="n">DBUser</span>  <span class="o">=</span> <span class="s2">&quot;wnn&quot;</span>
+    <span class="n">DBPass</span>  <span class="o">=</span> <span class="s2">&quot;wnnwnn&quot;</span>
+    <span class="n">DBDbase</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+<span class="p">)</span>
 
-type Page struct {
-    Title   string
-    Content string
-    Date    string
-}
+<span class="nb">type</span> <span class="n">Page</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">Title</span>   <span class="n">string</span>
+    <span class="n">Content</span> <span class="n">string</span>
+    <span class="n">Date</span>    <span class="n">string</span>
+<span class="p">}</span>
 
-func pageHandler(w http.ResponseWriter, r *http.Request) {
-    vars := mux.Vars(r) //解析查询参数为 map
-    fmt.Println(&quot;%v&quot;, vars)
-    pageID := vars[&quot;id&quot;]
-    fileName := &quot;files/&quot; + pageID + &quot;.html&quot;
-    _, err := os.Stat(fileName)
-    if err != nil {
-        fileName = &quot;files/404.html&quot;
-    }
-    http.ServeFile(w, r, fileName)
-}
+<span class="n">func</span> <span class="n">pageHandler</span><span class="p">(</span><span class="n">w</span> <span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">vars</span> <span class="p">:</span><span class="o">=</span> <span class="n">mux</span><span class="o">.</span><span class="n">Vars</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">//</span><span class="err">解析查询参数为</span> <span class="nb">map</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;%v&quot;</span><span class="p">,</span> <span class="nb">vars</span><span class="p">)</span>
+    <span class="n">pageID</span> <span class="p">:</span><span class="o">=</span> <span class="nb">vars</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+    <span class="n">fileName</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;files/&quot;</span> <span class="o">+</span> <span class="n">pageID</span> <span class="o">+</span> <span class="s2">&quot;.html&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">Stat</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+        <span class="n">fileName</span> <span class="o">=</span> <span class="s2">&quot;files/404.html&quot;</span>
+    <span class="p">}</span>
+    <span class="n">http</span><span class="o">.</span><span class="n">ServeFile</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">fileName</span><span class="p">)</span>
+<span class="p">}</span>
 
-func ServePage(w http.ResponseWriter, r *http.Request) {
-    vars := mux.Vars(r)
-    pageID := vars[&quot;id&quot;]
-    thisPage := Page{}
-    fmt.Println(pageID)
-    err := database.QueryRow(&quot;select page_title,page_content,page_date from pages where id=?&quot;, pageID).Scan(&amp;thisPage.Title, &amp;thisPage.Content, &amp;thisPage.Date)
-    if err != nil {
-        log.Println(&quot;Couldn&#39;t get page:&quot; + pageID)
-        log.Println(err.Error)
-    }
-    html := `&lt;html&gt;&lt;head&gt;&lt;title&gt;` + thisPage.Title +
-        `&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;` + thisPage.Title + `&lt;/h1&gt;&lt;div&gt;` +
-        thisPage.Content + `&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;`
-    fmt.Fprintln(w, html)
-}
+<span class="n">func</span> <span class="n">ServePage</span><span class="p">(</span><span class="n">w</span> <span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">vars</span> <span class="p">:</span><span class="o">=</span> <span class="n">mux</span><span class="o">.</span><span class="n">Vars</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">pageID</span> <span class="p">:</span><span class="o">=</span> <span class="nb">vars</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+    <span class="n">thisPage</span> <span class="p">:</span><span class="o">=</span> <span class="n">Page</span><span class="p">{}</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">pageID</span><span class="p">)</span>
+    <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">QueryRow</span><span class="p">(</span><span class="s2">&quot;select page_title,page_content,page_date from pages where id=?&quot;</span><span class="p">,</span> <span class="n">pageID</span><span class="p">)</span><span class="o">.</span><span class="n">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thisPage</span><span class="o">.</span><span class="n">Title</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">thisPage</span><span class="o">.</span><span class="n">Content</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">thisPage</span><span class="o">.</span><span class="n">Date</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t get page:&quot;</span> <span class="o">+</span> <span class="n">pageID</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">html</span> <span class="p">:</span><span class="o">=</span> <span class="sb">`&lt;html&gt;&lt;head&gt;&lt;title&gt;`</span> <span class="o">+</span> <span class="n">thisPage</span><span class="o">.</span><span class="n">Title</span> <span class="o">+</span>
+        <span class="sb">`&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;`</span> <span class="o">+</span> <span class="n">thisPage</span><span class="o">.</span><span class="n">Title</span> <span class="o">+</span> <span class="sb">`&lt;/h1&gt;&lt;div&gt;`</span> <span class="o">+</span>
+        <span class="n">thisPage</span><span class="o">.</span><span class="n">Content</span> <span class="o">+</span> <span class="sb">`&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;`</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintln</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+<span class="p">}</span>
 
-func ServePageByGUID(w http.ResponseWriter, r *http.Request) {
-    vars := mux.Vars(r)
-    pageGUID := vars[&quot;guid&quot;]
-    thisPage := Page{}
-    fmt.Println(pageGUID)
-    err := database.QueryRow(&quot;select page_title,page_content,page_date from pages where page_guid=?&quot;, pageGUID).Scan(&amp;thisPage.Title, &amp;thisPage.Content, &amp;thisPage.Date)
-    if err != nil {
-        log.Println(&quot;Couldn&#39;t get page:&quot; + pageGUID)
-        http.Error(w, http.StatusText(404), http.StatusNotFound)
-        log.Println(err.Error)
-        return // 这里应该需要 return，书里没有
-    }
-    html := `&lt;html&gt;&lt;head&gt;&lt;title&gt;` + thisPage.Title +
-        `&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;` + thisPage.Title + `&lt;/h1&gt;&lt;div&gt;` +
-        thisPage.Content + `&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;`
-    fmt.Fprintln(w, html)
-}
+<span class="n">func</span> <span class="n">ServePageByGUID</span><span class="p">(</span><span class="n">w</span> <span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">vars</span> <span class="p">:</span><span class="o">=</span> <span class="n">mux</span><span class="o">.</span><span class="n">Vars</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">pageGUID</span> <span class="p">:</span><span class="o">=</span> <span class="nb">vars</span><span class="p">[</span><span class="s2">&quot;guid&quot;</span><span class="p">]</span>
+    <span class="n">thisPage</span> <span class="p">:</span><span class="o">=</span> <span class="n">Page</span><span class="p">{}</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">pageGUID</span><span class="p">)</span>
+    <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">QueryRow</span><span class="p">(</span><span class="s2">&quot;select page_title,page_content,page_date from pages where page_guid=?&quot;</span><span class="p">,</span> <span class="n">pageGUID</span><span class="p">)</span><span class="o">.</span><span class="n">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thisPage</span><span class="o">.</span><span class="n">Title</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">thisPage</span><span class="o">.</span><span class="n">Content</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">thisPage</span><span class="o">.</span><span class="n">Date</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t get page:&quot;</span> <span class="o">+</span> <span class="n">pageGUID</span><span class="p">)</span>
+        <span class="n">http</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">http</span><span class="o">.</span><span class="n">StatusText</span><span class="p">(</span><span class="mi">404</span><span class="p">),</span> <span class="n">http</span><span class="o">.</span><span class="n">StatusNotFound</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">//</span> <span class="err">这里应该需要</span> <span class="k">return</span><span class="err">，书里没有</span>
+    <span class="p">}</span>
+    <span class="n">html</span> <span class="p">:</span><span class="o">=</span> <span class="sb">`&lt;html&gt;&lt;head&gt;&lt;title&gt;`</span> <span class="o">+</span> <span class="n">thisPage</span><span class="o">.</span><span class="n">Title</span> <span class="o">+</span>
+        <span class="sb">`&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;`</span> <span class="o">+</span> <span class="n">thisPage</span><span class="o">.</span><span class="n">Title</span> <span class="o">+</span> <span class="sb">`&lt;/h1&gt;&lt;div&gt;`</span> <span class="o">+</span>
+        <span class="n">thisPage</span><span class="o">.</span><span class="n">Content</span> <span class="o">+</span> <span class="sb">`&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;`</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintln</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+<span class="p">}</span>
 
-func main() {
-    dbConn := fmt.Sprintf(&quot;%s:%s@/%s&quot;, DBUser, DBPass, DBDbase)
-    fmt.Println(dbConn)
-    db, err := sql.Open(&quot;mysql&quot;, dbConn)
-    if err != nil {
-        log.Println(&quot;Couldn&#39;t connect to: &quot; + DBDbase)
-        log.Println(err.Error)
-    }
-    database = db
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">dbConn</span> <span class="p">:</span><span class="o">=</span> <span class="n">fmt</span><span class="o">.</span><span class="n">Sprintf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">@/</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">DBUser</span><span class="p">,</span> <span class="n">DBPass</span><span class="p">,</span> <span class="n">DBDbase</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">dbConn</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">,</span> <span class="n">err</span> <span class="p">:</span><span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;mysql&quot;</span><span class="p">,</span> <span class="n">dbConn</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="n">nil</span> <span class="p">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t connect to: &quot;</span> <span class="o">+</span> <span class="n">DBDbase</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">Error</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">database</span> <span class="o">=</span> <span class="n">db</span>
 
-    rtr := mux.NewRouter()
-    // rtr.HandleFunc(&quot;/pages/{id:[0-9]+}&quot;, ServePage)
-    rtr.HandleFunc(&quot;/pages/{guid:[a-z0-9A\\-]+}&quot;, ServePageByGUID)
-    http.Handle(&quot;/&quot;, rtr)
-    http.ListenAndServe(PORT, nil)
-}
+    <span class="n">rtr</span> <span class="p">:</span><span class="o">=</span> <span class="n">mux</span><span class="o">.</span><span class="n">NewRouter</span><span class="p">()</span>
+    <span class="o">//</span> <span class="n">rtr</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s2">&quot;/pages/{id:[0-9]+}&quot;</span><span class="p">,</span> <span class="n">ServePage</span><span class="p">)</span>
+    <span class="n">rtr</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s2">&quot;/pages/{guid:[a-z0-9A</span><span class="se">\\</span><span class="s2">-]+}&quot;</span><span class="p">,</span> <span class="n">ServePageByGUID</span><span class="p">)</span>
+    <span class="n">http</span><span class="o">.</span><span class="n">Handle</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">rtr</span><span class="p">)</span>
+    <span class="n">http</span><span class="o">.</span><span class="n">ListenAndServe</span><span class="p">(</span><span class="n">PORT</span><span class="p">,</span> <span class="n">nil</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div>
 
 
@@ -4174,7 +4186,7 @@ func main() {
     </div>
     
       <script src="../../../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

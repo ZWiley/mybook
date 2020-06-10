@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3575,12 +3587,12 @@
                   <h1>Wizardsusevim</h1>
                 
                 <h2 id="source">技巧：如何映射命令自动编辑完成配置之后 source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>&quot; Make easy editing and sourcing vimrc
-command! RefreshConfig source $MYVIMRC &lt;bar&gt; echo &quot;Refreshed vimrc!&quot;
-&quot; &lt;Leader&gt;ev for editing vimrc
-:nnoremap &lt;leader&gt;ev :vsplit $MYVIMRC&lt;cr&gt;
-&quot; &lt;Leader&gt;sv for sourcing vimrc
-:nnoremap &lt;leader&gt;ev :RefreshConfig&lt;cr&gt;
+<div class="codehilite"><pre><span></span><code><span class="err">&quot; Make easy editing and sourcing vimrc</span>
+<span class="err">command! RefreshConfig source $MYVIMRC &lt;bar&gt; echo &quot;Refreshed vimrc!&quot;</span>
+<span class="err">&quot; &lt;Leader&gt;ev for editing vimrc</span>
+<span class="err">:nnoremap &lt;leader&gt;ev :vsplit $MYVIMRC&lt;cr&gt;</span>
+<span class="err">&quot; &lt;Leader&gt;sv for sourcing vimrc</span>
+<span class="err">:nnoremap &lt;leader&gt;ev :RefreshConfig&lt;cr&gt;</span>
 </code></pre></div>
 
 
@@ -3639,27 +3651,27 @@ multiple cursors</p>
 <li>Through a set of limited command line options</li>
 </ul>
 <h2 id="_1">持久化配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>&quot;.vimrc demo
+<div class="codehilite"><pre><span></span><code><span class="err">&quot;</span><span class="p">.</span><span class="n">vimrc</span> <span class="n">demo</span>
 
-set nocompatible
-filetype plugin indent on
-syntax enable
+<span class="k">set</span> <span class="n">nocompatible</span>
+<span class="n">filetype</span> <span class="n">plugin</span> <span class="n">indent</span> <span class="k">on</span>
+<span class="n">syntax</span> <span class="n">enable</span>
 </code></pre></div>
 
 
 <p>map: recursive mapping.
 noremap: non-recursive mapping。几乎大部分场景都是使用非递归映射</p>
 <h2 id="_2">定义自己的命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>command! RefreshConfig source $MYVIMRC
-&quot; then use :RefreshConfig  ex command souce vimrcfile
+<div class="codehilite"><pre><span></span><code><span class="err">command! RefreshConfig source $MYVIMRC</span>
+<span class="err">&quot; then use :RefreshConfig  ex command souce vimrcfile</span>
 </code></pre></div>
 
 
 <h2 id="leader-key">Leader Key<a class="headerlink" href="#leader-key" title="Permanent link">&para;</a></h2>
 <p>为什么需要 leder key？键盘上按键就那么多，要防止快捷键冲突，可以加上前缀 leader。</p>
-<div class="codehilite"><pre><span></span><code>&quot; default leader key is \, hard to type。通常用空格或者逗号替换
-let mapleader = &quot;,&quot;
-let mapleader = &quot;\&lt;Space&gt;&quot;
+<div class="codehilite"><pre><span></span><code><span class="err">&quot; default leader key is \, hard to type。通常用空格或者逗号替换</span>
+<span class="err">let mapleader = &quot;,&quot;</span>
+<span class="err">let mapleader = &quot;\&lt;Space&gt;&quot;</span>
 </code></pre></div>
 
 
@@ -3709,7 +3721,7 @@ let mapleader = &quot;\&lt;Space&gt;&quot;
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -4370,8 +4382,8 @@ stablility)，其他实现方式是把操作放在单线程中执行。</p>
 <h5 id="characterizing-wirte-skew">Characterizing wirte skew<a class="headerlink" href="#characterizing-wirte-skew" title="Permanent link">&para;</a></h5>
 <p>上边举例的反常情况叫做 write skew。两个事务同时更新两个不同的对象，算不上冲突，但是确是竞争条件。
 可以用显示在 transaction 中加锁的方式解决。FOR UPDATE 会告诉数据库锁住查询返回的所有行</p>
-<div class="codehilite"><pre><span></span><code>begin transaction;
-select * from doctors where on_call = true and shift_id =123 for update;
+<div class="codehilite"><pre><span></span><code><span class="err">begin transaction;</span>
+<span class="err">select * from doctors where on_call = true and shift_id =123 for update;</span>
 </code></pre></div>
 
 
@@ -4796,7 +4808,7 @@ Zookeeper 在背后跑。Zookeeper 不仅实现了 order broadcast (and hence co
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

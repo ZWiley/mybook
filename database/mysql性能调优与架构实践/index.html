@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3769,23 +3781,23 @@
 <p>垂直拆分:
     - 按照功能划分。防止跨数据库的 join 存在
     - 根据实际应用场景平衡成本和收益</p>
-<div class="codehilite"><pre><span></span><code>缺点：
-- 部分表关联无法在数据库级别完成，要在程序中完成
-- 事务处理相对复杂
-- 切分达到一定程度后，扩展性受限制
-- 过度切分造成系统过于复杂难以维护
+<div class="codehilite"><pre><span></span><code><span class="err">缺点：</span>
+<span class="err">- 部分表关联无法在数据库级别完成，要在程序中完成</span>
+<span class="err">- 事务处理相对复杂</span>
+<span class="err">- 切分达到一定程度后，扩展性受限制</span>
+<span class="err">- 过度切分造成系统过于复杂难以维护</span>
 </code></pre></div>
 
 
 <p>水平切分:
     - 将某个访问极其频繁的表按照某个字段的某种规则分散到多个表中，每个表包含一部分数据</p>
-<div class="codehilite"><pre><span></span><code>优点:
-- 事务处理相对简单
-- 切分规则定义好，基本上较难遇到扩展性限制
-缺点：
-- 切分规则复杂， 很难抽象出一个满足整个数据库的切分规则
-- 后期维护难度增加，人工定位数据更难
-- 应用系统耦合度较高
+<div class="codehilite"><pre><span></span><code><span class="c">优点:</span>
+<span class="err">- 事务处理相对简单</span>
+<span class="err">- 切分规则定义好，基本上较难遇到扩展性限制</span>
+<span class="err">缺点：</span>
+<span class="err">- 切分规则复杂， 很难抽象出一个满足整个数据库的切分规则</span>
+<span class="err">- 后期维护难度增加，人工定位数据更难</span>
+<span class="err">- 应用系统耦合度较高</span>
 </code></pre></div>
 
 
@@ -3895,7 +3907,7 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

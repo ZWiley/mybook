@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3464,9 +3476,9 @@
 扁平序列（存放值）：str、bytes、bytearray、memoryview、array.array</p>
 <p>python2.7 列表推导有变量泄露问题，所以推导的临时变量不要和外部重名</p>
 <p>python运行原理可视化: <a href="http://www.pythontutor.com">www.pythontutor.com</a></p>
-<div class="codehilite"><pre><span></span><code>t = (1, 2, [1,2])
-t[2] += [1,2]    # t 变成 (1, 2, [1,2,1,2]) 同时抛出异常，用dis模块查看
-# t[2].extend([1,2]) 没问题
+<div class="codehilite"><pre><span></span><code><span class="err">t = (1, 2, [1,2])</span>
+<span class="err">t[2] += [1,2]    # t 变成 (1, 2, [1,2,1,2]) 同时抛出异常，用dis模块查看</span>
+<span class="err"># t[2].extend([1,2]) 没问题</span>
 </code></pre></div>
 
 
@@ -3477,25 +3489,25 @@ t[2] += [1,2]    # t 变成 (1, 2, [1,2,1,2]) 同时抛出异常，用dis模块�
 <p>collections.deque 线程安全</p>
 <h1 id="3">3 字典和集合<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <p>可散列：如果一个对象是可散列的，在这个对象的生命周期中， 它的散列值是不变的。而且需要实现<code>__hash__</code>,<code>__eq__</code></p>
-<div class="codehilite"><pre><span></span><code>class StrKeyDict0(dict):
-    &quot;&quot;&quot;如果一个类继承了dict，然后这个集成类提供了__missing__方法，
-    那么__getitem__找不到键的时候，会自动调用它，而不是抛出Keyerror
-    &quot;&quot;&quot;
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">StrKeyDict0</span><span class="p">(</span><span class="n">dict</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;如果一个类继承了dict，然后这个集成类提供了__missing__方法，</span>
+<span class="ss">    那么__getitem__找不到键的时候，会自动调用它，而不是抛出Keyerror</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
 
-    def __missing__(self, key):
-        if isinstance(key, str):    # 如果 str 的 key 还找不到就抛出 KeyError，没有这句会无限递归
-            raise KeyError(key)
-        return self[str(key)]
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__missing__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">key</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="err">:</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">如果</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="n">的</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">还找不到就抛出</span><span class="w"> </span><span class="n">KeyError</span><span class="err">，</span><span class="n">没有这句会无限递归</span><span class="w"></span>
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">KeyError</span><span class="p">(</span><span class="k">key</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="o">[</span><span class="n">str(key)</span><span class="o">]</span><span class="w"></span>
 
-    def get(self, key, default):
-        try:
-            return self[key]
-        except KeyError:    # 说明 __missing__ 也失败了
-            return default
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="k">get</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="o">[</span><span class="n">key</span><span class="o">]</span><span class="w"></span>
+<span class="w">        </span><span class="ow">except</span><span class="w"> </span><span class="nl">KeyError</span><span class="p">:</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">说明</span><span class="w"> </span><span class="n">__missing__</span><span class="w"> </span><span class="n">也失败了</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">default</span><span class="w"></span>
 
-    def __contains__(self, key):
-        &quot;&quot;&quot;这个方法也是必须的，因为继承来的  __contains__ 没有找到也会去掉用__missing__&quot;&quot;&quot;
-        return key in self.keys() or str(key) in self.keys()
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__contains__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">key</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;这个方法也是必须的，因为继承来的  __contains__ 没有找到也会去掉用__missing__&quot;&quot;&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nf">str</span><span class="p">(</span><span class="k">key</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span><span class="w"></span>
 </code></pre></div>
 
 
@@ -3508,16 +3520,16 @@ t[2] += [1,2]    # t 变成 (1, 2, [1,2,1,2]) 同时抛出异常，用dis模块�
 <p>collections.UserDict : 其实就是把标准 dict 用纯 python 实习一遍</p>
 <p>import UserDict</p>
 <p>class StrKeyDict(UserDict):</p>
-<div class="codehilite"><pre><span></span><code>def __missing__(self, key):
-    if isinstance(key, str):    # 如果 str 的 key 还找不到就抛出 KeyError，没有这句会无限递归
-        raise KeyError(key)
-    return self[str(key)]
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">__missing__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="k">key</span><span class="p">,</span> <span class="n">str</span><span class="p">):</span>    <span class="o">#</span> <span class="err">如果</span> <span class="n">str</span> <span class="err">的</span> <span class="k">key</span> <span class="err">还找不到就抛出</span> <span class="n">KeyError</span><span class="err">，没有这句会无限递归</span>
+        <span class="n">raise</span> <span class="n">KeyError</span><span class="p">(</span><span class="k">key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">self</span><span class="p">[</span><span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)]</span>
 
-def __setitem__(self, key, item):
-    self.data[str(key)] = item
+<span class="n">def</span> <span class="n">__setitem__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">self</span><span class="p">.</span><span class="k">data</span><span class="p">[</span><span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)]</span> <span class="o">=</span> <span class="n">item</span>
 
-def __contains__(self, key):
-    return str(key) in self.data
+<span class="n">def</span> <span class="n">__contains__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">str</span><span class="p">(</span><span class="k">key</span><span class="p">)</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="k">data</span>
 </code></pre></div>
 
 
@@ -3584,107 +3596,107 @@ dict 实现是稀疏列表。</p>
 <li>装饰器在加载模块时立即执行，通常是在导入时（即python加载模块时）。被装饰的函数只有在明确调用时运行</li>
 </ul>
 <p>装饰器语法糖:</p>
-<div class="codehilite"><pre><span></span><code># 等价于 target = decorate(target)
-@decorate
-def target():
-    print(&#39;hehe&#39;)
+<div class="codehilite"><pre><span></span><code><span class="err"># 等价于 target = decorate(target)</span>
+<span class="err">@decorate</span>
+<span class="err">def target():</span>
+<span class="err">    print(&#39;hehe&#39;)</span>
 </code></pre></div>
 
 
 <h4 id="_2">闭包:闭包指延伸了作用域的函数，其中包含函数定义体中引用、但是不在定义体中定义的非全局变量。比如被装饰的函数能访问装饰器函数中定义的变量（非全局的）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <h4 id="_3">自由变量：<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>def make_averager():
-    series = []
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">make_averager</span><span class="p">():</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
 
-    def averager(new_value):
-        # series 在 averager 中叫做自由变量(free variable)，指未在本地作用域中绑定的变量
-        series.append(new_value)
-        total = sum(series)
-        return total / len(series)
+    <span class="n">def</span> <span class="n">averager</span><span class="p">(</span><span class="n">new_value</span><span class="p">):</span>
+        <span class="o">#</span> <span class="n">series</span> <span class="err">在</span> <span class="n">averager</span> <span class="err">中叫做自由变量</span><span class="p">(</span><span class="k">free</span> <span class="k">variable</span><span class="p">)</span><span class="err">，指未在本地作用域中绑定的变量</span>
+        <span class="n">series</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="k">sum</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="n">len</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
 </code></pre></div>
 
 
 <h4 id="nonlocal">nonlocal 声明：先来看个例子：<a class="headerlink" href="#nonlocal" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>def make_averager():
-    count = 0
-    total = 0
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">make_averager</span><span class="p">():</span>
+    <span class="k">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
 
-    def averager(new_value):
-        # 直接运行到这里会报错，UnboundLocalError，因为对于非可变类型，会隐式创建局部变量 count，count 不是自由变量了
-        count += 1
-        total += new_value
-        return total
+    <span class="n">def</span> <span class="n">averager</span><span class="p">(</span><span class="n">new_value</span><span class="p">):</span>
+        <span class="o">#</span> <span class="err">直接运行到这里会报错，</span><span class="n">UnboundLocalError</span><span class="err">，因为对于非可变类型，会隐式创建局部变量</span> <span class="k">count</span><span class="err">，</span><span class="k">count</span> <span class="err">不是自由变量了</span>
+        <span class="k">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">new_value</span>
+        <span class="k">return</span> <span class="n">total</span>
 </code></pre></div>
 
 
 <p>使用 python3 引入的 nonlocal 刻意把变量标记为自由变量。</p>
-<div class="codehilite"><pre><span></span><code>def make_averager():
-    count = 0
-    total = 0
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">make_averager</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="nf">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">    </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 
-    def averager(new_value):
-        nonlocal count, total   # python2 可以用 [count] 把需要修改的变量存储为可变对象
-        count += 1
-        total += new_value
-        return total
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">averager</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">nonlocal</span><span class="w"> </span><span class="nf">count</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">python2</span><span class="w"> </span><span class="n">可以用</span><span class="w"> </span><span class="o">[</span><span class="n">count</span><span class="o">]</span><span class="w"> </span><span class="n">把需要修改的变量存储为可变对象</span><span class="w"></span>
+<span class="w">        </span><span class="nf">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="n">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">new_value</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">total</span><span class="w"></span>
 </code></pre></div>
 
 
 <h4 id="functoolswraps">functools.wraps 装饰器：把相关属性从被装饰函数复制到装饰器函数中<a class="headerlink" href="#functoolswraps" title="Permanent link">&para;</a></h4>
 <h4 id="propertyclassmethodstaticmehtodfunctoolslru_cachefunctoolssingledispatch">标准库中的装饰器：property、classmethod、staticmehtod、functools.lru_cache、functools.singledispatch<a class="headerlink" href="#propertyclassmethodstaticmehtodfunctoolslru_cachefunctoolssingledispatch" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>- lru_cache: 采用 least recent used 算法实现的缓存装饰器
-- singledispatch: 为函数提供重载功能。被其装饰的函数会成为泛函数(generic function):根据第一个参数的类型，用不同的方式执行相同操作的一组函数。替代多个 if/else isinstance 判断类型执行不同分之
+<div class="codehilite"><pre><span></span><code><span class="err">- lru_cache: 采用 least recent used 算法实现的缓存装饰器</span>
+<span class="err">- singledispatch: 为函数提供重载功能。被其装饰的函数会成为泛函数(generic function):根据第一个参数的类型，用不同的方式执行相同操作的一组函数。替代多个 if/else isinstance 判断类型执行不同分之</span>
 </code></pre></div>
 
 
 <h4 id="_4">叠放装饰器:<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code># 下边等价于 f = d1(d2(f))
-@d1
-@d2
-def f():
-    print(&#39;f&#39;)
+<div class="codehilite"><pre><span></span><code><span class="err"># 下边等价于 f = d1(d2(f))</span>
+<span class="err">@d1</span>
+<span class="err">@d2</span>
+<span class="err">def f():</span>
+<span class="err">    print(&#39;f&#39;)</span>
 </code></pre></div>
 
 
 <h4 id="_5">参数化装饰器: 创建一个装饰器工厂函数，把参数传给它，返回一个装饰器，然后再把它应用到要装饰的函数上。<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>registry = set()  # &lt;1&gt;
+<div class="codehilite"><pre><span></span><code><span class="n">registry</span> <span class="p">=</span> <span class="n">set</span><span class="p">()</span>  # <span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span>
 
-def register(active=True):  # &lt;2&gt;    工厂函数
-    def decorate(func):  # &lt;3&gt;
-        print(&#39;running register(active=%s)-&gt;decorate(%s)&#39;
-              % (active, func))
-        else:
-            registry.discard(func)  # &lt;5&gt;
+<span class="n">def</span> <span class="s">register(active=True):</span>  <span class="s">#</span> <span class="s">&lt;2&gt;</span>    <span class="s">工厂函数</span>
+    <span class="n">def</span> <span class="s">decorate(func):</span>  <span class="s">#</span> <span class="s">&lt;3&gt;</span>
+        <span class="n">print</span><span class="p">(</span><span class="s">&#39;running register(active=%s)-&gt;decorate(%s)&#39;</span>
+              <span class="c">% (active, func))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">registry</span><span class="p">.</span><span class="n">discard</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>  # <span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;</span>
 
-        return func  # &lt;6&gt;
-    return decorate  # &lt;7&gt;
+        <span class="n">return</span> <span class="s">func</span>  <span class="s">#</span> <span class="s">&lt;6&gt;</span>
+    <span class="n">return</span> <span class="s">decorate</span>  <span class="s">#</span> <span class="s">&lt;7&gt;</span>
 
-@register(active=False)  # &lt;8&gt;
-def f1():
-    print(&#39;running f1()&#39;)
+<span class="p">@</span><span class="n">register</span><span class="p">(</span><span class="n">active</span><span class="p">=</span><span class="n">False</span><span class="p">)</span>  # <span class="o">&lt;</span><span class="mi">8</span><span class="o">&gt;</span>
+<span class="n">def</span> <span class="s">f1():</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&#39;running f1()&#39;</span><span class="p">)</span>
 
-@register()  # &lt;9&gt;    # 即使没有参数，工厂函数必须写成调用的形式
-def f2():
-    print(&#39;running f2()&#39;)
+<span class="p">@</span><span class="n">register</span><span class="p">()</span>  # <span class="o">&lt;</span><span class="mi">9</span><span class="o">&gt;</span>    # 即使没有参数，工厂函数必须写成调用的形式
+<span class="n">def</span> <span class="s">f2():</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&#39;running f2()&#39;</span><span class="p">)</span>
 </code></pre></div>
 
 
 <h4 id="class-class-__call__">使用 class 实现装饰器：看上边多重嵌套的装饰器是不是有点不太优雅， 其实复杂的装饰器笔者更喜欢用 class 实现。还记得 <code>__call__</code> 方法吗，改写下上边这个例子<a class="headerlink" href="#class-class-__call__" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>class register(object):
-    registry = set()
+<div class="codehilite"><pre><span></span><code><span class="n">class</span> <span class="s">register(object):</span>
+    <span class="n">registry</span> <span class="p">=</span> <span class="n">set</span><span class="p">()</span>
 
-    def __init__(self, active=True):
-        self.active = active
+    <span class="n">def</span> <span class="s">__init__(self,</span> <span class="s">active=True):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">active</span> <span class="p">=</span> <span class="n">active</span>
 
-    def __call__(self, func):
-        print(&#39;running register(active=%s)-&gt;decorate(%s)&#39;
-            % (self.active, func))
-        if self.active:
-            self.registry.add(func)
-        else:
-            self.registry.discard(func)
+    <span class="n">def</span> <span class="s">__call__(self,</span> <span class="s">func):</span>
+        <span class="n">print</span><span class="p">(</span><span class="s">&#39;running register(active=%s)-&gt;decorate(%s)&#39;</span>
+            <span class="c">% (self.active, func))</span>
+        <span class="n">if</span> <span class="s">self.active:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">registry</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">registry</span><span class="p">.</span><span class="n">discard</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 
-        return func
+        <span class="n">return</span> <span class="s">func</span>
 </code></pre></div>
 
 
@@ -3697,9 +3709,9 @@ def f2():
 <h4 id="copydeepcopy-copycopy-__copy__-__deepcopy__">深拷贝: copy.deepcopy 和 copy.copy 能为任意对象做深复制(副本不共享内部对象的引用)和浅复制。我们可以自定义 <code>__copy__()</code> 和 <code>__deepcopy__()</code> 控制拷贝行为<a class="headerlink" href="#copydeepcopy-copycopy-__copy__-__deepcopy__" title="Permanent link">&para;</a></h4>
 <h4 id="python-call-by-sharingpython">函数的参数作为引用时：python 唯一支持的传参模式是共享传参（call by sharing），指函数的各个形式参数获得实参中各个引用的副本。也就是说，函数内部的形参是实参的别名。这个方案的结果就是，函数可能会修改作为参数传入的可变对象，但是无法修改那些对象的标识（即不能把一个对象替换成另一个对象）。（笔者觉得这章解释非常好，之前网上一大堆讨论python究竟是值传递还是引用传递的都是不准确的）<a class="headerlink" href="#python-call-by-sharingpython" title="Permanent link">&para;</a></h4>
 <h4 id="py-none">不要使用可变类型作为参数的默认值：这个坑写 py 写多的人应该都碰到过。函数默认值在定义函数时计算（通常是加载模块时），因此默认值变成了函数对象的属性。如果默认值是可变对象，而且修改了它的值，后续的函数调用就会受影响。一般我们用 None 作为占位符。<a class="headerlink" href="#py-none" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>def func(l=None):    # 不要写 def func(l=[]):
-    # 使用 None 作为占位符（pylint 默认会提示可变类型参数作为默认值，所以俺经常安利用 pylint 检测代码，防范风险）
-    l = None or []
+<div class="codehilite"><pre><span></span><code><span class="err">def func(l=None):    # 不要写 def func(l=[]):</span>
+<span class="err">    # 使用 None 作为占位符（pylint 默认会提示可变类型参数作为默认值，所以俺经常安利用 pylint 检测代码，防范风险）</span>
+<span class="err">    l = None or []</span>
 </code></pre></div>
 
 
@@ -3742,11 +3754,11 @@ def f2():
 <li>numbers包：Number, Complex，Real，Rational，Integral</li>
 </ul>
 <h4 id="_8">定义并使用抽象基类<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>import abc
-class Base(abc.ABC):    # py3， py2 中使用  __metaclass__ = abc.ABCMeta
-    @abc.abstractmethod    # 该装饰器应该放在最里层
-    def some_method(self):  # 这里可以只有 docstring 省略函数体
-        &quot;&quot;&quot;抽象方法，在抽象基类出现之前抽象方法用 Raise NotImplementedError 语句表明由子类实现&quot;&quot;&quot;
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">abc</span>
+<span class="k">class</span> <span class="nc">Base</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>    <span class="c1"># py3， py2 中使用  __metaclass__ = abc.ABCMeta</span>
+    <span class="nd">@abc.abstractmethod</span>    <span class="c1"># 该装饰器应该放在最里层</span>
+    <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># 这里可以只有 docstring 省略函数体</span>
+        <span class="sd">&quot;&quot;&quot;抽象方法，在抽象基类出现之前抽象方法用 Raise NotImplementedError 语句表明由子类实现&quot;&quot;&quot;</span>
 </code></pre></div>
 
 
@@ -3794,16 +3806,16 @@ class Base(abc.ABC):    # py3， py2 中使用  __metaclass__ = abc.ABCMeta
 <li>一元运算符：始终返回一个新对象。</li>
 <li>
 <p>NotImplemented 是个特殊的单例值，如果中缀运算符特殊方法不能处理给定的操作数，要把它返回给解释器。NotImplementedError 是一种异常，抽象类中的方法把它 raise 出，提醒子类必须覆盖。</p>
-<div class="codehilite"><pre><span></span><code>  def __add__(self, other):
-      try:
-          pairs = itertools.zip_longest(self, other, fillvalue=0.0)
-          return Vector(a + b for a, b in pairs)
-      except TypeError:
-          # 返回 NotImplemented 解释器会尝试调用 反向运算符方法 __radd__
-          return NotImplemented
+<div class="codehilite"><pre><span></span><code>  <span class="n">def</span> <span class="n">__add__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+      <span class="n">try</span><span class="p">:</span>
+          <span class="n">pairs</span> <span class="o">=</span> <span class="n">itertools</span><span class="p">.</span><span class="n">zip_longest</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span>
+          <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="k">in</span> <span class="n">pairs</span><span class="p">)</span>
+      <span class="k">except</span> <span class="n">TypeError</span><span class="p">:</span>
+          <span class="o">#</span> <span class="err">返回</span> <span class="n">NotImplemented</span> <span class="err">解释器会尝试调用</span> <span class="err">反向运算符方法</span> <span class="n">__radd__</span>
+          <span class="k">return</span> <span class="n">NotImplemented</span>
 
-  def __radd__(self, other):
-      return self + other
+  <span class="n">def</span> <span class="n">__radd__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+      <span class="k">return</span> <span class="k">self</span> <span class="o">+</span> <span class="n">other</span>
 </code></pre></div>
 
 
@@ -3856,47 +3868,47 @@ class Base(abc.ABC):    # py3， py2 中使用  __metaclass__ = abc.ABCMeta
 </ul>
 <h4 id="with">上下文管理器和 with 块<a class="headerlink" href="#with" title="Permanent link">&para;</a></h4>
 <p>with 语句用来简化 try/finally 模式。经常用在管理事务，维护锁、条件和信号，给对象打补丁等。</p>
-<div class="codehilite"><pre><span></span><code>class LookingGlass:
+<div class="codehilite"><pre><span></span><code><span class="s s-Atom">class</span> <span class="nv">LookingGlass</span><span class="s s-Atom">:</span>
 
-    def __enter__(self):  # &lt;1&gt;
-        import sys
-        self.original_write = sys.stdout.write  # &lt;2&gt;
-        sys.stdout.write = self.reverse_write  # &lt;3&gt;
-        return &#39;JABBERWOCKY&#39;  # &lt;4&gt;
+    <span class="s s-Atom">def</span> <span class="k">__</span><span class="nf">enter__</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">)</span><span class="s s-Atom">:</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span>
+        <span class="s s-Atom">import</span> <span class="s s-Atom">sys</span>
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">original_write</span> <span class="o">=</span> <span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">stdout</span><span class="p">.</span><span class="s s-Atom">write</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span>
+        <span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">stdout</span><span class="p">.</span><span class="s s-Atom">write</span> <span class="o">=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">reverse_write</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span>
+        <span class="s s-Atom">return</span> <span class="s s-Atom">&#39;JABBERWOCKY&#39;</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span>
 
-    def reverse_write(self, text):  # &lt;5&gt;
-        self.original_write(text[::-1])
+    <span class="s s-Atom">def</span> <span class="nf">reverse_write</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">text</span><span class="p">)</span><span class="s s-Atom">:</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;</span>
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nf">original_write</span><span class="p">(</span><span class="s s-Atom">text</span><span class="p">[</span><span class="s s-Atom">::-</span><span class="mi">1</span><span class="p">])</span>
 
-    def __exit__(self, exc_type, exc_value, traceback):  # &lt;6&gt;
-        import sys  # &lt;7&gt;
-        sys.stdout.write = self.original_write  # &lt;8&gt;
-        if exc_type is ZeroDivisionError:  # &lt;9&gt;
-            print(&#39;Please DO NOT divide by zero!&#39;)
-            return True  # &lt;10&gt;
+    <span class="s s-Atom">def</span> <span class="k">__</span><span class="nf">exit__</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">exc_type</span><span class="p">,</span> <span class="s s-Atom">exc_value</span><span class="p">,</span> <span class="s s-Atom">traceback</span><span class="p">)</span><span class="s s-Atom">:</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">6</span><span class="o">&gt;</span>
+        <span class="s s-Atom">import</span> <span class="s s-Atom">sys</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">7</span><span class="o">&gt;</span>
+        <span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">stdout</span><span class="p">.</span><span class="s s-Atom">write</span> <span class="o">=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">original_write</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">8</span><span class="o">&gt;</span>
+        <span class="s s-Atom">if</span> <span class="s s-Atom">exc_type</span> <span class="o">is</span> <span class="nv">ZeroDivisionError</span><span class="s s-Atom">:</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">9</span><span class="o">&gt;</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">&#39;Please DO NOT divide by zero!&#39;</span><span class="p">)</span>
+            <span class="s s-Atom">return</span> <span class="nv">True</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">10</span><span class="o">&gt;</span>
 </code></pre></div>
 
 
 <h4 id="contextlib">contextlib 模块中的实用工具<a class="headerlink" href="#contextlib" title="Permanent link">&para;</a></h4>
 <p><code>@contextmanager</code> 装饰器能减少创建上下文管理器的样板代码。只需要实现一个 yield 语句的生成器，生成想让 <code>__enter__</code>
 方法返回的值。</p>
-<div class="codehilite"><pre><span></span><code>@contextlib.contextmanager
-def looking_glass():
-    import sys
-    original_write = sys.stdout.write
+<div class="codehilite"><pre><span></span><code><span class="s s-Atom">@contextlib</span><span class="p">.</span><span class="s s-Atom">contextmanager</span>
+<span class="s s-Atom">def</span> <span class="nf">looking_glass</span><span class="p">()</span><span class="s s-Atom">:</span>
+    <span class="s s-Atom">import</span> <span class="s s-Atom">sys</span>
+    <span class="s s-Atom">original_write</span> <span class="o">=</span> <span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">stdout</span><span class="p">.</span><span class="s s-Atom">write</span>
 
-    def reverse_write(text):
-        original_write(text[::-1])
+    <span class="s s-Atom">def</span> <span class="nf">reverse_write</span><span class="p">(</span><span class="s s-Atom">text</span><span class="p">)</span><span class="s s-Atom">:</span>
+        <span class="nf">original_write</span><span class="p">(</span><span class="s s-Atom">text</span><span class="p">[</span><span class="s s-Atom">::-</span><span class="mi">1</span><span class="p">])</span>
 
-    sys.stdout.write = reverse_write
-    msg = &#39;&#39;  # &lt;1&gt;
-    try:
-        yield &#39;JABBERWOCKY&#39;  # 产出一个值，这个值会绑定到with语句中的 as 子句的目标变量上
-    except ZeroDivisionError:  # &lt;2&gt;
-        msg = &#39;Please DO NOT divide by zero!&#39;
-    finally:
-        sys.stdout.write = original_write  # &lt;3&gt;
-        if msg:
-            print(msg)  # &lt;4&gt;
+    <span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">stdout</span><span class="p">.</span><span class="s s-Atom">write</span> <span class="o">=</span> <span class="s s-Atom">reverse_write</span>
+    <span class="s s-Atom">msg</span> <span class="o">=</span> <span class="s s-Atom">&#39;&#39;</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span>
+    <span class="nn">try</span><span class="p">:</span>
+        <span class="s s-Atom">yield</span> <span class="s s-Atom">&#39;JABBERWOCKY&#39;</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">产出一个值，这个值会绑定到with语句中的</span> <span class="s s-Atom">as</span> <span class="s s-Atom">子句的目标变量上</span>
+    <span class="s s-Atom">except</span> <span class="nv">ZeroDivisionError</span><span class="s s-Atom">:</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span>
+        <span class="s s-Atom">msg</span> <span class="o">=</span> <span class="s s-Atom">&#39;Please DO NOT divide by zero!&#39;</span>
+    <span class="nn">finally</span><span class="p">:</span>
+        <span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">stdout</span><span class="p">.</span><span class="s s-Atom">write</span> <span class="o">=</span> <span class="s s-Atom">original_write</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span>
+        <span class="s s-Atom">if</span> <span class="nn">msg</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s s-Atom">msg</span><span class="p">)</span>  <span class="s s-Atom">#</span> <span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span>
 </code></pre></div>
 
 
@@ -3911,16 +3923,16 @@ yield)，可以产出值，也可以不产出。如果yield 关键字后边没�
 <h4 id="prime">预激（prime）协程的装饰器<a class="headerlink" href="#prime" title="Permanent link">&para;</a></h4>
 <p>启动协程之前需要 prime，方法是调用 send(None) 或者 next() 。为了简化协程的语法，有时候会使用一个 预激 装饰器。
 比如 tornado.gen 装饰器。yield from 调用协程会自动 预激</p>
-<div class="codehilite"><pre><span></span><code>from functools import wraps
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 
-def coroutine(func):
-    &quot;&quot;&quot;向前执行到第一个 yield 表达式，预激 func &quot;&quot;&quot;
-    @wraps(func)
-    def primer(*args, **kwargs):
-        gen = func(*args, **kwargs)    # 获取生成器对象
-        next(gen)    # prime
-        return gen
-    return primer
+<span class="k">def</span> <span class="nf">coroutine</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;向前执行到第一个 yield 表达式，预激 func &quot;&quot;&quot;</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">primer</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">gen</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>    <span class="c1"># 获取生成器对象</span>
+        <span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>    <span class="c1"># prime</span>
+        <span class="k">return</span> <span class="n">gen</span>
+    <span class="k">return</span> <span class="n">primer</span>
 </code></pre></div>
 
 
@@ -3932,108 +3944,108 @@ def coroutine(func):
 </ul>
 <h4 id="_24">让协程返回值<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
 <p>协程中 return 表达式的值会偷偷传给调用方，赋值给 StopIteration 异常的一个属性 value</p>
-<div class="codehilite"><pre><span></span><code>try:
-    coro.send(None)
-except StopIteration as exc:
-    result = exc.value
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="o">:</span>
+    <span class="n">coro</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">None</span><span class="o">)</span>
+<span class="n">except</span> <span class="n">StopIteration</span> <span class="k">as</span> <span class="n">exc</span><span class="o">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">exc</span><span class="o">.</span><span class="na">value</span>
 </code></pre></div>
 
 
 <h4 id="yield-frompython3">yield from(python3)<a class="headerlink" href="#yield-frompython3" title="Permanent link">&para;</a></h4>
 <p>RESULT = yield from EXPR  等效代码如下，比较烧脑， 但是能帮助我们理解 yield from 如何工作</p>
-<div class="codehilite"><pre><span></span><code>_i = iter(EXPR)  # EXPR 是任何可迭代对象
-try:
-    _y = next(_i)  # 预激(prime) 子生成器
-except StopIteration as _e:
-    _r = _e.value  # 如果抛出 StopIteration 获取 value 属性（返回值）
-else:
-    while 1:  # 运行这个循环时，委派生成器会阻塞，只作为调用方和子生成器之间的通道
-        try:
-            _s = yield _y  # 产出字生成器当前产出元素；等待调用方发送 _s 中保存的值
-        except GeneratorExit as _e:  # 用于关闭委派生成器和子生成器
-            try:
-                _m = _i.close
-            except AttributeError:   # 子生成器是任何可迭代对象，所以可能没有 close 方法
-                pass
-            else:
-                _m()
-            raise _e
-        except BaseException as _e:  # 处理调用方通过 throw 方法传入的异常
-            _x = sys.exc_info()
-            try:
-                _m = _i.throw
-            except AttributeError:    # 子生成器是任何可迭代对象，所以可能没有 throw 方法
-                raise _e
-            else:  # 如果子生成器有 throw 方法，调用它并传入调用方发来的异常
-                try:
-                    _y = _m(*_x)
-                except StopIteration as _e:
-                    _r = _e.value
-                    break
-        else:  # 如果产出值时没有异常
-            try:  尝试让子生成器向前执行
-                if _s is None:  # &lt;11&gt;
-                    _y = next(_i)
-                else:
-                    _y = _i.send(_s)
-            except StopIteration as _e:  # &lt;12&gt;
-                _r = _e.value
-                break
+<div class="codehilite"><pre><span></span><code><span class="n">_i</span> <span class="o">=</span> <span class="n">iter</span><span class="p">(</span><span class="n">EXPR</span><span class="p">)</span>  <span class="o">#</span> <span class="n">EXPR</span> <span class="err">是任何可迭代对象</span>
+<span class="n">try</span><span class="p">:</span>
+    <span class="n">_y</span> <span class="o">=</span> <span class="k">next</span><span class="p">(</span><span class="n">_i</span><span class="p">)</span>  <span class="o">#</span> <span class="err">预激</span><span class="p">(</span><span class="n">prime</span><span class="p">)</span> <span class="err">子生成器</span>
+<span class="k">except</span> <span class="n">StopIteration</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>
+    <span class="n">_r</span> <span class="o">=</span> <span class="n">_e</span><span class="p">.</span><span class="n">value</span>  <span class="o">#</span> <span class="err">如果抛出</span> <span class="n">StopIteration</span> <span class="err">获取</span> <span class="n">value</span> <span class="err">属性（返回值）</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">while</span> <span class="mi">1</span><span class="p">:</span>  <span class="o">#</span> <span class="err">运行这个循环时，委派生成器会阻塞，只作为调用方和子生成器之间的通道</span>
+        <span class="n">try</span><span class="p">:</span>
+            <span class="n">_s</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">_y</span>  <span class="o">#</span> <span class="err">产出字生成器当前产出元素；等待调用方发送</span> <span class="n">_s</span> <span class="err">中保存的值</span>
+        <span class="k">except</span> <span class="n">GeneratorExit</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>  <span class="o">#</span> <span class="err">用于关闭委派生成器和子生成器</span>
+            <span class="n">try</span><span class="p">:</span>
+                <span class="n">_m</span> <span class="o">=</span> <span class="n">_i</span><span class="p">.</span><span class="k">close</span>
+            <span class="k">except</span> <span class="n">AttributeError</span><span class="p">:</span>   <span class="o">#</span> <span class="err">子生成器是任何可迭代对象，所以可能没有</span> <span class="k">close</span> <span class="err">方法</span>
+                <span class="n">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_m</span><span class="p">()</span>
+            <span class="n">raise</span> <span class="n">_e</span>
+        <span class="k">except</span> <span class="n">BaseException</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>  <span class="o">#</span> <span class="err">处理调用方通过</span> <span class="n">throw</span> <span class="err">方法传入的异常</span>
+            <span class="n">_x</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">exc_info</span><span class="p">()</span>
+            <span class="n">try</span><span class="p">:</span>
+                <span class="n">_m</span> <span class="o">=</span> <span class="n">_i</span><span class="p">.</span><span class="n">throw</span>
+            <span class="k">except</span> <span class="n">AttributeError</span><span class="p">:</span>    <span class="o">#</span> <span class="err">子生成器是任何可迭代对象，所以可能没有</span> <span class="n">throw</span> <span class="err">方法</span>
+                <span class="n">raise</span> <span class="n">_e</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="o">#</span> <span class="err">如果子生成器有</span> <span class="n">throw</span> <span class="err">方法，调用它并传入调用方发来的异常</span>
+                <span class="n">try</span><span class="p">:</span>
+                    <span class="n">_y</span> <span class="o">=</span> <span class="n">_m</span><span class="p">(</span><span class="o">*</span><span class="n">_x</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">StopIteration</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>
+                    <span class="n">_r</span> <span class="o">=</span> <span class="n">_e</span><span class="p">.</span><span class="n">value</span>
+                    <span class="n">break</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="o">#</span> <span class="err">如果产出值时没有异常</span>
+            <span class="n">try</span><span class="p">:</span>  <span class="err">尝试让子生成器向前执行</span>
+                <span class="k">if</span> <span class="n">_s</span> <span class="k">is</span> <span class="k">None</span><span class="p">:</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">11</span><span class="o">&gt;</span>
+                    <span class="n">_y</span> <span class="o">=</span> <span class="k">next</span><span class="p">(</span><span class="n">_i</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">_y</span> <span class="o">=</span> <span class="n">_i</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">_s</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">StopIteration</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">12</span><span class="o">&gt;</span>
+                <span class="n">_r</span> <span class="o">=</span> <span class="n">_e</span><span class="p">.</span><span class="n">value</span>
+                <span class="n">break</span>
 
-RESULT = _r  # 返回的值是 _r，即整个 yield from 表达式的值
+<span class="k">RESULT</span> <span class="o">=</span> <span class="n">_r</span>  <span class="o">#</span> <span class="err">返回的值是</span> <span class="n">_r</span><span class="err">，即整个</span> <span class="n">yield</span> <span class="k">from</span> <span class="err">表达式的值</span>
 </code></pre></div>
 
 
 <h1 id="17-concurrentfutures">17 使用 concurrent.futures 处理并发<a class="headerlink" href="#17-concurrentfutures" title="Permanent link">&para;</a></h1>
 <p>python3.2 后引入了 concurrent.futers 模块用来处理并发。该模块引入了 TreadPoolExecutor 和 ProcessPoolExecutor
 类，这两个类实现的接口能分别在不同的线程和进程中执行可调用的对象。</p>
-<div class="codehilite"><pre><span></span><code>from concurrent import futures
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">concurrent</span> <span class="kn">import</span> <span class="n">futures</span>
 
-from flags import save_flag, get_flag, show, main  # &lt;1&gt;
+<span class="kn">from</span> <span class="nn">flags</span> <span class="kn">import</span> <span class="n">save_flag</span><span class="p">,</span> <span class="n">get_flag</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">main</span>  <span class="c1"># &lt;1&gt;</span>
 
-MAX_WORKERS = 20  # &lt;2&gt;
-
-
-def download_one(cc):  # &lt;3&gt;
-    image = get_flag(cc)
-    show(cc)
-    save_flag(image, cc.lower() + &#39;.gif&#39;)
-    return cc
+<span class="n">MAX_WORKERS</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># &lt;2&gt;</span>
 
 
-def download_many(cc_list):
-    workers = min(MAX_WORKERS, len(cc_list))  # &lt;4&gt;
-    with futures.ThreadPoolExecutor(workers) as executor:  # &lt;5&gt;
-        res = executor.map(download_one, sorted(cc_list))  # &lt;6&gt;
+<span class="k">def</span> <span class="nf">download_one</span><span class="p">(</span><span class="n">cc</span><span class="p">):</span>  <span class="c1"># &lt;3&gt;</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">get_flag</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span>
+    <span class="n">save_flag</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cc</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;.gif&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cc</span>
 
-    return len(list(res))  # &lt;7&gt;
+
+<span class="k">def</span> <span class="nf">download_many</span><span class="p">(</span><span class="n">cc_list</span><span class="p">):</span>
+    <span class="n">workers</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">MAX_WORKERS</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cc_list</span><span class="p">))</span>  <span class="c1"># &lt;4&gt;</span>
+    <span class="k">with</span> <span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>  <span class="c1"># &lt;5&gt;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">download_one</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">cc_list</span><span class="p">))</span>  <span class="c1"># &lt;6&gt;</span>
+
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>  <span class="c1"># &lt;7&gt;</span>
 
 
-if __name__ == &#39;__main__&#39;:
-    main(download_many)  # &lt;8&gt;
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">download_many</span><span class="p">)</span>  <span class="c1"># &lt;8&gt;</span>
 </code></pre></div>
 
 
 <h4 id="future">Future(期物)(中文版翻译感觉这个名字怪怪的)<a class="headerlink" href="#future" title="Permanent link">&para;</a></h4>
 <p>concurrent.futures.Future: Feature 类的实例都表示可能已经完成或者尚未完成的延迟计算，可以调用它的 result() 方法获取结果</p>
-<div class="codehilite"><pre><span></span><code>def download_many(cc_list):
-    cc_list = cc_list[:5]  # &lt;1&gt;
-    with futures.ThreadPoolExecutor(max_workers=3) as executor:  # &lt;2&gt;
-        to_do = []
-        for cc in sorted(cc_list):  # &lt;3&gt;
-            future = executor.submit(download_one, cc)  # &lt;4&gt;
-            to_do.append(future)  # &lt;5&gt;
-            msg = &#39;Scheduled for {}: {}&#39;
-            print(msg.format(cc, future))  # &lt;6&gt;
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">download_many</span><span class="p">(</span><span class="n">cc_list</span><span class="p">):</span>
+    <span class="n">cc_list</span> <span class="o">=</span> <span class="n">cc_list</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span>
+    <span class="k">with</span> <span class="n">futures</span><span class="p">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span>
+        <span class="n">to_do</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cc</span> <span class="k">in</span> <span class="n">sorted</span><span class="p">(</span><span class="n">cc_list</span><span class="p">):</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="p">.</span><span class="n">submit</span><span class="p">(</span><span class="n">download_one</span><span class="p">,</span> <span class="n">cc</span><span class="p">)</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span>
+            <span class="n">to_do</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Scheduled for {}: {}&#39;</span>
+            <span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span> <span class="n">future</span><span class="p">))</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">6</span><span class="o">&gt;</span>
 
-        results = []
-        for future in futures.as_completed(to_do):  # &lt;7&gt;
-            res = future.result()  # &lt;8&gt;
-            msg = &#39;{} result: {!r}&#39;
-            print(msg.format(future, res)) # &lt;9&gt;
-            results.append(res)
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="k">in</span> <span class="n">futures</span><span class="p">.</span><span class="n">as_completed</span><span class="p">(</span><span class="n">to_do</span><span class="p">):</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">7</span><span class="o">&gt;</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">future</span><span class="p">.</span><span class="k">result</span><span class="p">()</span>  <span class="o">#</span> <span class="o">&lt;</span><span class="mi">8</span><span class="o">&gt;</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;{} result: {!r}&#39;</span>
+            <span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">future</span><span class="p">,</span> <span class="n">res</span><span class="p">))</span> <span class="o">#</span> <span class="o">&lt;</span><span class="mi">9</span><span class="o">&gt;</span>
+            <span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 
-    return len(results)
+    <span class="k">return</span> <span class="n">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -4044,41 +4056,41 @@ GIL，运行另一个线程。因此尽管有 GIL，python 线程还是能在 IO
 <h4 id="concurrentfuturesprocesspoolexecutor-gil">concurrent.futures.ProcessPoolExecutor 绕开 GIL<a class="headerlink" href="#concurrentfuturesprocesspoolexecutor-gil" title="Permanent link">&para;</a></h4>
 <h1 id="18-asyncio">18 使用 asyncio 处理并发<a class="headerlink" href="#18-asyncio" title="Permanent link">&para;</a></h1>
 <h4 id="asyncio">asyncio 使用事件循环驱动的协程实现并发<a class="headerlink" href="#asyncio" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>import asyncio
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
 
-import aiohttp  # &lt;1&gt;
+<span class="kn">import</span> <span class="nn">aiohttp</span>  <span class="c1"># &lt;1&gt;</span>
 
-from flags import BASE_URL, save_flag, show, main  # &lt;2&gt;
-
-
-@asyncio.coroutine  # &lt;3&gt;
-def get_flag(cc):
-    url = &#39;{}/{cc}/{cc}.gif&#39;.format(BASE_URL, cc=cc.lower())
-    resp = yield from aiohttp.request(&#39;GET&#39;, url)  # &lt;4&gt;
-    image = yield from resp.read()  # &lt;5&gt;
-    return image
+<span class="kn">from</span> <span class="nn">flags</span> <span class="kn">import</span> <span class="n">BASE_URL</span><span class="p">,</span> <span class="n">save_flag</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">main</span>  <span class="c1"># &lt;2&gt;</span>
 
 
-@asyncio.coroutine
-def download_one(cc):  # &lt;6&gt;
-    image = yield from get_flag(cc)  # &lt;7&gt;
-    show(cc)
-    save_flag(image, cc.lower() + &#39;.gif&#39;)
-    return cc
+<span class="nd">@asyncio.coroutine</span>  <span class="c1"># &lt;3&gt;</span>
+<span class="k">def</span> <span class="nf">get_flag</span><span class="p">(</span><span class="n">cc</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;{}/{cc}/{cc}.gif&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">BASE_URL</span><span class="p">,</span> <span class="n">cc</span><span class="o">=</span><span class="n">cc</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>  <span class="c1"># &lt;4&gt;</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">resp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># &lt;5&gt;</span>
+    <span class="k">return</span> <span class="n">image</span>
 
 
-def download_many(cc_list):
-    loop = asyncio.get_event_loop()  # &lt;8&gt;
-    to_do = [download_one(cc) for cc in sorted(cc_list)]  # &lt;9&gt;
-    wait_coro = asyncio.wait(to_do)  # &lt;10&gt;
-    res, _ = loop.run_until_complete(wait_coro)  # &lt;11&gt;
-    loop.close() # &lt;12&gt;
-
-    return len(res)
+<span class="nd">@asyncio.coroutine</span>
+<span class="k">def</span> <span class="nf">download_one</span><span class="p">(</span><span class="n">cc</span><span class="p">):</span>  <span class="c1"># &lt;6&gt;</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="k">yield from</span> <span class="n">get_flag</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span>  <span class="c1"># &lt;7&gt;</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span>
+    <span class="n">save_flag</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cc</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;.gif&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cc</span>
 
 
-if __name__ == &#39;__main__&#39;:
-    main(download_many)
+<span class="k">def</span> <span class="nf">download_many</span><span class="p">(</span><span class="n">cc_list</span><span class="p">):</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>  <span class="c1"># &lt;8&gt;</span>
+    <span class="n">to_do</span> <span class="o">=</span> <span class="p">[</span><span class="n">download_one</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span> <span class="k">for</span> <span class="n">cc</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">cc_list</span><span class="p">)]</span>  <span class="c1"># &lt;9&gt;</span>
+    <span class="n">wait_coro</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">to_do</span><span class="p">)</span>  <span class="c1"># &lt;10&gt;</span>
+    <span class="n">res</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">wait_coro</span><span class="p">)</span>  <span class="c1"># &lt;11&gt;</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># &lt;12&gt;</span>
+
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">download_many</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -4090,64 +4102,64 @@ if __name__ == &#39;__main__&#39;:
 </ul>
 <h5 id="asyncio-executor">在 asyncio 中使用 Executor 对象，防止阻塞事件循环<a class="headerlink" href="#asyncio-executor" title="Permanent link">&para;</a></h5>
 <p>python 访问本地文件系统会阻塞，硬盘IO 阻塞会浪费几百万个 cpu 周期。解决方法是使用时间循环对象的 run_in_executor 方法。</p>
-<div class="codehilite"><pre><span></span><code>@asyncio.coroutine
-def download_one(cc, base_url, semaphore, verbose):
-    try:
-        with (yield from semaphore):
-            image = yield from get_flag(base_url, cc)
-    except web.HTTPNotFound:
-        status = HTTPStatus.not_found
-        msg = &#39;not found&#39;
-    except Exception as exc:
-        raise FetchError(cc) from exc
-    else:
-        loop = asyncio.get_event_loop()  # 获取事件循环对象的引用
-        loop.run_in_executor(None,  # None 使用默认的 TrreadPoolExecutor 实例
-                save_flag, image, cc.lower() + &#39;.gif&#39;)  # 传入可调用对象
-        status = HTTPStatus.ok
-        msg = &#39;OK&#39;
+<div class="codehilite"><pre><span></span><code><span class="nv">@asyncio</span><span class="p">.</span><span class="n">coroutine</span><span class="w"></span>
+<span class="n">def</span><span class="w"> </span><span class="n">download_one</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span><span class="w"> </span><span class="n">base_url</span><span class="p">,</span><span class="w"> </span><span class="n">semaphore</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">with</span><span class="w"> </span><span class="p">(</span><span class="n">yield</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">semaphore</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">            </span><span class="nc">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yield</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">get_flag</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span><span class="w"> </span><span class="n">cc</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="ow">except</span><span class="w"> </span><span class="n">web</span><span class="p">.</span><span class="nl">HTTPNotFound</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HTTPStatus</span><span class="p">.</span><span class="n">not_found</span><span class="w"></span>
+<span class="w">        </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;not found&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="ow">except</span><span class="w"> </span><span class="k">Exception</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">exc</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">raise</span><span class="w"> </span><span class="n">FetchError</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">exc</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">loop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">asyncio</span><span class="p">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">获取事件循环对象的引用</span><span class="w"></span>
+<span class="w">        </span><span class="n">loop</span><span class="p">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="k">None</span><span class="p">,</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="k">None</span><span class="w"> </span><span class="n">使用默认的</span><span class="w"> </span><span class="n">TrreadPoolExecutor</span><span class="w"> </span><span class="n">实例</span><span class="w"></span>
+<span class="w">                </span><span class="n">save_flag</span><span class="p">,</span><span class="w"> </span><span class="nc">image</span><span class="p">,</span><span class="w"> </span><span class="n">cc</span><span class="p">.</span><span class="nf">lower</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;.gif&#39;</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">传入可调用对象</span><span class="w"></span>
+<span class="w">        </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HTTPStatus</span><span class="p">.</span><span class="n">ok</span><span class="w"></span>
+<span class="w">        </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OK&#39;</span><span class="w"></span>
 
-    if verbose and msg:
-        print(cc, msg)
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nl">msg</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">print</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
 
-    return Result(status, cc)
-asyncio 的事件循环背后维护一个 ThreadPoolExecutor 对象，我们可以调用 run_in_executor 方法， 把可调用的对象发给它执行。
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">Result</span><span class="p">(</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">cc</span><span class="p">)</span><span class="w"></span>
+<span class="n">asyncio</span><span class="w"> </span><span class="n">的事件循环背后维护一个</span><span class="w"> </span><span class="n">ThreadPoolExecutor</span><span class="w"> </span><span class="n">对象</span><span class="err">，</span><span class="n">我们可以调用</span><span class="w"> </span><span class="n">run_in_executor</span><span class="w"> </span><span class="n">方法</span><span class="err">，</span><span class="w"> </span><span class="n">把可调用的对象发给它执行</span><span class="err">。</span><span class="w"></span>
 </code></pre></div>
 
 
 <h4 id="futures">从回调到 Futures 和 协程<a class="headerlink" href="#futures" title="Permanent link">&para;</a></h4>
 <p>回调地狱：如果一个操作需要依赖之前操作的结果，那就得嵌套回调。</p>
 <p>python 中的回调地狱：</p>
-<div class="codehilite"><pre><span></span><code>def stage1(response1):
-    request2 = step1(response1)
-    api_call2(request2, stage2)
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">stage1</span><span class="p">(</span><span class="n">response1</span><span class="p">):</span>
+    <span class="n">request2</span> <span class="o">=</span> <span class="n">step1</span><span class="p">(</span><span class="n">response1</span><span class="p">)</span>
+    <span class="n">api_call2</span><span class="p">(</span><span class="n">request2</span><span class="p">,</span> <span class="n">stage2</span><span class="p">)</span>
 
 
-def stage2(response2):
-    request3 = step2(response2)
-    api_call3(request3, stage3)
+<span class="n">def</span> <span class="n">stage2</span><span class="p">(</span><span class="n">response2</span><span class="p">):</span>
+    <span class="n">request3</span> <span class="o">=</span> <span class="n">step2</span><span class="p">(</span><span class="n">response2</span><span class="p">)</span>
+    <span class="n">api_call3</span><span class="p">(</span><span class="n">request3</span><span class="p">,</span> <span class="n">stage3</span><span class="p">)</span>
 
 
-def stage3(response3):
-    step3(response3)
+<span class="n">def</span> <span class="n">stage3</span><span class="p">(</span><span class="n">response3</span><span class="p">):</span>
+    <span class="n">step3</span><span class="p">(</span><span class="n">response3</span><span class="p">)</span>
 
 
-api_call1(request1, step1)
+<span class="n">api_call1</span><span class="p">(</span><span class="n">request1</span><span class="p">,</span> <span class="n">step1</span><span class="p">)</span>
 </code></pre></div>
 
 
 <p>使用 协程 和 yield from 结构做异步编程，无需用回调</p>
-<div class="codehilite"><pre><span></span><code>@asyncio.coroutine
-def three_stages(request1):
-    response1 = yield from api_call1()
-    request2 = step1(response1)
-    response2 = yield from api_call2(request2)
-    request3 = step2(response2)
-    response3 = yield from api_call3(request3)
-    step3(response3)
+<div class="codehilite"><pre><span></span><code><span class="nv">@asyncio</span><span class="p">.</span><span class="n">coroutine</span><span class="w"></span>
+<span class="n">def</span><span class="w"> </span><span class="n">three_stages</span><span class="p">(</span><span class="n">request1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">response1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yield</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">api_call1</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">request2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">step1</span><span class="p">(</span><span class="n">response1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">response2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yield</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">api_call2</span><span class="p">(</span><span class="n">request2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">request3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">step2</span><span class="p">(</span><span class="n">response2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">response3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yield</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">api_call3</span><span class="p">(</span><span class="n">request3</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">step3</span><span class="p">(</span><span class="n">response3</span><span class="p">)</span><span class="w"></span>
 
-# 协程不能直接调用，必须用事件循环显示指定协程的执行时间，或者在其他排定了执行时间的协程中使用 yield from 表达式把它激活
-loop.create_task(three_stages(request1))
+<span class="err">#</span><span class="w"> </span><span class="n">协程不能直接调用</span><span class="err">，</span><span class="n">必须用事件循环显示指定协程的执行时间</span><span class="err">，</span><span class="n">或者在其他排定了执行时间的协程中使用</span><span class="w"> </span><span class="n">yield</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">表达式把它激活</span><span class="w"></span>
+<span class="n">loop</span><span class="p">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">three_stages</span><span class="p">(</span><span class="n">request1</span><span class="p">))</span><span class="w"></span>
 </code></pre></div>
 
 
@@ -4162,83 +4174,83 @@ asyncio 包中某个参数为协程或者 Futures 的函数，例如 run_until_c
 <p>统一访问原则：不管服务是由存取还是计算实现的，一个模块提供的所有服务都应该统一的方式使用。</p>
 <h2 id="_26">使用动态属性转换数据<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h2>
 <h4 id="_27">使用动态属性访问数据<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>from collections import abc
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">abc</span>
 
-class FrozenJSON:
-    &quot;&quot;&quot;A read-only façade for navigating a JSON-like object
-    using attribute notation
-    &quot;&quot;&quot;
+<span class="k">class</span> <span class="nc">FrozenJSON</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A read-only façade for navigating a JSON-like object</span>
+<span class="sd">    using attribute notation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    def __init__(self, mapping):
-        self.__data = dict(mapping)  # &lt;1&gt;
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>  <span class="c1"># &lt;1&gt;</span>
 
-    def __getattr__(self, name):  # &lt;2&gt;
-        if hasattr(self.__data, name):
-            return getattr(self.__data, name)  # &lt;3&gt;
-        else:
-            return FrozenJSON.build(self.__data[name])  # &lt;4&gt;
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>  <span class="c1"># &lt;2&gt;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>  <span class="c1"># &lt;3&gt;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">FrozenJSON</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>  <span class="c1"># &lt;4&gt;</span>
 
-    @classmethod
-    def build(cls, obj):  # &lt;5&gt;
-        if isinstance(obj, abc.Mapping):  # &lt;6&gt;
-            return cls(obj)
-        elif isinstance(obj, abc.MutableSequence):  # &lt;7&gt;
-            return [cls.build(item) for item in obj]
-        else:  # &lt;8&gt;
-            return obj
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>  <span class="c1"># &lt;5&gt;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>  <span class="c1"># &lt;6&gt;</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">MutableSequence</span><span class="p">):</span>  <span class="c1"># &lt;7&gt;</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># &lt;8&gt;</span>
+            <span class="k">return</span> <span class="n">obj</span>
 </code></pre></div>
 
 
 <h4 id="_28">处理无效属性名<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>def __init__(self, mapping):
-    self.__data = {}
-    for key, value in mapping.items():
-        if keyword.iskeyword(key):  # &lt;1&gt;
-            key += &#39;_&#39;    # 和 python 重名的关键字加上下划线
-        self.__data[key] = value
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">self</span><span class="p">.</span><span class="n">__data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">mapping</span><span class="p">.</span><span class="n">items</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">keyword</span><span class="p">.</span><span class="n">iskeyword</span><span class="p">(</span><span class="k">key</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">            </span><span class="k">key</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;_&#39;</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">和</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">重名的关键字加上下划线</span><span class="w"></span>
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">__data</span><span class="o">[</span><span class="n">key</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
 </code></pre></div>
 
 
 <h4 id="__new__">使用 <code>__new__</code> 以灵活的方式创建对象<a class="headerlink" href="#__new__" title="Permanent link">&para;</a></h4>
 <p>实际上用来构建对象的方法是 <code>__new__</code>，<code>__init__</code> 是初始化方法。<code>__new__</code> 必须返回一个实例，作为 <code>__init__</code>
 方法的第一个参数。</p>
-<div class="codehilite"><pre><span></span><code>def __new__(cls, arg):  # &lt;1&gt;
-    if isinstance(arg, abc.Mapping):
-        return super().__new__(cls)  # &lt;2&gt;
-    elif isinstance(arg, abc.MutableSequence):  # &lt;3&gt;
-        return [cls(item) for item in arg]
-    else:
-        return arg
+<div class="codehilite"><pre><span></span><code><span class="err">def __new__(cls, arg):  # &lt;1&gt;</span>
+<span class="err">    if isinstance(arg, abc.Mapping):</span>
+<span class="err">        return super().__new__(cls)  # &lt;2&gt;</span>
+<span class="err">    elif isinstance(arg, abc.MutableSequence):  # &lt;3&gt;</span>
+<span class="err">        return [cls(item) for item in arg]</span>
+<span class="err">    else:</span>
+<span class="err">        return arg</span>
 </code></pre></div>
 
 
 <h2 id="_29">使用特性验证属性<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>class LineItem:
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nl">LineItem</span><span class="p">:</span><span class="w"></span>
 
-    def __init__(self, description, weight, price):
-        self.description = description
-        self.weight = weight  # &lt;1&gt;
-        self.price = price
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">description</span><span class="w"></span>
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">price</span><span class="w"></span>
 
-    def subtotal(self):
-        return self.weight * self.price
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">subtotal</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">weight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">price</span><span class="w"></span>
 
-    @property  # &lt;2&gt;
-    def weight(self):  # &lt;3&gt;
-        return self.__weight  # &lt;4&gt;
+<span class="w">    </span><span class="nv">@property</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">weight</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">__weight</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="w"></span>
 
-    @weight.setter  # &lt;5&gt;
-    def weight(self, value):
-        if value &gt; 0:
-            self.__weight = value  # &lt;6&gt;
-        else:
-            raise ValueError(&#39;value must be &gt; 0&#39;)  # &lt;7&gt;
+<span class="w">    </span><span class="nv">@weight</span><span class="p">.</span><span class="n">setter</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">weight</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">__weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">6</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="p">(</span><span class="s1">&#39;value must be &gt; 0&#39;</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">7</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 
 
 <h2 id="property">解析 property<a class="headerlink" href="#property" title="Permanent link">&para;</a></h2>
 <p>property 签名</p>
-<div class="codehilite"><pre><span></span><code>class property(fget=None, fset=None, fdel=None, doc=None)
+<div class="codehilite"><pre><span></span><code><span class="err">class property(fget=None, fset=None, fdel=None, doc=None)</span>
 </code></pre></div>
 
 
@@ -4247,54 +4259,54 @@ class FrozenJSON:
     attr，而是从 <code>obj.__class__</code> 开始，且仅当类中没有 attr 的属性时， python 才会在 obj 实例中寻找。</li>
 </ul>
 <h2 id="_30">定义一个特性工厂函数<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>def quantity(storage_name):  # &lt;1&gt;
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">quantity</span><span class="p">(</span><span class="n">storage_name</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"></span>
 
-    def qty_getter(instance):  # &lt;2&gt;
-        return instance.__dict__[storage_name]  # &lt;3&gt;
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">qty_getter</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="n">__dict__</span><span class="o">[</span><span class="n">storage_name</span><span class="o">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="w"></span>
 
-    def qty_setter(instance, value):  # &lt;4&gt;
-        if value &gt; 0:
-            instance.__dict__[storage_name] = value  # &lt;5&gt;
-        else:
-            raise ValueError(&#39;value must be &gt; 0&#39;)
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">qty_setter</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">instance</span><span class="p">.</span><span class="n">__dict__</span><span class="o">[</span><span class="n">storage_name</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="p">(</span><span class="s1">&#39;value must be &gt; 0&#39;</span><span class="p">)</span><span class="w"></span>
 
-    return property(qty_getter, qty_setter)  # &lt;6&gt;
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">property</span><span class="p">(</span><span class="n">qty_getter</span><span class="p">,</span><span class="w"> </span><span class="n">qty_setter</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">6</span><span class="o">&gt;</span><span class="w"></span>
 
 
-class LineItem:
-    weight = quantity(&#39;weight&#39;)  # &lt;1&gt;
-    price = quantity(&#39;price&#39;)  # &lt;2&gt;
+<span class="k">class</span><span class="w"> </span><span class="nl">LineItem</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quantity</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quantity</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"></span>
 
-    def __init__(self, description, weight, price):
-        self.description = description
-        self.weight = weight  # &lt;3&gt;
-        self.price = price
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">description</span><span class="w"></span>
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">price</span><span class="w"></span>
 
-    def subtotal(self):
-        return self.weight * self.price  # &lt;4&gt;
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">subtotal</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">weight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">price</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
 
 
 <h2 id="_31">处理属性删除操作<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>class BlackKnight:
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nl">BlackKnight</span><span class="p">:</span><span class="w"></span>
 
-  def __init__(self):
-      self.members = [&#39;an arm&#39;, &#39;another arm&#39;,
-                      &#39;a leg&#39;, &#39;another leg&#39;]
-      self.phrases = [&quot;&#39;Tis but a scratch.&quot;,
-                      &quot;It&#39;s just a flesh wound.&quot;,
-                      &quot;I&#39;m invincible!&quot;,
-                      &quot;All right, we&#39;ll call it a draw.&quot;]
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">      </span><span class="n">self</span><span class="p">.</span><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&#39;an arm&#39;, &#39;another arm&#39;,</span>
+<span class="n">                      &#39;a leg&#39;, &#39;another leg&#39;</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="n">self</span><span class="p">.</span><span class="n">phrases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;&#39;Tis but a scratch.&quot;,</span>
+<span class="n">                      &quot;It&#39;s just a flesh wound.&quot;,</span>
+<span class="n">                      &quot;I&#39;m invincible!&quot;,</span>
+<span class="n">                      &quot;All right, we&#39;ll call it a draw.&quot;</span><span class="o">]</span><span class="w"></span>
 
-  @property
-  def member(self):
-      print(&#39;next member is:&#39;)
-      return self.members[0]
+<span class="w">  </span><span class="nv">@property</span><span class="w"></span>
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="k">member</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;next member is:&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">members</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
 
-  @member.deleter
-  def member(self):
-      text = &#39;BLACK KNIGHT (loses {})\n-- {}&#39;
-      print(text.format(self.members.pop(0), self.phrases.pop(0)))
+<span class="w">  </span><span class="nv">@member</span><span class="p">.</span><span class="n">deleter</span><span class="w"></span>
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="k">member</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">      </span><span class="nc">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BLACK KNIGHT (loses {})\n-- {}&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">print</span><span class="p">(</span><span class="nc">text</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">members</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">phrases</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span><span class="w"></span>
 </code></pre></div>
 
 
@@ -4326,29 +4338,29 @@ class LineItem:
 </ul>
 <p>描述符是对多个属性运用相同存储逻辑的一种方式。例如 orm 中的字段类型是描述符。描述符是实现了特定协议的类，这个协议包括
 <code>__get__ __set__ __delete__</code> 方法。描述符的用法是创建一个实例，作为另一个类的类属性。</p>
-<div class="codehilite"><pre><span></span><code>class Quantity:  # &lt;1&gt;
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">Quantity:</span>  <span class="c1"># &lt;1&gt;</span>
 
-    def __init__(self, storage_name):
-        self.storage_name = storage_name  # &lt;2&gt;
+    <span class="n">def</span> <span class="n">__init__</span>(<span class="nb">self</span>, <span class="n">storage_name</span>):
+        <span class="nb">self</span>.<span class="n">storage_name</span> = <span class="n">storage_name</span>  <span class="c1"># &lt;2&gt;</span>
 
-    def __set__(self, instance, value):  # &lt;3&gt;
-        if value &gt; 0:
-            instance.__dict__[self.storage_name] = value  # &lt;4&gt;
-        else:
-            raise ValueError(&#39;value must be &gt; 0&#39;)
+    <span class="n">def</span> <span class="n">__set__</span>(<span class="nb">self</span>, <span class="n">instance</span>, <span class="nb">value</span>):  <span class="c1"># &lt;3&gt;</span>
+        <span class="k">if</span> <span class="nb">value</span> &gt; <span class="mi">0</span>:
+            <span class="n">instance</span>.<span class="n">__dict__</span>[<span class="nb">self</span>.<span class="n">storage_name</span>] = <span class="nb">value</span>  <span class="c1"># &lt;4&gt;</span>
+        <span class="n">else:</span>
+            <span class="n">raise</span> <span class="n">ValueError</span>(<span class="s">&#39;value must be &gt; 0&#39;</span>)
 
 
-class LineItem:
-    weight = Quantity(&#39;weight&#39;)  # &lt;5&gt;
-    price = Quantity(&#39;price&#39;)  # &lt;6&gt;
+<span class="k">class</span> <span class="n">LineItem:</span>
+    <span class="n">weight</span> = <span class="n">Quantity</span>(<span class="s">&#39;weight&#39;</span>)  <span class="c1"># &lt;5&gt;</span>
+    <span class="n">price</span> = <span class="n">Quantity</span>(<span class="s">&#39;price&#39;</span>)  <span class="c1"># &lt;6&gt;</span>
 
-    def __init__(self, description, weight, price):  # &lt;7&gt;
-        self.description = description
-        self.weight = weight
-        self.price = price
+    <span class="n">def</span> <span class="n">__init__</span>(<span class="nb">self</span>, <span class="n">description</span>, <span class="n">weight</span>, <span class="n">price</span>):  <span class="c1"># &lt;7&gt;</span>
+        <span class="nb">self</span>.<span class="n">description</span> = <span class="n">description</span>
+        <span class="nb">self</span>.<span class="n">weight</span> = <span class="n">weight</span>
+        <span class="nb">self</span>.<span class="n">price</span> = <span class="n">price</span>
 
-    def subtotal(self):
-        return self.weight * self.price
+    <span class="n">def</span> <span class="n">subtotal</span>(<span class="nb">self</span>):
+        <span class="k">return</span> <span class="nb">self</span>.<span class="n">weight</span> * <span class="nb">self</span>.<span class="n">price</span>
 </code></pre></div>
 
 
@@ -4371,47 +4383,47 @@ class LineItem:
 （原书有段代码示例非常好地解释了导入的问题）</p>
 <h4 id="_38">元类基础<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h4>
 <p>感觉这一章写得不如笔者之前写的一篇博客《简单的python元类》好理解。</p>
-<div class="codehilite"><pre><span></span><code>class EntityMeta(type):
-    &quot;&quot;&quot;Metaclass for business entities with validated fields&quot;&quot;&quot;
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">EntityMeta</span>(<span class="nb">type</span>):
+    <span class="s">&quot;&quot;&quot;Metaclass for business entities with validated fields&quot;&quot;&quot;</span>
 
-    def __init__(cls, name, bases, attr_dict):
-        super().__init__(name, bases, attr_dict)  # &lt;1&gt;
-        for key, attr in attr_dict.items():  # &lt;2&gt;
-            if isinstance(attr, Validated):
-                type_name = type(attr).__name__
-                attr.storage_name = &#39;_{}#{}&#39;.format(type_name, key)
+    <span class="n">def</span> <span class="n">__init__</span>(<span class="n">cls</span>, <span class="nb">name</span>, <span class="n">bases</span>, <span class="n">attr_dict</span>):
+        <span class="n">super</span>().<span class="n">__init__</span>(<span class="nb">name</span>, <span class="n">bases</span>, <span class="n">attr_dict</span>)  <span class="c1"># &lt;1&gt;</span>
+        <span class="k">for</span> <span class="nb">key</span>, <span class="n">attr</span> <span class="nb">in</span> <span class="n">attr_dict</span>.<span class="n">items</span>():  <span class="c1"># &lt;2&gt;</span>
+            <span class="k">if</span> <span class="n">isinstance</span>(<span class="n">attr</span>, <span class="n">Validated</span>):
+                <span class="n">type_name</span> = <span class="nb">type</span>(<span class="n">attr</span>).<span class="n">__name__</span>
+                <span class="n">attr</span>.<span class="n">storage_name</span> = <span class="s">&#39;_{}#{}&#39;</span>.<span class="nb">format</span>(<span class="n">type_name</span>, <span class="nb">key</span>)
 
-class Entity(metaclass=EntityMeta):  # &lt;3&gt;
-    &quot;&quot;&quot;Business entity with validated fields&quot;&quot;&quot;
+<span class="k">class</span> <span class="n">Entity</span>(<span class="n">metaclass</span>=<span class="n">EntityMeta</span>):  <span class="c1"># &lt;3&gt;</span>
+    <span class="s">&quot;&quot;&quot;Business entity with validated fields&quot;&quot;&quot;</span>
 </code></pre></div>
 
 
 <h4 id="__prepare__">元类的特殊方法 <code>__prepare__</code><a class="headerlink" href="#__prepare__" title="Permanent link">&para;</a></h4>
 <p>某些应用中可能想知道属性定义的顺序，解决办法是使用 python3 引入的 <code>__prepare__</code> 。这个特殊方法只在元类中有用，而且必须是类方法。解释器调用元类的 <code>__new__</code> 之前会先调用 <code>__prepare__</code>，使用类定义体中的属性创建映射。
 元类构建新类时， <code>__prepare__</code> 方法返回的映射会传给 <code>__new__</code> 的最后一个参数，然后再传给  <code>__init__</code> 方法。</p>
-<div class="codehilite"><pre><span></span><code>class EntityMeta(type):
-    &quot;&quot;&quot;Metaclass for business entities with validated fields&quot;&quot;&quot;
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">EntityMeta</span><span class="p">(</span><span class="n">type</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Metaclass for business entities with validated fields&quot;&quot;&quot;</span><span class="w"></span>
 
-    @classmethod
-    def __prepare__(cls, name, bases):    # py3, must be a class method
-        return collections.OrderedDict()  # &lt;1&gt; return empty OrderedDict, where the class attritubes will be stored
-    def __init__(cls, name, bases, attr_dict):
-        super().__init__(name, bases, attr_dict)
-        cls._field_names = []  # &lt;2&gt;
-        for key, attr in attr_dict.items():  # &lt;3&gt;    # in order
-            if isinstance(attr, Validated):
-                type_name = type(attr).__name__
-                attr.storage_name = &#39;_{}#{}&#39;.format(type_name, key)
-                cls._field_names.append(key)  # &lt;4&gt;
+<span class="w">    </span><span class="nv">@classmethod</span><span class="w"></span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__prepare__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">bases</span><span class="p">)</span><span class="err">:</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">py3</span><span class="p">,</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="k">method</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">collections</span><span class="p">.</span><span class="n">OrderedDict</span><span class="p">()</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="n">OrderedDict</span><span class="p">,</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="n">attritubes</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">stored</span><span class="w"></span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">bases</span><span class="p">,</span><span class="w"> </span><span class="n">attr_dict</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">bases</span><span class="p">,</span><span class="w"> </span><span class="n">attr_dict</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">cls</span><span class="p">.</span><span class="n">_field_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">attr</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">attr_dict</span><span class="p">.</span><span class="n">items</span><span class="p">()</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">order</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span><span class="w"> </span><span class="n">Validated</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">                </span><span class="nf">type_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="n">attr</span><span class="p">).</span><span class="n">__name__</span><span class="w"></span>
+<span class="w">                </span><span class="n">attr</span><span class="p">.</span><span class="n">storage_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;_{}#{}&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="nf">type_name</span><span class="p">,</span><span class="w"> </span><span class="k">key</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="n">cls</span><span class="p">.</span><span class="n">_field_names</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="k">key</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="w"></span>
 
 
-class Entity(metaclass=EntityMeta):
-    &quot;&quot;&quot;Business entity with validated fields&quot;&quot;&quot;
+<span class="k">class</span><span class="w"> </span><span class="n">Entity</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">EntityMeta</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Business entity with validated fields&quot;&quot;&quot;</span><span class="w"></span>
 
-    @classmethod
-    def field_names(cls):  # &lt;5&gt;
-        for name in cls._field_names:
-            yield name
+<span class="w">    </span><span class="nv">@classmethod</span><span class="w"></span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">field_names</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="nl">_field_names</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">yield</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
 </code></pre></div>
 
 
@@ -4500,7 +4512,7 @@ class Entity(metaclass=EntityMeta):
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

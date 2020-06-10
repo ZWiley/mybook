@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3476,22 +3488,22 @@
 <p>所有问题的核心：抑制堆增长，充分利用CPU资源。为此，Go引入一系列举措。</p>
 <p>三色标记和写屏障、控制器、辅助回收</p>
 <h1 id="18">18 并发调度<a class="headerlink" href="#18" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code>            +--------------------sysmon---------------//------+
-            |                                                   |
-            |                                                   |
-        +---+      +---+-------+                   +--------+          +---+---+
-go func() ---&gt; |G| ---&gt; |P|local| &lt;===balance===&gt; |global| &lt;--//--- |P|M|
-        +---+      +---+-------+                   +--------+          +---+---+
-            |                                 |                 |
-            |      +---+                      |                 |
-            +----&gt; |M| &lt;---findrunnable---+---steal&lt;--//--+
-                +---+
-                    |                1. 语句go func() 创建G
-                    |               2. 放入P本地队列（或平衡到全局队列）
-        +---execute&lt;-----schedule            3. 唤醒或新建M执行任务
-        |                      |              4. 进入调度循环schedule
-        |                      |              5. 竭力获取待执行G任务并执行
-        +--&gt;G.fn--&gt;goexit--+                6. 清理现场，重新进入调度循环
+<div class="codehilite"><pre><span></span><code><span class="err">            +--------------------sysmon---------------//------+</span>
+<span class="err">            |                                                   |</span>
+<span class="err">            |                                                   |</span>
+<span class="err">        +---+      +---+-------+                   +--------+          +---+---+</span>
+<span class="err">go func() ---&gt; |G| ---&gt; |P|local| &lt;===balance===&gt; |global| &lt;--//--- |P|M|</span>
+<span class="err">        +---+      +---+-------+                   +--------+          +---+---+</span>
+<span class="err">            |                                 |                 |</span>
+<span class="err">            |      +---+                      |                 |</span>
+<span class="err">            +----&gt; |M| &lt;---findrunnable---+---steal&lt;--//--+</span>
+<span class="err">                +---+</span>
+<span class="err">                    |                1. 语句go func() 创建G</span>
+<span class="err">                    |               2. 放入P本地队列（或平衡到全局队列）</span>
+<span class="err">        +---execute&lt;-----schedule            3. 唤醒或新建M执行任务</span>
+<span class="err">        |                      |              4. 进入调度循环schedule</span>
+<span class="err">        |                      |              5. 竭力获取待执行G任务并执行</span>
+<span class="err">        +--&gt;G.fn--&gt;goexit--+                6. 清理现场，重新进入调度循环</span>
 </code></pre></div>
 
 
@@ -3569,7 +3581,7 @@ go func() ---&gt; |G| ---&gt; |P|local| &lt;===balance===&gt; |global| &lt;--//-
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

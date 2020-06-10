@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3454,28 +3466,28 @@
 <p>docker run &ndash;name daemon_dave -d ubuntu /bin/sh -c &ldquo;while true; do echo hello world; sleep 1; done&rdquo;</p>
 <h1 id="4-docker">4. 使用 docker 镜像和仓库<a class="headerlink" href="#4-docker" title="Permanent link">&para;</a></h1>
 <p>构建 docker image。docker build 方式。</p>
-<div class="codehilite"><pre><span></span><code># 当前的文件夹叫做 build context，docker 在构建镜像时将构建上下文和上下文中的文件和目录上传到 Docker 守护进程
-mkdir static_web
-cd static_web
-touch Dockerfile
+<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">当前的文件夹叫做</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="n">context</span><span class="err">，</span><span class="n">docker</span><span class="w"> </span><span class="n">在构建镜像时将构建上下文和上下文中的文件和目录上传到</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">守护进程</span><span class="w"></span>
+<span class="n">mkdir</span><span class="w"> </span><span class="n">static_web</span><span class="w"></span>
+<span class="n">cd</span><span class="w"> </span><span class="n">static_web</span><span class="w"></span>
+<span class="n">touch</span><span class="w"> </span><span class="n">Dockerfile</span><span class="w"></span>
 
 
-# Veersion: 0.0.1 
-FROM ubuntu:14.04
-MAINTAINER WNN &#39;pegasuswang@qq.com&#39;
-RUN apt-get update &amp;&amp; apt-get install -y nginx 
-RUN echo &#39;Hi, I am your container&#39; \
-&gt; /usr/share/nginx/html/index.html
-EXPOSE 80
+<span class="err">#</span><span class="w"> </span><span class="nl">Veersion</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0.1</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="nl">ubuntu</span><span class="p">:</span><span class="mf">14.04</span><span class="w"></span>
+<span class="n">MAINTAINER</span><span class="w"> </span><span class="n">WNN</span><span class="w"> </span><span class="s1">&#39;pegasuswang@qq.com&#39;</span><span class="w"></span>
+<span class="n">RUN</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="k">get</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="k">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">nginx</span><span class="w"> </span>
+<span class="n">RUN</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="s1">&#39;Hi, I am your container&#39;</span><span class="w"> </span><span class="err">\</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="k">index</span><span class="p">.</span><span class="n">html</span><span class="w"></span>
+<span class="n">EXPOSE</span><span class="w"> </span><span class="mi">80</span><span class="w"></span>
 </code></pre></div>
 
 
 <p>每条指令都会创建一个新的镜像层并对镜像进行提交，中间如果某条指令失败了，也能得到一个镜像，可以用来调试。</p>
-<div class="codehilite"><pre><span></span><code># cd static_web
-docker build -t=&quot;wnn/static_web&quot; .
-docker build --no-cache -t=&quot;wnn/static_web&quot; .
-docker run -d -p 80 --name static_web wnn/static_web nginx -g &quot;daemon off;&quot;
-docker run -d -p 8000:80 --name static_web wnn/static_web nginx -g &quot;daemon off;&quot;
+<div class="codehilite"><pre><span></span><code><span class="err"># cd static_web</span>
+<span class="err">docker build -t=&quot;wnn/static_web&quot; .</span>
+<span class="err">docker build --no-cache -t=&quot;wnn/static_web&quot; .</span>
+<span class="err">docker run -d -p 80 --name static_web wnn/static_web nginx -g &quot;daemon off;&quot;</span>
+<span class="err">docker run -d -p 8000:80 --name static_web wnn/static_web nginx -g &quot;daemon off;&quot;</span>
 </code></pre></div>
 
 
@@ -3578,7 +3590,7 @@ ADD会是的构建缓存变得无效，  使得后续指令无法继续使用之
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({

@@ -669,6 +669,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../webserver/14%20%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" title="14 项目问题汇总" class="md-nav__link">
+      14 项目问题汇总
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -3526,23 +3538,23 @@
     + <code>restart</code>、<code>retry</code>、<code>start()</code>：内部都是调用<code>startInLoop()</code>，其内部调用<code>connect()</code>来向服务端发起连接请求。
         + <code>retry()</code>是先关闭<code>sockfd</code>，再调用<code>startInLoop</code>
         + <code>restart()</code>没关闭<code>sockfd</code>，就调用<code>startInLoop</code>  </p>
-<div class="codehilite"><pre><span></span><code>    这个里面主要涉及了端口和ip地址复用情况，在`connect()`直接当作建立正确的情况,此时错误 **`EISCONN`**：
-    ```cpp
-        void Connector::connect() {
-            int sockfd = sockets::createNonblockingOrDie(serverAddr_.family());
-            int ret = sockets::connect(sockfd, serverAddr_.getSockAddr());
-            int savedErrno = (ret == 0) ? 0 : errno;
-            switch (savedErrno) {
-            case 0:
-            case EINPROGRESS:   // 由于socket是非堵塞套接字，而connect又不能立即完成的错误。
-            case EINTR:         // 被信号中断
-            case EISCONN:       // 已经连接
-                connecting(sockfd); // 重新连接
-                break;
-            }
-            ...
-        }
-    ```
+<div class="codehilite"><pre><span></span><code>    <span class="err">这个里面主要涉及了端口和</span><span class="n">ip地址复用情况</span><span class="err">，在</span><span class="ss">`connect()`</span><span class="err">直接当作建立正确的情况</span><span class="p">,</span><span class="err">此时错误</span> <span class="o">**</span><span class="ss">`EISCONN`</span><span class="o">**</span><span class="err">：</span>
+    <span class="ss">```cpp</span>
+<span class="ss">        void Connector::connect() {</span>
+<span class="ss">            int sockfd = sockets::createNonblockingOrDie(serverAddr_.family());</span>
+<span class="ss">            int ret = sockets::connect(sockfd, serverAddr_.getSockAddr());</span>
+<span class="ss">            int savedErrno = (ret == 0) ? 0 : errno;</span>
+<span class="ss">            switch (savedErrno) {</span>
+<span class="ss">            case 0:</span>
+<span class="ss">            case EINPROGRESS:   // 由于socket是非堵塞套接字，而connect又不能立即完成的错误。</span>
+<span class="ss">            case EINTR:         // 被信号中断</span>
+<span class="ss">            case EISCONN:       // 已经连接</span>
+<span class="ss">                connecting(sockfd); // 重新连接</span>
+<span class="ss">                break;</span>
+<span class="ss">            }</span>
+<span class="ss">            ...</span>
+<span class="ss">        }</span>
+<span class="ss">    ```</span>
 </code></pre></div>
                 
               
@@ -3611,7 +3623,7 @@
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "search.config.separator": "[\\uff0c\\u3002]+", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.config.lang": "ja", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "clipboard.copied": "\u5df2\u590d\u5236", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "clipboard.copy": "\u590d\u5236", "search.config.pipeline": "trimmer, stopWordFilter", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
